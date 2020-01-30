@@ -1,0 +1,27 @@
+{
+  "name": "brasilapi",
+  "version": "1.0.0",
+  "description": "Vamos transformar o Brasil em uma API?",
+  "dependencies": {
+    "cep-promise": "^3.0.9",
+    "next": "^9.2.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/filipedeschamps/BrasilAPI.git"
+  },
+  "author": "Filipe Deschamps",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/filipedeschamps/BrasilAPI/issues"
+  },
+  "homepage": "https://github.com/filipedeschamps/BrasilAPI#readme"
+}
