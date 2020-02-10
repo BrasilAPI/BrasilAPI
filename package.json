@@ -8,11 +8,15 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "cypress": "^4.0.1"
+  },
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "cypress:run": "node_modules/.bin/cypress run",
+    "cypress:open": "node_modules/.bin/cypress open"
   },
   "repository": {
     "type": "git",
