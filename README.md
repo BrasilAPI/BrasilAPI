@@ -44,3 +44,8 @@ Busca por CEP com múltiplos providers de fallback.
   ]
 }
 ```
+
+## Autores
+
+| [<img src="https://avatars3.githubusercontent.com/u/4248081?s=460&v=4" width=115><br><sub>@filipedeschamps</sub>](https://github.com/filipedeschamps) | [<img src="https://avatars3.githubusercontent.com/u/8251208?s=400&v=4" width=115><br><sub>@lucianopf</sub>](https://github.com/lucianopf) |
+| :---: | :---: |
