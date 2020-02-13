@@ -1,8 +1,10 @@
+import "../assets/styles/main.css";
+
 export default function Index() {
-    return (
-        <main>
-            <h1>Brasil API</h1>
-            <p>Vamos transformar o Brasil em uma API?</p>
-        </main>
-    );
+  return (
+    <main>
+      <a href="https://github.com/filipedeschamps/BrasilAPI">Brasil API</a>
+      <p>Vamos transformar o Brasil em uma API?</p>
+    </main>
+  );
 }

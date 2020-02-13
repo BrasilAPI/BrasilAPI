@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Vamos transformar o Brasil em uma API?",
   "dependencies": {
+    "@zeit/next-css": "^1.0.1",
     "cep-promise": "^3.0.9",
     "next": "^9.2.1",
     "react": "^16.12.0",
