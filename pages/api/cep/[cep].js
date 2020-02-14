@@ -12,7 +12,7 @@ export default async function Cep(request, response) {
         //
         // 1. O cache da Now é muito rápido e permite respostas em cerca de 10ms. O valor de
         //    um dia (86400 segundos) é suficiente para garantir performance e também que as
-        //    respostas estejam relativamente sincronizadas caso o governo decidade atualizar os CEPs.
+        //    respostas estejam relativamente sincronizadas caso o governo decida atualizar os CEPs.
         // 2. O cache da Now é invalidado toda vez que um novo deploy é feito, garantindo que
         //    todas as novas requisições sejam servidas pela implementação mais recente da API.
         // 3. Não há browser caching pois este tipo de API normalmente é utilizada uma vez só
