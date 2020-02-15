@@ -104,3 +104,6 @@ dist
 .tern-port
 
 .now
+
+# IDE
+.vscode/
