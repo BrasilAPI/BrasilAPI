@@ -1,6 +1,8 @@
 import cep from 'cep-promise';
 
-export default async function Cep(request, response) {
+import cors from '../../../config/cors.config';
+
+async function Cep(request, response) {
     const requestedCep = request.query.cep;
 
     response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
@@ -38,4 +40,6 @@ export default async function Cep(request, response) {
 //    sem necessidade, só ocupando espaço em disco. A história seria diferente se a API
 //    servisse fotos dos usuários, por exemplo. Além disso teríamos problemas com
 //    stale/out-of-date cache caso alterássemos a implementação da API.
-const CACHE_CONTROL_HEADER_VALUE = 'max-age=0, s-maxage=86400'
+const CACHE_CONTROL_HEADER_VALUE = 'max-age=0, s-maxage=86400';
+
+export default cors(Cep);
