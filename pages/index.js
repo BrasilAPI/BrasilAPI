@@ -43,7 +43,6 @@ export default function Index() {
           text-shadow: 0 2px 4px rgba(13, 0, 77, 0.08),
             0 3px 6px rgba(13, 0, 77, 0.08), 0 8px 16px rgba(13, 0, 77, 0.08);
           font-weight: bold;
-          width: 950px;
         }
 
         main > a {
