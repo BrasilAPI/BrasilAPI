@@ -31,18 +31,24 @@ export default function Index() {
             difference, normal;
           color: #fff;
           font-family: Poppins, sans-serif;
-          width: 950px;
+          max-width: 975px;
           margin: 0 auto;
           text-align: left;
+          padding: 0 20px;
         }
 
         main > h1 {
-          font-size: 88px;
-          line-height: 108px;
+          font-size: 90px;
+          line-height: 100px;
           color: #fff;
           text-shadow: 0 2px 4px rgba(13, 0, 77, 0.08),
             0 3px 6px rgba(13, 0, 77, 0.08), 0 8px 16px rgba(13, 0, 77, 0.08);
           font-weight: bold;
+
+          @media only screen and (max-width: 970px) {
+            font-size: 60px;
+            line-height: 70px;
+          }
         }
 
         main > a {
