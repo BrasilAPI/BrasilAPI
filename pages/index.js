@@ -41,7 +41,8 @@ export default function Index() {
           display: flex;
           flex-direction: column;
           height: 100%;
-          max-width: 975px;
+          max-width: 1000px;
+          padding: 0 20px;
         }
 
         main > h1 {
