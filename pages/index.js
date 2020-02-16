@@ -64,6 +64,11 @@ export default function Index() {
             font-size: 60px;
             line-height: 70px;
           }
+
+          @media screen and (max-width: 720px) {
+            font-size: 50px;
+            line-height: 60px;
+          }
         }
 
         main > a {
