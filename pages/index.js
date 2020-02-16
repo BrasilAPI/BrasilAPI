@@ -20,6 +20,9 @@ export default function Index() {
         }
 
         body {
+          display: flex;
+          align-items: center;
+          height: 100%;
           -webkit-font-smoothing: antialiased;
           background: linear-gradient(120deg, #ff00c7 0%, #51003f 100%),
             linear-gradient(120deg, #0030ad 0%, #00071a 100%),
@@ -31,10 +34,17 @@ export default function Index() {
             difference, normal;
           color: #fff;
           font-family: Poppins, sans-serif;
+
+          @media only screen and (max-width: 970px) {
+            padding: 0 20px;
+          }
+        }
+
+        main {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
           max-width: 975px;
-          margin: 0 auto;
-          text-align: left;
-          padding: 0 20px;
         }
 
         main > h1 {
