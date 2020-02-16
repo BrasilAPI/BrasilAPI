@@ -1,8 +1,15 @@
+import Head from 'next/head';
+
 export default function Index() {
   return (
-    <main>
-      <h1>Vamos transformar o brasil em uma api?</h1>
-      <a href='https://github.com/filipedeschamps/BrasilAPI'>Saiba mais</a>
+    <>
+      <Head>
+        <title>BrasilAPI</title>
+        <meta
+          name='description'
+          content='Vamos transformar o Brasil em uma API?'
+        />
+      </Head>
 
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap');
@@ -52,6 +59,11 @@ export default function Index() {
           text-shadow: 0 2px 4px rgba(13, 0, 77, 0.08),
             0 3px 6px rgba(13, 0, 77, 0.08), 0 8px 16px rgba(13, 0, 77, 0.08);
           font-weight: bold;
+
+          @media screen and (max-width: 1000px) {
+            font-size: 60px;
+            line-height: 70px;
+          }
         }
 
         main > a {
@@ -67,6 +79,11 @@ export default function Index() {
           text-decoration: none;
         }
       `}</style>
-    </main>
+
+      <main>
+        <h1>Vamos transformar o brasil em uma api?</h1>
+        <a href='https://github.com/filipedeschamps/BrasilAPI'>Saiba mais</a>
+      </main>
+    </>
   );
 }

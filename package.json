@@ -5,14 +5,21 @@
   "dependencies": {
     "cep-promise": "^3.0.9",
     "next": "^9.2.1",
+    "postcss-nested": "^4.2.1",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "styled-jsx-plugin-postcss": "^2.0.1"
   },
   "devDependencies": {},
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start"
+  },
+  "postcss": {
+    "plugins": {
+      "postcss-nested": {}
+    }
   },
   "repository": {
     "type": "git",
