@@ -6,7 +6,6 @@ export default function Index() {
 
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap');
-        @custom-media --medium (width < 970px);
 
         * {
           box-sizing: border-box;
@@ -35,10 +34,6 @@ export default function Index() {
             difference, normal;
           color: #fff;
           font-family: Poppins, sans-serif;
-
-          @media (--medium) {
-            padding: 0 20px;
-          }
         }
 
         main {
@@ -55,11 +50,6 @@ export default function Index() {
           text-shadow: 0 2px 4px rgba(13, 0, 77, 0.08),
             0 3px 6px rgba(13, 0, 77, 0.08), 0 8px 16px rgba(13, 0, 77, 0.08);
           font-weight: bold;
-
-          @media (--medium) {
-            font-size: 60px;
-            line-height: 70px;
-          }
         }
 
         main > a {
