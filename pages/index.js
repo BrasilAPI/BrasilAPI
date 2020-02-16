@@ -1,11 +1,12 @@
 export default function Index() {
   return (
     <main>
-      <a href="https://github.com/filipedeschamps/BrasilAPI">Brasil API</a>
-      <p>Vamos transformar o Brasil em uma API?</p>
+      <h1>Vamos transformar o brasil em uma api?</h1>
+      <a href='https://github.com/filipedeschamps/BrasilAPI'>Saiba mais</a>
 
       <style jsx global>{`
-        @import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap');
+
         * {
           box-sizing: border-box;
           margin: 0;
@@ -19,25 +20,58 @@ export default function Index() {
         }
 
         body {
-          -webkit-font-smoothing: antialiased;
-          align-items: center;
-          background: linear-gradient(-90deg, #009c3b, #ffdf00);
-          color: #fff;
           display: flex;
-          flex-direction: column;
-          font: 20px "Muli", sans-serif;
-          justify-content: center;
-          text-align: center;
-        }
-        main > a {
+          align-items: center;
+          height: 100%;
+          -webkit-font-smoothing: antialiased;
+          background: linear-gradient(120deg, #ff00c7 0%, #51003f 100%),
+            linear-gradient(120deg, #0030ad 0%, #00071a 100%),
+            linear-gradient(180deg, #000346 0%, #ff0000 100%),
+            linear-gradient(60deg, #0029ff 0%, #aa0014 100%),
+            radial-gradient(100% 165% at 100% 100%, #ff00a8 0%, #00ff47 100%),
+            radial-gradient(100% 150% at 0% 0%, #fff500 0%, #51d500 100%);
+          background-blend-mode: overlay, color-dodge, overlay, overlay,
+            difference, normal;
           color: #fff;
-          font-size: 2em;
-          text-decoration: none;
+          font-family: Poppins, sans-serif;
+
+          @media only screen and (max-width: 970px) {
+            padding: 0 20px;
+          }
         }
 
-        main > p {
-          border-top: 1px solid rgba(999, 999, 999, 0.43);
-          margin-top: 10px;
+        main {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          max-width: 975px;
+        }
+
+        main > h1 {
+          font-size: 90px;
+          line-height: 100px;
+          color: #fff;
+          text-shadow: 0 2px 4px rgba(13, 0, 77, 0.08),
+            0 3px 6px rgba(13, 0, 77, 0.08), 0 8px 16px rgba(13, 0, 77, 0.08);
+          font-weight: bold;
+
+          @media only screen and (max-width: 970px) {
+            font-size: 60px;
+            line-height: 70px;
+          }
+        }
+
+        main > a {
+          color: #0d004d;
+          cursor: pointer;
+          background: #fff;
+          line-height: 28px;
+          border-radius: 4px;
+          padding: 16px 40px;
+          width: 200px;
+          margin-top: 50px;
+          text-align: center;
+          text-decoration: none;
         }
       `}</style>
     </main>
