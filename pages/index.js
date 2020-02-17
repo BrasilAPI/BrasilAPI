@@ -32,12 +32,12 @@ export default function Index() {
           align-items: center;
           height: 100%;
           -webkit-font-smoothing: antialiased;
-          background: linear-gradient(120deg, #11ff00 0%, #ff0000 100%),
-            linear-gradient(120deg, #11ff00 0%, #000000 100%),
-            linear-gradient(180deg, #928f8f 0%, #000000 100%),
-            linear-gradient(60deg, #000000 0%, #7c8ad0 100%),
-            radial-gradient(100% 165% at 100% 100%, #980707 0%, #000000 100%),
-            radial-gradient(100% 150% at 0% 0%, #fff500 0%, #d6e03e 100%);
+          background: linear-gradient(120deg, #ffffff 0%, #ad7228 100%),
+            linear-gradient(120deg, #ffffff00 0%, #0008ff 100%),
+            linear-gradient(180deg, #2700ff 0%, #00e7ff 100%),
+            linear-gradient(60deg, #10ff00 0%, #38d205 100%),
+            radial-gradient(100% 165% at 100% 100%, #3955bd 0%, #000000 100%),
+            radial-gradient(100% 150% at 0% 0%, #312f00 0%, #696d28 100%);
           background-blend-mode: overlay, color-dodge, overlay, overlay,
             difference, normal;
           color: #fff;
