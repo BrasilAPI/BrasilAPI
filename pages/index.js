@@ -32,12 +32,12 @@ export default function Index() {
           align-items: center;
           height: 100%;
           -webkit-font-smoothing: antialiased;
-          background: linear-gradient(120deg, #ff00c7 0%, #51003f 100%),
-            linear-gradient(120deg, #0030ad 0%, #00071a 100%),
-            linear-gradient(180deg, #000346 0%, #ff0000 100%),
-            linear-gradient(60deg, #0029ff 0%, #aa0014 100%),
-            radial-gradient(100% 165% at 100% 100%, #ff00a8 0%, #00ff47 100%),
-            radial-gradient(100% 150% at 0% 0%, #fff500 0%, #51d500 100%);
+          background: linear-gradient(120deg, #11ff00 0%, #ff0000 100%),
+            linear-gradient(120deg, #11ff00 0%, #000000 100%),
+            linear-gradient(180deg, #928f8f 0%, #000000 100%),
+            linear-gradient(60deg, #000000 0%, #7c8ad0 100%),
+            radial-gradient(100% 165% at 100% 100%, #980707 0%, #000000 100%),
+            radial-gradient(100% 150% at 0% 0%, #fff500 0%, #d6e03e 100%);
           background-blend-mode: overlay, color-dodge, overlay, overlay,
             difference, normal;
           color: #fff;
@@ -72,7 +72,7 @@ export default function Index() {
         }
 
         main > a {
-          color: #0d004d;
+          color: #232323;
           cursor: pointer;
           background: #fff;
           line-height: 28px;
