@@ -3,7 +3,7 @@
 function makeInvalidRequest(cep, validationError) {
   cy.request({
     method: "get",
-    url: `http://localhost:3000/api/cep/${cep}`,
+    url: `http://localhost:3000/api/v1/cep/${cep}`,
     failOnStatusCode: false
   }).should(response => {
     expect(response.status).to.eq(404);
@@ -28,7 +28,7 @@ context("Cep HTTP Cases", () => {
       neighborhood: "",
       street: ""
     };
-    cy.request(`http://localhost:3000/api/cep/${myAdress.cep}`).should(
+    cy.request(`http://localhost:3000/api/v1/cep/${myAdress.cep}`).should(
       response => {
         expect(response.status).to.eq(200);
         expect(response.body).to.deep.equal(myAdress);

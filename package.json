@@ -15,8 +15,8 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "cypress:run": "node_modules/.bin/cypress run",
-    "cypress:open": "node_modules/.bin/cypress open"
+    "cypress:run": "cypress run",
+    "cypress:open": "cypress open"
   },
   "repository": {
     "type": "git",
