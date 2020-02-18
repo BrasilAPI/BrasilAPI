@@ -3,6 +3,8 @@
   <strong>Vamos transformar o Brasil em uma API?</strong>
 </p>
 
+[![Build Status](https://travis-ci.com/filipedeschamps/BrasilAPI.svg?branch=master)](https://travis-ci.com/filipedeschamps/BrasilAPI)
+
 ## Motivo
 Acesso programático de informações é algo fundamental na comunicação entre sistemas mas, para nossa surpresa, uma informação tão útil e pública quanto um CEP não consegue ser acessada diretamente por um navegador por conta da API dos Correios não possuir CORS habilitado.
 
