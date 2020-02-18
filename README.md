@@ -19,12 +19,12 @@ O primeiro endpoint a ser implementado precisava ser o que estava nos dando a ma
 ### CEP
 Busca por CEP com múltiplos providers de fallback.
 
-**GET** `https://brasilapi.com.br/api/v1/cep/`**[cep]**
+**GET** `https://brasilapi.com.br/api/cep/v1/`**[cep]**
 
 #### Consulta com sucesso
 
 ```json
-// GET https://brasilapi.com.br/api/v1/cep/05010000
+// GET https://brasilapi.com.br/api/cep/v1/05010000
 
 {
   "cep": "05010000",
@@ -38,7 +38,7 @@ Busca por CEP com múltiplos providers de fallback.
 #### Consulta com erro
 
 ```json
-// GET https://brasilapi.com.br/api/v1/cep/00000000
+// GET https://brasilapi.com.br/api/cep/v1/00000000
 
 {
   "name": "CepPromiseError",
