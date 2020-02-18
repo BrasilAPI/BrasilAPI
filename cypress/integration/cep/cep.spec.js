@@ -15,7 +15,7 @@ context("Cep HTTP Cases", () => {
   it("Open HomePage with Success", () => {
     cy.visit("http://localhost:3000");
     cy.get("main").within(() => {
-      cy.get("h1").contains("Brasil API");
+      cy.get("a").contains("Brasil API");
       cy.get("p").contains("Vamos transformar o Brasil em uma API?");
     });
   });
