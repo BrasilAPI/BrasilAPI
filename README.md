@@ -16,16 +16,15 @@ Caso você esteja lendo esta versão de README, você está pegando o projeto nu
 ## Endpoints
 O primeiro endpoint a ser implementado precisava ser o que estava nos dando a maior dor de cabeça: busca de um endereço através do CEP. É um endpoint extremamente simples de implementar, mas vários detalhes ainda não foram resolvidos, como garantir seu comportamento através de testes E2E utilizando a Preview URL que a ZEIT retorna a cada Pull Request. Depois de consolidarmos as melhores práticas para esse endpoint, poderemos replicar para todos os outros que irão vir.
 
-
 ### CEP
 Busca por CEP com múltiplos providers de fallback.
 
-**GET** `https://brasilapi.com.br/api/cep/`**[cep]**
+**GET** `https://brasilapi.com.br/api/cep/v1/`**[cep]**
 
 #### Consulta com sucesso
 
 ```json
-// GET https://brasilapi.com.br/api/cep/05010000
+// GET https://brasilapi.com.br/api/cep/v1/05010000
 
 {
   "cep": "05010000",
@@ -39,7 +38,7 @@ Busca por CEP com múltiplos providers de fallback.
 #### Consulta com erro
 
 ```json
-// GET https://brasilapi.com.br/api/cep/00000000
+// GET https://brasilapi.com.br/api/cep/v1/00000000
 
 {
   "name": "CepPromiseError",
@@ -64,7 +63,6 @@ Busca por CEP com múltiplos providers de fallback.
 
 | [<img src="https://avatars0.githubusercontent.com/u/22279592?s=400&v=4" width="115"><br><sub>@kevenleone</sub>](https://github.com/kevenleone) | [<img src="https://avatars0.githubusercontent.com/u/29285724?s=400&v=4" width="115"><br><sub>@OtavioCapila</sub>](https://github.com/OtavioCapila) | [<img src="https://avatars2.githubusercontent.com/u/6341210?s=400&v=4" width="115"><br><sub>@rafamancan</sub>](https://github.com/rafamancan) | [<img src="https://avatars2.githubusercontent.com/u/22918282?s=400&v=4" width="115"><br><sub>@lucas-eduardo</sub>](https://github.com/lucas-eduardo) | [<img src="https://avatars1.githubusercontent.com/u/640840?s=400&v=4" width="115"><br><sub>@eliseumds</sub>](https://github.com/eliseumds) | [<img src="https://avatars1.githubusercontent.com/u/11640028?s=400&v=4" width="115"><br><sub>@evertoncastro</sub>](https://github.com/evertoncastro) |
 | :---: |  :---: |  :---: |  :---: |  :---: |  :---: |
-
 
 ## Autores
 
