@@ -1,0 +1,8 @@
+language: node_js
+
+node_js:
+  - 11
+  - 12
+
+script:
+  - npx start-server-and-test serve http://localhost:3000 cy:run

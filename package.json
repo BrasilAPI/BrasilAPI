@@ -9,14 +9,16 @@
     "react-dom": "^16.12.0"
   },
   "devDependencies": {
-    "cypress": "^4.0.1"
+    "cypress": "^4.0.1",
+    "start-server-and-test": "^1.10.8"
   },
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "cypress:run": "cypress run",
-    "cypress:open": "cypress open"
+    "serve": "next build && next start",
+    "cy:run": "cypress run",
+    "cy:open": "cypress open"
   },
   "repository": {
     "type": "git",
