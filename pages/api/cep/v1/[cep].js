@@ -16,7 +16,7 @@ import cep from 'cep-promise';
 //    sem necessidade, só ocupando espaço em disco. A história seria diferente se a API
 //    servisse fotos dos usuários, por exemplo. Além disso teríamos problemas com
 //    stale/out-of-date cache caso alterássemos a implementação da API.
-const CACHE_CONTROL_HEADER_VALUE = 'max-age=0, s-maxage=86400';
+const CACHE_CONTROL_HEADER_VALUE = 'max-age=0, s-maxage=86400, stale-while-revalidate, public';
 const cors = microCors();
 
 async function Cep(request, response) {
