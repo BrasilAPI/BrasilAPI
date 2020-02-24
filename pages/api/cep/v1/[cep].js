@@ -2,7 +2,8 @@ import microCors from 'micro-cors';
 import cep from 'cep-promise';
 
 // max-age especifica quanto tempo o browser deve manter o valor em cache, em segundos.
-// s-maxage é uma header lida pelo servidor proxy (neste caso, o Now da Zeit).
+// s-maxage é uma header lida pelo servidor proxy (neste caso, o Now da ZEIT).
+// stale-while-revalidate indica que o conteúdo da cache pode ser servido como "stale" e revalidado no background
 //
 // Por que os valores abaixo?
 //
@@ -16,7 +17,7 @@ import cep from 'cep-promise';
 //    sem necessidade, só ocupando espaço em disco. A história seria diferente se a API
 //    servisse fotos dos usuários, por exemplo. Além disso teríamos problemas com
 //    stale/out-of-date cache caso alterássemos a implementação da API.
-const CACHE_CONTROL_HEADER_VALUE = 'max-age=0, s-maxage=86400';
+const CACHE_CONTROL_HEADER_VALUE = 'max-age=0, s-maxage=86400, stale-while-revalidate, public';
 const cors = microCors();
 
 async function Cep(request, response) {
