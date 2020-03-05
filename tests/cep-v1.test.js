@@ -25,14 +25,23 @@ describe('/cep/v1 (E2E)', () => {
     });
   });
 
-  test.skip('Utilizando um CEP inexistente: 00000000', async () => {
-    // O endpoint /cep/v1 está retornando 404 independente
-    // do CEP não existir ou ele não ser válido. Podemos melhorar
-    // esse comportamento fazendo uma diferenciação no Status do
-    // response para quando for um type "validation_error" ou "service_error"
-
-    // Nesse caso aqui seria um "service_error":
-    // "Todos os serviços de CEP retornaram erro."
+  test('Utilizando um CEP inexistente: 00000000', async () => {
+    expect.assertions(2);
+    const requestUrl = `${server.getUrl()}/api/cep/v1/00000000`;
+    
+    try {
+      await axios.get(requestUrl);
+      
+    } catch (error) {
+      const { response } = error;
+      
+      expect(response.status).toBe(404);
+      expect(response.data).toMatchObject({
+        name: 'CepPromiseError',
+        message: 'Todos os serviços de CEP retornaram erro.',
+        type: 'service_error'
+      });
+    }
   });
 
   test.skip('Utilizando um CEP inválido: 999999999999999', async () => {
