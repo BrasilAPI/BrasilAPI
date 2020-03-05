@@ -44,14 +44,27 @@ describe('/cep/v1 (E2E)', () => {
     }
   });
 
-  test.skip('Utilizando um CEP inválido: 999999999999999', async () => {
-    // O endpoint /cep/v1 está retornando 404 independente
-    // do CEP não existir ou ele não ser válido. Podemos melhorar
-    // esse comportamento fazendo uma diferenciação no Status do
-    // response para quando for um type "validation_error" ou "service_error"
-
-    // Nesse caso aqui seria um "validation_error":
-    // "CEP deve conter exatamente 8 caracteres."
+  test('Utilizando um CEP inválido: 999999999999999', async () => {
+    expect.assertions(2);
+    const requestUrl = `${server.getUrl()}/api/cep/v1/999999999999999`;
+    
+    try {
+      await axios.get(requestUrl);
+      
+    } catch (error) {
+      const { response } = error;
+      
+      expect(response.status).toBe(400);
+      expect(response.data).toEqual({
+        name: "CepPromiseError",
+        message: "CEP deve conter exatamente 8 caracteres.",
+        type: "validation_error",
+        errors: [{
+          message: "CEP informado possui mais do que 8 caracteres.",
+          service: "cep_validation"
+        }]
+      });
+    }
   });
 
 });
