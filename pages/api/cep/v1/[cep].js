@@ -35,10 +35,10 @@ async function Cep(request, response) {
 
         if (error.name === 'CepPromiseError') {
             switch(error.type) {
-                case "validation_error":
+                case 'validation_error':
                     response.status(400);
                     break;
-                case "service_error":
+                case 'service_error':
                     response.status(404);
                     break;
             }
