@@ -56,12 +56,12 @@ describe('/cep/v1 (E2E)', () => {
       
       expect(response.status).toBe(400);
       expect(response.data).toEqual({
-        name: "CepPromiseError",
-        message: "CEP deve conter exatamente 8 caracteres.",
-        type: "validation_error",
+        name: 'CepPromiseError',
+        message: 'CEP deve conter exatamente 8 caracteres.',
+        type: 'validation_error',
         errors: [{
-          message: "CEP informado possui mais do que 8 caracteres.",
-          service: "cep_validation"
+          message: 'CEP informado possui mais do que 8 caracteres.',
+          service: 'cep_validation'
         }]
       });
     }
