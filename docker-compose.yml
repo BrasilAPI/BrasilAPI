@@ -1,0 +1,9 @@
+version: '3'
+services:
+  brasil_api:
+    image: node:12.16
+    volumes:
+    - .:/var/www/html/brasilApi
+    container_name: api_node
+    working_dir: /var/www/html/brasilApi
+    tty: true
