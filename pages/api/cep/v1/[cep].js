@@ -32,7 +32,6 @@ async function Cep(request, response) {
         response.json(cepResult);
 
     } catch (error) {
-
         if (error.name === 'CepPromiseError') {
             switch(error.type) {
                 case 'validation_error':
