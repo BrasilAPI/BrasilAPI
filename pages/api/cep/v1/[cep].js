@@ -78,6 +78,10 @@ export const resolvers = {
             }
 
             try {
+                _context.res.setHeader(
+                    'Cache-Control',
+                    CACHE_CONTROL_HEADER_VALUE
+                );
                 const cepResult = await cep(_args.cep);
                 return cepResult;
             } catch (err) {
