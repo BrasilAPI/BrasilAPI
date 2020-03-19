@@ -46,9 +46,22 @@ async function Cep(request, response) {
 
 export const typeDefs = gql`
     extend type Query {
-        cep(cep: String!): CEP
+        """
+        Retorna o endereço com base no CEP fornecido
+        """
+        cep(
+            """
+            CEP deve **sempre** conter 8 caracteres 
+            [**[referência](https://pt.wikipedia.org/wiki/C%C3%B3digo_de_Endere%C3%A7amento_Postal)**]
+            """
+            cep: String!
+        ): Address
     }
-    type CEP {
+
+    """
+    Endereço
+    """
+    type Address {
         cep: String
         state: String
         city: String

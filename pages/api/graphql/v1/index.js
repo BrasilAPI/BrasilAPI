@@ -35,6 +35,7 @@ const schema = makeExecutableSchema({
 
 const apolloServer = new ApolloServer({
     schema,
+    introspection: true,
     context: ({ req, res }) => {
         return { req, res };
     }
