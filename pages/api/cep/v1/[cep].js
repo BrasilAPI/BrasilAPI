@@ -1,3 +1,4 @@
+import { ApolloError, gql } from 'apollo-server-micro';
 import microCors from 'micro-cors';
 import cep from 'cep-promise';
 
@@ -42,5 +43,39 @@ async function Cep(request, response) {
         response.json(error);
     }
 }
+
+export const typeDefs = gql`
+    extend type Query {
+        cep(cep: String!): CEP
+    }
+    type CEP {
+        cep: String
+        state: String
+        city: String
+        street: String
+        neighborhood: String
+    }
+`;
+
+export const resolvers = {
+    Query: {
+        cep: async (_parent, _args, _context) => {
+            if (_args.cep.length !== 8) {
+                throw new ApolloError('CEP inválido', 'validation_error');
+            }
+
+            try {
+                const cepResult = await cep(_args.cep);
+                return cepResult;
+            } catch (err) {
+                throw new ApolloError(
+                    'Erro ao consultar CEP',
+                    err.type,
+                    err.errors
+                );
+            }
+        }
+    }
+};
 
 export default cors(Cep);
