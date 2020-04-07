@@ -14,4 +14,4 @@ function Status(request, response) {
     });
 }
 
-export default cors(Status)
+export default cors(Status);
