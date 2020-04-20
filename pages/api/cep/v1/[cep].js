@@ -17,30 +17,30 @@ import cep from 'cep-promise';
 //    sem necessidade, só ocupando espaço em disco. A história seria diferente se a API
 //    servisse fotos dos usuários, por exemplo. Além disso teríamos problemas com
 //    stale/out-of-date cache caso alterássemos a implementação da API.
-const CACHE_CONTROL_HEADER_VALUE = 'max-age=0, s-maxage=86400, stale-while-revalidate, public';
+const CACHE_CONTROL_HEADER_VALUE =
+  'max-age=0, s-maxage=86400, stale-while-revalidate, public';
 const cors = microCors();
 
 async function Cep(request, response) {
-    const requestedCep = request.query.cep;
+  const requestedCep = request.query.cep;
 
-    response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
+  response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
 
-    try {
-        const cepResult = await cep(requestedCep);
+  try {
+    const cepResult = await cep(requestedCep);
 
-        response.status(200);
-        response.json(cepResult);
-
-    } catch (error) {
-        if (error.name === 'CepPromiseError') {
-            response.status(404);
-            response.json(error);
-            return;
-        }
-
-        response.status(500);
-        response.json(error);
+    response.status(200);
+    response.json(cepResult);
+  } catch (error) {
+    if (error.name === 'CepPromiseError') {
+      response.status(404);
+      response.json(error);
+      return;
     }
+
+    response.status(500);
+    response.json(error);
+  }
 }
 
 export default cors(Cep);
