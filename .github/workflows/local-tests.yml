@@ -1,0 +1,23 @@
+name: Testes Locais
+
+on: [pull_request]
+
+jobs:
+  tests:
+    name: Testes
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Puxar o código do commit
+        uses: actions/checkout@v2
+
+      - name: Instalar o Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: Instalar as dependências do npm
+        run: npm install
+
+      - name: Rodar os testes
+        run: npm test
