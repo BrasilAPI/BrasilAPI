@@ -3,14 +3,6 @@ const axios = require('axios');
 const createServer = require('./helpers/server.js')
 const server = createServer();
 
-beforeAll(async () => {
-  await server.start();
-})
-
-afterAll(async () => {
-  await server.stop();
-})
-
 describe('/cep/v1 (E2E)', () => {
   test('Utilizando um CEP válido: 05010000', async () => {
     const requestUrl = `${server.getUrl()}/api/cep/v1/05010000`;

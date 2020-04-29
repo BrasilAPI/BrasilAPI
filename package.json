@@ -20,7 +20,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "test": "jest --runInBand",
+    "test": "jest",
     "test:watch": "jest --watch"
   },
   "repository": {
