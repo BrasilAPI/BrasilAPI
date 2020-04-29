@@ -1,4 +1,4 @@
-name: Testes Locais
+name: Testes
 
 on: [pull_request]
 
