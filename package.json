@@ -3,18 +3,18 @@
   "version": "1.0.0",
   "description": "Vamos transformar o Brasil em uma API?",
   "dependencies": {
-    "apollo-server-micro": "^2.11.0",
+    "apollo-server-micro": "2.15.0",
     "axios": "0.19.2",
     "cep-promise": "3.0.9",
-    "lodash": "^4.17.15",
+    "lodash": "4.17.15",
     "micro-cors": "0.1.1",
-    "next": "9.3.2",
-    "react": "16.12.0",
-    "react-dom": "16.12.0"
+    "next": "9.4.4",
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
   },
   "devDependencies": {
-    "jest": "25.1.0",
-    "wait-on": "4.0.0"
+    "jest": "26.1.0",
+    "wait-on": "5.0.1"
   },
   "scripts": {
     "dev": "next",
