@@ -2,7 +2,7 @@ import { ApolloError } from 'apollo-server-micro';
 import cep from 'cep-promise';
 
 // max-age especifica quanto tempo o browser deve manter o valor em cache, em segundos.
-// s-maxage é uma header lida pelo servidor proxy (neste caso, o Now da ZEIT).
+// s-maxage é uma header lida pelo servidor proxy (neste caso, Vercel).
 // stale-while-revalidate indica que o conteúdo da cache pode ser servido como "stale" e revalidado no background
 //
 // Por que os valores abaixo?
