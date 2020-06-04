@@ -18,11 +18,11 @@ jobs:
           --data '{
             "state": "pending",
             "context": "e2e-tests",
-            "description": "Aguardando a Preview URL da Zeit"
+            "description": "Aguardando a Preview URL da Vercel"
             }'
       
   e2e-tests:
-    name: Rodar testes E2E contra a Preview URL da Zeit
+    name: Rodar testes E2E contra a Preview URL da Vercel
     if: github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
 
@@ -52,7 +52,7 @@ jobs:
       - name: Instalar as dependências do npm
         run: npm install
 
-      - name: Rodar testes utilizando a Preview URL da Zeit
+      - name: Rodar testes utilizando a Preview URL da Vercel
         run: npm test
         env:
           NODE_ENV: 'ci'
