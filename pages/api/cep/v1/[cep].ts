@@ -1,5 +1,5 @@
-import microCors from 'micro-cors';
 import cep from 'cep-promise';
+import { NowRequest, NowResponse } from '@vercel/node';
 
 // max-age especifica quanto tempo o browser deve manter o valor em cache, em segundos.
 // s-maxage é uma header lida pelo servidor proxy (neste caso, Vercel).
@@ -17,30 +17,32 @@ import cep from 'cep-promise';
 //    sem necessidade, só ocupando espaço em disco. A história seria diferente se a API
 //    servisse fotos dos usuários, por exemplo. Além disso teríamos problemas com
 //    stale/out-of-date cache caso alterássemos a implementação da API.
-const CACHE_CONTROL_HEADER_VALUE = 'max-age=0, s-maxage=86400, stale-while-revalidate, public';
-const cors = microCors();
+const CACHE_CONTROL_HEADER_VALUE =
+  'max-age=0, s-maxage=86400, stale-while-revalidate, public';
 
-async function Cep(request, response) {
-    const requestedCep = request.query.cep;
+async function Cep(
+  request: NowRequest,
+  response: NowResponse
+): Promise<NowResponse> {
+  const requestedCep = request.query.cep;
 
-    response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
+  response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
 
-    try {
-        const cepResult = await cep(requestedCep);
+  try {
+    if (requestedCep instanceof Array)
+      return response
+        .status(422)
+        .json(new Error('CEP deve ser do tipo string ou number'));
 
-        response.status(200);
-        response.json(cepResult);
+    const cepResult = await cep(requestedCep);
 
-    } catch (error) {
-        if (error.name === 'CepPromiseError') {
-            response.status(404);
-            response.json(error);
-            return;
-        }
+    return response.status(200).json(cepResult);
+  } catch (error) {
+    if (error.name === 'CepPromiseError')
+      return response.status(404).json(error);
 
-        response.status(500);
-        response.json(error);
-    }
+    return response.status(500).json(error);
+  }
 }
 
-export default cors(Cep);
+export default Cep;
