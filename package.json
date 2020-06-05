@@ -13,12 +13,15 @@
     "react-dom": "16.13.1"
   },
   "devDependencies": {
+    "@types/jest": "^25.2.3",
     "@types/lodash": "^4.14.155",
     "@types/micro-cors": "^0.1.1",
     "@types/node": "^14.0.11",
     "@types/react": "^16.9.35",
+    "@types/wait-on": "^4.0.0",
     "@vercel/node": "^1.6.1",
     "jest": "26.0.1",
+    "ts-jest": "^26.1.0",
     "typescript": "^3.9.5",
     "wait-on": "4.0.0"
   },
@@ -26,8 +29,8 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "test": "jest --env=node",
+    "test:watch": "jest --watch --env=node"
   },
   "repository": {
     "type": "git",

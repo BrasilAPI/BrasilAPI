@@ -1,27 +1,27 @@
-const axios = require('axios');
+import axios from 'axios';
+import createServer from './helpers/server';
 
-const createServer = require('./helpers/server.js')
 const server = createServer();
 
 beforeAll(async () => {
   await server.start();
-})
+});
 
 afterAll(async () => {
   await server.stop();
-})
+});
 
 describe('/cep/v1 (E2E)', () => {
   test('Utilizando um CEP válido: 05010000', async () => {
     const requestUrl = `${server.getUrl()}/api/cep/v1/05010000`;
     const response = await axios.get(requestUrl);
-    
+
     expect(response.data).toEqual({
       cep: '05010000',
       state: 'SP',
       city: 'São Paulo',
       neighborhood: 'Perdizes',
-      street: 'Rua Caiubi'
+      street: 'Rua Caiubi',
     });
   });
 
@@ -30,7 +30,6 @@ describe('/cep/v1 (E2E)', () => {
     // do CEP não existir ou ele não ser válido. Podemos melhorar
     // esse comportamento fazendo uma diferenciação no Status do
     // response para quando for um type "validation_error" ou "service_error"
-
     // Nesse caso aqui seria um "service_error":
     // "Todos os serviços de CEP retornaram erro."
   });
@@ -40,9 +39,7 @@ describe('/cep/v1 (E2E)', () => {
     // do CEP não existir ou ele não ser válido. Podemos melhorar
     // esse comportamento fazendo uma diferenciação no Status do
     // response para quando for um type "validation_error" ou "service_error"
-
     // Nesse caso aqui seria um "validation_error":
     // "CEP deve conter exatamente 8 caracteres."
   });
-
 });
