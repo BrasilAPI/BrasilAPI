@@ -1,5 +1,7 @@
 import cep from 'cep-promise';
 import { NowRequest, NowResponse } from '@vercel/node';
+import ReturnError from '../../../../src/library/funError';
+import ERRORS from '../../../../src/constants/ERRORS';
 
 // max-age especifica quanto tempo o browser deve manter o valor em cache, em segundos.
 // s-maxage é uma header lida pelo servidor proxy (neste caso, Vercel).
@@ -25,10 +27,14 @@ async function Cep(
   const requestedCep = request.query.cep;
 
   try {
-    if (requestedCep instanceof Array)
-      return response
-        .status(422)
-        .json(new Error('CEP deve ser do tipo string ou number'));
+    if (typeof requestedCep !== 'string')
+      return response.status(422).json(
+        ReturnError({
+          message: ERRORS.MESSAGE.CEP.WRONG_TYPE,
+          name: ERRORS.NAME.CEP.WRONG_TYPE,
+          type: ERRORS.TYPE.CEP.WRONG_TYPE,
+        })
+      );
 
     const cepResult = await cep(requestedCep);
 
