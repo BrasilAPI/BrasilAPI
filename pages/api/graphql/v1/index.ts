@@ -1,13 +1,7 @@
 import { ApolloServer } from 'apollo-server-micro';
 import Cors from 'micro-cors';
 import { schema } from '../../../../graphql/schema';
-import { MicroRequest } from 'apollo-server-micro/dist/types';
-import { ServerResponse } from 'http';
-
-interface ContextArgs {
-  req: MicroRequest;
-  res: ServerResponse;
-}
+import { ContextArgs } from '../../../../src/constants/types';
 
 const cors = Cors({
   allowMethods: ['POST', 'OPTIONS'],
