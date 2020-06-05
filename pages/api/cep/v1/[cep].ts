@@ -5,7 +5,7 @@ import { NowRequest, NowResponse } from '@vercel/node';
 // s-maxage é uma header lida pelo servidor proxy (neste caso, Vercel).
 // stale-while-revalidate indica que o conteúdo da cache pode ser servido como "stale" e revalidado no background
 //
-// Por que os valores abaixo?
+// Por que os valores abaixo? // UPDATE: valores transferidos para vercel.json
 //
 // 1. O cache da Now é muito rápido e permite respostas em cerca de 10ms. O valor de
 //    um dia (86400 segundos) é suficiente para garantir performance e também que as
@@ -17,16 +17,12 @@ import { NowRequest, NowResponse } from '@vercel/node';
 //    sem necessidade, só ocupando espaço em disco. A história seria diferente se a API
 //    servisse fotos dos usuários, por exemplo. Além disso teríamos problemas com
 //    stale/out-of-date cache caso alterássemos a implementação da API.
-const CACHE_CONTROL_HEADER_VALUE =
-  'max-age=0, s-maxage=86400, stale-while-revalidate, public';
 
 async function Cep(
   request: NowRequest,
   response: NowResponse
 ): Promise<NowResponse> {
   const requestedCep = request.query.cep;
-
-  response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
 
   try {
     if (requestedCep instanceof Array)

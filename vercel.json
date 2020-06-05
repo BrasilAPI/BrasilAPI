@@ -16,6 +16,15 @@
           "value": "true"
         }
       ]
+    },
+    {
+      "source": "/pages/api/cep/v1/[cep].ts",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "max-age=0, s-maxage=86400, stale-while-revalidate, public"
+        }
+      ]
     }
   ]
 }
