@@ -33,12 +33,14 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^2.3.0",
+    "husky": "^4.2.5",
+    "jest": "26.0.1",
+    "lint-staged": "^10.2.9",
     "prettier": "^2.0.5",
     "prettier-check": "^2.0.0",
     "prettier-eslint": "^9.0.1",
     "prettier-eslint-cli": "^5.0.0",
     "pretty-quick": "^2.0.1",
-    "jest": "26.0.1",
     "ts-jest": "^26.1.0",
     "typescript": "^3.9.5",
     "wait-on": "4.0.0"
@@ -60,5 +62,13 @@
   "bugs": {
     "url": "https://github.com/filipedeschamps/BrasilAPI/issues"
   },
-  "homepage": "https://github.com/filipedeschamps/BrasilAPI#readme"
+  "homepage": "https://github.com/filipedeschamps/BrasilAPI#readme",
+  "lint-staged": {
+    "**/*.ts{x,}": [
+      "npm run lint"
+    ],
+    "**/?(*.)+(spec|test).ts?(x)": [
+      "npm run test"
+    ]
+  }
 }
