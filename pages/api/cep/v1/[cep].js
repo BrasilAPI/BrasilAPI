@@ -33,7 +33,17 @@ async function Cep(request, response) {
     response.json(cepResult);
   } catch (error) {
     if (error.name === 'CepPromiseError') {
-      response.status(404);
+      switch (error.type) {
+        case 'validation_error':
+          response.status(400);
+          break;
+        case 'service_error':
+          response.status(404);
+          break;
+        default:
+          break;
+      }
+
       response.json(error);
       return;
     }
