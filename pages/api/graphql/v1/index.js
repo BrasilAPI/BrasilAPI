@@ -1,9 +1,9 @@
-import { ApolloServer } from "apollo-server-micro";
-import Cors from "micro-cors";
-import { schema } from "../../../../graphql/schema";
+import { ApolloServer } from 'apollo-server-micro';
+import Cors from 'micro-cors';
+import { schema } from '../../../../graphql/schema';
 
 const cors = Cors({
-  allowMethods: ["POST", "OPTIONS"],
+  allowMethods: ['POST', 'OPTIONS'],
 });
 
 const apolloServer = new ApolloServer({
@@ -14,7 +14,7 @@ const apolloServer = new ApolloServer({
   },
 });
 
-const handler = apolloServer.createHandler({ path: "/api/graphql/v1" });
+const handler = apolloServer.createHandler({ path: '/api/graphql/v1' });
 
 export const config = {
   api: {

@@ -1,5 +1,5 @@
-import { ApolloError } from "apollo-server-micro";
-import cep from "cep-promise";
+import { ApolloError } from 'apollo-server-micro';
+import cep from 'cep-promise';
 
 // max-age especifica quanto tempo o browser deve manter o valor em cache, em segundos.
 // s-maxage é uma header lida pelo servidor proxy (neste caso, Vercel).
@@ -18,22 +18,21 @@ import cep from "cep-promise";
 //    servisse fotos dos usuários, por exemplo. Além disso teríamos problemas com
 //    stale/out-of-date cache caso alterássemos a implementação da API.
 const CACHE_CONTROL_HEADER_VALUE =
-  "max-age=0, s-maxage=86400, stale-while-revalidate, public";
+  'max-age=0, s-maxage=86400, stale-while-revalidate, public';
 
 export default {
   Query: {
     cep: async (_parent, _args, _context) => {
       if (_args.cep.length !== 8) {
-        throw new ApolloError("CEP inválido", "validation_error");
+        throw new ApolloError('CEP inválido', 'validation_error');
       }
 
       try {
-        console.log(_context.res.setHeader);
-        _context.res.setHeader("Cache-Control", CACHE_CONTROL_HEADER_VALUE);
+        _context.res.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
         const cepResult = await cep(_args.cep);
         return cepResult;
       } catch (err) {
-        throw new ApolloError("Erro ao consultar CEP", err.type, err.errors);
+        throw new ApolloError('Erro ao consultar CEP', err.type, err.errors);
       }
     },
   },
