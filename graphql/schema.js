@@ -1,8 +1,8 @@
-import { gql, makeExecutableSchema } from "apollo-server-micro";
-import { merge } from "lodash";
+import { gql, makeExecutableSchema } from 'apollo-server-micro';
+import { merge } from 'lodash';
 
-import { CEPResolvers, CEPTypedefs } from "./modules/cep";
-import { StatusResolvers, StatusTypedefs } from "./modules/status";
+import { CEPResolvers, CEPTypedefs } from './modules/cep';
+import { StatusResolvers, StatusTypedefs } from './modules/status';
 
 const RootTypeDefs = gql`
   type Query {

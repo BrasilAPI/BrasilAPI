@@ -2,14 +2,26 @@ export default function Index() {
   return (
     <main>
       <div>
-        <a className="logo" href="https://github.com/filipedeschamps/BrasilAPI" alt="Acessar repositório do BrasilAPI no Github">
+        <a
+          className="logo"
+          href="https://github.com/filipedeschamps/BrasilAPI"
+          alt="Acessar repositório do BrasilAPI no Github"
+        >
           <img src="/brasilapi-logo-medium.png" />
         </a>
       </div>
 
       <div>
-        <a href="https://vercel.com/?utm_source=brasilapi" target="_blank" rel="noopener">
-          <img src="/powered-by-vercel.svg" width="175" alt="Powered by Vercel" />
+        <a
+          href="https://vercel.com/?utm_source=brasilapi"
+          target="_blank"
+          rel="noopener"
+        >
+          <img
+            src="/powered-by-vercel.svg"
+            width="175"
+            alt="Powered by Vercel"
+          />
         </a>
       </div>
 
