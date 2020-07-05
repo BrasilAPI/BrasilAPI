@@ -25,12 +25,8 @@ Através do [Next.js](https://nextjs.org/?utm_source=brasilapi), um framework ut
 
 Caso você esteja lendo esta versão de README, você está pegando o projeto num estágio extremamente inicial, porém empolgante, pois há várias coisas a serem definidas. Então caso queira contribuir, utilize as issues para entender quais pontos ainda não foram resolvidos, conversar conosco e contribuir tanto com idéias técnicas, quanto de quais APIs podem ser criadas.
 
-Reforçando o que foi dito no parágrafo anterior, além das contribuições no código-fonte em si, podem ser dadas também contribuições na documentação.
-Por isso, em breve talvez façamos **um "link" no título "Como contribuir"** para o arquivo **CONTRIBUTING.md** para podermos dar mais detalhes. 
+Veja mais detalhes sobre **Como contribuir** no arquivo [CONTRIBUTING.md](editar o link quando a pull request dele for aprovada)
 
-Independente do tipo de contribuição a ser feita (no código-fonte e/ou na documentação), operacionalmente falando, temos 2 formas de fazermos as pull requests: localmente, via linha de comando, usando o Git em conjunto com o Github, ou online, editando diretamente os arquivos no Github e solicitando uma pull request depois, tudo graficamente.
-
-Como uma das coisas mais interessantes deste projeto é justamente a promessa da Vercel de eliminar (ou pelo menos minimizar) a necessidade de programadores se preocuparem tanto em configurarem uma infraestrutura local para poderem focar mais no código em si, como podemos fazer em algumas IDEs online (ex. Codepen), estaremos mostrando como contribuir das 2 formas: trabalhando localmente x online.
 
 ## Endpoints
 O primeiro endpoint a ser implementado precisava ser o que estava nos dando a maior dor de cabeça: busca de um endereço através do CEP. É um endpoint extremamente simples de implementar, mas vários detalhes ainda não foram resolvidos, como garantir seu comportamento através de testes E2E utilizando a Preview URL que a Vercel retorna a cada Pull Request. Depois de consolidarmos as melhores práticas para esse endpoint, poderemos replicar para todos os outros que irão vir.
