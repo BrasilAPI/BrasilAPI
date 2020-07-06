@@ -74,6 +74,53 @@ Busca por CEP com múltiplos providers de fallback.
 }
 ```
 
+### Banks
+Busca por dados dos bancos brasileiros direto na base de dados do Bacen.
+
+**GET** `https://brasilapi.com.br/api/banks/v1/`**[code]**
+
+#### Consulta com sucesso
+
+```json
+// GET https://brasilapi.com.br/api/banks/v1/260
+
+{
+  "ispb": "18236120",
+  "name": "NU PAGAMENTOS S.A.",
+  "code": 260,
+  "fullName": "Nu Pagamentos S.A."
+}
+```
+
+#### Consulta com código incorreto
+
+```json
+// GET https://brasilapi.com.br/api/banks/v1/1111111
+
+{
+  "message": "Código bancário não encontrado",
+  "type": "BANK_CODE_NOT_FOUND"
+}
+```
+
+**GET** `https://brasilapi.com.br/api/banks/v1`
+
+#### Consulta com sucesso
+
+```json
+// GET https://brasilapi.com.br/api/banks/v1
+
+[
+  {
+    "ispb": "18236120",
+    "name": "NU PAGAMENTOS S.A.",
+    "code": 260,
+    "fullName": "Nu Pagamentos S.A."
+  },
+  ...
+]
+```
+
 ## Termos de Uso
 O BrasilAPI é uma iniciativa feita de brasileiros para brasileiros, por favor, não abuse deste serviço. Estamos em beta e ainda elaborando os Termos de Uso, mas por enquanto por favor não utilize formas automatizadas para fazer "crawling" dos dados da API. Um exemplo prático disto é um dos maiores provedores de telefonia do Brasil estar revalidando, neste exato momento, todos os Ceps (de `00000000` até `99999999`) e estourando em 5 vezes o limite atual da nossa conta no servidor. O volume de consulta dever ter a natureza de uma pessoa real requisitando um determinado dado. E para consultas com um alto volume automatizado, iremos mais para frente fornecer alguma solução, como por exemplo, conseguir fazer o download de toda a base de Ceps em uma única request.
 
