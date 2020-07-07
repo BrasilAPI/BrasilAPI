@@ -39,11 +39,11 @@ Para fazer o push do repositório:
 ### Iniciando:
 Certifique-se de estar na pasta raíz do projeto
 
-```ỳarn install```
+```npm install```
 
-```yarn dev``` - nextjs local
+```npm run dev``` - nextjs local
 
-```yarn fix```- ESLint
+```npm run fix```- ESLint
 
 
 Independente do tipo de contribuição a ser feita (no código-fonte e/ou na documentação), operacionalmente falando, temos 2 formas de fazermos as pull requests: localmente, via linha de comando, usando o Git em conjunto com o Github, ou online, editando diretamente os arquivos no Github e solicitando uma pull request depois, tudo graficamente.
