@@ -9,7 +9,7 @@ const scenariosDdd = {
   incorrect: require('./scenarios/ddd/incorrect')
 }
 
-const requestUrl = `${server.getUrl()}/api/cities/v1/ddd`;
+const requestUrl = `${server.getUrl()}/api/ddd/v1`;
 
 beforeAll(async () => {
   await server.start();
@@ -19,7 +19,7 @@ afterAll(async () => {
   await server.stop();
 })
 
-describe('api/cities/v1/ddd/ (E2E)', () => {
+describe('api/ddd/v1 (E2E)', () => {
   test('Utilizando um DDD válido: 12', async () => {
     const response = await axios.get(`${requestUrl}/12`);
     expect(response.data).toEqual(scenariosDdd.sucess);
