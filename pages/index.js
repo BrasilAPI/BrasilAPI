@@ -1,11 +1,31 @@
 export default function Index() {
   return (
     <main>
-      <a href="https://github.com/filipedeschamps/BrasilAPI">Brasil API</a>
-      <p>Vamos transformar o Brasil em uma API?</p>
+      <div>
+        <a
+          className="logo"
+          href="https://github.com/filipedeschamps/BrasilAPI"
+          alt="Acessar repositório do BrasilAPI no Github"
+        >
+          <img src="/brasilapi-logo-medium.png" />
+        </a>
+      </div>
+
+      <div>
+        <a
+          href="https://vercel.com/?utm_source=brasilapi"
+          target="_blank"
+          rel="noopener"
+        >
+          <img
+            src="/powered-by-vercel.svg"
+            width="175"
+            alt="Powered by Vercel"
+          />
+        </a>
+      </div>
 
       <style jsx global>{`
-        @import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
         * {
           box-sizing: border-box;
           margin: 0;
@@ -19,25 +39,17 @@ export default function Index() {
         }
 
         body {
-          -webkit-font-smoothing: antialiased;
-          align-items: center;
-          background: linear-gradient(-90deg, #009c3b, #ffdf00);
           color: #fff;
           display: flex;
           flex-direction: column;
-          font: 20px "Muli", sans-serif;
           justify-content: center;
           text-align: center;
         }
+
         main > a {
           color: #fff;
           font-size: 2em;
           text-decoration: none;
-        }
-
-        main > p {
-          border-top: 1px solid rgba(999, 999, 999, 0.43);
-          margin-top: 10px;
         }
       `}</style>
     </main>

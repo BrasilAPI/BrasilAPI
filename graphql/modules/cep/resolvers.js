@@ -1,4 +1,4 @@
-import microCors from 'micro-cors';
+import { ApolloError } from 'apollo-server-micro';
 import cep from 'cep-promise';
 
 // max-age especifica quanto tempo o browser deve manter o valor em cache, em segundos.
@@ -19,38 +19,21 @@ import cep from 'cep-promise';
 //    stale/out-of-date cache caso alterássemos a implementação da API.
 const CACHE_CONTROL_HEADER_VALUE =
   'max-age=0, s-maxage=86400, stale-while-revalidate, public';
-const cors = microCors();
 
-async function Cep(request, response) {
-  const requestedCep = request.query.cep;
-
-  response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
-
-  try {
-    const cepResult = await cep(requestedCep);
-
-    response.status(200);
-    response.json(cepResult);
-  } catch (error) {
-    if (error.name === 'CepPromiseError') {
-      switch (error.type) {
-        case 'validation_error':
-          response.status(400);
-          break;
-        case 'service_error':
-          response.status(404);
-          break;
-        default:
-          break;
+export default {
+  Query: {
+    cep: async (_parent, _args, _context) => {
+      if (_args.cep.length !== 8) {
+        throw new ApolloError('CEP inválido', 'validation_error');
       }
 
-      response.json(error);
-      return;
-    }
-
-    response.status(500);
-    response.json(error);
-  }
-}
-
-export default cors(Cep);
+      try {
+        _context.res.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
+        const cepResult = await cep(_args.cep);
+        return cepResult;
+      } catch (err) {
+        throw new ApolloError('Erro ao consultar CEP', err.type, err.errors);
+      }
+    },
+  },
+};
