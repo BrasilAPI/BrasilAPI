@@ -6,6 +6,7 @@
     "apollo-server-micro": "^2.11.0",
     "axios": "0.19.2",
     "cep-promise": "3.0.9",
+    "cidades-promise": "^1.2.3",
     "lodash": "^4.17.15",
     "micro-cors": "0.1.1",
     "next": "9.3.2",
