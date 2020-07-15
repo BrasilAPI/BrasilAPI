@@ -25,7 +25,7 @@ Através do [Next.js](https://nextjs.org/?utm_source=brasilapi), um framework ut
 
 Caso você esteja lendo esta versão de README, você está pegando o projeto num estágio extremamente inicial, porém empolgante, pois há várias coisas a serem definidas. Então caso queira contribuir, utilize as issues para entender quais pontos ainda não foram resolvidos, conversar conosco e contribuir tanto com idéias técnicas, quanto de quais APIs podem ser criadas.
 
-Veja mais detalhes sobre **Como contribuir** no arquivo [CONTRIBUTING.md](editar o link quando a pull request dele for aprovada)
+Veja mais detalhes sobre **Como contribuir** no arquivo [CONTRIBUTING.md](CONTRIBUTING.md)
 
 
 ## Endpoints
