@@ -60,7 +60,7 @@
         }
       }
     },
-    "/cities/v1/ddd/{ddd}": {
+    "/ddd/v1/{ddd}": {
       "get": {
         "tags": [
           "DDD"
