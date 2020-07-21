@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "description": "Documentacao do Brasil API",
-    "version": "1.0.5",
+    "version": "1.0.0",
     "title": "Brasil API",
     "termsOfService": "https://brasilapi.com.br/",
     "contact": {
