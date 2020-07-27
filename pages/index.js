@@ -1,31 +1,34 @@
+import Layout from '../components/Layout';
+
 export default function Index() {
   return (
-    <main>
-      <div>
-        <a
-          className="logo"
-          href="https://github.com/filipedeschamps/BrasilAPI"
-          alt="Acessar repositório do BrasilAPI no Github"
-        >
-          <img src="/brasilapi-logo-medium.png" />
-        </a>
-      </div>
+    <Layout>
+      <main>
+        <div>
+          <a
+            className="logo"
+            href="https://github.com/filipedeschamps/BrasilAPI"
+            alt="Acessar repositório do BrasilAPI no Github"
+          >
+            <img src="/brasilapi-logo-medium.png" />
+          </a>
+        </div>
 
-      <div>
-        <a
-          href="https://vercel.com/?utm_source=brasilapi"
-          target="_blank"
-          rel="noopener"
-        >
-          <img
-            src="/powered-by-vercel.svg"
-            width="175"
-            alt="Powered by Vercel"
-          />
-        </a>
-      </div>
+        <div>
+          <a
+            href="https://vercel.com/?utm_source=brasilapi"
+            target="_blank"
+            rel="noopener"
+          >
+            <img
+              src="/powered-by-vercel.svg"
+              width="175"
+              alt="Powered by Vercel"
+            />
+          </a>
+        </div>
 
-      <style jsx global>{`
+        <style jsx global>{`
         * {
           box-sizing: border-box;
           margin: 0;
@@ -52,6 +55,7 @@ export default function Index() {
           text-decoration: none;
         }
       `}</style>
-    </main>
+      </main>
+    </Layout>
   );
 }
