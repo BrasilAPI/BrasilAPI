@@ -78,7 +78,7 @@ async function ShippingPrice(request, response) {
 
     return response.json({
       error: {
-        message: 'Server error',
+        message: 'Internal Server Error',
       },
     });
   }
