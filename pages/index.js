@@ -7,7 +7,7 @@ export default function Index() {
           href="https://github.com/BrasilAPI/BrasilAPI"
           alt="Acessar repositório do BrasilAPI no Github"
         >
-          <img src="/brasilapi-logo-medium.png" />
+          <img alt="" src="/brasilapi-logo-medium.png" />
         </a>
       </div>
 
@@ -15,7 +15,7 @@ export default function Index() {
         <a
           href="https://vercel.com/?utm_source=brasilapi"
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
         >
           <img
             src="/powered-by-vercel.svg"
