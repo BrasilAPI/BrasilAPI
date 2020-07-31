@@ -25,33 +25,35 @@ export default function Index() {
         </a>
       </div>
 
-      <style jsx global>{`
-        * {
-          box-sizing: border-box;
-          margin: 0;
-          outline: 0;
-          padding: 0;
-        }
+      <style jsx global>
+        {`
+          * {
+            box-sizing: border-box;
+            margin: 0;
+            outline: 0;
+            padding: 0;
+          }
 
-        html,
-        body {
-          height: 100%;
-        }
+          html,
+          body {
+            height: 100%;
+          }
 
-        body {
-          color: #fff;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          text-align: center;
-        }
+          body {
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+          }
 
-        main > a {
-          color: #fff;
-          font-size: 2em;
-          text-decoration: none;
-        }
-      `}</style>
+          main > a {
+            color: #fff;
+            font-size: 2em;
+            text-decoration: none;
+          }
+        `}
+      </style>
     </main>
   );
 }
