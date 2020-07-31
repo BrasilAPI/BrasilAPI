@@ -19,7 +19,7 @@ describe('/ibge/uf/v1 (E2E)', () => {
 
     expect(response.status).toBe(200);
     expect(response.data).toEqual({
-      id: expect.any(Number),
+      id: 22,
       sigla: expect.any(String),
       nome: expect.any(String),
       regiao: expect.objectContaining({
@@ -33,10 +33,12 @@ describe('/ibge/uf/v1 (E2E)', () => {
   test('Utilizando um Codigo inexistente ou inválido: 99', async () => {
     const requestUrl = `${server.getUrl()}/api/ibge/uf/v1/99`;
 
-    const response = await axios.get(requestUrl);
-
-    expect(response.status).toBe(200);
-    expect(response.data).toEqual([]);
+    try {
+      await axios.get(requestUrl);
+    } catch (error) {
+      const { response } = error;
+      expect(response.status).toBe(404);
+    }
   });
 
   test('Buscando todas as ufs', async () => {

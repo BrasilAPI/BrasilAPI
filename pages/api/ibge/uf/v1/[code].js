@@ -7,12 +7,17 @@ const cors = microCors();
 
 const action = async (request, response) => {
   const code = Number(request.query.code);
-  const uf = await getUfByCode(code);
+  const { data, status } = await getUfByCode(code);
 
   response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
 
-  response.status(200);
-  response.json(uf);
+  if (Array.isArray(data) && !data.length) {
+    response.status(404);
+    response.json(data);
+  } else {
+    response.status(status);
+    response.json(data);
+  }
 };
 
 export default cors(action);
