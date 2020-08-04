@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "description": "Documentacao do Brasil API",
-    "version": "1.0.0",
+    "version": "1.0.5",
     "title": "Brasil API",
     "termsOfService": "https://brasilapi.com.br/",
     "contact": {
@@ -13,14 +13,15 @@
       "url": "https://github.com/filipedeschamps/BrasilAPI/blob/master/LICENSE"
     }
   },
-  "host": "brasilapi.com.br/api",
+  "host": "brasilapi.com.br/",
+  "basePath": "api",
   "tags": [
     {
       "name": "Brasil API",
       "description": "Transformando Brasil em uma API",
       "externalDocs": {
         "description": "Saiba mais",
-        "url": "https://github.com/filipedeschamps/BrasilAPI"
+        "url": "https://brasilapi.com.br"
       }
     }
   ],
@@ -37,8 +38,7 @@
         "summary": "Busca por CEP com múltiplos providers de fallback.",
         "description": "",
         "produces": [
-          "application/json",
-          "application/xml"
+          "application/json"
         ],
         "parameters": [
           {
@@ -52,20 +52,52 @@
         ],
         "responses": {
           "200": {
-            "description": "Success"
+            "content": {
+              "application/json": {
+                "description": "Success",
+                "example": {
+                  "cep": "89010025",
+                  "state": "SC",
+                  "city": "Blumenau",
+                  "neighborhood": "Centro",
+                  "street": "Rua Doutor Luiz de Freitas Melro"
+                }
+              }
+            }
           },
-          "400": {
-            "description": "Todos os serviços de CEP retornaram erro."
+          "404": {
+            "content": {
+              "application/json": {
+                "description": "Todos os serviços de CEP retornaram erro.",
+                "example": {
+                  "name": "CepPromiseError",
+                  "message": "Todos os serviços de CEP retornaram erro.",
+                  "type": "service_error",
+                  "errors": [
+                    {
+                      "name": "ServiceError",
+                      "message": "CEP INVÁLIDO",
+                      "service": "correios"
+                    },
+                    {
+                      "name": "ServiceError",
+                      "message": "CEP não encontrado na base do ViaCEP.",
+                      "service": "viacep"
+                    }
+                  ]
+                }
+              }
+            }
           }
         }
       }
     },
-    "/ddd/v1/{ddd}": {
+    "/cities/v1/ddd/{ddd}": {
       "get": {
         "tags": [
           "DDD"
         ],
-        "summary": "retorna estado e lista de cidades por DDD",
+        "summary": "Retorna estado e lista de cidades por DDD",
         "description": "",
         "produces": [
           "application/json",
@@ -85,15 +117,11 @@
           "200": {
             "description": "Success"
           },
-          "400": {
+          "404": {
             "description": "Todos os serviços de DDD retornaram erro."
           }
         }
       }
     }
-  },
-  "externalDocs": {
-    "description": "Find out more about Swagger",
-    "url": "http://swagger.io"
   }
 }
