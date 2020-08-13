@@ -30,7 +30,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "test": "jest",
+    "test": "jest --forceExit",
     "test:watch": "jest --watch",
     "fix": "eslint . --ext .js --fix"
   },
