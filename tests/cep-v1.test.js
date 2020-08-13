@@ -1,20 +1,8 @@
 const axios = require('axios');
 
-const createServer = require('./helpers/server.js');
-
-const server = createServer();
-
-beforeAll(async () => {
-  await server.start();
-});
-
-afterAll(async () => {
-  await server.stop();
-});
-
 describe('/cep/v1 (E2E)', () => {
   test('Utilizando um CEP válido: 05010000', async () => {
-    const requestUrl = `${server.getUrl()}/api/cep/v1/05010000`;
+    const requestUrl = `${global.SERVER_URL}/api/cep/v1/05010000`;
     const response = await axios.get(requestUrl);
 
     expect(response.data).toEqual({
@@ -28,7 +16,7 @@ describe('/cep/v1 (E2E)', () => {
 
   test('Utilizando um CEP inexistente: 00000000', async () => {
     expect.assertions(2);
-    const requestUrl = `${server.getUrl()}/api/cep/v1/00000000`;
+    const requestUrl = `${global.SERVER_URL}/api/cep/v1/00000000`;
 
     try {
       await axios.get(requestUrl);
@@ -46,7 +34,7 @@ describe('/cep/v1 (E2E)', () => {
 
   test('Utilizando um CEP inválido: 999999999999999', async () => {
     expect.assertions(2);
-    const requestUrl = `${server.getUrl()}/api/cep/v1/999999999999999`;
+    const requestUrl = `${global.SERVER_URL}/api/cep/v1/999999999999999`;
 
     try {
       await axios.get(requestUrl);

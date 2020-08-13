@@ -4,19 +4,7 @@ const SCENARIO_DDD_SUCCESS = require('./helpers/scenarios/ddd/success');
 const SCENARIO_DDD_INEXISTENT = require('./helpers/scenarios/ddd/inexistent');
 const SCENARIO_DDD_INCORRECT = require('./helpers/scenarios/ddd/incorrect');
 
-const createServer = require('./helpers/server.js');
-
-const server = createServer();
-
-const requestUrl = `${server.getUrl()}/api/ddd/v1`;
-
-beforeAll(async () => {
-  await server.start();
-});
-
-afterAll(async () => {
-  await server.stop();
-});
+const requestUrl = `${global.SERVER_URL}/api/ddd/v1`;
 
 describe.skip('api/ddd/v1 (E2E)', () => {
   test('Utilizando um DDD válido: 12', async () => {
