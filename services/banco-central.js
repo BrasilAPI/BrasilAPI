@@ -9,11 +9,12 @@ export const getBanksData = async () => {
 
   const lines = body.split(LINE_BREAK);
 
+  // Remove o cabeçalho
   lines.shift();
 
   return lines
-    .map((line) => line.split(','))
-    .filter(([ispb]) => ispb)
+    .map((line) => line.split(',')) // Gera um array por coluna
+    .filter(([ispb]) => ispb) // Filtra apenas linhas válidas
     .map(
       ([
         ispb, // ISPB
