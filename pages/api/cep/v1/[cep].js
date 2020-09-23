@@ -21,7 +21,7 @@ const CACHE_CONTROL_HEADER_VALUE =
   'max-age=0, s-maxage=86400, stale-while-revalidate, public';
 const cors = microCors();
 
-async function Cep(request, response) {
+const Cep = async (request, response) => {
   const requestedCep = request.query.cep;
 
   response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
@@ -31,7 +31,8 @@ async function Cep(request, response) {
 
     response.status(200);
     response.json(cepResult);
-  } catch (error) {
+  } 
+  catch (error) {
     if (error.name === 'CepPromiseError') {
       switch (error.type) {
         case 'validation_error':
