@@ -23,6 +23,13 @@ const cors = microCors();
 
 async function Cep(request, response) {
   const requestedCep = request.query.cep;
+  const clientIp =
+    request.headers['x-forwarded-for'] || request.connection.remoteAddress;
+
+  console.log({
+    url: request.url,
+    clientIp: clientIp,
+  });
 
   response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
 
