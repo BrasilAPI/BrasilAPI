@@ -74,6 +74,9 @@ Busca por CEP com múltiplos providers de fallback.
 }
 ```
 
+## Termos de Uso
+O BrasilAPI é uma iniciativa feita de brasileiros para brasileiros, por favor, não abuse deste serviço. Estamos em beta e ainda elaborando os Termos de Uso, mas por enquanto por favor não utilize formas automatizadas para fazer "crawling" dos dados da API. Um exemplo prático disto é um dos maiores provedores de telefonia do Brasil estar revalidando, neste exato momento, todos os Ceps (de `00000000` até `99999999`) e estourando em 5 vezes o limite atual da nossa conta no servidor. O volume de consulta dever ter a natureza de uma pessoa real requisitando um determinado dado. E para consultas com um alto volume automatizado, iremos mais para frente fornecer alguma solução, como por exemplo, conseguir fazer o download de toda a base de Ceps em uma única request.
+
 ## Contribuidores
 
 | [<img src="https://avatars0.githubusercontent.com/u/22279592?s=400&v=4" width="115"><br><sub>@kevenleone</sub>](https://github.com/kevenleone) | [<img src="https://avatars0.githubusercontent.com/u/29285724?s=400&v=4" width="115"><br><sub>@OtavioCapila</sub>](https://github.com/OtavioCapila) | [<img src="https://avatars2.githubusercontent.com/u/6341210?s=400&v=4" width="115"><br><sub>@rafamancan</sub>](https://github.com/rafamancan) | [<img src="https://avatars2.githubusercontent.com/u/22918282?s=400&v=4" width="115"><br><sub>@lucas-eduardo</sub>](https://github.com/lucas-eduardo) | [<img src="https://avatars1.githubusercontent.com/u/640840?s=400&v=4" width="115"><br><sub>@eliseumds</sub>](https://github.com/eliseumds) | [<img src="https://avatars1.githubusercontent.com/u/11640028?s=400&v=4" width="115"><br><sub>@evertoncastro</sub>](https://github.com/evertoncastro) |
