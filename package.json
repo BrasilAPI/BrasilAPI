@@ -10,8 +10,10 @@
     "lodash": "^4.17.19",
     "micro-cors": "0.1.1",
     "next": "9.3.2",
+    "rate-limiter-flexible": "^2.1.10",
     "react": "16.12.0",
-    "react-dom": "16.12.0"
+    "react-dom": "16.12.0",
+    "redis": "^3.0.2"
   },
   "devDependencies": {
     "eslint": "6.8.0",
