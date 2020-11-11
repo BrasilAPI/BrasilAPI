@@ -1,0 +1,178 @@
+[
+  {
+    "date": "01/01/2020",
+    "name": "Ano Novo",
+    "link": "http://www.calendario.com.br/feriados-nacionais/ano-novo.php",
+    "type": "Feriado Nacional",
+    "description": "O Ano-Novo ou Réveillon é um evento que acontece quando uma cultura celebra o fim de um ano e o começo do próximo. A celebração do evento é também chamada Réveillon, termo oriundo do verbo francês réveiller, que em português significa DESPERTAR",
+    "type_code": "1"
+  },
+  {
+    "date": "24/02/2020",
+    "name": "Carnaval",
+    "link": "http://www.calendario.com.br/feriados-nacionais/carnaval.php",
+    "type": "Facultativo",
+    "description": "Ponto Facultativo, ou seja, cabe às empresas e orgão públicos decidirem se trabalharão ou não.",
+    "type_code": "4"
+  },
+  {
+    "date": "25/02/2020",
+    "name": "Carnaval",
+    "link": "http://www.calendario.com.br/feriados-nacionais/carnaval.php",
+    "type": "Facultativo",
+    "description": "Carnaval NÃO é um feriado oficial, é Ponto Facultativo, ou seja, cabe às empresas e orgão públicos decidirem se trabalharão ou não.",
+    "type_code": "4"
+  },
+  {
+    "date": "26/02/2020",
+    "name": "Carnaval",
+    "link": "http://www.calendario.com.br/feriados-nacionais/carnaval.php",
+    "type": "Facultativo",
+    "description": "Ponto Facultativo até às 14h.",
+    "type_code": "4"
+  },
+  {
+    "date": "01/04/2020",
+    "name": "Dia da Mentira",
+    "link": "",
+    "type": "Dia Convencional",
+    "description": "Dia da mentira, dia das petas, dia dos tolos ou dia dos bobos.",
+    "type_code": "9"
+  },
+  {
+    "date": "10/04/2020",
+    "name": "Sexta-Feira Santa",
+    "link": "http://www.calendario.com.br/feriados-nacionais/sexta-feira-santa.php",
+    "type": "Feriado Nacional",
+    "description": "Também chamada de \"Sexta Feira da Paixão\" é a sexta-feira que ocorre antes do domingo de Páscoa, e é o dia que os cristãos lembram da crucificação de Cristo.",
+    "type_code": "1"
+  },
+  {
+    "date": "12/04/2020",
+    "name": "Páscoa",
+    "link": "",
+    "type": "Dia Convencional",
+    "description": "A Páscoa é um evento religioso cristão, normalmente considerado pelas igrejas ligadas a esta corrente religiosa como a maior e a mais importante festa da Cristandade. Na Páscoa os cristãos celebram a Ressurreição de Jesus Cristo depois da sua morte.",
+    "type_code": "9"
+  },
+  {
+    "date": "21/04/2020",
+    "name": "Dia de Tiradentes",
+    "link": "http://www.calendario.com.br/feriados-nacionais/dia-de-tiradentes.php",
+    "type": "Feriado Nacional",
+    "description": "Joaquim José da Silva Xavier, o Tiradentes foi um dentista, tropeiro, minerador, comerciante, militar e ativista político. É reconhecido como mártir da Inconfidência Mineira e herói nacional. O dia de sua execução, 21 de abril, é feriado nacional.",
+    "type_code": "1"
+  },
+  {
+    "date": "01/05/2020",
+    "name": "Dia do Trabalho",
+    "link": "http://www.calendario.com.br/feriados-nacionais/dia-do-trabalho.php",
+    "type": "Feriado Nacional",
+    "description": "O Dia do Trabalhador ou Dia Internacional dos Trabalhadores é celebrado anualmente no dia 1º de Maio em numerosos países do mundo, sendo feriado no Brasil, em Portugal e em outros países.",
+    "type_code": "1"
+  },
+  {
+    "date": "10/05/2020",
+    "name": "Dia das Mães",
+    "link": "",
+    "type": "Dia Convencional",
+    "description": "O Dia das Mães teve a sua origem no princípio do século XX, quando uma jovem norte-americana, Anna Jarvis, perdeu sua mãe e entrou em completa depressão. Preocupadas com aquele sofrimento, algumas amigas tiveram a ideia de criar uma data para comemorar o dia das mães.",
+    "type_code": "9"
+  },
+  {
+    "date": "11/06/2020",
+    "name": "Corpus Christi",
+    "link": "http://www.calendario.com.br/feriados-nacionais/corpus-christi.php",
+    "type": "Facultativo",
+    "description": "Ponto Facultativo no País, mas Feriado Municipal em algumas cidades.. Corpus Christi, expressão latina que significa Corpo de Cristo, é uma festa Cristã realizada na quinta-feira seguinte ao domingo da Santíssima Trindade.",
+    "type_code": "4"
+  },
+  {
+    "date": "12/06/2020",
+    "name": "Dia dos Namorados",
+    "link": "",
+    "type": "Dia Convencional",
+    "description": "O Dia dos Namorados ou Dia de São Valentim é uma data comemorativa na qual se celebra a união amorosa entre casais sendo comum a troca de cartões e presentes.",
+    "type_code": "9"
+  },
+  {
+    "date": "09/08/2020",
+    "name": "Dia dos Pais",
+    "link": "",
+    "type": "Dia Convencional",
+    "description": "Em 1909, nos Estados Unidos, Sonora Luise resolveu criar um dia dedicado aos pais, motivada pela admiração que sentia pelo seu pai, William Jackson Smart. O interesse pela data difundiu-se da cidade de Spokane para todo o Estado de Washington e para o Mundo.",
+    "type_code": "9"
+  },
+  {
+    "date": "07/09/2020",
+    "name": "Independência do Brasil",
+    "link": "http://www.calendario.com.br/feriados-nacionais/independencia-do-brasil.php",
+    "type": "Feriado Nacional",
+    "description": "O Dia da Indepência do Brasil, oficialmente a data comemorada é a de 7 de setembro de 1822, em que ocorreu o chamado \"Grito do Ipiranga\".",
+    "type_code": "1"
+  },
+  {
+    "date": "12/10/2020",
+    "name": "Nossa Senhora Aparecida",
+    "link": "http://www.calendario.com.br/feriados-nacionais/nossa-senhora-aparecida.php",
+    "type": "Feriado Nacional",
+    "description": "Nossa Senhora da Conceição Aparecida é a padroeira do Brasil. Sua festa é celebrada em 12 de outubro, um feriado nacional desde que o Papa João Paulo II consagrou a Basílica em 1980.",
+    "type_code": "1"
+  },
+  {
+    "date": "15/10/2020",
+    "name": "Dia do Professor",
+    "link": "http://www.calendario.com.br/docs/dia-do-professor.html",
+    "type": "Facultativo",
+    "description": "FERIADO ESCOLAR - No dia 15 de outubro de 1827 (dia consagrado à educadora Santa Teresa de Ávila), o Imperador do Brasil, Pedro I,  baixou um Decreto Imperial que criou o Ensino Elementar no Brasil. Pelo decreto, \"todas as cidades, vilas e lugarejos teriam suas escolas de primeiras letras\"",
+    "type_code": "4"
+  },
+  {
+    "date": "17/10/2020",
+    "name": "Dia do Comércio",
+    "link": "",
+    "type": "Dia Convencional",
+    "description": "Comemoração do dia do comércio. Em algumas cidades do Brasil o comércio poderá fechar, dependendo de acordos entre os sindicatos e patrões.",
+    "type_code": "9"
+  },
+  {
+    "date": "28/10/2020",
+    "name": "Dia do Servidor Público",
+    "link": "",
+    "type": "Facultativo",
+    "description": "O dia do servidor público é feriado apenas para funcionários públicos.",
+    "type_code": "4"
+  },
+  {
+    "date": "02/11/2020",
+    "name": "Dia de Finados",
+    "link": "http://www.calendario.com.br/feriados-nacionais/dia-de-finados.php",
+    "type": "Feriado Nacional",
+    "description": "O Dia de Finados ou Dia dos Fiéis Defuntos, (conhecido ainda como Dia dos Mortos no México), é celebrado pela Igreja Católica no dia 2 de novembro e é Feriado Nacional.",
+    "type_code": "1"
+  },
+  {
+    "date": "15/11/2020",
+    "name": "Proclamação da República",
+    "link": "http://www.calendario.com.br/feriados-nacionais/proclamacao-da-republica.php",
+    "type": "Feriado Nacional",
+    "description": "A Proclamação da República foi um levante político-militar ocorrido em 15 de novembro de 1889 que instaurou a forma Republicana Federativa Presidencialista de governo no Brasil, derrubando a Monarquia e, por conseguinte, o imperador dom Pedro II.",
+    "type_code": "1"
+  },
+  {
+    "date": "20/11/2020",
+    "name": "Consciência Negra",
+    "link": "http://www.calendario.com.br/feriados-nacionais/consciencia-negra.php",
+    "type": "Dia Convencional",
+    "description": "Apesar de ser comemorado em todo o território nacional, conforme indica a Lei Federal nº 12.519, de 10 de novembro de 2011, o Dia Nacional de Zumbi e da Consciência Negra não é feriado. No entanto, alguns municípios decretam feriado municipal neste dia.",
+    "type_code": "9"
+  },
+  {
+    "date": "25/12/2020",
+    "name": "Natal",
+    "link": "http://www.calendario.com.br/feriados-nacionais/natal.php",
+    "type": "Feriado Nacional",
+    "description": "O Natal é comemorado anualmente em 25 de Dezembro. Originalmente destinado a celebrar o nascimento anual do Deus Sol no solstício de inverno, foi adaptado pela Igreja Católica no 3o século d.C., para permitir a conversão dos povos pagãos sob o domínio do Império Romano, passando a comemorar o nascimento de Jesus de Nazaré.",
+    "type_code": "1"
+  }
+]
