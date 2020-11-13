@@ -7,7 +7,7 @@ export default function Index() {
           href="https://github.com/BrasilAPI/BrasilAPI"
           alt="Acessar repositório do BrasilAPI no Github"
         >
-          <img alt="" src="/brasilapi-logo-medium.png" />
+          <img alt="Brasil API logo" src="/brasilapi-logo-medium.png" />
         </a>
       </div>
 
