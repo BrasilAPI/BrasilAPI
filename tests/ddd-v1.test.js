@@ -18,7 +18,7 @@ afterAll(async () => {
   await server.stop();
 });
 
-describe('api/ddd/v1 (E2E)', () => {
+describe.skip('api/ddd/v1 (E2E)', () => {
   test('Utilizando um DDD válido: 12', async () => {
     const response = await axios.get(`${requestUrl}/12`);
     expect(response.data).toEqual(SCENARIO_DDD_SUCCESS);
