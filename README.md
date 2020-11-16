@@ -12,7 +12,7 @@
 </div>
 
 <div align="center">
-  <img src="https://github.com/filipedeschamps/BrasilAPI/workflows/Testes%20E2E/badge.svg">
+  <img src="https://github.com/BrasilAPI/BrasilAPI/workflows/Testes%20E2E/badge.svg">
 </div>
 
 ## Motivo
