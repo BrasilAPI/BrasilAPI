@@ -36,12 +36,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/filipedeschamps/BrasilAPI.git"
+    "url": "git+https://github.com/BrasilAPI/BrasilAPI.git"
   },
   "author": "Filipe Deschamps",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/filipedeschamps/BrasilAPI/issues"
   },
-  "homepage": "https://github.com/filipedeschamps/BrasilAPI#readme"
+  "homepage": "https://github.com/BrasilAPI/BrasilAPI#readme"
 }
