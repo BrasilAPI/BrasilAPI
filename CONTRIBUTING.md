@@ -9,7 +9,7 @@ Qualquer ajuda que agregue valor ao projeto, seja na edição do código-fonte o
 - Crie uma branch com a sua feature: `git checkout -b my-feature`
 - Commit suas mudanças: `git commit -m 'feat: My new feature'`
 - Push a sua branch: `git push origin my-feature`
-- Ir em [Pull Requests](https://github.com/filipedeschamps/BrasilAPI/pulls) do projeto original e criar uma pull request com o seu commit
+- Ir em [Pull Requests](https://github.com/BrasilAPI/BrasilAPI/pulls) do projeto original e criar uma pull request com o seu commit
 
 ### Manter o fork atualizado:
 
