@@ -60,7 +60,7 @@ Para fazer uso do docker tem dois comandos:
 
 ```
 docker build -t brasil-api:1.0.0-local .
-docker run --entrypoint=ash -p 3000:3000 brasil-api:1.0.0-local -c 'npm run dev'
+docker run --entrypoint=ash -e ENV NODE_ENV='development' -p 3000:3000 brasil-api:1.0.0-local -c 'npm run dev'
 ```
 
 **PRD**

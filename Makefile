@@ -6,7 +6,7 @@ docker-build-local:
 	docker build -q -t ${APP}:${TAG}-local .
 
 docker-run-local:
-	docker run --entrypoint=ash -p 3000:3000 ${APP}:${TAG}-local -c 'npm run dev'
+	docker run --entrypoint=ash -e ENV NODE_ENV='development' -p 3000:3000 ${APP}:${TAG}-local -c 'npm run dev'
 
 local: docker-build-local docker-run-local
 
