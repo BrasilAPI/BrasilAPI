@@ -1,4 +1,4 @@
-FROM node:14.15-alpine as build
+FROM node:14.15-alpine as vscode
 
 RUN apk add --no-cache git curl docker
 RUN npm -g install npm
