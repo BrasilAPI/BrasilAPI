@@ -1,0 +1,13 @@
+version: "3.5"
+
+services:
+  brasilapi:
+    command: npm run dev
+    ports:
+      - 3000:3000
+    build: .
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next

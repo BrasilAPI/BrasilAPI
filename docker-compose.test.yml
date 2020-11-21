@@ -1,0 +1,3 @@
+brasilapi:
+  build: .
+  command: run_tests.sh
