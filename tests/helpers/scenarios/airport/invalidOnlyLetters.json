@@ -1,0 +1,5 @@
+{
+  "name": "AeroportosPromiseError",
+  "message": "O código IATA deve conter apenas letras",
+  "type": "validation_error"
+}
