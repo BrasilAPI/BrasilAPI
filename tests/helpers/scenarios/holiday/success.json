@@ -1,0 +1,56 @@
+[
+  {
+    "month": "Janeiro",
+    "month_day": 1,
+    "week_day": "qua",
+    "holiday": "Dia da Confraternização Universal"
+  },
+  {
+    "month": "Abril",
+    "month_day": 10,
+    "week_day": "sex",
+    "holiday": "Sexta-feira Santa"
+  },
+  {
+    "month": "Abril",
+    "month_day": 21,
+    "week_day": "ter",
+    "holiday": "Tiradentes"
+  },
+  {
+    "month": "Maio",
+    "month_day": 1,
+    "week_day": "sex",
+    "holiday": "Dia do Trabalho"
+  },
+  {
+    "month": "Setembro",
+    "month_day": 7,
+    "week_day": "seg",
+    "holiday": "Dia da Independência do Brasil - 7 de Setembro"
+  },
+  {
+    "month": "Outubro",
+    "month_day": 12,
+    "week_day": "seg",
+    "holiday": "Nossa Senhora Aparecida"
+  },
+  {
+    "month": "Novembro",
+    "month_day": 2,
+    "week_day": "seg",
+    "holiday": "Finados"
+  },
+  {
+    "month": "Novembro",
+    "month_day": 15,
+    "week_day": "dom",
+    "holiday": "Proclamação da República"
+  },
+  {
+    "month": "Dezembro",
+    "month_day": 25,
+    "week_day": "sex",
+    "holiday": "Natal"
+  }
+]

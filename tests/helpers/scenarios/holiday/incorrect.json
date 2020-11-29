@@ -1,0 +1,4 @@
+{
+  "error": "Year out of range",
+  "message": "Specify a year between 2000 and the current year"
+}
