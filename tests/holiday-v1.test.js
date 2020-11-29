@@ -26,7 +26,6 @@ describe('api/holiday/2020 (E2E)', () => {
   });
 
   test('Utilizando um ano inválido: 1900', async () => {
-    expect.assertions(2);
     const requestUrl = `${server.getUrl()}/api/holiday/v1/1900`;
 
     try {
