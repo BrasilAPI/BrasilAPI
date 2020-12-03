@@ -74,6 +74,16 @@ Busca por CEP com múltiplos providers de fallback.
 }
 ```
 
+## Utilizando a api via bliblioteca npm
+
+Para que seja utilizada a lib sem nescessidade de implementação das rotas e deixando mais abstrato para a aplicação, é possivel também a utilização da lib [brasil-api-promisse](https://www.npmjs.com/package/brasil-api-promise)
+
+```
+npm install brasil-api-promisse
+```
+
+A documentação pode ser encontrada na pagina da lib.
+
 ## Termos de Uso
 O BrasilAPI é uma iniciativa feita de brasileiros para brasileiros, por favor, não abuse deste serviço. Estamos em beta e ainda elaborando os Termos de Uso, mas por enquanto por favor não utilize formas automatizadas para fazer "crawling" dos dados da API. Um exemplo prático disto é um dos maiores provedores de telefonia do Brasil estar revalidando, neste exato momento, todos os Ceps (de `00000000` até `99999999`) e estourando em 5 vezes o limite atual da nossa conta no servidor. O volume de consulta dever ter a natureza de uma pessoa real requisitando um determinado dado. E para consultas com um alto volume automatizado, iremos mais para frente fornecer alguma solução, como por exemplo, conseguir fazer o download de toda a base de Ceps em uma única request.
 
