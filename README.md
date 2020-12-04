@@ -76,10 +76,10 @@ Busca por CEP com múltiplos providers de fallback.
 
 ## Utilizando a api via bliblioteca npm
 
-Para que seja utilizada a lib sem nescessidade de implementação das rotas e deixando mais abstrato para a aplicação, é possivel também a utilização da lib [brasil-api-promisse](https://www.npmjs.com/package/brasil-api-promise)
+Para que seja utilizada a lib sem nescessidade de implementação das rotas e deixando mais abstrato para a aplicação, é possivel também a utilização da lib [brasil-api-promise](https://www.npmjs.com/package/brasil-api-promise)
 
 ```
-npm install brasil-api-promisse
+npm install brasil-api-promise
 ```
 
 A documentação pode ser encontrada na pagina da lib.
