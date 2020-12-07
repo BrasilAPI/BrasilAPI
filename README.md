@@ -91,11 +91,15 @@ Onde **date** tem o formato de `ano-mes-dia`
 // GET https://brasilapi.com.br/api/holiday/v1/2020-01-01
 
 {
-  "date": "2020-01-01",
-  "description": "Confraternização Universal",
-  "holiday": true,
-  "limited_financial_operation": true
-}
+    "queryDateInformation": {
+      "date": "2020-01-01",
+      "description": "Confraternização Universal",
+      "holiday": true,
+      "limited_financial_operation": true,
+    },
+    "isBusinessDay": false,
+    "nextBusinessDay": "2020-01-02T03:00:00.000Z",
+  },
 ```
 
 #### Consulta com erro
