@@ -10,9 +10,13 @@ async function HolidaysByDate(request, response) {
   response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
 
   try {
-    const holidaysResult = await bm.queryDateInformation('brazil', date);
+    const isBusinessDay = await bm.isBusinessDay('brazil', date);
+    const nextBusinessDay = await bm.nextBusinessDay('brazil', date);
+    const queryDateInformation = await bm.queryDateInformation('brazil', date);
 
-    return response.status(200).json(holidaysResult);
+    return response
+      .status(200)
+      .json({ queryDateInformation, isBusinessDay, nextBusinessDay });
   } catch (error) {
     if (error.isOperational) {
       return response.status(404).json(error);

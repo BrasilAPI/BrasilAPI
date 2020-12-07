@@ -6,10 +6,14 @@ const server = createServer();
 
 const scenarioHoliday = {
   sucess: {
-    date: '2020-01-01',
-    description: 'Confraternização Universal',
-    holiday: true,
-    limited_financial_operation: true,
+    queryDateInformation: {
+      date: '2020-01-01',
+      description: 'Confraternização Universal',
+      holiday: true,
+      limited_financial_operation: true,
+    },
+    isBusinessDay: false,
+    nextBusinessDay: '2020-01-02T03:00:00.000Z',
   },
 };
 
