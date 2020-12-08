@@ -1,0 +1,15 @@
+{
+  "year": "2018",
+  "chassis": "*****00027",
+  "color": "Branca",
+  "brand": "VW",
+  "model": "POLO CL ADA",
+  "city": "SAO BERNARDO DO CAMPO",
+  "state": "SP",
+  "plate": "FPP0767",
+  "lastCharacteristicsUpdate": "2020-09-03T19:07:52.597-03:00",
+  "situation": {
+    "code": 0,
+    "description": "Veículo sem restrições."
+  }
+}
