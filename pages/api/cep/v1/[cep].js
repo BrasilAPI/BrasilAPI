@@ -1,5 +1,6 @@
 import microCors from 'micro-cors';
 import cep from 'cep-promise';
+import rateLimit from '../../../../util/rateLimit';
 
 // max-age especifica quanto tempo o browser deve manter o valor em cache, em segundos.
 // s-maxage é uma header lida pelo servidor proxy (neste caso, Vercel).
@@ -23,17 +24,14 @@ const cors = microCors();
 
 async function Cep(request, response) {
   const requestedCep = request.query.cep;
-  const clientIp =
+  /* const clientIp =
     request.headers['x-forwarded-for'] || request.connection.remoteAddress;
-
-  console.log({
-    url: request.url,
-    clientIp: clientIp,
-  });
-
+*/
   response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
 
   try {
+    await rateLimit(request.connection.remoteAddress);
+
     const cepResult = await cep(requestedCep);
 
     response.status(200);
@@ -53,6 +51,9 @@ async function Cep(request, response) {
 
       response.json(error);
       return;
+    }
+    if (error.message === 'RateLimit') {
+      response.status(429).json({ error: 'API Rate Limit' });
     }
 
     response.status(500);
