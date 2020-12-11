@@ -6,13 +6,11 @@
     "termsOfService": "https://brasilapi.com.br/",
     "version": "1.0.0",
     "contact": {
-      "name": "Felipe Deschamps",
-      "email": "filipe@filipedeschamps.com.br",
-      "url": "https://filipedeschamps.com.br/"
+      "url": "https://brasilapi.com.br"
     },
     "license": {
       "name": "MIT",
-      "url": "https://github.com/filipedeschamps/BrasilAPI/blob/master/LICENSE"
+      "url": "https://github.com/BrasilAPI/BrasilAPI/blob/master/LICENSE"
     }
   },
   "tags": [
@@ -21,7 +19,7 @@
       "description": "Transformando o Brasil em uma API",
       "externalDocs": {
         "description": "Saiba mais",
-        "url": "https://brasilapi.com.br"
+        "url": "https://brasilapi.com.br/"
       }
     }
   ],
