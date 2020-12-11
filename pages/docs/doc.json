@@ -23,6 +23,11 @@
       }
     }
   ],
+  "servers": [
+    {
+      "url": "https://brasilapi.com.br/api"
+    }
+  ],
   "paths": {
     "/cep/v1/{cep}": {
       "get": {
