@@ -18,7 +18,7 @@
   "tags": [
     {
       "name": "Brasil API",
-      "description": "Transformando Brasil em uma API",
+      "description": "Transformando o Brasil em uma API",
       "externalDocs": {
         "description": "Saiba mais",
         "url": "https://brasilapi.com.br"
@@ -112,6 +112,75 @@
           },
           "404": {
             "description": "Todos os serviços de DDD retornaram erro."
+          }
+        }
+      }
+    },
+    "/banks/v1": {
+      "get": {
+        "tags": [
+          "BANKS"
+        ],
+        "summary": "Retorna informações de todos os bancos do Brasil",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "ispb": "00000000",
+                    "name": "BCO DO BRASIL S.A.",
+                    "code": 1,
+                    "fullName": "Banco do Brasil S.A."
+                  },
+                  {
+                    "ispb": "00000208",
+                    "name": "BRB - BCO DE BRASILIA S.A.",
+                    "code": 70,
+                    "fullName": "BRB - BANCO DE BRASILIA S.A."
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/banks/v1/{code}": {
+      "get": {
+        "tags": [
+          "BANKS"
+        ],
+        "summary": "Busca as informações de um banco a partir de um código",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example":
+                  {
+                    "ispb": "00000000",
+                    "name": "BCO DO BRASIL S.A.",
+                    "code": 1,
+                    "fullName": "Banco do Brasil S.A."
+                  }
+              }
+            }
+          },
+          "404": {
+            "description": "O código do banco não foi encontrado",
+            "content": {
+              "application/json": {
+                "example":
+                  {
+                    "message": "Código bancário não encontrado",
+                    "type": "BANK_CODE_NOT_FOUND"
+                  }
+              }
+            }
           }
         }
       }
