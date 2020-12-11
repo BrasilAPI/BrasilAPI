@@ -1,0 +1,12 @@
+{
+  "icao": "SBCT",
+  "iata": "CWB",
+  "name": "Aeroporto Internacional Afonso Pena",
+  "city": "Curitiba",
+  "state": "Paraná",
+  "elevation": 910.74,
+  "lat": -25.5284996033,
+  "lon": -49.1758003235,
+  "tz": "America\/Sao_Paulo",
+  "uf": "PR"
+}

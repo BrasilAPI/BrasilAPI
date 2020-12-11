@@ -1,0 +1,5 @@
+{
+  "name": "AeroportosPromiseError",
+  "message": "Aeroporto não encontrado",
+  "type": "service_error"
+}
