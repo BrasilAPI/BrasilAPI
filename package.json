@@ -17,7 +17,6 @@
     "camaro": "^6.0.4",
     "cidades-promise": "^1.2.3",
     "core-js": "^3.6.5",
-    "iconv-lite": "^0.6.2",
     "micro-cors": "0.1.1",
     "mobx": "6.1.8",
     "next": "10.2.0",
