@@ -11,7 +11,6 @@
     "cep-promise": "3.0.9",
     "cidades-promise": "^1.2.3",
     "core-js": "^3.6.5",
-    "iconv-lite": "^0.6.2",
     "lodash": "^4.17.19",
     "micro-cors": "0.1.1",
     "mobx": "6.1.8",
