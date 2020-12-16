@@ -27,10 +27,8 @@ async function Rastreio(request, response) {
         case 'validation_error':
           response.status(400);
           break;
-        case 'service_error':
-          response.status(404);
-          break;
         default:
+          response.status(404);
           break;
       }
 
