@@ -121,6 +121,66 @@ Busca por dados dos bancos brasileiros direto na base de dados do Bacen.
 ]
 ```
 
+### Artistas Musicais
+Busca por artistas musicais nacionais e internacionais utilizando a API do Vagalume.
+
+#### Consulta à artista inexistente
+
+```json
+// GET https://brasilapi.com.br/api/artistas/v1/maicon-jekson
+
+{
+  "message": "Artista não encontrado",
+  "type": "ARTIST_NOT_FOUND"
+}
+```
+
+#### Consulta à artista existente
+
+```json
+// GET https://brasilapi.com.br/api/artistas/v1/scalene
+
+{
+  "nome": "Scalene",
+  "imagem": "https://www.vagalume.com.br/scalene/images/scalene.jpg",
+  "generoMusical": [
+    "Rock Alternativo",
+    "Rock",
+    "Pop/Rock",
+    "Hardcore",
+    "Punk Rock"
+  ],
+  "relacionado": [
+    "Vanguart",
+    ...
+    "3OH!3"
+  ],
+  "topMusicas": [
+    "Amanheceu",
+    ...
+    "Reminiscência"
+  ],
+  "musicas": [
+    "1867",
+    ...
+    "Zamboni"
+  ],
+  "albuns": [
+    {
+      "nome": "Respiro",
+      "ano": "2019"
+    },
+    ...
+    {
+      "nome": "Scalene (EP)",
+      "ano": "2011"
+    }
+  ]
+}
+```
+> O nome do artista deve estar no formato `kebab-case`
+
+
 ## Termos de Uso
 O BrasilAPI é uma iniciativa feita de brasileiros para brasileiros, por favor, não abuse deste serviço. Estamos em beta e ainda elaborando os Termos de Uso, mas por enquanto por favor não utilize formas automatizadas para fazer "crawling" dos dados da API. Um exemplo prático disto é um dos maiores provedores de telefonia do Brasil estar revalidando, neste exato momento, todos os Ceps (de `00000000` até `99999999`) e estourando em 5 vezes o limite atual da nossa conta no servidor. O volume de consulta dever ter a natureza de uma pessoa real requisitando um determinado dado. E para consultas com um alto volume automatizado, iremos mais para frente fornecer alguma solução, como por exemplo, conseguir fazer o download de toda a base de Ceps em uma única request.
 
