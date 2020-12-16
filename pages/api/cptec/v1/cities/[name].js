@@ -10,8 +10,7 @@ const action = async (request, response) => {
   const cityName = removeSpecialChars(request.query.name);
   
   const cityData = await getCityData(cityName);
-  console.log(cityData);
-
+  
   if (!cityData) {
     response.status(404);
     response.json({
