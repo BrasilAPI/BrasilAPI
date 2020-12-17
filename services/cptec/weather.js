@@ -53,8 +53,6 @@ export const getPredictionWeather = async (cityCode, days) => {
         url += '7dias/' + cityCode + '/previsao.xml';
     } 
 
-    console.log(url);
-
     const weatherPredictions = await axios.get(url, {
         responseType: 'application/xml',
         responseEncoding: 'binary'
