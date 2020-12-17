@@ -1,9 +1,10 @@
 import {getAllCitiesData, getCityData } from './cities';
-import {getCurrentCapitalWeatherData} from './weather';
+import {getCurrentCapitalWeatherData, getPredictionWeather} from './weather';
 
 export {
     getAllCitiesData,
     getCityData,
 
-    getCurrentCapitalWeatherData
+    getCurrentCapitalWeatherData,
+    getPredictionWeather
 };
