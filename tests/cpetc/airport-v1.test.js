@@ -2,7 +2,7 @@ const axios = require('axios');
 
 describe('weather airport v1 (E2E)', () => {
 
-  test('GET /cptec/v1/weather/airport/:icaoCode (Código inexistente) ', async () => {
+  test('GET /api/cptec/v1/weather/airport/:icaoCode (Código inexistente) ', async () => {
     const requestUrl = `${global.SERVER_URL}/api/cptec/v1/weather/airport/AAAA`;
     const response = await axios.get(requestUrl);
 
@@ -20,7 +20,7 @@ describe('weather airport v1 (E2E)', () => {
     }
   });
 
-  test('GET /cptec/v1/weather/:icaoCode', async () => {
+  test('GET /api/cptec/v1/weather/:icaoCode', async () => {
     const requestUrl = `${global.SERVER_URL}/api/cptec/v1/weather/airport/SBSP`;
     const response = await axios.get(requestUrl);
 
