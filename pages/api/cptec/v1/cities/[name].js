@@ -1,6 +1,6 @@
 import microCors from 'micro-cors';
 import removeSpecialChars from '../../../../../services/util/removeSpecialChars';
-import { getCityData } from '../../../../../services/cptec/cities';
+import { getCityData } from '../../../../../services/cptec';
 
 const CACHE_CONTROL_HEADER_VALUE =
   'max-age=0, s-maxage=86400, stale-while-revalidate, public';
