@@ -3,7 +3,7 @@ const axios = require('axios');
 describe('weather capital v1 (E2E)', () => {
   
 
-  test('GET /cptec/v1/weather/capital', async () => {
+  test('GET /api/cptec/v1/weather/capital', async () => {
     const requestUrl = `${global.SERVER_URL}/api/cptec/v1/weather/capital`;
     const response = await axios.get(requestUrl);
 
