@@ -1,6 +1,6 @@
 import microCors from 'micro-cors';
 
-import { getPredictionWeather } from '../../../../../../../services/cptec/weather';
+import { getPredictionWeather } from '../../../../../../../services/cptec';
 
 const CACHE_CONTROL_HEADER_VALUE =
   'max-age=0, s-maxage=86400, stale-while-revalidate, public';
