@@ -31,9 +31,7 @@
   "paths": {
     "/cep/v1/{cep}": {
       "get": {
-        "tags": [
-          "CEP"
-        ],
+        "tags": ["CEP"],
         "summary": "Busca por CEP com múltiplos providers de fallback.",
         "description": "",
         "parameters": [
@@ -92,9 +90,7 @@
     },
     "/ddd/v1/{ddd}": {
       "get": {
-        "tags": [
-          "DDD"
-        ],
+        "tags": ["DDD"],
         "summary": "Retorna estado e lista de cidades por DDD",
         "description": "",
         "parameters": [
@@ -121,9 +117,7 @@
     },
     "/banks/v1": {
       "get": {
-        "tags": [
-          "BANKS"
-        ],
+        "tags": ["BANKS"],
         "summary": "Retorna informações de todos os bancos do Brasil",
         "description": "",
         "responses": {
@@ -153,9 +147,7 @@
     },
     "/banks/v1/{code}": {
       "get": {
-        "tags": [
-          "BANKS"
-        ],
+        "tags": ["BANKS"],
         "summary": "Busca as informações de um banco a partir de um código",
         "description": "",
         "responses": {
@@ -163,13 +155,12 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "example":
-                  {
-                    "ispb": "00000000",
-                    "name": "BCO DO BRASIL S.A.",
-                    "code": 1,
-                    "fullName": "Banco do Brasil S.A."
-                  }
+                "example": {
+                  "ispb": "00000000",
+                  "name": "BCO DO BRASIL S.A.",
+                  "code": 1,
+                  "fullName": "Banco do Brasil S.A."
+                }
               }
             }
           },
@@ -177,11 +168,108 @@
             "description": "O código do banco não foi encontrado",
             "content": {
               "application/json": {
-                "example":
-                  {
-                    "message": "Código bancário não encontrado",
-                    "type": "BANK_CODE_NOT_FOUND"
-                  }
+                "example": {
+                  "message": "Código bancário não encontrado",
+                  "type": "BANK_CODE_NOT_FOUND"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/music/v1/artist/{artist}": {
+      "get": {
+        "tags": ["MUSIC"],
+        "summary": "Busca as informações de um artista musical, como músicas e álbuns",
+        "description": "O nome dos artistas nesse endpoint devem estar em *kebab-case*",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "name": "The Do",
+                  "image": "https://www.vagalume.com.br/the-do/images/the-do.jpg",
+                  "genre": ["Indie", "World Music", "Folk"],
+                  "related": [
+                    {
+                      "name": "Russian Red",
+                      "apiUrl": "/music/artist/v1/russian-red"
+                    },
+                    "..."
+                  ],
+                  "topMusics": [
+                    {
+                      "name": "On My Shoulders",
+                      "apiUrl": "/music/artist/v1/the-do/on-my-shoulders"
+                    },
+                    "..."
+                  ],
+                  "musics": [
+                    {
+                      "name": "A Mess Like This",
+                      "apiUrl": "/music/artist/v1/the-do/a-mess-like-this"
+                    },
+                    "..."
+                  ],
+                  "albums": [
+                    {
+                      "name": "Shake Shook Shaken",
+                      "year": "2014"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "O artista não existe",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Artista não encontrado",
+                  "type": "ARTIST_NOT_FOUND"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/music/v1/artist/{artist}/{music}": {
+      "get": {
+        "tags": ["MUSIC"],
+        "summary": "Busca letra original e possíveis traduções para uma música do artista",
+        "description": "O nome das músicas nesse endpoint devem estar em *kebab-case*",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "name": "Apocalypse",
+                  "lang": "Inglês",
+                  "lyrics": "You leapt from crumbling bridges ... I will be there too",
+                  "translations": [
+                    {
+                      "lang": "Português Brasileiro",
+                      "lyrics": "[Apocalipse] \n\nVocê saltou de pontes em ruínas ... eu vou estar lá também"
+                    }
+                  ],
+                  "badwords": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "O artista ou a música não existem",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Música não encontrada",
+                  "type": "MUSIC_NOT_FOUND"
+                }
               }
             }
           }
