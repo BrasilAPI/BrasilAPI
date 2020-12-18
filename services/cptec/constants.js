@@ -75,6 +75,20 @@ export const SWELL_TEMPLATE = {
   ],
 };
 
+export const SWELL_TEMPLATE = {
+    city_name: '/cidade/nome',
+    state: '/cidade/uf',
+    last_update: '/cidade/atualizacao',
+    swell: ['/cidade/previsao', {
+        date_time: 'dia',
+        wind: 'vento',
+        wind_direction: 'vento_dir',
+        wave_height: 'altura',
+        wave_direction: 'direcao',
+        agitation: 'agitacao' // If someone know better therm for this property
+    }]
+}
+
 export const CONDITION_DESCRIPTIONS = {
   ec: 'Encoberto com Chuvas Isoladas',
   ci: 'Chuvas Isoladas',
