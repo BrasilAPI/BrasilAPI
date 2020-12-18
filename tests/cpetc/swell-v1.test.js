@@ -51,7 +51,7 @@ describe('Swell prediction v1 (E2E)', () => {
 
     test('GET /api/cptec/v1/swell/:cityCode/days (Invalid number of days) ', async () => {
       const requestUrl1 = `${global.SERVER_URL}/api/cptec/v1/swell/241/7`;
-      const requestUrl2 = `${global.SERVER_URL}/api/cptec/v1/swell/241s/0`;
+      const requestUrl2 = `${global.SERVER_URL}/api/cptec/v1/swell/241/0`;
 
       // More than 6 days
       try {
