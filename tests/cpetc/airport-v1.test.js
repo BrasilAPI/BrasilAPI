@@ -20,7 +20,7 @@ describe('weather airport v1 (E2E)', () => {
     }
   });
 
-  test('GET /api/cptec/v1/weather/:icaoCode', async () => {
+  test('GET /api/cptec/v1/weather/airport/:icaoCode', async () => {
     const requestUrl = `${global.SERVER_URL}/api/cptec/v1/weather/airport/SBSP`;
     const response = await axios.get(requestUrl);
 
