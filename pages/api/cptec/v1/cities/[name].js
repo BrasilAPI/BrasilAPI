@@ -8,9 +8,9 @@ const cors = microCors();
 
 const action = async (request, response) => {
   const cityName = removeSpecialChars(request.query.name);
-  
+
   const cityData = await getCityData(cityName);
-  
+
   if (!cityData || cityData.length === 0) {
     response.status(404);
     response.json({
