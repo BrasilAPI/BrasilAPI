@@ -26,8 +26,8 @@ describe('cities v1 (E2E)', () => {
 
         expect(response.status).toBe(404);
         expect(response.data).toMatchObject({
-          message: 'Cidade não localizada',
-          type: 'CITY_NOT_FOUND',
+          message: 'Nenhuma cidade não localizada',
+          type: 'NO_CITY_NOT_FOUND',
         });
       }
     });
