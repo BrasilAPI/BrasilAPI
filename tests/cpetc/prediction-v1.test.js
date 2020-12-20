@@ -49,7 +49,7 @@ describe('weather prediction v1 (E2E)', () => {
       expect(response.data.weather.length).toBe(2);
     });
 
-    test('GET /api/cptec/v1/weather/prediction/:cityCode/days (Invalid number of days) ', async () => {
+    test('GET /api/cptec/v1/weather/prediction/:cityCode/:days (Invalid number of days) ', async () => {
       const requestUrl1 = `${global.SERVER_URL}/api/cptec/v1/weather/prediction/999/15`;
       const requestUrl2 = `${global.SERVER_URL}/api/cptec/v1/weather/prediction/999/0`;
 
