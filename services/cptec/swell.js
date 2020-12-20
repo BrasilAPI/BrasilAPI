@@ -33,9 +33,6 @@ export const getSwellData = async (cityCode, days) => {
         }
 
         jsonData.swell = newSwellArr;
-        console.log(newSwellArr);
-        
-        
 
         // IF total data greater than requested number of days, slice array into correct size
         if(jsonData.swell.length > days) {
