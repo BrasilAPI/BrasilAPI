@@ -14,7 +14,7 @@ const action = async (request, response) => {
   if (!cityData || cityData.length === 0) {
     response.status(404);
     response.json({
-      message: 'Nenhuma cidade não localizada',
+      message: 'Nenhuma cidade localizada',
       type: 'NO_CITY_NOT_FOUND',
     });
 
