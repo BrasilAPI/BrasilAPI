@@ -11,11 +11,11 @@ const action = async (request, response) => {
   
   const cityData = await getCityData(cityName);
   
-  if (!cityData) {
+  if (!cityData || cityData.length === 0) {
     response.status(404);
     response.json({
-      message: 'Cidade não localizada',
-      type: 'CITY_NOT_FOUND',
+      message: 'Nenhuma cidade não localizada',
+      type: 'NO_CITY_NOT_FOUND',
     });
 
     return;
