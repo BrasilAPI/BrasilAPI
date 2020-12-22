@@ -3,6 +3,7 @@ import { merge } from 'lodash';
 
 import { CEPResolvers, CEPTypedefs } from './modules/cep';
 import { BankResolvers, BankTypedefs } from './modules/bank';
+import { BanksResolvers, BanksTypedefs } from './modules/banks';
 import { StatusResolvers, StatusTypedefs } from './modules/status';
 
 const RootTypeDefs = gql`
@@ -19,6 +20,6 @@ const resolvers = {
 };
 
 export const schema = makeExecutableSchema({
-  typeDefs: [RootTypeDefs, CEPTypedefs, BankTypedefs, StatusTypedefs],
-  resolvers: merge(resolvers, CEPResolvers, BankResolvers, StatusResolvers),
+  typeDefs: [RootTypeDefs, CEPTypedefs, BankTypedefs, BanksTypedefs, StatusTypedefs],
+  resolvers: merge(resolvers, CEPResolvers, BankResolvers, BanksResolvers, StatusResolvers),
 });
