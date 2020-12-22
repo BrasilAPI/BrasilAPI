@@ -2,6 +2,7 @@ import { gql, makeExecutableSchema } from 'apollo-server-micro';
 import { merge } from 'lodash';
 
 import { CEPResolvers, CEPTypedefs } from './modules/cep';
+import { BankResolvers, BankTypedefs } from './modules/bank';
 import { StatusResolvers, StatusTypedefs } from './modules/status';
 
 const RootTypeDefs = gql`
@@ -18,6 +19,6 @@ const resolvers = {
 };
 
 export const schema = makeExecutableSchema({
-  typeDefs: [RootTypeDefs, CEPTypedefs, StatusTypedefs],
-  resolvers: merge(resolvers, CEPResolvers, StatusResolvers),
+  typeDefs: [RootTypeDefs, CEPTypedefs, BankTypedefs, StatusTypedefs],
+  resolvers: merge(resolvers, CEPResolvers, BankResolvers, StatusResolvers),
 });
