@@ -427,6 +427,16 @@
     },
     "/banks/v1/{code}": {
       "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
         "tags": [
           "BANKS"
         ],
