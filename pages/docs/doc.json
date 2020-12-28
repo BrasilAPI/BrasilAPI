@@ -2,24 +2,2876 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Brasil API",
-    "description": "Acesso programático de informações é algo fundamental na comunicação entre sistemas mas, para nossa surpresa, uma informação tão útil e pública quanto um CEP não consegue ser acessada diretamente por um navegador por conta da API dos Correios não possuir CORS habilitado.\nDado a isso, este projeto experimental tem como objetivo centralizar e disponibilizar endpoints modernos com baixíssima latência utilizando tecnologias como Vercel Smart CDN responsável por fazer o cache das informações em atualmente 23 regiões distribuídas ao longo do mundo (incluindo Brasil). Então não importa o quão devagar for a fonte dos dados, nós queremos disponibilizá-la da forma mais rápida e moderna possível.\n\nRecursos disponíveis\n  - CEP\n  - DDD\n",
-    "termsOfService": "https://brasilapi.com.br/",
-    "version": "1.0.0",
-    "contact": {
-      "url": "https://brasilapi.com.br"
-    },
-    "license": {
-      "name": "MIT",
-      "url": "https://github.com/BrasilAPI/BrasilAPI/blob/master/LICENSE"
-    }
+    "description": "Acesso programático de informações é algo fundamental na comunicação entre sistemas mas, para nossa surpresa, uma informação tão útil e pública quanto um CEP não consegue ser acessada diretamente por um navegador por conta da API dos Correios não possuir CORS habilitado.\nDado a isso, este projeto experimental tem como objetivo centralizar e disponibilizar endpoints modernos com baixíssima latência utilizando tecnologias como Vercel Smart CDN responsável por fazer o cache das informações em atualmente 23 regiões distribuídas ao longo do mundo (incluindo Brasil). Então não importa o quão devagar for a fonte dos dados, nós queremos disponibilizá-la da forma mais rápida e moderna possível.\n\nRecursos disponíveis\n  - CEP\n  - DDD\n  - Bank\n  - CPTEC\n    - Localidades (Cities)\n    - Situação climática nas capitais (Capital)\n    - Situação climática nos aeroportos (Airport)\n    - Previsão do tempo (wheater prediction)\n    - Previsão oceanográfica (swell)\n",
+    "contact": {},
+    "version": "1.0"
   },
-  "tags": [
+  "servers": [
     {
-      "name": "Brasil API",
-      "description": "Transformando o Brasil em uma API",
-      "externalDocs": {
-        "description": "Saiba mais",
-        "url": "https://brasilapi.com.br/"
+      "url": "https://brasilapi.com.br/api",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/banks/v1": {
+      "get": {
+        "tags": [
+          "banks/v1"
+        ],
+        "summary": "Retorna informações de todos os bancos do Brasil",
+        "operationId": "RetornainformaçõesdetodososbancosdoBrasil",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Bank"
+                  },
+                  "example": [
+                    {
+                      "ispb": "00000000",
+                      "name": "BCO DO BRASIL S.A.",
+                      "code": 1,
+                      "fullName": "Banco do Brasil S.A."
+                    },
+                    {
+                      "ispb": "00000208",
+                      "name": "BRB - BCO DE BRASILIA S.A.",
+                      "code": 70,
+                      "fullName": "BRB - BANCO DE BRASILIA S.A."
+                    }
+                  ]
+                },
+                "example": [
+                  {
+                    "ispb": "00000000",
+                    "name": "BCO DO BRASIL S.A.",
+                    "code": 1,
+                    "fullName": "Banco do Brasil S.A."
+                  },
+                  {
+                    "ispb": "00000208",
+                    "name": "BRB - BCO DE BRASILIA S.A.",
+                    "code": 70,
+                    "fullName": "BRB - BANCO DE BRASILIA S.A."
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/banks/v1/{code}": {
+      "get": {
+        "tags": [
+          "banks/v1"
+        ],
+        "summary": "Busca as informações de um banco a partir de um código",
+        "operationId": "Buscaasinformaçõesdeumbancoapartirdeumcódigo",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "Código Febraban a ser pesquisado",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "example": 237
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Bank"
+                },
+                "example": {
+                  "ispb": "00000000",
+                  "name": "BCO DO BRASIL S.A.",
+                  "code": 1,
+                  "fullName": "Banco do Brasil S.A."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "message": "Código bancário não encontrado",
+                  "type": "BANK_CODE_NOT_FOUND"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/cptec/v1/cities": {
+      "get": {
+        "tags": [
+          "CPTEC"
+        ],
+        "summary": "Listar localidades",
+        "description": "Retorna listagem com todas as cidades junto a seus respectivos códigos presentes nos serviços da CPTEC.\nO Código destas cidades será utilizado para os serviços de meteorologia e a ondas (previsão oceânica) fornecido pelo centro.",
+        "operationId": "listcities(/cptec/v1/cities)",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "*"
+                  }
+                }
+              },
+              "Access-Control-Allow-Credentials": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "true"
+                  }
+                }
+              },
+              "Cache-Control": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "max-age=0, s-maxage=86400, stale-while-revalidate, public"
+                  }
+                }
+              },
+              "Vary": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Accept-Encoding"
+                  }
+                }
+              },
+              "Content-Encoding": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "gzip"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Sun, 20 Dec 2020 16:07:19 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              },
+              "Transfer-Encoding": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "chunked"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/City"
+                  },
+                  "example": [
+                    {
+                      "name": "São Benedito",
+                      "state": "CE",
+                      "code": "4750"
+                    },
+                    {
+                      "name": "São Benedito do Rio Preto",
+                      "state": "MA",
+                      "code": "4751"
+                    },
+                    {
+                      "name": "São Benedito do Sul",
+                      "state": "PE",
+                      "code": "4752"
+                    },
+                    {
+                      "name": "São Bentinho",
+                      "state": "PB",
+                      "code": "5845"
+                    },
+                    {
+                      "name": "São Bento",
+                      "state": "MA",
+                      "code": "4753"
+                    },
+                    {
+                      "name": "São Bento",
+                      "state": "PB",
+                      "code": "4754"
+                    },
+                    {
+                      "name": "São Bento Abade",
+                      "state": "MG",
+                      "code": "4755"
+                    },
+                    {
+                      "name": "São Bento de Pombal",
+                      "state": "PB",
+                      "code": "4756"
+                    },
+                    {
+                      "name": "São Bento do Norte",
+                      "state": "RN",
+                      "code": "4757"
+                    },
+                    {
+                      "name": "São Bento do Sapucaí",
+                      "state": "SP",
+                      "code": "4758"
+                    },
+                    {
+                      "name": "São Bento do Sul",
+                      "state": "SC",
+                      "code": "4759"
+                    },
+                    {
+                      "name": "São Bento do Tocantins",
+                      "state": "TO",
+                      "code": "4760"
+                    },
+                    {
+                      "name": "São Bento do Trairi",
+                      "state": "RN",
+                      "code": "4761"
+                    },
+                    {
+                      "name": "São Bento do Una",
+                      "state": "PE",
+                      "code": "4762"
+                    },
+                    {
+                      "name": "São Bernardino",
+                      "state": "SC",
+                      "code": "4763"
+                    },
+                    {
+                      "name": "São Bernardo",
+                      "state": "MA",
+                      "code": "4764"
+                    },
+                    {
+                      "name": "São Bernardo do Campo",
+                      "state": "SP",
+                      "code": "4765"
+                    },
+                    {
+                      "name": "São Bonifácio",
+                      "state": "SC",
+                      "code": "4766"
+                    },
+                    {
+                      "name": "São Borja",
+                      "state": "RS",
+                      "code": "4767"
+                    },
+                    {
+                      "name": "São Brás",
+                      "state": "AL",
+                      "code": "4768"
+                    },
+                    {
+                      "name": "São Brás do Suaçuí",
+                      "state": "MG",
+                      "code": "4769"
+                    },
+                    {
+                      "name": "São Braz do Piauí",
+                      "state": "PI",
+                      "code": "4770"
+                    },
+                    {
+                      "name": "São Caetano de Odivelas",
+                      "state": "PA",
+                      "code": "4771"
+                    },
+                    {
+                      "name": "São Caetano do Sul",
+                      "state": "SP",
+                      "code": "4772"
+                    },
+                    {
+                      "name": "São Caitano",
+                      "state": "PE",
+                      "code": "4773"
+                    },
+                    {
+                      "name": "São Carlos",
+                      "state": "SP",
+                      "code": "4774"
+                    },
+                    {
+                      "name": "São Carlos",
+                      "state": "SC",
+                      "code": "4775"
+                    },
+                    {
+                      "name": "São Carlos do Ivaí",
+                      "state": "PR",
+                      "code": "4776"
+                    },
+                    {
+                      "name": "São Cristóvão",
+                      "state": "SE",
+                      "code": "4777"
+                    },
+                    {
+                      "name": "São Cristovão do Sul",
+                      "state": "SC",
+                      "code": "4778"
+                    },
+                    {
+                      "name": "São Desidério",
+                      "state": "BA",
+                      "code": "4779"
+                    },
+                    {
+                      "name": "São Domingos",
+                      "state": "SE",
+                      "code": "4780"
+                    },
+                    {
+                      "name": "São Domingos",
+                      "state": "BA",
+                      "code": "4781"
+                    },
+                    {
+                      "name": "São Domingos",
+                      "state": "GO",
+                      "code": "4782"
+                    },
+                    {
+                      "name": "São Domingos",
+                      "state": "SC",
+                      "code": "4783"
+                    },
+                    {
+                      "name": "São Domingos das Dores",
+                      "state": "MG",
+                      "code": "4784"
+                    },
+                    {
+                      "name": "São Domingos de Pombal",
+                      "state": "PB",
+                      "code": "4785"
+                    },
+                    {
+                      "name": "São Domingos do Araguaia",
+                      "state": "PA",
+                      "code": "4786"
+                    },
+                    {
+                      "name": "São Domingos do Azeitão",
+                      "state": "MA",
+                      "code": "4787"
+                    },
+                    {
+                      "name": "São Domingos do Capim",
+                      "state": "PA",
+                      "code": "4788"
+                    },
+                    {
+                      "name": "São Domingos do Cariri",
+                      "state": "PB",
+                      "code": "4789"
+                    },
+                    {
+                      "name": "São Domingos do Maranhão",
+                      "state": "MA",
+                      "code": "4790"
+                    },
+                    {
+                      "name": "São Domingos do Norte",
+                      "state": "ES",
+                      "code": "4791"
+                    },
+                    {
+                      "name": "São Domingos do Prata",
+                      "state": "MG",
+                      "code": "4792"
+                    },
+                    {
+                      "name": "São Domingos do Sul",
+                      "state": "RS",
+                      "code": "4793"
+                    },
+                    {
+                      "name": "São Felipe",
+                      "state": "BA",
+                      "code": "4794"
+                    },
+                    {
+                      "name": "São Felipe d´Oeste",
+                      "state": "RO",
+                      "code": "4795"
+                    },
+                    {
+                      "name": "São Félix",
+                      "state": "BA",
+                      "code": "4796"
+                    },
+                    {
+                      "name": "São Félix de Balsas",
+                      "state": "MA",
+                      "code": "4797"
+                    },
+                    {
+                      "name": "São Félix de Minas",
+                      "state": "MG",
+                      "code": "4798"
+                    },
+                    {
+                      "name": "São Félix do Araguaia",
+                      "state": "MT",
+                      "code": "4799"
+                    },
+                    {
+                      "name": "São Félix do Coribe",
+                      "state": "BA",
+                      "code": "4800"
+                    },
+                    {
+                      "name": "São Félix do Piauí",
+                      "state": "PI",
+                      "code": "4801"
+                    },
+                    {
+                      "name": "São Félix do Tocantins",
+                      "state": "TO",
+                      "code": "4802"
+                    },
+                    {
+                      "name": "São Félix do Xingu",
+                      "state": "PA",
+                      "code": "4803"
+                    },
+                    {
+                      "name": "São Fernando",
+                      "state": "RN",
+                      "code": "4804"
+                    },
+                    {
+                      "name": "São Fidélis",
+                      "state": "RJ",
+                      "code": "4805"
+                    },
+                    {
+                      "name": "São Francisco",
+                      "state": "PB",
+                      "code": "4806"
+                    },
+                    {
+                      "name": "São Francisco",
+                      "state": "SE",
+                      "code": "4807"
+                    },
+                    {
+                      "name": "São Francisco",
+                      "state": "MG",
+                      "code": "4808"
+                    }
+                  ]
+                },
+                "example": [
+                  {
+                    "name": "São Benedito",
+                    "state": "CE",
+                    "code": "4750"
+                  },
+                  {
+                    "name": "São Benedito do Rio Preto",
+                    "state": "MA",
+                    "code": "4751"
+                  },
+                  {
+                    "name": "São Benedito do Sul",
+                    "state": "PE",
+                    "code": "4752"
+                  },
+                  {
+                    "name": "São Bentinho",
+                    "state": "PB",
+                    "code": "5845"
+                  },
+                  {
+                    "name": "São Bento",
+                    "state": "MA",
+                    "code": "4753"
+                  },
+                  {
+                    "name": "São Bento",
+                    "state": "PB",
+                    "code": "4754"
+                  },
+                  {
+                    "name": "São Bento Abade",
+                    "state": "MG",
+                    "code": "4755"
+                  },
+                  {
+                    "name": "São Bento de Pombal",
+                    "state": "PB",
+                    "code": "4756"
+                  },
+                  {
+                    "name": "São Bento do Norte",
+                    "state": "RN",
+                    "code": "4757"
+                  },
+                  {
+                    "name": "São Bento do Sapucaí",
+                    "state": "SP",
+                    "code": "4758"
+                  },
+                  {
+                    "name": "São Bento do Sul",
+                    "state": "SC",
+                    "code": "4759"
+                  },
+                  {
+                    "name": "São Bento do Tocantins",
+                    "state": "TO",
+                    "code": "4760"
+                  },
+                  {
+                    "name": "São Bento do Trairi",
+                    "state": "RN",
+                    "code": "4761"
+                  },
+                  {
+                    "name": "São Bento do Una",
+                    "state": "PE",
+                    "code": "4762"
+                  },
+                  {
+                    "name": "São Bernardino",
+                    "state": "SC",
+                    "code": "4763"
+                  },
+                  {
+                    "name": "São Bernardo",
+                    "state": "MA",
+                    "code": "4764"
+                  },
+                  {
+                    "name": "São Bernardo do Campo",
+                    "state": "SP",
+                    "code": "4765"
+                  },
+                  {
+                    "name": "São Bonifácio",
+                    "state": "SC",
+                    "code": "4766"
+                  },
+                  {
+                    "name": "São Borja",
+                    "state": "RS",
+                    "code": "4767"
+                  },
+                  {
+                    "name": "São Brás",
+                    "state": "AL",
+                    "code": "4768"
+                  },
+                  {
+                    "name": "São Brás do Suaçuí",
+                    "state": "MG",
+                    "code": "4769"
+                  },
+                  {
+                    "name": "São Braz do Piauí",
+                    "state": "PI",
+                    "code": "4770"
+                  },
+                  {
+                    "name": "São Caetano de Odivelas",
+                    "state": "PA",
+                    "code": "4771"
+                  },
+                  {
+                    "name": "São Caetano do Sul",
+                    "state": "SP",
+                    "code": "4772"
+                  },
+                  {
+                    "name": "São Caitano",
+                    "state": "PE",
+                    "code": "4773"
+                  },
+                  {
+                    "name": "São Carlos",
+                    "state": "SP",
+                    "code": "4774"
+                  },
+                  {
+                    "name": "São Carlos",
+                    "state": "SC",
+                    "code": "4775"
+                  },
+                  {
+                    "name": "São Carlos do Ivaí",
+                    "state": "PR",
+                    "code": "4776"
+                  },
+                  {
+                    "name": "São Cristóvão",
+                    "state": "SE",
+                    "code": "4777"
+                  },
+                  {
+                    "name": "São Cristovão do Sul",
+                    "state": "SC",
+                    "code": "4778"
+                  },
+                  {
+                    "name": "São Desidério",
+                    "state": "BA",
+                    "code": "4779"
+                  },
+                  {
+                    "name": "São Domingos",
+                    "state": "SE",
+                    "code": "4780"
+                  },
+                  {
+                    "name": "São Domingos",
+                    "state": "BA",
+                    "code": "4781"
+                  },
+                  {
+                    "name": "São Domingos",
+                    "state": "GO",
+                    "code": "4782"
+                  },
+                  {
+                    "name": "São Domingos",
+                    "state": "SC",
+                    "code": "4783"
+                  },
+                  {
+                    "name": "São Domingos das Dores",
+                    "state": "MG",
+                    "code": "4784"
+                  },
+                  {
+                    "name": "São Domingos de Pombal",
+                    "state": "PB",
+                    "code": "4785"
+                  },
+                  {
+                    "name": "São Domingos do Araguaia",
+                    "state": "PA",
+                    "code": "4786"
+                  },
+                  {
+                    "name": "São Domingos do Azeitão",
+                    "state": "MA",
+                    "code": "4787"
+                  },
+                  {
+                    "name": "São Domingos do Capim",
+                    "state": "PA",
+                    "code": "4788"
+                  },
+                  {
+                    "name": "São Domingos do Cariri",
+                    "state": "PB",
+                    "code": "4789"
+                  },
+                  {
+                    "name": "São Domingos do Maranhão",
+                    "state": "MA",
+                    "code": "4790"
+                  },
+                  {
+                    "name": "São Domingos do Norte",
+                    "state": "ES",
+                    "code": "4791"
+                  },
+                  {
+                    "name": "São Domingos do Prata",
+                    "state": "MG",
+                    "code": "4792"
+                  },
+                  {
+                    "name": "São Domingos do Sul",
+                    "state": "RS",
+                    "code": "4793"
+                  },
+                  {
+                    "name": "São Felipe",
+                    "state": "BA",
+                    "code": "4794"
+                  },
+                  {
+                    "name": "São Felipe d´Oeste",
+                    "state": "RO",
+                    "code": "4795"
+                  },
+                  {
+                    "name": "São Félix",
+                    "state": "BA",
+                    "code": "4796"
+                  },
+                  {
+                    "name": "São Félix de Balsas",
+                    "state": "MA",
+                    "code": "4797"
+                  },
+                  {
+                    "name": "São Félix de Minas",
+                    "state": "MG",
+                    "code": "4798"
+                  },
+                  {
+                    "name": "São Félix do Araguaia",
+                    "state": "MT",
+                    "code": "4799"
+                  },
+                  {
+                    "name": "São Félix do Coribe",
+                    "state": "BA",
+                    "code": "4800"
+                  },
+                  {
+                    "name": "São Félix do Piauí",
+                    "state": "PI",
+                    "code": "4801"
+                  },
+                  {
+                    "name": "São Félix do Tocantins",
+                    "state": "TO",
+                    "code": "4802"
+                  },
+                  {
+                    "name": "São Félix do Xingu",
+                    "state": "PA",
+                    "code": "4803"
+                  },
+                  {
+                    "name": "São Fernando",
+                    "state": "RN",
+                    "code": "4804"
+                  },
+                  {
+                    "name": "São Fidélis",
+                    "state": "RJ",
+                    "code": "4805"
+                  },
+                  {
+                    "name": "São Francisco",
+                    "state": "PB",
+                    "code": "4806"
+                  },
+                  {
+                    "name": "São Francisco",
+                    "state": "SE",
+                    "code": "4807"
+                  },
+                  {
+                    "name": "São Francisco",
+                    "state": "MG",
+                    "code": "4808"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/cptec/v1/cities/{cityName}": {
+      "get": {
+        "tags": [
+          "CPTEC"
+        ],
+        "summary": "Buscar localidades",
+        "description": "Retorna listagem com todas as cidades correspondentes ao termo pesquisado junto a seus respectivos códigos presentes nos serviços da CPTEC.\nO Código destas cidades será utilizado para os serviços de meteorologia e a ondas (previsão oceânica) fornecido pelo centro.",
+        "operationId": "searchcities(/cptec/v1/cities/:cityName)",
+        "parameters": [
+          {
+            "name": "cityName",
+            "in": "path",
+            "description": "Nome ou parte do nome da cidade a ser buscada",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "Chiforímpola"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "*"
+                  }
+                }
+              },
+              "Access-Control-Allow-Credentials": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "true"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "295"
+                  }
+                }
+              },
+              "Vary": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Accept-Encoding"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Sun, 20 Dec 2020 16:08:27 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/City"
+                  },
+                  "example": [
+                    {
+                      "name": "Belo Campo",
+                      "state": "BA",
+                      "code": "829"
+                    },
+                    {
+                      "name": "Belo Horizonte",
+                      "state": "MG",
+                      "code": "222"
+                    },
+                    {
+                      "name": "Belo Jardim",
+                      "state": "PE",
+                      "code": "830"
+                    },
+                    {
+                      "name": "Belo Monte",
+                      "state": "AL",
+                      "code": "831"
+                    },
+                    {
+                      "name": "Belo Oriente",
+                      "state": "MG",
+                      "code": "832"
+                    },
+                    {
+                      "name": "Belo Vale",
+                      "state": "MG",
+                      "code": "833"
+                    }
+                  ]
+                },
+                "example": [
+                  {
+                    "name": "Belo Campo",
+                    "state": "BA",
+                    "code": "829"
+                  },
+                  {
+                    "name": "Belo Horizonte",
+                    "state": "MG",
+                    "code": "222"
+                  },
+                  {
+                    "name": "Belo Jardim",
+                    "state": "PE",
+                    "code": "830"
+                  },
+                  {
+                    "name": "Belo Monte",
+                    "state": "AL",
+                    "code": "831"
+                  },
+                  {
+                    "name": "Belo Oriente",
+                    "state": "MG",
+                    "code": "832"
+                  },
+                  {
+                    "name": "Belo Vale",
+                    "state": "MG",
+                    "code": "833"
+                  }
+                ]
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "message": "Nenhuma cidade não localizada",
+                  "type": "NO_CITY_NOT_FOUND"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/cptec/v1/weather/capital": {
+      "get": {
+        "tags": [
+          "CPTEC"
+        ],
+        "summary": "Condições atuais nas capitais",
+        "description": "Retorna condições meteorológicas atuais nas capitais do país, com base nas estações de solo de seu aeroporto.",
+        "operationId": "Condiçõesatuaisnascapitais(/cptec/v1/weather/capital)",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "*"
+                  }
+                }
+              },
+              "Access-Control-Allow-Credentials": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "true"
+                  }
+                }
+              },
+              "Cache-Control": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "max-age=0, s-maxage=86400, stale-while-revalidate, public"
+                  }
+                }
+              },
+              "Vary": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Accept-Encoding"
+                  }
+                }
+              },
+              "Content-Encoding": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "gzip"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Sun, 27 Dec 2020 18:03:05 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Transfer-Encoding": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "chunked"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CurrentCondition"
+                  },
+                  "example": [
+                    {
+                      "icao_code": "SBAR",
+                      "last_update": "2021-01-27T15:00:00.974Z",
+                      "pressure": "1014",
+                      "visibility": "9000",
+                      "wind": "29",
+                      "wind_direction": "90",
+                      "humidity": "74",
+                      "weather_code": "ps",
+                      "weather_desc": "Predomínio de Sol",
+                      "temp": "28"
+                    },
+                    {
+                      "icao_code": "SBBE",
+                      "last_update": "2021-01-27T15:00:00.974Z",
+                      "pressure": "1009",
+                      "visibility": ">10000",
+                      "wind": "43",
+                      "wind_direction": "100",
+                      "humidity": "63",
+                      "weather_code": "ps",
+                      "weather_desc": "Predomínio de Sol",
+                      "temp": "31"
+                    },
+                    {
+                      "icao_code": "SBBH",
+                      "last_update": "2021-01-27T15:00:00.974Z",
+                      "pressure": "1018",
+                      "visibility": ">10000",
+                      "wind": "22",
+                      "wind_direction": "70",
+                      "humidity": "48",
+                      "weather_code": "ps",
+                      "weather_desc": "Predomínio de Sol",
+                      "temp": "28"
+                    },
+                    {
+                      "icao_code": "SBBV",
+                      "last_update": "2021-01-27T15:00:00.974Z",
+                      "pressure": "1009",
+                      "visibility": ">10000",
+                      "wind": "47",
+                      "wind_direction": "70",
+                      "humidity": "52",
+                      "weather_code": "ps",
+                      "weather_desc": "Predomínio de Sol",
+                      "temp": "31"
+                    },
+                    {
+                      "icao_code": "SBBR",
+                      "last_update": "2021-01-27T15:00:00.974Z",
+                      "pressure": "1018",
+                      "visibility": ">10000",
+                      "wind": "29",
+                      "wind_direction": "60",
+                      "humidity": "69",
+                      "weather_code": "e",
+                      "weather_desc": "Encoberto",
+                      "temp": "25"
+                    },
+                    {
+                      "icao_code": "SBCG",
+                      "last_update": "2021-01-27T15:00:00.974Z",
+                      "pressure": "1012",
+                      "visibility": ">10000",
+                      "wind": "43",
+                      "wind_direction": "350",
+                      "humidity": "66",
+                      "weather_code": "pc",
+                      "weather_desc": "Pancadas de Chuva",
+                      "temp": "29"
+                    },
+                    {
+                      "icao_code": "SBCY",
+                      "last_update": "2021-01-27T15:00:00.974Z",
+                      "pressure": "1011",
+                      "visibility": "8000",
+                      "wind": "32",
+                      "wind_direction": "310",
+                      "humidity": "74",
+                      "weather_code": "pc",
+                      "weather_desc": "Pancadas de Chuva",
+                      "temp": "28"
+                    },
+                    {
+                      "icao_code": "SBCT",
+                      "last_update": "2021-01-27T15:00:00.974Z",
+                      "pressure": "1018",
+                      "visibility": ">10000",
+                      "wind": "25",
+                      "wind_direction": "50",
+                      "humidity": "73",
+                      "weather_code": "ps",
+                      "weather_desc": "Predomínio de Sol",
+                      "temp": "23"
+                    },
+                    {
+                      "icao_code": "SBFL",
+                      "last_update": "2021-01-27T15:00:00.974Z",
+                      "pressure": "1016",
+                      "visibility": "4500",
+                      "wind": "22",
+                      "wind_direction": "300",
+                      "humidity": "94",
+                      "weather_code": "c",
+                      "weather_desc": "Chuvas periódicas",
+                      "temp": "23"
+                    },
+                    {
+                      "icao_code": "SBFZ",
+                      "last_update": "2021-01-27T15:00:00.974Z",
+                      "pressure": "1010",
+                      "visibility": ">10000",
+                      "wind": "61",
+                      "wind_direction": "80",
+                      "humidity": "63",
+                      "weather_code": "ps",
+                      "weather_desc": "Predomínio de Sol",
+                      "temp": "31"
+                    },
+                    {
+                      "icao_code": "SBGO",
+                      "last_update": "2021-01-27T15:00:00.974Z",
+                      "pressure": "1015",
+                      "visibility": ">10000",
+                      "wind": "14",
+                      "wind_direction": "360",
+                      "humidity": "55",
+                      "weather_code": "ps",
+                      "weather_desc": "Predomínio de Sol",
+                      "temp": "30"
+                    },
+                    {
+                      "icao_code": "SBJP",
+                      "last_update": "2021-01-27T15:00:00.974Z",
+                      "pressure": "1013",
+                      "visibility": ">10000",
+                      "wind": "54",
+                      "wind_direction": "100",
+                      "humidity": "52",
+                      "weather_code": "ps",
+                      "weather_desc": "Predomínio de Sol",
+                      "temp": "31"
+                    },
+                    {
+                      "icao_code": "SBMQ",
+                      "last_update": "2021-01-27T15:00:00.974Z",
+                      "pressure": "1009",
+                      "visibility": ">10000",
+                      "wind": "29",
+                      "wind_direction": "100",
+                      "humidity": "63",
+                      "weather_code": "ps",
+                      "weather_desc": "Predomínio de Sol",
+                      "temp": "33"
+                    },
+                    {
+                      "icao_code": "SBMO",
+                      "last_update": "2021-01-27T15:00:00.974Z",
+                      "pressure": "1014",
+                      "visibility": ">10000",
+                      "wind": "50",
+                      "wind_direction": "100",
+                      "humidity": "66",
+                      "weather_code": "ps",
+                      "weather_desc": "Predomínio de Sol",
+                      "temp": "28"
+                    },
+                    {
+                      "icao_code": "SBMN",
+                      "last_update": "2021-01-27T15:00:00.974Z",
+                      "pressure": "1010",
+                      "visibility": ">10000",
+                      "wind": "14",
+                      "wind_direction": "70",
+                      "humidity": "79",
+                      "weather_code": "ps",
+                      "weather_desc": "Predomínio de Sol",
+                      "temp": "29"
+                    },
+                    {
+                      "icao_code": "SBNT",
+                      "last_update": "2021-01-27T15:00:00.974Z",
+                      "pressure": "1012",
+                      "visibility": ">10000",
+                      "wind": "61",
+                      "wind_direction": "120",
+                      "humidity": "62",
+                      "weather_code": "ps",
+                      "weather_desc": "Predomínio de Sol",
+                      "temp": "30"
+                    },
+                    {
+                      "icao_code": "SBPJ",
+                      "last_update": "2021-01-27T15:00:00.974Z",
+                      "pressure": "1011",
+                      "visibility": ">10000",
+                      "wind": "14",
+                      "wind_direction": "190",
+                      "humidity": "74",
+                      "weather_code": "e",
+                      "weather_desc": "Encoberto",
+                      "temp": "28"
+                    },
+                    {
+                      "icao_code": "SBPA",
+                      "last_update": "2021-01-27T15:00:00.974Z",
+                      "pressure": "1013",
+                      "visibility": ">10000",
+                      "wind": "14",
+                      "wind_direction": "100",
+                      "humidity": "46",
+                      "weather_code": "ps",
+                      "weather_desc": "Predomínio de Sol",
+                      "temp": "30"
+                    },
+                    {
+                      "icao_code": "SBPV",
+                      "last_update": "2021-01-27T15:00:00.974Z",
+                      "pressure": "1010",
+                      "visibility": "8000",
+                      "wind": "7",
+                      "wind_direction": "320",
+                      "humidity": "94",
+                      "weather_code": "c",
+                      "weather_desc": "Chuvas periódicas",
+                      "temp": "25"
+                    },
+                    {
+                      "icao_code": "SBRF",
+                      "last_update": "2021-01-27T15:00:00.974Z",
+                      "pressure": "1013",
+                      "visibility": ">10000",
+                      "wind": "36",
+                      "wind_direction": "120",
+                      "humidity": "62",
+                      "weather_code": "ps",
+                      "weather_desc": "Predomínio de Sol",
+                      "temp": "28"
+                    },
+                    {
+                      "icao_code": "SBRB",
+                      "last_update": "2021-01-27T15:00:00.974Z",
+                      "pressure": "1010",
+                      "visibility": ">10000",
+                      "wind": "7",
+                      "wind_direction": "320",
+                      "humidity": "84",
+                      "weather_code": "ps",
+                      "weather_desc": "Predomínio de Sol",
+                      "temp": "26"
+                    },
+                    {
+                      "icao_code": "SBGL",
+                      "last_update": "2021-01-27T15:00:00.974Z",
+                      "pressure": "1014",
+                      "visibility": "9000",
+                      "wind": "7",
+                      "wind_direction": "40",
+                      "humidity": "79",
+                      "weather_code": "c",
+                      "weather_desc": "Chuvas periódicas",
+                      "temp": "26"
+                    },
+                    {
+                      "icao_code": "SBSV",
+                      "last_update": "2021-01-27T15:00:00.974Z",
+                      "pressure": "1014",
+                      "visibility": ">10000",
+                      "wind": "50",
+                      "wind_direction": "80",
+                      "humidity": "59",
+                      "weather_code": "ps",
+                      "weather_desc": "Predomínio de Sol",
+                      "temp": "31"
+                    },
+                    {
+                      "icao_code": "SBSL",
+                      "last_update": "2021-01-27T15:00:00.974Z",
+                      "pressure": "1009",
+                      "visibility": ">10000",
+                      "wind": "54",
+                      "wind_direction": "70",
+                      "humidity": "56",
+                      "weather_code": "ps",
+                      "weather_desc": "Predomínio de Sol",
+                      "temp": "32"
+                    },
+                    {
+                      "icao_code": "SBSP",
+                      "last_update": "2021-01-27T15:00:00.974Z",
+                      "pressure": "1019",
+                      "visibility": ">10000",
+                      "wind": "18",
+                      "wind_direction": "80",
+                      "humidity": "88",
+                      "weather_code": "ps",
+                      "weather_desc": "Predomínio de Sol",
+                      "temp": "20"
+                    },
+                    {
+                      "icao_code": "SBTE",
+                      "last_update": "2021-01-27T15:00:00.974Z",
+                      "pressure": "1008",
+                      "visibility": ">10000",
+                      "wind": "18",
+                      "wind_direction": "130",
+                      "humidity": "41",
+                      "weather_code": "ps",
+                      "weather_desc": "Predomínio de Sol",
+                      "temp": "34"
+                    },
+                    {
+                      "icao_code": "SBVT",
+                      "last_update": "2021-01-27T15:00:00.974Z",
+                      "pressure": "1015",
+                      "visibility": ">10000",
+                      "wind": "47",
+                      "wind_direction": "50",
+                      "humidity": "62",
+                      "weather_code": "ps",
+                      "weather_desc": "Predomínio de Sol",
+                      "temp": "30"
+                    }
+                  ]
+                },
+                "example": [
+                  {
+                    "icao_code": "SBAR",
+                    "last_update": "2021-01-27T15:00:00.974Z",
+                    "pressure": "1014",
+                    "visibility": "9000",
+                    "wind": "29",
+                    "wind_direction": "90",
+                    "humidity": "74",
+                    "weather_code": "ps",
+                    "weather_desc": "Predomínio de Sol",
+                    "temp": "28"
+                  },
+                  {
+                    "icao_code": "SBBE",
+                    "last_update": "2021-01-27T15:00:00.974Z",
+                    "pressure": "1009",
+                    "visibility": ">10000",
+                    "wind": "43",
+                    "wind_direction": "100",
+                    "humidity": "63",
+                    "weather_code": "ps",
+                    "weather_desc": "Predomínio de Sol",
+                    "temp": "31"
+                  },
+                  {
+                    "icao_code": "SBBH",
+                    "last_update": "2021-01-27T15:00:00.974Z",
+                    "pressure": "1018",
+                    "visibility": ">10000",
+                    "wind": "22",
+                    "wind_direction": "70",
+                    "humidity": "48",
+                    "weather_code": "ps",
+                    "weather_desc": "Predomínio de Sol",
+                    "temp": "28"
+                  },
+                  {
+                    "icao_code": "SBBV",
+                    "last_update": "2021-01-27T15:00:00.974Z",
+                    "pressure": "1009",
+                    "visibility": ">10000",
+                    "wind": "47",
+                    "wind_direction": "70",
+                    "humidity": "52",
+                    "weather_code": "ps",
+                    "weather_desc": "Predomínio de Sol",
+                    "temp": "31"
+                  },
+                  {
+                    "icao_code": "SBBR",
+                    "last_update": "2021-01-27T15:00:00.974Z",
+                    "pressure": "1018",
+                    "visibility": ">10000",
+                    "wind": "29",
+                    "wind_direction": "60",
+                    "humidity": "69",
+                    "weather_code": "e",
+                    "weather_desc": "Encoberto",
+                    "temp": "25"
+                  },
+                  {
+                    "icao_code": "SBCG",
+                    "last_update": "2021-01-27T15:00:00.974Z",
+                    "pressure": "1012",
+                    "visibility": ">10000",
+                    "wind": "43",
+                    "wind_direction": "350",
+                    "humidity": "66",
+                    "weather_code": "pc",
+                    "weather_desc": "Pancadas de Chuva",
+                    "temp": "29"
+                  },
+                  {
+                    "icao_code": "SBCY",
+                    "last_update": "2021-01-27T15:00:00.974Z",
+                    "pressure": "1011",
+                    "visibility": "8000",
+                    "wind": "32",
+                    "wind_direction": "310",
+                    "humidity": "74",
+                    "weather_code": "pc",
+                    "weather_desc": "Pancadas de Chuva",
+                    "temp": "28"
+                  },
+                  {
+                    "icao_code": "SBCT",
+                    "last_update": "2021-01-27T15:00:00.974Z",
+                    "pressure": "1018",
+                    "visibility": ">10000",
+                    "wind": "25",
+                    "wind_direction": "50",
+                    "humidity": "73",
+                    "weather_code": "ps",
+                    "weather_desc": "Predomínio de Sol",
+                    "temp": "23"
+                  },
+                  {
+                    "icao_code": "SBFL",
+                    "last_update": "2021-01-27T15:00:00.974Z",
+                    "pressure": "1016",
+                    "visibility": "4500",
+                    "wind": "22",
+                    "wind_direction": "300",
+                    "humidity": "94",
+                    "weather_code": "c",
+                    "weather_desc": "Chuvas periódicas",
+                    "temp": "23"
+                  },
+                  {
+                    "icao_code": "SBFZ",
+                    "last_update": "2021-01-27T15:00:00.974Z",
+                    "pressure": "1010",
+                    "visibility": ">10000",
+                    "wind": "61",
+                    "wind_direction": "80",
+                    "humidity": "63",
+                    "weather_code": "ps",
+                    "weather_desc": "Predomínio de Sol",
+                    "temp": "31"
+                  },
+                  {
+                    "icao_code": "SBGO",
+                    "last_update": "2021-01-27T15:00:00.974Z",
+                    "pressure": "1015",
+                    "visibility": ">10000",
+                    "wind": "14",
+                    "wind_direction": "360",
+                    "humidity": "55",
+                    "weather_code": "ps",
+                    "weather_desc": "Predomínio de Sol",
+                    "temp": "30"
+                  },
+                  {
+                    "icao_code": "SBJP",
+                    "last_update": "2021-01-27T15:00:00.974Z",
+                    "pressure": "1013",
+                    "visibility": ">10000",
+                    "wind": "54",
+                    "wind_direction": "100",
+                    "humidity": "52",
+                    "weather_code": "ps",
+                    "weather_desc": "Predomínio de Sol",
+                    "temp": "31"
+                  },
+                  {
+                    "icao_code": "SBMQ",
+                    "last_update": "2021-01-27T15:00:00.974Z",
+                    "pressure": "1009",
+                    "visibility": ">10000",
+                    "wind": "29",
+                    "wind_direction": "100",
+                    "humidity": "63",
+                    "weather_code": "ps",
+                    "weather_desc": "Predomínio de Sol",
+                    "temp": "33"
+                  },
+                  {
+                    "icao_code": "SBMO",
+                    "last_update": "2021-01-27T15:00:00.974Z",
+                    "pressure": "1014",
+                    "visibility": ">10000",
+                    "wind": "50",
+                    "wind_direction": "100",
+                    "humidity": "66",
+                    "weather_code": "ps",
+                    "weather_desc": "Predomínio de Sol",
+                    "temp": "28"
+                  },
+                  {
+                    "icao_code": "SBMN",
+                    "last_update": "2021-01-27T15:00:00.974Z",
+                    "pressure": "1010",
+                    "visibility": ">10000",
+                    "wind": "14",
+                    "wind_direction": "70",
+                    "humidity": "79",
+                    "weather_code": "ps",
+                    "weather_desc": "Predomínio de Sol",
+                    "temp": "29"
+                  },
+                  {
+                    "icao_code": "SBNT",
+                    "last_update": "2021-01-27T15:00:00.974Z",
+                    "pressure": "1012",
+                    "visibility": ">10000",
+                    "wind": "61",
+                    "wind_direction": "120",
+                    "humidity": "62",
+                    "weather_code": "ps",
+                    "weather_desc": "Predomínio de Sol",
+                    "temp": "30"
+                  },
+                  {
+                    "icao_code": "SBPJ",
+                    "last_update": "2021-01-27T15:00:00.974Z",
+                    "pressure": "1011",
+                    "visibility": ">10000",
+                    "wind": "14",
+                    "wind_direction": "190",
+                    "humidity": "74",
+                    "weather_code": "e",
+                    "weather_desc": "Encoberto",
+                    "temp": "28"
+                  },
+                  {
+                    "icao_code": "SBPA",
+                    "last_update": "2021-01-27T15:00:00.974Z",
+                    "pressure": "1013",
+                    "visibility": ">10000",
+                    "wind": "14",
+                    "wind_direction": "100",
+                    "humidity": "46",
+                    "weather_code": "ps",
+                    "weather_desc": "Predomínio de Sol",
+                    "temp": "30"
+                  },
+                  {
+                    "icao_code": "SBPV",
+                    "last_update": "2021-01-27T15:00:00.974Z",
+                    "pressure": "1010",
+                    "visibility": "8000",
+                    "wind": "7",
+                    "wind_direction": "320",
+                    "humidity": "94",
+                    "weather_code": "c",
+                    "weather_desc": "Chuvas periódicas",
+                    "temp": "25"
+                  },
+                  {
+                    "icao_code": "SBRF",
+                    "last_update": "2021-01-27T15:00:00.974Z",
+                    "pressure": "1013",
+                    "visibility": ">10000",
+                    "wind": "36",
+                    "wind_direction": "120",
+                    "humidity": "62",
+                    "weather_code": "ps",
+                    "weather_desc": "Predomínio de Sol",
+                    "temp": "28"
+                  },
+                  {
+                    "icao_code": "SBRB",
+                    "last_update": "2021-01-27T15:00:00.974Z",
+                    "pressure": "1010",
+                    "visibility": ">10000",
+                    "wind": "7",
+                    "wind_direction": "320",
+                    "humidity": "84",
+                    "weather_code": "ps",
+                    "weather_desc": "Predomínio de Sol",
+                    "temp": "26"
+                  },
+                  {
+                    "icao_code": "SBGL",
+                    "last_update": "2021-01-27T15:00:00.974Z",
+                    "pressure": "1014",
+                    "visibility": "9000",
+                    "wind": "7",
+                    "wind_direction": "40",
+                    "humidity": "79",
+                    "weather_code": "c",
+                    "weather_desc": "Chuvas periódicas",
+                    "temp": "26"
+                  },
+                  {
+                    "icao_code": "SBSV",
+                    "last_update": "2021-01-27T15:00:00.974Z",
+                    "pressure": "1014",
+                    "visibility": ">10000",
+                    "wind": "50",
+                    "wind_direction": "80",
+                    "humidity": "59",
+                    "weather_code": "ps",
+                    "weather_desc": "Predomínio de Sol",
+                    "temp": "31"
+                  },
+                  {
+                    "icao_code": "SBSL",
+                    "last_update": "2021-01-27T15:00:00.974Z",
+                    "pressure": "1009",
+                    "visibility": ">10000",
+                    "wind": "54",
+                    "wind_direction": "70",
+                    "humidity": "56",
+                    "weather_code": "ps",
+                    "weather_desc": "Predomínio de Sol",
+                    "temp": "32"
+                  },
+                  {
+                    "icao_code": "SBSP",
+                    "last_update": "2021-01-27T15:00:00.974Z",
+                    "pressure": "1019",
+                    "visibility": ">10000",
+                    "wind": "18",
+                    "wind_direction": "80",
+                    "humidity": "88",
+                    "weather_code": "ps",
+                    "weather_desc": "Predomínio de Sol",
+                    "temp": "20"
+                  },
+                  {
+                    "icao_code": "SBTE",
+                    "last_update": "2021-01-27T15:00:00.974Z",
+                    "pressure": "1008",
+                    "visibility": ">10000",
+                    "wind": "18",
+                    "wind_direction": "130",
+                    "humidity": "41",
+                    "weather_code": "ps",
+                    "weather_desc": "Predomínio de Sol",
+                    "temp": "34"
+                  },
+                  {
+                    "icao_code": "SBVT",
+                    "last_update": "2021-01-27T15:00:00.974Z",
+                    "pressure": "1015",
+                    "visibility": ">10000",
+                    "wind": "47",
+                    "wind_direction": "50",
+                    "humidity": "62",
+                    "weather_code": "ps",
+                    "weather_desc": "Predomínio de Sol",
+                    "temp": "30"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/cptec/v1/weather/airport/{icaoCode}": {
+      "get": {
+        "tags": [
+          "CPTEC"
+        ],
+        "summary": "Condições atuais nos aeroportos (/cptec/v1/weather/airport/:icaoCode)",
+        "description": "Retorna condições meteorológicas atuais no aeroporto solicitado. Este endpoint utiliza o código ICAO (4 dígitos) do aeroporto.",
+        "operationId": "airportcurrentcondition(/cptec/v1/weather/airport/:icaoCode)",
+        "parameters": [
+          {
+            "name": "icaoCode",
+            "in": "path",
+            "description": "Código ICAO (4 dígitos) do aeroporto desejado",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "SBGR"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "*"
+                  }
+                }
+              },
+              "Access-Control-Allow-Credentials": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "true"
+                  }
+                }
+              },
+              "Cache-Control": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "max-age=0, s-maxage=86400, stale-while-revalidate, public"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "214"
+                  }
+                }
+              },
+              "Vary": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Accept-Encoding"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Sun, 27 Dec 2020 18:06:10 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrentCondition"
+                },
+                "example": {
+                  "icao_code": "SBSP",
+                  "last_update": "27/12/2020 13:00:00",
+                  "pressure": "1019",
+                  "visibility": ">10000",
+                  "wind": "18",
+                  "wind_direction": "80",
+                  "humidity": "88",
+                  "weather_code": "ps",
+                  "weather_desc": "Predomínio de Sol",
+                  "temp": "20"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "message": "Condições meteorológicas ou aeroporto não localizados",
+                  "type": "AIRPORT_CONDITIONS_NOT_FOUND"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/cptec/v1/weather/prediction/{cityCode}": {
+      "get": {
+        "tags": [
+          "CPTEC"
+        ],
+        "summary": "Previsão meteorológica para uma cidade",
+        "description": "Retorna Pervisão meteorológica para 1 dia na cidade informada.",
+        "operationId": "weatherpredictionwithoutdays(/cptec/v1/weather/prediction/:cityCode)",
+        "parameters": [
+          {
+            "name": "cityCode",
+            "in": "path",
+            "description": "Código da cidade fornecido pelo endpoint /cities",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 999
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "*"
+                  }
+                }
+              },
+              "Access-Control-Allow-Credentials": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "true"
+                  }
+                }
+              },
+              "Cache-Control": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "max-age=0, s-maxage=86400, stale-while-revalidate, public"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "196"
+                  }
+                }
+              },
+              "Vary": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Accept-Encoding"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Sun, 27 Dec 2020 18:13:24 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/WeatherPrediction"
+                },
+                "example": {
+                  "city_name": "Brejo Alegre",
+                  "state": "SP",
+                  "last_update": "2020-12-27",
+                  "weather": [
+                    {
+                      "date": "2020-12-27",
+                      "condition": "pc",
+                      "min": "20",
+                      "max": "30",
+                      "uv_index": "13.0",
+                      "condition_desc": "Pancadas de Chuva"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "message": "Cidade não localizada",
+                  "type": "CITY_NOT_FOUND"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/cptec/v1/weather/prediction/{cityCode}/{days}": {
+      "get": {
+        "tags": [
+          "CPTEC"
+        ],
+        "summary": "Previsão meteorológica para, até, 14 dias",
+        "description": "Retorna a previsão meteorológica para a cidade informada para um período de, até, 14 dias.",
+        "operationId": "upto14daysprediction(/cptec/v1/weather/prediction/:cityCode/:days)",
+        "parameters": [
+          {
+            "name": "cityCode",
+            "in": "path",
+            "description": "Código da cidade fornecido pelo endpoint /cities",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 999
+            }
+          },
+          {
+            "name": "days",
+            "in": "path",
+            "description": "Quantidade de dias desejado para a previsão",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 5
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "*"
+                  }
+                }
+              },
+              "Access-Control-Allow-Credentials": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "true"
+                  }
+                }
+              },
+              "Cache-Control": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "max-age=0, s-maxage=86400, stale-while-revalidate, public"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "666"
+                  }
+                }
+              },
+              "Vary": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Accept-Encoding"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Sun, 27 Dec 2020 18:03:47 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/WeatherPrediction"
+                },
+                "example": {
+                  "city_name": "Brejo Alegre",
+                  "state": "SP",
+                  "last_update": "2020-12-27",
+                  "weather": [
+                    {
+                      "date": "2020-12-27",
+                      "condition": "pc",
+                      "min": "20",
+                      "max": "30",
+                      "uv_index": "13.0",
+                      "condition_desc": "Pancadas de Chuva"
+                    },
+                    {
+                      "date": "2020-12-28",
+                      "condition": "pc",
+                      "min": "22",
+                      "max": "29",
+                      "uv_index": "13.0",
+                      "condition_desc": "Pancadas de Chuva"
+                    },
+                    {
+                      "date": "2020-12-29",
+                      "condition": "np",
+                      "min": "20",
+                      "max": "27",
+                      "uv_index": "13.0",
+                      "condition_desc": "Nublado e Pancadas de Chuva"
+                    },
+                    {
+                      "date": "2020-12-30",
+                      "condition": "ci",
+                      "min": "21",
+                      "max": "31",
+                      "uv_index": "13.0",
+                      "condition_desc": "Chuvas Isoladas"
+                    },
+                    {
+                      "date": "2020-12-31",
+                      "condition": "ci",
+                      "min": "22",
+                      "max": "31",
+                      "uv_index": "13.0",
+                      "condition_desc": "Chuvas Isoladas"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/cptec/v1/swell/{cityCode}": {
+      "get": {
+        "tags": [
+          "CPTEC"
+        ],
+        "summary": "Previsão oceânica",
+        "description": "Retorna a previsão oceÇanica para a cidade informada para um dia",
+        "operationId": "swellpredictionwithoutdays(/cptec/v1/swell/:cityCode)",
+        "parameters": [
+          {
+            "name": "cityCode",
+            "in": "path",
+            "description": "Código da cidade fornecido pelo endpoint /cities",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 241
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "*"
+                  }
+                }
+              },
+              "Access-Control-Allow-Credentials": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "true"
+                  }
+                }
+              },
+              "Cache-Control": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "max-age=0, s-maxage=86400, stale-while-revalidate, public"
+                  }
+                }
+              },
+              "Vary": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Accept-Encoding"
+                  }
+                }
+              },
+              "Content-Encoding": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "gzip"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Sun, 27 Dec 2020 18:04:18 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Transfer-Encoding": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "chunked"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/SwellPrediction"
+                },
+                "example": {
+                  "city_name": "Rio de Janeiro",
+                  "state": "RJ",
+                  "last_update": "2020-12-27",
+                  "swell": [
+                    {
+                      "date": "27-12-2020",
+                      "swell_data": [
+                        {
+                          "wind": "5.2",
+                          "wind_direction": "E",
+                          "wave_height": "0.8",
+                          "wave_direction": "ESE",
+                          "agitation": "Fraco",
+                          "hour": "00h Z"
+                        },
+                        {
+                          "wind": "4.1",
+                          "wind_direction": "ENE",
+                          "wave_height": "0.8",
+                          "wave_direction": "ESE",
+                          "agitation": "Fraco",
+                          "hour": "03h Z"
+                        },
+                        {
+                          "wind": "0.4",
+                          "wind_direction": "S",
+                          "wave_height": "0.8",
+                          "wave_direction": "ESE",
+                          "agitation": "Fraco",
+                          "hour": "06h Z"
+                        },
+                        {
+                          "wind": "1.8",
+                          "wind_direction": "NW",
+                          "wave_height": "0.8",
+                          "wave_direction": "SE",
+                          "agitation": "Fraco",
+                          "hour": "09h Z"
+                        },
+                        {
+                          "wind": "7.6",
+                          "wind_direction": "WSW",
+                          "wave_height": "0.8",
+                          "wave_direction": "SE",
+                          "agitation": "Fraco",
+                          "hour": "12h Z"
+                        },
+                        {
+                          "wind": "4.2",
+                          "wind_direction": "SSW",
+                          "wave_height": "0.8",
+                          "wave_direction": "SE",
+                          "agitation": "Fraco",
+                          "hour": "15h Z"
+                        },
+                        {
+                          "wind": "0.3",
+                          "wind_direction": "SW",
+                          "wave_height": "0.7",
+                          "wave_direction": "SE",
+                          "agitation": "Fraco",
+                          "hour": "18h Z"
+                        },
+                        {
+                          "wind": "3.0",
+                          "wind_direction": "ENE",
+                          "wave_height": "0.7",
+                          "wave_direction": "SE",
+                          "agitation": "Fraco",
+                          "hour": "21h Z"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/cptec/v1/swell/{cityCode}/{days}": {
+      "get": {
+        "tags": [
+          "CPTEC"
+        ],
+        "summary": "Previsão oceânica para, até, 6 dias",
+        "description": "Retorna a previsão oceânica para a cidade informada para um período de, até, 6 dias.",
+        "operationId": "swellpredictionupto6days(/cptec/v1/swell/:cityCode/:days)",
+        "parameters": [
+          {
+            "name": "cityCode",
+            "in": "path",
+            "description": "Código da cidade fornecido pelo endpoint /cities",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 241
+            }
+          },
+          {
+            "name": "days",
+            "in": "path",
+            "description": "Quantidade de dias desejada para a previsão",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 2
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "*"
+                  }
+                }
+              },
+              "Access-Control-Allow-Credentials": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "true"
+                  }
+                }
+              },
+              "Cache-Control": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "max-age=0, s-maxage=86400, stale-while-revalidate, public"
+                  }
+                }
+              },
+              "Vary": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Accept-Encoding"
+                  }
+                }
+              },
+              "Content-Encoding": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "gzip"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Sun, 27 Dec 2020 18:04:45 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Transfer-Encoding": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "chunked"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/SwellPrediction"
+                },
+                "example": {
+                  "city_name": "Rio de Janeiro",
+                  "state": "RJ",
+                  "last_update": "2020-12-27",
+                  "swell": [
+                    {
+                      "date": "27-12-2020",
+                      "swell_data": [
+                        {
+                          "wind": "5.2",
+                          "wind_direction": "E",
+                          "wave_height": "0.8",
+                          "wave_direction": "ESE",
+                          "agitation": "Fraco",
+                          "hour": "00h Z"
+                        },
+                        {
+                          "wind": "4.1",
+                          "wind_direction": "ENE",
+                          "wave_height": "0.8",
+                          "wave_direction": "ESE",
+                          "agitation": "Fraco",
+                          "hour": "03h Z"
+                        },
+                        {
+                          "wind": "0.4",
+                          "wind_direction": "S",
+                          "wave_height": "0.8",
+                          "wave_direction": "ESE",
+                          "agitation": "Fraco",
+                          "hour": "06h Z"
+                        },
+                        {
+                          "wind": "1.8",
+                          "wind_direction": "NW",
+                          "wave_height": "0.8",
+                          "wave_direction": "SE",
+                          "agitation": "Fraco",
+                          "hour": "09h Z"
+                        },
+                        {
+                          "wind": "7.6",
+                          "wind_direction": "WSW",
+                          "wave_height": "0.8",
+                          "wave_direction": "SE",
+                          "agitation": "Fraco",
+                          "hour": "12h Z"
+                        },
+                        {
+                          "wind": "4.2",
+                          "wind_direction": "SSW",
+                          "wave_height": "0.8",
+                          "wave_direction": "SE",
+                          "agitation": "Fraco",
+                          "hour": "15h Z"
+                        },
+                        {
+                          "wind": "0.3",
+                          "wind_direction": "SW",
+                          "wave_height": "0.7",
+                          "wave_direction": "SE",
+                          "agitation": "Fraco",
+                          "hour": "18h Z"
+                        },
+                        {
+                          "wind": "3.0",
+                          "wind_direction": "ENE",
+                          "wave_height": "0.7",
+                          "wave_direction": "SE",
+                          "agitation": "Fraco",
+                          "hour": "21h Z"
+                        }
+                      ]
+                    },
+                    {
+                      "date": "28-12-2020",
+                      "swell_data": [
+                        {
+                          "wind": "7.2",
+                          "wind_direction": "NE",
+                          "wave_height": "0.7",
+                          "wave_direction": "SE",
+                          "agitation": "Fraco",
+                          "hour": "00h Z"
+                        },
+                        {
+                          "wind": "10.2",
+                          "wind_direction": "NE",
+                          "wave_height": "0.7",
+                          "wave_direction": "SE",
+                          "agitation": "Fraco",
+                          "hour": "03h Z"
+                        },
+                        {
+                          "wind": "10.9",
+                          "wind_direction": "NE",
+                          "wave_height": "1.0",
+                          "wave_direction": "S",
+                          "agitation": "Fraco",
+                          "hour": "06h Z"
+                        },
+                        {
+                          "wind": "9.3",
+                          "wind_direction": "NE",
+                          "wave_height": "0.9",
+                          "wave_direction": "N",
+                          "agitation": "Fraco",
+                          "hour": "09h Z"
+                        },
+                        {
+                          "wind": "6.7",
+                          "wind_direction": "NE",
+                          "wave_height": "0.8",
+                          "wave_direction": "S",
+                          "agitation": "Fraco",
+                          "hour": "12h Z"
+                        },
+                        {
+                          "wind": "4.4",
+                          "wind_direction": "ENE",
+                          "wave_height": "0.7",
+                          "wave_direction": "SSE",
+                          "agitation": "Fraco",
+                          "hour": "15h Z"
+                        },
+                        {
+                          "wind": "8.1",
+                          "wind_direction": "ENE",
+                          "wave_height": "0.8",
+                          "wave_direction": "SSE",
+                          "agitation": "Fraco",
+                          "hour": "18h Z"
+                        },
+                        {
+                          "wind": "8.8",
+                          "wind_direction": "NE",
+                          "wave_height": "1.0",
+                          "wave_direction": "SSE",
+                          "agitation": "Fraco",
+                          "hour": "21h Z"
+                        }
+                      ]
+                    },
+                    {
+                      "date": "29-12-2020",
+                      "swell_data": [
+                        {
+                          "wind": "7.6",
+                          "wind_direction": "NE",
+                          "wave_height": "0.9",
+                          "wave_direction": "SSE",
+                          "agitation": "Fraco",
+                          "hour": "00h Z"
+                        },
+                        {
+                          "wind": "6.3",
+                          "wind_direction": "NNE",
+                          "wave_height": "0.9",
+                          "wave_direction": "SSE",
+                          "agitation": "Fraco",
+                          "hour": "03h Z"
+                        },
+                        {
+                          "wind": "5.0",
+                          "wind_direction": "NE",
+                          "wave_height": "0.8",
+                          "wave_direction": "SE",
+                          "agitation": "Fraco",
+                          "hour": "06h Z"
+                        },
+                        {
+                          "wind": "2.4",
+                          "wind_direction": "NNE",
+                          "wave_height": "0.8",
+                          "wave_direction": "SE",
+                          "agitation": "Fraco",
+                          "hour": "09h Z"
+                        },
+                        {
+                          "wind": "2.5",
+                          "wind_direction": "NNE",
+                          "wave_height": "0.8",
+                          "wave_direction": "SE",
+                          "agitation": "Fraco",
+                          "hour": "12h Z"
+                        },
+                        {
+                          "wind": "3.3",
+                          "wind_direction": "E",
+                          "wave_height": "0.8",
+                          "wave_direction": "SE",
+                          "agitation": "Fraco",
+                          "hour": "15h Z"
+                        },
+                        {
+                          "wind": "5.6",
+                          "wind_direction": "E",
+                          "wave_height": "0.7",
+                          "wave_direction": "SE",
+                          "agitation": "Fraco",
+                          "hour": "18h Z"
+                        },
+                        {
+                          "wind": "6.5",
+                          "wind_direction": "ENE",
+                          "wave_height": "0.7",
+                          "wave_direction": "SSE",
+                          "agitation": "Fraco",
+                          "hour": "21h Z"
+                        }
+                      ]
+                    },
+                    {
+                      "date": "30-12-2020",
+                      "swell_data": [
+                        {
+                          "wind": "9.5",
+                          "wind_direction": "NE",
+                          "wave_height": "0.8",
+                          "wave_direction": "SSE",
+                          "agitation": "Fraco",
+                          "hour": "00h Z"
+                        },
+                        {
+                          "wind": "5.5",
+                          "wind_direction": "NNE",
+                          "wave_height": "0.7",
+                          "wave_direction": "SSE",
+                          "agitation": "Fraco",
+                          "hour": "03h Z"
+                        },
+                        {
+                          "wind": "4.6",
+                          "wind_direction": "ENE",
+                          "wave_height": "0.6",
+                          "wave_direction": "SSE",
+                          "agitation": "Fraco",
+                          "hour": "06h Z"
+                        },
+                        {
+                          "wind": "6.0",
+                          "wind_direction": "NE",
+                          "wave_height": "0.5",
+                          "wave_direction": "SE",
+                          "agitation": "Fraco",
+                          "hour": "09h Z"
+                        },
+                        {
+                          "wind": "5.3",
+                          "wind_direction": "NE",
+                          "wave_height": "0.6",
+                          "wave_direction": "SSE",
+                          "agitation": "Fraco",
+                          "hour": "12h Z"
+                        },
+                        {
+                          "wind": "5.5",
+                          "wind_direction": "ENE",
+                          "wave_height": "0.7",
+                          "wave_direction": "SSE",
+                          "agitation": "Fraco",
+                          "hour": "15h Z"
+                        },
+                        {
+                          "wind": "8.2",
+                          "wind_direction": "ENE",
+                          "wave_height": "0.9",
+                          "wave_direction": "S",
+                          "agitation": "Fraco",
+                          "hour": "18h Z"
+                        },
+                        {
+                          "wind": "9.6",
+                          "wind_direction": "NE",
+                          "wave_height": "1.0",
+                          "wave_direction": "N",
+                          "agitation": "Fraco",
+                          "hour": "21h Z"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "message": "Quantidade de dias inválida (mínimo 1 dia e máximo 6 dias)",
+                  "type": "INVALID_NUMBER_OF_DAYS"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "message": "Cidade não localizada",
+                  "type": "CITY_NOT_FOUND"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
       }
     }
   ],
@@ -151,24 +3003,29 @@
           "CEP"
         ],
         "summary": "Busca por CEP com múltiplos providers de fallback.",
-        "description": "",
+        "operationId": "BuscaporCEPcommúltiplosprovidersdefallback.",
         "parameters": [
           {
             "name": "cep",
-            "description": "O CEP (Código de Endereçamento Postal) é um sistema de códigos que visa racionalizar o processo de encaminhamento e entrega de correspondências através da divisão do país em regiões postais. ... Atualmente, o CEP é composto por oito dígitos, cinco de um lado e três de outro. Cada algarismo do CEP possui um significado.\n",
             "in": "path",
+            "description": "(Required) O CEP (Código de Endereçamento Postal) é um sistema de códigos que visa racionalizar o processo de encaminhamento e entrega de correspondências através da divisão do país em regiões postais. ... Atualmente, o CEP é composto por oito dígitos, cinco de um lado e três de outro. Cada algarismo do CEP possui um significado.",
             "required": true,
+            "style": "simple",
             "schema": {
-              "type": "integer",
-              "format": "int64"
+              "type": "string",
+              "example": "<long>"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "",
+            "headers": {},
             "content": {
               "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Address"
+                },
                 "example": {
                   "cep": "89010025",
                   "state": "SC",
@@ -180,9 +3037,12 @@
             }
           },
           "404": {
-            "description": "Todos os serviços de CEP retornaram erro.",
+            "description": "Not Found",
             "content": {
               "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CepError"
+                },
                 "example": {
                   "name": "CepPromiseError",
                   "message": "Todos os serviços de CEP retornaram erro.",
@@ -203,25 +3063,27 @@
               }
             }
           }
-        }
+        },
+        "deprecated": false
       }
     },
     "/ddd/v1/{ddd}": {
       "get": {
         "tags": [
-          "DDD"
+          "CEP"
         ],
         "summary": "Retorna estado e lista de cidades por DDD",
-        "description": "",
+        "operationId": "RetornaestadoelistadecidadesporDDD",
         "parameters": [
           {
             "name": "ddd",
-            "description": "DDD significa Discagem Direta à Distância. É um sistema de ligação telefônica automática entre diferentes áreas urbanas nacionais. O DDD é um código constituído por 2 dígitos que identificam as principais cidades do país e devem ser adicionados ao nº de telefone, juntamente com o código da operadora.\n",
             "in": "path",
+            "description": "(Required) DDD significa Discagem Direta à Distância. É um sistema de ligação telefônica automática entre diferentes áreas urbanas nacionais. O DDD é um código constituído por 2 dígitos que identificam as principais cidades do país e devem ser adicionados ao nº de telefone, juntamente com o código da operadora.",
             "required": true,
+            "style": "simple",
             "schema": {
-              "type": "integer",
-              "format": "int64"
+              "type": "string",
+              "example": "<long>"
             }
           }
         ],
@@ -329,83 +3191,600 @@
               }
             }
           }
-        }
+        },
+        "deprecated": false
       }
-    },
-    "/banks/v1": {
-      "get": {
-        "tags": [
-          "BANKS"
+    }
+  },
+  "components": {
+    "schemas": {
+      "Bank": {
+        "title": "Bank",
+        "required": [
+          "ispb",
+          "name",
+          "code",
+          "fullName"
         ],
-        "summary": "Retorna informações de todos os bancos do Brasil",
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "example": [
-                  {
-                    "ispb": "00000000",
-                    "name": "BCO DO BRASIL S.A.",
-                    "code": 1,
-                    "fullName": "Banco do Brasil S.A."
-                  },
-                  {
-                    "ispb": "00000208",
-                    "name": "BRB - BCO DE BRASILIA S.A.",
-                    "code": 70,
-                    "fullName": "BRB - BANCO DE BRASILIA S.A."
-                  }
-                ]
-              }
-            }
-          }
-        }
-      }
-    },
-    "/banks/v1/{code}": {
-      "get": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "code",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
-        "tags": [
-          "BANKS"
-        ],
-        "summary": "Busca as informações de um banco a partir de um código",
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "example": {
-                  "ispb": "00000000",
-                  "name": "BCO DO BRASIL S.A.",
-                  "code": 1,
-                  "fullName": "Banco do Brasil S.A."
-                }
-              }
-            }
+        "type": "object",
+        "properties": {
+          "ispb": {
+            "type": "string"
           },
-          "404": {
-            "description": "O código do banco não foi encontrado",
-            "content": {
-              "application/json": {
-                "example": {
-                  "message": "Código bancário não encontrado",
-                  "type": "BANK_CODE_NOT_FOUND"
-                }
-              }
-            }
+          "name": {
+            "type": "string"
+          },
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fullName": {
+            "type": "string"
           }
+        },
+        "example": {
+          "ispb": "00000000",
+          "name": "BCO DO BRASIL S.A.",
+          "code": 1,
+          "fullName": "Banco do Brasil S.A."
+        }
+      },
+      "City": {
+        "title": "City",
+        "required": [
+          "name",
+          "state",
+          "code"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "name": "São Benedito",
+          "state": "CE",
+          "code": "4750"
+        }
+      },
+      "CurrentCondition": {
+        "title": "CurrentCondition",
+        "required": [
+          "icao_code",
+          "last_update",
+          "pressure",
+          "visibility",
+          "wind",
+          "wind_direction",
+          "humidity",
+          "weather_code",
+          "weather_desc",
+          "temp"
+        ],
+        "type": "object",
+        "properties": {
+          "icao_code": {
+            "type": "string"
+          },
+          "last_update": {
+            "type": "string"
+          },
+          "pressure": {
+            "type": "string"
+          },
+          "visibility": {
+            "type": "string"
+          },
+          "wind": {
+            "type": "string"
+          },
+          "wind_direction": {
+            "type": "string"
+          },
+          "humidity": {
+            "type": "string"
+          },
+          "weather_code": {
+            "type": "string"
+          },
+          "weather_desc": {
+            "type": "string"
+          },
+          "temp": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "icao_code": "SBAR",
+          "last_update": "2021-01-27T15:00:00.974Z",
+          "pressure": "1014",
+          "visibility": "9000",
+          "wind": "29",
+          "wind_direction": "90",
+          "humidity": "74",
+          "weather_code": "ps",
+          "weather_desc": "Predomínio de Sol",
+          "temp": "28"
+        }
+      },
+      "WeatherPrediction": {
+        "title": "WeatherPrediction",
+        "required": [
+          "city_name",
+          "state",
+          "last_update",
+          "weather"
+        ],
+        "type": "object",
+        "properties": {
+          "city_name": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "last_update": {
+            "type": "string"
+          },
+          "weather": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Weather"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "city_name": "Brejo Alegre",
+          "state": "SP",
+          "last_update": "2020-12-27",
+          "weather": [
+            {
+              "date": "2020-12-27",
+              "condition": "pc",
+              "min": "20",
+              "max": "30",
+              "uv_index": "13.0",
+              "condition_desc": "Pancadas de Chuva"
+            },
+            {
+              "date": "2020-12-28",
+              "condition": "pc",
+              "min": "22",
+              "max": "29",
+              "uv_index": "13.0",
+              "condition_desc": "Pancadas de Chuva"
+            },
+            {
+              "date": "2020-12-29",
+              "condition": "np",
+              "min": "20",
+              "max": "27",
+              "uv_index": "13.0",
+              "condition_desc": "Nublado e Pancadas de Chuva"
+            },
+            {
+              "date": "2020-12-30",
+              "condition": "ci",
+              "min": "21",
+              "max": "31",
+              "uv_index": "13.0",
+              "condition_desc": "Chuvas Isoladas"
+            },
+            {
+              "date": "2020-12-31",
+              "condition": "ci",
+              "min": "22",
+              "max": "31",
+              "uv_index": "13.0",
+              "condition_desc": "Chuvas Isoladas"
+            }
+          ]
+        }
+      },
+      "Weather": {
+        "title": "Weather",
+        "required": [
+          "date",
+          "condition",
+          "min",
+          "max",
+          "uv_index",
+          "condition_desc"
+        ],
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "condition": {
+            "type": "string"
+          },
+          "min": {
+            "type": "string"
+          },
+          "max": {
+            "type": "string"
+          },
+          "uv_index": {
+            "type": "string"
+          },
+          "condition_desc": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "date": "2020-12-27",
+          "condition": "pc",
+          "min": "20",
+          "max": "30",
+          "uv_index": "13.0",
+          "condition_desc": "Pancadas de Chuva"
+        }
+      },
+      "SwellPrediction": {
+        "title": "SwellPrediction",
+        "required": [
+          "city_name",
+          "state",
+          "last_update",
+          "swell"
+        ],
+        "type": "object",
+        "properties": {
+          "city_name": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "last_update": {
+            "type": "string"
+          },
+          "swell": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SwellDate"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "city_name": "Rio de Janeiro",
+          "state": "RJ",
+          "last_update": "2020-12-27",
+          "swell": [
+            {
+              "date": "27-12-2020",
+              "swell_data": [
+                {
+                  "wind": "5.2",
+                  "wind_direction": "E",
+                  "wave_height": "0.8",
+                  "wave_direction": "ESE",
+                  "agitation": "Fraco",
+                  "hour": "00h Z"
+                },
+                {
+                  "wind": "4.1",
+                  "wind_direction": "ENE",
+                  "wave_height": "0.8",
+                  "wave_direction": "ESE",
+                  "agitation": "Fraco",
+                  "hour": "03h Z"
+                },
+                {
+                  "wind": "0.4",
+                  "wind_direction": "S",
+                  "wave_height": "0.8",
+                  "wave_direction": "ESE",
+                  "agitation": "Fraco",
+                  "hour": "06h Z"
+                },
+                {
+                  "wind": "1.8",
+                  "wind_direction": "NW",
+                  "wave_height": "0.8",
+                  "wave_direction": "SE",
+                  "agitation": "Fraco",
+                  "hour": "09h Z"
+                },
+                {
+                  "wind": "7.6",
+                  "wind_direction": "WSW",
+                  "wave_height": "0.8",
+                  "wave_direction": "SE",
+                  "agitation": "Fraco",
+                  "hour": "12h Z"
+                },
+                {
+                  "wind": "4.2",
+                  "wind_direction": "SSW",
+                  "wave_height": "0.8",
+                  "wave_direction": "SE",
+                  "agitation": "Fraco",
+                  "hour": "15h Z"
+                },
+                {
+                  "wind": "0.3",
+                  "wind_direction": "SW",
+                  "wave_height": "0.7",
+                  "wave_direction": "SE",
+                  "agitation": "Fraco",
+                  "hour": "18h Z"
+                },
+                {
+                  "wind": "3.0",
+                  "wind_direction": "ENE",
+                  "wave_height": "0.7",
+                  "wave_direction": "SE",
+                  "agitation": "Fraco",
+                  "hour": "21h Z"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "SwellDate": {
+        "title": "SwellDate",
+        "required": [
+          "date",
+          "swell_data"
+        ],
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "swell_data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Swell"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "date": "27-12-2020",
+          "swell_data": [
+            {
+              "wind": "5.2",
+              "wind_direction": "E",
+              "wave_height": "0.8",
+              "wave_direction": "ESE",
+              "agitation": "Fraco",
+              "hour": "00h Z"
+            },
+            {
+              "wind": "4.1",
+              "wind_direction": "ENE",
+              "wave_height": "0.8",
+              "wave_direction": "ESE",
+              "agitation": "Fraco",
+              "hour": "03h Z"
+            },
+            {
+              "wind": "0.4",
+              "wind_direction": "S",
+              "wave_height": "0.8",
+              "wave_direction": "ESE",
+              "agitation": "Fraco",
+              "hour": "06h Z"
+            },
+            {
+              "wind": "1.8",
+              "wind_direction": "NW",
+              "wave_height": "0.8",
+              "wave_direction": "SE",
+              "agitation": "Fraco",
+              "hour": "09h Z"
+            },
+            {
+              "wind": "7.6",
+              "wind_direction": "WSW",
+              "wave_height": "0.8",
+              "wave_direction": "SE",
+              "agitation": "Fraco",
+              "hour": "12h Z"
+            },
+            {
+              "wind": "4.2",
+              "wind_direction": "SSW",
+              "wave_height": "0.8",
+              "wave_direction": "SE",
+              "agitation": "Fraco",
+              "hour": "15h Z"
+            },
+            {
+              "wind": "0.3",
+              "wind_direction": "SW",
+              "wave_height": "0.7",
+              "wave_direction": "SE",
+              "agitation": "Fraco",
+              "hour": "18h Z"
+            },
+            {
+              "wind": "3.0",
+              "wind_direction": "ENE",
+              "wave_height": "0.7",
+              "wave_direction": "SE",
+              "agitation": "Fraco",
+              "hour": "21h Z"
+            }
+          ]
+        }
+      },
+      "Swell": {
+        "title": "Swell",
+        "required": [
+          "wind",
+          "wind_direction",
+          "wave_height",
+          "wave_direction",
+          "agitation",
+          "hour"
+        ],
+        "type": "object",
+        "properties": {
+          "wind": {
+            "type": "string"
+          },
+          "wind_direction": {
+            "type": "string"
+          },
+          "wave_height": {
+            "type": "string"
+          },
+          "wave_direction": {
+            "type": "string"
+          },
+          "agitation": {
+            "type": "string"
+          },
+          "hour": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "wind": "5.2",
+          "wind_direction": "E",
+          "wave_height": "0.8",
+          "wave_direction": "ESE",
+          "agitation": "Fraco",
+          "hour": "00h Z"
+        }
+      },
+      "ErrorMessage": {
+        "title": "ErrorMessage",
+        "required": [
+          "message",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "message": "Cidade não localizada",
+          "type": "CITY_NOT_FOUND"
+        }
+      },
+      "Address": {
+        "title": "Address",
+        "required": [
+          "cep",
+          "state",
+          "city",
+          "neighborhood",
+          "street"
+        ],
+        "type": "object",
+        "properties": {
+          "cep": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "neighborhood": {
+            "type": "string"
+          },
+          "street": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "cep": "89010025",
+          "state": "SC",
+          "city": "Blumenau",
+          "neighborhood": "Centro",
+          "street": "Rua Doutor Luiz de Freitas Melro"
+        }
+      },
+      "CepError": {
+        "title": "CepError.",
+        "required": [
+          "name",
+          "message",
+          "type",
+          "errors"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "name": "CepPromiseError",
+          "message": "Todos os serviços de CEP retornaram erro.",
+          "type": "service_error",
+          "errors": [
+            {
+              "name": "ServiceError",
+              "message": "CEP INVÁLIDO",
+              "service": "correios"
+            },
+            {
+              "name": "ServiceError",
+              "message": "CEP não encontrado na base do ViaCEP.",
+              "service": "viacep"
+            }
+          ]
+        }
+      },
+      "Error": {
+        "title": "Error",
+        "required": [
+          "name",
+          "message",
+          "service"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "service": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "name": "ServiceError",
+          "message": "CEP INVÁLIDO",
+          "service": "correios"
         }
       }
     },
