@@ -3861,10 +3861,12 @@
             "name": "ano",
             "description": "Ano para calcular os feriados.\n",
             "in": "path",
+            "description": "(Required) DDD significa Discagem Direta à Distância. É um sistema de ligação telefônica automática entre diferentes áreas urbanas nacionais. O DDD é um código constituído por 2 dígitos que identificam as principais cidades do país e devem ser adicionados ao nº de telefone, juntamente com o código da operadora.",
             "required": true,
+            "style": "simple",
             "schema": {
-              "type": "integer",
-              "format": "int64"
+              "type": "string",
+              "example": "<long>"
             }
           }
         ],
@@ -3960,7 +3962,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": false
       }
     },
     "/ibge/uf/v1": {
@@ -4000,6 +4003,12 @@
               }
             }
           }
+        },
+        "example": {
+          "ispb": "00000000",
+          "name": "BCO DO BRASIL S.A.",
+          "code": 1,
+          "fullName": "Banco do Brasil S.A."
         }
       }
     },
@@ -4014,6 +4023,26 @@
               "type": "integer"
             }
           }
+        },
+        "example": {
+          "name": "São Benedito",
+          "state": "CE",
+          "code": "4750"
+        }
+      },
+      "CurrentCondition": {
+        "title": "CurrentCondition",
+        "required": [
+          "icao_code",
+          "last_update",
+          "pressure",
+          "visibility",
+          "wind",
+          "wind_direction",
+          "humidity",
+          "weather_code",
+          "weather_desc",
+          "temp"
         ],
         "tags": [
           "IBGE"
@@ -4037,6 +4066,23 @@
                 }
               }
             }
+          ]
+        }
+      },
+      "Weather": {
+        "title": "Weather",
+        "required": [
+          "date",
+          "condition",
+          "min",
+          "max",
+          "uv_index",
+          "condition_desc"
+        ],
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string"
           },
           "404": {
             "description": "O código / sigla do estado não foi encontrado",
@@ -4047,9 +4093,263 @@
                   "message": "UF não encontrado",
                   "type": "not_found"
                 }
-              }
+              ]
             }
+          ]
+        }
+      },
+      "SwellDate": {
+        "title": "SwellDate",
+        "required": [
+          "date",
+          "swell_data"
+        ],
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "swell_data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Swell"
+            },
+            "description": ""
           }
+        },
+        "example": {
+          "date": "27-12-2020",
+          "swell_data": [
+            {
+              "wind": "5.2",
+              "wind_direction": "E",
+              "wave_height": "0.8",
+              "wave_direction": "ESE",
+              "agitation": "Fraco",
+              "hour": "00h Z"
+            },
+            {
+              "wind": "4.1",
+              "wind_direction": "ENE",
+              "wave_height": "0.8",
+              "wave_direction": "ESE",
+              "agitation": "Fraco",
+              "hour": "03h Z"
+            },
+            {
+              "wind": "0.4",
+              "wind_direction": "S",
+              "wave_height": "0.8",
+              "wave_direction": "ESE",
+              "agitation": "Fraco",
+              "hour": "06h Z"
+            },
+            {
+              "wind": "1.8",
+              "wind_direction": "NW",
+              "wave_height": "0.8",
+              "wave_direction": "SE",
+              "agitation": "Fraco",
+              "hour": "09h Z"
+            },
+            {
+              "wind": "7.6",
+              "wind_direction": "WSW",
+              "wave_height": "0.8",
+              "wave_direction": "SE",
+              "agitation": "Fraco",
+              "hour": "12h Z"
+            },
+            {
+              "wind": "4.2",
+              "wind_direction": "SSW",
+              "wave_height": "0.8",
+              "wave_direction": "SE",
+              "agitation": "Fraco",
+              "hour": "15h Z"
+            },
+            {
+              "wind": "0.3",
+              "wind_direction": "SW",
+              "wave_height": "0.7",
+              "wave_direction": "SE",
+              "agitation": "Fraco",
+              "hour": "18h Z"
+            },
+            {
+              "wind": "3.0",
+              "wind_direction": "ENE",
+              "wave_height": "0.7",
+              "wave_direction": "SE",
+              "agitation": "Fraco",
+              "hour": "21h Z"
+            }
+          ]
+        }
+      },
+      "Swell": {
+        "title": "Swell",
+        "required": [
+          "wind",
+          "wind_direction",
+          "wave_height",
+          "wave_direction",
+          "agitation",
+          "hour"
+        ],
+        "type": "object",
+        "properties": {
+          "wind": {
+            "type": "string"
+          },
+          "wind_direction": {
+            "type": "string"
+          },
+          "wave_height": {
+            "type": "string"
+          },
+          "wave_direction": {
+            "type": "string"
+          },
+          "agitation": {
+            "type": "string"
+          },
+          "hour": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "wind": "5.2",
+          "wind_direction": "E",
+          "wave_height": "0.8",
+          "wave_direction": "ESE",
+          "agitation": "Fraco",
+          "hour": "00h Z"
+        }
+      },
+      "ErrorMessage": {
+        "title": "ErrorMessage",
+        "required": [
+          "message",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "message": "Cidade não localizada",
+          "type": "CITY_NOT_FOUND"
+        }
+      },
+      "Address": {
+        "title": "Address",
+        "required": [
+          "cep",
+          "state",
+          "city",
+          "neighborhood",
+          "street"
+        ],
+        "type": "object",
+        "properties": {
+          "cep": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "neighborhood": {
+            "type": "string"
+          },
+          "street": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "cep": "89010025",
+          "state": "SC",
+          "city": "Blumenau",
+          "neighborhood": "Centro",
+          "street": "Rua Doutor Luiz de Freitas Melro"
+        }
+      },
+      "CepError": {
+        "title": "CepError.",
+        "required": [
+          "name",
+          "message",
+          "type",
+          "errors"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "name": "CepPromiseError",
+          "message": "Todos os serviços de CEP retornaram erro.",
+          "type": "service_error",
+          "errors": [
+            {
+              "name": "ServiceError",
+              "message": "CEP INVÁLIDO",
+              "service": "correios"
+            },
+            {
+              "name": "ServiceError",
+              "message": "CEP não encontrado na base do ViaCEP.",
+              "service": "viacep"
+            }
+          ]
+        }
+      },
+      "Error": {
+        "title": "Error",
+        "required": [
+          "name",
+          "message",
+          "service"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "service": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "name": "ServiceError",
+          "message": "CEP INVÁLIDO",
+          "service": "correios"
         }
       }
     }
