@@ -35,7 +35,15 @@ export const getCurrentAirportWeather = async (icaoCode) => {
 
     const jsonData = await transform(airportWeather.data, AIRPORT_TEMPLATE);
 
-    return jsonData.length > 0 && jsonData[0].icao_code !== 'UNDEFINED' ? jsonData[0] : null;
+    if(jsonData.length == 0 || jsonData[0].last_update === '00/00/0000 00:00:00') {
+        return null;
+    }
+    jsonData.map((item) =>  {
+        item.last_update = normalizeBrazilianDate(item.last_update);
+        return item;
+    });
+
+    return jsonData[0];
 }
 
 /**
