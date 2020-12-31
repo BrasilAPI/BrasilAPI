@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios';
 
 describe('/cep/v1 (E2E)', () => {
   test('Utilizando um CEP válido: 05010000', async () => {
