@@ -18,15 +18,15 @@ async function CitiesByDdd(request, response, next) {
     const citiesResult = await cities.getCitiesByDdd(requestedCities);
 
     response.status(200);
-    response.json(citiesResult);
+    return response.json(citiesResult);
   } catch (error) {
     if (error.name === 'citiesPromiseError') {
       response.status(404);
-      next(error);
+      return next(error);
     }
 
     response.status(500);
-    next(error);
+    return next(error);
   }
 }
 

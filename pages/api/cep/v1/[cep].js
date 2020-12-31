@@ -45,11 +45,11 @@ async function Cep(request, response, next) {
           break;
       }
 
-      next(error);
+      return next(error);
     }
 
     response.status(500);
-    next(error);
+    return next(error);
   }
 }
 
