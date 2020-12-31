@@ -1,10 +1,9 @@
 import { ApolloServer } from 'apollo-server-micro';
-import Cors from 'micro-cors';
-import { schema } from '../../../../graphql/schema';
 
-const cors = Cors({
-  allowMethods: ['POST', 'OPTIONS'],
-});
+import { handle } from '../../../../handler';
+import { post } from '../../../../handler/middlewares';
+
+import { schema } from '../../../../graphql/schema';
 
 const apolloServer = new ApolloServer({
   schema,
@@ -22,4 +21,4 @@ export const config = {
   },
 };
 
-export default cors(handler);
+export default handle(post(handler));

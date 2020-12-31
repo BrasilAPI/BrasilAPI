@@ -1,8 +1,8 @@
-import microCors from 'micro-cors';
+import { handle } from '../../../../handler';
+import { get } from '../../../../handler/middlewares';
 
-const cors = microCors();
-
-function Status(request, response) {
+// eslint-disable-next-line no-unused-vars
+function Status(request, response, next) {
   response.status(200);
   response.json({
     status: 'ok',
@@ -15,4 +15,4 @@ function Status(request, response) {
   });
 }
 
-export default cors(Status);
+export default handle(get(Status));
