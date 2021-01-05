@@ -29,6 +29,7 @@
     "eslint-plugin-react-hooks": "2.5.1",
     "jest": "25.1.0",
     "prettier": "2.0.4",
+    "vercel-node-server": "^2.2.1",
     "wait-on": "4.0.0"
   },
   "scripts": {
