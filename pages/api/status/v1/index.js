@@ -1,10 +1,10 @@
 import { handle } from '../../../../handler';
-import { get } from '../../../../handler/middlewares';
 
 // eslint-disable-next-line no-unused-vars
 function Status(request, response, next) {
   response.status(200);
-  response.json({
+
+  return response.json({
     status: 'ok',
     date: new Date(),
     environment: process.env.NODE_ENV,
@@ -15,4 +15,4 @@ function Status(request, response, next) {
   });
 }
 
-export default handle(get(Status));
+export default handle(Status);
