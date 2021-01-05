@@ -4,7 +4,7 @@
   "description": "Vamos transformar o Brasil em uma API?",
   "dependencies": {
     "apollo-server-micro": "^2.11.0",
-    "axios": "0.19.2",
+    "axios": "0.21.1",
     "cep-promise": "3.0.9",
     "cidades-promise": "^1.2.3",
     "core-js": "^3.6.5",
