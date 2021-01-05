@@ -1,9 +1,10 @@
-import microCors from 'micro-cors';
+import { handle } from '../../../../handler';
+import { get } from '../../../../handler/middlewares';
+
 import { getBanksData } from '../../../../services/banco-central';
 
 const CACHE_CONTROL_HEADER_VALUE =
   'max-age=0, s-maxage=86400, stale-while-revalidate, public';
-const cors = microCors();
 
 const action = async (request, response) => {
   const allBanksData = await getBanksData();
@@ -14,4 +15,4 @@ const action = async (request, response) => {
   response.json(allBanksData);
 };
 
-export default cors(action);
+export default handle(get(action));

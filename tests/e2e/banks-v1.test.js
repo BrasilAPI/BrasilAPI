@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios';
 
 describe('banks v1 (E2E)', () => {
   describe('GET /banks/v1/:code', () => {
