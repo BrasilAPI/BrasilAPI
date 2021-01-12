@@ -4,7 +4,7 @@ export default function Index() {
       <div>
         <a
           className="logo"
-          href="https://github.com/filipedeschamps/BrasilAPI"
+          href="https://github.com/BrasilAPI/BrasilAPI"
           alt="Acessar repositório do BrasilAPI no Github"
         >
           <img src="/brasilapi-logo-medium.png" />
