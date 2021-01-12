@@ -6,7 +6,7 @@ const CACHE_CONTROL_HEADER_VALUE =
 const cors = microCors();
 
 const action = async (request, response) => {
-  const code = Number(request.query.code);
+  const code = request.query.code
   const { data, status } = await getUfByCode(code);
 
   response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
