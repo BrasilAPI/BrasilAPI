@@ -1,4 +1,5 @@
 import cities from 'cidades-promise';
+import { cache } from 'handler/middlewares/cache';
 
 import handle from 'handler';
 
@@ -14,4 +15,4 @@ async function CitiesByDdd(request) {
   }
 }
 
-export default handle(CitiesByDdd);
+export default handle(cache(), CitiesByDdd);

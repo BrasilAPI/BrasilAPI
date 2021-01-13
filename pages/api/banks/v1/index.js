@@ -1,4 +1,5 @@
 import handle from 'handler';
+import { cache } from 'handler/middlewares/cache';
 
 import { getBanksData } from 'services/banco-central';
 
@@ -11,4 +12,4 @@ const action = async () => {
   };
 };
 
-export default handle(action);
+export default handle(cache(), action);
