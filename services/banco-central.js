@@ -19,11 +19,11 @@ export const getBanksData = async () => {
       ([
         ispb, // ISPB
         name, // Nome_Reduzido
-        code, // Número_Código
-        , // Participa_da_Compe
-        , // Acesso_Principal
-        fullName, // Nome_Extenso
-        , // Início_da_Operação
+        code, // Número_Código // Participa_da_Compe // Acesso_Principal
+        ,
+        ,
+        fullName, // Nome_Extenso // Início_da_Operação
+        ,
       ]) => {
         return {
           ispb,

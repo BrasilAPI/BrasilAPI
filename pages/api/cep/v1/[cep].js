@@ -1,56 +1,39 @@
 import cep from 'cep-promise';
 
-import { handle } from '../../../../handler';
-import { get } from '../../../../handler/middlewares';
+import ApiError from 'errors/api-error';
 
-// max-age especifica quanto tempo o browser deve manter o valor em cache, em segundos.
-// s-maxage é uma header lida pelo servidor proxy (neste caso, Vercel).
-// stale-while-revalidate indica que o conteúdo da cache pode ser servido como "stale" e revalidado no background
-//
-// Por que os valores abaixo?
-//
-// 1. O cache da Now é muito rápido e permite respostas em cerca de 10ms. O valor de
-//    um dia (86400 segundos) é suficiente para garantir performance e também que as
-//    respostas estejam relativamente sincronizadas caso o governo decida atualizar os CEPs.
-// 2. O cache da Now é invalidado toda vez que um novo deploy é feito, garantindo que
-//    todas as novas requisições sejam servidas pela implementação mais recente da API.
-// 3. Não há browser caching pois este tipo de API normalmente é utilizada uma vez só
-//    por um usuário. Se fizessemos caching, os valores ficariam lá guardados no browser
-//    sem necessidade, só ocupando espaço em disco. A história seria diferente se a API
-//    servisse fotos dos usuários, por exemplo. Além disso teríamos problemas com
-//    stale/out-of-date cache caso alterássemos a implementação da API.
-const CACHE_CONTROL_HEADER_VALUE =
-  'max-age=0, s-maxage=86400, stale-while-revalidate, public';
+import handle from 'handler';
+import { cache } from 'handler/middlewares/cache';
 
-async function Cep(request, response, next) {
+async function getCep(request) {
   const requestedCep = request.query.cep;
-
-  response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
 
   try {
     const cepResult = await cep(requestedCep);
 
-    response.status(200);
-    return response.json(cepResult);
+    return { status: 200, body: cepResult };
   } catch (error) {
     if (error.name === 'CepPromiseError') {
-      switch (error.type) {
-        case 'validation_error':
-          response.status(400);
-          break;
-        case 'service_error':
-          response.status(404);
-          break;
-        default:
-          break;
+      let status = 500;
+
+      if (error.type === 'validation_error') {
+        status = 400;
       }
 
-      return next(error);
+      if (error.type === 'service_error') {
+        status = 404;
+      }
+
+      throw new ApiError({
+        status,
+        message: error.message,
+        type: error.type,
+        data: { name: error.name, errors: error.errors },
+      });
     }
 
-    response.status(500);
-    return next(error);
+    throw error;
   }
 }
 
-export default handle(get(Cep));
+export default handle(cache(), getCep);

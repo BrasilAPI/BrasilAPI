@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-import success from '../helpers/scenarios/ddd/success.json';
-import inexistent from '../helpers/scenarios/ddd/inexistent.json';
-import incorrect from '../helpers/scenarios/ddd/incorrect.json';
+import success from 'tests/helpers/scenarios/ddd/success.json';
+import inexistent from 'tests/helpers/scenarios/ddd/inexistent.json';
+import incorrect from 'tests/helpers/scenarios/ddd/incorrect.json';
 
 const scenariosDdd = { success, inexistent, incorrect };
 

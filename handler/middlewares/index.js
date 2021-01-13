@@ -1,1 +1,1 @@
-export { put, post, head, del, patch, get } from './methods';
+export { cache } from './cache';

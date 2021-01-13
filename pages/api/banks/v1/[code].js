@@ -1,32 +1,27 @@
-import { handle } from '../../../../handler';
-import { get } from '../../../../handler/middlewares';
+import ApiError from 'errors/api-error';
+import handle from 'handler';
 
-import { getBanksData } from '../../../../services/banco-central';
+import { getBanksData } from 'services/banco-central';
 
-const CACHE_CONTROL_HEADER_VALUE =
-  'max-age=0, s-maxage=86400, stale-while-revalidate, public';
-
-const action = async (request, response) => {
+const action = async (request) => {
   const bankCode = Number(request.query.code);
 
   const allBanksData = await getBanksData();
 
   const bankData = allBanksData.find(({ code }) => code === bankCode);
 
-  response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
-
   if (!bankData) {
-    response.status(404);
-    response.json({
+    throw new ApiError({
+      status: 404,
       message: 'Código bancário não encontrado',
       type: 'BANK_CODE_NOT_FOUND',
     });
-
-    return;
   }
 
-  response.status(200);
-  response.json(bankData);
+  return {
+    status: 200,
+    body: bankData,
+  };
 };
 
-export default handle(get(action));
+export default handle(action);

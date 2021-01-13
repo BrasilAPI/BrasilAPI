@@ -1,57 +1,46 @@
 import axios from 'axios';
 
-import createHandlerServer from '../../../helpers/handler-server';
-import { use } from '../../../../handler';
-import errorHandler from '../../../../handler/middlewares/globals/error-handler';
+import createHandlerServer from 'tests/helpers/handler-server';
+import { use } from 'handler';
+
+import errorHandler from 'handler/middlewares/globals/error-handler';
+import ApiError from 'errors/api-error';
 
 describe('handler -> middlewares :: error handler', () => {
   const handlerServer = createHandlerServer();
-  const mockErrorHandler = jest.fn((error, request, response, next) => {
-    response.status(response.statusCode); // fix test when status code pass to error handler by next()
-    return errorHandler(error, request, response, next);
-  });
-
-  class ExpectedError extends Error {
-    constructor({ message, type, errors }) {
-      super(message);
-
-      this.name = 'ExpectedError';
-      this.message = message;
-      this.type = type;
-      this.errors = errors;
-    }
-  }
-
-  // eslint-disable-next-line no-unused-vars
-  const expectedFailHandler = jest.fn(async (request, response, next) => {
-    response.statusCode = 400;
-    return next(
-      new ExpectedError({
-        message: 'Expected Error',
-        type: 'expected_error',
-        errors: [
-          {
-            message: 'Expected Error Detail',
-            type: 'expected_error_detail',
-          },
-        ],
-      })
-    );
-  });
-
-  // eslint-disable-next-line no-unused-vars
-  const unexpectedFailHandler = jest.fn(async (request, response, next) => {
-    throw new Error('Unexpected Error');
-  });
-
+  const mockErrorHandler = jest.fn(errorHandler);
   const startHandlerServer = (...handlers) =>
     handlerServer.start(use([...handlers], mockErrorHandler));
+
+  // eslint-disable-next-line no-unused-vars
+  const expectedFailHandler = jest.fn(async (request) => {
+    throw new ApiError({
+      status: 400,
+      message: 'Bad Request',
+      type: 'bad_request',
+      data: {
+        errors: [
+          {
+            message: 'Bad Request Detail',
+            type: 'bad_request_detail',
+          },
+        ],
+      },
+    });
+  });
+
+  // eslint-disable-next-line no-unused-vars
+  const unexpectedFailHandler = jest.fn(async (request) => {
+    throw new Error('Internal Server Error');
+  });
 
   const requestServerHandler = () =>
     axios.get(handlerServer.getUrl(), { validateStatus: () => true });
 
   afterEach(() => {
     mockErrorHandler.mockClear();
+    expectedFailHandler.mockClear();
+    unexpectedFailHandler.mockClear();
   });
 
   afterEach(handlerServer.stop);
@@ -66,13 +55,12 @@ describe('handler -> middlewares :: error handler', () => {
 
       expect(response.status).toBe(400);
       expect(response.data).toEqual({
-        name: 'ExpectedError',
-        message: 'Expected Error',
-        type: 'expected_error',
+        message: 'Bad Request',
+        type: 'bad_request',
         errors: [
           {
-            message: 'Expected Error Detail',
-            type: 'expected_error_detail',
+            message: 'Bad Request Detail',
+            type: 'bad_request_detail',
           },
         ],
       });
@@ -80,7 +68,7 @@ describe('handler -> middlewares :: error handler', () => {
   });
 
   describe('with unexpected fail handler', () => {
-    test('should respond with status 500 and unexpected error data', async () => {
+    test('should respond with status 500 and no content', async () => {
       await startHandlerServer(unexpectedFailHandler);
       const response = await requestServerHandler();
 
@@ -88,10 +76,7 @@ describe('handler -> middlewares :: error handler', () => {
       expect(mockErrorHandler).toBeCalledTimes(1);
 
       expect(response.status).toBe(500);
-      expect(response.data).toEqual({
-        name: 'Error',
-        message: 'Unexpected Error',
-      });
+      expect(response.data).toEqual('');
     });
   });
 });

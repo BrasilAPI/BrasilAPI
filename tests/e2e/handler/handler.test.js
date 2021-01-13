@@ -1,33 +1,30 @@
 import axios from 'axios';
 
-import createHandlerServer from '../../helpers/handler-server';
-import { use } from '../../../handler';
+import createHandlerServer from 'tests/helpers/handler-server';
+import { use } from 'handler';
 
 describe('handler :: use', () => {
   const handlerServer = createHandlerServer();
 
   // eslint-disable-next-line no-unused-vars
-  const successHandler = jest.fn(async (request, response, next) =>
-    response.status(200).send('Ok')
-  );
+  const successHandler = jest.fn(async (request) => ({
+    status: 200,
+    body: 'Ok',
+    json: false,
+  }));
 
   // eslint-disable-next-line no-unused-vars
-  const unexpectedFailHandler = jest.fn(async (request, response, next) => {
-    throw new Error('Unexpected Error');
+  const failHandler = jest.fn(async (request) => {
+    throw new Error('Fail');
   });
 
-  const expectedFailHandler = jest.fn(async (request, response, next) =>
-    next(new Error('Expected Error'))
-  );
+  const middlewareOne = jest.fn((_) => _);
+  const middlewareTwo = jest.fn((_) => _);
 
-  const middlewareOne = jest.fn((request, response, next) => next());
-  const middlewareTwo = jest.fn((request, response, next) => next());
   // eslint-disable-next-line no-unused-vars
-  const errorHandler = jest.fn((error, request, response, next) =>
-    error.message === 'Expected Error'
-      ? response.status(400).send('Bad Request')
-      : response.status(500).send('Internal Server Error')
-  );
+  const errorHandler = jest.fn((error, request) => {
+    return { status: 500, body: error.message, json: false };
+  });
 
   const startHandlerServer = (...handlers) =>
     handlerServer.start(
@@ -41,8 +38,7 @@ describe('handler :: use', () => {
 
   afterEach(() => {
     successHandler.mockClear();
-    unexpectedFailHandler.mockClear();
-    expectedFailHandler.mockClear();
+    failHandler.mockClear();
     middlewareOne.mockClear();
     middlewareTwo.mockClear();
     errorHandler.mockClear();
@@ -63,33 +59,63 @@ describe('handler :: use', () => {
     });
   });
 
-  describe('with expected fail handler', () => {
-    test("should execute all middlewares, error handler and respond with status 400 'Bad Request'", async () => {
-      await startHandlerServer(expectedFailHandler);
+  describe('with fail handler', () => {
+    test('should execute all middlewares, error handler and respond with status 500 and error message', async () => {
+      await startHandlerServer(failHandler);
       const response = await requestServerHandler();
 
-      expect(expectedFailHandler).toBeCalledTimes(1);
-      expect(middlewareOne).toBeCalledTimes(1);
-      expect(middlewareTwo).toBeCalledTimes(1);
-      expect(errorHandler).toBeCalledTimes(1);
-
-      expect(response.status).toBe(400);
-      expect(response.data).toBe('Bad Request');
-    });
-  });
-
-  describe('with unexpected fail handler', () => {
-    test("should execute all middlewares, error handler and respond with status 500 'Internal Server Error'", async () => {
-      await startHandlerServer(unexpectedFailHandler);
-      const response = await requestServerHandler();
-
-      expect(unexpectedFailHandler).toBeCalledTimes(1);
+      expect(failHandler).toBeCalledTimes(1);
       expect(middlewareOne).toBeCalledTimes(1);
       expect(middlewareTwo).toBeCalledTimes(1);
       expect(errorHandler).toBeCalledTimes(1);
 
       expect(response.status).toBe(500);
-      expect(response.data).toBe('Internal Server Error');
+      expect(response.data).toBe('Fail');
     });
+  });
+
+  test('should execute all handlers with request object as parameter', async () => {
+    await startHandlerServer(successHandler);
+    await requestServerHandler();
+
+    const expectToBeCalledWithRequestObject = (handler) => {
+      const requestParameter = handler.mock.calls[0][0];
+
+      expect(requestParameter).toHaveProperty('method');
+      expect(requestParameter).toHaveProperty('url');
+      expect(requestParameter).toHaveProperty('headers');
+      expect(requestParameter).toHaveProperty('query');
+      expect(requestParameter).toHaveProperty('body');
+      expect(requestParameter).toHaveProperty('remoteAddress');
+      expect(requestParameter).toHaveProperty('cookies');
+    };
+
+    expect(successHandler).toBeCalledTimes(1);
+    expect(middlewareOne).toBeCalledTimes(1);
+    expect(middlewareTwo).toBeCalledTimes(1);
+
+    expectToBeCalledWithRequestObject(successHandler);
+    expectToBeCalledWithRequestObject(middlewareOne);
+    expectToBeCalledWithRequestObject(middlewareTwo);
+  });
+
+  test('should execute error handler with error and request object as parameter', async () => {
+    await startHandlerServer(failHandler);
+    await requestServerHandler();
+
+    expect(failHandler).toBeCalledTimes(1);
+    expect(errorHandler).toBeCalledTimes(1);
+
+    const errorParameter = errorHandler.mock.calls[0][0];
+    const requestParameter = errorHandler.mock.calls[0][1];
+
+    expect(errorParameter).toBeInstanceOf(Error);
+    expect(requestParameter).toHaveProperty('method');
+    expect(requestParameter).toHaveProperty('url');
+    expect(requestParameter).toHaveProperty('headers');
+    expect(requestParameter).toHaveProperty('query');
+    expect(requestParameter).toHaveProperty('body');
+    expect(requestParameter).toHaveProperty('remoteAddress');
+    expect(requestParameter).toHaveProperty('cookies');
   });
 });

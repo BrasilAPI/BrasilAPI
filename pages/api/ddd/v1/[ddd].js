@@ -1,33 +1,17 @@
 import cities from 'cidades-promise';
 
-import { handle } from '../../../../handler';
-import { get } from '../../../../handler/middlewares';
+import handle from 'handler';
 
-const CACHE_CONTROL_HEADER_VALUE =
-  'max-age=0, s-maxage=86400, stale-while-revalidate';
-
-// retorna estado e lista de cidades por DDD
-// exemplo da rota: /api/cities/v1/ddd/21
-
-async function CitiesByDdd(request, response, next) {
+async function CitiesByDdd(request) {
   const requestedCities = request.query.ddd;
-
-  response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
 
   try {
     const citiesResult = await cities.getCitiesByDdd(requestedCities);
 
-    response.status(200);
-    return response.json(citiesResult);
+    return { status: 200, body: citiesResult };
   } catch (error) {
-    if (error.name === 'citiesPromiseError') {
-      response.status(404);
-      return next(error);
-    }
-
-    response.status(500);
-    return next(error);
+    throw error;
   }
 }
 
-export default handle(get(CitiesByDdd));
+export default handle(CitiesByDdd);

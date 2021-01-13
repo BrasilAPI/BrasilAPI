@@ -1,7 +1,6 @@
 import { ApolloServer } from 'apollo-server-micro';
 
-import { handle } from '../../../../handler';
-import { post } from '../../../../handler/middlewares';
+import handle from 'handler';
 
 import { schema } from '../../../../graphql/schema';
 
@@ -21,4 +20,4 @@ export const config = {
   },
 };
 
-export default handle(post(handler));
+export default handle(handler);

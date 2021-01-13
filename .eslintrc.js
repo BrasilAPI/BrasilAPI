@@ -23,4 +23,16 @@ module.exports = {
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'import/prefer-default-export': 'off',
   },
+  settings: {
+    'import/resolver': {
+      'babel-module': {
+        alias: {
+          handler: './handler',
+          errors: './errors',
+          tests: "./tests",
+          services: "./services",
+        },
+      },
+    },
+  },
 };
