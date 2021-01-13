@@ -10,6 +10,7 @@ const apolloServer = new ApolloServer({
   context: ({ req, res }) => {
     return { req, res };
   },
+  cors: true
 });
 
 const handler = apolloServer.createHandler({ path: '/api/graphql/v1' });
@@ -20,4 +21,4 @@ export const config = {
   },
 };
 
-export default handle(handler);
+export default handler;
