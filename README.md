@@ -15,6 +15,10 @@
   <img src="https://github.com/BrasilAPI/BrasilAPI/workflows/Testes%20E2E/badge.svg">
 </div>
 
+<div align="center">
+  <a href="https://join.slack.com/t/brasilapi/shared_invite/zt-l12s2b8k-r0SHGZV4YZSMfrzhydn8WA"><img src="https://files.readme.io/e23f0e0-Slack_RGB.png" width="160px"></a>
+</div>
+
 ## Motivo
 Acesso programático de informações é algo fundamental na comunicação entre sistemas mas, para nossa surpresa, uma informação tão útil e pública quanto um CEP não consegue ser acessada diretamente por um navegador por conta da API dos Correios não possuir CORS habilitado.
 
