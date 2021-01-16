@@ -12,7 +12,11 @@
 </div>
 
 <div align="center">
-  <img src="https://github.com/filipedeschamps/BrasilAPI/workflows/Testes%20E2E/badge.svg">
+  <img src="https://github.com/BrasilAPI/BrasilAPI/workflows/Testes%20E2E/badge.svg">
+</div>
+
+<div align="center">
+  <a href="https://join.slack.com/t/brasilapi/shared_invite/zt-l12s2b8k-r0SHGZV4YZSMfrzhydn8WA"><img src="https://files.readme.io/e23f0e0-Slack_RGB.png" width="160px"></a>
 </div>
 
 ## Motivo
@@ -74,6 +78,53 @@ Busca por CEP com múltiplos providers de fallback.
 }
 ```
 
+### Banks
+Busca por dados dos bancos brasileiros direto na base de dados do Bacen.
+
+**GET** `https://brasilapi.com.br/api/banks/v1/`**[code]**
+
+#### Consulta com sucesso
+
+```json
+// GET https://brasilapi.com.br/api/banks/v1/260
+
+{
+  "ispb": "18236120",
+  "name": "NU PAGAMENTOS S.A.",
+  "code": 260,
+  "fullName": "Nu Pagamentos S.A."
+}
+```
+
+#### Consulta com código incorreto
+
+```json
+// GET https://brasilapi.com.br/api/banks/v1/1111111
+
+{
+  "message": "Código bancário não encontrado",
+  "type": "BANK_CODE_NOT_FOUND"
+}
+```
+
+**GET** `https://brasilapi.com.br/api/banks/v1`
+
+#### Consulta com sucesso
+
+```json
+// GET https://brasilapi.com.br/api/banks/v1
+
+[
+  {
+    "ispb": "18236120",
+    "name": "NU PAGAMENTOS S.A.",
+    "code": 260,
+    "fullName": "Nu Pagamentos S.A."
+  },
+  ...
+]
+```
+
 ## Termos de Uso
 O BrasilAPI é uma iniciativa feita de brasileiros para brasileiros, por favor, não abuse deste serviço. Estamos em beta e ainda elaborando os Termos de Uso, mas por enquanto por favor não utilize formas automatizadas para fazer "crawling" dos dados da API. Um exemplo prático disto é um dos maiores provedores de telefonia do Brasil estar revalidando, neste exato momento, todos os Ceps (de `00000000` até `99999999`) e estourando em 5 vezes o limite atual da nossa conta no servidor. O volume de consulta dever ter a natureza de uma pessoa real requisitando um determinado dado. E para consultas com um alto volume automatizado, iremos mais para frente fornecer alguma solução, como por exemplo, conseguir fazer o download de toda a base de Ceps em uma única request.
 
@@ -83,7 +134,8 @@ O BrasilAPI é uma iniciativa feita de brasileiros para brasileiros, por favor, 
 | :---: |  :---: |  :---: |  :---: |  :---: |  :---: |
 | [<img src="https://github.com/mukaschultze.png?size=115" width="115"><br><sub>@mukaschultze</sub>](https://github.com/mukaschultze) | [<img src="https://github.com/paulogdm.png?size=115" width="115"><br><sub>@paulogdm</sub>](https://github.com/paulogdm) | [<img src="https://github.com/mathleite.png?size=115" width="115"><br><sub>@mathleite</sub>](https://github.com/mathleite) |  [<img src="https://github.com/WeslleyNasRocha.png?size=115" width="115"><br><sub>@WeslleyNasRocha</sub>](https://github.com/WeslleyNasRocha) | [<img src="https://github.com/paulo-santana.png?size=115" width="115"><br><sub>@paulo-santana</sub>](https://github.com/paulo-santana) | [<img src="https://github.com/RaphaelOliveiraMoura.png?size=115" width="115"><br><sub>@RaphaelOliveiraMoura</sub>](https://github.com/RaphaelOliveiraMoura) |
 | [<img src="https://github.com/guiaramos.png?size=115" width="115"><br><sub>@guiaramos</sub>](https://github.com/guiaramos) | [<img src="https://github.com/marceloF5.png?size=115" width="115"><br><sub>@marceloF5</sub>](https://github.com/marceloF5) | [<img src="https://github.com/tupizz.png?size=115" width="115"><br><sub>@tupizz</sub>](https://github.com/tupizz) | [<img src="https://github.com/FlavioAndre.png?size=115" width="115"><br><sub>@FlavioAndre</sub>](https://github.com/FlavioAndre) | [<img src="https://github.com/matheusvellone.png?size=115" width="115"><br><sub>@matheusvellone</sub>](https://github.com/matheusvellone) | [<img src="https://github.com/danielramosbh74.png?size=115" width="115"><br><sub>@danielramosbh74</sub>](https://github.com/danielramosbh74) |
-| [<img src="https://github.com/juniorpb.png?size=115" width="115"><br><sub>@juniorpb</sub>](https://github.com/juniorpb) |
+| [<img src="https://github.com/juniorpb.png?size=115" width="115"><br><sub>@juniorpb</sub>](https://github.com/juniorpb) | [<img src="https://github.com/CarlosZiegler.png?size=115" width="115"><br><sub>@CarlosZiegler</sub>](https://github.com/CarlosZiegler) | [<img src="https://github.com/otaciliolacerda.png?size=115" width="115"><br><sub>@otaciliolacerda</sub>](https://github.com/otaciliolacerda) | [<img src="https://github.com/RodriAndreotti.png?size=115" width="115"><br><sub>@RodriAndreotti</sub>](https://github.com/RodriAndreotti) | [<img src="https://github.com/lucasbastianik.png?size=115" width="115"><br><sub>@lucasbastianik</sub>](https://github.com/lucasbastianik) |
+
 
 ## Autores
 
