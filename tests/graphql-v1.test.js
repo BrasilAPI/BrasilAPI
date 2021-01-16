@@ -1,20 +1,8 @@
 const axios = require('axios');
 
-const createServer = require('./helpers/server.js');
-
-const server = createServer();
-
-beforeAll(async () => {
-  await server.start();
-});
-
-afterAll(async () => {
-  await server.stop();
-});
-
 describe('/graphql/v1 (E2E)', () => {
   test('Utilizando um CEP válido: 05010000', async () => {
-    const requestUrl = `${server.getUrl()}/api/graphql/v1`;
+    const requestUrl = `${global.SERVER_URL}/api/graphql/v1`;
     const response = await axios.post(requestUrl, {
       query: `query FetchCep($cep: String!){
                 cep(cep: $cep) {
@@ -46,7 +34,7 @@ describe('/graphql/v1 (E2E)', () => {
     // response para quando for um type "validation_error" ou "service_error"
     // Nesse caso aqui seria um "service_error":
     // "Todos os serviços de CEP retornaram erro."
-    const requestUrl = `${server.getUrl()}/api/graphql/v1`;
+    const requestUrl = `${global.SERVER_URL}/api/graphql/v1`;
     const response = await axios.post(requestUrl, {
       query: `query FetchCep($cep: String!){
                 cep(cep: $cep) {
@@ -74,7 +62,7 @@ describe('/graphql/v1 (E2E)', () => {
     // response para quando for um type "validation_error" ou "service_error"
     // Nesse caso aqui seria um "validation_error":
     // "CEP deve conter exatamente 8 caracteres."
-    const requestUrl = `${server.getUrl()}/api/graphql/v1`;
+    const requestUrl = `${global.SERVER_URL}/api/graphql/v1`;
     const response = await axios.post(requestUrl, {
       query: `query FetchCep($cep: String!){
                 cep(cep: $cep) {

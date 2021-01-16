@@ -8,11 +8,15 @@
     "axios": "0.19.2",
     "cep-promise": "3.0.9",
     "cidades-promise": "^1.2.3",
+    "core-js": "^3.6.5",
     "lodash": "^4.17.19",
     "micro-cors": "0.1.1",
+    "mobx": "^5.15.4",
     "next": "9.3.2",
     "react": "16.12.0",
-    "react-dom": "16.12.0"
+    "react-dom": "16.12.0",
+    "redoc": "^2.0.0-rc.35",
+    "styled-components": "^5.1.1"
   },
   "devDependencies": {
     "eslint": "6.8.0",
@@ -31,18 +35,18 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "test": "jest",
+    "test": "jest --forceExit",
     "test:watch": "jest --watch",
     "fix": "eslint . --ext .js --fix"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/filipedeschamps/BrasilAPI.git"
+    "url": "git+https://github.com/BrasilAPI/BrasilAPI.git"
   },
   "author": "Filipe Deschamps",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/filipedeschamps/BrasilAPI/issues"
+    "url": "https://github.com/BrasilAPI/BrasilAPI/issues"
   },
-  "homepage": "https://github.com/filipedeschamps/BrasilAPI#readme"
+  "homepage": "https://github.com/BrasilAPI/BrasilAPI#readme"
 }
