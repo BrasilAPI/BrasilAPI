@@ -21,8 +21,6 @@ function requestCvmFile() {
 }
 
 export const getExchangesData = async () => {
-  const file_url =
-    'http://dados.cvm.gov.br/dados/INTERMED/CAD/DADOS/cad_intermed.zip';
   const LINE_BREAK = '\r\n';
 
   return await requestCvmFile()
@@ -65,15 +63,10 @@ export const getExchangesData = async () => {
                 state, // Estado
                 country, // País
                 cep, // CEP
-                ,
-                ,
-                ,
-                ,
-                ,
               ]) => {
                 return {
+                  cnpj: cnpj.replace(/\D/gim, ''),
                   type,
-                  cnpj,
                   socialName: socialName && socialName.trim(),
                   commercialName: commercialName && commercialName.trim(),
                 };
@@ -81,7 +74,7 @@ export const getExchangesData = async () => {
             );
           return mappedLines;
         }
-      });
+      })[0];
     })
     .catch((error) => {
       console.log('ERROR', error);
