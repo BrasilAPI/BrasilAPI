@@ -35,6 +35,7 @@ Para fazer o push do repositório:
 
 ### Modo 2 - Após o fork do repositório, editar diretamente os códigos-fonte aqui no Github online mesmo e/ou usando uma IDE online (ex. Codepen) para auxiliá-lo
 
+Você precisara usar alguma versão mais recente do NodeJS para usar o NPM como gerenciador de pacotes, para instalar em seu sistema operacional basta acessar o [guia de instalação](https://nodejs.org/en/download/) caso ja tenha instalado prossiga.
 
 ### Iniciando:
 Certifique-se de estar na pasta raíz do projeto
