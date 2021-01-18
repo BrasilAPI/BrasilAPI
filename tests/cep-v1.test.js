@@ -55,4 +55,43 @@ describe('/cep/v1 (E2E)', () => {
       });
     }
   });
+
+  test('Calculando distancia com cep inválido', async () => {
+    const requestUrl = `${server.getUrl()}/api/cep/v1/59300000/distancia/00000000`;
+
+    try {
+      await axios.get(requestUrl);
+    } catch (error) {
+      const { response } = error;
+
+      expect(response.status).toBe(404);
+      expect(response.data).toEqual({
+        name: 'CepDistanceError',
+        type: 'fetch_error',
+        message: 'CEP não encontrado'
+      });
+    }
+  });
+
+  test('Calculando distancia com o mesmo CEP', async () => {
+    const requestUrl = `${server.getUrl()}/api/cep/v1/59300000/distancia/59300000`;
+    const response = await axios.get(requestUrl);
+
+    expect(response.data).toEqual({
+      status: 'ok',
+      distance: 0,
+      unity: 'meters'
+    });
+  });
+
+  test('Calculando distancia com outro CEP', async () => {
+    const requestUrl = `${server.getUrl()}/api/cep/v1/59300000/distancia/59310000`;
+    const response = await axios.get(requestUrl);
+
+    expect(response.data).toEqual({
+      status: 'ok',
+      distance: 31460,
+      unity: 'meters'
+    });
+  });
 });
