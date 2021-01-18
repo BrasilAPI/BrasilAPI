@@ -2,11 +2,9 @@ import cors from './middlewares/cors';
 import globalErrorHandler from './middlewares/globals/error-handler';
 import requestLoggerMiddleware from './middlewares/globals/request-logger';
 
-const setResponseHeaders = (headers = [], response) =>
-  Object.keys(headers).forEach((name) => {
-    const value = headers[name];
-    response.setHeader(name, value);
-  });
+const setResponseHeaders = (headers = [], response) => 
+  Object.entries(headers).forEach(([name, value]) => 
+    response.setHeader(name, value));
 
 const setResponseStatus = (status = 200, response) => response.status(status);
 
