@@ -125,6 +125,53 @@ Busca por dados dos bancos brasileiros direto na base de dados do Bacen.
 ]
 ```
 
+### Exchanges
+Busca por dados dos intermediários brasileiros direto na base de dados da CVM. 
+
+**GET** `https://brasilapi.com.br/api/exchanges/v1/`**[cnpj]**
+
+#### Consulta com sucesso
+
+```json
+// GET https://brasilapi.com.br/api/exchanges/v1/02332886000104
+
+{
+  "cnpj": "02332886000104",
+  "type": "CORRETORAS",
+  "socialName": "XP INVESTIMENTOS CCTVM S.A.",
+  "commercialName": "XP INVESTIMENTOS"
+}
+```
+
+#### Consulta com código incorreto
+
+```json
+// GET https://brasilapi.com.br/api/exchanges/v1/1111111
+
+{
+  "message": "CNPJ não encontrado",
+  "type": "CNPJ_NOT_FOUND"
+}
+```
+
+**GET** `https://brasilapi.com.br/api/exchanges/v1`
+
+#### Consulta com sucesso
+
+```json
+// GET https://brasilapi.com.br/api/exchanges/v1
+
+[
+  {
+    "cnpj": "02332886000104",
+    "type": "CORRETORAS",
+    "socialName": "XP INVESTIMENTOS CCTVM S.A.",
+    "commercialName": "XP INVESTIMENTOS"
+  },
+  ...
+]
+```
+
 ## Termos de Uso
 O BrasilAPI é uma iniciativa feita de brasileiros para brasileiros, por favor, não abuse deste serviço. Estamos em beta e ainda elaborando os Termos de Uso, mas por enquanto por favor não utilize formas automatizadas para fazer "crawling" dos dados da API. Um exemplo prático disto é um dos maiores provedores de telefonia do Brasil estar revalidando, neste exato momento, todos os Ceps (de `00000000` até `99999999`) e estourando em 5 vezes o limite atual da nossa conta no servidor. O volume de consulta dever ter a natureza de uma pessoa real requisitando um determinado dado. E para consultas com um alto volume automatizado, iremos mais para frente fornecer alguma solução, como por exemplo, conseguir fazer o download de toda a base de Ceps em uma única request.
 

@@ -69,6 +69,7 @@ export const getExchangesData = async () => {
                   type,
                   socialName: socialName && socialName.trim(),
                   commercialName: commercialName && commercialName.trim(),
+                  status,
                 };
               }
             );
