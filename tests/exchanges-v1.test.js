@@ -12,6 +12,7 @@ describe('banks v1 (E2E)', () => {
         type: 'CORRETORAS',
         socialName: 'XP INVESTIMENTOS CCTVM S.A.',
         commercialName: 'XP INVESTIMENTOS',
+        status: 'EM FUNCIONAMENTO NORMAL',
       });
     });
 
