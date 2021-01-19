@@ -27,24 +27,3 @@ jobs:
         with:
           name: code-coverage-report
           path: reports/coverage/lcov.info
-
-  sonarcloud:
-    name: SonarCloud
-    needs: [e2e-tests]
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - name: Download a single artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: code-coverage-report
-
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
