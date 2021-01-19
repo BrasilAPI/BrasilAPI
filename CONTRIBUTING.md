@@ -31,7 +31,7 @@ Consiste em realizar o *fork* do repositório raiz, cloná-lo, realizar a altera
 - Faça o *push* da sua *branch* para o seu *fork*: `git push origin my-branch`
 - Vá para [Pull Requests](https://github.com/BrasilAPI/BrasilAPI/pulls) do repositório raiz e crie um PR com o(s) seu(s) *commit(s)*
 
-### Manter o *fork* atualizado com o repositório raiz
+### Manter sua *branch* atualizada com o repositório raiz
 
 - Caso ainda não tenha o clone do seu *fork* localmente, crie-o com:
 `git clone https://github.com/seuusuario/BrasilAPI.git`
@@ -39,7 +39,11 @@ Consiste em realizar o *fork* do repositório raiz, cloná-lo, realizar a altera
 `git remote add reporaiz https://github.com/BrasilAPI/BrasilAPI.git` (*reporaiz* apelido para o repositório raiz da API. Você pode usar qualquer nome*)
 - Atualize o seu repositório local a partir do remote do repositório raiz
 `git fetch reporaiz`
-- Faça um rebase na master do seu *fork* local com os commits da master do repositório raiz
-`git rebase reporaiz/master`
-- Atualize o seu *fork* remoto
-`git push origin master`
+- Vá para sua branch:
+`git checkout my-branch`
+- Atualize sua branch com as alterações da master do repositório raiz
+`git pull --rebase reporaiz master`
+- Atualize o sua *branch* remota
+`git push origin mybranch`
+- Caso ocorra algum conflito ao fazer o `push`, você pode utilizar o comando
+`git push origin --force-with-lease`.
