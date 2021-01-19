@@ -146,7 +146,8 @@ Busca por dados dos intermediários brasileiros direto na base de dados da CVM.
   "cnpj": "02332886000104",
   "type": "CORRETORAS",
   "socialName": "XP INVESTIMENTOS CCTVM S.A.",
-  "commercialName": "XP INVESTIMENTOS"
+  "commercialName": "XP INVESTIMENTOS",
+  "status": "EM FUNCIONAMENTO NORMAL"
 }
 ```
 
@@ -173,7 +174,8 @@ Busca por dados dos intermediários brasileiros direto na base de dados da CVM.
     "cnpj": "02332886000104",
     "type": "CORRETORAS",
     "socialName": "XP INVESTIMENTOS CCTVM S.A.",
-    "commercialName": "XP INVESTIMENTOS"
+    "commercialName": "XP INVESTIMENTOS",
+    "status": "EM FUNCIONAMENTO NORMAL"
   },
   ...
 ]
