@@ -10,7 +10,8 @@ const typeDefs = gql`
       CODE deve **sempre** conter 3 caracteres
       [**[referência](https://www.creditooudebito.com.br/codigos-dos-bancos-brasileiros/)**]
       """
-      code: Int!
+      code: Int
+      ispb: String
     ): Bank
   }
 
