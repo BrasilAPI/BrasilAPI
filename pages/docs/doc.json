@@ -163,13 +163,12 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "example":
-                  {
-                    "ispb": "00000000",
-                    "name": "BCO DO BRASIL S.A.",
-                    "code": 1,
-                    "fullName": "Banco do Brasil S.A."
-                  }
+                "example": {
+                  "ispb": "00000000",
+                  "name": "BCO DO BRASIL S.A.",
+                  "code": 1,
+                  "fullName": "Banco do Brasil S.A."
+                }
               }
             }
           },
@@ -177,11 +176,90 @@
             "description": "O código do banco não foi encontrado",
             "content": {
               "application/json": {
-                "example":
+                "example": {
+                  "message": "Código bancário não encontrado",
+                  "type": "BANK_CODE_NOT_FOUND"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ibge/uf/v1": {
+      "get": {
+        "tags": [
+          "IBGE"
+        ],
+        "summary": "Retorna informações de todos estados do Brasil",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": [
                   {
-                    "message": "Código bancário não encontrado",
-                    "type": "BANK_CODE_NOT_FOUND"
+                    "id": 11,
+                    "sigla": "RO",
+                    "nome": "Rondônia",
+                    "regiao": {
+                      "id": 1,
+                      "sigla": "N",
+                      "nome": "Norte"
+                    }
+                  },
+                  {
+                    "id": 12,
+                    "sigla": "AC",
+                    "nome": "Acre",
+                    "regiao": {
+                      "id": 1,
+                      "sigla": "N",
+                      "nome": "Norte"
+                    }
                   }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ibge/uf/v1/{code}": {
+      "get": {
+        "tags": [
+          "IBGE"
+        ],
+        "summary": "Busca as informações de um um estado a partir da sigla ou código",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": 35,
+                  "sigla": "SP",
+                  "nome": "São Paulo",
+                  "regiao": {
+                    "id": 3,
+                    "sigla": "SE",
+                    "nome": "Sudeste"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "O código / sigla do estado não foi encontrado",
+            "content": {
+              "application/json": {
+                "example": {
+                  "name": "NotFoundError",
+                  "message": "UF não encontrado",
+                  "type": "not_found"
+                }
               }
             }
           }
