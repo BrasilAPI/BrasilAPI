@@ -116,6 +116,30 @@ describe('/graphql/v1 (E2E)', () => {
       });
     });
 
+    test('Utilizando um bank ispb válido: 18236120', async () => {
+      const requestUrl = `${global.SERVER_URL}/api/graphql/v1`;
+      const response = await axios.post(requestUrl, {
+        query: `query FetchBank($ispb: String!){
+                  bank(ispb: $ispb) {
+                      ispb
+                      name
+                      code
+                      fullName
+                  }
+              }`,
+        variables: {
+          ispb: "18236120"
+        }
+      });
+
+      expect(response.data.data.bank).toEqual({
+        ispb: '18236120',
+        name: 'NU PAGAMENTOS S.A.',
+        code: 260,
+        fullName: 'Nu Pagamentos S.A.',
+      });
+    });
+
     test('Utilizando um bank code válido retornar apenas nome do banco: 260', async () => {
       const requestUrl = `${global.SERVER_URL}/api/graphql/v1`;
       const response = await axios.post(requestUrl, {
