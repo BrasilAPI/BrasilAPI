@@ -38,7 +38,7 @@ export const getExchangesData = async () => {
 
           const mappedLines = lines
             .map((line) => line.split(';')) // Gera um array por coluna
-            .filter(([type, cvmCode]) => type && cvmCode) // Filtra apenas linhas válidas
+            .filter(([type, cnpj]) => type && cnpj) // Filtra apenas linhas válidas
             .map(
               ([
                 type, // Tipo de participante
@@ -72,7 +72,16 @@ export const getExchangesData = async () => {
                   status,
                 };
               }
-            );
+            )
+            .filter((item) => {
+              if (
+                item?.status === 'EM FUNCIONAMENTO NORMAL' &&
+                item?.type === 'CORRETORAS'
+              ) {
+                return true;
+              }
+              return false;
+            });
           return mappedLines;
         }
       })[0];
