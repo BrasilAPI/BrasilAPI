@@ -92,6 +92,11 @@ describe('/ibge/uf/v1 (E2E)', () => {
     } catch (error) {
       const { response } = error;
       expect(response.status).toBe(404);
+      expect(response.data).toMatchObject({
+        name: 'NotFoundError',
+        message: 'UF não encontrado.',
+        type: 'not_found',
+      });
     }
   });
 });

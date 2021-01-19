@@ -13,7 +13,11 @@ const action = async (request, response) => {
 
   if (Array.isArray(data) && !data.length) {
     response.status(404);
-    response.json(data);
+    response.json({
+      name: 'NotFoundError',
+      message: 'UF não encontrado.',
+      type: 'not_found',
+    });
   } else {
     response.status(status);
     response.json(data);
