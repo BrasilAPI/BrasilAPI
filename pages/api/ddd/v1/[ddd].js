@@ -6,7 +6,7 @@ const CACHE_CONTROL_HEADER_VALUE =
 const cors = microCors();
 
 // retorna estado e lista de cidades por DDD
-// exemplo da rota: /api/cities/v1/ddd/21
+// exemplo da rota: /api/ddd/v1/21
 
 async function CitiesByDdd(request, response) {
   const requestedCities = request.query.ddd;
