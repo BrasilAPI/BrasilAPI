@@ -35,7 +35,7 @@ describe('banks v1 (E2E)', () => {
   });
 
   test('GET /exchanges/v1', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/banks/v1`;
+    const requestUrl = `${global.SERVER_URL}/api/exchanges/v1`;
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);
