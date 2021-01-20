@@ -35,7 +35,7 @@ Este Código de Conduta se aplica tanto aos espaços do projeto quanto aos espa�
 
 ## Aplicação
 
-Casos de comportamento abusivo, de assédio ou de outra forma inaceitável podem ser relatados entrando em contato com a equipe do projeto em [oss@pagar.me](mailto: oss@pagar.me). Todas as reclamações serão analisadas e investigadas e resultarão em uma resposta que é considerada necessária e adequada às circunstâncias. A equipe do projeto é
+Casos de comportamento abusivo, de assédio ou de outra forma inaceitável podem ser relatados entrando em contato com a equipe do projeto em [oss@pagar.me](mailto:oss@pagar.me). Todas as reclamações serão analisadas e investigadas e resultarão em uma resposta que é considerada necessária e adequada às circunstâncias. A equipe do projeto é
 obrigada a manter sigilo em relação ao relator de um incidente. Mais detalhes de políticas de aplicação específicas podem ser publicados separadamente.
 
 Mantenedores do projeto que não seguem ou aplicam o Código de Conduta de boa fé pode enfrentar repercussões temporárias ou permanentes, conforme determinado por outros membros da liderança do projeto.
