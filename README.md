@@ -131,6 +131,57 @@ Busca por dados dos bancos brasileiros direto na base de dados do Bacen.
 ]
 ```
 
+### DDD
+Busca as cidades brasileiras referente a um DDD.
+
+**GET** `https://brasilapi.com.br/api/ddd/v1/11`**[code]**
+
+#### Consulta com sucesso
+
+```json
+// GET https://brasilapi.com.br/api/ddd/v1/11
+
+{
+  "state": "SP",
+  "cities": [
+    "EMBU",
+    "VÁRZEA PAULISTA",
+    "VARGEM GRANDE PAULISTA",
+    "VARGEM",
+    "TUIUTI",
+    "TABOÃO DA SERRA",
+    "SUZANO",
+    "SÃO ROQUE",
+    "SÃO PAULO",
+    ...
+  ]
+}
+```
+
+#### Consulta com ddd incorreto
+
+```json
+// GET https://brasilapi.com.br/api/ddd/v1/01
+
+{
+  "name": "ddd_error",
+  "message": "DDD não encontrado",
+  "type": "DDD_NOT_FOUND"
+}
+```
+
+#### Consulta com erro
+
+```json
+// GET https://brasilapi.com.br/api/ddd/v1/17
+
+{
+  "name": "ddd_error",
+  "message": "Todos os serviços de DDD retornaram erro.",
+  "type": "service_error"
+}
+```
+
 ## Termos de Uso
 O BrasilAPI é uma iniciativa feita de brasileiros para brasileiros, por favor, não abuse deste serviço. Estamos em beta e ainda elaborando os Termos de Uso, mas por enquanto por favor não utilize formas automatizadas para fazer "crawling" dos dados da API. Um exemplo prático disto é um dos maiores provedores de telefonia do Brasil estar revalidando, neste exato momento, todos os Ceps (de `00000000` até `99999999`) e estourando em 5 vezes o limite atual da nossa conta no servidor. O volume de consulta dever ter a natureza de uma pessoa real requisitando um determinado dado. E para consultas com um alto volume automatizado, iremos mais para frente fornecer alguma solução, como por exemplo, conseguir fazer o download de toda a base de Ceps em uma única request.
 
