@@ -28,7 +28,7 @@ export const getBanksData = async () => {
         return {
           ispb,
           name: name && name.trim(),
-          code: Number(code),
+          code: !isNaN(code) ? Number(code) : null,
           fullName: fullName && fullName.trim(),
         };
       }
