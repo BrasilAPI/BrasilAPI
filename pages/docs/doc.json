@@ -265,6 +265,81 @@
           }
         }
       }
+    },
+    "/universities/v1": {
+      "get": {
+        "tags": [
+          "UNIVERSITY"
+        ],
+        "summary": "Busca as informações de universidades do brasil",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": 
+                {
+                  "id": 1,
+                  "full_name": "UNIVERSIDADE FEDERAL DE MATO GROSSO",
+                  "name": "UFMT",
+                  "ibge": "5103403",
+                  "city": "CUIABA",
+                  "uf": "MT",
+                  "zipcode": "78060900",
+                  "street": "AVENIDA FERNANDO CORREA DA COSTA",
+                  "number": "2367",
+                  "neighborhood": "BOA ESPERANÇA",
+                  "phone": "(65) 3615 8302"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/universities/v1/{id}": {
+      "get": {
+        "tags": [
+          "UNIVERSITY"
+        ],
+        "summary": "Filtra uma universidade pelo id",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": 
+                {
+                  "id": 1,
+                  "full_name": "UNIVERSIDADE FEDERAL DE MATO GROSSO",
+                  "name": "UFMT",
+                  "ibge": "5103403",
+                  "city": "CUIABA",
+                  "uf": "MT",
+                  "zipcode": "78060900",
+                  "street": "AVENIDA FERNANDO CORREA DA COSTA",
+                  "number": "2367",
+                  "neighborhood": "BOA ESPERANÇA",
+                  "phone": "(65) 3615 8302"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "O id não foi encontrado",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Universidade não encontrada",
+                  "type": "UNIVERSITY_NOT_FOUND"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
