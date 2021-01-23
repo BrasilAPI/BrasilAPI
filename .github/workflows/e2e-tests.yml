@@ -1,46 +1,13 @@
 name: Testes E2E
 
-on: [deployment_status]
+on: [pull_request]
 
 jobs:
-  mark-commit-status-pending:
-    name: Marcar "status" do commit como "pending"
-    if: github.event.deployment_status.state == 'pending'
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Fazer request contra API do Github com status "pending"
-        run: |
-          curl -L -X POST \
-          --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
-          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-          --header 'content-type: application/json' \
-          --data '{
-            "state": "pending",
-            "context": "e2e-tests",
-            "description": "Aguardando a Preview URL da Vercel"
-            }'
-      
   e2e-tests:
-    name: Rodar testes E2E contra a Preview URL da Vercel
-    if: github.event.deployment_status.state == 'success'
+    name: Rodar testes E2E
     runs-on: ubuntu-latest
 
     steps:
-      - name: Atualizar o status "pending" com o "Workflow URL"
-        run: |
-          GITHUB_WORKFLOW_URL=https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
-          curl -L -X POST \
-          --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
-          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-          --header 'content-type: application/json' \
-          --data '{
-            "state": "pending",
-            "context": "e2e-tests",
-            "description": "Realizando testes E2E contra a Preview URL",
-            "target_url": "'${GITHUB_WORKFLOW_URL}'"
-            }'
-
       - name: Puxar o código do commit
         uses: actions/checkout@v2
 
@@ -52,26 +19,11 @@ jobs:
       - name: Instalar as dependências do npm
         run: npm install
 
-      - name: Rodar testes utilizando a Preview URL da Vercel
+      - name: Rodar testes
         run: npm test
-        env:
-          NODE_ENV: 'ci'
-          PREVIEW_URL: ${{ github.event.deployment_status.target_url }}
 
-      - name: Fazer request contra API do Github status final
-        if: always()
-        env:
-          JOB_CONTEXT: ${{ toJson(job) }}
-        run: |
-          GITHUB_WORKFLOW_URL=https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
-          JOB_STATUS=$(echo ${JOB_CONTEXT} | jq --raw-output '.status | ascii_downcase')
-          curl -L -X POST \
-          --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
-          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-          --header 'content-type: application/json' \
-          --data '{
-            "state": "'${JOB_STATUS}'",
-            "context": "e2e-tests",
-            "description": "Finalizados os testes E2E contra a Preview URL.",
-            "target_url": "'${GITHUB_WORKFLOW_URL}'"
-            }'
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: code-coverage-report
+          path: reports/coverage/lcov.info
