@@ -5,7 +5,7 @@ on: [pull_request]
 jobs:
   e2e-tests:
     name: Rodar testes E2E
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
 
     steps:
       - name: Puxar o código do commit
