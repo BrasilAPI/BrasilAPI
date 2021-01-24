@@ -12,7 +12,7 @@
 </div>
 
 <div align="center">
-  <img src="https://github.com/BrasilAPI/BrasilAPI/workflows/Testes%20E2E/badge.svg">
+  <a href="https://github.com/BrasilAPI/BrasilAPI/actions?query=workflow%3A%22Integra%C3%A7%C3%A3o+cont%C3%ADnua%22"><img src="https://github.com/BrasilAPI/BrasilAPI/workflows/Integra%C3%A7%C3%A3o%20cont%C3%ADnua/badge.svg"></a>
 </div>
 
 <div align="center">
