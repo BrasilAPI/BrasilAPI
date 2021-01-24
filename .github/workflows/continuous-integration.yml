@@ -1,4 +1,4 @@
-name: Testes E2E
+name: Integração contínua
 
 on: [pull_request]
 
@@ -27,3 +27,22 @@ jobs:
         with:
           name: code-coverage-report
           path: reports/coverage/lcov.info
+
+  lint:
+    name: Validar padrão de código com lint
+    runs-on: ubuntu-18.04
+
+    steps:
+      - name: Puxar o código do commit
+        uses: actions/checkout@v2
+
+      - name: Instalar o Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - name: Instalar as dependências do npm
+        run: npm install
+
+      - name: Rodar o lint
+        run: npm run lint
