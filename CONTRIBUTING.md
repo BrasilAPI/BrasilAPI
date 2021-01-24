@@ -41,8 +41,8 @@ Consiste em realizar o *fork* do repositório raiz, cloná-lo, realizar a altera
 `git fetch reporaiz`
 - Vá para sua branch:
 `git checkout my-branch`
-- Atualize sua branch com as alterações da master do repositório raiz
-`git pull --rebase reporaiz master`
+- Atualize sua branch com as alterações da main do repositório raiz
+`git pull --rebase reporaiz main`
 - Atualize o sua *branch* remota
 `git push origin mybranch`
 - Caso ocorra algum conflito ao fazer o `push`, você pode utilizar o comando
