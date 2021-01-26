@@ -115,4 +115,18 @@ describe('/ibge/uf/v1 (E2E)', () => {
       });
     }
   });
+
+  test('Buscar Municipios utilizando um código válido: 22', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/ibge/uf/v1/22/municipios`;
+    const response = await axios.get(requestUrl);
+
+    expect(response.status).toBe(200);
+    expect(response.data).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          id: expect.any(Number),
+        }),
+      ])
+    );
+  });
 });
