@@ -158,6 +158,40 @@ Busca as cidades brasileiras referente a um DDD.
 }
 ```
 
+**GET** `https://brasilapi.com.br/api/ddd/v2/61`**[code]**
+
+#### Consulta com sucesso
+
+```json
+// GET https://brasilapi.com.br/api/ddd/v2/61
+
+[
+  {
+    "state": "DF",
+    "cities": [
+      "BRASÍLIA"
+    ]
+  },
+  {
+    "state": "GO",
+    "cities": [
+      "VILA BOA",
+      "VALPARAÍSO DE GOIÁS",
+      "SANTO ANTÔNIO DO DESCOBERTO",
+      "PLANALTINA",
+      "PADRE BERNARDO",
+      "NOVO GAMA",
+      "LUZIÂNIA",
+      "FORMOSA",
+      "CRISTALINA",
+      "CIDADE OCIDENTAL",
+      "CABECEIRAS",
+      "ÁGUAS LINDAS DE GOIÁS"
+    ]
+  }
+]
+```
+
 #### Consulta com ddd incorreto
 
 ```json
