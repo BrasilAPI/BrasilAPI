@@ -99,4 +99,20 @@ describe('/ibge/uf/v1 (E2E)', () => {
       });
     }
   });
+
+  test('Buscar Municipios utilizando um código inexistente ou inválido: 99', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/ibge/uf/v1/99/municipios`;
+
+    try {
+      await axios.get(requestUrl);
+    } catch (error) {
+      const { response } = error;
+      expect(response.status).toBe(404);
+      expect(response.data).toMatchObject({
+        name: 'NotFoundError',
+        message: 'UF não encontrado.',
+        type: 'not_found',
+      });
+    }
+  });
 });
