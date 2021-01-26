@@ -1,8 +1,34 @@
 const axios = require('axios');
 
-const { validResponse, invalidResponse } = require('./helpers/ddd');
+const { invalidResponse } = require('./helpers/ddd');
 
 const requestUrl = `${global.SERVER_URL}/api/ddd/v1`;
+
+const validResponse = [
+  {
+    "state": "DF",
+    "cities": [
+      "BRASÍLIA"
+    ]
+  },
+  {
+    "state": "GO",
+    "cities": [
+      "VILA BOA",
+      "VALPARAÍSO DE GOIÁS",
+      "SANTO ANTÔNIO DO DESCOBERTO",
+      "PLANALTINA",
+      "PADRE BERNARDO",
+      "NOVO GAMA",
+      "LUZIÂNIA",
+      "FORMOSA",
+      "CRISTALINA",
+      "CIDADE OCIDENTAL",
+      "CABECEIRAS",
+      "ÁGUAS LINDAS DE GOIÁS"
+    ]
+  }
+];
 
 describe('api/ddd/v2 (E2E)', () => {
   test('Utilizando um DDD válido: 61', async () => {
