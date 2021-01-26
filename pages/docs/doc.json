@@ -114,8 +114,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "example":
-                {
+                "example": {
                   "state": "SP",
                   "cities": [
                     "EMBU",
@@ -191,8 +190,7 @@
             "description": "DDD não encontrado",
             "content": {
               "application/json": {
-                "example":
-                {
+                "example": {
                   "name": "ddd_error",
                   "message": "DDD não encontrado",
                   "type": "DDD_NOT_FOUND"
@@ -204,8 +202,7 @@
             "description": "Todos os serviços de DDD retornaram erro.",
             "content": {
               "application/json": {
-                "example":
-                {
+                "example": {
                   "name": "ddd_error",
                   "message": "Todos os serviços de DDD retornaram erro.",
                   "type": "service_error"
@@ -356,6 +353,60 @@
                   "name": "NotFoundError",
                   "message": "UF não encontrado",
                   "type": "not_found"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ibge/uf/v1/{code}/municipios": {
+      "get": {
+        "tags": [
+          "IBGE"
+        ],
+        "summary": "Busca as informações de municipios de um estado a partir da sigla ou código",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "id": 2200053,
+                    "nome": "Acauã",
+                    "microrregiao": {
+                      "id": 22015,
+                      "nome": "Alto Médio Canindé",
+                      "mesorregiao": {
+                        "id": 2204,
+                        "nome": "Sudeste Piauiense",
+                        "UF": {
+                          "id": 22,
+                          "sigla": "PI",
+                          "nome": "Piauí",
+                          "regiao": {
+                            "id": 2,
+                            "sigla": "NE",
+                            "nome": "Nordeste"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "404": {
+              "description": "O código / sigla do estado não foi encontrado",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "name": "NotFoundError",
+                    "message": "UF não encontrado",
+                    "type": "not_found"
+                  }
                 }
               }
             }
