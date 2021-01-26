@@ -1,5 +1,5 @@
 import microCors from 'micro-cors';
-import { getUfByCode } from '../../../../../services/ibge';
+import { getUfByCode } from '../../../../../../services/ibge';
 
 const CACHE_CONTROL_HEADER_VALUE =
   'max-age=0, s-maxage=86400, stale-while-revalidate, public';
