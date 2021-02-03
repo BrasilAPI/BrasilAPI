@@ -212,7 +212,15 @@ Busca de detalhes de pessoas jurídicas pelo número do CNPJ utilizando a [API M
 ```json
 // GET https://brasilapi.com.br/api/cnpj/v1/00000000000000
 
-{"message": "CNPJ 00.000.000/0000-00 não encontrado."}
+{"message": "CNPJ 00000000000000 não encontrado."}
+```
+
+#### Consulta com CNPJ inválido
+
+```json
+// GET https://brasilapi.com.br/api/cnpj/v1/000
+
+{"message": "CNPJ 000 inválido."}
 ```
 
 ## Termos de Uso
