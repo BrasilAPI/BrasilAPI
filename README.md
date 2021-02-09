@@ -1,4 +1,4 @@
-<h1 align="center"><img src="./public/brasilapi-logo-small.png"> Brasil API</h1>
+<h1 align="center"><img src="./public/brasilapi-logo-small.png"></h1>
 
 <div align="center">
   <p>
