@@ -7,7 +7,7 @@ export default function Index() {
           href="https://github.com/BrasilAPI/BrasilAPI"
           alt="Acessar repositório do BrasilAPI no Github"
         >
-          <img src="/brasilapi-logo-medium.png" />
+          <img src="/brasilapi-logo-medium.png" className="logoImg" />
         </a>
       </div>
 
@@ -15,7 +15,7 @@ export default function Index() {
         <a
           href="https://vercel.com/?utm_source=brasilapi"
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
         >
           <img
             src="/powered-by-vercel.svg"
@@ -25,33 +25,39 @@ export default function Index() {
         </a>
       </div>
 
-      <style jsx global>{`
-        * {
-          box-sizing: border-box;
-          margin: 0;
-          outline: 0;
-          padding: 0;
-        }
+      <style jsx global>
+        {`
+          * {
+            box-sizing: border-box;
+            margin: 0;
+            outline: 0;
+            padding: 0;
+          }
 
-        html,
-        body {
-          height: 100%;
-        }
+          html,
+          body {
+            height: 100%;
+          }
 
-        body {
-          color: #fff;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          text-align: center;
-        }
+          body {
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+          }
 
-        main > a {
-          color: #fff;
-          font-size: 2em;
-          text-decoration: none;
-        }
-      `}</style>
+          main > a {
+            color: #fff;
+            font-size: 2em;
+            text-decoration: none;
+          }
+
+          .logoImg {
+            padding: 2em;
+          }
+        `}
+      </style>
     </main>
   );
 }
