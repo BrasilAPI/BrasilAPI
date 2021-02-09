@@ -7,7 +7,7 @@ export default function Index() {
           href="https://github.com/BrasilAPI/BrasilAPI"
           alt="Acessar repositório do BrasilAPI no Github"
         >
-          <img alt="Brasil API logo" src="/brasilapi-logo-medium.png" />
+          <img alt="Brasil API logo" src="/brasilapi-logo-medium.png" className="logoImg" />
         </a>
       </div>
 
@@ -51,6 +51,10 @@ export default function Index() {
             color: #fff;
             font-size: 2em;
             text-decoration: none;
+          }
+
+          .logoImg {
+            padding: 2em;
           }
         `}
       </style>
