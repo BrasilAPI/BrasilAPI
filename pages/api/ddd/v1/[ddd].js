@@ -1,34 +1,50 @@
-import cities from 'cidades-promise';
 import microCors from 'micro-cors';
+import { getDddsData } from '../../../../services/ddd';
 
-const CACHE_CONTROL_HEADER_VALUE = 'max-age=0, s-maxage=86400, stale-while-revalidate';
+const CACHE_CONTROL_HEADER_VALUE =
+  'max-age=0, s-maxage=86400, stale-while-revalidate';
 const cors = microCors();
 
+async function citiesOfDdd(request, response) {
+  const requestedDdd = request.query.ddd;
 
-// retorna estado e lista de cidades por DDD 
-// exemplo da rota: /api/cities/v1/ddd/21 
+  response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
 
-async function CitiesByDdd(request, response) {
-    const requestedCities = request.query.ddd;
+  try {
+    const allDddData = await getDddsData();
 
-    response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
+    const dddData = allDddData.filter(({ ddd }) => ddd === requestedDdd);
 
-    try {
-        const citiesResult = await cities.getCitiesByDdd(requestedCities);
-        
-        response.status(200);
-        response.json(citiesResult);
+    if (dddData.length === 0) {
+      response.status(404);
+      response.json({
+        name: 'ddd_error',
+        message: 'DDD não encontrado',
+        type: 'DDD_NOT_FOUND',
+      });
 
-    } catch (error) {
-        if (error.name === 'citiesPromiseError') {
-            response.status(404);
-            response.json(error);
-            return;
-        }
-
-        response.status(500);
-        response.json(error);
+      return;
     }
+
+    const { state } = dddData[0];
+
+    const cities = dddData.map((ddd) => ddd.city);
+
+    const dddResult = {
+      state,
+      cities,
+    };
+
+    response.status(200);
+    response.json(dddResult);
+  } catch (error) {
+    response.status(500);
+    response.json({
+      name: 'ddd_error',
+      message: 'Todos os serviços de DDD retornaram erro.',
+      type: 'service_error',
+    });
+  }
 }
 
-export default cors(CitiesByDdd);
+export default cors(citiesOfDdd);
