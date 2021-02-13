@@ -28,7 +28,7 @@ async function Cep(request, response) {
 
   console.log({
     url: request.url,
-    clientIp: clientIp,
+    clientIp,
   });
 
   response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
