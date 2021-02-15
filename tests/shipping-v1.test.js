@@ -1,16 +1,5 @@
 const axios = require('axios');
 
-const createServer = require('./helpers/server.js');
-const server = createServer();
-
-beforeAll(async () => {
-  await server.start();
-});
-
-afterAll(async () => {
-  await server.stop();
-});
-
 /**
  *  nCdServico - String
  *
@@ -26,7 +15,7 @@ afterAll(async () => {
  */
 describe('/shipping/v1/calculate-price (E2E)', () => {
   test('Utilizando payload válido, SEDEX à vista', async () => {
-    const requestUrl = `${server.getUrl()}/api/shipping/v1/calculate-price`;
+    const requestUrl = `${global.SERVER_URL}/api/shipping/v1/calculate-price`;
     const response = await axios.post(requestUrl, {
       nCdEmpresa: '',
       sDsSenha: '',
@@ -57,7 +46,7 @@ describe('/shipping/v1/calculate-price (E2E)', () => {
   });
 
   test('Utilizando payload válido, PAC à vista', async () => {
-    const requestUrl = `${server.getUrl()}/api/shipping/v1/calculate-price`;
+    const requestUrl = `${global.SERVER_URL}/api/shipping/v1/calculate-price`;
     const response = await axios.post(requestUrl, {
       nCdEmpresa: '',
       sDsSenha: '',
@@ -88,7 +77,7 @@ describe('/shipping/v1/calculate-price (E2E)', () => {
   });
 
   test('Utilizando payload invalido, dois campos faltantes', async () => {
-    const requestUrl = `${server.getUrl()}/api/shipping/v1/calculate-price`;
+    const requestUrl = `${global.SERVER_URL}/api/shipping/v1/calculate-price`;
 
     const response = await axios.post(
       requestUrl,
