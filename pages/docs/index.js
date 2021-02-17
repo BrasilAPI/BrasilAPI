@@ -1,13 +1,11 @@
-import React from 'react'
+import React from 'react';
 import { RedocStandalone } from 'redoc';
-import Documentation from './doc.json'
+import Documentation from './doc.json';
 
 export default function index() {
   return (
     <div>
-      <RedocStandalone
-        specUrl={Documentation}
-      />
+      <RedocStandalone specUrl={Documentation} />
     </div>
-  )
+  );
 }
