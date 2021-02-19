@@ -16,7 +16,7 @@
 </div>
 
 <div align="center">
-  <a href="https://join.slack.com/t/brasilapi/shared_invite/zt-l12s2b8k-r0SHGZV4YZSMfrzhydn8WA"><img src="https://files.readme.io/e23f0e0-Slack_RGB.png" width="160px"></a>
+  <a href="https://github.com/BrasilAPI/BrasilAPI/issues/186"><img src="https://files.readme.io/e23f0e0-Slack_RGB.png" width="160px"></a>
 </div>
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=BrasilAPI_BrasilAPI&metric=alert_status)](https://sonarcloud.io/dashboard?id=BrasilAPI_BrasilAPI)
