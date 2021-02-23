@@ -1,4 +1,4 @@
-<h1 align="center"><img src="./public/brasilapi-logo-small.png"> Brasil API</h1>
+<h1 align="center"><img src="./public/brasilapi-logo-small.png"></h1>
 
 <div align="center">
   <p>
@@ -16,7 +16,7 @@
 </div>
 
 <div align="center">
-  <a href="https://join.slack.com/t/brasilapi/shared_invite/zt-l12s2b8k-r0SHGZV4YZSMfrzhydn8WA"><img src="https://files.readme.io/e23f0e0-Slack_RGB.png" width="160px"></a>
+  <a href="https://github.com/BrasilAPI/BrasilAPI/issues/186"><img src="https://files.readme.io/e23f0e0-Slack_RGB.png" width="160px"></a>
 </div>
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=BrasilAPI_BrasilAPI&metric=alert_status)](https://sonarcloud.io/dashboard?id=BrasilAPI_BrasilAPI)
@@ -180,6 +180,47 @@ Busca as cidades brasileiras referente a um DDD.
   "message": "Todos os serviços de DDD retornaram erro.",
   "type": "service_error"
 }
+```
+
+### CNPJ
+Busca de detalhes de pessoas jurídicas pelo número do CNPJ utilizando a [API Minha Receita](https://github.com/cuducos/minha-receita)..
+
+**GET** `https://brasilapi.com.br/api/cnpj/v1/19131243000197`**[code]**
+
+#### Consulta com sucesso
+
+```json
+
+// GET https://brasilapi.com.br/api/cnpj/v1/19131243000197
+
+{
+  "cnpj": "19131243000197",
+  "identificador_matriz_filial": 1,
+  "descricao_matriz_filial": "Matriz",
+  "razao_social": "OPEN KNOWLEDGE BRASIL",
+  "nome_fantasia": "REDE PELO CONHECIMENTO LIVRE",
+  "situacao_cadastral": 2,
+  "descricao_situacao_cadastral": "Ativa",
+  "data_situacao_cadastral": "2013-10-03",
+  "motivo_situacao_cadastral": 0,
+  ...
+}
+```
+
+#### Consulta com CNPJ inexistente
+
+```json
+// GET https://brasilapi.com.br/api/cnpj/v1/00000000000000
+
+{"message": "CNPJ 00000000000000 não encontrado."}
+```
+
+#### Consulta com CNPJ inválido
+
+```json
+// GET https://brasilapi.com.br/api/cnpj/v1/000
+
+{"message": "CNPJ 000 inválido."}
 ```
 
 ## Termos de Uso

@@ -11,6 +11,7 @@ describe('/cep/v1 (E2E)', () => {
       city: 'São Paulo',
       neighborhood: 'Perdizes',
       street: 'Rua Caiubi',
+      service: expect.any(String),
     });
   });
 

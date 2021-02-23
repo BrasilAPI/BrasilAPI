@@ -16,6 +16,8 @@ Certifique-se de estar na pasta raiz do projeto para executar:
 
 Independente da contribuição a ser feita (no código-fonte e/ou na documentação), operacionalmente falando, temos 2 formas de fazermos as *pull requests*: localmente, via linha de comando, usando o Git em conjunto com o Github, ou online, editando diretamente os arquivos no Github e solicitando uma pull request depois, tudo graficamente.
 
+Caso desenvolvendo localmente você precisara usar alguma versão mais recente do NodeJS para usar o NPM como gerenciador de pacotes, para instalar em seu sistema operacional basta acessar o [guia de instalação](https://nodejs.org/en/download/) caso ja tenha instalado prossiga.
+
 Como uma das coisas mais interessantes deste projeto é justamente a promessa da Vercel de eliminar (ou pelo menos minimizar) a necessidade de programadores se preocuparem tanto em configurarem uma infraestrutura local para poderem focar mais no código, como podemos fazer em algumas IDEs online (ex. Codepen), estaremos mostrando como contribuir das 2 formas: trabalhando localmente x online.
 
 ## Edição local do código
