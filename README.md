@@ -182,6 +182,47 @@ Busca as cidades brasileiras referente a um DDD.
 }
 ```
 
+### CNPJ
+Busca de detalhes de pessoas jurídicas pelo número do CNPJ utilizando a [API Minha Receita](https://github.com/cuducos/minha-receita)..
+
+**GET** `https://brasilapi.com.br/api/cnpj/v1/19131243000197`**[code]**
+
+#### Consulta com sucesso
+
+```json
+
+// GET https://brasilapi.com.br/api/cnpj/v1/19131243000197
+
+{
+  "cnpj": "19131243000197",
+  "identificador_matriz_filial": 1,
+  "descricao_matriz_filial": "Matriz",
+  "razao_social": "OPEN KNOWLEDGE BRASIL",
+  "nome_fantasia": "REDE PELO CONHECIMENTO LIVRE",
+  "situacao_cadastral": 2,
+  "descricao_situacao_cadastral": "Ativa",
+  "data_situacao_cadastral": "2013-10-03",
+  "motivo_situacao_cadastral": 0,
+  ...
+}
+```
+
+#### Consulta com CNPJ inexistente
+
+```json
+// GET https://brasilapi.com.br/api/cnpj/v1/00000000000000
+
+{"message": "CNPJ 00000000000000 não encontrado."}
+```
+
+#### Consulta com CNPJ inválido
+
+```json
+// GET https://brasilapi.com.br/api/cnpj/v1/000
+
+{"message": "CNPJ 000 inválido."}
+```
+
 ## Termos de Uso
 O BrasilAPI é uma iniciativa feita de brasileiros para brasileiros, por favor, não abuse deste serviço. Estamos em beta e ainda elaborando os Termos de Uso, mas por enquanto por favor não utilize formas automatizadas para fazer "crawling" dos dados da API. Um exemplo prático disto é um dos maiores provedores de telefonia do Brasil estar revalidando, neste exato momento, todos os Ceps (de `00000000` até `99999999`) e estourando em 5 vezes o limite atual da nossa conta no servidor. O volume de consulta dever ter a natureza de uma pessoa real requisitando um determinado dado. E para consultas com um alto volume automatizado, iremos mais para frente fornecer alguma solução, como por exemplo, conseguir fazer o download de toda a base de Ceps em uma única request.
 
