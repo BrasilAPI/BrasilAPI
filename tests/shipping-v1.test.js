@@ -104,12 +104,11 @@ describe('/shipping/v1/calculate-price (E2E)', () => {
 
     expect(response.status).toEqual(422);
     expect(response.data).toEqual({
-      name: 'ValidationError',
+      message: 'validation error',
       errors: [
         'sCepOrigem is a required field',
         'sCepDestino is a required field',
       ],
-      message: '2 errors occurred',
     });
   });
 });

@@ -58,3 +58,5 @@ export async function calculateCorreiosShipping(data) {
   });
   return shippingData;
 }
+
+export const { ValidationError } = Yup;
