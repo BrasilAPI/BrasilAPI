@@ -46,7 +46,7 @@ export function validateCorreiosShippingData(data) {
 
 export async function calculateCorreiosShipping(data) {
   const response = await axios({
-    url: 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPreco',
+    url: 'https://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPreco',
     method: 'POST',
     // quando `data` é uma string o conteúdo é enviado no corpo da requisição
     data: buildQuery(data),
