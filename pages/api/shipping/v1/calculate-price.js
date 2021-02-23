@@ -1,24 +1,24 @@
 import microCors from 'micro-cors';
 import {
-  calculateShipping,
-  validateShippingData,
+  calculateCorreiosShipping,
+  validateCorreiosShippingData,
 } from '../../../../services/shipping';
 
 const cors = microCors();
 
-async function ShippingPrice(request, response) {
+async function shippingPrice(request, response) {
   if (request.method !== 'POST') {
     return response.status(405).json({
       error: {
         message:
           'This method is not allowed for this route, try POST with a valid request body',
-        more_info: 'httos://brasilapi.com.br',
+        more_info: 'https://brasilapi.com.br/docs',
       },
     });
   }
 
   try {
-    await validateShippingData(request.body);
+    await validateCorreiosShippingData(request.body);
   } catch (err) {
     delete err.value;
     delete err.inner;
@@ -26,7 +26,7 @@ async function ShippingPrice(request, response) {
   }
 
   try {
-    const result = await calculateShipping(request.body);
+    const result = await calculateCorreiosShipping(request.body);
     return response.status(200).json(result);
   } catch (err) {
     return response.status(500).json({
@@ -37,4 +37,4 @@ async function ShippingPrice(request, response) {
   }
 }
 
-export default cors(ShippingPrice);
+export default cors(shippingPrice);

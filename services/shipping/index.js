@@ -1,7 +1,26 @@
+import axios from 'axios';
+import { Parser } from 'xml2js';
 import * as Yup from 'yup';
-import makeRequest from '../soapRequestService';
 
-export function validateShippingData(data) {
+function buildQuery(data) {
+  return Object.entries(data)
+    .map(([key, value]) => `${key}=${value}`)
+    .join('&');
+}
+
+function xmlToJson(xml) {
+  return new Promise((resolve, reject) => {
+    const xmlParser = new Parser();
+    xmlParser.parseString(xml, (err, result) => {
+      if (err) {
+        return reject(err);
+      }
+      return resolve(result);
+    });
+  });
+}
+
+export function validateCorreiosShippingData(data) {
   return Yup.object()
     .shape({
       nCdEmpresa: Yup.string(),
@@ -25,24 +44,14 @@ export function validateShippingData(data) {
     });
 }
 
-export async function calculateShipping(data) {
-  const endpoint = 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPreco';
-  const result = await makeRequest(endpoint, 'POST', {
-    nCdEmpresa: data.nCdEmpresa,
-    sDsSenha: data.sDsSenha,
-    nCdServico: data.nCdServico,
-    sCepOrigem: data.sCepOrigem,
-    sCepDestino: data.sCepDestino,
-    nVlPeso: data.nVlPeso,
-    nCdFormato: data.nCdFormato,
-    nVlComprimento: data.nVlComprimento,
-    nVlAltura: data.nVlAltura,
-    nVlLargura: data.nVlLargura,
-    nVlDiametro: data.nVlDiametro,
-    sCdMaoPropria: data.sCdMaoPropria,
-    nVlValorDeclarado: data.nVlValorDeclarado,
-    sCdAvisoRecebimento: data.sCdAvisoRecebimento,
+export async function calculateCorreiosShipping(data) {
+  const response = await axios({
+    url: 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPreco',
+    method: 'POST',
+    // quando `data` é uma string o conteúdo é enviado no corpo da requisição
+    data: buildQuery(data),
   });
+  const result = await xmlToJson(response.data);
   const shippingData = result.cResultado.Servicos[0].cServico[0];
   Object.getOwnPropertyNames(shippingData).forEach((property) => {
     [shippingData[property]] = shippingData[property];
