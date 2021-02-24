@@ -223,6 +223,49 @@ Busca de detalhes de pessoas jurídicas pelo número do CNPJ utilizando a [API M
 {"message": "CNPJ 000 inválido."}
 ```
 
+### Feriados nacionais
+Lista feriados nacionais de determinado ano.
+
+**GET** `https://brasilapi.com.br/api/feriados/v1/`**[ano]**
+
+#### Consulta com sucesso
+
+```json
+// GET https://brasilapi.com.br/api/feriados/v1/2021
+[
+  {
+    "date": "2021-01-01",
+    "name": "Confraternização mundial",
+    "type": "national"
+  },
+  {
+    "date": "2021-02-16",
+    "name": "Carnaval",
+    "type": "national"
+  },
+  // ...
+]
+```
+
+#### Consultas com erro
+
+```json
+// GET https://brasilapi.com.br/api/feriados/v1/3000
+// HTTP/1.1 404 Not Found
+{
+  "type": "feriados_range_error",
+  "message": "Ano fora do intervalo suportado entre 1900 e 2199."
+}
+```
+```json
+// GET https://brasilapi.com.br/api/feriados/v1/erro
+// HTTP/1.1 500 Internal Server Error
+{
+  "type": "feriados_error",
+  "message": "Erro ao calcular feriados."
+}
+```
+
 ## Termos de Uso
 O BrasilAPI é uma iniciativa feita de brasileiros para brasileiros, por favor, não abuse deste serviço. Estamos em beta e ainda elaborando os Termos de Uso, mas por enquanto por favor não utilize formas automatizadas para fazer "crawling" dos dados da API. Um exemplo prático disto é um dos maiores provedores de telefonia do Brasil estar revalidando, neste exato momento, todos os Ceps (de `00000000` até `99999999`) e estourando em 5 vezes o limite atual da nossa conta no servidor. O volume de consulta dever ter a natureza de uma pessoa real requisitando um determinado dado. E para consultas com um alto volume automatizado, iremos mais para frente fornecer alguma solução, como por exemplo, conseguir fazer o download de toda a base de Ceps em uma única request.
 

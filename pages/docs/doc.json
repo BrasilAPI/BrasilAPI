@@ -399,6 +399,120 @@
         }
       }
     },
+    "/feriados/v1/{ano}": {
+      "get": {
+        "tags": [
+          "Feriados nacionais"
+        ],
+        "summary": "Lista os feriados nacionais de determinado ano.",
+        "description": "Calcula os feriados móveis baseados na Páscoa e adiciona os feriados fixos",
+        "parameters": [
+          {
+            "name": "ano",
+            "description": "Ano para calcular os feriados.\n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "date": "2021-01-01",
+                    "name": "Confraternização mundial",
+                    "type": "national"
+                  },
+                  {
+                    "date": "2021-02-16",
+                    "name": "Carnaval",
+                    "type": "national"
+                  },
+                  {
+                    "date": "2021-04-02",
+                    "name": "Paixão de Cristo",
+                    "type": "national"
+                  },
+                  {
+                    "date": "2021-04-04",
+                    "name": "Páscoa",
+                    "type": "national"
+                  },
+                  {
+                    "date": "2021-04-21",
+                    "name": "Tiradentes",
+                    "type": "national"
+                  },
+                  {
+                    "date": "2021-05-01",
+                    "name": "Dia do trabalho",
+                    "type": "national"
+                  },
+                  {
+                    "date": "2021-06-03",
+                    "name": "Corpus Christi",
+                    "type": "national"
+                  },
+                  {
+                    "date": "2021-09-07",
+                    "name": "Independência do Brasil",
+                    "type": "national"
+                  },
+                  {
+                    "date": "2021-10-12",
+                    "name": "Nossa Senhora Aparecida",
+                    "type": "national"
+                  },
+                  {
+                    "date": "2021-11-02",
+                    "name": "Finados",
+                    "type": "national"
+                  },
+                  {
+                    "date": "2021-11-15",
+                    "name": "Proclamação da República",
+                    "type": "national"
+                  },
+                  {
+                    "date": "2021-12-25",
+                    "name": "Natal",
+                    "type": "national"
+                  }
+                ]
+              }
+            }
+          },
+          "404": {
+            "description": "Ano fora do intervalo suportado.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "type": "feriados_range_error",
+                  "message": "Ano fora do intervalo suportado entre 1900 e 2199."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro inesperado.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "type": "feriados_error",
+                  "message": "Erro ao calcular feriados."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/ibge/uf/v1": {
       "get": {
         "tags": [
