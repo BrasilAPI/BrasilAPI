@@ -14,7 +14,9 @@
     "react": "16.12.0",
     "react-dom": "16.12.0",
     "redoc": "^2.0.0-rc.35",
-    "styled-components": "^5.1.1"
+    "styled-components": "^5.1.1",
+    "xml2js": "^0.4.23",
+    "yup": "^0.29.1"
   },
   "devDependencies": {
     "eslint": "6.8.0",
