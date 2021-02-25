@@ -1,0 +1,11 @@
+version: "3.5"
+
+services:
+  app:
+    ports:
+      - 3000:3000
+    build: .
+    command: sh -c 'while true; do sleep 60; done'
+    working_dir: /app
+    volumes:
+      - .:/app
