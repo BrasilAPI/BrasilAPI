@@ -5,7 +5,6 @@ import wiki from 'wikijs';
 export const getStateCities = async (state, uf) => {
 
   if(state === '' || uf === '') {
-    console.log('entrei');
     throw new Error('InsuficientDataException');
   }
 
