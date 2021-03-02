@@ -5,6 +5,7 @@ import wiki from 'wikijs';
 export const getStateCities = async (state, uf) => {
 
   if(state === '' || uf === '') {
+    console.log('entrei');
     throw new Error('InsuficientDataException');
   }
 
@@ -16,8 +17,10 @@ export const getStateCities = async (state, uf) => {
     return code.replace(/\W/g, '').replace('formatnum', '');
   }
   
-  let apiUrl = 'https://pt.wikipedia.org/w/api.php';
-  let pageName = await wiki(apiUrl).search('Lista de municípios ' + state);
+
+  let pageName = await wiki({
+    apiUrl: 'https://pt.wikipedia.org/w/api.php'
+  }).search('Lista de municípios ' + state);
 
   pageName = pageName.results[0];
   
