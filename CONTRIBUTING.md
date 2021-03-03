@@ -6,11 +6,11 @@ Qualquer ajuda que agregue valor ao projeto, seja na edição do código-fonte o
 
 Certifique-se de estar na pasta raiz do projeto para executar:
 
-```npm install```
+`npm install`
 
-```npm run dev``` - nextjs local
+`npm run dev` - nextjs local
 
-```npm run fix```- ESLint
+`npm run lint:fix` - ESLint
 
 ## Pull requests (PRs)
 

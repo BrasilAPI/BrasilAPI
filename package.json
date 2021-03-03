@@ -37,7 +37,8 @@
     "start": "next start",
     "test": "jest --forceExit",
     "test:watch": "jest --watch",
-    "fix": "eslint . --ext .js --fix"
+    "lint": "eslint . --ext .js",
+    "lint:fix": "eslint . --ext .js --fix"
   },
   "husky": {
     "hooks": {
