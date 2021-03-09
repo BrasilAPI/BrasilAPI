@@ -1,5 +1,5 @@
 import microCors from 'micro-cors';
-import { getUfByCode } from '../../../../../services/ibge';
+import { getCitiesByUf } from '../../../../../../services/ibge';
 
 const CACHE_CONTROL_HEADER_VALUE =
   'max-age=0, s-maxage=86400, stale-while-revalidate, public';
@@ -7,7 +7,7 @@ const cors = microCors();
 
 const action = async (request, response) => {
   const { code } = request.query;
-  const { data, status } = await getUfByCode(code);
+  const { data, status } = await getCitiesByUf(code);
 
   response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
 

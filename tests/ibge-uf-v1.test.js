@@ -99,4 +99,64 @@ describe('/ibge/uf/v1 (E2E)', () => {
       });
     }
   });
+
+  test('Buscar Municipios utilizando um código inexistente ou inválido: 99', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/ibge/uf/v1/99/municipios`;
+
+    try {
+      await axios.get(requestUrl);
+    } catch (error) {
+      const { response } = error;
+      expect(response.status).toBe(404);
+      expect(response.data).toMatchObject({
+        name: 'NotFoundError',
+        message: 'UF não encontrado.',
+        type: 'not_found',
+      });
+    }
+  });
+
+  test('Buscar Municipios utilizando um código válido: 22', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/ibge/uf/v1/22/municipios`;
+    const response = await axios.get(requestUrl);
+
+    expect(response.status).toBe(200);
+    expect(response.data).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          id: expect.any(Number),
+        }),
+      ])
+    );
+  });
+
+  test('Buscar Municipios utilizando uma sigla inexistente ou inválida: PB', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/ibge/uf/v1/PB/municipios`;
+
+    try {
+      await axios.get(requestUrl);
+    } catch (error) {
+      const { response } = error;
+      expect(response.status).toBe(404);
+      expect(response.data).toMatchObject({
+        name: 'NotFoundError',
+        message: 'UF não encontrado.',
+        type: 'not_found',
+      });
+    }
+  });
+
+  test('Buscar Municipios utilizando uma sigla válida: SC', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/ibge/uf/v1/SC/municipios`;
+    const response = await axios.get(requestUrl);
+
+    expect(response.status).toBe(200);
+    expect(response.data).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          id: expect.any(Number),
+        }),
+      ])
+    );
+  });
 });
