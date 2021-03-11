@@ -1,5 +1,20 @@
 const axios = require('axios');
 
+const validRegionObject = {
+  id: expect.any(Number),
+  nome: expect.any(String),
+  UF: expect.objectContaining({
+    id: expect.any(Number),
+    sigla: expect.any(String),
+    nome: expect.any(String),
+    regiao: expect.objectContaining({
+      id: expect.any(Number),
+      sigla: expect.any(String),
+      nome: expect.any(String),
+    }),
+  }),
+};
+
 const validTestArray = expect.arrayContaining([
   expect.objectContaining({
     id: expect.any(Number),
@@ -10,38 +25,12 @@ const validTestArray = expect.arrayContaining([
       microrregiao: expect.objectContaining({
         id: expect.any(Number),
         nome: expect.any(String),
-        mesorregiao: expect.objectContaining({
-          id: expect.any(Number),
-          nome: expect.any(String),
-          UF: expect.objectContaining({
-            id: expect.any(Number),
-            sigla: expect.any(String),
-            nome: expect.any(String),
-            regiao: expect.objectContaining({
-              id: expect.any(Number),
-              sigla: expect.any(String),
-              nome: expect.any(String),
-            }),
-          }),
-        }),
+        mesorregiao: expect.objectContaining(validRegionObject),
       }),
       'regiao-imediata': expect.objectContaining({
         id: expect.any(Number),
         nome: expect.any(String),
-        'regiao-intermediaria': expect.objectContaining({
-          id: expect.any(Number),
-          nome: expect.any(String),
-          UF: expect.objectContaining({
-            id: expect.any(Number),
-            sigla: expect.any(String),
-            nome: expect.any(String),
-            regiao: expect.objectContaining({
-              id: expect.any(Number),
-              sigla: expect.any(String),
-              nome: expect.any(String),
-            }),
-          }),
-        }),
+        'regiao-intermediaria': expect.objectContaining(validRegionObject),
       }),
     }),
   }),
