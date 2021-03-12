@@ -17,6 +17,8 @@
     "styled-components": "^5.1.1"
   },
   "devDependencies": {
+    "commitizen": "4.2.3",
+    "cz-conventional-changelog": "3.3.0",
     "eslint": "6.8.0",
     "eslint-config-airbnb": "18.1.0",
     "eslint-config-prettier": "6.10.1",
@@ -37,7 +39,8 @@
     "start": "next start",
     "test": "jest --forceExit",
     "test:watch": "jest --watch",
-    "fix": "eslint . --ext .js --fix"
+    "fix": "eslint . --ext .js --fix",
+    "commit": "cz"
   },
   "husky": {
     "hooks": {
@@ -56,5 +59,10 @@
   "bugs": {
     "url": "https://github.com/BrasilAPI/BrasilAPI/issues"
   },
-  "homepage": "https://github.com/BrasilAPI/BrasilAPI#readme"
+  "homepage": "https://github.com/BrasilAPI/BrasilAPI#readme",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }
