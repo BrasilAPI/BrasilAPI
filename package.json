@@ -41,7 +41,8 @@
     "test": "jest --forceExit",
     "test:watch": "jest --watch",
     "fix": "eslint . --ext .js --fix",
-    "commit": "cz"
+    "commit": "cz",
+    "gen:contributors": "githubcontrib --owner BrasilAPI --repo BrasilAPI --sortBy contributions --sortOrder desc --filter filipedeschamps,lucianopf,dependabot[bot] --layoutStrategy $INIT_CWD/.github/contributors-list/layout-strategy-custom.js"
   },
   "husky": {
     "hooks": {
