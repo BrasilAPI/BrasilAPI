@@ -27,6 +27,7 @@
     "eslint-plugin-prettier": "3.1.3",
     "eslint-plugin-react": "7.19.0",
     "eslint-plugin-react-hooks": "2.5.1",
+    "github-contributors-list": "1.2.4",
     "husky": "^4.2.5",
     "jest": "25.1.0",
     "lint-staged": "^10.2.11",
@@ -40,7 +41,8 @@
     "test": "jest --forceExit",
     "test:watch": "jest --watch",
     "fix": "eslint . --ext .js --fix",
-    "commit": "cz"
+    "commit": "cz",
+    "gen:contributors": "githubcontrib --owner BrasilAPI --repo BrasilAPI --sortBy contributions --sortOrder desc --filter filipedeschamps,lucianopf,dependabot[bot] --layoutStrategy $INIT_CWD/.github/contributors-list/layout-strategy-custom.js"
   },
   "husky": {
     "hooks": {
