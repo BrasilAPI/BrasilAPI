@@ -69,9 +69,9 @@ const validResponse = {
 };
 
 const invalidResponse = {
-  name: 'ddd_error',
+  type: 'ddd_error',
   message: 'DDD não encontrado',
-  type: 'DDD_NOT_FOUND',
+  name: 'DDD_NOT_FOUND',
 };
 
 module.exports = {
