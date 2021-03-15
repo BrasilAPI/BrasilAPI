@@ -1,6 +1,6 @@
 name: Testes E2E
 
-on: [pull_request]
+on: [push, pull_request]
 
 jobs:
   e2e-tests:

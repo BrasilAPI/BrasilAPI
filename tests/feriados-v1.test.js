@@ -198,6 +198,7 @@ describe('/feriados/v1 (E2E)', () => {
 
       expect(response.status).toBe(500);
       expect(response.data).toEqual({
+        name: 'InternalError',
         type: 'feriados_error',
         message: 'Erro ao calcular feriados.',
       });
