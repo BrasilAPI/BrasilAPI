@@ -10,7 +10,7 @@ module.exports = {
     'services/**/*.js',
     'graphql/**/**/*.js',
     'pages/api/**/**/*.js',
-    '!tests/**/**.test.js',
+    'tests/**/**.test.js',
   ],
   globalSetup: './tests/helpers/server/setup',
   globalTeardown: './tests/helpers/server/teardown',
