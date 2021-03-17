@@ -1,29 +1,27 @@
-import microCors from 'micro-cors';
+import app from '../../../../app';
+
+import BaseError from '../../../../errors/base';
+import InternalError from '../../../../errors/internal';
+import NotFoundError from '../../../../errors/not-found';
+
 import { getDddsData } from '../../../../services/ddd';
 
-const CACHE_CONTROL_HEADER_VALUE =
-  'max-age=0, s-maxage=86400, stale-while-revalidate';
-const cors = microCors();
-
-async function citiesOfDdd(request, response) {
-  const requestedDdd = request.query.ddd;
-
-  response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
-
+async function citiesOfDdd(request, response, next) {
   try {
+    const requestedDdd = request.query.ddd;
+
     const allDddData = await getDddsData();
 
     const dddData = allDddData.filter(({ ddd }) => ddd === requestedDdd);
 
     if (dddData.length === 0) {
       response.status(404);
-      response.json({
-        name: 'ddd_error',
-        message: 'DDD não encontrado',
-        type: 'DDD_NOT_FOUND',
-      });
 
-      return;
+      throw new NotFoundError({
+        message: 'DDD não encontrado',
+        type: 'ddd_error',
+        name: 'DDD_NOT_FOUND',
+      });
     }
 
     const { state } = dddData[0];
@@ -36,15 +34,17 @@ async function citiesOfDdd(request, response) {
     };
 
     response.status(200);
-    response.json(dddResult);
+    return response.json(dddResult);
   } catch (error) {
-    response.status(500);
-    response.json({
-      name: 'ddd_error',
+    if (error instanceof BaseError) {
+      return next(error);
+    }
+
+    throw new InternalError({
       message: 'Todos os serviços de DDD retornaram erro.',
       type: 'service_error',
     });
   }
 }
 
-export default cors(citiesOfDdd);
+export default app().get(citiesOfDdd);

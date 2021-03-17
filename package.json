@@ -20,6 +20,8 @@
     "wikijs": "6.0.1"
   },
   "devDependencies": {
+    "commitizen": "4.2.3",
+    "cz-conventional-changelog": "3.3.0",
     "eslint": "6.8.0",
     "eslint-config-airbnb": "18.1.0",
     "eslint-config-prettier": "6.10.1",
@@ -29,6 +31,8 @@
     "eslint-plugin-react": "7.19.0",
     "eslint-plugin-react-hooks": "2.5.1",
     "husky": "^4.3.8",
+    "github-contributors-list": "1.2.4",
+    "husky": "^4.2.5",
     "jest": "25.1.0",
     "lint-staged": "^10.5.4",
     "prettier": "2.0.4",
@@ -40,7 +44,9 @@
     "start": "next start",
     "test": "jest --forceExit",
     "test:watch": "jest --watch",
-    "fix": "eslint . --ext .js --fix"
+    "fix": "eslint . --ext .js --fix",
+    "commit": "cz",
+    "gen:contributors": "githubcontrib --owner BrasilAPI --repo BrasilAPI --sortBy contributions --sortOrder desc --filter filipedeschamps,lucianopf,dependabot[bot] --layoutStrategy $INIT_CWD/.github/contributors-list/layout-strategy-custom.js"
   },
   "husky": {
     "hooks": {
@@ -59,5 +65,10 @@
   "bugs": {
     "url": "https://github.com/BrasilAPI/BrasilAPI/issues"
   },
-  "homepage": "https://github.com/BrasilAPI/BrasilAPI#readme"
+  "homepage": "https://github.com/BrasilAPI/BrasilAPI#readme",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }
