@@ -1,6 +1,6 @@
-import app from '../../../../../app';
-import { getUfByCode } from '../../../../../services/ibge';
-import NotFoundError from '../../../../../errors/not-found';
+import app from '@/app';
+import { getUfByCode } from '@/services/ibge';
+import NotFoundError from '@/errors/not-found';
 
 const action = async (request, response) => {
   const { code } = request.query;

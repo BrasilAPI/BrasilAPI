@@ -1,10 +1,10 @@
-import app from '../../../../app';
+import app from '@/app';
 
-import BaseError from '../../../../errors/base';
-import InternalError from '../../../../errors/internal';
-import NotFoundError from '../../../../errors/not-found';
+import BaseError from '@/errors/base';
+import InternalError from '@/errors/internal';
+import NotFoundError from '@/errors/not-found';
 
-import { getDddsData } from '../../../../services/ddd';
+import { getDddsData } from '@/services/ddd';
 
 async function citiesOfDdd(request, response, next) {
   try {

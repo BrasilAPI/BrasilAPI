@@ -1,5 +1,5 @@
-import app from '../../../../../app';
-import { getUfs } from '../../../../../services/ibge';
+import app from '@/app';
+import { getUfs } from '@/services/ibge';
 
 const action = async (_, response) => {
   const { data, status } = await getUfs();
