@@ -31,7 +31,11 @@ export default function Index() {
             href="https://github.com/BrasilAPI/BrasilAPI"
             alt="Acessar repositório do BrasilAPI no Github"
           >
-            <img src="/brasilapi-logo-medium.png" className="logoImg" />
+            <img
+              src="/brasilapi-logo-medium.png"
+              className="logoImg"
+              alt="BrasilAPI Logo"
+            />
           </a>
         </div>
 

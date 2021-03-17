@@ -1,3 +1,5 @@
+import NotFoundError from '../../errors/not-found';
+
 /**
  * Tabela da lua cheia de Páscoa, valida entre 1900 e 2199, inclusive.
  * Contendo mês (indexado em 0) e dia.
@@ -41,8 +43,13 @@ function formatDate(date) {
  */
 export function getEasterHolidays(year) {
   if (year < 1900 || year > 2199) {
-    throw new Error('Cannot calculate holidays.');
+    throw new NotFoundError({
+      name: 'NotFoundError',
+      message: 'Ano fora do intervalo suportado entre 1900 e 2199.',
+      type: 'feriados_range_error',
+    });
   }
+
   const pascalFullMoonMonthDay = getPascalFullMoonDates();
   const [refMonth, refDay] = pascalFullMoonMonthDay[year % 19];
   const movingDate = new Date(year, refMonth, refDay);

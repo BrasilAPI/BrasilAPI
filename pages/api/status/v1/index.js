@@ -1,6 +1,4 @@
-import microCors from 'micro-cors';
-
-const cors = microCors();
+import app from '../../../../app';
 
 function Status(request, response) {
   response.status(200);
@@ -15,4 +13,4 @@ function Status(request, response) {
   });
 }
 
-export default cors(Status);
+export default app().get(Status);

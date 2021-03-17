@@ -10,7 +10,20 @@ Certifique-se de estar na pasta raiz do projeto para executar:
 
 ```npm run dev``` - nextjs local
 
-```npm run fix```- ESLint
+```npm run fix``` - ESLint
+
+## Mensagens de commit
+
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+
+Sugerimos que as mensagens de commit sigam o padrão do _conventional commit_.
+
+Execute `npm run commit` para ter um painel interativo que permite seguir o padrão de commit de forma fácil.
+
+Para saber mais, acesse esses links:
+- [Especificação do Conventional Commit](https://www.conventionalcommits.org/)
+- [Regras do @commitlint/config-conventional](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional).
 
 ## Pull requests (PRs)
 
