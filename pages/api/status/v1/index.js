@@ -1,4 +1,4 @@
-import app from '../../../../app';
+import app from '@/app';
 
 function Status(request, response) {
   response.status(200);

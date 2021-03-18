@@ -1,5 +1,5 @@
-import app from '../../../../app';
-import { getCnpjData } from '../../../../services/cnpj';
+import app from '@/app';
+import { getCnpjData } from '@/services/cnpj';
 
 // Takes BrasilAPI's request and response objects, together with Minha
 // Receita's response to build the final user HTTP response — including a

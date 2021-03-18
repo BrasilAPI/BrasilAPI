@@ -1,4 +1,4 @@
-import NotFoundError from '../../errors/not-found';
+import NotFoundError from '@/errors/not-found';
 
 /**
  * Tabela da lua cheia de Páscoa, valida entre 1900 e 2199, inclusive.

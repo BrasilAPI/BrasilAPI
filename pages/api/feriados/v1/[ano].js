@@ -1,7 +1,7 @@
-import app from '../../../../app';
-import BaseError from '../../../../errors/base';
-import InternalError from '../../../../errors/internal';
-import getHolidays from '../../../../services/holidays';
+import app from '@/app';
+import BaseError from '@/errors/base';
+import InternalError from '@/errors/internal';
+import getHolidays from '@/services/holidays';
 
 const action = (request, response) => {
   try {
