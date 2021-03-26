@@ -33,11 +33,30 @@ describe('banks v1 (E2E)', () => {
     });
   });
 
-  test('GET /banks/v1', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/banks/v1`;
-    const response = await axios.get(requestUrl);
+  describe('GET /banks/v1/:code', () => {
+    test('Listar todos os bancos', async () => {
+      const requestUrl = `${global.SERVER_URL}/api/banks/v1`;
+      const response = await axios.get(requestUrl);
 
-    expect(response.status).toBe(200);
-    expect(Array.isArray(response.data)).toBe(true);
+      expect(response.status).toBe(200);
+      expect(Array.isArray(response.data)).toBe(true);
+    });
+
+    test('Listar bancos por parte de nome ou código', async () => {
+      const queryName = 'inter';
+
+      const requestUrl = `${global.SERVER_URL}/api/banks/v1?search=${queryName}`;
+      const response = await axios.get(requestUrl);
+
+      const filterNamesFromBanks = response.data.map(
+        ({ name }) =>
+          !!String(name).toLowerCase().includes(queryName.toLowerCase())
+      );
+
+      expect(response.status).toBe(200);
+      expect(
+        filterNamesFromBanks.every((nameCheck) => nameCheck === true)
+      ).toBe(true);
+    });
   });
 });
