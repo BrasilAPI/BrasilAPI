@@ -6,19 +6,34 @@ const action = async (request, response) => {
 
   if (request.query.search) {
     const { search } = request.query;
+    const formatedSearch = search.toLowerCase();
 
-    const filteredBanks = allBanksData.filter(
-      ({ code, name }) =>
-        String(code).toLowerCase().includes(search.toLowerCase()) ||
-        String(name.toLowerCase()).includes(search.toLowerCase())
-    );
+    const filteredBanks = [];
+
+    allBanksData.map((bank) => {
+      const { code, name } = bank;
+
+      // Checagem se search é parte do código do banco (number)
+      const checkCode = String(code).toLowerCase().includes(formatedSearch);
+
+      // Checagem se search é parte do nome do banco (string)
+      const checkName = String(name.toLowerCase()).includes(formatedSearch);
+
+      if (checkCode || checkName) {
+        filteredBanks.push(bank);
+      }
+
+      return bank;
+    });
 
     response.status(200);
     response.json(filteredBanks);
-  } else {
-    response.status(200);
-    response.json(allBanksData);
+    return response;
   }
+
+  response.status(200);
+  response.json(allBanksData);
+  return response;
 };
 
 export default app().get(action);

@@ -42,21 +42,66 @@ describe('banks v1 (E2E)', () => {
       expect(Array.isArray(response.data)).toBe(true);
     });
 
-    test('Listar bancos por parte de nome ou código', async () => {
-      const queryName = 'inter';
+    test('Listar bancos por parte de nome', async () => {
+      const search = 'inter';
 
-      const requestUrl = `${global.SERVER_URL}/api/banks/v1?search=${queryName}`;
+      const requestUrl = `${global.SERVER_URL}/api/banks/v1?search=${search}`;
       const response = await axios.get(requestUrl);
 
-      const filterNamesFromBanks = response.data.map(
-        ({ name }) =>
-          !!String(name).toLowerCase().includes(queryName.toLowerCase())
-      );
+      const expectedResponse = [
+        {
+          ispb: '00416968',
+          name: 'BANCO INTER',
+          code: 77,
+          fullName: 'Banco Inter S.A.',
+        },
+        {
+          ispb: '04391007',
+          name: 'CAMARA INTERBANCARIA DE PAGAMENTOS - CIP',
+          code: null,
+          fullName: 'Câmara Interbancária de Pagamentos',
+        },
+      ];
 
       expect(response.status).toBe(200);
-      expect(
-        filterNamesFromBanks.every((nameCheck) => nameCheck === true)
-      ).toBe(true);
+      expect(response.data).toStrictEqual(expectedResponse);
+    });
+
+    test('Listar bancos por parte do código', async () => {
+      const search = 77;
+
+      const requestUrl = `${global.SERVER_URL}/api/banks/v1?search=${search}`;
+      const response = await axios.get(requestUrl);
+
+      const expectedResponse = [
+        {
+          ispb: '00416968',
+          name: 'BANCO INTER',
+          code: 77,
+          fullName: 'Banco Inter S.A.',
+        },
+        {
+          ispb: '17826860',
+          name: 'BMS SCD S.A.',
+          code: 377,
+          fullName: 'BMS SOCIEDADE DE CRÉDITO DIRETO S.A.',
+        },
+        {
+          ispb: '33042953',
+          name: 'CITIBANK N.A.',
+          code: 477,
+          fullName: 'Citibank N.A.',
+        },
+        {
+          ispb: '65913436',
+          name: 'GUIDE',
+          code: 177,
+          fullName: 'Guide Investimentos S.A. Corretora de Valores',
+        },
+      ];
+
+      expect(response.status).toBe(200);
+      expect(response.data).toStrictEqual(expectedResponse);
     });
   });
 });
