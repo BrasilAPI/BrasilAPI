@@ -8,22 +8,16 @@ const action = async (request, response) => {
     const { search } = request.query;
     const formatedSearch = search.toLowerCase();
 
-    const filteredBanks = [];
-
-    allBanksData.map((bank) => {
+    const filteredBanks = allBanksData.filter((bank) => {
       const { code, name } = bank;
 
       // Checagem se search é parte do código do banco (number)
-      const checkCode = String(code).toLowerCase().includes(formatedSearch);
+      const checkCode = String(code).toLowerCase().indexOf(formatedSearch) > -1;
 
       // Checagem se search é parte do nome do banco (string)
-      const checkName = String(name.toLowerCase()).includes(formatedSearch);
+      const checkName = String(name.toLowerCase()).indexOf(formatedSearch) > -1;
 
-      if (checkCode || checkName) {
-        filteredBanks.push(bank);
-      }
-
-      return bank;
+      return checkCode || checkName;
     });
 
     response.status(200);
