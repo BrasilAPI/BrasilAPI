@@ -592,6 +592,68 @@
           }
         }
       }
+    },
+    "/oms/cid10/v1": {
+      "get": {
+        "tags": [
+          "OMS"
+        ],
+        "summary": "Obtém a lista de todas as doenças",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example":  [
+                  {
+                    "codigo": "A00",
+                    "nome": "Cólera"
+                  },
+                  {
+                    "codigo": "A00.0",
+                    "nome": "Cólera Devida a Vibrio Cholerae 01, Biótipo Cholerae"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/oms/cid10/v1/{cid10}": {
+      "get": {
+        "tags": [
+          "OMS"
+        ],
+        "summary": "Obtém doeça pelo código cid10",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "codigo": "A00",
+                  "nome": "Cólera"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "O código cid10 não foi encontrado",
+            "content": {
+              "application/json": {
+                "example": {
+                  "name": "NotFoundError",
+                  "message": "código cid10 não encontrado",
+                  "type": "not_found"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
