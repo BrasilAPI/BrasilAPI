@@ -1,9 +1,5 @@
-import microCors from 'micro-cors';
-import { getCnpjData } from '../../../../services/cnpj';
-
-const cors = microCors();
-const CACHE_CONTROL_HEADER_VALUE =
-  'max-age=0, s-maxage=86400, stale-while-revalidate';
+import app from '@/app';
+import { getCnpjData } from '@/services/cnpj';
 
 // Takes BrasilAPI's request and response objects, together with Minha
 // Receita's response to build the final user HTTP response — including a
@@ -13,29 +9,31 @@ const CACHE_CONTROL_HEADER_VALUE =
 // `catch` branches of the main handler.
 function responseProxy(request, response, result) {
   // the CNPJ is valid but does not exist
+
   if (result.status === 204) {
     response.status(404);
-    response.json({ message: `CNPJ ${request.query.cnpj} não encontrado.` });
-    return;
+    return response.json({
+      message: `CNPJ ${request.query.cnpj} não encontrado.`,
+    });
   }
 
   response.status(result.status);
-  response.json(result.data);
+  return response.json(result.data);
 }
 
 async function cnpjData(request, response) {
-  response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
   try {
     const result = await getCnpjData(request.query.cnpj);
-    responseProxy(request, response, result);
+
+    return responseProxy(request, response, result);
   } catch (error) {
     if (error.response.status >= 400 && error.response.status < 500) {
-      responseProxy(request, response, error.response);
-    } else {
-      response.status(500);
-      response.json(error);
+      return responseProxy(request, response, error.response);
     }
+
+    response.status(error.response.status);
+    return response.json(error);
   }
 }
 
-export default cors(cnpjData);
+export default app().get(cnpjData);

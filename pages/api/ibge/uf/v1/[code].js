@@ -1,27 +1,23 @@
-import microCors from 'micro-cors';
-import { getUfByCode } from '../../../../../services/ibge';
-
-const CACHE_CONTROL_HEADER_VALUE =
-  'max-age=0, s-maxage=86400, stale-while-revalidate, public';
-const cors = microCors();
+import app from '@/app';
+import { getUfByCode } from '@/services/ibge';
+import NotFoundError from '@/errors/not-found';
 
 const action = async (request, response) => {
   const { code } = request.query;
   const { data, status } = await getUfByCode(code);
 
-  response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
-
   if (Array.isArray(data) && !data.length) {
     response.status(404);
-    response.json({
+
+    throw new NotFoundError({
       name: 'NotFoundError',
       message: 'UF não encontrado.',
       type: 'not_found',
     });
-  } else {
-    response.status(status);
-    response.json(data);
   }
+
+  response.status(status);
+  return response.json(data);
 };
 
-export default cors(action);
+export default app().get(action);

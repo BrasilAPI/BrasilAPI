@@ -14,4 +14,5 @@ module.exports = {
   ],
   globalSetup: './tests/helpers/server/setup',
   globalTeardown: './tests/helpers/server/teardown',
+  testEnvironment: 'node',
 };
