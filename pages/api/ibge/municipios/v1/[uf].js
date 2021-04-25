@@ -1,5 +1,6 @@
 import microCors from 'micro-cors';
-import { getDistrictsByUf } from '../../../../../services/ibge';
+import { getStateCities } from '@/services/state-cities';
+import { getDistrictsByUf } from '@/services/ibge';
 
 const CACHE_CONTROL_HEADER_VALUE =
   'max-age=0, s-maxage=86400, stale-while-revalidate, public';
@@ -8,11 +9,11 @@ const cors = microCors();
 const action = async (request, response) => {
   const { uf } = request.query;
 
-  const { data, status } = await getDistrictsByUf(uf);
+  const data = await getDistrictsByUf(uf).catch(() => getStateCities(uf));
 
   response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
 
-  response.status(status).json(data);
+  response.status(200).json(data);
 };
 
 export default cors(action);
