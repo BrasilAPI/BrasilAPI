@@ -14,7 +14,7 @@ describe('/cep/v2 (E2E)', () => {
       service: expect.any(String),
       location: {
         type: 'Point',
-        coordinates: ['-46.5417682', '-23.6816688'],
+        coordinates: { longitude: '-46.5417682', latitude: '-23.6816688' },
       },
     });
   });
