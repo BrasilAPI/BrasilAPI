@@ -1,0 +1,136 @@
+.mainContainer {
+  width: 100%;
+
+  .sectionHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    max-width: 68.125rem;
+
+    margin: 0 auto;
+    padding: 5rem 0 8rem;
+
+    .content {
+      width: 28.93rem;
+
+      h2 {
+        margin-bottom: 1.5rem;
+        width: 19.5rem;
+      }
+
+      p {
+        line-height: 1.56rem;
+      }
+
+      button {
+        min-width: 11.56rem;
+        height: 2.93rem;
+        margin-top: 2rem;
+
+        border: 0;
+        border-radius: 0.5rem;
+        background: var(--green-600);
+        color: var(--white);
+
+        transition: filter 0.2s;
+
+        &:hover {
+          filter: brightness(0.9);
+        }
+      }
+    }
+  }
+
+  .endpoints {
+    background: var(--blue-50);
+
+    > div {
+      max-width: 68.125rem;
+      margin: 0 auto;
+
+      padding: 4rem;
+
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      h2 {
+        margin-bottom: 1.5rem;
+      }
+
+      span {
+        margin: 3rem 0 1rem;
+
+        b {
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
+  .motivation {
+    max-width: 68.125rem;
+    margin: 0 auto;
+
+    padding: 5rem 0;
+    text-align: center;
+
+    p {
+      margin: 3rem auto;
+      width: 70%;
+      line-height: 1.562rem;
+    }
+  }
+
+  @media (max-width: 980px) {
+
+    .sectionHeader {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+      width: 100%;
+      max-width: 100%;
+      padding: 4rem 1rem;
+
+      .content {
+        width: 100%;
+
+        h2 {
+          width: 100%;
+        }
+
+        a button {
+          width: 100%;
+        }
+      }
+
+      .schemaDesk {
+        display: none;
+      }
+
+      img {
+        width: 100%;
+        margin-bottom: 2rem;
+      }
+    }
+
+    .endpoints {
+
+      > p {
+        text-align: center;
+      }
+
+      > div {
+        padding: 2rem 1rem;
+      }
+    }
+
+    .motivation {
+      padding: 5rem 1rem;
+
+      p {
+        width: 100%;
+      }
+    }
+  }
+}

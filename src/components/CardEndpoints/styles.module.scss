@@ -1,0 +1,98 @@
+.cardCode {
+  background: var(--blue-900);
+  width: 58.937rem;
+  min-height: 26rem;
+  position: relative;
+
+  border-radius: 0.5rem;
+  margin-top: 2rem;
+
+  .container {
+    width: 36rem;
+    position: relative;
+    margin: 2rem auto 4rem;
+
+    nav {
+      ul {
+        list-style: none;
+        position: relative;
+
+        display: flex;
+
+
+        li {
+          color: var(--white);
+          margin-right: 1rem;
+          cursor: pointer;
+          padding: 5px;
+        }
+      }
+    }
+
+    .content {
+      margin: 5rem 0 2rem;
+      span {
+        color: var(--white);
+
+        b {
+          color: var(--blue-400);
+        }
+
+        &::before {
+          content: 'GET';
+          background: var(--blue-400);
+          padding: 2px 5px;
+          border-radius: 2px;
+          margin-right: 0.5rem;
+        }
+      }
+
+      p {
+        color: var(--blue-600);
+        line-height: 1.5rem;
+        margin-top: 2rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 980px) {
+  .cardCode {
+    width: 100%;
+    padding: 1rem;
+
+    .container {
+      width: 100%;
+
+      nav {
+        ul {
+          overflow-x: scroll;
+
+          li {
+            display: flex;
+            align-items: center;
+            padding: 2px 5px;
+            font-size: 0.875rem;
+          }
+        }
+      }
+
+      .content {
+        p {
+          font-size: 0.875rem;
+        }
+      }
+    }
+  }
+}
+
+.active {
+  background: var(--blue-700);
+  border-radius: 2px;
+}
+
+.invisible {
+  overflow: hidden;
+  opacity: 0;
+  height: 0;
+}
