@@ -15,7 +15,7 @@ export function CardEndpoints() {
       <div className={styles.container}>
         <nav>
           <ul>
-            {data.endpoints.map((result) => (
+            {data.map((result) => (
               <li
                 key={result.id}
                 onClick={() => changeTab(result.id)}
@@ -27,9 +27,9 @@ export function CardEndpoints() {
             ))}
           </ul>
         </nav>
-        {data.endpoints.map((result) => (
+        {data.map((result) => (
           <div
-            key={result.title}
+            key={result.id}
             className={selected === result.id ? styles.card : styles.invisible}
           >
             <div className={styles.content}>
