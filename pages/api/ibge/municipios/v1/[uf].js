@@ -1,6 +1,6 @@
 import microCors from 'micro-cors';
-import { getStateCities } from '@/services/state-cities';
-import { getDistrictsByUf } from '@/services/ibge';
+import { getStateCities } from '@/services/ibge/wikipedia';
+import { getDistrictsByUf } from '@/services/ibge/gov';
 
 const CACHE_CONTROL_HEADER_VALUE =
   'max-age=0, s-maxage=86400, stale-while-revalidate, public';

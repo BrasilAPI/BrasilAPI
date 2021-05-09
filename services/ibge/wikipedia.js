@@ -31,39 +31,32 @@ const CODIGOS_ESTADOS = {
 };
 
 export const getStateCities = async (uf) => {
-  if (uf === '') {
+  if (!uf) {
     throw new Error('InsuficientDataException');
   }
 
   const formattedUF = uf.toUpperCase();
+  const state = CODIGOS_ESTADOS[formattedUF];
 
-  if (typeof CODIGOS_ESTADOS[formattedUF] === 'undefined') {
+  if (!state) {
     throw new Error('EstadoNotFoundException');
   }
 
-  const state = CODIGOS_ESTADOS[formattedUF];
-
-  const formatName = (name) => {
-    return name
+  const formatName = (name) =>
+    name
       .replace(`BR-${formattedUF}-`, '')
       .replace(/\W-/g, '')
       .replace('{{', '')
       .replace('}}', '');
-  };
 
-  const formatIbgeCode = (code) => {
-    return code.replace(/\W/g, '').replace('formatnum', '');
-  };
+  const formatIbgeCode = (code) =>
+    code.replace(/\W/g, '').replace('formatnum', '');
 
   const pageNames = await wiki({
     apiUrl: 'https://pt.wikipedia.org/w/api.php',
   }).search(`Lista de municípios ${state}`);
 
-  let correctIndex = 0;
-
-  if (pageNames.results[0].indexOf('por população') !== -1) {
-    correctIndex = 1;
-  }
+  const correctIndex = pageNames.results[0].includes('por população') ? 1 : 0;
 
   const stateInfo = await wiki({
     apiUrl: 'https://pt.wikipedia.org/w/api.php',
@@ -71,16 +64,24 @@ export const getStateCities = async (uf) => {
 
   stateInfo.cities = await stateInfo.tables();
 
-  const cities = [];
+  if (!stateInfo.cities || stateInfo.cities.length === 0) {
+    return [];
+  }
 
-  stateInfo.cities[0].forEach((city) => {
-    const arrKeys = Object.keys(city);
-    if (typeof city[arrKeys[1]] !== 'undefined') {
-      cities.push({
-        nome: formatName(city[arrKeys[1]]),
-        codigo_ibge: formatIbgeCode(city[arrKeys[2]]),
-      });
-    }
-  });
+  const cities = stateInfo.cities[0]
+    .filter((city) => {
+      const keys = Object.keys(city).map((key) => key.toLocaleLowerCase());
+      const ibgeCodeIndex = keys.findIndex((key) => key.includes('ibge'));
+      return ibgeCodeIndex !== -1 && Object.values(city)[ibgeCodeIndex];
+    })
+    .map((city) => {
+      const keys = Object.keys(city).map((key) => key.toLocaleLowerCase());
+      const ibgeCodeIndex = keys.findIndex((key) => key.includes('ibge'));
+      const ibgeCode = Object.values(city)[ibgeCodeIndex];
+      const name = city['município'] || Object.values(city)[1];
+
+      return { name: formatName(name), codigo_ibge: formatIbgeCode(ibgeCode) };
+    });
+
   return cities;
 };
