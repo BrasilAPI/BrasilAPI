@@ -84,6 +84,12 @@ export default function Index() {
             .logoImg {
               padding: 2em;
             }
+
+            @media (max-width: 980px) {
+              .logoImg {
+                width: 100%;
+              }
+            }
           `}
         </style>
       </main>
