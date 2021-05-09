@@ -1,6 +1,6 @@
 import wiki from 'wikijs';
 
-const CODIGOS_ESTADOS = {
+export const CODIGOS_ESTADOS = {
   AC: 'Acre',
   AL: 'Alagoas',
   AP: 'Amapá',
@@ -31,16 +31,8 @@ const CODIGOS_ESTADOS = {
 };
 
 export const getStateCities = async (uf) => {
-  if (!uf) {
-    throw new Error('InsuficientDataException');
-  }
-
   const formattedUF = uf.toUpperCase();
   const state = CODIGOS_ESTADOS[formattedUF];
-
-  if (!state) {
-    throw new Error('EstadoNotFoundException');
-  }
 
   const formatName = (name) =>
     name
@@ -54,7 +46,7 @@ export const getStateCities = async (uf) => {
 
   const pageNames = await wiki({
     apiUrl: 'https://pt.wikipedia.org/w/api.php',
-  }).search(`Lista de municípios ${state}`);
+  }).search(`Lista de municípios de ${state}`);
 
   const correctIndex = pageNames.results[0].includes('por população') ? 1 : 0;
 
@@ -78,9 +70,9 @@ export const getStateCities = async (uf) => {
       const keys = Object.keys(city).map((key) => key.toLocaleLowerCase());
       const ibgeCodeIndex = keys.findIndex((key) => key.includes('ibge'));
       const ibgeCode = Object.values(city)[ibgeCodeIndex];
-      const name = city['município'] || Object.values(city)[1];
+      const name = city['municípiosDoBrasil'];
 
-      return { name: formatName(name), codigo_ibge: formatIbgeCode(ibgeCode) };
+      return { nome: formatName(name), codigo_ibge: formatIbgeCode(ibgeCode) };
     });
 
   return cities;

@@ -1,19 +1,26 @@
-import microCors from 'micro-cors';
-import { getStateCities } from '@/services/ibge/wikipedia';
+import app from '@/app';
+import { getStateCities, CODIGOS_ESTADOS } from '@/services/ibge/wikipedia';
 import { getDistrictsByUf } from '@/services/ibge/gov';
 
-const CACHE_CONTROL_HEADER_VALUE =
-  'max-age=0, s-maxage=86400, stale-while-revalidate, public';
-const cors = microCors();
+import NotFoundError from '@/errors/not-found';
 
 const action = async (request, response) => {
-  const { uf } = request.query;
+  try {
+    const { uf } = request.query;
 
-  const data = await getDistrictsByUf(uf).catch(() => getStateCities(uf));
+    if (!uf || !CODIGOS_ESTADOS[uf.toUpperCase()]) {
+      throw new Error('EstadoNotFoundException');
+    }
 
-  response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
-
-  response.status(200).json(data);
+    const data = await getDistrictsByUf(uf).catch(() => getStateCities(uf));
+    return response.status(200).json(data);
+  } catch (err) {
+    if (err.message === 'EstadoNotFoundException') {
+      throw new NotFoundError({ message: 'UF não encontrada' });
+    } else {
+      throw err;
+    }
+  }
 };
 
-export default cors(action);
+export default app().get(action);

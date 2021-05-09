@@ -34,7 +34,7 @@ describe('/ibge/municipios/v1 (E2E)', () => {
       expect(response.status).toBe(404);
       expect(response.data).toMatchObject({
         name: 'NotFoundError',
-        message: 'UF não encontrado.',
+        message: 'UF não encontrada',
         type: 'not_found',
       });
     }
