@@ -1,5 +1,23 @@
 const axios = require('axios');
 
+describe('/fipe/tabelas/v1 (E2E)', () => {
+  test('Listando as tabelas de referências', async () => {
+    expect.assertions(2);
+    const requestUrl = `${global.SERVER_URL}/api/fipe/tabelas/v1`;
+    const response = await axios.get(requestUrl);
+
+    expect(response.status).toBe(200);
+    expect(response.data).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          codigo: expect.any(Number),
+          mes: expect.any(String),
+        }),
+      ])
+    );
+  });
+});
+
 describe('/fipe/marcas/v1 (E2E)', () => {
   test('Utilizando sem informar nenhuma tabela de referência', async () => {
     expect.assertions(2);
