@@ -1,12 +1,7 @@
 import axios from 'axios';
 
-const FIPE_URL = 'https://veiculos.fipe.org.br/api';
-
-const VEHICLE_TYPE = {
-  CAR: 1,
-  MOTORCYCLE: 2,
-  TRUCK: 3,
-};
+import { FIPE_URL, VEHICLE_TYPE } from './constants';
+import { getLatestReferenceTable } from './referenceTable';
 
 async function listAutomakers({ vehicleType, referenceTable }) {
   const params = new URLSearchParams();
@@ -26,27 +21,6 @@ async function listAutomakers({ vehicleType, referenceTable }) {
   return data
     .map((item) => ({ nome: item.Label, valor: item.Value }))
     .sort((a, b) => parseInt(a.valor, 10) - parseInt(b.valor, 10));
-}
-
-export async function listReferenceTables() {
-  const { data } = await axios.post(
-    `${FIPE_URL}/veiculos/ConsultarTabelaDeReferencia`,
-    {},
-    {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-    }
-  );
-
-  return data
-    .map((item) => ({ codigo: item.Codigo, mes: item.Mes }))
-    .sort((a, b) => b.codigo - a.codigo);
-}
-
-async function getLatestReferenceTable() {
-  const tables = await listReferenceTables();
-  return tables[0].codigo;
 }
 
 export async function listCarAutomakers(
