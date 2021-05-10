@@ -28,7 +28,7 @@ async function listAutomakers({ vehicleType, referenceTable }) {
     .sort((a, b) => parseInt(a.valor, 10) - parseInt(b.valor, 10));
 }
 
-async function listReferenceTables() {
+export async function listReferenceTables() {
   const { data } = await axios.post(
     `${FIPE_URL}/veiculos/ConsultarTabelaDeReferencia`,
     {},
