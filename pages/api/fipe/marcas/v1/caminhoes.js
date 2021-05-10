@@ -1,7 +1,10 @@
 import app from '@/app';
 import BadRequestError from '@/errors/bad-request';
 
-import { listReferenceTables, listTruckAutomakers } from '@/services/fipe';
+import {
+  listReferenceTables,
+  listTruckAutomakers,
+} from '@/services/fipe/automakers';
 
 async function FipeTruckAutomakers(request, response) {
   const referenceTableCode = request.query.tabela_referencia;

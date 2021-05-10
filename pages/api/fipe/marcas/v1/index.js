@@ -6,7 +6,7 @@ import {
   listCarAutomakers,
   listMotorcycleAutomakers,
   listReferenceTables,
-} from '@/services/fipe';
+} from '@/services/fipe/automakers';
 
 async function FipeTruckAutomakers(request, response) {
   const referenceTableCode = request.query.tabela_referencia;
