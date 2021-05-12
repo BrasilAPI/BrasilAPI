@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { CardEndpoints } from '../components/CardEndpoints';
 import { Header } from '../components/Header';
 
 import styles from '../styles/home.module.scss';
@@ -31,16 +30,17 @@ export default function Index() {
             alt="API Schema"
           />
         </section>
-        <section className={styles.endpoints}>
+        <section className={styles.requests}>
           <div>
-            <h2>Endpoints</h2>
-            <p>Esses são alguns endpoints ja disponíveis para uso.</p>
-            <span>
-              <b>URL base: </b>
-              https://brasilapi.com.br/api/
-            </span>
+            <h2>Requests</h2>
+            <p>Esses são alguns dados de requests feitas em nossos endpoints</p>
 
-            <CardEndpoints />
+            <iframe
+              src="https://p.datadoghq.com/sb/bciualk0rip6udi8-678e5cdeadeb1ef8027a539d0e2e2adc?from_ts=1620781855460&live=true&theme=dark&to_ts=1620785455460"
+              height="550"
+              width="920"
+              title="Datadog"
+            />
           </div>
         </section>
 

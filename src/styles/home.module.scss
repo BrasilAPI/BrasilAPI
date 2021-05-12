@@ -42,7 +42,7 @@
     }
   }
 
-  .endpoints {
+  .requests {
     background: var(--blue-50);
 
     > div {
@@ -59,12 +59,10 @@
         margin-bottom: 1.5rem;
       }
 
-      span {
-        margin: 3rem 0 1rem;
-
-        b {
-          font-weight: 700;
-        }
+      iframe {
+        border: 0;
+        border-radius: 0.5rem;
+        margin-top: 2rem;
       }
     }
   }
@@ -114,7 +112,7 @@
       }
     }
 
-    .endpoints {
+    .requests {
 
       > p {
         text-align: center;
