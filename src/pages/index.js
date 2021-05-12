@@ -32,13 +32,16 @@ export default function Index() {
         </section>
         <section className={styles.requests}>
           <div>
-            <h2>Requests</h2>
-            <p>Esses são alguns dados de requests feitas em nossos endpoints</p>
+            <h2>Estatísticas</h2>
+            <p>
+              Aqui você pode ver os dados de utilização de cada API que
+              fornecemos!
+            </p>
 
             <iframe
               src="https://p.datadoghq.com/sb/bciualk0rip6udi8-678e5cdeadeb1ef8027a539d0e2e2adc?from_ts=1620781855460&live=true&theme=dark&to_ts=1620785455460"
               height="550"
-              width="920"
+              width="100%"
               title="Datadog"
             />
           </div>

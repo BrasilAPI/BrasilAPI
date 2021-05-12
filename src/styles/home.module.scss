@@ -21,6 +21,7 @@
 
       p {
         line-height: 1.56rem;
+        text-align: justify;
       }
 
       button {
@@ -63,6 +64,8 @@
         border: 0;
         border-radius: 0.5rem;
         margin-top: 2rem;
+
+        max-width: 68.125rem;
       }
     }
   }
@@ -78,6 +81,8 @@
       margin: 3rem auto;
       width: 70%;
       line-height: 1.562rem;
+
+      text-align: justify;
     }
   }
 
