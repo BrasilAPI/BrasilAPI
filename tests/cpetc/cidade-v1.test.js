@@ -1,9 +1,9 @@
 const axios = require('axios');
 
 describe('cities v1 (E2E)', () => {
-  describe('GET /cptec/v1/cities/:name', () => {
+  describe('GET /cptec/v1/cidade/:name', () => {
     test('Utilizando um nome de cidade existente: São Sebastião', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cptec/v1/cities/São Sebastião`;
+      const requestUrl = `${global.SERVER_URL}/api/cptec/v1/cidade/São Sebastião`;
       const response = await axios.get(requestUrl);
 
       expect(response.status).toBe(200);
@@ -11,30 +11,30 @@ describe('cities v1 (E2E)', () => {
       expect(response.data[1]).toEqual({
         code: '5051',
         name: 'São Sebastião',
-        state: 'SP'
+        state: 'SP',
       });
     });
 
     test('Utilizando um nome de cidade inexistente: chiforímpola', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cptec/v1/cities/chiforímpola`;
+      const requestUrl = `${global.SERVER_URL}/api/cptec/v1/cidade/chiforímpola`;
 
       try {
         await axios.get(requestUrl);
       } catch (error) {
-        console.log(error);
         const { response } = error;
 
         expect(response.status).toBe(404);
         expect(response.data).toMatchObject({
           message: 'Nenhuma cidade localizada',
-          type: 'NO_CITY_NOT_FOUND',
+          type: 'city_error',
+          name: 'NO_CITY_NOT_FOUND',
         });
       }
     });
   });
 
-  test('GET /cptec/v1/cities', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/cptec/v1/cities`;
+  test('GET /cptec/v1/cidade', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/cptec/v1/cidade`;
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);
