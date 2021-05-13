@@ -12,9 +12,7 @@ export const getAllCitiesData = async () => {
     responseEncoding: 'binary',
   });
 
-  const jsonData = await transform(citiesData.data, CITY_TEMPLATE);
-
-  return jsonData;
+  return transform(citiesData.data, CITY_TEMPLATE);
 };
 
 /**
@@ -28,7 +26,5 @@ export const getCityData = async (name) => {
     responseEncoding: 'binary',
   });
 
-  const jsonData = await transform(citiesData.data, CITY_TEMPLATE);
-
-  return jsonData;
+  return transform(citiesData.data, CITY_TEMPLATE);
 };
