@@ -9,6 +9,12 @@ import {
 } from './constants';
 import normalizeBrazilianDate from '../util/normalizeBrazilianDate';
 
+function normalizeItem(item) {
+  const newItem = item;
+  newItem.last_update = normalizeBrazilianDate(item.last_update);
+  return newItem;
+}
+
 /**
  * Get current weather data for all Brazilian Capitals
  * @returns {Array}
@@ -24,9 +30,7 @@ export const getCurrentCapitalWeatherData = async () => {
 
   const jsonData = await transform(currentData.data, CAPITAL_TEMPLATE);
   jsonData.map((item) => {
-    const newItem = item;
-    newItem.last_update = normalizeBrazilianDate(item.last_update);
-    return newItem;
+    return normalizeItem(item);
   });
 
   return jsonData;
@@ -55,9 +59,7 @@ export const getCurrentAirportWeather = async (icaoCode) => {
     return null;
   }
   jsonData.map((item) => {
-    const newItem = item;
-    newItem.last_update = normalizeBrazilianDate(item.last_update);
-    return newItem;
+    return normalizeItem(item);
   });
 
   return jsonData[0];
