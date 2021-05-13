@@ -17,8 +17,6 @@ const action = async (request, response) => {
   }
 
   response.json(cityData);
-
-  return response;
 };
 
 export default app({ cache: 172800 }).get(action);
