@@ -7,7 +7,7 @@ Também tenta direcionar a boas práticas com relação a nomenclaturas de vari�
 Neste guia utilizaremos o termo **deve** para padrões que são indispensáveis e o termo **deveria** para padrões desejáveis, mas não indispensáveis.
 
 ## Endpoints
-- Os url's dos endpoints devem estar em idioma inglês.
+- Os url's dos endpoints devem estar em idioma português do Brasil.
 - Os url's dos endpoints deveriam ser todos em letras minúsculas.
 - Os endpoints devem refletir de forma clara o objetivo do mesmo, a fim de evitar confusões no acesso.
 - Os endpoints devem fazer uso, exclusivamente, do método HTTP **GET**
