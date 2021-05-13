@@ -16,10 +16,10 @@ export default function removeSpecialChars(text) {
     N: /\xD1/g,
   };
 
-  let newText = '';
+  let newText = text;
   Object.keys(hexaChars).forEach((letter) => {
     const regex = hexaChars[letter];
-    newText = text.replace(regex, letter);
+    newText = newText.replace(regex, letter);
   });
 
   return newText.toLowerCase().replace(/[^\w ]+/g, '');

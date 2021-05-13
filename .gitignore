@@ -113,5 +113,3 @@ dist
 
 # IntelliJ IDEA
 .idea
-# Lockfile
-package-lock.json
