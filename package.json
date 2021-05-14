@@ -20,7 +20,7 @@
     "styled-components": "5.3.0"
   },
   "devDependencies": {
-    "commitizen": "4.2.3",
+    "commitizen": "4.2.4",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "6.8.0",
     "eslint-config-airbnb": "18.1.0",
