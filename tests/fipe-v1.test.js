@@ -1,5 +1,90 @@
 const axios = require('axios');
 
+const validTestTableArray = expect.arrayContaining([
+  expect.objectContaining({
+    codigo: expect.any(Number),
+    mes: expect.any(String),
+  }),
+]);
+
+const validTestAutomakersArray = expect.arrayContaining([
+  expect.objectContaining({
+    nome: expect.any(String),
+    valor: expect.any(String),
+  }),
+]);
+
+const validTestVehicleArray = expect.arrayContaining([
+  expect.objectContaining({
+    valor: expect.any(String),
+    marca: expect.any(String),
+    modelo: expect.any(String),
+    anoModelo: expect.any(Number),
+    combustivel: expect.any(String),
+    codigoFipe: expect.any(String),
+    mesReferencia: expect.any(String),
+    tipoVeiculo: expect.any(Number),
+    siglaCombustivel: expect.any(String),
+    dataConsulta: expect.any(String),
+  }),
+]);
+expect.arrayContaining([
+  expect.objectContaining({
+    valor: expect.any(String),
+    marca: expect.any(String),
+    modelo: expect.any(String),
+    anoModelo: expect.any(Number),
+    combustivel: expect.any(String),
+    codigoFipe: expect.any(String),
+    mesReferencia: expect.any(String),
+    tipoVeiculo: expect.any(Number),
+    siglaCombustivel: expect.any(String),
+    dataConsulta: expect.any(String),
+  }),
+]);
+expect.arrayContaining([
+  expect.objectContaining({
+    valor: expect.any(String),
+    marca: expect.any(String),
+    modelo: expect.any(String),
+    anoModelo: expect.any(Number),
+    combustivel: expect.any(String),
+    codigoFipe: expect.any(String),
+    mesReferencia: expect.any(String),
+    tipoVeiculo: expect.any(Number),
+    siglaCombustivel: expect.any(String),
+    dataConsulta: expect.any(String),
+  }),
+]);
+expect.arrayContaining([
+  expect.objectContaining({
+    valor: expect.any(String),
+    marca: expect.any(String),
+    modelo: expect.any(String),
+    anoModelo: expect.any(Number),
+    combustivel: expect.any(String),
+    codigoFipe: expect.any(String),
+    mesReferencia: expect.any(String),
+    tipoVeiculo: expect.any(Number),
+    siglaCombustivel: expect.any(String),
+    dataConsulta: expect.any(String),
+  }),
+]);
+expect.arrayContaining([
+  expect.objectContaining({
+    valor: expect.any(String),
+    marca: expect.any(String),
+    modelo: expect.any(String),
+    anoModelo: expect.any(Number),
+    combustivel: expect.any(String),
+    codigoFipe: expect.any(String),
+    mesReferencia: expect.any(String),
+    tipoVeiculo: expect.any(Number),
+    siglaCombustivel: expect.any(String),
+    dataConsulta: expect.any(String),
+  }),
+]);
+
 describe('/fipe/tabelas/v1 (E2E)', () => {
   test('Listando as tabelas de referências', async () => {
     expect.assertions(2);
@@ -7,14 +92,7 @@ describe('/fipe/tabelas/v1 (E2E)', () => {
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);
-    expect(response.data).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          codigo: expect.any(Number),
-          mes: expect.any(String),
-        }),
-      ])
-    );
+    expect(response.data).toEqual(validTestTableArray);
   });
 });
 
@@ -25,14 +103,7 @@ describe('/fipe/marcas/v1 (E2E)', () => {
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);
-    expect(response.data).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          nome: expect.any(String),
-          valor: expect.any(String),
-        }),
-      ])
-    );
+    expect(response.data).toEqual(validTestAutomakersArray);
   });
 
   test('Utilizando com a tabela de referência 267', async () => {
@@ -47,14 +118,7 @@ describe('/fipe/marcas/v1 (E2E)', () => {
     });
 
     expect(response.status).toBe(200);
-    expect(response.data).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          nome: expect.any(String),
-          valor: expect.any(String),
-        }),
-      ])
-    );
+    expect(response.data).toEqual(validTestAutomakersArray);
   });
 
   test('Utilizando com uma tabela de referência inválida', async () => {
@@ -85,14 +149,7 @@ describe('/fipe/marcas/v1/carros (E2E)', () => {
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);
-    expect(response.data).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          nome: expect.any(String),
-          valor: expect.any(String),
-        }),
-      ])
-    );
+    expect(response.data).toEqual(validTestAutomakersArray);
   });
 
   test('Utilizando com a tabela de referência 267', async () => {
@@ -107,14 +164,7 @@ describe('/fipe/marcas/v1/carros (E2E)', () => {
     });
 
     expect(response.status).toBe(200);
-    expect(response.data).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          nome: expect.any(String),
-          valor: expect.any(String),
-        }),
-      ])
-    );
+    expect(response.data).toEqual(validTestAutomakersArray);
   });
 
   test('Utilizando com uma tabela de referência inválida', async () => {
@@ -145,14 +195,7 @@ describe('/fipe/marcas/v1/motos (E2E)', () => {
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);
-    expect(response.data).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          nome: expect.any(String),
-          valor: expect.any(String),
-        }),
-      ])
-    );
+    expect(response.data).toEqual(validTestAutomakersArray);
   });
 
   test('Utilizando com a tabela de referência 267', async () => {
@@ -167,14 +210,7 @@ describe('/fipe/marcas/v1/motos (E2E)', () => {
     });
 
     expect(response.status).toBe(200);
-    expect(response.data).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          nome: expect.any(String),
-          valor: expect.any(String),
-        }),
-      ])
-    );
+    expect(response.data).toEqual(validTestAutomakersArray);
   });
 
   test('Utilizando com uma tabela de referência inválida', async () => {
@@ -205,14 +241,7 @@ describe('/fipe/marcas/v1/caminhoes (E2E)', () => {
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);
-    expect(response.data).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          nome: expect.any(String),
-          valor: expect.any(String),
-        }),
-      ])
-    );
+    expect(response.data).toEqual(validTestAutomakersArray);
   });
 
   test('Utilizando com a tabela de referência 267', async () => {
@@ -227,14 +256,7 @@ describe('/fipe/marcas/v1/caminhoes (E2E)', () => {
     });
 
     expect(response.status).toBe(200);
-    expect(response.data).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          nome: expect.any(String),
-          valor: expect.any(String),
-        }),
-      ])
-    );
+    expect(response.data).toEqual(validTestAutomakersArray);
   });
 
   test('Utilizando com uma tabela de referência inválida', async () => {
@@ -266,22 +288,7 @@ describe('/fipe/preco/v1 (E2E)', () => {
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);
-    expect(response.data).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          valor: expect.any(String),
-          marca: expect.any(String),
-          modelo: expect.any(String),
-          anoModelo: expect.any(Number),
-          combustivel: expect.any(String),
-          codigoFipe: expect.any(String),
-          mesReferencia: expect.any(String),
-          tipoVeiculo: expect.any(Number),
-          siglaCombustivel: expect.any(String),
-          dataConsulta: expect.any(String),
-        }),
-      ])
-    );
+    expect(response.data).toEqual(validTestVehicleArray);
   });
 
   test('Utilizando um veículo válido com a tabela de referência 267', async () => {
@@ -297,22 +304,7 @@ describe('/fipe/preco/v1 (E2E)', () => {
     });
 
     expect(response.status).toBe(200);
-    expect(response.data).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          valor: expect.any(String),
-          marca: expect.any(String),
-          modelo: expect.any(String),
-          anoModelo: expect.any(Number),
-          combustivel: expect.any(String),
-          codigoFipe: expect.any(String),
-          mesReferencia: expect.any(String),
-          tipoVeiculo: expect.any(Number),
-          siglaCombustivel: expect.any(String),
-          dataConsulta: expect.any(String),
-        }),
-      ])
-    );
+    expect(response.data).toEqual(validTestVehicleArray);
   });
 
   test('Utilizando um carro válido com a tabela de referência 270', async () => {
@@ -328,22 +320,7 @@ describe('/fipe/preco/v1 (E2E)', () => {
     });
 
     expect(response.status).toBe(200);
-    expect(response.data).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          valor: expect.any(String),
-          marca: expect.any(String),
-          modelo: expect.any(String),
-          anoModelo: expect.any(Number),
-          combustivel: expect.any(String),
-          codigoFipe: expect.any(String),
-          mesReferencia: expect.any(String),
-          tipoVeiculo: expect.any(Number),
-          siglaCombustivel: expect.any(String),
-          dataConsulta: expect.any(String),
-        }),
-      ])
-    );
+    expect(response.data).toEqual(validTestVehicleArray);
   });
 
   test('Utilizando uma moto válida com a tabela de referência 270', async () => {
@@ -359,22 +336,7 @@ describe('/fipe/preco/v1 (E2E)', () => {
     });
 
     expect(response.status).toBe(200);
-    expect(response.data).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          valor: expect.any(String),
-          marca: expect.any(String),
-          modelo: expect.any(String),
-          anoModelo: expect.any(Number),
-          combustivel: expect.any(String),
-          codigoFipe: expect.any(String),
-          mesReferencia: expect.any(String),
-          tipoVeiculo: expect.any(Number),
-          siglaCombustivel: expect.any(String),
-          dataConsulta: expect.any(String),
-        }),
-      ])
-    );
+    expect(response.data).toEqual(validTestVehicleArray);
   });
 
   test('Utilizando um caminhão válido com a tabela de referência 270', async () => {
@@ -390,22 +352,7 @@ describe('/fipe/preco/v1 (E2E)', () => {
     });
 
     expect(response.status).toBe(200);
-    expect(response.data).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          valor: expect.any(String),
-          marca: expect.any(String),
-          modelo: expect.any(String),
-          anoModelo: expect.any(Number),
-          combustivel: expect.any(String),
-          codigoFipe: expect.any(String),
-          mesReferencia: expect.any(String),
-          tipoVeiculo: expect.any(Number),
-          siglaCombustivel: expect.any(String),
-          dataConsulta: expect.any(String),
-        }),
-      ])
-    );
+    expect(response.data).toEqual(validTestVehicleArray);
   });
 
   test('Utilizando um veículo válido com a tabela de referência inválida', async () => {
