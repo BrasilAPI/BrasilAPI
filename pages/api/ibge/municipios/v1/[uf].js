@@ -17,9 +17,9 @@ const action = async (request, response) => {
   } catch (err) {
     if (err.message === 'EstadoNotFoundException') {
       throw new NotFoundError({ message: 'UF não encontrada' });
-    } else {
-      throw err;
     }
+
+    throw err;
   }
 };
 
