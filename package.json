@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Vamos transformar o Brasil em uma API?",
   "dependencies": {
-    "apollo-server-micro": "2.21.2",
+    "apollo-server-micro": "2.24.0",
     "axios": "0.21.1",
     "cep-promise": "4.0.4",
     "cors": "2.8.5",
