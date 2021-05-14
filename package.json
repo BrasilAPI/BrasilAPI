@@ -6,7 +6,6 @@
     "apollo-server-micro": "2.21.2",
     "axios": "0.21.1",
     "cep-promise": "4.0.4",
-    "core-js": "3.6.5",
     "cors": "2.8.5",
     "graphql": "15.5.0",
     "lodash": "4.17.21",
