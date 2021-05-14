@@ -28,62 +28,6 @@ const validTestVehicleArray = expect.arrayContaining([
     dataConsulta: expect.any(String),
   }),
 ]);
-expect.arrayContaining([
-  expect.objectContaining({
-    valor: expect.any(String),
-    marca: expect.any(String),
-    modelo: expect.any(String),
-    anoModelo: expect.any(Number),
-    combustivel: expect.any(String),
-    codigoFipe: expect.any(String),
-    mesReferencia: expect.any(String),
-    tipoVeiculo: expect.any(Number),
-    siglaCombustivel: expect.any(String),
-    dataConsulta: expect.any(String),
-  }),
-]);
-expect.arrayContaining([
-  expect.objectContaining({
-    valor: expect.any(String),
-    marca: expect.any(String),
-    modelo: expect.any(String),
-    anoModelo: expect.any(Number),
-    combustivel: expect.any(String),
-    codigoFipe: expect.any(String),
-    mesReferencia: expect.any(String),
-    tipoVeiculo: expect.any(Number),
-    siglaCombustivel: expect.any(String),
-    dataConsulta: expect.any(String),
-  }),
-]);
-expect.arrayContaining([
-  expect.objectContaining({
-    valor: expect.any(String),
-    marca: expect.any(String),
-    modelo: expect.any(String),
-    anoModelo: expect.any(Number),
-    combustivel: expect.any(String),
-    codigoFipe: expect.any(String),
-    mesReferencia: expect.any(String),
-    tipoVeiculo: expect.any(Number),
-    siglaCombustivel: expect.any(String),
-    dataConsulta: expect.any(String),
-  }),
-]);
-expect.arrayContaining([
-  expect.objectContaining({
-    valor: expect.any(String),
-    marca: expect.any(String),
-    modelo: expect.any(String),
-    anoModelo: expect.any(Number),
-    combustivel: expect.any(String),
-    codigoFipe: expect.any(String),
-    mesReferencia: expect.any(String),
-    tipoVeiculo: expect.any(Number),
-    siglaCombustivel: expect.any(String),
-    dataConsulta: expect.any(String),
-  }),
-]);
 
 describe('/fipe/tabelas/v1 (E2E)', () => {
   test('Listando as tabelas de referências', async () => {
