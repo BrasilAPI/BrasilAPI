@@ -5,7 +5,7 @@ const {
   getEasterHolidays,
   getFixedHolidays,
   getHolidays,
-} = require('./helpers/feriado');
+} = require('./helpers/feriados');
 
 describe('/feriados/v1 (E2E)', () => {
   test('Feriados fixos com ano válido entre 1900 e 2199', async () => {
