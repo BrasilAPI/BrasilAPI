@@ -12,9 +12,7 @@ const fetchBanksListFromBacen = async () => {
 
 const fetchBanksList = async () => {
   try {
-    const response = await fetchBanksListFromBacen();
-
-    return response;
+    return await fetchBanksListFromBacen();
   } catch (err) {
     return banksList;
   }
@@ -60,7 +58,5 @@ const formatResponse = (response) => {
 
 export const getBanksData = async () => {
   const response = await fetchBanksList();
-  const formatedResponse = formatResponse(response);
-
-  return formatedResponse;
+  return formatResponse(response);
 };
