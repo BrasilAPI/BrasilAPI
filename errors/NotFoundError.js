@@ -1,11 +1,11 @@
-import BaseError from './base';
+import BaseError from './BaseError';
 
-export default class InternalError extends BaseError {
+export default class NotFoundError extends BaseError {
   constructor({
-    status = 500,
-    name = 'InternalError',
+    status = 404,
+    name = 'NotFoundError',
     message,
-    type = 'internal',
+    type = 'not_found',
     errors = [],
   }) {
     super({ message });
