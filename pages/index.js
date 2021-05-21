@@ -1,45 +1,62 @@
 import Head from 'next/head';
+import { Header } from '../components/Header';
+
+import styles from '../styles/home.module.scss';
 
 export default function Index() {
   return (
     <>
       <Head>
         <title>Brasil API</title>
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/apple-touch-icon.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon-32x32.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/favicon-16x16.png"
-        />
       </Head>
+      <Header />
 
-      <main>
-        <div>
-          <a
-            className="logo"
-            href="https://github.com/BrasilAPI/BrasilAPI"
-            alt="Acessar repositório do BrasilAPI no Github"
-          >
-            <img
-              src="/brasilapi-logo-medium.png"
-              className="logoImg"
-              alt="BrasilAPI Logo"
+      <main className={styles.mainContainer}>
+        <section className={styles.sectionHeader}>
+          <div className={styles.content}>
+            <h2>Transformando o Brasil em uma API</h2>
+            <p>
+              Este projeto experimental tem como objetivo centralizar e
+              disponibilizar endpoints modernos com baixíssima latência
+              independente de sua fonte.
+            </p>
+            <a href="https://brasilapi.com.br/docs">
+              <button type="button">Começar agora</button>
+            </a>
+          </div>
+          <img
+            src="/images/api-schema.svg"
+            className={styles.schemaDesk}
+            alt="API Schema"
+          />
+        </section>
+        <section className={styles.requests}>
+          <div>
+            <h2>Estatísticas</h2>
+            <p>
+              Aqui você pode ver os dados de utilização de cada API que
+              fornecemos!
+            </p>
+
+            <iframe
+              src="https://p.datadoghq.com/sb/bciualk0rip6udi8-678e5cdeadeb1ef8027a539d0e2e2adc?from_ts=1620781855460&live=true&theme=dark&to_ts=1620785455460"
+              height="550"
+              width="100%"
+              title="Datadog"
             />
-          </a>
-        </div>
+          </div>
+        </section>
 
-        <div>
+        <section className={styles.motivation}>
+          <h2>Motivo</h2>
+          <p>
+            Acesso programático de informações é algo fundamental na comunicação
+            entre sistemas mas, para nossa surpresa, uma informação tão útil e
+            pública quanto um CEP não consegue ser acessada diretamente por um
+            navegador por conta da API dos Correios não possuir CORS habilitado,
+            então o objetivo desse projeto é facilitar a consulta de todos esses
+            dados.
+          </p>
           <a
             href="https://vercel.com/?utm_source=brasilapi"
             target="_blank"
@@ -51,47 +68,7 @@ export default function Index() {
               alt="Powered by Vercel"
             />
           </a>
-        </div>
-
-        <style jsx global>
-          {`
-            * {
-              box-sizing: border-box;
-              margin: 0;
-              outline: 0;
-              padding: 0;
-            }
-
-            html,
-            body {
-              height: 100%;
-            }
-
-            body {
-              color: #fff;
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              text-align: center;
-            }
-
-            main > a {
-              color: #fff;
-              font-size: 2em;
-              text-decoration: none;
-            }
-
-            .logoImg {
-              padding: 2em;
-            }
-
-            @media (max-width: 980px) {
-              .logoImg {
-                width: 100%;
-              }
-            }
-          `}
-        </style>
+        </section>
       </main>
     </>
   );
