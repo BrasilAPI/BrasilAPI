@@ -206,6 +206,67 @@
         }
       }
     },
+    "/cep/v2/{cep}": {
+      "get": {
+        "tags": [
+          "CEP v2"
+        ],
+        "summary": "Busca por CEP com múltiplos providers de fallback v2.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "cep",
+            "description": "O CEP (Código de Endereçamento Postal) é um sistema de códigos que visa racionalizar o processo de encaminhamento e entrega de correspondências através da divisão do país em regiões postais. ... Atualmente, o CEP é composto por oito dígitos, cinco de um lado e três de outro. Cada algarismo do CEP possui um significado.\n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "cep": "89010025",
+                  "state": "SC",
+                  "city": "Blumenau",
+                  "neighborhood": "Centro",
+                  "street": "Rua Doutor Luiz de Freitas Melro"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Todos os serviços de CEP retornaram erro.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "name": "CepPromiseError",
+                  "message": "Todos os serviços de CEP retornaram erro.",
+                  "type": "service_error",
+                  "errors": [
+                    {
+                      "name": "ServiceError",
+                      "message": "CEP INVÁLIDO",
+                      "service": "correios"
+                    },
+                    {
+                      "name": "ServiceError",
+                      "message": "CEP não encontrado na base do ViaCEP.",
+                      "service": "viacep"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/ddd/v1/{ddd}": {
       "get": {
         "tags": [
