@@ -1,23 +1,22 @@
 import app from '@/app';
 import { getBanksData } from '@/services/banco-central';
 
+const checkSubstrings = (input, search) => {
+  return String(input).toLowerCase().includes(search.toLowerCase());
+};
+
 const action = async (request, response) => {
   const allBanksData = await getBanksData();
 
   if (request.query.search) {
     const { search } = request.query;
-    const formatedSearch = search.toLowerCase();
 
     const filteredBanks = allBanksData.filter((bank) => {
       const { code, name } = bank;
 
-      // Checagem se search é parte do código do banco (number)
-      const checkCode = String(code).toLowerCase().indexOf(formatedSearch) > -1;
-
-      // Checagem se search é parte do nome do banco (string)
-      const checkName = String(name.toLowerCase()).indexOf(formatedSearch) > -1;
-
-      return checkCode || checkName;
+      return (
+        (checkSubstrings(code, search) || checkSubstrings(name, search)) && bank
+      );
     });
 
     response.status(200);

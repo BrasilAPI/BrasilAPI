@@ -61,6 +61,12 @@ describe('banks v1 (E2E)', () => {
           code: null,
           fullName: 'Câmara Interbancária de Pagamentos',
         },
+        {
+          ispb: '15111975',
+          name: 'IUGU SERVICOS NA INTERNET S/A',
+          code: 401,
+          fullName: 'IUGU SERVICOS NA INTERNET S/A',
+        },
       ];
 
       expect(response.status).toBe(200);
