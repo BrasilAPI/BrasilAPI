@@ -34,9 +34,9 @@ describe('api/anvisa/v1 (E2E)', () => {
       const { response } = error;
       const { data, status } = response;
 
-      expect(status).toEqual(400);
+      expect(status).toEqual(404);
       expect(data).toEqual({
-        message: 'Protocolo do ANVISA 0000000000 não encontrado.',
+        message: 'Protocolo do ANVISA 123 não encontrado.',
       });
     }
   });
