@@ -48,7 +48,7 @@ O BrasilAPI é uma iniciativa feita de brasileiros para brasileiros, por favor, 
 <!-- readme: contributors -start -->
 <!-- readme: contributors -end -->
 
-### Autores
+## Autores
 
 <!-- readme: collaborators -start -->
 <!-- readme: collaborators -end -->
