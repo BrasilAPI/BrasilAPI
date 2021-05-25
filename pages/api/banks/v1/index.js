@@ -1,31 +1,28 @@
 import app from '@/app';
 import { getBanksData } from '@/services/banco-central';
 
-const checkSubstrings = (input, search) => {
+const containStringCaseInsensitive = (input, search) => {
   return String(input).toLowerCase().includes(search.toLowerCase());
 };
 
 const action = async (request, response) => {
-  const allBanksData = await getBanksData();
+  let banksData = await getBanksData();
 
   if (request.query.search) {
     const { search } = request.query;
 
-    const filteredBanks = allBanksData.filter((bank) => {
+    banksData = banksData.filter((bank) => {
       const { code, name } = bank;
 
       return (
-        (checkSubstrings(code, search) || checkSubstrings(name, search)) && bank
+        containStringCaseInsensitive(code, search) ||
+        containStringCaseInsensitive(name, search)
       );
     });
-
-    response.status(200);
-    response.json(filteredBanks);
-    return response;
   }
 
   response.status(200);
-  response.json(allBanksData);
+  response.json(banksData);
   return response;
 };
 
