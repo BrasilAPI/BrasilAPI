@@ -4,6 +4,7 @@ import cors from 'cors';
 import onError from './middlewares/errorHandler';
 import cache from './middlewares/cache';
 import logger from './middlewares/logger';
+import { cacheExpires } from './middlewares/constants';
 
 const corsDefaultConfiguration = {
   origin: '*',
@@ -11,8 +12,6 @@ const corsDefaultConfiguration = {
   preflightContinue: false,
   optionsSuccessStatus: 204,
 };
-
-const cacheDefaultConfiguration = 86400;
 
 const onNoMatch = (request, response) => {
   return response.status(404).json({
@@ -24,7 +23,7 @@ const onNoMatch = (request, response) => {
 
 export default (options = {}) => {
   const corsOptions = options.cors || {};
-  const cacheOptions = options.cache || cacheDefaultConfiguration;
+  const cacheOptions = options.cache || cacheExpires;
 
   const configurations = {
     cors: {

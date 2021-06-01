@@ -1,3 +1,5 @@
+import cache from '@/graphql/decorators/cache';
+import { cacheExpires } from '@/middlewares/constants';
 import { gql, makeExecutableSchema } from 'apollo-server-micro';
 import { merge } from 'lodash';
 
@@ -13,11 +15,16 @@ const RootTypeDefs = gql`
   }
 `;
 
-const resolvers = {
-  Query: {},
-};
+const resolvers = merge({ Query: {} }, CEPResolvers, StatusResolvers);
+const decorateCache = cache.of(cacheExpires);
+
+Object.entries(resolvers.Query).forEach(([query, handler]) => {
+  if (!StatusResolvers.Query[query]) {
+    resolvers.Query[query] = decorateCache(handler);
+  }
+});
 
 export const schema = makeExecutableSchema({
   typeDefs: [RootTypeDefs, CEPTypedefs, StatusTypedefs],
-  resolvers: merge(resolvers, CEPResolvers, StatusResolvers),
+  resolvers,
 });
