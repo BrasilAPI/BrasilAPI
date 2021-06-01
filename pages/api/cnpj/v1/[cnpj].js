@@ -1,38 +1,20 @@
 import app from '@/app';
+import BadRequestError from '@/errors/bad-request';
+import NotFoundError from '@/errors/not-found';
 import { getCnpjData } from '@/services/cnpj';
-
-// Takes BrasilAPI's request and response objects, together with Minha
-// Receita's response to build the final user HTTP response — including a
-// different treatment of the 204 use case (valid  but not existing CNPJ).
-//
-// This logic was extracted so we can use the same function in the `try` and
-// `catch` branches of the main handler.
-function responseProxy(request, response, result) {
-  // the CNPJ is valid but does not exist
-
-  if (result.status === 204) {
-    response.status(404);
-    return response.json({
-      message: `CNPJ ${request.query.cnpj} não encontrado.`,
-    });
-  }
-
-  response.status(result.status);
-  return response.json(result.data);
-}
 
 async function cnpjData(request, response) {
   try {
     const result = await getCnpjData(request.query.cnpj);
-
-    return responseProxy(request, response, result);
+    return response.status(result.status).json(result.data);
   } catch (error) {
-    if (error.response.status >= 400 && error.response.status < 500) {
-      return responseProxy(request, response, error.response);
+    if (error.response.status === 400) {
+      throw new BadRequestError({ message: error.response.data.message });
     }
-
-    response.status(error.response.status);
-    return response.json(error);
+    if (error.response.status === 404) {
+      throw new NotFoundError({ message: error.response.data.message });
+    }
+    throw error;
   }
 }
 
