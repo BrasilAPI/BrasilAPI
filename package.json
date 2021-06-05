@@ -5,6 +5,7 @@
   "dependencies": {
     "apollo-server-micro": "2.21.2",
     "axios": "0.21.1",
+    "camaro": "^6.0.4",
     "cep-promise": "4.0.4",
     "core-js": "3.6.5",
     "cors": "2.8.5",
