@@ -33,11 +33,81 @@ describe('banks v1 (E2E)', () => {
     });
   });
 
-  test('GET /banks/v1', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/banks/v1`;
-    const response = await axios.get(requestUrl);
+  describe('GET /banks/v1/:code', () => {
+    test('Listar todos os bancos', async () => {
+      const requestUrl = `${global.SERVER_URL}/api/banks/v1`;
+      const response = await axios.get(requestUrl);
 
-    expect(response.status).toBe(200);
-    expect(Array.isArray(response.data)).toBe(true);
+      expect(response.status).toBe(200);
+      expect(Array.isArray(response.data)).toBe(true);
+    });
+
+    test('Listar bancos por parte de nome', async () => {
+      const search = 'inter';
+
+      const requestUrl = `${global.SERVER_URL}/api/banks/v1?search=${search}`;
+      const response = await axios.get(requestUrl);
+
+      const expectedResponse = [
+        {
+          ispb: '00416968',
+          name: 'BANCO INTER',
+          code: 77,
+          fullName: 'Banco Inter S.A.',
+        },
+        {
+          ispb: '04391007',
+          name: 'CAMARA INTERBANCARIA DE PAGAMENTOS - CIP',
+          code: null,
+          fullName: 'Câmara Interbancária de Pagamentos',
+        },
+        {
+          ispb: '15111975',
+          name: 'IUGU SERVICOS NA INTERNET S/A',
+          code: 401,
+          fullName: 'IUGU SERVICOS NA INTERNET S/A',
+        },
+      ];
+
+      expect(response.status).toBe(200);
+      expect(response.data).toStrictEqual(expectedResponse);
+    });
+
+    test('Listar bancos por parte do código', async () => {
+      const search = 77;
+
+      const requestUrl = `${global.SERVER_URL}/api/banks/v1?search=${search}`;
+      const response = await axios.get(requestUrl);
+
+      const expectedResponse = [
+        {
+          ispb: '00416968',
+          name: 'BANCO INTER',
+          code: 77,
+          fullName: 'Banco Inter S.A.',
+        },
+        {
+          ispb: '17826860',
+          name: 'BMS SCD S.A.',
+          code: 377,
+          fullName: 'BMS SOCIEDADE DE CRÉDITO DIRETO S.A.',
+        },
+        {
+          ispb: '33042953',
+          name: 'CITIBANK N.A.',
+          code: 477,
+          fullName: 'Citibank N.A.',
+        },
+        {
+          ispb: '65913436',
+          name: 'GUIDE',
+          code: 177,
+          fullName: 'Guide Investimentos S.A. Corretora de Valores',
+        },
+      ];
+
+      expect(response.status).toBe(200);
+      expect(response.data).toStrictEqual(expectedResponse);
+    });
   });
 });

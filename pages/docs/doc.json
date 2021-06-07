@@ -147,9 +147,7 @@
     },
     "/cep/v1/{cep}": {
       "get": {
-        "tags": [
-          "CEP"
-        ],
+        "tags": ["CEP"],
         "summary": "Busca por CEP com múltiplos providers de fallback.",
         "description": "",
         "parameters": [
@@ -269,9 +267,7 @@
     },
     "/ddd/v1/{ddd}": {
       "get": {
-        "tags": [
-          "DDD"
-        ],
+        "tags": ["DDD"],
         "summary": "Retorna estado e lista de cidades por DDD",
         "description": "",
         "parameters": [
@@ -291,8 +287,7 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "example":
-                {
+                "example": {
                   "state": "SP",
                   "cities": [
                     "EMBU",
@@ -368,8 +363,7 @@
             "description": "DDD não encontrado",
             "content": {
               "application/json": {
-                "example":
-                {
+                "example": {
                   "name": "ddd_error",
                   "message": "DDD não encontrado",
                   "type": "DDD_NOT_FOUND"
@@ -381,8 +375,7 @@
             "description": "Todos os serviços de DDD retornaram erro.",
             "content": {
               "application/json": {
-                "example":
-                {
+                "example": {
                   "name": "ddd_error",
                   "message": "Todos os serviços de DDD retornaram erro.",
                   "type": "service_error"
@@ -393,12 +386,10 @@
         }
       }
     },
-    "/banks/v1": {
+    "/banks/v1?search={search}": {
       "get": {
-        "tags": [
-          "BANKS"
-        ],
-        "summary": "Retorna informações de todos os bancos do Brasil",
+        "tags": ["BANKS"],
+        "summary": "Retorna informações de todos os bancos do Brasil. Aceita, opcionalmente, o query params 'search' que pode ser parte do nome ou código do banco.",
         "description": "",
         "responses": {
           "200": {
@@ -427,9 +418,7 @@
     },
     "/banks/v1/{code}": {
       "get": {
-        "tags": [
-          "BANKS"
-        ],
+        "tags": ["BANKS"],
         "summary": "Busca as informações de um banco a partir de um código",
         "description": "",
         "responses": {
@@ -462,9 +451,7 @@
     },
     "/feriados/v1/{ano}": {
       "get": {
-        "tags": [
-          "Feriados nacionais"
-        ],
+        "tags": ["Feriados nacionais"],
         "summary": "Lista os feriados nacionais de determinado ano.",
         "description": "Calcula os feriados móveis baseados na Páscoa e adiciona os feriados fixos",
         "parameters": [
@@ -576,9 +563,7 @@
     },
     "/ibge/uf/v1": {
       "get": {
-        "tags": [
-          "IBGE"
-        ],
+        "tags": ["IBGE"],
         "summary": "Retorna informações de todos estados do Brasil",
         "description": "",
         "responses": {
@@ -616,9 +601,7 @@
     },
     "/ibge/uf/v1/{code}": {
       "get": {
-        "tags": [
-          "IBGE"
-        ],
+        "tags": ["IBGE"],
         "summary": "Busca as informações de um um estado a partir da sigla ou código",
         "description": "",
         "responses": {
