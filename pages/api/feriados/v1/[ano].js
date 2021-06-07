@@ -1,6 +1,6 @@
 import app from '@/app';
-import BaseError from '@/errors/base';
-import InternalError from '@/errors/internal';
+import BaseError from '@/errors/BaseError';
+import InternalError from '@/errors/InternalError';
 import getHolidays from '@/services/holidays';
 
 const action = (request, response) => {
