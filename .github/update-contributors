@@ -1,0 +1,31 @@
+#!/bin/bash
+
+FILE=$1
+
+if [ ! -f "$FILE" ];
+then
+  echo 'Please provide a valid readme file'
+  exit 1
+fi
+
+START_POSITION=$(grep -n '<!-- contributors-start -->' $FILE | awk -F ':' '{ print $1 }')
+START_OCCURENCES=$(echo "$START_POSITION" | wc -l)
+END_POSITION=$(grep -n '<!-- contributors-end -->' $FILE | awk -F ':' '{ print $1 }')
+END_OCCURENCES=$(echo "$END_POSITION" | wc -l)
+
+if [ $START_OCCURENCES -ne 1 ] || [ $END_OCCURENCES -ne 1 ] || [ $START_POSITION -ge $END_POSITION ];
+then
+  echo 'Bad contributors placeholders'
+  exit 1
+fi;
+
+SELF_DIR="$(realpath `dirname $0`)/"
+CONTRIB_MARKDOWN="$($SELF_DIR/../node_modules/.bin/githubcontrib --owner BrasilAPI --repo BrasilAPI --sortBy contributions --sortOrder desc --filter filipedeschamps,lucianopf,dependabot[bot] --layoutStrategy $SELF_DIR/contributors-list/layout-strategy-custom.js)"
+
+NEW_README=$(head -n $START_POSITION $FILE)
+NEW_README="$NEW_README\n$CONTRIB_MARKDOWN"
+NEW_README="$NEW_README\n$(tail -n +$END_POSITION $FILE)"
+
+echo -e "$NEW_README" > $FILE
+
+echo "$FILE updated"
