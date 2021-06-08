@@ -20,7 +20,7 @@ describe('api/cnpj/v1 (E2E)', () => {
 
       expect(status).toEqual(404);
       expect(data).toEqual({
-        message: 'CNPJ 00000000000000 não encontrado.',
+        message: 'CNPJ 00.000.000/0000-00 não encontrado.',
       });
     }
   });
