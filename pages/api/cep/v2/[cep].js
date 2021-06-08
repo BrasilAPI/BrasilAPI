@@ -1,7 +1,7 @@
 import microCors from 'micro-cors';
 import cepPromise from 'cep-promise';
 
-import fetchGeocoordinateFromBrazilLocation from '../../../../lib/fetchGeocoords';
+import fetchGeocoordinateFromBrazilLocation from '../../../../lib/fetchGeocoordinateFromBrazilLocation';
 
 const providers = ['correios', 'viacep', 'widenet'];
 
