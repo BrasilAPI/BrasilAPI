@@ -1,5 +1,5 @@
 import app from '@/app';
-import BadRequestError from '@/errors/bad-request';
+import BadRequestError from '@/errors/BadRequestError';
 
 import {
   listTruckAutomakers,
