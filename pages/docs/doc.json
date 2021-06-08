@@ -1,0 +1,1622 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Brasil API",
+    "description": "Acesso programático de informações é algo fundamental na comunicação entre sistemas mas, para nossa surpresa, uma informação tão útil e pública quanto um CEP não consegue ser acessada diretamente por um navegador por conta da API dos Correios não possuir CORS habilitado.\nDado a isso, este projeto experimental tem como objetivo centralizar e disponibilizar endpoints modernos com baixíssima latência utilizando tecnologias como Vercel Smart CDN responsável por fazer o cache das informações em atualmente 23 regiões distribuídas ao longo do mundo (incluindo Brasil). Então não importa o quão devagar for a fonte dos dados, nós queremos disponibilizá-la da forma mais rápida e moderna possível.\n\nRecursos disponíveis\n  - CEP\n  - DDD\n",
+    "termsOfService": "https://brasilapi.com.br/",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://brasilapi.com.br"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://github.com/BrasilAPI/BrasilAPI/blob/master/LICENSE"
+    }
+  },
+  "tags": [
+    {
+      "name": "Brasil API",
+      "description": "Transformando o Brasil em uma API",
+      "externalDocs": {
+        "description": "Saiba mais",
+        "url": "https://brasilapi.com.br/"
+      }
+    }
+  ],
+  "servers": [
+    {
+      "url": "https://brasilapi.com.br/api"
+    }
+  ],
+  "paths": {
+    "/cnpj/v1/{cnpj}": {
+      "get": {
+        "tags": ["CNPJ"],
+        "summary": "Busca por CNPJ na API Minha Receita.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "cnpj",
+            "description": "O Cadastro Nacional da Pessoa Jurídica é um número único que identifica uma pessoa jurídica e outros tipos de arranjo jurídico sem personalidade jurídica junto à Receita Federal.\n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "cnpj": "19131243000197",
+                  "identificador_matriz_filial": 1,
+                  "descricao_matriz_filial": "Matriz",
+                  "razao_social": "OPEN KNOWLEDGE BRASIL",
+                  "nome_fantasia": "REDE PELO CONHECIMENTO LIVRE",
+                  "situacao_cadastral": 2,
+                  "descricao_situacao_cadastral": "Ativa",
+                  "data_situacao_cadastral": "2013-10-03",
+                  "motivo_situacao_cadastral": 0,
+                  "nome_cidade_exterior": null,
+                  "codigo_natureza_juridica": 3999,
+                  "data_inicio_atividade": "2013-10-03",
+                  "cnae_fiscal": 9430800,
+                  "cnae_fiscal_descricao": "Atividades de associações de defesa de direitos sociais",
+                  "descricao_tipo_logradouro": "ALAMEDA",
+                  "logradouro": "FRANCA",
+                  "numero": "144",
+                  "complemento": "APT   34",
+                  "bairro": "JARDIM PAULISTA",
+                  "cep": 1422000,
+                  "uf": "SP",
+                  "codigo_municipio": 7107,
+                  "municipio": "SAO PAULO",
+                  "ddd_telefone_1": "11  23851939",
+                  "ddd_telefone_2": null,
+                  "ddd_fax": null,
+                  "qualificacao_do_responsavel": 10,
+                  "capital_social": 0.0,
+                  "porte": 5,
+                  "descricao_porte": "Demais",
+                  "opcao_pelo_simples": false,
+                  "data_opcao_pelo_simples": null,
+                  "data_exclusao_do_simples": null,
+                  "opcao_pelo_mei": false,
+                  "situacao_especial": null,
+                  "data_situacao_especial": null,
+                  "cnaes_secundarios": [
+                    {
+                      "codigo": 9493600,
+                      "descricao": "Atividades de organizações associativas ligadas à cultura e à arte"
+                    },
+                    {
+                      "codigo": 9499500,
+                      "descricao": "Atividades associativas não especificadas anteriormente"
+                    },
+                    {
+                      "codigo": 8599699,
+                      "descricao": "Outras atividades de ensino não especificadas anteriormente"
+                    },
+                    {
+                      "codigo": 8230001,
+                      "descricao": "Serviços de organização de feiras, congressos, exposições e festas"
+                    },
+                    {
+                      "codigo": 6204000,
+                      "descricao": "Consultoria em tecnologia da informação"
+                    }
+                  ],
+                  "qsa": [
+                    {
+                      "identificador_de_socio": 2,
+                      "nome_socio": "NATALIA PASSOS MAZOTTE CORTEZ",
+                      "cnpj_cpf_do_socio": "***059967**",
+                      "codigo_qualificacao_socio": 10,
+                      "percentual_capital_social": 0,
+                      "data_entrada_sociedade": "2019-02-14",
+                      "cpf_representante_legal": null,
+                      "nome_representante_legal": null,
+                      "codigo_qualificacao_representante_legal": null
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "CNPJ não encontrado na API Minha Receita.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "name": "CnpjPromiseError",
+                  "message": "Erro retornado pela API Minha Receita.",
+                  "type": "service_error",
+                  "errors": [
+                    { "message": "CNPJ 00.000.000/0001-91 não encontrado." }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cep/v1/{cep}": {
+      "get": {
+        "tags": ["CEP"],
+        "summary": "Busca por CEP com múltiplos providers de fallback.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "cep",
+            "description": "O CEP (Código de Endereçamento Postal) é um sistema de códigos que visa racionalizar o processo de encaminhamento e entrega de correspondências através da divisão do país em regiões postais. ... Atualmente, o CEP é composto por oito dígitos, cinco de um lado e três de outro. Cada algarismo do CEP possui um significado.\n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "cep": "89010025",
+                  "state": "SC",
+                  "city": "Blumenau",
+                  "neighborhood": "Centro",
+                  "street": "Rua Doutor Luiz de Freitas Melro"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Todos os serviços de CEP retornaram erro.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "name": "CepPromiseError",
+                  "message": "Todos os serviços de CEP retornaram erro.",
+                  "type": "service_error",
+                  "errors": [
+                    {
+                      "name": "ServiceError",
+                      "message": "CEP INVÁLIDO",
+                      "service": "correios"
+                    },
+                    {
+                      "name": "ServiceError",
+                      "message": "CEP não encontrado na base do ViaCEP.",
+                      "service": "viacep"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cep/v2/{cep}": {
+      "get": {
+        "tags": ["CEP v2"],
+        "summary": "Busca por CEP com múltiplos providers de fallback v2.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "cep",
+            "description": "O CEP (Código de Endereçamento Postal) é um sistema de códigos que visa racionalizar o processo de encaminhamento e entrega de correspondências através da divisão do país em regiões postais. ... Atualmente, o CEP é composto por oito dígitos, cinco de um lado e três de outro. Cada algarismo do CEP possui um significado.\n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "cep": "89010025",
+                  "state": "SC",
+                  "city": "Blumenau",
+                  "neighborhood": "Centro",
+                  "street": "Rua Doutor Luiz de Freitas Melro"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Todos os serviços de CEP retornaram erro.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "name": "CepPromiseError",
+                  "message": "Todos os serviços de CEP retornaram erro.",
+                  "type": "service_error",
+                  "errors": [
+                    {
+                      "name": "ServiceError",
+                      "message": "CEP INVÁLIDO",
+                      "service": "correios"
+                    },
+                    {
+                      "name": "ServiceError",
+                      "message": "CEP não encontrado na base do ViaCEP.",
+                      "service": "viacep"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ddd/v1/{ddd}": {
+      "get": {
+        "tags": ["DDD"],
+        "summary": "Retorna estado e lista de cidades por DDD",
+        "description": "",
+        "parameters": [
+          {
+            "name": "ddd",
+            "description": "DDD significa Discagem Direta à Distância. É um sistema de ligação telefônica automática entre diferentes áreas urbanas nacionais. O DDD é um código constituído por 2 dígitos que identificam as principais cidades do país e devem ser adicionados ao nº de telefone, juntamente com o código da operadora.\n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "state": "SP",
+                  "cities": [
+                    "EMBU",
+                    "VÁRZEA PAULISTA",
+                    "VARGEM GRANDE PAULISTA",
+                    "VARGEM",
+                    "TUIUTI",
+                    "TABOÃO DA SERRA",
+                    "SUZANO",
+                    "SÃO ROQUE",
+                    "SÃO PAULO",
+                    "SÃO LOURENÇO DA SERRA",
+                    "SÃO CAETANO DO SUL",
+                    "SÃO BERNARDO DO CAMPO",
+                    "SANTO ANDRÉ",
+                    "SANTANA DE PARNAÍBA",
+                    "SANTA ISABEL",
+                    "SALTO",
+                    "SALESÓPOLIS",
+                    "RIO GRANDE DA SERRA",
+                    "RIBEIRÃO PIRES",
+                    "POÁ",
+                    "PIRAPORA DO BOM JESUS",
+                    "PIRACAIA",
+                    "PINHALZINHO",
+                    "PEDRA BELA",
+                    "OSASCO",
+                    "NAZARÉ PAULISTA",
+                    "MORUNGABA",
+                    "MOGI DAS CRUZES",
+                    "MAUÁ",
+                    "MAIRIPORÃ",
+                    "MAIRINQUE",
+                    "JUQUITIBA",
+                    "JUNDIAÍ",
+                    "JOANÓPOLIS",
+                    "JARINU",
+                    "JANDIRA",
+                    "ITUPEVA",
+                    "ITU",
+                    "ITATIBA",
+                    "ITAQUAQUECETUBA",
+                    "ITAPEVI",
+                    "ITAPECERICA DA SERRA",
+                    "IGARATÁ",
+                    "GUARULHOS",
+                    "GUARAREMA",
+                    "FRANCO DA ROCHA",
+                    "FRANCISCO MORATO",
+                    "FERRAZ DE VASCONCELOS",
+                    "EMBU-GUAÇU",
+                    "DIADEMA",
+                    "COTIA",
+                    "CARAPICUÍBA",
+                    "CAMPO LIMPO PAULISTA",
+                    "CAJAMAR",
+                    "CAIEIRAS",
+                    "CABREÚVA",
+                    "BRAGANÇA PAULISTA",
+                    "BOM JESUS DOS PERDÕES",
+                    "BIRITIBA-MIRIM",
+                    "BARUERI",
+                    "ATIBAIA",
+                    "ARUJÁ",
+                    "ARAÇARIGUAMA",
+                    "ALUMÍNIO"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "DDD não encontrado",
+            "content": {
+              "application/json": {
+                "example": {
+                  "name": "ddd_error",
+                  "message": "DDD não encontrado",
+                  "type": "DDD_NOT_FOUND"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Todos os serviços de DDD retornaram erro.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "name": "ddd_error",
+                  "message": "Todos os serviços de DDD retornaram erro.",
+                  "type": "service_error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/banks/v1": {
+      "get": {
+        "tags": ["BANKS"],
+        "summary": "Retorna informações de todos os bancos do Brasil",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "ispb": "00000000",
+                    "name": "BCO DO BRASIL S.A.",
+                    "code": 1,
+                    "fullName": "Banco do Brasil S.A."
+                  },
+                  {
+                    "ispb": "00000208",
+                    "name": "BRB - BCO DE BRASILIA S.A.",
+                    "code": 70,
+                    "fullName": "BRB - BANCO DE BRASILIA S.A."
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/banks/v1/{code}": {
+      "get": {
+        "tags": ["BANKS"],
+        "summary": "Busca as informações de um banco a partir de um código",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "ispb": "00000000",
+                  "name": "BCO DO BRASIL S.A.",
+                  "code": 1,
+                  "fullName": "Banco do Brasil S.A."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "O código do banco não foi encontrado",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Código bancário não encontrado",
+                  "type": "BANK_CODE_NOT_FOUND"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/feriados/v1/{ano}": {
+      "get": {
+        "tags": ["Feriados nacionais"],
+        "summary": "Lista os feriados nacionais de determinado ano.",
+        "description": "Calcula os feriados móveis baseados na Páscoa e adiciona os feriados fixos",
+        "parameters": [
+          {
+            "name": "ano",
+            "description": "Ano para calcular os feriados.\n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "date": "2021-01-01",
+                    "name": "Confraternização mundial",
+                    "type": "national"
+                  },
+                  {
+                    "date": "2021-02-16",
+                    "name": "Carnaval",
+                    "type": "national"
+                  },
+                  {
+                    "date": "2021-04-02",
+                    "name": "Paixão de Cristo",
+                    "type": "national"
+                  },
+                  {
+                    "date": "2021-04-04",
+                    "name": "Páscoa",
+                    "type": "national"
+                  },
+                  {
+                    "date": "2021-04-21",
+                    "name": "Tiradentes",
+                    "type": "national"
+                  },
+                  {
+                    "date": "2021-05-01",
+                    "name": "Dia do trabalho",
+                    "type": "national"
+                  },
+                  {
+                    "date": "2021-06-03",
+                    "name": "Corpus Christi",
+                    "type": "national"
+                  },
+                  {
+                    "date": "2021-09-07",
+                    "name": "Independência do Brasil",
+                    "type": "national"
+                  },
+                  {
+                    "date": "2021-10-12",
+                    "name": "Nossa Senhora Aparecida",
+                    "type": "national"
+                  },
+                  {
+                    "date": "2021-11-02",
+                    "name": "Finados",
+                    "type": "national"
+                  },
+                  {
+                    "date": "2021-11-15",
+                    "name": "Proclamação da República",
+                    "type": "national"
+                  },
+                  {
+                    "date": "2021-12-25",
+                    "name": "Natal",
+                    "type": "national"
+                  }
+                ]
+              }
+            }
+          },
+          "404": {
+            "description": "Ano fora do intervalo suportado.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "type": "feriados_range_error",
+                  "message": "Ano fora do intervalo suportado entre 1900 e 2199."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro inesperado.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "type": "feriados_error",
+                  "message": "Erro ao calcular feriados."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/fipe/marcas/v1/{tipoVeiculo}": {
+      "get": {
+        "tags": ["FIPE"],
+        "summary": "Lista as marca de veículos referente ao tipo de veículo",
+        "description": "",
+        "parameters": [
+          {
+            "name": "tipoVeiculo",
+            "description": "Os tipos suportados são `caminhoes`, `carros` e `motos`. Quando o tipo não é específicado são buscada as marcas de todos os tipos de veículos\n",
+            "in": "path",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          },
+          {
+            "name": "tabela_referencia",
+            "description": "Código da tabela fipe de referência. Por padrão é utilizado o código da tabela fipe atual.\n",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "nome": "AGRALE",
+                    "valor": "102"
+                  },
+                  {
+                    "nome": "CHEVROLET",
+                    "valor": "103"
+                  },
+                  {
+                    "nome": "FIAT",
+                    "valor": "104"
+                  },
+                  {
+                    "nome": "FORD",
+                    "valor": "105"
+                  },
+                  {
+                    "nome": "GMC",
+                    "valor": "106"
+                  },
+                  {
+                    "nome": "MARCOPOLO",
+                    "valor": "108"
+                  },
+                  {
+                    "nome": "MERCEDES-BENZ",
+                    "valor": "109"
+                  },
+                  {
+                    "nome": "NAVISTAR",
+                    "valor": "110"
+                  },
+                  {
+                    "nome": "NEOBUS",
+                    "valor": "111"
+                  },
+                  {
+                    "nome": "PUMA-ALFA",
+                    "valor": "112"
+                  }
+                ]
+              }
+            }
+          },
+          "400": {
+            "description": "Tabela de referência inválida",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Tabela de referência inválida",
+                  "type": "bad_request",
+                  "name": "BadRequestError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/fipe/preco/v1/{codigoFipe}": {
+      "get": {
+        "tags": ["FIPE"],
+        "summary": "Consulta o preço do veículo segundo a tabela fipe.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "codigoFipe",
+            "description": "Código fipe do veículo.\n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          },
+          {
+            "name": "tabela_referencia",
+            "description": "Código da tabela fipe de referência. Por padrão é utilizado o código da tabela fipe atual.\n",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "valor": "R$ 8.024,00",
+                    "marca": "Fiat",
+                    "modelo": "Palio EX 1.0 mpi 2p",
+                    "anoModelo": 2000,
+                    "combustivel": "Gasolina",
+                    "codigoFipe": "001004-9",
+                    "mesReferencia": "junho de 2021 ",
+                    "tipoVeiculo": 1,
+                    "siglaCombustivel": "G",
+                    "dataConsulta": "segunda-feira, 7 de junho de 2021 23:05"
+                  },
+                  {
+                    "valor": "R$ 7.638,00",
+                    "marca": "Fiat",
+                    "modelo": "Palio EX 1.0 mpi 2p",
+                    "anoModelo": 2000,
+                    "combustivel": "Álcool",
+                    "codigoFipe": "001004-9",
+                    "mesReferencia": "junho de 2021 ",
+                    "tipoVeiculo": 1,
+                    "siglaCombustivel": "Á",
+                    "dataConsulta": "segunda-feira, 7 de junho de 2021 23:05"
+                  },
+                  {
+                    "valor": "R$ 7.775,00",
+                    "marca": "Fiat",
+                    "modelo": "Palio EX 1.0 mpi 2p",
+                    "anoModelo": 1999,
+                    "combustivel": "Gasolina",
+                    "codigoFipe": "001004-9",
+                    "mesReferencia": "junho de 2021 ",
+                    "tipoVeiculo": 1,
+                    "siglaCombustivel": "G",
+                    "dataConsulta": "segunda-feira, 7 de junho de 2021 23:05"
+                  },
+                  {
+                    "valor": "R$ 6.459,00",
+                    "marca": "Fiat",
+                    "modelo": "Palio EX 1.0 mpi 2p",
+                    "anoModelo": 1999,
+                    "combustivel": "Álcool",
+                    "codigoFipe": "001004-9",
+                    "mesReferencia": "junho de 2021 ",
+                    "tipoVeiculo": 1,
+                    "siglaCombustivel": "Á",
+                    "dataConsulta": "segunda-feira, 7 de junho de 2021 23:05"
+                  },
+                  {
+                    "valor": "R$ 6.854,00",
+                    "marca": "Fiat",
+                    "modelo": "Palio EX 1.0 mpi 2p",
+                    "anoModelo": 1998,
+                    "combustivel": "Gasolina",
+                    "codigoFipe": "001004-9",
+                    "mesReferencia": "junho de 2021 ",
+                    "tipoVeiculo": 1,
+                    "siglaCombustivel": "G",
+                    "dataConsulta": "segunda-feira, 7 de junho de 2021 23:05"
+                  },
+                  {
+                    "valor": "R$ 6.022,00",
+                    "marca": "Fiat",
+                    "modelo": "Palio EX 1.0 mpi 2p",
+                    "anoModelo": 1998,
+                    "combustivel": "Álcool",
+                    "codigoFipe": "001004-9",
+                    "mesReferencia": "junho de 2021 ",
+                    "tipoVeiculo": 1,
+                    "siglaCombustivel": "Á",
+                    "dataConsulta": "segunda-feira, 7 de junho de 2021 23:05"
+                  }
+                ]
+              }
+            }
+          },
+          "400": {
+            "description": "Código fipe inválido",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Código fipe inválido",
+                  "type": "bad_request",
+                  "name": "BadRequestError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/fipe/tabelas/v1": {
+      "get": {
+        "tags": ["FIPE"],
+        "summary": "Lista as tabelas de referência existentes.",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "codigo": 271,
+                    "mes": "junho/2021 "
+                  },
+                  {
+                    "codigo": 270,
+                    "mes": "maio/2021 "
+                  },
+                  {
+                    "codigo": 267,
+                    "mes": "abril/2021 "
+                  },
+                  {
+                    "codigo": 266,
+                    "mes": "março/2021 "
+                  },
+                  {
+                    "codigo": 265,
+                    "mes": "fevereiro/2021 "
+                  },
+                  {
+                    "codigo": 264,
+                    "mes": "janeiro/2021 "
+                  },
+                  {
+                    "codigo": 263,
+                    "mes": "dezembro/2020 "
+                  },
+                  {
+                    "codigo": 262,
+                    "mes": "novembro/2020 "
+                  },
+                  {
+                    "codigo": 261,
+                    "mes": "outubro/2020 "
+                  },
+                  {
+                    "codigo": 260,
+                    "mes": "setembro/2020 "
+                  },
+                  {
+                    "codigo": 259,
+                    "mes": "agosto/2020 "
+                  },
+                  {
+                    "codigo": 258,
+                    "mes": "julho/2020 "
+                  },
+                  {
+                    "codigo": 256,
+                    "mes": "junho/2020 "
+                  },
+                  {
+                    "codigo": 255,
+                    "mes": "maio/2020 "
+                  },
+                  {
+                    "codigo": 253,
+                    "mes": "abril/2020 "
+                  },
+                  {
+                    "codigo": 252,
+                    "mes": "março/2020 "
+                  },
+                  {
+                    "codigo": 251,
+                    "mes": "fevereiro/2020 "
+                  },
+                  {
+                    "codigo": 250,
+                    "mes": "janeiro/2020 "
+                  },
+                  {
+                    "codigo": 249,
+                    "mes": "dezembro/2019 "
+                  },
+                  {
+                    "codigo": 248,
+                    "mes": "novembro/2019 "
+                  },
+                  {
+                    "codigo": 247,
+                    "mes": "outubro/2019 "
+                  },
+                  {
+                    "codigo": 246,
+                    "mes": "setembro/2019 "
+                  },
+                  {
+                    "codigo": 245,
+                    "mes": "agosto/2019 "
+                  },
+                  {
+                    "codigo": 244,
+                    "mes": "julho/2019 "
+                  },
+                  {
+                    "codigo": 243,
+                    "mes": "junho/2019 "
+                  },
+                  {
+                    "codigo": 242,
+                    "mes": "maio/2019 "
+                  },
+                  {
+                    "codigo": 241,
+                    "mes": "abril/2019 "
+                  },
+                  {
+                    "codigo": 239,
+                    "mes": "março/2019 "
+                  },
+                  {
+                    "codigo": 238,
+                    "mes": "fevereiro/2019 "
+                  },
+                  {
+                    "codigo": 237,
+                    "mes": "janeiro/2019 "
+                  },
+                  {
+                    "codigo": 236,
+                    "mes": "dezembro/2018 "
+                  },
+                  {
+                    "codigo": 235,
+                    "mes": "novembro/2018 "
+                  },
+                  {
+                    "codigo": 234,
+                    "mes": "outubro/2018 "
+                  },
+                  {
+                    "codigo": 233,
+                    "mes": "setembro/2018 "
+                  },
+                  {
+                    "codigo": 232,
+                    "mes": "agosto/2018 "
+                  },
+                  {
+                    "codigo": 231,
+                    "mes": "julho/2018 "
+                  },
+                  {
+                    "codigo": 230,
+                    "mes": "junho/2018 "
+                  },
+                  {
+                    "codigo": 229,
+                    "mes": "maio/2018 "
+                  },
+                  {
+                    "codigo": 228,
+                    "mes": "abril/2018 "
+                  },
+                  {
+                    "codigo": 227,
+                    "mes": "março/2018 "
+                  },
+                  {
+                    "codigo": 226,
+                    "mes": "fevereiro/2018 "
+                  },
+                  {
+                    "codigo": 225,
+                    "mes": "janeiro/2018 "
+                  },
+                  {
+                    "codigo": 224,
+                    "mes": "dezembro/2017 "
+                  },
+                  {
+                    "codigo": 219,
+                    "mes": "novembro/2017 "
+                  },
+                  {
+                    "codigo": 218,
+                    "mes": "outubro/2017 "
+                  },
+                  {
+                    "codigo": 217,
+                    "mes": "setembro/2017 "
+                  },
+                  {
+                    "codigo": 216,
+                    "mes": "agosto/2017 "
+                  },
+                  {
+                    "codigo": 215,
+                    "mes": "julho/2017 "
+                  },
+                  {
+                    "codigo": 214,
+                    "mes": "junho/2017 "
+                  },
+                  {
+                    "codigo": 212,
+                    "mes": "maio/2017 "
+                  },
+                  {
+                    "codigo": 211,
+                    "mes": "abril/2017 "
+                  },
+                  {
+                    "codigo": 207,
+                    "mes": "março/2017 "
+                  },
+                  {
+                    "codigo": 205,
+                    "mes": "fevereiro/2017 "
+                  },
+                  {
+                    "codigo": 202,
+                    "mes": "janeiro/2017 "
+                  },
+                  {
+                    "codigo": 200,
+                    "mes": "dezembro/2016 "
+                  },
+                  {
+                    "codigo": 198,
+                    "mes": "novembro/2016 "
+                  },
+                  {
+                    "codigo": 197,
+                    "mes": "outubro/2016 "
+                  },
+                  {
+                    "codigo": 196,
+                    "mes": "setembro/2016 "
+                  },
+                  {
+                    "codigo": 194,
+                    "mes": "agosto/2016 "
+                  },
+                  {
+                    "codigo": 193,
+                    "mes": "julho/2016 "
+                  },
+                  {
+                    "codigo": 192,
+                    "mes": "junho/2016 "
+                  },
+                  {
+                    "codigo": 191,
+                    "mes": "maio/2016 "
+                  },
+                  {
+                    "codigo": 190,
+                    "mes": "abril/2016 "
+                  },
+                  {
+                    "codigo": 189,
+                    "mes": "março/2016 "
+                  },
+                  {
+                    "codigo": 188,
+                    "mes": "fevereiro/2016 "
+                  },
+                  {
+                    "codigo": 187,
+                    "mes": "janeiro/2016 "
+                  },
+                  {
+                    "codigo": 186,
+                    "mes": "dezembro/2015 "
+                  },
+                  {
+                    "codigo": 185,
+                    "mes": "novembro/2015 "
+                  },
+                  {
+                    "codigo": 184,
+                    "mes": "outubro/2015 "
+                  },
+                  {
+                    "codigo": 183,
+                    "mes": "setembro/2015 "
+                  },
+                  {
+                    "codigo": 182,
+                    "mes": "agosto/2015 "
+                  },
+                  {
+                    "codigo": 181,
+                    "mes": "julho/2015 "
+                  },
+                  {
+                    "codigo": 180,
+                    "mes": "junho/2015 "
+                  },
+                  {
+                    "codigo": 179,
+                    "mes": "maio/2015 "
+                  },
+                  {
+                    "codigo": 178,
+                    "mes": "abril/2015 "
+                  },
+                  {
+                    "codigo": 176,
+                    "mes": "março/2015 "
+                  },
+                  {
+                    "codigo": 175,
+                    "mes": "fevereiro/2015 "
+                  },
+                  {
+                    "codigo": 174,
+                    "mes": "janeiro/2015 "
+                  },
+                  {
+                    "codigo": 173,
+                    "mes": "dezembro/2014 "
+                  },
+                  {
+                    "codigo": 172,
+                    "mes": "novembro/2014 "
+                  },
+                  {
+                    "codigo": 171,
+                    "mes": "outubro/2014 "
+                  },
+                  {
+                    "codigo": 170,
+                    "mes": "setembro/2014 "
+                  },
+                  {
+                    "codigo": 169,
+                    "mes": "agosto/2014 "
+                  },
+                  {
+                    "codigo": 168,
+                    "mes": "julho/2014 "
+                  },
+                  {
+                    "codigo": 167,
+                    "mes": "junho/2014 "
+                  },
+                  {
+                    "codigo": 166,
+                    "mes": "maio/2014 "
+                  },
+                  {
+                    "codigo": 165,
+                    "mes": "abril/2014 "
+                  },
+                  {
+                    "codigo": 164,
+                    "mes": "março/2014 "
+                  },
+                  {
+                    "codigo": 163,
+                    "mes": "fevereiro/2014 "
+                  },
+                  {
+                    "codigo": 162,
+                    "mes": "janeiro/2014 "
+                  },
+                  {
+                    "codigo": 161,
+                    "mes": "dezembro/2013 "
+                  },
+                  {
+                    "codigo": 160,
+                    "mes": "novembro/2013 "
+                  },
+                  {
+                    "codigo": 159,
+                    "mes": "outubro/2013 "
+                  },
+                  {
+                    "codigo": 158,
+                    "mes": "setembro/2013 "
+                  },
+                  {
+                    "codigo": 157,
+                    "mes": "agosto/2013 "
+                  },
+                  {
+                    "codigo": 156,
+                    "mes": "julho/2013 "
+                  },
+                  {
+                    "codigo": 155,
+                    "mes": "junho/2013 "
+                  },
+                  {
+                    "codigo": 154,
+                    "mes": "maio/2013 "
+                  },
+                  {
+                    "codigo": 153,
+                    "mes": "abril/2013 "
+                  },
+                  {
+                    "codigo": 152,
+                    "mes": "março/2013 "
+                  },
+                  {
+                    "codigo": 151,
+                    "mes": "fevereiro/2013 "
+                  },
+                  {
+                    "codigo": 150,
+                    "mes": "janeiro/2013 "
+                  },
+                  {
+                    "codigo": 149,
+                    "mes": "dezembro/2012 "
+                  },
+                  {
+                    "codigo": 148,
+                    "mes": "novembro/2012 "
+                  },
+                  {
+                    "codigo": 147,
+                    "mes": "outubro/2012 "
+                  },
+                  {
+                    "codigo": 146,
+                    "mes": "setembro/2012 "
+                  },
+                  {
+                    "codigo": 145,
+                    "mes": "agosto/2012 "
+                  },
+                  {
+                    "codigo": 144,
+                    "mes": "julho/2012 "
+                  },
+                  {
+                    "codigo": 143,
+                    "mes": "junho/2012 "
+                  },
+                  {
+                    "codigo": 142,
+                    "mes": "maio/2012 "
+                  },
+                  {
+                    "codigo": 141,
+                    "mes": "abril/2012 "
+                  },
+                  {
+                    "codigo": 140,
+                    "mes": "março/2012 "
+                  },
+                  {
+                    "codigo": 139,
+                    "mes": "fevereiro/2012 "
+                  },
+                  {
+                    "codigo": 138,
+                    "mes": "janeiro/2012 "
+                  },
+                  {
+                    "codigo": 137,
+                    "mes": "dezembro/2011 "
+                  },
+                  {
+                    "codigo": 136,
+                    "mes": "novembro/2011 "
+                  },
+                  {
+                    "codigo": 135,
+                    "mes": "outubro/2011 "
+                  },
+                  {
+                    "codigo": 134,
+                    "mes": "setembro/2011 "
+                  },
+                  {
+                    "codigo": 133,
+                    "mes": "agosto/2011 "
+                  },
+                  {
+                    "codigo": 132,
+                    "mes": "julho/2011 "
+                  },
+                  {
+                    "codigo": 131,
+                    "mes": "junho/2011 "
+                  },
+                  {
+                    "codigo": 130,
+                    "mes": "maio/2011 "
+                  },
+                  {
+                    "codigo": 129,
+                    "mes": "abril/2011 "
+                  },
+                  {
+                    "codigo": 128,
+                    "mes": "março/2011 "
+                  },
+                  {
+                    "codigo": 127,
+                    "mes": "fevereiro/2011 "
+                  },
+                  {
+                    "codigo": 126,
+                    "mes": "janeiro/2011 "
+                  },
+                  {
+                    "codigo": 125,
+                    "mes": "dezembro/2010 "
+                  },
+                  {
+                    "codigo": 124,
+                    "mes": "novembro/2010 "
+                  },
+                  {
+                    "codigo": 123,
+                    "mes": "outubro/2010 "
+                  },
+                  {
+                    "codigo": 122,
+                    "mes": "setembro/2010 "
+                  },
+                  {
+                    "codigo": 121,
+                    "mes": "agosto/2010 "
+                  },
+                  {
+                    "codigo": 120,
+                    "mes": "julho/2010 "
+                  },
+                  {
+                    "codigo": 119,
+                    "mes": "junho/2010 "
+                  },
+                  {
+                    "codigo": 118,
+                    "mes": "maio/2010 "
+                  },
+                  {
+                    "codigo": 117,
+                    "mes": "abril/2010 "
+                  },
+                  {
+                    "codigo": 116,
+                    "mes": "junho/2005 "
+                  },
+                  {
+                    "codigo": 115,
+                    "mes": "maio/2005 "
+                  },
+                  {
+                    "codigo": 114,
+                    "mes": "abril/2005 "
+                  },
+                  {
+                    "codigo": 113,
+                    "mes": "março/2005 "
+                  },
+                  {
+                    "codigo": 112,
+                    "mes": "fevereiro/2005 "
+                  },
+                  {
+                    "codigo": 111,
+                    "mes": "dezembro/2005 "
+                  },
+                  {
+                    "codigo": 110,
+                    "mes": "janeiro/2005 "
+                  },
+                  {
+                    "codigo": 109,
+                    "mes": "setembro/2004 "
+                  },
+                  {
+                    "codigo": 108,
+                    "mes": "agosto/2004 "
+                  },
+                  {
+                    "codigo": 107,
+                    "mes": "julho/2004 "
+                  },
+                  {
+                    "codigo": 106,
+                    "mes": "junho/2004 "
+                  },
+                  {
+                    "codigo": 105,
+                    "mes": "maio/2004 "
+                  },
+                  {
+                    "codigo": 104,
+                    "mes": "abril/2004 "
+                  },
+                  {
+                    "codigo": 103,
+                    "mes": "março/2004 "
+                  },
+                  {
+                    "codigo": 102,
+                    "mes": "fevereiro/2004 "
+                  },
+                  {
+                    "codigo": 101,
+                    "mes": "dezembro/2004 "
+                  },
+                  {
+                    "codigo": 100,
+                    "mes": "novembro/2004 "
+                  },
+                  {
+                    "codigo": 99,
+                    "mes": "outubro/2004 "
+                  },
+                  {
+                    "codigo": 98,
+                    "mes": "janeiro/2004 "
+                  },
+                  {
+                    "codigo": 97,
+                    "mes": "setembro/2003 "
+                  },
+                  {
+                    "codigo": 96,
+                    "mes": "agosto/2003 "
+                  },
+                  {
+                    "codigo": 95,
+                    "mes": "julho/2003 "
+                  },
+                  {
+                    "codigo": 94,
+                    "mes": "junho/2003 "
+                  },
+                  {
+                    "codigo": 93,
+                    "mes": "maio/2003 "
+                  },
+                  {
+                    "codigo": 92,
+                    "mes": "abril/2003 "
+                  },
+                  {
+                    "codigo": 91,
+                    "mes": "março/2003 "
+                  },
+                  {
+                    "codigo": 90,
+                    "mes": "fevereiro/2003 "
+                  },
+                  {
+                    "codigo": 89,
+                    "mes": "dezembro/2003 "
+                  },
+                  {
+                    "codigo": 88,
+                    "mes": "novembro/2003 "
+                  },
+                  {
+                    "codigo": 87,
+                    "mes": "outubro/2003 "
+                  },
+                  {
+                    "codigo": 86,
+                    "mes": "janeiro/2003 "
+                  },
+                  {
+                    "codigo": 85,
+                    "mes": "setembro/2002 "
+                  },
+                  {
+                    "codigo": 84,
+                    "mes": "agosto/2002 "
+                  },
+                  {
+                    "codigo": 83,
+                    "mes": "julho/2002 "
+                  },
+                  {
+                    "codigo": 82,
+                    "mes": "junho/2002 "
+                  },
+                  {
+                    "codigo": 81,
+                    "mes": "maio/2002 "
+                  },
+                  {
+                    "codigo": 80,
+                    "mes": "abril/2002 "
+                  },
+                  {
+                    "codigo": 79,
+                    "mes": "março/2002 "
+                  },
+                  {
+                    "codigo": 78,
+                    "mes": "fevereiro/2002 "
+                  },
+                  {
+                    "codigo": 77,
+                    "mes": "dezembro/2002 "
+                  },
+                  {
+                    "codigo": 76,
+                    "mes": "novembro/2002 "
+                  },
+                  {
+                    "codigo": 75,
+                    "mes": "outubro/2002 "
+                  },
+                  {
+                    "codigo": 74,
+                    "mes": "janeiro/2002 "
+                  },
+                  {
+                    "codigo": 73,
+                    "mes": "setembro/2001 "
+                  },
+                  {
+                    "codigo": 72,
+                    "mes": "agosto/2001 "
+                  },
+                  {
+                    "codigo": 71,
+                    "mes": "julho/2001 "
+                  },
+                  {
+                    "codigo": 70,
+                    "mes": "junho/2001 "
+                  },
+                  {
+                    "codigo": 69,
+                    "mes": "maio/2001 "
+                  },
+                  {
+                    "codigo": 68,
+                    "mes": "abril/2001 "
+                  },
+                  {
+                    "codigo": 67,
+                    "mes": "março/2001 "
+                  },
+                  {
+                    "codigo": 66,
+                    "mes": "dezembro/2001 "
+                  },
+                  {
+                    "codigo": 65,
+                    "mes": "novembro/2001 "
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ibge/uf/v1": {
+      "get": {
+        "tags": ["IBGE"],
+        "summary": "Retorna informações de todos estados do Brasil",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "id": 11,
+                    "sigla": "RO",
+                    "nome": "Rondônia",
+                    "regiao": {
+                      "id": 1,
+                      "sigla": "N",
+                      "nome": "Norte"
+                    }
+                  },
+                  {
+                    "id": 12,
+                    "sigla": "AC",
+                    "nome": "Acre",
+                    "regiao": {
+                      "id": 1,
+                      "sigla": "N",
+                      "nome": "Norte"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ibge/uf/v1/{code}": {
+      "get": {
+        "tags": ["IBGE"],
+        "summary": "Busca as informações de um um estado a partir da sigla ou código",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": 35,
+                  "sigla": "SP",
+                  "nome": "São Paulo",
+                  "regiao": {
+                    "id": 3,
+                    "sigla": "SE",
+                    "nome": "Sudeste"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "O código / sigla do estado não foi encontrado",
+            "content": {
+              "application/json": {
+                "example": {
+                  "name": "NotFoundError",
+                  "message": "UF não encontrado",
+                  "type": "not_found"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
