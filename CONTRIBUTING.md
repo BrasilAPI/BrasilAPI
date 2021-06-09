@@ -25,6 +25,32 @@ Para saber mais, acesse esses links:
 - [Especificação do Conventional Commit](https://www.conventionalcommits.org/)
 - [Regras do @commitlint/config-conventional](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional).
 
+## Documentação dos Endpoints
+Se possíve, além do endpoint crie também a documentação para o mesmo, utilizamos uma implementação básica da [OpenAPI 3.0](https://swagger.io/docs/specification/about/) em **json**. 
+A fim de facilitar o a contribuição e evitar conflitos, modularizamos a documentação dos endpoints, assim temos arquivos mais objetivos e enxutos.
+### Como criar a documentação
+1- Acesse o diretório [`docs/doc`](pages/docs/doc);
+2- Crie um arquivo json com o nome do módulo que está criando e utilize a estrutura básica da OpenAPI, recomendamos as seguintes seções:
+    - TAGS
+    - paths (obrigatório)
+    - components -> schemas
+    Caso tenha dificuldades com a criação do json, crie uma cópia do arquivo endpoint.json.example com o nome do seu endpoint, remova a extensão `.example` do arquivo, e edite as informações que existem nele para ajustá-lo ao seu módulo.
+
+
+Para mensagens de erro utilize o schema pré-existente `ErrorMessage`
+**Ex.: **
+
+    "404": {
+         "description": "Todos os serviços de CEP retornaram erro.",
+         "content": {
+             "application/json": {
+                 "schema": {
+                     "$ref": "#/components/schemas/ErrorMessage"
+                 }
+             }
+         }
+     }
+
 ## Pull requests (PRs)
 
 Independente da contribuição a ser feita (no código-fonte e/ou na documentação), operacionalmente falando, temos 2 formas de fazermos as *pull requests*: localmente, via linha de comando, usando o Git em conjunto com o Github, ou online, editando diretamente os arquivos no Github e solicitando uma pull request depois, tudo graficamente.
