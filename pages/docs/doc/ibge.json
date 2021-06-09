@@ -2,12 +2,7 @@
     "tags": [
         {
             "name": "IBGE",
-            "description": "Informações sobre Provenientes do IBGE"
-        }
-    ],
-    "servers": [
-        {
-            "url": "https://brasilapi.com.br/api"
+            "description": "Informações sobre estados Provenientes do IBGE"
         }
     ],
     "paths": {
@@ -36,7 +31,7 @@
         "/ibge/uf/v1/{code}": {
             "get": {
                 "tags": ["IBGE"],
-                "summary": "Busca as informações de um um estado a partir da sigla ou código",
+                "summary": "Busca as informações de um estado a partir da sigla ou código",
                 "description": "",
                 "responses": {
                     "200": {

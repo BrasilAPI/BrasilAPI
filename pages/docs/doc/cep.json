@@ -3,6 +3,10 @@
         {
             "name": "CEP",
             "description": "Informações referentes a CEPs"
+        },
+        {
+            "name": "CEP V2",
+            "description": "Informações referentes a CEPs - Versão 2"
         }
     ],
     
@@ -50,8 +54,8 @@
         },
         "/cep/v2/{cep}": {
             "get": {
-                "tags": ["CEP", "v2"],
-                "summary": "Busca por CEP com múltiplos providers de fallback v2.",
+                "tags": ["CEP V2"],
+                "summary": "Versão 2 do serviço de busca por CEP com múltiplos providers de fallback.",
                 "description": "",
                 "parameters": [
                     {
