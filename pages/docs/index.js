@@ -2,7 +2,7 @@ import React from 'react';
 import { RedocStandalone } from 'redoc';
 import { getJsonDoc } from './doc';
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const spec = getJsonDoc();
   return {
     props: {
