@@ -1,0 +1,95 @@
+{
+    "tags": [
+        {
+            "name": "BANKS",
+            "description": "Informações sobre sistema bancário"
+        }
+    ],
+    "paths": {
+        "/banks/v1": {
+            "get": {
+                "tags": ["BANKS"],
+                "summary": "Retorna informações de todos os bancos do Brasil",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Bank"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/banks/v1/{code}": {
+            "get": {
+                "tags": ["BANKS"],
+                "summary": "Busca as informações de um banco a partir de um código",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Bank"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "O código do banco não foi encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "message": "Código bancário não encontrado",
+                                    "type": "BANK_CODE_NOT_FOUND"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }        
+    },
+    "components": {
+        "schemas": {
+            "Bank": {
+                "title": "Bank",
+                "required": ["ispb", "name", "code", "fullName"],
+                "type": "object",
+                "properties": {
+                    "ispb": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "fullName": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "ispb": "00000000",
+                    "name": "BCO DO BRASIL S.A.",
+                    "code": 1,
+                    "fullName": "Banco do Brasil S.A."
+                }
+            }
+        }
+    }
+}

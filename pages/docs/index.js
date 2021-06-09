@@ -1,11 +1,21 @@
 import React from 'react';
 import { RedocStandalone } from 'redoc';
-import Documentation from './doc.json';
+import { getJson } from './doc';
 
-export default function index() {
+export async function getStaticProps() {
+  const spec = getJson();
+  return {
+    props: {
+      spec,
+    },
+  };
+}
+
+export default function index({ spec }) {
+  console.log(spec);
   return (
     <div>
-      <RedocStandalone specUrl={Documentation} />
+      <RedocStandalone specUrl={spec} />
     </div>
   );
 }
