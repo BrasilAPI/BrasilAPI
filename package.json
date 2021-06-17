@@ -21,6 +21,13 @@
     "styled-components": "5.3.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "12.1.4",
+    "@commitlint/config-conventional": "12.1.4",
+    "@semantic-release/changelog": "5.0.1",
+    "@semantic-release/commit-analyzer": "8.0.1",
+    "@semantic-release/git": "9.0.0",
+    "@semantic-release/github": "7.2.3",
+    "@semantic-release/release-notes-generator": "9.0.3",
     "commitizen": "4.2.4",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "6.8.0",
@@ -33,7 +40,8 @@
     "eslint-plugin-react": "7.19.0",
     "eslint-plugin-react-hooks": "2.5.1",
     "github-contributors-list": "1.2.5",
-    "husky": "4.2.5",
+    "husky": "6.0.0",
+    "is-ci": "2.0.0",
     "jest": "25.1.0",
     "lint-staged": "10.2.11",
     "prettier": "2.0.4",
@@ -45,17 +53,15 @@
     "start": "next start",
     "test": "jest --forceExit",
     "test:watch": "jest --watch",
-    "fix": "eslint . --ext .js --fix",
+    "lint": "eslint . --ext .js",
+    "lint:fix": "npm run lint -- --fix",
+    "lint:staged": "lint-staged",
     "commit": "cz",
-    "gen:contributors": "githubcontrib --owner BrasilAPI --repo BrasilAPI --sortBy contributions --sortOrder desc --filter filipedeschamps,lucianopf,dependabot[bot] --layoutStrategy $INIT_CWD/.github/contributors-list/layout-strategy-custom.js"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "gen:contributors": "githubcontrib --owner BrasilAPI --repo BrasilAPI --sortBy contributions --sortOrder desc --filter filipedeschamps,lucianopf,dependabot[bot] --layoutStrategy $INIT_CWD/.github/contributors-list/layout-strategy-custom.js",
+    "prepare": "is-ci || husky install"
   },
   "lint-staged": {
-    "*.{js,jsx}": "npm run fix"
+    "*.{js,jsx}": "npm run lint:fix"
   },
   "repository": {
     "type": "git",

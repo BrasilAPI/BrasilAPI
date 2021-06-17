@@ -1,0 +1,28 @@
+name: Generate changelog and version
+
+on:
+  push:
+    branches:
+      - master
+      - main
+
+jobs:
+  generate-changelog:
+    name: Gerar changelog e git tag
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Project checkout
+        uses: actions/checkout@v2
+
+      - name: Node.js Setup 
+        uses: actions/setup-node@v1
+
+      - name: Installation of Node.js dependencies
+        run: npm ci
+
+      - name: Generate release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npx semantic-release

@@ -1,0 +1,22 @@
+name: Commit lint
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+      - main
+
+jobs:
+  commit-lint:
+    name: Validar mensagem de commit
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Project checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Commit lint
+        uses: wagoid/commitlint-github-action@v3
