@@ -12,7 +12,7 @@ describe('ipca v1 (E2E)', () => {
       );
     });
 
-    test('Com de limite', async () => {
+    test('Com parâmetro de limite', async () => {
       const requestUrl = `${global.SERVER_URL}/api/indicadores/ipca/v1?last=2`;
       const response = await axios.get(requestUrl);
 
