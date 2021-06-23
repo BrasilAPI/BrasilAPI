@@ -9,7 +9,7 @@
             "description": "Informações referentes a CEPs - Versão 2"
         }
     ],
-    
+
     "paths": {
         "/cep/v1/{cep}": {
             "get": {
@@ -75,7 +75,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Address"
+                                    "$ref": "#/components/schemas/AddressV2"
                                 }
                             }
                         }
@@ -92,13 +92,60 @@
                     }
                 }
             }
-        }        
+        }
     },
     "components": {
         "schemas": {
-            "Address": {
+            "Coordinates": {
+                "title": "Coordinates",
+                "required": ["longitude", "latitude"],
+                "type": "object",
+                "properties": {
+                    "longitude": {
+                        "type": "string"
+                    },
+                    "latitude": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "longitude": "-49.0629788",
+                    "latitude": "-26.9244749"
+                }
+            },
+            "Location": {
+                "title": "Location",
+                "required": ["type", "coordinates"],
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "coordinates": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Coordinates"
+                        }
+                    }
+                },
+                "example": {
+                    "type": "Point",
+                    "coordinates": {
+                        "longitude": "-49.0629788",
+                        "latitude": "-26.9244749"
+                    }
+                }
+            },
+            "AddressV2": {
                 "title": "Address",
-                "required": ["cep", "state", "city", "neighborhood", "street"],
+                "required": [
+                    "cep",
+                    "state",
+                    "city",
+                    "neighborhood",
+                    "street",
+                    "service",
+                    "location"
+                ],
                 "type": "object",
                 "properties": {
                     "cep": {
@@ -115,6 +162,14 @@
                     },
                     "street": {
                         "type": "string"
+                    },
+                    "service": {
+                        "type": "string"
+                    },
+                    "location": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Location"
+                        }
                     }
                 },
                 "example": {
@@ -122,7 +177,48 @@
                     "state": "SC",
                     "city": "Blumenau",
                     "neighborhood": "Centro",
-                    "street": "Rua Doutor Luiz de Freitas Melro"
+                    "street": "Rua Doutor Luiz de Freitas Melro",
+                    "service": "viacep",
+                    "location": {
+                        "type": "Point",
+                        "coordinates": {
+                            "longitude": "-49.0629788",
+                            "latitude": "-26.9244749"
+                        }
+                    }
+                }
+            },
+            "Address": {
+                "title": "Address",
+                "required": ["cep", "state", "city", "neighborhood", "street", "string"],
+                "type": "object",
+                "properties": {
+                    "cep": {
+                        "type": "string"
+                    },
+                    "state": {
+                        "type": "string"
+                    },
+                    "city": {
+                        "type": "string"
+                    },
+                    "neighborhood": {
+                        "type": "string"
+                    },
+                    "street": {
+                        "type": "string"
+                    },
+                    "service": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "cep": "89010025",
+                    "state": "SC",
+                    "city": "Blumenau",
+                    "neighborhood": "Centro",
+                    "street": "Rua Doutor Luiz de Freitas Melro",
+                    "service": "viacep"
                 }
             },
             "CepError": {
