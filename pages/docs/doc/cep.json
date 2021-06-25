@@ -190,7 +190,7 @@
             },
             "Address": {
                 "title": "Address",
-                "required": ["cep", "state", "city", "neighborhood", "street", "string"],
+                "required": ["cep", "state", "city", "neighborhood", "street", "service"],
                 "type": "object",
                 "properties": {
                     "cep": {
