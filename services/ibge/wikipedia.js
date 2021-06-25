@@ -60,7 +60,7 @@ export const getStateCities = async (uf) => {
     return [];
   }
 
-  const cities = stateInfo.cities[0]
+  return stateInfo.cities[0]
     .filter((city) => {
       const keys = Object.keys(city).map((key) => key.toLocaleLowerCase());
       const ibgeCodeIndex = keys.findIndex((key) => key.includes('ibge'));
@@ -74,6 +74,4 @@ export const getStateCities = async (uf) => {
 
       return { nome: formatName(name), codigo_ibge: formatIbgeCode(ibgeCode) };
     });
-
-  return cities;
 };
