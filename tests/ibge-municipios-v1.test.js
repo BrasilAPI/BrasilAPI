@@ -8,6 +8,10 @@ const validTestArray = expect.arrayContaining([
 ]);
 
 describe('/ibge/municipios/v1 (E2E)', () => {
+  beforeEach(() => {
+    jest.setTimeout(10000);
+  });
+
   test('Utilizando uma sigla válida: SC', async () => {
     const requestUrl = `${global.SERVER_URL}/api/ibge/municipios/v1/SC`;
     const response = await axios.get(requestUrl);
