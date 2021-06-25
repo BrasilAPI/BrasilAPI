@@ -4,6 +4,10 @@ import { getDistrictsByUf } from '@/services/ibge/gov';
 
 import NotFoundError from '@/errors/NotFoundError';
 
+const getData = (uf) => {
+  return getDistrictsByUf(uf).catch(() => getStateCities(uf));
+};
+
 const action = async (request, response) => {
   try {
     const { uf } = request.query;
@@ -12,7 +16,7 @@ const action = async (request, response) => {
       throw new Error('EstadoNotFoundException');
     }
 
-    const data = await getDistrictsByUf(uf).catch(() => getStateCities(uf));
+    const data = await getData(uf);
     return response.status(200).json(data);
   } catch (err) {
     if (err.message === 'EstadoNotFoundException') {
