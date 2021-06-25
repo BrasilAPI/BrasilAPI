@@ -2,7 +2,7 @@ import app from '@/app';
 import { getStateCities, CODIGOS_ESTADOS } from '@/services/ibge/wikipedia';
 import { getDistrictsByUf } from '@/services/ibge/gov';
 
-import NotFoundError from '@/errors/not-found';
+import NotFoundError from '@/errors/NotFoundError';
 
 const action = async (request, response) => {
   try {
