@@ -1,5 +1,5 @@
 import app from '@/app';
-import { getBanksData } from '@/services/banco-central/banks/banks';
+import { getBanksData } from '@/services/banco-central/banks';
 
 const action = async (request, response) => {
   const allBanksData = await getBanksData();
