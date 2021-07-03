@@ -1,5 +1,7 @@
 import app from '@/app';
 
+import NotFoundError from '@/errors/NotFoundError';
+
 import {
   fetchHistoricalIPCA,
   fetchLastIPCAValues,
@@ -13,13 +15,10 @@ const action = async (request, response) => {
     : await fetchHistoricalIPCA();
 
   if (!ipcaValues) {
-    response.status(404);
-    response.json({
-      message: `Valores de ICPA não encontrados`,
+    throw new NotFoundError({
+      message: `Valores de ICPA não encontrado.`,
       type: 'IPCA_VALUES_NOT_FOUND',
     });
-
-    return;
   }
 
   response.status(200);
