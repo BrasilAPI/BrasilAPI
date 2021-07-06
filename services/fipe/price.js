@@ -109,7 +109,7 @@ export async function getFipePrice(
     fipeCode,
   });
 
-  const result = await Promise.all(
+  return Promise.all(
     models.map((model) => {
       return getPrice({
         referenceTable: referenceTableCode,
@@ -119,6 +119,4 @@ export async function getFipePrice(
       });
     })
   );
-
-  return result;
 }
