@@ -1,0 +1,85 @@
+{
+    "tags": [
+        {
+            "name": "CEP",
+            "description": "Informações referentes a CEPs"
+        }
+    ],
+    
+    "paths": {
+        "/cep/v1/{cep}": {
+            "get": {
+                "tags": ["CEP"],
+                "summary": "Busca por CEP com múltiplos providers de fallback.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "cep",
+                        "description": "O CEP (Código de Endereçamento Postal) é um sistema de códigos que visa racionalizar o processo de encaminhamento e entrega de correspondências através da divisão do país em regiões postais. ... Atualmente, o CEP é composto por oito dígitos, cinco de um lado e três de outro. Cada algarismo do CEP possui um significado.\n",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Address"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Todos os serviços de CEP retornaram erro.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }        
+    },
+    "components": {
+        "schemas": {
+            "Address": {
+                "title": "Address",
+                "required": ["cep", "state", "city", "neighborhood", "street"],
+                "type": "object",
+                "properties": {
+                    "cep": {
+                        "type": "string"
+                    },
+                    "state": {
+                        "type": "string"
+                    },
+                    "city": {
+                        "type": "string"
+                    },
+                    "neighborhood": {
+                        "type": "string"
+                    },
+                    "street": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "cep": "89010025",
+                    "state": "SC",
+                    "city": "Blumenau",
+                    "neighborhood": "Centro",
+                    "street": "Rua Doutor Luiz de Freitas Melro"
+                }
+            },
+        }
+    }
+}

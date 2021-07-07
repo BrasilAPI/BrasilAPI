@@ -1,0 +1,101 @@
+{
+    "tags": [
+        {
+            "name": "Feriados Nacionais",
+            "description": "Informações sobre feriados nacionais"
+        }        
+    ],
+    "paths": {
+        "/feriados/v1/{ano}": {
+            "get": {
+                "tags": ["Feriados Nacionais"],
+                "summary": "Lista os feriados nacionais de determinado ano.",
+                "description": "Calcula os feriados móveis baseados na Páscoa e adiciona os feriados fixos",
+                "parameters": [
+                    {
+                        "name": "ano",
+                        "description": "Ano para calcular os feriados.\n",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Holiday"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Ano fora do intervalo suportado.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "type": "feriados_range_error",
+                                    "message": "Ano fora do intervalo suportado entre 1900 e 2199."
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro inesperado.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "type": "feriados_error",
+                                    "message": "Erro ao calcular feriados."
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Holiday": {
+                "title": "Holiday",
+                "type": "object",
+                "required": ["date", "type", "name"],
+                "properties": {
+                    "date": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string",
+                        "format": "int32"
+                    },
+                    "fullName": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "date": "2021-01-01",
+                    "name": "Confraternização mundial",
+                    "type": "national"
+                }
+            }
+        }
+    }
+}
