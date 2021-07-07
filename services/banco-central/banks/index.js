@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import banksList from './banksList.json';
 
 const fetchBanksListFromBacen = async () => {
