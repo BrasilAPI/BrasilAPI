@@ -1,0 +1,31 @@
+name: Update contributor on README
+
+on: [workflow_dispatch]
+
+jobs:
+  update-contributors:
+    name: Update contributor on README
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - name: Install npm packages
+        run: npm install
+
+      - name: Fetch contributor and update README
+        run: npm run contributors:update
+
+      - name: Add and commit
+        uses: EndBug/add-and-commit@v7
+        with:
+          add: 'README.md'
+          author_name: BrasilAPI CI
+          author_email: brasilapi@noreply.github.com
+          message: 'docs(contributors): Update project contributors'
