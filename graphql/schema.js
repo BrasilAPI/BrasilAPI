@@ -4,6 +4,7 @@ import BanksModule from './modules/banks';
 import CEPModule from './modules/cep';
 import DDDModule from './modules/ddd';
 import HolidaysModule from './modules/holidays';
+import IbgeModule from './modules/ibge';
 import StatusModule from './modules/status';
 
 const RootTypeDefs = gql`
@@ -26,6 +27,7 @@ export const schema = makeExecutableSchema({
     CEPModule.typedefs,
     DDDModule.typedefs,
     HolidaysModule.typedefs,
+    IbgeModule.typedefs,
     StatusModule.typedefs,
   ],
   resolvers: merge(
@@ -34,6 +36,7 @@ export const schema = makeExecutableSchema({
     CEPModule.resolvers,
     DDDModule.resolvers,
     HolidaysModule.resolvers,
+    IbgeModule.resolvers,
     StatusModule.resolvers
   ),
 });
