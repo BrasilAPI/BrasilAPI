@@ -20,6 +20,8 @@ import cep from 'cep-promise';
 const CACHE_CONTROL_HEADER_VALUE =
   'max-age=0, s-maxage=86400, stale-while-revalidate, public';
 
+const providers = ['correios', 'viacep', 'widenet'];
+
 export default {
   Query: {
     cep: async (_parent, _args, _context) => {
@@ -29,7 +31,7 @@ export default {
 
       try {
         _context.res.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
-        return await cep(_args.cep);
+        return await cep(_args.cep, { providers });
       } catch (err) {
         throw new ApolloError('Erro ao consultar CEP', err.type, err.errors);
       }
