@@ -6,6 +6,7 @@ import DDDModule from './modules/ddd';
 import HolidaysModule from './modules/holidays';
 import IbgeModule from './modules/ibge';
 import StatusModule from './modules/status';
+import CNPJModule from './modules/cnpj';
 
 const RootTypeDefs = gql`
   type Query {
@@ -25,6 +26,7 @@ export const schema = makeExecutableSchema({
     RootTypeDefs,
     BanksModule.typedefs,
     CEPModule.typedefs,
+    CNPJModule.typedefs,
     DDDModule.typedefs,
     HolidaysModule.typedefs,
     IbgeModule.typedefs,
@@ -34,6 +36,7 @@ export const schema = makeExecutableSchema({
     resolvers,
     BanksModule.resolvers,
     CEPModule.resolvers,
+    CNPJModule.resolvers,
     DDDModule.resolvers,
     HolidaysModule.resolvers,
     IbgeModule.resolvers,
