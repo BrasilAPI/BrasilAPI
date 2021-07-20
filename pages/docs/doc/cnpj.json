@@ -1,0 +1,325 @@
+{
+    "tags": [
+        {
+            "name": "CNPJ",
+            "description": "Busca dados de empresas por CNPJ"
+        }
+    ],
+    "paths": {
+        "/cnpj/v1/{cnpj}": {
+            "get": {
+                "tags": ["CNPJ"],
+                "summary": "Busca por CNPJ na API Minha Receita.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "cnpj",
+                        "description": "O Cadastro Nacional da Pessoa Jurídica é um número único que identifica uma pessoa jurídica e outros tipos de arranjo jurídico sem personalidade jurídica junto à Receita Federal.\n",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CNPJ"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "CNPJ não encontrado na API Minha Receita.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "name": "CnpjPromiseError",
+                                    "message": "Erro retornado pela API Minha Receita.",
+                                    "type": "service_error",
+                                    "errors": [
+                                        {
+                                            "message": "CNPJ 00.000.000/0001-91 não encontrado."
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CNPJ": {
+                "title": "CNPJ info",
+                "type": "object",
+                "properties": {
+                    "cnpj": {
+                        "type": "string"
+                    },
+                    "identificador_matriz_filial": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "descricao_matriz_filial": {
+                        "type": "string"
+                    },
+                    "razao_social": {
+                        "type": "string"
+                    },
+                    "nome_fantasia": {
+                        "type": "string"
+                    },
+                    "situacao_cadastral": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "descricao_situacao_cadastral": {
+                        "type": "string"
+                    },
+                    "data_situacao_cadastral": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "motivo_situacao_cadastral": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "nome_cidade_exterior": {
+                        "type": "string",
+                        "format": "nullable"
+                    },
+                    "codigo_natureza_juridica": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "data_inicio_atividade": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "cnae_fiscal": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "cnae_fiscal_descricao": {
+                        "type": "string"
+                    },
+                    "descricao_tipo_logradouro": {
+                        "type": "string"
+                    },
+                    "logradouro": {
+                        "type": "string"
+                    },
+                    "numero": {
+                        "type": "string"
+                    },
+                    "complemento": {
+                        "type": "string"
+                    },
+                    "bairro": {
+                        "type": "string"
+                    },
+                    "cep": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "uf": {
+                        "type": "string"
+                    },
+                    "codigo_municipio": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "municipio": {
+                        "type": "string"
+                    },
+                    "ddd_telefone_1": {
+                        "type": "string"
+                    },
+                    "ddd_telefone_2": {
+                        "type": "string",
+                        "format": "nullable"
+                    },
+                    "ddd_fax": {
+                        "type": "string",
+                        "format": "nullable"
+                    },
+                    "qualificacao_do_responsavel": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "capital_social": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "porte": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "descricao_porte": {
+                        "type": "string"
+                    },
+                    "opcao_pelo_simples": {
+                        "type": "boolean"
+                    },
+                    "data_opcao_pelo_simples": {
+                        "type": "string",
+                        "format": "nullable"
+                    },
+                    "data_exclusao_do_simples": {
+                        "type": "string",
+                        "format": "nullable"
+                    },
+                    "opcao_pelo_mei": {
+                        "type": "boolean"
+                    },
+                    "situacao_especial": {
+                        "type": "string",
+                        "format": "nullable"
+                    },
+                    "data_situacao_especial": {
+                        "type": "string",
+                        "format": "nullable"
+                    },
+                    "cnaes_secundarios": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "codigo": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                },
+                                "descricao": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "qsa": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "identificador_de_socio": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                },
+                                "nome_socio": {
+                                    "type": "string"
+                                },
+                                "cnpj_cpf_do_socio": {
+                                    "type": "string"
+                                },
+                                "codigo_qualificacao_socio": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                },
+                                "percentual_capital_social": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                },
+                                "data_entrada_sociedade": {
+                                    "type": "string",
+                                    "format": "date"
+                                },
+                                "cpf_representante_legal": {
+                                    "type": "string",
+                                    "format": "nullable"
+                                },
+                                "nome_representante_legal": {
+                                    "type": "string",
+                                    "format": "nullable"
+                                },
+                                "codigo_qualificacao_representante_legal": {
+                                    "type": "string",
+                                    "format": "nullable"
+                                }
+                            }
+                        }
+                    }
+                },
+                "example": {
+                    "cnpj": "19131243000197",
+                    "identificador_matriz_filial": 1,
+                    "descricao_matriz_filial": "Matriz",
+                    "razao_social": "OPEN KNOWLEDGE BRASIL",
+                    "nome_fantasia": "REDE PELO CONHECIMENTO LIVRE",
+                    "situacao_cadastral": 2,
+                    "descricao_situacao_cadastral": "Ativa",
+                    "data_situacao_cadastral": "2013-10-03",
+                    "motivo_situacao_cadastral": 0,
+                    "nome_cidade_exterior": null,
+                    "codigo_natureza_juridica": 3999,
+                    "data_inicio_atividade": "2013-10-03",
+                    "cnae_fiscal": 9430800,
+                    "cnae_fiscal_descricao": "Atividades de associações de defesa de direitos sociais",
+                    "descricao_tipo_logradouro": "ALAMEDA",
+                    "logradouro": "FRANCA",
+                    "numero": "144",
+                    "complemento": "APT   34",
+                    "bairro": "JARDIM PAULISTA",
+                    "cep": 1422000,
+                    "uf": "SP",
+                    "codigo_municipio": 7107,
+                    "municipio": "SAO PAULO",
+                    "ddd_telefone_1": "11  23851939",
+                    "ddd_telefone_2": null,
+                    "ddd_fax": null,
+                    "qualificacao_do_responsavel": 10,
+                    "capital_social": 0,
+                    "porte": 5,
+                    "descricao_porte": "Demais",
+                    "opcao_pelo_simples": false,
+                    "data_opcao_pelo_simples": null,
+                    "data_exclusao_do_simples": null,
+                    "opcao_pelo_mei": false,
+                    "situacao_especial": null,
+                    "data_situacao_especial": null,
+                    "cnaes_secundarios": [
+                        {
+                            "codigo": 9493600,
+                            "descricao": "Atividades de organizações associativas ligadas à cultura e à arte"
+                        },
+                        {
+                            "codigo": 9499500,
+                            "descricao": "Atividades associativas não especificadas anteriormente"
+                        },
+                        {
+                            "codigo": 8599699,
+                            "descricao": "Outras atividades de ensino não especificadas anteriormente"
+                        },
+                        {
+                            "codigo": 8230001,
+                            "descricao": "Serviços de organização de feiras, congressos, exposições e festas"
+                        },
+                        {
+                            "codigo": 6204000,
+                            "descricao": "Consultoria em tecnologia da informação"
+                        }
+                    ],
+                    "qsa": [
+                        {
+                            "identificador_de_socio": 2,
+                            "nome_socio": "NATALIA PASSOS MAZOTTE CORTEZ",
+                            "cnpj_cpf_do_socio": "***059967**",
+                            "codigo_qualificacao_socio": 10,
+                            "percentual_capital_social": 0,
+                            "data_entrada_sociedade": "2019-02-14",
+                            "cpf_representante_legal": null,
+                            "nome_representante_legal": null,
+                            "codigo_qualificacao_representante_legal": null
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}
