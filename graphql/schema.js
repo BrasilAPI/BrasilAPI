@@ -3,7 +3,7 @@ import { merge } from 'lodash';
 
 import CEPModule from './modules/cep';
 import DDDModule from './modules/ddd';
-import { StatusResolvers, StatusTypedefs } from './modules/status';
+import StatusModule from './modules/status';
 
 const RootTypeDefs = gql`
   type Query {
@@ -23,12 +23,12 @@ export const schema = makeExecutableSchema({
     RootTypeDefs,
     CEPModule.typedefs,
     DDDModule.typedefs,
-    StatusTypedefs,
+    StatusModule.typedefs,
   ],
   resolvers: merge(
     resolvers,
     CEPModule.resolvers,
     DDDModule.resolvers,
-    StatusResolvers
+    StatusModule.resolvers
   ),
 });
