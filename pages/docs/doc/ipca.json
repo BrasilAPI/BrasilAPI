@@ -434,7 +434,7 @@
         "parameters": [
           {
             "name": "startDate",
-            "description": "São suportadas datas no formato: DD/MM/AAAA",
+            "description": "São suportadas datas no formato: yyyy-MM-dd",
             "in": "path",
             "required": true,
             "schema": {
@@ -444,7 +444,7 @@
           },
           {
             "name": "endDate",
-            "description": "São suportadas datas no formato: DD/MM/AAAA",
+            "description": "São suportadas datas no formato: yyyy-MM-dd",
             "in": "path",
             "required": true,
             "schema": {
@@ -455,7 +455,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Success, startDate=\"01/01/2020\", endDate=\"01/05/2020\"",
+            "description": "Success, startDate=\"2020-01-01\", endDate=\"2020-05-01\"",
             "content": {
               "application/json": {
                 "example": [

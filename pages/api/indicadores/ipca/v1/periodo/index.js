@@ -5,6 +5,20 @@ import NotFoundError from '@/errors/NotFoundError';
 
 import { fetchIPCAByInterval } from '@/services/banco-central/indicators/ipca';
 
+function ansiToBacenDate(dateString) {
+  const [year, month, day] = dateString.split('-');
+
+  const isValidDate = new Date(dateString).toString() !== 'Invalid Date';
+
+  if (!isValidDate || !year || !month || !day) {
+    throw new BadRequestError({
+      message: `Data inválida: ${dateString}`,
+    });
+  }
+
+  return `${day}/${month}/${year}`;
+}
+
 const action = async (request, response) => {
   const { startDate, endDate } = request.query;
 
@@ -15,9 +29,12 @@ const action = async (request, response) => {
     });
   }
 
+  const formattedStartDate = ansiToBacenDate(startDate);
+  const formattedEndDate = ansiToBacenDate(endDate);
+
   const ipcaValues = await fetchIPCAByInterval({
-    startDate,
-    endDate,
+    startDate: formattedStartDate,
+    endDate: formattedEndDate,
   });
 
   if (!ipcaValues) {
