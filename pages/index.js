@@ -39,7 +39,7 @@ export default function Index() {
             </p>
 
             <iframe
-              src="https://p.datadoghq.com/sb/bciualk0rip6udi8-678e5cdeadeb1ef8027a539d0e2e2adc?from_ts=1620781855460&live=true&theme=dark&to_ts=1620785455460"
+              src="https://p.datadoghq.com/sb/bciualk0rip6udi8-8ca0a926273a610e863a483b09b4cc6f?theme=dark"
               height="550"
               width="100%"
               title="Datadog"
