@@ -8,6 +8,7 @@ import FIPEModule from './modules/fipe';
 import HolidaysModule from './modules/holidays';
 import IbgeModule from './modules/ibge';
 import StatusModule from './modules/status';
+import UtilsTypeDefs from './utils/typedefs';
 
 const RootTypeDefs = gql`
   type Query {
@@ -33,6 +34,7 @@ export const schema = makeExecutableSchema({
     HolidaysModule.typedefs,
     IbgeModule.typedefs,
     StatusModule.typedefs,
+    UtilsTypeDefs,
   ],
   resolvers: merge(
     resolvers,

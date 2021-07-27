@@ -12,6 +12,7 @@ const typeDefs = gql`
       O DDD é um código constituído por 2 dígitos que identificam as principais cidades do país e devem ser adicionados ao nº de telefone, juntamente com o código da operadora.
       """
       ddd: String!
+      sort: SORT
     ): DDDResponse
   }
 
