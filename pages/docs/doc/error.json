@@ -1,0 +1,27 @@
+{
+    "components": {
+        "schemas": {
+            "ErrorMessage": {
+                "title": "ErrorMessage",
+                "required": ["message", "name", "type"],
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "message": "Cidade não localizada",
+                    "type": "city_error",
+                    "name": "CITY_NOT_FOUND"
+                }
+            }
+        }
+    }
+}

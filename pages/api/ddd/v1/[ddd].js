@@ -1,8 +1,8 @@
 import app from '@/app';
 
-import BaseError from '@/errors/base';
-import InternalError from '@/errors/internal';
-import NotFoundError from '@/errors/not-found';
+import BaseError from '@/errors/BaseError';
+import InternalError from '@/errors/InternalError';
+import NotFoundError from '@/errors/NotFoundError';
 
 import { getDddsData } from '@/services/ddd';
 

@@ -1,4 +1,4 @@
-import BaseError from '@/errors/base';
+import BaseError from '@/errors/BaseError';
 
 export default function errorHandler(error, request, response) {
   console.log({

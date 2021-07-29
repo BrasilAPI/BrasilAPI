@@ -1,0 +1,123 @@
+{
+    "tags": [
+        {
+            "name": "IBGE",
+            "description": "Informações sobre estados Provenientes do IBGE"
+        }
+    ],
+    "paths": {
+        "/ibge/uf/v1": {
+            "get": {
+                "tags": ["IBGE"],
+                "summary": "Retorna informações de todos estados do Brasil",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/State"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ibge/uf/v1/{code}": {
+            "get": {
+                "tags": ["IBGE"],
+                "summary": "Busca as informações de um estado a partir da sigla ou código",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/State"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "O código / sigla do estado não foi encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "name": "NotFoundError",
+                                    "message": "UF não encontrado",
+                                    "type": "not_found"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "State": {
+                "title": "State",
+                "required": ["id", "sigla", "nome", "regiao"],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "sigla": {
+                        "type": "string"
+                    },
+                    "nome": {
+                        "type": "string"
+                    },
+                    "regiao": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/Region"
+                    }
+                },
+                "example": {
+                    "id": 35,
+                    "sigla": "SP",
+                    "nome": "São Paulo",
+                    "regiao": {
+                        "id": 3,
+                        "sigla": "SE",
+                        "nome": "Sudeste"
+                    }
+                }
+            },
+            "Region": {
+                "title": "Region",
+                "required": ["id", "sigla", "nome"],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "sigla": {
+                        "type": "string"
+                    },
+                    "nome": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "id": 3,
+                    "sigla": "SE",
+                    "nome": "Sudeste"
+                }
+            }
+        }
+    }
+}
