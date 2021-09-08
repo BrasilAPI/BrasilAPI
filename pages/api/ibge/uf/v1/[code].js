@@ -1,5 +1,5 @@
 import app from '@/app';
-import { getUfByCode } from '@/services/ibge';
+import { getUfByCode } from '@/services/ibge/gov';
 import NotFoundError from '@/errors/NotFoundError';
 
 const action = async (request, response) => {
