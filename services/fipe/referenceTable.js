@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-import { FIPE_URL } from './constants';
+import { TABELA_REFERENCIA_URL } from './constants';
 
 export async function listReferenceTables() {
   const { data } = await axios.post(
-    `${FIPE_URL}/veiculos/ConsultarTabelaDeReferencia`,
+    TABELA_REFERENCIA_URL,
     {},
     {
       headers: {

@@ -30,6 +30,7 @@ export const CODIGOS_ESTADOS = {
   TO: 'Tocantins',
 };
 
+const API_URL = process.env.WIKIPEDIA_URL;
 export const getStateCities = async (uf) => {
   const formattedUF = uf.toUpperCase();
   const state = CODIGOS_ESTADOS[formattedUF];
@@ -45,13 +46,13 @@ export const getStateCities = async (uf) => {
     code.replace(/\W/g, '').replace('formatnum', '');
 
   const pageNames = await wiki({
-    apiUrl: 'https://pt.wikipedia.org/w/api.php',
+    apiUrl: API_URL,
   }).search(`Lista de municípios de ${state}`);
 
   const correctIndex = pageNames.results[0].includes('por população') ? 1 : 0;
 
   const stateInfo = await wiki({
-    apiUrl: 'https://pt.wikipedia.org/w/api.php',
+    apiUrl: API_URL,
   }).page(pageNames.results[correctIndex]);
 
   stateInfo.cities = await stateInfo.tables();

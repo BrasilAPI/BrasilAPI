@@ -2,8 +2,7 @@ import axios from 'axios';
 import banksList from './banksList.json';
 
 const fetchBanksListFromBacen = async () => {
-  const url =
-    'https://www.bcb.gov.br/pom/spb/estatistica/port/ParticipantesSTRport.csv';
+  const url = process.env.BANCOS_URL;
 
   const { data: body } = await axios.get(url);
 

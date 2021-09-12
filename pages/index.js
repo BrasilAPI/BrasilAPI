@@ -3,6 +3,9 @@ import { Header } from '../components/Header';
 
 import styles from '../styles/home.module.scss';
 
+const DATA_DOG_URL = process.env.NEXT_PUBLIC_DATA_DOG_URL;
+const VERCEL_URL = process.env.NEXT_PUBLIC_VERCEL_URL;
+
 export default function Index() {
   return (
     <>
@@ -39,7 +42,7 @@ export default function Index() {
             </p>
 
             <iframe
-              src="https://p.datadoghq.com/sb/bciualk0rip6udi8-8ca0a926273a610e863a483b09b4cc6f?theme=dark"
+              src={DATA_DOG_URL}
               height="550"
               width="100%"
               title="Datadog"
@@ -57,11 +60,7 @@ export default function Index() {
             então o objetivo desse projeto é facilitar a consulta de todos esses
             dados.
           </p>
-          <a
-            href="https://vercel.com/?utm_source=brasilapi"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href={VERCEL_URL} target="_blank" rel="noopener noreferrer">
             <img
               src="/powered-by-vercel.svg"
               width="175"

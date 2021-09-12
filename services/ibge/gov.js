@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const URL_UF = 'https://servicodados.ibge.gov.br/api/v1/localidades/estados';
+const URL_UF = process.env.IBGE_UF_URL;
 
 export const getUfs = () => axios.get(URL_UF);
 export const getUfByCode = (code) => axios.get(`${URL_UF}/${code}`);

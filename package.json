@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "commitizen": "4.2.4",
+    "cpy-cli": "^3.1.1",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "6.8.0",
     "eslint-config-airbnb": "18.1.0",
@@ -48,6 +49,7 @@
     "test:watch": "jest --watch",
     "fix": "eslint . --ext .js --fix",
     "commit": "cz",
+    "env:generate": "cpy .env.example . --rename=.env --dot",
     "gen:contributors": "githubcontrib --owner BrasilAPI --repo BrasilAPI --sortBy contributions --sortOrder desc --filter filipedeschamps,lucianopf,dependabot[bot] --layoutStrategy $INIT_CWD/.github/contributors-list/layout-strategy-custom.js"
   },
   "husky": {

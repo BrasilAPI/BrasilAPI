@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { FIPE_URL, VEHICLE_TYPE } from './constants';
+import { MARCAS_URL, VEHICLE_TYPE } from './constants';
 import { getLatestReferenceTable } from './referenceTable';
 
 async function listAutomakers({ vehicleType, referenceTable }) {
@@ -8,15 +8,11 @@ async function listAutomakers({ vehicleType, referenceTable }) {
   params.append('codigoTabelaReferencia', referenceTable);
   params.append('codigoTipoVeiculo', vehicleType);
 
-  const { data } = await axios.post(
-    `${FIPE_URL}/veiculos/ConsultarMarcas`,
-    params,
-    {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-    }
-  );
+  const { data } = await axios.post(MARCAS_URL, params, {
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+  });
 
   return data
     .map((item) => ({ nome: item.Label, valor: item.Value }))

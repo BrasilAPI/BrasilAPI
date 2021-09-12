@@ -1,4 +1,4 @@
 import axios from 'axios';
 
 export const getCnpjData = (cnpj) =>
-  axios.get(`https://minhareceita.org/${cnpj}`);
+  axios.get(`${process.env.MINHA_RECEITA_BASE_URL}/${cnpj}`);

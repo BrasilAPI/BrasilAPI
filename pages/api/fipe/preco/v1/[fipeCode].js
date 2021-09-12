@@ -15,7 +15,6 @@ async function FipePrice(request, response) {
 
     if (referenceTableCode) {
       const referenceTables = await listReferenceTables();
-
       const hasReferenceTable = !!referenceTables.find(
         (table) => table.codigo === referenceTable
       );
@@ -31,6 +30,7 @@ async function FipePrice(request, response) {
     if (err.message === 'Código fipe inválido') {
       throw new BadRequestError({ message: err.message });
     }
+    console.log(err);
 
     throw err;
   }
