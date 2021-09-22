@@ -12,7 +12,9 @@ async function citiesOfDdd(request, response, next) {
 
     const allDddData = await getDddsData();
 
-    const dddData = allDddData.filter(({ ddd }) => ddd === requestedDdd);
+    const dddData = allDddData.filter(
+      ({ ddd }) => Number(ddd) === Number(requestedDdd)
+    );
 
     if (dddData.length === 0) {
       response.status(404);

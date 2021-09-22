@@ -2,6 +2,7 @@ import axios from 'axios';
 import { existsSync } from 'fs';
 import { readFile, rm, writeFile } from 'fs/promises';
 import path from 'path';
+import fallbackddd from './fallbackddd.json';
 
 export const getDddsData = async () => {
   // O endpoint vive dando erro e timeout, então para garantir a resposta,
@@ -39,7 +40,9 @@ export const getDddsData = async () => {
 
       await writeFile(todayFile, body);
       // eslint-disable-next-line no-empty
-    } catch (err) {}
+    } catch (err) {
+      return fallbackddd;
+    }
   }
 
   const LINE_BREAK = '\r\n';

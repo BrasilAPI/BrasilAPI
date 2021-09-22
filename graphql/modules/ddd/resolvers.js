@@ -22,7 +22,10 @@ export default {
             'service_error'
           );
         }
-        const dddData = allDddData.filter(({ ddd }) => ddd === _args.ddd);
+        const dddData = allDddData.filter(
+          ({ ddd }) => Number(ddd) === Number(_args.ddd)
+        );
+        console.log(dddData);
         if (dddData.length === 0) {
           throw new ApolloError('DDD não encontrado', 'validation_error');
         }

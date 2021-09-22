@@ -1,4 +1,4 @@
-import { getUfByCode, getUfs } from '@/services/ibge';
+import { getUfByCode, getUfs } from '@/services/ibge/gov';
 import { ApolloError } from 'apollo-server-micro';
 
 const CACHE_CONTROL_HEADER_VALUE =
