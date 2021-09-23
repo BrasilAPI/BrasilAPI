@@ -9,9 +9,9 @@ describe('banks v1 (E2E)', () => {
       expect(response.status).toBe(200);
       expect(response.data).toEqual({
         ispb: '18236120',
-        name: 'NU PAGAMENTOS S.A.',
+        name: 'NU PAGAMENTOS - IP',
         code: 260,
-        fullName: 'Nu Pagamentos S.A.',
+        fullName: 'NU PAGAMENTOS S.A. - INSTITUIÇÃO DE PAGAMENTO',
       });
     });
 
