@@ -13,8 +13,12 @@ describe('ipca v1 (E2E)', () => {
     });
 
     test('Com parâmetro de limite', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/indicadores/ipca/v1?last=2`;
-      const response = await axios.get(requestUrl);
+      const requestUrl = `${global.SERVER_URL}/api/indicadores/ipca/v1`;
+      const response = await axios.get(requestUrl, {
+        params: {
+          last: 2,
+        },
+      });
 
       expect(response.status).toBe(200);
       expect(response.data.length).toBe(2);
@@ -23,8 +27,13 @@ describe('ipca v1 (E2E)', () => {
 
   describe('GET /ipca/v1/periodo', () => {
     test('Com intervalo válido', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/indicadores/ipca/v1/periodo?startDate="2020-01-01"&endDate="2020-05-01"`;
-      const response = await axios.get(requestUrl);
+      const requestUrl = `${global.SERVER_URL}/api/indicadores/ipca/v1/periodo`;
+      const response = await axios.get(requestUrl, {
+        params: {
+          startDate: '2020-01-01',
+          endDate: '2020-05-01',
+        },
+      });
 
       expect(response.status).toBe(200);
       expect(response.data).toEqual(
@@ -39,8 +48,13 @@ describe('ipca v1 (E2E)', () => {
     });
 
     test('Com intervalo inválido', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/indicadores/ipca/v1/periodo?startDate="2020-05-01"&endDate="2020-01-01"`;
-      const response = await axios.get(requestUrl);
+      const requestUrl = `${global.SERVER_URL}/api/indicadores/ipca/v1/periodo`;
+      const response = await axios.get(requestUrl, {
+        params: {
+          startDate: '2020-05-01',
+          endDate: '2020-01-01',
+        },
+      });
 
       expect(response.status).toBe(200);
       expect(response.data).toEqual(
@@ -49,18 +63,23 @@ describe('ipca v1 (E2E)', () => {
     });
 
     test('Com formato de intervalo inválido', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/indicadores/ipca/v1/periodo?startDate="01/05/2020"&endDate="01/01/2020"`;
+      const requestUrl = `${global.SERVER_URL}/api/indicadores/ipca/v1/periodo`;
 
       let response;
 
       try {
-        await axios.get(requestUrl);
+        await axios.get(requestUrl, {
+          params: {
+            startDate: '01/05/2020',
+            endDate: '01/01/2020',
+          },
+        });
       } catch (error) {
         response = error.response;
       }
 
       expect(response.data).toEqual({
-        message: 'Data inválida: "01/05/2020"',
+        message: 'Data inválida: 01/05/2020',
         type: 'bad_request',
         name: 'BadRequestError',
       });
