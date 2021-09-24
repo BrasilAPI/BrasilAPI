@@ -10,7 +10,7 @@
     "graphql": "15.6.0",
     "lodash": "4.17.21",
     "micro-cors": "0.1.1",
-    "mobx": "6.1.8",
+    "mobx": "6.3.3",
     "next": "11.1.2",
     "next-connect": "0.9.1",
     "react": "17.0.2",
