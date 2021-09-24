@@ -17,7 +17,7 @@
     "react-dom": "17.0.2",
     "react-icons": "4.2.0",
     "redoc": "2.0.0-rc.53",
-    "sass": "1.32.12",
+    "sass": "1.42.1",
     "styled-components": "5.3.1",
     "wikijs": "6.3.2"
   },
