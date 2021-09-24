@@ -1,7 +1,5 @@
 module.exports = {
-  future: {
-    webpack5: true,
-  },
+  webpack5: true,
   webpack: (config, { isServer }) => {
     if (!isServer) {
       /* eslint-disable no-param-reassign */
