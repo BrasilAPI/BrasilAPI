@@ -17,7 +17,7 @@ jobs:
           node-version: '12.x'
 
       - name: Instalar as dependências do npm
-        run: npm install
+        run: npm ci
 
       - name: Rodar testes
         run: npm test
