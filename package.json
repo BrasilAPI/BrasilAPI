@@ -35,7 +35,7 @@
     "eslint-plugin-react-hooks": "2.5.1",
     "github-contributors-list": "1.2.5",
     "husky": "4.2.5",
-    "jest": "25.1.0",
+    "jest": "27.2.1",
     "lint-staged": "10.2.11",
     "prettier": "2.0.4",
     "wait-on": "4.0.0"
