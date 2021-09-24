@@ -4,9 +4,7 @@ import { getDistrictsByUf } from '@/services/ibge/gov';
 
 import NotFoundError from '@/errors/NotFoundError';
 
-const getData = (uf) => {
-  return getDistrictsByUf(uf).catch(() => getStateCities(uf));
-};
+const getData = (uf) => getDistrictsByUf(uf).catch(() => getStateCities(uf));
 
 const action = async (request, response) => {
   try {

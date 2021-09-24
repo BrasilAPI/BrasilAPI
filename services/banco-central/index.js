@@ -37,14 +37,12 @@ const formatCsvFile = (file) => {
         ,
         fullName, // Nome_Extenso // Início_da_Operação
         ,
-      ]) => {
-        return {
-          ispb,
-          name: name && name.trim(),
-          code: Number(code),
-          fullName: fullName && fullName.trim(),
-        };
-      }
+      ]) => ({
+        ispb,
+        name: name && name.trim(),
+        code: Number(code),
+        fullName: fullName && fullName.trim(),
+      })
     );
 };
 
