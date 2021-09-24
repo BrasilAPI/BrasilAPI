@@ -19,7 +19,7 @@
     "redoc": "2.0.0-rc.53",
     "sass": "1.32.12",
     "styled-components": "5.3.0",
-    "wikijs": "6.2.0"
+    "wikijs": "6.3.2"
   },
   "devDependencies": {
     "commitizen": "4.2.4",
