@@ -1,4 +1,6 @@
 import Head from 'next/head';
+import Image from 'next/image';
+
 import { Header } from '../components/Header';
 
 import styles from '../styles/home.module.scss';
@@ -27,10 +29,12 @@ export default function Index() {
               Começar agora
             </a>
           </div>
-          <img
+          <Image
             src="/images/api-schema.svg"
             className={styles.schemaDesk}
             alt="API Schema"
+            width="286"
+            height="286"
           />
         </section>
         <section className={styles.requests}>
@@ -66,9 +70,10 @@ export default function Index() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img
+            <Image
               src="/powered-by-vercel.svg"
               width="175"
+              height="36"
               alt="Powered by Vercel"
             />
           </a>
