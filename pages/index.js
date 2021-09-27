@@ -31,7 +31,7 @@ export default function Index() {
         <meta property="og:type" content="website" />
         <meta
           property="og:image"
-          content="https://brasilapi.com.br/brasilapi-logo-medium.png"
+          content="https://brasilapi.com.br/favicon-32x32.png"
         />
       </Head>
       <Header />
