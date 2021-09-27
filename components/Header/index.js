@@ -14,7 +14,7 @@ export function Header() {
           height="45"
         />
         <div className={styles.ctas}>
-          <a href="https://github.com/BrasilAPI/BrasilAPI">
+          <a href="https://github.com/BrasilAPI/BrasilAPI" aria-label="Github">
             <FaGithub color="#1A2E46" />
           </a>
           <a href="https://brasilapi.com.br/docs" className={styles.button}>
