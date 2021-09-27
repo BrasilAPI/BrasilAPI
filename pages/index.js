@@ -10,6 +10,8 @@ export default function Index() {
     <>
       <Head>
         <title>Brasil API</title>
+
+        <link rel="canonical" href="https://brasilapi.com.br/" />
         <meta
           name="keywords"
           content="Brasil API, cep, ddd, bancos, cnpj, receita federal, ibge, feriados, tabela fipe, municípios"
@@ -17,6 +19,19 @@ export default function Index() {
         <meta
           name="description"
           content="API gratuita para consultar as mais diversas informações, desde CEP até tabela FIPE!"
+        />
+
+        <meta
+          property="og:description"
+          content="API gratuita para consultar as mais diversas informações, desde CEP até tabela FIPE!"
+        />
+
+        <meta property="og:site_name" content="Brasil API" />
+        <meta property="og:url" content="https://brasilapi.com.br/" />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:image"
+          content="https://brasilapi.com.br/brasilapi-logo-medium.png"
         />
       </Head>
       <Header />
