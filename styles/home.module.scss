@@ -24,18 +24,30 @@
         text-align: justify;
       }
 
-      button {
+      .buttonStartNow {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+    
+        width:100%;
+    
+        @media (min-width: 767px) {
+          width: min-content;  
+        }
+    
         min-width: 11.56rem;
         height: 2.93rem;
         margin-top: 2rem;
-
+    
         border: 0;
         border-radius: 0.5rem;
         background: var(--green-600);
         color: var(--white);
-
+    
         transition: filter 0.2s;
-
+    
         &:hover {
           filter: brightness(0.9);
         }
@@ -140,4 +152,8 @@
       }
     }
   }
+}
+
+.iframeContainer{
+  width:100%;
 }

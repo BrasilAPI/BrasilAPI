@@ -20,8 +20,11 @@ export default function Index() {
               disponibilizar endpoints modernos com baixíssima latência
               independente de sua fonte.
             </p>
-            <a href="https://brasilapi.com.br/docs">
-              <button type="button">Começar agora</button>
+            <a
+              href="https://brasilapi.com.br/docs"
+              className={styles.buttonStartNow}
+            >
+              Começar agora
             </a>
           </div>
           <img
@@ -38,12 +41,14 @@ export default function Index() {
               fornecemos!
             </p>
 
-            <iframe
-              src="https://p.datadoghq.com/sb/bciualk0rip6udi8-8ca0a926273a610e863a483b09b4cc6f?theme=dark"
-              height="550"
-              width="100%"
-              title="Datadog"
-            />
+            <div className={styles.iframeContainer}>
+              <iframe
+                src="https://p.datadoghq.com/sb/bciualk0rip6udi8-8ca0a926273a610e863a483b09b4cc6f?theme=dark"
+                height="550"
+                width="100%"
+                title="Datadog"
+              />
+            </div>
           </div>
         </section>
 

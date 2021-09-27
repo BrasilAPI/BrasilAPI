@@ -3,7 +3,7 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html>
+      <Html lang="pt-br">
         <Head>
           <link
             rel="apple-touch-icon"
@@ -27,6 +27,7 @@ export default class MyDocument extends Document {
           <link
             href="https://fonts.googleapis.com/css2?family=Inter&family=Lexend:wght@400;600;700&display=swap"
             rel="stylesheet"
+            property="stylesheet"
           />
 
           <link rel="shortcut icon" href="/favicon.png" type="image/png" />
