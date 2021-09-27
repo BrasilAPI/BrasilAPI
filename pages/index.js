@@ -45,7 +45,6 @@ export default function Index() {
               <iframe
                 src="https://p.datadoghq.com/sb/bciualk0rip6udi8-8ca0a926273a610e863a483b09b4cc6f?theme=dark"
                 height="550"
-                width="100%"
                 title="Datadog"
               />
             </div>
