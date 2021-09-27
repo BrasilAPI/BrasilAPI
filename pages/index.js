@@ -10,6 +10,14 @@ export default function Index() {
     <>
       <Head>
         <title>Brasil API</title>
+        <meta
+          name="keywords"
+          content="Brasil API, cep, ddd, bancos, cnpj, receita federal, ibge, feriados, tabela fipe, municípios"
+        />
+        <meta
+          name="description"
+          content="API gratuita para consultar as mais diversas informações, desde CEP até tabela FIPE!"
+        />
       </Head>
       <Header />
 
