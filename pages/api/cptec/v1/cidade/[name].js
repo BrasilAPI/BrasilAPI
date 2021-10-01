@@ -1,6 +1,6 @@
 import removeSpecialChars from '@/services/util/removeSpecialChars';
 import { getCityData } from '@/services/cptec';
-import NotFoundError from '@/errors/not-found';
+import NotFoundError from '@/errors/NotFoundError';
 import app from '@/app';
 
 const action = async (request, response) => {

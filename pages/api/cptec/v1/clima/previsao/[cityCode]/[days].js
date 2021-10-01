@@ -1,6 +1,6 @@
 import app from '@/app';
 import BadRequestError from '@/errors/bad-request';
-import NotFoundError from '@/errors/not-found';
+import NotFoundError from '@/errors/NotFoundError';
 import { getPredictionWeather } from '@/services/cptec';
 
 const action = async (request, response) => {

@@ -1,5 +1,5 @@
 import app from '@/app';
-import NotFoundError from '@/errors/not-found';
+import NotFoundError from '@/errors/NotFoundError';
 
 import { getCurrentAirportWeather } from '@/services/cptec';
 

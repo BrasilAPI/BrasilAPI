@@ -1,6 +1,6 @@
 import { getPredictionWeather } from '@/services/cptec';
 import app from '@/app';
-import NotFoundError from '@/errors/not-found';
+import NotFoundError from '@/errors/NotFoundError';
 
 const action = async (request, response) => {
   const { cityCode } = request.query;
