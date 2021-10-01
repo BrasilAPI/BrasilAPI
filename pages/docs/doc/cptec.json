@@ -1,0 +1,1291 @@
+{
+    "tags": [
+        {
+          "name": "CPTEC",
+          "description": "Abstração e normalização de dados provenientes da CPTEC"
+        }
+    ],
+    "paths": {
+        "/cptec/v1/cidade": {
+            "get": {
+                "tags": ["CPTEC"],
+                "summary": "Listar localidades",
+                "description": "Retorna listagem com todas as cidades junto a seus respectivos códigos presentes nos serviços da CPTEC.\nO Código destas cidades será utilizado para os serviços de meteorologia e a ondas (previsão oceânica) fornecido pelo centro.",
+                "operationId": "listcities(/cptec/v1/cidade)",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "*"
+                                    }
+                                }
+                            },
+                            "Access-Control-Allow-Credentials": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "true"
+                                    }
+                                }
+                            },
+                            "Cache-Control": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "max-age=0, s-maxage=86400, stale-while-revalidate, public"
+                                    }
+                                }
+                            },
+                            "Vary": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "Accept-Encoding"
+                                    }
+                                }
+                            },
+                            "Content-Encoding": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "gzip"
+                                    }
+                                }
+                            },
+                            "Date": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "Sun, 20 Dec 2020 16:07:19 GMT"
+                                    }
+                                }
+                            },
+                            "Connection": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "keep-alive"
+                                    }
+                                }
+                            },
+                            "Keep-Alive": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "timeout=5"
+                                    }
+                                }
+                            },
+                            "Transfer-Encoding": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "chunked"
+                                    }
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json; charset=utf-8": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/City"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/cptec/v1/cidade/{cityName}": {
+            "get": {
+                "tags": ["CPTEC"],
+                "summary": "Buscar localidades",
+                "description": "Retorna listagem com todas as cidades correspondentes ao termo pesquisado junto a seus respectivos códigos presentes nos serviços da CPTEC.\nO Código destas cidades será utilizado para os serviços de meteorologia e a ondas (previsão oceânica) fornecido pelo centro.",
+                "operationId": "searchcities(/cptec/v1/cidade/:cityName)",
+                "parameters": [
+                    {
+                        "name": "cityName",
+                        "in": "path",
+                        "description": "Nome ou parte do nome da cidade a ser buscada",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string",
+                            "example": "Chiforímpola"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "*"
+                                    }
+                                }
+                            },
+                            "Access-Control-Allow-Credentials": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "true"
+                                    }
+                                }
+                            },
+                            "Content-Length": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "295"
+                                    }
+                                }
+                            },
+                            "Vary": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "Accept-Encoding"
+                                    }
+                                }
+                            },
+                            "Date": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "Sun, 20 Dec 2020 16:08:27 GMT"
+                                    }
+                                }
+                            },
+                            "Connection": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "keep-alive"
+                                    }
+                                }
+                            },
+                            "Keep-Alive": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "timeout=5"
+                                    }
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json; charset=utf-8": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/City"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "message": "Nenhuma cidade não localizada",
+                                    "type": "NO_CITY_NOT_FOUND"
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/cptec/v1/clima/capital": {
+            "get": {
+                "tags": ["CPTEC"],
+                "summary": "Condições atuais nas capitais",
+                "description": "Retorna condições meteorológicas atuais nas capitais do país, com base nas estações de solo de seu aeroporto.",
+                "operationId": "Condiçõesatuaisnascapitais(/cptec/v1/clima/capital)",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "*"
+                                    }
+                                }
+                            },
+                            "Access-Control-Allow-Credentials": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "true"
+                                    }
+                                }
+                            },
+                            "Cache-Control": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "max-age=0, s-maxage=86400, stale-while-revalidate, public"
+                                    }
+                                }
+                            },
+                            "Vary": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "Accept-Encoding"
+                                    }
+                                }
+                            },
+                            "Content-Encoding": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "gzip"
+                                    }
+                                }
+                            },
+                            "Date": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "Sun, 27 Dec 2020 18:03:05 GMT"
+                                    }
+                                }
+                            },
+                            "Connection": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "keep-alive"
+                                    }
+                                }
+                            },
+                            "Transfer-Encoding": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "chunked"
+                                    }
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json; charset=utf-8": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CurrentCondition"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/cptec/v1/clima/aeroporto/{icaoCode}": {
+            "get": {
+                "tags": ["CPTEC"],
+                "summary": "Condições atuais nos aeroportos (/cptec/v1/clima/aeroporto/:icaoCode)",
+                "description": "Retorna condições meteorológicas atuais no aeroporto solicitado. Este endpoint utiliza o código ICAO (4 dígitos) do aeroporto.",
+                "operationId": "airportcurrentcondition(/cptec/v1/clima/aeroporto/:icaoCode)",
+                "parameters": [
+                    {
+                        "name": "icaoCode",
+                        "in": "path",
+                        "description": "Código ICAO (4 dígitos) do aeroporto desejado",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string",
+                            "example": "SBGR"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "*"
+                                    }
+                                }
+                            },
+                            "Access-Control-Allow-Credentials": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "true"
+                                    }
+                                }
+                            },
+                            "Cache-Control": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "max-age=0, s-maxage=86400, stale-while-revalidate, public"
+                                    }
+                                }
+                            },
+                            "Content-Length": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "214"
+                                    }
+                                }
+                            },
+                            "Vary": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "Accept-Encoding"
+                                    }
+                                }
+                            },
+                            "Date": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "Sun, 27 Dec 2020 18:06:10 GMT"
+                                    }
+                                }
+                            },
+                            "Connection": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "keep-alive"
+                                    }
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json; charset=utf-8": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CurrentCondition"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "message": "Condições meteorológicas ou aeroporto não localizados",
+                                    "type": "AIRPORT_CONDITIONS_NOT_FOUND"
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/cptec/v1/clima/previsao/{cityCode}": {
+            "get": {
+                "tags": ["CPTEC"],
+                "summary": "Previsão meteorológica para uma cidade",
+                "description": "Retorna Pervisão meteorológica para 1 dia na cidade informada.",
+                "operationId": "climapredictionwithoutdays(/cptec/v1/clima/previsao/:cityCode)",
+                "parameters": [
+                    {
+                        "name": "cityCode",
+                        "in": "path",
+                        "description": "Código da cidade fornecido pelo endpoint /cidade",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "example": 999
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "*"
+                                    }
+                                }
+                            },
+                            "Access-Control-Allow-Credentials": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "true"
+                                    }
+                                }
+                            },
+                            "Cache-Control": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "max-age=0, s-maxage=86400, stale-while-revalidate, public"
+                                    }
+                                }
+                            },
+                            "Content-Length": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "196"
+                                    }
+                                }
+                            },
+                            "Vary": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "Accept-Encoding"
+                                    }
+                                }
+                            },
+                            "Date": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "Sun, 27 Dec 2020 18:13:24 GMT"
+                                    }
+                                }
+                            },
+                            "Connection": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "keep-alive"
+                                    }
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json; charset=utf-8": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/climaPrediction"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "message": "Cidade não localizada",
+                                    "type": "CITY_NOT_FOUND"
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/cptec/v1/clima/previsao/{cityCode}/{days}": {
+            "get": {
+                "tags": ["CPTEC"],
+                "summary": "Previsão meteorológica para, até, 14 dias",
+                "description": "Retorna a previsão meteorológica para a cidade informada para um período de, até, 14 dias.",
+                "operationId": "upto14daysprediction(/cptec/v1/clima/previsao/:cityCode/:days)",
+                "parameters": [
+                    {
+                        "name": "cityCode",
+                        "in": "path",
+                        "description": "Código da cidade fornecido pelo endpoint /cidade",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "example": 999
+                        }
+                    },
+                    {
+                        "name": "days",
+                        "in": "path",
+                        "description": "Quantidade de dias desejado para a previsão",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "example": 5
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "*"
+                                    }
+                                }
+                            },
+                            "Access-Control-Allow-Credentials": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "true"
+                                    }
+                                }
+                            },
+                            "Cache-Control": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "max-age=0, s-maxage=86400, stale-while-revalidate, public"
+                                    }
+                                }
+                            },
+                            "Content-Length": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "666"
+                                    }
+                                }
+                            },
+                            "Vary": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "Accept-Encoding"
+                                    }
+                                }
+                            },
+                            "Date": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "Sun, 27 Dec 2020 18:03:47 GMT"
+                                    }
+                                }
+                            },
+                            "Connection": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "keep-alive"
+                                    }
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json; charset=utf-8": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/climaPrediction"
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/cptec/v1/ondas/{cityCode}": {
+            "get": {
+                "tags": ["CPTEC"],
+                "summary": "Previsão oceânica",
+                "description": "Retorna a previsão oceÇanica para a cidade informada para um dia",
+                "operationId": "ondaspredictionwithoutdays(/cptec/v1/ondas/:cityCode)",
+                "parameters": [
+                    {
+                        "name": "cityCode",
+                        "in": "path",
+                        "description": "Código da cidade fornecido pelo endpoint /cidade",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "example": 241
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "*"
+                                    }
+                                }
+                            },
+                            "Access-Control-Allow-Credentials": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "true"
+                                    }
+                                }
+                            },
+                            "Cache-Control": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "max-age=0, s-maxage=86400, stale-while-revalidate, public"
+                                    }
+                                }
+                            },
+                            "Vary": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "Accept-Encoding"
+                                    }
+                                }
+                            },
+                            "Content-Encoding": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "gzip"
+                                    }
+                                }
+                            },
+                            "Date": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "Sun, 27 Dec 2020 18:04:18 GMT"
+                                    }
+                                }
+                            },
+                            "Connection": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "keep-alive"
+                                    }
+                                }
+                            },
+                            "Transfer-Encoding": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "chunked"
+                                    }
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json; charset=utf-8": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ondasPrediction"
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/cptec/v1/ondas/{cityCode}/{days}": {
+            "get": {
+                "tags": ["CPTEC"],
+                "summary": "Previsão oceânica para, até, 6 dias",
+                "description": "Retorna a previsão oceânica para a cidade informada para um período de, até, 6 dias.",
+                "operationId": "ondaspredictionupto6days(/cptec/v1/ondas/:cityCode/:days)",
+                "parameters": [
+                    {
+                        "name": "cityCode",
+                        "in": "path",
+                        "description": "Código da cidade fornecido pelo endpoint /cidade",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "example": 241
+                        }
+                    },
+                    {
+                        "name": "days",
+                        "in": "path",
+                        "description": "Quantidade de dias desejada para a previsão",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "example": 2
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "*"
+                                    }
+                                }
+                            },
+                            "Access-Control-Allow-Credentials": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "true"
+                                    }
+                                }
+                            },
+                            "Cache-Control": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "max-age=0, s-maxage=86400, stale-while-revalidate, public"
+                                    }
+                                }
+                            },
+                            "Vary": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "Accept-Encoding"
+                                    }
+                                }
+                            },
+                            "Content-Encoding": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "gzip"
+                                    }
+                                }
+                            },
+                            "Date": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "Sun, 27 Dec 2020 18:04:45 GMT"
+                                    }
+                                }
+                            },
+                            "Connection": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "keep-alive"
+                                    }
+                                }
+                            },
+                            "Transfer-Encoding": {
+                                "content": {
+                                    "text/plain": {
+                                        "schema": {
+                                            "type": "string"
+                                        },
+                                        "example": "chunked"
+                                    }
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json; charset=utf-8": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ondasPrediction"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "message": "Quantidade de dias inválida (mínimo 1 dia e máximo 6 dias)",
+                                    "type": "INVALID_NUMBER_OF_DAYS"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "message": "Cidade não localizada",
+                                    "type": "CITY_NOT_FOUND"
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "City": {
+                "title": "City",
+                "required": ["name", "state", "code"],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "state": {
+                        "type": "string"
+                    },
+                    "code": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "name": "São Benedito",
+                    "state": "CE",
+                    "code": "4750"
+                }
+            },
+            "CurrentCondition": {
+                "title": "CurrentCondition",
+                "required": [
+                    "icao_code",
+                    "last_update",
+                    "pressure",
+                    "visibility",
+                    "wind",
+                    "wind_direction",
+                    "humidity",
+                    "clima_code",
+                    "clima_desc",
+                    "temp"
+                ],
+                "type": "object",
+                "properties": {
+                    "icao_code": {
+                        "type": "string"
+                    },
+                    "last_update": {
+                        "type": "string"
+                    },
+                    "pressure": {
+                        "type": "string"
+                    },
+                    "visibility": {
+                        "type": "string"
+                    },
+                    "wind": {
+                        "type": "string"
+                    },
+                    "wind_direction": {
+                        "type": "string"
+                    },
+                    "humidity": {
+                        "type": "string"
+                    },
+                    "clima_code": {
+                        "type": "string"
+                    },
+                    "clima_desc": {
+                        "type": "string"
+                    },
+                    "temp": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "icao_code": "SBAR",
+                    "last_update": "2021-01-27T15:00:00.974Z",
+                    "pressure": "1014",
+                    "visibility": "9000",
+                    "wind": "29",
+                    "wind_direction": "90",
+                    "humidity": "74",
+                    "clima_code": "ps",
+                    "clima_desc": "Predomínio de Sol",
+                    "temp": "28"
+                }
+            },
+            "climaPrediction": {
+                "title": "climaPrediction",
+                "required": ["city_name", "state", "last_update", "clima"],
+                "type": "object",
+                "properties": {
+                    "city_name": {
+                        "type": "string"
+                    },
+                    "state": {
+                        "type": "string"
+                    },
+                    "last_update": {
+                        "type": "string"
+                    },
+                    "clima": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/clima"
+                        },
+                        "description": ""
+                    }
+                },
+                "example": {
+                    "city_name": "Brejo Alegre",
+                    "state": "SP",
+                    "last_update": "2020-12-27",
+                    "clima": [
+                        {
+                            "date": "2020-12-27",
+                            "condition": "pc",
+                            "min": "20",
+                            "max": "30",
+                            "uv_index": "13.0",
+                            "condition_desc": "Pancadas de Chuva"
+                        },
+                        {
+                            "date": "2020-12-28",
+                            "condition": "pc",
+                            "min": "22",
+                            "max": "29",
+                            "uv_index": "13.0",
+                            "condition_desc": "Pancadas de Chuva"
+                        }
+                    ]
+                }
+            },
+            "clima": {
+                "title": "clima",
+                "required": [
+                    "date",
+                    "condition",
+                    "min",
+                    "max",
+                    "uv_index",
+                    "condition_desc"
+                ],
+                "type": "object",
+                "properties": {
+                    "date": {
+                        "type": "string"
+                    },
+                    "condition": {
+                        "type": "string"
+                    },
+                    "min": {
+                        "type": "string"
+                    },
+                    "max": {
+                        "type": "string"
+                    },
+                    "uv_index": {
+                        "type": "string"
+                    },
+                    "condition_desc": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "date": "2020-12-27",
+                    "condition": "pc",
+                    "min": "20",
+                    "max": "30",
+                    "uv_index": "13.0",
+                    "condition_desc": "Pancadas de Chuva"
+                }
+            },
+            "ondasPrediction": {
+                "title": "ondasPrediction",
+                "required": ["city_name", "state", "last_update", "ondas"],
+                "type": "object",
+                "properties": {
+                    "city_name": {
+                        "type": "string"
+                    },
+                    "state": {
+                        "type": "string"
+                    },
+                    "last_update": {
+                        "type": "string"
+                    },
+                    "ondas": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ondasDate"
+                        },
+                        "description": ""
+                    }
+                },
+                "example": {
+                    "city_name": "Rio de Janeiro",
+                    "state": "RJ",
+                    "last_update": "2020-12-27",
+                    "ondas": [
+                        {
+                            "date": "27-12-2020",
+                            "ondas_data": [
+                                {
+                                    "wind": "5.2",
+                                    "wind_direction": "E",
+                                    "wave_height": "0.8",
+                                    "wave_direction": "ESE",
+                                    "agitation": "Fraco",
+                                    "hour": "00h Z"
+                                },
+                                {
+                                    "wind": "4.1",
+                                    "wind_direction": "ENE",
+                                    "wave_height": "0.8",
+                                    "wave_direction": "ESE",
+                                    "agitation": "Fraco",
+                                    "hour": "03h Z"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "ondasDate": {
+                "title": "ondasDate",
+                "required": ["date", "ondas_data"],
+                "type": "object",
+                "properties": {
+                    "date": {
+                        "type": "string"
+                    },
+                    "ondas_data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ondas"
+                        },
+                        "description": ""
+                    }
+                },
+                "example": {
+                    "date": "27-12-2020",
+                    "ondas_data": [
+                        {
+                            "wind": "5.2",
+                            "wind_direction": "E",
+                            "wave_height": "0.8",
+                            "wave_direction": "ESE",
+                            "agitation": "Fraco",
+                            "hour": "00h Z"
+                        },
+                        {
+                            "wind": "4.1",
+                            "wind_direction": "ENE",
+                            "wave_height": "0.8",
+                            "wave_direction": "ESE",
+                            "agitation": "Fraco",
+                            "hour": "03h Z"
+                        }
+                    ]
+                }
+            },
+            "ondas": {
+                "title": "ondas",
+                "required": [
+                    "wind",
+                    "wind_direction",
+                    "wave_height",
+                    "wave_direction",
+                    "agitation",
+                    "hour"
+                ],
+                "type": "object",
+                "properties": {
+                    "wind": {
+                        "type": "string"
+                    },
+                    "wind_direction": {
+                        "type": "string"
+                    },
+                    "wave_height": {
+                        "type": "string"
+                    },
+                    "wave_direction": {
+                        "type": "string"
+                    },
+                    "agitation": {
+                        "type": "string"
+                    },
+                    "hour": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "wind": "5.2",
+                    "wind_direction": "E",
+                    "wave_height": "0.8",
+                    "wave_direction": "ESE",
+                    "agitation": "Fraco",
+                    "hour": "00h Z"
+                }
+            }            
+        }
+    }
+}
