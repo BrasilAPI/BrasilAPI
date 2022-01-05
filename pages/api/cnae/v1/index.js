@@ -1,5 +1,5 @@
 import app from '@/app';
-import { getCnaeCodeList } from '@/services/cnae-code/v1';
+import { getCnaeCodeList } from '@/services/cnae-code';
 
 const action = (request, response) => {
   const cnaeCodeList = getCnaeCodeList();
