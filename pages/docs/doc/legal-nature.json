@@ -20,12 +20,12 @@
                             "application/json":{
                                 "example": [
                                     {
-                                        "Nome": "Não Informado",
-                                        "Valor": ""
+                                        "code": "",
+                                        "description": "Não Informado"
                                     },
                                     {
-                                        "Nome": "Orgao Publico do Poder Executivo Federal",
-                                        "Valor": "1015"
+                                        "code": "1015",
+                                        "description": "Orgao Publico do Poder Executivo Federal"
                                     }
                                 ]
                             }
