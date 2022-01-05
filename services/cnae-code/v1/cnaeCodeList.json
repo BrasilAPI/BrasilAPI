@@ -1,0 +1,5433 @@
+[
+    {
+        "code": "",
+        "description": "Não Informado"
+    },
+    {
+        "code": "1012101",
+        "description": "ABATE DE AVES"
+    },
+    {
+        "code": "1012102",
+        "description": "ABATE DE PEQUENOS ANIMAIS"
+    },
+    {
+        "code": "1531902",
+        "description": "ACABAMENTO DE CALCADOS DE COURO SOB CONTRATO"
+    },
+    {
+        "code": "5231101",
+        "description": "ADMINISTRACAO DA INFRA ESTRUTURA PORTUARIA"
+    },
+    {
+        "code": "8550301",
+        "description": "ADMINISTRACAO DE CAIXAS ESCOLARES"
+    },
+    {
+        "code": "6613400",
+        "description": "ADMINISTRACAO DE CARTOES DE CREDITO"
+    },
+    {
+        "code": "6493000",
+        "description": "ADMINISTRACAO DE CONSORCIOS PARA AQUISICAO DE BENS E DIREITOS"
+    },
+    {
+        "code": "6611804",
+        "description": "ADMINISTRACAO DE MERCADOS DE BALCAO ORGANIZADOS"
+    },
+    {
+        "code": "4399101",
+        "description": "ADMINISTRACAO DE OBRAS"
+    },
+    {
+        "code": "8411600",
+        "description": "ADMINISTRACAO PUBLICA EM GERAL"
+    },
+    {
+        "code": "5250803",
+        "description": "AGENCIAMENTO DE CARGAS EXCETO PARA O TRANSPORTE MARITIMO"
+    },
+    {
+        "code": "7312200",
+        "description": "AGENCIAMENTO DE ESPACOS PARA PUBLICIDADE EXCETO EM VEICULOS DE COMUNICACAO"
+    },
+    {
+        "code": "7490105",
+        "description": "AGENCIAMENTO DE PROFISSIONAIS PARA ATIVIDADES ESPORTIVAS CULTURAIS E ARTISTICAS"
+    },
+    {
+        "code": "6434400",
+        "description": "AGENCIAS DE FOMENTO"
+    },
+    {
+        "code": "6391700",
+        "description": "AGENCIAS DE NOTICIAS"
+    },
+    {
+        "code": "7311400",
+        "description": "AGENCIAS DE PUBLICIDADE"
+    },
+    {
+        "code": "7911200",
+        "description": "AGENCIAS DE VIAGENS"
+    },
+    {
+        "code": "9609202",
+        "description": "AGENCIAS MATRIMONIAIS"
+    },
+    {
+        "code": "6911703",
+        "description": "AGENTE DE PROPRIEDADE INDUSTRIAL"
+    },
+    {
+        "code": "6612605",
+        "description": "AGENTES DE INVESTIMENTOS EM APLICACOES FINANCEIRAS"
+    },
+    {
+        "code": "8730102",
+        "description": "ALBERGUES ASSISTENCIAIS"
+    },
+    {
+        "code": "5590601",
+        "description": "ALBERGUES EXCETO ASSISTENCIAIS"
+    },
+    {
+        "code": "9609207",
+        "description": "ALOJAMENTO DE ANIMAIS DOMÉSTICOS"
+    },
+    {
+        "code": "9609203",
+        "description": "ALOJAMENTO HIGIENE E EMBELEZAMENTO DE ANIMAIS"
+    },
+    {
+        "code": "7732202",
+        "description": "ALUGUEL DE ANDAIMES"
+    },
+    {
+        "code": "7729201",
+        "description": "ALUGUEL DE APARELHOS DE JOGOS ELETRONICOS"
+    },
+    {
+        "code": "7739002",
+        "description": "ALUGUEL DE EQUIPAMENTOS CIENTIFICOS MEDICOS E HOSPITALARES SEM OPERADOR"
+    },
+    {
+        "code": "7721700",
+        "description": "ALUGUEL DE EQUIPAMENTOS RECREATIVOS E ESPORTIVOS"
+    },
+    {
+        "code": "7722500",
+        "description": "ALUGUEL DE FITAS DE VIDEO DVDS E SIMILARES"
+    },
+    {
+        "code": "6810202",
+        "description": "ALUGUEL DE IMOVEIS PROPRIOS"
+    },
+    {
+        "code": "7731400",
+        "description": "ALUGUEL DE MAQUINAS E EQUIPAMENTOS AGRICOLAS SEM OPERADOR"
+    },
+    {
+        "code": "7732201",
+        "description": "ALUGUEL DE MAQUINAS E EQUIPAMENTOS PARA CONSTRUCAO SEM OPERADOR EXCETO ANDAIMES"
+    },
+    {
+        "code": "7733100",
+        "description": "ALUGUEL DE MAQUINAS E EQUIPAMENTOS PARA ESCRITORIO"
+    },
+    {
+        "code": "7739001",
+        "description": "ALUGUEL DE MAQUINAS E EQUIPAMENTOS PARA EXTRACAO DE MINERIOS E PETROLEO SEM OPERADOR"
+    },
+    {
+        "code": "7729203",
+        "description": "ALUGUEL DE MATERIAL MEDICO"
+    },
+    {
+        "code": "7729202",
+        "description": "ALUGUEL DE MOVEIS UTENSILIOS E APARELHOS DE USO DOMESTICO E PESSOAL INSTRUMENTOS MUSICAIS"
+    },
+    {
+        "code": "7723300",
+        "description": "ALUGUEL DE OBJETOS DO VESTUARIO JOIAS E ACESSORIOS"
+    },
+    {
+        "code": "7739099",
+        "description": "ALUGUEL DE OUTRAS MAQUINAS E EQUIPAMENTOS COMERCIAIS E INDUSTRIAIS NAO ESPECIFICADOS ANTERIORMENTE SEM OPERADOR"
+    },
+    {
+        "code": "7729299",
+        "description": "ALUGUEL DE OUTROS OBJETOS PESSOAIS E DOMESTICOS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "7739003",
+        "description": "ALUGUEL DE PALCOS COBERTURAS E OUTRAS ESTRUTURAS DE USO TEMPORARIO EXCETO ANDAIMES"
+    },
+    {
+        "code": "1340502",
+        "description": "ALVEJAMENTO TINGIMENTO E TORCAO EM FIOS TECIDOS ARTEFATOS TEXTEIS E PECAS DO VESTUARIO"
+    },
+    {
+        "code": "2391502",
+        "description": "APARELHAMENTO DE PEDRAS PARA CONSTRUCAO EXCETO ASSOCIADO A EXTRACAO"
+    },
+    {
+        "code": "2391503",
+        "description": "APARELHAMENTO DE PLACAS E EXECUCAO DE TRABALHOS EM MARMORE GRANITO ARDOSIA E OUTRAS PEDRAS"
+    },
+    {
+        "code": "5510802",
+        "description": "APART HOTEIS"
+    },
+    {
+        "code": "159801",
+        "description": "APICULTURA"
+    },
+    {
+        "code": "4330405",
+        "description": "APLICACAO DE REVESTIMENTOS E DE RESINAS EM INTERIORES E EXTERIORES"
+    },
+    {
+        "code": "5211701",
+        "description": "ARMAZENS GERAIS EMISSAO DE WARRANT"
+    },
+    {
+        "code": "6440900",
+        "description": "ARRENDAMENTO MERCANTIL"
+    },
+    {
+        "code": "9001999",
+        "description": "ARTES CENICAS ESPETACULOS E ATIVIDADES COMPLEMENTARES NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "6435202",
+        "description": "ASSOCIACOES DE POUPANCA E EMPRESTIMO"
+    },
+    {
+        "code": "8630502",
+        "description": "ATIVIDADE MEDICA AMBULATORIAL COM RECURSOS PARA REALIZACAO DE EXAMES COMPLEMENTARES"
+    },
+    {
+        "code": "8630501",
+        "description": "ATIVIDADE MEDICA AMBULATORIAL COM RECURSOS PARA REALIZACAO DE PROCEDIMENTOS CIRURGICOS"
+    },
+    {
+        "code": "8630503",
+        "description": "ATIVIDADE MEDICA AMBULATORIAL RESTRITA A CONSULTAS"
+    },
+    {
+        "code": "8630504",
+        "description": "ATIVIDADE ODONTOLOGICA"
+    },
+    {
+        "code": "9499500",
+        "description": "ATIVIDADES ASSOCIATIVAS NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "6911702",
+        "description": "ATIVIDADES AUXILIARES DA JUSTICA"
+    },
+    {
+        "code": "6629100",
+        "description": "ATIVIDADES AUXILIARES DOS SEGUROS DA PREVIDENCIA COMPLEMENTAR E DOS PLANOS DE SAUDE NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "5240199",
+        "description": "ATIVIDADES AUXILIARES DOS TRANSPORTES AEREOS EXCETO OPERACAO DOS AEROPORTOS E CAMPOS DE ATERRISSAGEM"
+    },
+    {
+        "code": "5239700",
+        "description": "ATIVIDADES AUXILIARES DOS TRANSPORTES AQUAVIARIOS NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "5239799",
+        "description": "ATIVIDADES AUXILIARES DOS TRANSPORTES AQUAVIÁRIOS NÃO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "8690903",
+        "description": "ATIVIDADES DE ACUPUNTURA"
+    },
+    {
+        "code": "6630400",
+        "description": "ATIVIDADES DE ADMINISTRACAO DE FUNDOS POR CONTRATO OU COMISSAO"
+    },
+    {
+        "code": "5232000",
+        "description": "ATIVIDADES DE AGENCIAMENTO MARITIMO"
+    },
+    {
+        "code": "161099",
+        "description": "ATIVIDADES DE APOIO A AGRICULTURA NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "322107",
+        "description": "ATIVIDADES DE APOIO A AQUICULTURA EM AGUA DOCE"
+    },
+    {
+        "code": "321305",
+        "description": "ATIVIDADES DE APOIO A AQUICULTURA EM AGUA SALGADA E SALOBRA"
+    },
+    {
+        "code": "8550302",
+        "description": "ATIVIDADES DE APOIO A EDUCACAO EXCETO CAIXAS ESCOLARES"
+    },
+    {
+        "code": "990402",
+        "description": "ATIVIDADES DE APOIO A EXTRACAO DE MINERAIS METALICOS NAO FERROSOS"
+    },
+    {
+        "code": "990403",
+        "description": "ATIVIDADES DE APOIO A EXTRACAO DE MINERAIS NAO METALICOS"
+    },
+    {
+        "code": "990401",
+        "description": "ATIVIDADES DE APOIO A EXTRACAO DE MINERIO DE FERRO"
+    },
+    {
+        "code": "910600",
+        "description": "ATIVIDADES DE APOIO A EXTRACAO DE PETROLEO E GAS NATURAL"
+    },
+    {
+        "code": "8660700",
+        "description": "ATIVIDADES DE APOIO A GESTAO DE SAUDE"
+    },
+    {
+        "code": "162899",
+        "description": "ATIVIDADES DE APOIO A PECUARIA NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "312404",
+        "description": "ATIVIDADES DE APOIO A PESCA EM AGUA DOCE"
+    },
+    {
+        "code": "311604",
+        "description": "ATIVIDADES DE APOIO A PESCA EM AGUA SALGADA"
+    },
+    {
+        "code": "230600",
+        "description": "ATIVIDADES DE APOIO A PRODUCAO FLORESTAL"
+    },
+    {
+        "code": "9002701",
+        "description": "ATIVIDADES DE ARTISTAS PLASTICOS JORNALISTAS INDEPENDENTES E ESCRITORES"
+    },
+    {
+        "code": "8711503",
+        "description": "ATIVIDADES DE ASSISTENCIA A DEFICIENTES FISICOS IMUNODEPRIMIDOS E CONVALESCENTES"
+    },
+    {
+        "code": "8720499",
+        "description": "ATIVIDADES DE ASSISTENCIA PSICOSSOCIAL E A SAUDE A PORTADORES DE DISTURBIOS PSIQUICOS DEFICIENCIA MENTAL E DEPENDENCIA QUIMICA NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "8730199",
+        "description": "ATIVIDADES DE ASSISTENCIA SOCIAL PRESTADAS EM RESIDENCIAS COLETIVAS E PARTICULARES NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "9430800",
+        "description": "ATIVIDADES DE ASSOCIACOES DE DEFESA DE DIREITOS SOCIAIS"
+    },
+    {
+        "code": "8630599",
+        "description": "ATIVIDADES DE ATENCAO AMBULATORIAL NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "8610102",
+        "description": "ATIVIDADES DE ATENDIMENTO EM PRONTO SOCORRO E UNIDADES HOSPITALARES PARA ATENDIMENTO A URGENCIAS"
+    },
+    {
+        "code": "8610101",
+        "description": "ATIVIDADES DE ATENDIMENTO HOSPITALAR EXCETO PRONTO SOCORRO E UNIDADES PARA ATENDIMENTO A URGENCIAS"
+    },
+    {
+        "code": "8690902",
+        "description": "ATIVIDADES DE BANCOS DE LEITE HUMANO"
+    },
+    {
+        "code": "9101500",
+        "description": "ATIVIDADES DE BIBLIOTECAS E ARQUIVOS"
+    },
+    {
+        "code": "8720401",
+        "description": "ATIVIDADES DE CENTROS DE ASSISTENCIA PSICOSSOCIAL"
+    },
+    {
+        "code": "8291100",
+        "description": "ATIVIDADES DE COBRANCA E INFORMACOES CADASTRAIS"
+    },
+    {
+        "code": "9313100",
+        "description": "ATIVIDADES DE CONDICIONAMENTO FISICO"
+    },
+    {
+        "code": "6920602",
+        "description": "ATIVIDADES DE CONSULTORIA E AUDITORIA CONTABIL E TRIBUTARIA"
+    },
+    {
+        "code": "7020400",
+        "description": "ATIVIDADES DE CONSULTORIA EM GESTAO EMPRESARIAL EXCETO CONSULTORIA TECNICA ESPECIFICA"
+    },
+    {
+        "code": "6920601",
+        "description": "ATIVIDADES DE CONTABILIDADE"
+    },
+    {
+        "code": "3511502",
+        "description": "ATIVIDADES DE COORDENACAO E CONTROLE DA OPERACAO DA GERACAO E TRANSMISSAO DE ENERGIA ELETRICA"
+    },
+    {
+        "code": "7410299",
+        "description": "ATIVIDADES DE DESIGN NÃO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "5250802",
+        "description": "ATIVIDADES DE DESPACHANTES ADUANEIROS"
+    },
+    {
+        "code": "8650001",
+        "description": "ATIVIDADES DE ENFERMAGEM"
+    },
+    {
+        "code": "9602502",
+        "description": "ATIVIDADES DE ESTETICA E OUTROS SERVICOS DE CUIDADOS COM A BELEZA"
+    },
+    {
+        "code": "7119702",
+        "description": "ATIVIDADES DE ESTUDOS GEOLOGICOS"
+    },
+    {
+        "code": "5914600",
+        "description": "ATIVIDADES DE EXIBICAO CINEMATOGRAFICA"
+    },
+    {
+        "code": "9412001",
+        "description": "ATIVIDADES DE FISCALIZAÇÃO PROFISSIONAL"
+    },
+    {
+        "code": "8650004",
+        "description": "ATIVIDADES DE FISIOTERAPIA"
+    },
+    {
+        "code": "8650006",
+        "description": "ATIVIDADES DE FONOAUDIOLOGIA"
+    },
+    {
+        "code": "8712300",
+        "description": "ATIVIDADES DE FORNECIMENTO DE INFRA ESTRUTURA DE APOIO E ASSISTENCIA A PACIENTE NO DOMICILIO"
+    },
+    {
+        "code": "5310502",
+        "description": "ATIVIDADES DE FRANQUEADAS E PERMISSIONARIAS DO CORREIO NACIONAL"
+    },
+    {
+        "code": "5920100",
+        "description": "ATIVIDADES DE GRAVACAO DE SOM E DE EDICAO DE MUSICA"
+    },
+    {
+        "code": "7490104",
+        "description": "ATIVIDADES DE INTERMEDIACAO E AGENCIAMENTO DE SERVICOS E NEGOCIOS EM GERAL EXCETO IMOBILIARIOS"
+    },
+    {
+        "code": "8030700",
+        "description": "ATIVIDADES DE INVESTIGACAO PARTICULAR"
+    },
+    {
+        "code": "9103100",
+        "description": "ATIVIDADES DE JARDINS BOTANICOS ZOOLOGICOS PARQUES NACIONAIS RESERVAS ECOLOGICAS E AREAS DE PROTECAO AMBIENTAL"
+    },
+    {
+        "code": "8129000",
+        "description": "ATIVIDADES DE LIMPEZA NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "8020000",
+        "description": "ATIVIDADES DE MONITORAMENTO DE SISTEMAS DE SEGURANCA"
+    },
+    {
+        "code": "8020001",
+        "description": "ATIVIDADES DE MONITORAMENTO DE SISTEMAS DE SEGURANÇA ELETRÔNICO"
+    },
+    {
+        "code": "9102301",
+        "description": "ATIVIDADES DE MUSEUS E DE EXPLORACAO DE LUGARES E PREDIOS HISTORICOS E ATRACOES SIMILARES"
+    },
+    {
+        "code": "9493600",
+        "description": "ATIVIDADES DE ORGANIZACOES ASSOCIATIVAS LIGADAS A CULTURA E A ARTE"
+    },
+    {
+        "code": "9411100",
+        "description": "ATIVIDADES DE ORGANIZACOES ASSOCIATIVAS PATRONAIS E EMPRESARIAIS"
+    },
+    {
+        "code": "9412000",
+        "description": "ATIVIDADES DE ORGANIZACOES ASSOCIATIVAS PROFISSIONAIS"
+    },
+    {
+        "code": "9492800",
+        "description": "ATIVIDADES DE ORGANIZACOES POLITICAS"
+    },
+    {
+        "code": "9491000",
+        "description": "ATIVIDADES DE ORGANIZACOES RELIGIOSAS"
+    },
+    {
+        "code": "9420100",
+        "description": "ATIVIDADES DE ORGANIZACOES SINDICAIS"
+    },
+    {
+        "code": "8690904",
+        "description": "ATIVIDADES DE PODOLOGIA"
+    },
+    {
+        "code": "163600",
+        "description": "ATIVIDADES DE POS COLHEITA"
+    },
+    {
+        "code": "5912099",
+        "description": "ATIVIDADES DE POS PRODUCAO CINEMATOGRAFICA DE VIDEOS E DE PROGRAMAS DE TELEVISAO NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "8690901",
+        "description": "ATIVIDADES DE PRATICAS INTEGRATIVAS E COMPLEMENTARES EM SAUDE HUMANA"
+    },
+    {
+        "code": "5911199",
+        "description": "ATIVIDADES DE PRODUCAO CINEMATOGRAFICA DE VIDEOS E DE PROGRAMAS DE TELEVISAO NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "7420002",
+        "description": "ATIVIDADES DE PRODUCAO DE FOTOGRAFIAS AEREAS E SUBMARINAS"
+    },
+    {
+        "code": "7420001",
+        "description": "ATIVIDADES DE PRODUCAO DE FOTOGRAFIAS EXCETO AEREA E SUBMARINA"
+    },
+    {
+        "code": "8650099",
+        "description": "ATIVIDADES DE PROFISSIONAIS DA AREA DE SAUDE NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "8650002",
+        "description": "ATIVIDADES DE PROFISSIONAIS DA NUTRICAO"
+    },
+    {
+        "code": "8650003",
+        "description": "ATIVIDADES DE PSICOLOGIA E PSICANALISE"
+    },
+    {
+        "code": "6010100",
+        "description": "ATIVIDADES DE RADIO"
+    },
+    {
+        "code": "8630507",
+        "description": "ATIVIDADES DE REPRODUCAO HUMANA ASSISTIDA"
+    },
+    {
+        "code": "9609205",
+        "description": "ATIVIDADES DE SAUNA E BANHOS"
+    },
+    {
+        "code": "8640299",
+        "description": "ATIVIDADES DE SERVICOS DE COMPLEMENTACAO DIAGNOSTICA E TERAPEUTICA NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "9001906",
+        "description": "ATIVIDADES DE SONORIZACAO E DE ILUMINACAO"
+    },
+    {
+        "code": "8220200",
+        "description": "ATIVIDADES DE TELEATENDIMENTO"
+    },
+    {
+        "code": "6021700",
+        "description": "ATIVIDADES DE TELEVISAO ABERTA"
+    },
+    {
+        "code": "8650007",
+        "description": "ATIVIDADES DE TERAPIA DE NUTRICAO ENTERAL E PARENTERAL"
+    },
+    {
+        "code": "8650005",
+        "description": "ATIVIDADES DE TERAPIA OCUPACIONAL"
+    },
+    {
+        "code": "8012900",
+        "description": "ATIVIDADES DE TRANSPORTE DE codeES"
+    },
+
+    {
+        "code": "8011101",
+        "description": "ATIVIDADES DE VIGILANCIA E SEGURANCA PRIVADA"
+    },
+    {
+        "code": "5310501",
+        "description": "ATIVIDADES DO CORREIO NACIONAL"
+    },
+    {
+        "code": "9603399",
+        "description": "ATIVIDADES FUNERARIAS E SERVICOS RELACIONADOS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "8130300",
+        "description": "ATIVIDADES PAISAGISTICAS"
+    },
+    {
+        "code": "3702900",
+        "description": "ATIVIDADES RELACIONADAS A ESGOTO EXCETO A GESTAO DE REDES"
+    },
+    {
+        "code": "6022502",
+        "description": "ATIVIDADES RELACIONADAS A TELEVISAO POR ASSINATURA EXCETO PROGRAMADORAS"
+    },
+    {
+        "code": "7119799",
+        "description": "ATIVIDADES TECNICAS RELACIONADAS A ENGENHARIA E ARQUITETURA NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "7500100",
+        "description": "ATIVIDADES VETERINARIAS"
+    },
+    {
+        "code": "6621502",
+        "description": "AUDITORIA E CONSULTORIA ATUARIAL"
+    },
+    {
+        "code": "6410700",
+        "description": "BANCO CENTRAL"
+    },
+    {
+        "code": "6421200",
+        "description": "BANCOS COMERCIAIS"
+    },
+    {
+        "code": "6424701",
+        "description": "BANCOS COOPERATIVOS"
+    },
+    {
+        "code": "6438701",
+        "description": "BANCOS DE CAMBIO"
+    },
+    {
+        "code": "6433600",
+        "description": "BANCOS DE DESENVOLVIMENTO"
+    },
+    {
+        "code": "6432800",
+        "description": "BANCOS DE INVESTIMENTO"
+    },
+    {
+        "code": "6422100",
+        "description": "BANCOS MULTIPLOS COM CARTEIRA COMERCIAL"
+    },
+    {
+        "code": "6431000",
+        "description": "BANCOS MULTIPLOS SEM CARTEIRA COMERCIAL"
+    },
+    {
+        "code": "5611202",
+        "description": "BARES E OUTROS ESTABELECIMENTOS ESPECIALIZADOS EM SERVIR BEBIDAS"
+    },
+    {
+        "code": "5611205",
+        "description": "BARES E OUTROS ESTABELECIMENTOS ESPECIALIZADOS EM SERVIR BEBIDAS COM ENTRETENIMENTO"
+    },
+    {
+        "code": "5611204",
+        "description": "BARES E OUTROS ESTABELECIMENTOS ESPECIALIZADOS EM SERVIR BEBIDAS SEM ENTRETENIMENTO"
+    },
+    {
+        "code": "1061901",
+        "description": "BENEFICIAMENTO DE ARROZ"
+    },
+    {
+        "code": "1081301",
+        "description": "BENEFICIAMENTO DE CAFE"
+    },
+    {
+        "code": "500302",
+        "description": "BENEFICIAMENTO DE CARVAO MINERAL"
+    },
+    {
+        "code": "810010",
+        "description": "BENEFICIAMENTO DE GESSO E CAULIM ASSOCIADO A EXTRACAO"
+    },
+    {
+        "code": "721902",
+        "description": "BENEFICIAMENTO DE MINERIO DE ALUMINIO"
+    },
+    {
+        "code": "722702",
+        "description": "BENEFICIAMENTO DE MINERIO DE ESTANHO"
+    },
+    {
+        "code": "723502",
+        "description": "BENEFICIAMENTO DE MINERIO DE MANGANES"
+    },
+    {
+        "code": "724302",
+        "description": "BENEFICIAMENTO DE MINERIO DE METAIS PRECIOSOS"
+    },
+    {
+        "code": "729405",
+        "description": "BENEFICIAMENTO DE MINERIOS DE COBRE CHUMBO ZINCO E OUTROS MINERAIS METALICOS NAO FERROSOS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "6611802",
+        "description": "BOLSA DE MERCADORIAS"
+    },
+    {
+        "code": "6611803",
+        "description": "BOLSA DE MERCADORIAS E FUTUROS"
+    },
+    {
+        "code": "6611801",
+        "description": "BOLSA DE codeES"
+    },
+
+    {
+        "code": "2391501",
+        "description": "BRITAMENTO DE PEDRAS EXCETO ASSOCIADO A EXTRACAO"
+    },
+    {
+        "code": "9602501",
+        "description": "CABELEIREIROS"
+    },
+    {
+        "code": "170900",
+        "description": "CACA E SERVICOS RELACIONADOS"
+    },
+    {
+        "code": "6499904",
+        "description": "CAIXAS DE FINANCIAMENTO DE CORPORACOES"
+    },
+    {
+        "code": "6423900",
+        "description": "CAIXAS ECONOMICAS"
+    },
+    {
+        "code": "6619304",
+        "description": "CAIXAS ELETRONICOS"
+    },
+    {
+        "code": "5590602",
+        "description": "CAMPINGS"
+    },
+    {
+        "code": "5620103",
+        "description": "CANTINAS SERVICOS DE ALIMENTACAO PRIVATIVOS"
+    },
+    {
+        "code": "3600601",
+        "description": "CAPTACAO TRATAMENTO E DISTRIBUICAO DE AGUA"
+    },
+    {
+        "code": "5212500",
+        "description": "CARGA E DESCARGA"
+    },
+    {
+        "code": "6912500",
+        "description": "CARTORIOS"
+    },
+    {
+        "code": "9200301",
+        "description": "CASAS DE BINGO"
+    },
+    {
+        "code": "8230002",
+        "description": "CASAS DE FESTAS E EVENTOS"
+    },
+    {
+        "code": "8299706",
+        "description": "CASAS LOTERICAS"
+    },
+    {
+        "code": "8711504",
+        "description": "CENTROS DE APOIO A PACIENTES COM CANCER E COM AIDS"
+    },
+    {
+        "code": "9529102",
+        "description": "CHAVEIROS"
+    },
+    {
+        "code": "9609201",
+        "description": "CLINICAS DE ESTETICA E SIMILARES"
+    },
+    {
+        "code": "8711501",
+        "description": "CLINICAS E RESIDENCIAS GERIATRICAS"
+    },
+    {
+        "code": "6499901",
+        "description": "CLUBES DE INVESTIMENTO"
+    },
+    {
+        "code": "9312300",
+        "description": "CLUBES SOCIAIS ESPORTIVOS E SIMILARES"
+    },
+    {
+        "code": "220903",
+        "description": "COLETA DE CASTANHA DO PARA EM FLORESTAS NATIVAS"
+    },
+    {
+        "code": "220904",
+        "description": "COLETA DE LATEX EM FLORESTAS NATIVAS"
+    },
+    {
+        "code": "312403",
+        "description": "COLETA DE OUTROS PRODUTOS AQUATICOS DE AGUA DOCE"
+    },
+    {
+        "code": "311603",
+        "description": "COLETA DE OUTROS PRODUTOS MARINHOS"
+    },
+    {
+        "code": "220905",
+        "description": "COLETA DE PALMITO EM FLORESTAS NATIVAS"
+    },
+    {
+        "code": "220999",
+        "description": "COLETA DE PRODUTOS NAO MADEIREIROS NAO ESPECIFICADOS ANTERIORMENTE EM FLORESTAS NATIVAS"
+    },
+    {
+        "code": "3811400",
+        "description": "COLETA DE RESIDUOS NAO PERIGOSOS"
+    },
+    {
+        "code": "3812200",
+        "description": "COLETA DE RESIDUOS PERIGOSOS"
+    },
+    {
+        "code": "4511101",
+        "description": "COMERCIO A VAREJO DE AUTOMOVEIS CAMIONETAS E UTILITARIOS NOVOS"
+    },
+    {
+        "code": "4511102",
+        "description": "COMERCIO A VAREJO DE AUTOMOVEIS CAMIONETAS E UTILITARIOS USADOS"
+    },
+    {
+        "code": "4541203",
+        "description": "COMERCIO A VAREJO DE MOTOCICLETAS E MOTONETAS NOVAS"
+    },
+    {
+        "code": "4541204",
+        "description": "COMERCIO A VAREJO DE MOTOCICLETAS E MOTONETAS USADAS"
+    },
+    {
+        "code": "4541206",
+        "description": "COMERCIO A VAREJO DE PECAS E ACESSORIOS NOVOS PARA MOTOCICLETAS E MOTONETAS"
+    },
+    {
+        "code": "4530703",
+        "description": "COMERCIO A VAREJO DE PECAS E ACESSORIOS NOVOS PARA VEICULOS AUTOMOTORES"
+    },
+    {
+        "code": "4541205",
+        "description": "COMERCIO A VAREJO DE PECAS E ACESSORIOS PARA MOTOCICLETAS E MOTONETAS"
+    },
+    {
+        "code": "4541207",
+        "description": "COMERCIO A VAREJO DE PECAS E ACESSORIOS USADOS PARA MOTOCICLETAS E MOTONETAS"
+    },
+    {
+        "code": "4530704",
+        "description": "COMERCIO A VAREJO DE PECAS E ACESSORIOS USADOS PARA VEICULOS AUTOMOTORES"
+    },
+    {
+        "code": "4530705",
+        "description": "COMERCIO A VAREJO DE PNEUMATICOS E CAMARAS DE AR"
+    },
+    {
+        "code": "4637102",
+        "description": "COMERCIO ATACADISTA DE ACUCAR"
+    },
+    {
+        "code": "4635401",
+        "description": "COMERCIO ATACADISTA DE AGUA MINERAL"
+    },
+    {
+        "code": "4681801",
+        "description": "COMERCIO ATACADISTA DE ALCOOL CARBURANTE BIODIESEL GASOLINA E DEMAIS DERIVADOS DE PETROLEO EXCETO LUBRIFICANTES NAO REALIZADO POR TRANSPORTADOR RETALHISTA (TRR)"
+    },
+    {
+        "code": "4623103",
+        "description": "COMERCIO ATACADISTA DE ALGODAO"
+    },
+    {
+        "code": "4623109",
+        "description": "COMERCIO ATACADISTA DE ALIMENTOS PARA ANIMAIS"
+    },
+    {
+        "code": "4623101",
+        "description": "COMERCIO ATACADISTA DE ANIMAIS VIVOS"
+    },
+    {
+        "code": "4649402",
+        "description": "COMERCIO ATACADISTA DE APARELHOS ELETRONICOS DE USO PESSOAL E DOMESTICO"
+    },
+    {
+        "code": "4641903",
+        "description": "COMERCIO ATACADISTA DE ARTIGOS DE ARMARINHO"
+    },
+    {
+        "code": "4641902",
+        "description": "COMERCIO ATACADISTA DE ARTIGOS DE CAMA MESA E BANHO"
+    },
+    {
+        "code": "4647801",
+        "description": "COMERCIO ATACADISTA DE ARTIGOS DE ESCRITORIO E DE PAPELARIA"
+    },
+    {
+        "code": "4649405",
+        "description": "COMERCIO ATACADISTA DE ARTIGOS DE TAPECARIA PERSIANAS E CORTINAS"
+    },
+    {
+        "code": "4642701",
+        "description": "COMERCIO ATACADISTA DE ARTIGOS DO VESTUARIO E ACESSORIOS EXCETO PROFISSIONAIS E DE SEGURANCA"
+    },
+    {
+        "code": "4634602",
+        "description": "COMERCIO ATACADISTA DE AVES ABATIDAS E DERIVADOS"
+    },
+    {
+        "code": "4633802",
+        "description": "COMERCIO ATACADISTA DE AVES VIVAS E OVOS"
+    },
+    {
+        "code": "4635403",
+        "description": "COMERCIO ATACADISTA DE BEBIDAS COM ATIVIDADE DE FRACIONAMENTO E ACONDICIONAMENTO ASSOCIADA"
+    },
+    {
+        "code": "4635499",
+        "description": "COMERCIO ATACADISTA DE BEBIDAS NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "4649403",
+        "description": "COMERCIO ATACADISTA DE BICICLETAS TRICICLOS E OUTROS VEICULOS RECREATIVOS"
+    },
+    {
+        "code": "4643502",
+        "description": "COMERCIO ATACADISTA DE BOLSAS MALAS E ARTIGOS DE VIAGEM"
+    },
+    {
+        "code": "4669901",
+        "description": "COMERCIO ATACADISTA DE BOMBAS E COMPRESSORES PARTES E PECAS"
+    },
+    {
+        "code": "4623105",
+        "description": "COMERCIO ATACADISTA DE CACAU"
+    },
+    {
+        "code": "4621400",
+        "description": "COMERCIO ATACADISTA DE CAFE EM GRAO"
+    },
+    {
+        "code": "4637101",
+        "description": "COMERCIO ATACADISTA DE CAFE TORRADO MOIDO E SOLUVEL"
+    },
+    {
+        "code": "4643501",
+        "description": "COMERCIO ATACADISTA DE CALCADOS"
+    },
+    {
+        "code": "4634601",
+        "description": "COMERCIO ATACADISTA DE CARNES BOVINAS E SUINAS E DERIVADOS"
+    },
+    {
+        "code": "4634699",
+        "description": "COMERCIO ATACADISTA DE CARNES E DERIVADOS DE OUTROS ANIMAIS"
+    },
+    {
+        "code": "4632001",
+        "description": "COMERCIO ATACADISTA DE CEREAIS E LEGUMINOSAS BENEFICIADOS"
+    },
+    {
+        "code": "4632003",
+        "description": "COMERCIO ATACADISTA DE CEREAIS E LEGUMINOSAS BENEFICIADOS FARINHAS AMIDOS E FECULAS COM ATIVIDADE DE FRACIONAMENTO E ACONDICIONAMENTO ASSOCIADA"
+    },
+    {
+        "code": "4635402",
+        "description": "COMERCIO ATACADISTA DE CERVEJA CHOPE E REFRIGERANTE"
+    },
+    {
+        "code": "4637107",
+        "description": "COMERCIO ATACADISTA DE CHOCOLATES CONFEITOS BALAS BOMBONS E SEMELHANTES"
+    },
+    {
+        "code": "4636202",
+        "description": "COMERCIO ATACADISTA DE CIGARROS CIGARRILHAS E CHARUTOS"
+    },
+    {
+        "code": "4674500",
+        "description": "COMERCIO ATACADISTA DE CIMENTO"
+    },
+    {
+        "code": "4633803",
+        "description": "COMERCIO ATACADISTA DE COELHOS E OUTROS PEQUENOS ANIMAIS VIVOS PARA ALIMENTACAO"
+    },
+    {
+        "code": "4681804",
+        "description": "COMERCIO ATACADISTA DE COMBUSTIVEIS DE ORIGEM MINERAL EM BRUTO"
+    },
+    {
+        "code": "4681803",
+        "description": "COMERCIO ATACADISTA DE COMBUSTIVEIS DE ORIGEM VEGETAL EXCETO ALCOOL CARBURANTE"
+    },
+    {
+        "code": "4681802",
+        "description": "COMERCIO ATACADISTA DE COMBUSTIVEIS REALIZADO POR TRANSPORTADOR RETALHISTA (TRR)"
+    },
+    {
+        "code": "4652400",
+        "description": "COMERCIO ATACADISTA DE COMPONENTES ELETRONICOS E EQUIPAMENTOS DE TELEFONIA E COMUNICACAO"
+    },
+    {
+        "code": "4646001",
+        "description": "COMERCIO ATACADISTA DE COSMETICOS E PRODUTOS DE PERFUMARIA"
+    },
+    {
+        "code": "4623102",
+        "description": "COMERCIO ATACADISTA DE COUROS LAS PELES E OUTROS SUBPRODUTOS NAO COMESTIVEIS DE ORIGEM ANIMAL"
+    },
+    {
+        "code": "4683400",
+        "description": "COMERCIO ATACADISTA DE DEFENSIVOS AGRICOLAS ADUBOS FERTILIZANTES E CORRETIVOS DO SOLO"
+    },
+    {
+        "code": "4686902",
+        "description": "COMERCIO ATACADISTA DE EMBALAGENS"
+    },
+    {
+        "code": "3513100",
+        "description": "COMERCIO ATACADISTA DE ENERGIA ELETRICA"
+    },
+    {
+        "code": "4651601",
+        "description": "COMERCIO ATACADISTA DE EQUIPAMENTOS DE INFORMATICA"
+    },
+    {
+        "code": "4649401",
+        "description": "COMERCIO ATACADISTA DE EQUIPAMENTOS ELETRICOS DE USO PESSOAL E DOMESTICO"
+    },
+    {
+        "code": "4632002",
+        "description": "COMERCIO ATACADISTA DE FARINHAS AMIDOS E FECULAS"
+    },
+    {
+        "code": "4672900",
+        "description": "COMERCIO ATACADISTA DE FERRAGENS E FERRAMENTAS"
+    },
+    {
+        "code": "4649407",
+        "description": "COMERCIO ATACADISTA DE FILMES CDS DVDS FITAS E DISCOS"
+    },
+    {
+        "code": "4689302",
+        "description": "COMERCIO ATACADISTA DE FIOS E FIBRAS BENEFICIADOS"
+    },
+    {
+        "code": "4633801",
+        "description": "COMERCIO ATACADISTA DE FRUTAS VERDURAS RAIZES TUBERCULOS HORTALICAS E LEGUMES FRESCOS"
+    },
+    {
+        "code": "4636201",
+        "description": "COMERCIO ATACADISTA DE FUMO BENEFICIADO"
+    },
+    {
+        "code": "4623104",
+        "description": "COMERCIO ATACADISTA DE FUMO EM FOLHA NAO BENEFICIADO"
+    },
+    {
+        "code": "4682600",
+        "description": "COMERCIO ATACADISTA DE GAS LIQUEFEITO DE PETROLEO (GLP)"
+    },
+    {
+        "code": "4645101",
+        "description": "COMERCIO ATACADISTA DE INSTRUMENTOS E MATERIAIS PARA USO MEDICO CIRURGICO HOSPITALAR E DE LABORATORIOS"
+    },
+    {
+        "code": "4649410",
+        "description": "COMERCIO ATACADISTA DE JOIAS RELOGIOS E BIJUTERIAS INCLUSIVE PEDRAS PRECIOSAS E SEMIPRECIOSAS LAPIDADAS"
+    },
+    {
+        "code": "4631100",
+        "description": "COMERCIO ATACADISTA DE LEITE E LATICINIOS"
+    },
+    {
+        "code": "4647802",
+        "description": "COMERCIO ATACADISTA DE LIVROS JORNAIS E OUTRAS PUBLICACOES"
+    },
+    {
+        "code": "4681805",
+        "description": "COMERCIO ATACADISTA DE LUBRIFICANTES"
+    },
+    {
+        "code": "4649406",
+        "description": "COMERCIO ATACADISTA DE LUSTRES LUMINARIAS E ABAJURES"
+    },
+    {
+        "code": "4671100",
+        "description": "COMERCIO ATACADISTA DE MADEIRA E PRODUTOS DERIVADOS"
+    },
+    {
+        "code": "4661300",
+        "description": "COMERCIO ATACADISTA DE MAQUINAS APARELHOS E EQUIPAMENTOS PARA USO AGROPECUARIO PARTES E PECAS"
+    },
+    {
+        "code": "4664800",
+        "description": "COMERCIO ATACADISTA DE MAQUINAS APARELHOS E EQUIPAMENTOS PARA USO ODONTO MEDICO HOSPITALAR PARTES E PECAS"
+    },
+    {
+        "code": "4665600",
+        "description": "COMERCIO ATACADISTA DE MAQUINAS E EQUIPAMENTOS PARA USO COMERCIAL PARTES E PECAS"
+    },
+    {
+        "code": "4663000",
+        "description": "COMERCIO ATACADISTA DE MAQUINAS E EQUIPAMENTOS PARA USO INDUSTRIAL PARTES E PECAS"
+    },
+    {
+        "code": "4662100",
+        "description": "COMERCIO ATACADISTA DE MAQUINAS EQUIPAMENTOS PARA TERRAPLENAGEM MINERACAO E CONSTRUCAO PARTES E PECAS"
+    },
+    {
+        "code": "4679602",
+        "description": "COMERCIO ATACADISTA DE MARMORES E GRANITOS"
+    },
+    {
+        "code": "4637105",
+        "description": "COMERCIO ATACADISTA DE MASSAS ALIMENTICIAS"
+    },
+    {
+        "code": "4679699",
+        "description": "COMERCIO ATACADISTA DE MATERIAIS DE CONSTRUCAO EM GERAL"
+    },
+    {
+        "code": "4673700",
+        "description": "COMERCIO ATACADISTA DE MATERIAL ELETRICO"
+    },
+    {
+        "code": "4623108",
+        "description": "COMERCIO ATACADISTA DE MATERIAS PRIMAS AGRICOLAS COM ATIVIDADE DE FRACIONAMENTO E ACONDICIONAMENTO ASSOCIADA"
+    },
+    {
+        "code": "4623199",
+        "description": "COMERCIO ATACADISTA DE MATERIAS PRIMAS AGRICOLAS NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "4644301",
+        "description": "COMERCIO ATACADISTA DE MEDICAMENTOS E DROGAS DE USO HUMANO"
+    },
+    {
+        "code": "4644302",
+        "description": "COMERCIO ATACADISTA DE MEDICAMENTOS E DROGAS DE USO VETERINARIO"
+    },
+    {
+        "code": "4692300",
+        "description": "COMERCIO ATACADISTA DE MERCADORIAS EM GERAL COM PREDOMINANCIA DE INSUMOS AGROPECUARIOS"
+    },
+    {
+        "code": "4691500",
+        "description": "COMERCIO ATACADISTA DE MERCADORIAS EM GERAL COM PREDOMINANCIA DE PRODUTOS ALIMENTICIOS"
+    },
+    {
+        "code": "4693100",
+        "description": "COMERCIO ATACADISTA DE MERCADORIAS EM GERAL SEM PREDOMINANCIA DE ALIMENTOS OU DE INSUMOS AGROPECUARIOS"
+    },
+    {
+        "code": "4649404",
+        "description": "COMERCIO ATACADISTA DE MOVEIS E ARTIGOS DE COLCHOARIA"
+    },
+    {
+        "code": "4637103",
+        "description": "COMERCIO ATACADISTA DE OLEOS E GORDURAS"
+    },
+    {
+        "code": "4669999",
+        "description": "COMERCIO ATACADISTA DE OUTRAS MAQUINAS E EQUIPAMENTOS NAO ESPECIFICADOS ANTERIORMENTE PARTES E PECAS"
+    },
+    {
+        "code": "4649499",
+        "description": "COMERCIO ATACADISTA DE OUTROS EQUIPAMENTOS E ARTIGOS DE USO PESSOAL E DOMESTICO NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "4684299",
+        "description": "COMERCIO ATACADISTA DE OUTROS PRODUTOS QUIMICOS E PETROQUIMICOS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "4637104",
+        "description": "COMERCIO ATACADISTA DE PAES BOLOS BISCOITOS E SIMILARES"
+    },
+    {
+        "code": "4686901",
+        "description": "COMERCIO ATACADISTA DE PAPEL E PAPELAO EM BRUTO"
+    },
+    {
+        "code": "4634603",
+        "description": "COMERCIO ATACADISTA DE PESCADOS E FRUTOS DO MAR"
+    },
+    {
+        "code": "4639701",
+        "description": "COMERCIO ATACADISTA DE PRODUTOS ALIMENTICIOS EM GERAL"
+    },
+    {
+        "code": "4639702",
+        "description": "COMERCIO ATACADISTA DE PRODUTOS ALIMENTICIOS EM GERAL COM ATIVIDADE DE FRACIONAMENTO E ACONDICIONAMENTO ASSOCIADA"
+    },
+    {
+        "code": "4689301",
+        "description": "COMERCIO ATACADISTA DE PRODUTOS DA EXTRACAO MINERAL EXCETO COMBUSTIVEIS"
+    },
+    {
+        "code": "4649408",
+        "description": "COMERCIO ATACADISTA DE PRODUTOS DE HIGIENE LIMPEZA E CONSERVACAO DOMICILIAR"
+    },
+    {
+        "code": "4649409",
+        "description": "COMERCIO ATACADISTA DE PRODUTOS DE HIGIENE LIMPEZA E CONSERVACAO DOMICILIAR COM ATIVIDADE DE FRACIONAMENTO E ACONDICIONAMENTO ASSOCIADA"
+    },
+    {
+        "code": "4646002",
+        "description": "COMERCIO ATACADISTA DE PRODUTOS DE HIGIENE PESSOAL"
+    },
+    {
+        "code": "4645103",
+        "description": "COMERCIO ATACADISTA DE PRODUTOS ODONTOLOGICOS"
+    },
+    {
+        "code": "4685100",
+        "description": "COMERCIO ATACADISTA DE PRODUTOS SIDERURGICOS E METALURGICOS EXCETO PARA CONSTRUCAO"
+    },
+    {
+        "code": "4645102",
+        "description": "COMERCIO ATACADISTA DE PROTESES E ARTIGOS DE ORTOPEDIA"
+    },
+    {
+        "code": "4687701",
+        "description": "COMERCIO ATACADISTA DE RESIDUOS DE PAPEL E PAPELAO"
+    },
+    {
+        "code": "4687703",
+        "description": "COMERCIO ATACADISTA DE RESIDUOS E SUCATAS METALICOS"
+    },
+    {
+        "code": "4687702",
+        "description": "COMERCIO ATACADISTA DE RESIDUOS E SUCATAS NAO METALICOS EXCETO DE PAPEL E PAPELAO"
+    },
+    {
+        "code": "4684201",
+        "description": "COMERCIO ATACADISTA DE RESINAS E ELASTOMEROS"
+    },
+    {
+        "code": "4642702",
+        "description": "COMERCIO ATACADISTA DE ROUPAS E ACESSORIOS PARA USO PROFISSIONAL E DE SEGURANCA DO TRABALHO"
+    },
+    {
+        "code": "4623106",
+        "description": "COMERCIO ATACADISTA DE SEMENTES FLORES PLANTAS E GRAMAS"
+    },
+    {
+        "code": "4623107",
+        "description": "COMERCIO ATACADISTA DE SISAL"
+    },
+    {
+        "code": "4622200",
+        "description": "COMERCIO ATACADISTA DE SOJA"
+    },
+    {
+        "code": "4684202",
+        "description": "COMERCIO ATACADISTA DE SOLVENTES"
+    },
+    {
+        "code": "4637106",
+        "description": "COMERCIO ATACADISTA DE SORVETES"
+    },
+    {
+        "code": "4651602",
+        "description": "COMERCIO ATACADISTA DE SUPRIMENTOS PARA INFORMATICA"
+    },
+    {
+        "code": "4641901",
+        "description": "COMERCIO ATACADISTA DE TECIDOS"
+    },
+    {
+        "code": "4679601",
+        "description": "COMERCIO ATACADISTA DE TINTAS VERNIZES E SIMILARES"
+    },
+    {
+        "code": "4679603",
+        "description": "COMERCIO ATACADISTA DE VIDROS ESPELHOS E VITRAIS"
+    },
+    {
+        "code": "4679604",
+        "description": "COMERCIO ATACADISTA ESPECIALIZADO DE MATERIAIS DE CONSTRUCAO NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "4637199",
+        "description": "COMERCIO ATACADISTA ESPECIALIZADO EM OUTROS PRODUTOS ALIMENTICIOS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "4689399",
+        "description": "COMERCIO ATACADISTA ESPECIALIZADO EM OUTROS PRODUTOS INTERMEDIARIOS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "4511103",
+        "description": "COMERCIO POR ATACADO DE AUTOMOVEIS CAMIONETAS E UTILITARIOS NOVOS E USADOS"
+    },
+    {
+        "code": "4511104",
+        "description": "COMERCIO POR ATACADO DE CAMINHOES NOVOS E USADOS"
+    },
+    {
+        "code": "4541201",
+        "description": "COMERCIO POR ATACADO DE MOTOCICLETAS E MOTONETAS"
+    },
+    {
+        "code": "4511106",
+        "description": "COMERCIO POR ATACADO DE ONIBUS E MICROONIBUS NOVOS E USADOS"
+    },
+    {
+        "code": "4530701",
+        "description": "COMERCIO POR ATACADO DE PECAS E ACESSORIOS NOVOS PARA VEICULOS AUTOMOTORES"
+    },
+    {
+        "code": "4541202",
+        "description": "COMERCIO POR ATACADO DE PECAS E ACESSORIOS PARA MOTOCICLETAS E MOTONETAS"
+    },
+    {
+        "code": "4530702",
+        "description": "COMERCIO POR ATACADO DE PNEUMATICOS E CAMARAS DE AR"
+    },
+    {
+        "code": "4511105",
+        "description": "COMERCIO POR ATACADO DE REBOQUES E SEMI REBOQUES NOVOS E USADOS"
+    },
+    {
+        "code": "4542102",
+        "description": "COMERCIO SOB CONSIGNACAO DE MOTOCICLETAS E MOTONETAS"
+    },
+    {
+        "code": "4512902",
+        "description": "COMERCIO SOB CONSIGNACAO DE VEICULOS AUTOMOTORES"
+    },
+    {
+        "code": "4789004",
+        "description": "COMERCIO VAREJISTA DE ANIMAIS VIVOS E DE ARTIGOS E ALIMENTOS PARA ANIMAIS DE ESTIMACAO"
+    },
+    {
+        "code": "4785701",
+        "description": "COMERCIO VAREJISTA DE ANTIGUIDADES"
+    },
+    {
+        "code": "4789009",
+        "description": "COMERCIO VAREJISTA DE ARMAS E MUNICOES"
+    },
+    {
+        "code": "4755502",
+        "description": "COMERCIO VAREJISTA DE ARTIGOS DE ARMARINHO"
+    },
+    {
+        "code": "4763604",
+        "description": "COMERCIO VAREJISTA DE ARTIGOS DE CACA PESCA E CAMPING"
+    },
+    {
+        "code": "4755503",
+        "description": "COMERCIO VAREJISTA DE ARTIGOS DE CAMA MESA E BANHO"
+    },
+    {
+        "code": "4754702",
+        "description": "COMERCIO VAREJISTA DE ARTIGOS DE COLCHOARIA"
+    },
+    {
+        "code": "4754703",
+        "description": "COMERCIO VAREJISTA DE ARTIGOS DE ILUMINACAO"
+    },
+    {
+        "code": "4783101",
+        "description": "COMERCIO VAREJISTA DE ARTIGOS DE JOALHERIA"
+    },
+    {
+        "code": "4774100",
+        "description": "COMERCIO VAREJISTA DE ARTIGOS DE OPTICA"
+    },
+    {
+        "code": "4761003",
+        "description": "COMERCIO VAREJISTA DE ARTIGOS DE PAPELARIA"
+    },
+    {
+        "code": "4783102",
+        "description": "COMERCIO VAREJISTA DE ARTIGOS DE RELOJOARIA"
+    },
+    {
+        "code": "4759801",
+        "description": "COMERCIO VAREJISTA DE ARTIGOS DE TAPECARIA CORTINAS E PERSIANAS"
+    },
+    {
+        "code": "4782202",
+        "description": "COMERCIO VAREJISTA DE ARTIGOS DE VIAGEM"
+    },
+    {
+        "code": "4781400",
+        "description": "COMERCIO VAREJISTA DE ARTIGOS DO VESTUARIO E ACESSORIOS"
+    },
+    {
+        "code": "4763602",
+        "description": "COMERCIO VAREJISTA DE ARTIGOS ESPORTIVOS"
+    },
+    {
+        "code": "4789008",
+        "description": "COMERCIO VAREJISTA DE ARTIGOS FOTOGRAFICOS E PARA FILMAGEM"
+    },
+    {
+        "code": "4773300",
+        "description": "COMERCIO VAREJISTA DE ARTIGOS MEDICOS E ORTOPEDICOS"
+    },
+    {
+        "code": "4723700",
+        "description": "COMERCIO VAREJISTA DE BEBIDAS"
+    },
+    {
+        "code": "4763603",
+        "description": "COMERCIO VAREJISTA DE BICICLETAS E TRICICLOS PECAS E ACESSORIOS"
+    },
+    {
+        "code": "4763601",
+        "description": "COMERCIO VAREJISTA DE BRINQUEDOS E ARTIGOS RECREATIVOS"
+    },
+    {
+        "code": "4744004",
+        "description": "COMERCIO VAREJISTA DE CAL AREIA PEDRA BRITADA TIJOLOS E TELHAS"
+    },
+    {
+        "code": "4782201",
+        "description": "COMERCIO VAREJISTA DE CALCADOS"
+    },
+    {
+        "code": "4722901",
+        "description": "COMERCIO VAREJISTA DE CARNES ACOUGUES"
+    },
+    {
+        "code": "4731800",
+        "description": "COMERCIO VAREJISTA DE COMBUSTIVEIS PARA VEICULOS AUTOMOTORES"
+    },
+    {
+        "code": "4772500",
+        "description": "COMERCIO VAREJISTA DE COSMETICOS PRODUTOS DE PERFUMARIA E DE HIGIENE PESSOAL"
+    },
+    {
+        "code": "4762800",
+        "description": "COMERCIO VAREJISTA DE DISCOS CDS DVDS E FITAS"
+    },
+    {
+        "code": "4721104",
+        "description": "COMERCIO VAREJISTA DE DOCES BALAS BOMBONS E SEMELHANTES"
+    },
+    {
+        "code": "4763605",
+        "description": "COMERCIO VAREJISTA DE EMBARCACOES E OUTROS VEICULOS RECREATIVOS PECAS E ACESSORIOS"
+    },
+    {
+        "code": "4789007",
+        "description": "COMERCIO VAREJISTA DE EQUIPAMENTOS PARA ESCRITORIO"
+    },
+    {
+        "code": "4744001",
+        "description": "COMERCIO VAREJISTA DE FERRAGENS E FERRAMENTAS"
+    },
+    {
+        "code": "4789006",
+        "description": "COMERCIO VAREJISTA DE FOGOS DE ARTIFICIO E ARTIGOS PIROTECNICOS"
+    },
+    {
+        "code": "4784900",
+        "description": "COMERCIO VAREJISTA DE GAS LIQUEFEITO DE PETROLEO (GLP)"
+    },
+    {
+        "code": "4724500",
+        "description": "COMERCIO VAREJISTA DE HORTIFRUTIGRANJEIROS"
+    },
+    {
+        "code": "4761002",
+        "description": "COMERCIO VAREJISTA DE JORNAIS E REVISTAS"
+    },
+    {
+        "code": "4721103",
+        "description": "COMERCIO VAREJISTA DE LATICINIOS E FRIOS"
+    },
+    {
+        "code": "4761001",
+        "description": "COMERCIO VAREJISTA DE LIVROS"
+    },
+    {
+        "code": "4732600",
+        "description": "COMERCIO VAREJISTA DE LUBRIFICANTES"
+    },
+    {
+        "code": "4744002",
+        "description": "COMERCIO VAREJISTA DE MADEIRA E ARTEFATOS"
+    },
+    {
+        "code": "4744099",
+        "description": "COMERCIO VAREJISTA DE MATERIAIS DE CONSTRUCAO EM GERAL"
+    },
+    {
+        "code": "4744005",
+        "description": "COMERCIO VAREJISTA DE MATERIAIS DE CONSTRUCAO NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "4744003",
+        "description": "COMERCIO VAREJISTA DE MATERIAIS HIDRAULICOS"
+    },
+    {
+        "code": "4742300",
+        "description": "COMERCIO VAREJISTA DE MATERIAL ELETRICO"
+    },
+    {
+        "code": "4771704",
+        "description": "COMERCIO VAREJISTA DE MEDICAMENTOS VETERINARIOS"
+    },
+    {
+        "code": "4711301",
+        "description": "COMERCIO VAREJISTA DE MERCADORIAS EM GERAL COM PREDOMINANCIA DE PRODUTOS ALIMENTICIOS HIPERMERCADOS"
+    },
+    {
+        "code": "4712100",
+        "description": "COMERCIO VAREJISTA DE MERCADORIAS EM GERAL COM PREDOMINANCIA DE PRODUTOS ALIMENTICIOS MINIMERCADOS MERCEARIAS E ARMAZENS"
+    },
+    {
+        "code": "4711302",
+        "description": "COMERCIO VAREJISTA DE MERCADORIAS EM GERAL COM PREDOMINANCIA DE PRODUTOS ALIMENTICIOS SUPERMERCADOS"
+    },
+    {
+        "code": "4729602",
+        "description": "COMERCIO VAREJISTA DE MERCADORIAS EM LOJAS DE CONVENIENCIA"
+    },
+    {
+        "code": "4754701",
+        "description": "COMERCIO VAREJISTA DE MOVEIS"
+    },
+    {
+        "code": "4789003",
+        "description": "COMERCIO VAREJISTA DE OBJETOS DE ARTE"
+    },
+    {
+        "code": "4759899",
+        "description": "COMERCIO VAREJISTA DE OUTROS ARTIGOS DE USO DOMESTICO NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "4785799",
+        "description": "COMERCIO VAREJISTA DE OUTROS ARTIGOS USADOS"
+    },
+    {
+        "code": "4789099",
+        "description": "COMERCIO VAREJISTA DE OUTROS PRODUTOS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "4744006",
+        "description": "COMERCIO VAREJISTA DE PEDRAS PARA REVESTIMENTO"
+    },
+    {
+        "code": "4789002",
+        "description": "COMERCIO VAREJISTA DE PLANTAS E FLORES NATURAIS"
+    },
+    {
+        "code": "4729699",
+        "description": "COMERCIO VAREJISTA DE PRODUTOS ALIMENTICIOS EM GERAL OU ESPECIALIZADO EM PRODUTOS ALIMENTICIOS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "4771702",
+        "description": "COMERCIO VAREJISTA DE PRODUTOS FARMACEUTICOS COM MANIPULACAO DE FORMULAS"
+    },
+    {
+        "code": "4771703",
+        "description": "COMERCIO VAREJISTA DE PRODUTOS FARMACEUTICOS HOMEOPATICOS"
+    },
+    {
+        "code": "4771701",
+        "description": "COMERCIO VAREJISTA DE PRODUTOS FARMACEUTICOS SEM MANIPULACAO DE FORMULAS"
+    },
+    {
+        "code": "4789005",
+        "description": "COMERCIO VAREJISTA DE PRODUTOS SANEANTES DOMISSANITARIOS"
+    },
+    {
+        "code": "4789001",
+        "description": "COMERCIO VAREJISTA DE SUVENIRES BIJUTERIAS E ARTESANATOS"
+    },
+    {
+        "code": "4755501",
+        "description": "COMERCIO VAREJISTA DE TECIDOS"
+    },
+    {
+        "code": "4741500",
+        "description": "COMERCIO VAREJISTA DE TINTAS E MATERIAIS PARA PINTURA"
+    },
+    {
+        "code": "4743100",
+        "description": "COMERCIO VAREJISTA DE VIDROS"
+    },
+    {
+        "code": "4753900",
+        "description": "COMERCIO VAREJISTA ESPECIALIZADO DE ELETRODOMESTICOS E EQUIPAMENTOS DE AUDIO E VIDEO"
+    },
+    {
+        "code": "4752100",
+        "description": "COMERCIO VAREJISTA ESPECIALIZADO DE EQUIPAMENTOS DE TELEFONIA E COMUNICACAO"
+    },
+    {
+        "code": "4751200",
+        "description": "COMERCIO VAREJISTA ESPECIALIZADO DE EQUIPAMENTOS E SUPRIMENTOS DE INFORMATICA"
+    },
+    {
+        "code": "4751201",
+        "description": "COMERCIO VAREJISTA ESPECIALIZADO DE EQUIPAMENTOS E SUPRIMENTOS DE INFORMATICA"
+    },
+    {
+        "code": "4756300",
+        "description": "COMERCIO VAREJISTA ESPECIALIZADO DE INSTRUMENTOS MUSICAIS E ACESSORIOS"
+    },
+    {
+        "code": "4757100",
+        "description": "COMERCIO VAREJISTA ESPECIALIZADO DE PECAS E ACESSORIOS PARA APARELHOS ELETROELETRONICOS PARA USO DOMESTICO EXCETO INFORMATICA E COMUNICACAO"
+    },
+    {
+        "code": "5250801",
+        "description": "COMISSARIA DE DESPACHOS"
+    },
+    {
+        "code": "6435203",
+        "description": "COMPANHIAS HIPOTECARIAS"
+    },
+    {
+        "code": "6810201",
+        "description": "COMPRA E VENDA DE IMOVEIS PROPRIOS"
+    },
+    {
+        "code": "6499905",
+        "description": "CONCESSAO DE CREDITO PELAS OSCIP"
+    },
+    {
+        "code": "5221400",
+        "description": "CONCESSIONARIAS DE RODOVIAS PONTES TUNEIS E SERVICOS RELACIONADOS"
+    },
+    {
+        "code": "8112500",
+        "description": "CONDOMINIOS PREDIAIS"
+    },
+    {
+        "code": "8711505",
+        "description": "CONDOMINIOS RESIDENCIAIS PARA IDOSOS"
+    },
+    {
+        "code": "1412601",
+        "description": "CONFECCAO DE PECAS DO VESTUARIO EXCETO ROUPAS INTIMAS E AS CONFECCIONADAS SOB MEDIDA"
+    },
+    {
+        "code": "1411801",
+        "description": "CONFECCAO DE ROUPAS INTIMAS"
+    },
+    {
+        "code": "1413401",
+        "description": "CONFECCAO DE ROUPAS PROFISSIONAIS EXCETO SOB MEDIDA"
+    },
+    {
+        "code": "1412602",
+        "description": "CONFECCAO SOB MEDIDA DE PECAS DO VESTUARIO EXCETO ROUPAS INTIMAS"
+    },
+    {
+        "code": "1413402",
+        "description": "CONFECCAO SOB MEDIDA DE ROUPAS PROFISSIONAIS"
+    },
+    {
+        "code": "220906",
+        "description": "CONSERVACAO DE FLORESTAS NATIVAS"
+    },
+    {
+        "code": "4221901",
+        "description": "CONSTRUCAO DE BARRAGENS E REPRESAS PARA GERACAO DE ENERGIA ELETRICA"
+    },
+    {
+        "code": "4120400",
+        "description": "CONSTRUCAO DE EDIFICIOS"
+    },
+    {
+        "code": "3011301",
+        "description": "CONSTRUCAO DE EMBARCACOES DE GRANDE PORTE"
+    },
+    {
+        "code": "3012100",
+        "description": "CONSTRUCAO DE EMBARCACOES PARA ESPORTE E LAZER"
+    },
+    {
+        "code": "3011302",
+        "description": "CONSTRUCAO DE EMBARCACOES PARA USO COMERCIAL E PARA USOS ESPECIAIS EXCETO DE GRANDE PORTE"
+    },
+    {
+        "code": "4221902",
+        "description": "CONSTRUCAO DE ESTACOES E REDES DE DISTRIBUICAO DE ENERGIA ELETRICA"
+    },
+    {
+        "code": "4221904",
+        "description": "CONSTRUCAO DE ESTACOES E REDES DE TELECOMUNICACOES"
+    },
+    {
+        "code": "4299501",
+        "description": "CONSTRUCAO DE INSTALACOES ESPORTIVAS E RECREATIVAS"
+    },
+    {
+        "code": "4212000",
+        "description": "CONSTRUCAO DE OBRAS DE ARTE ESPECIAIS"
+    },
+    {
+        "code": "4222701",
+        "description": "CONSTRUCAO DE REDES DE ABASTECIMENTO DE AGUA COLETA DE ESGOTO E CONSTRUCOES CORRELATAS EXCETO OBRAS DE IRRIGACAO"
+    },
+    {
+        "code": "4223500",
+        "description": "CONSTRUCAO DE REDES DE TRANSPORTES POR DUTOS EXCETO PARA AGUA E ESGOTO"
+    },
+    {
+        "code": "4211101",
+        "description": "CONSTRUCAO DE RODOVIAS E FERROVIAS"
+    },
+    {
+        "code": "7319004",
+        "description": "CONSULTORIA EM PUBLICIDADE"
+    },
+    {
+        "code": "6204000",
+        "description": "CONSULTORIA EM TECNOLOGIA DA INFORMACAO"
+    },
+    {
+        "code": "6424702",
+        "description": "COOPERATIVAS CENTRAIS DE CREDITO"
+    },
+    {
+        "code": "6424703",
+        "description": "COOPERATIVAS DE CREDITO MUTUO"
+    },
+    {
+        "code": "6424704",
+        "description": "COOPERATIVAS DE CREDITO RURAL"
+    },
+    {
+        "code": "1910100",
+        "description": "COQUERIAS"
+    },
+    {
+        "code": "6619302",
+        "description": "CORRESPONDENTES DE INSTITUICOES FINANCEIRAS"
+    },
+    {
+        "code": "6821801",
+        "description": "CORRETAGEM NA COMPRA E VENDA E AVALIACAO DE IMOVEIS"
+    },
+    {
+        "code": "6821802",
+        "description": "CORRETAGEM NO ALUGUEL DE IMOVEIS"
+    },
+    {
+        "code": "6612603",
+        "description": "CORRETORAS DE CAMBIO"
+    },
+    {
+        "code": "6612604",
+        "description": "CORRETORAS DE CONTRATOS DE MERCADORIAS"
+    },
+    {
+        "code": "6612601",
+        "description": "CORRETORAS DE TITULOS E codeES MOBILIARIOS"
+    },
+
+    {
+        "code": "6622300",
+        "description": "CORRETORES E AGENTES DE SEGUROS DE PLANOS DE PREVIDENCIA COMPLEMENTAR E DE SAUDE"
+    },
+    {
+        "code": "159802",
+        "description": "CRIACAO DE ANIMAIS DE ESTIMACAO"
+    },
+    {
+        "code": "152103",
+        "description": "CRIACAO DE ASININOS E MUARES"
+    },
+    {
+        "code": "155504",
+        "description": "CRIACAO DE AVES EXCETO GALINACEOS"
+    },
+    {
+        "code": "159804",
+        "description": "CRIACAO DE BICHO DA SEDA"
+    },
+    {
+        "code": "151203",
+        "description": "CRIACAO DE BOVINOS EXCETO PARA CORTE E LEITE"
+    },
+    {
+        "code": "151201",
+        "description": "CRIACAO DE BOVINOS PARA CORTE"
+    },
+    {
+        "code": "151202",
+        "description": "CRIACAO DE BOVINOS PARA LEITE"
+    },
+    {
+        "code": "152101",
+        "description": "CRIACAO DE BUFALINOS"
+    },
+    {
+        "code": "322102",
+        "description": "CRIACAO DE CAMAROES EM AGUA DOCE"
+    },
+    {
+        "code": "321302",
+        "description": "CRIACAO DE CAMAROES EM AGUA SALGADA E SALOBRA"
+    },
+    {
+        "code": "153901",
+        "description": "CRIACAO DE CAPRINOS"
+    },
+    {
+        "code": "152102",
+        "description": "CRIACAO DE EQUINOS"
+    },
+    {
+        "code": "159803",
+        "description": "CRIACAO DE ESCARGO"
+    },
+    {
+        "code": "7319001",
+        "description": "CRIACAO DE ESTANDES PARA FEIRAS E EXPOSICOES"
+    },
+    {
+        "code": "155501",
+        "description": "CRIACAO DE FRANGOS PARA CORTE"
+    },
+    {
+        "code": "322106",
+        "description": "CRIACAO DE JACARE"
+    },
+    {
+        "code": "322103",
+        "description": "CRIACAO DE OSTRAS E MEXILHOES EM AGUA DOCE"
+    },
+    {
+        "code": "321303",
+        "description": "CRIACAO DE OSTRAS E MEXILHOES EM AGUA SALGADA E SALOBRA"
+    },
+    {
+        "code": "159899",
+        "description": "CRIACAO DE OUTROS ANIMAIS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "155503",
+        "description": "CRIACAO DE OUTROS GALINACEOS EXCETO PARA CORTE"
+    },
+    {
+        "code": "153902",
+        "description": "CRIACAO DE OVINOS INCLUSIVE PARA PRODUCAO DE LA"
+    },
+    {
+        "code": "322101",
+        "description": "CRIACAO DE PEIXES EM AGUA DOCE"
+    },
+    {
+        "code": "321301",
+        "description": "CRIACAO DE PEIXES EM AGUA SALGADA E SALOBRA"
+    },
+    {
+        "code": "322104",
+        "description": "CRIACAO DE PEIXES ORNAMENTAIS EM AGUA DOCE"
+    },
+    {
+        "code": "321304",
+        "description": "CRIACAO DE PEIXES ORNAMENTAIS EM AGUA SALGADA E SALOBRA"
+    },
+    {
+        "code": "154700",
+        "description": "CRIACAO DE SUINOS"
+    },
+    {
+        "code": "119901",
+        "description": "CULTIVO DE ABACAXI"
+    },
+    {
+        "code": "210102",
+        "description": "CULTIVO DE ACACIA NEGRA"
+    },
+    {
+        "code": "133401",
+        "description": "CULTIVO DE ACAI"
+    },
+    {
+        "code": "112101",
+        "description": "CULTIVO DE ALGODAO HERBACEO"
+    },
+    {
+        "code": "119902",
+        "description": "CULTIVO DE ALHO"
+    },
+    {
+        "code": "116401",
+        "description": "CULTIVO DE AMENDOIM"
+    },
+    {
+        "code": "111301",
+        "description": "CULTIVO DE ARROZ"
+    },
+    {
+        "code": "133402",
+        "description": "CULTIVO DE BANANA"
+    },
+    {
+        "code": "119903",
+        "description": "CULTIVO DE BATATA INGLESA"
+    },
+    {
+        "code": "135100",
+        "description": "CULTIVO DE CACAU"
+    },
+    {
+        "code": "134200",
+        "description": "CULTIVO DE CAFE"
+    },
+    {
+        "code": "133403",
+        "description": "CULTIVO DE CAJU"
+    },
+    {
+        "code": "113000",
+        "description": "CULTIVO DE CANA DE ACUCAR"
+    },
+    {
+        "code": "119904",
+        "description": "CULTIVO DE CEBOLA"
+    },
+    {
+        "code": "139301",
+        "description": "CULTIVO DE CHA DA INDIA"
+    },
+    {
+        "code": "133404",
+        "description": "CULTIVO DE CITRICOS EXCETO LARANJA"
+    },
+    {
+        "code": "133405",
+        "description": "CULTIVO DE COCO DA BAIA"
+    },
+    {
+        "code": "139305",
+        "description": "CULTIVO DE DENDE"
+    },
+    {
+        "code": "139302",
+        "description": "CULTIVO DE ERVA MATE"
+    },
+    {
+        "code": "210105",
+        "description": "CULTIVO DE ESPECIES MADEIREIRAS EXCETO EUCALIPTO ACACIA NEGRA PINUS E TECA"
+    },
+    {
+        "code": "210101",
+        "description": "CULTIVO DE EUCALIPTO"
+    },
+    {
+        "code": "119905",
+        "description": "CULTIVO DE FEIJAO"
+    },
+    {
+        "code": "122900",
+        "description": "CULTIVO DE FLORES E PLANTAS ORNAMENTAIS"
+    },
+    {
+        "code": "133499",
+        "description": "CULTIVO DE FRUTAS DE LAVOURA PERMANENTE NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "114800",
+        "description": "CULTIVO DE FUMO"
+    },
+    {
+        "code": "116402",
+        "description": "CULTIVO DE GIRASSOL"
+    },
+    {
+        "code": "133406",
+        "description": "CULTIVO DE GUARANA"
+    },
+    {
+        "code": "112102",
+        "description": "CULTIVO DE JUTA"
+    },
+    {
+        "code": "131800",
+        "description": "CULTIVO DE LARANJA"
+    },
+    {
+        "code": "133407",
+        "description": "CULTIVO DE MACA"
+    },
+    {
+        "code": "133408",
+        "description": "CULTIVO DE MAMAO"
+    },
+    {
+        "code": "116403",
+        "description": "CULTIVO DE MAMONA"
+    },
+    {
+        "code": "119906",
+        "description": "CULTIVO DE MANDIOCA"
+    },
+    {
+        "code": "133410",
+        "description": "CULTIVO DE MANGA"
+    },
+    {
+        "code": "133409",
+        "description": "CULTIVO DE MARACUJA"
+    },
+    {
+        "code": "119908",
+        "description": "CULTIVO DE MELANCIA"
+    },
+    {
+        "code": "119907",
+        "description": "CULTIVO DE MELAO"
+    },
+    {
+        "code": "111302",
+        "description": "CULTIVO DE MILHO"
+    },
+    {
+        "code": "121102",
+        "description": "CULTIVO DE MORANGO"
+    },
+    {
+        "code": "210106",
+        "description": "CULTIVO DE MUDAS EM VIVEIROS FLORESTAIS"
+    },
+    {
+        "code": "112199",
+        "description": "CULTIVO DE OUTRAS FIBRAS DE LAVOURA TEMPORARIA NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "116499",
+        "description": "CULTIVO DE OUTRAS OLEAGINOSAS DE LAVOURA TEMPORARIA NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "139399",
+        "description": "CULTIVO DE OUTRAS PLANTAS DE LAVOURA PERMANENTE NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "119999",
+        "description": "CULTIVO DE OUTRAS PLANTAS DE LAVOURA TEMPORARIA NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "111399",
+        "description": "CULTIVO DE OUTROS CEREAIS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "133411",
+        "description": "CULTIVO DE PESSEGO"
+    },
+    {
+        "code": "139303",
+        "description": "CULTIVO DE PIMENTA DO REINO"
+    },
+    {
+        "code": "210103",
+        "description": "CULTIVO DE PINUS"
+    },
+    {
+        "code": "139304",
+        "description": "CULTIVO DE PLANTAS PARA CONDIMENTO EXCETO PIMENTA DO REINO"
+    },
+    {
+        "code": "139306",
+        "description": "CULTIVO DE SERINGUEIRA"
+    },
+    {
+        "code": "115600",
+        "description": "CULTIVO DE SOJA"
+    },
+    {
+        "code": "210104",
+        "description": "CULTIVO DE TECA"
+    },
+    {
+        "code": "119909",
+        "description": "CULTIVO DE TOMATE RASTEIRO"
+    },
+    {
+        "code": "111303",
+        "description": "CULTIVO DE TRIGO"
+    },
+    {
+        "code": "132600",
+        "description": "CULTIVO DE UVA"
+    },
+    {
+        "code": "322199",
+        "description": "CULTIVOS E SEMICULTIVOS DA AQUICULTURA EM AGUA DOCE NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "321399",
+        "description": "CULTIVOS E SEMICULTIVOS DA AQUICULTURA EM AGUA SALGADA E SALOBRA NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "3211603",
+        "description": "CUNHAGEM DE MOEDAS E MEDALHAS"
+    },
+    {
+        "code": "8599602",
+        "description": "CURSOS DE PILOTAGEM"
+    },
+    {
+        "code": "8599605",
+        "description": "CURSOS PREPARATORIOS PARA CONCURSOS"
+    },
+    {
+        "code": "1510600",
+        "description": "CURTIMENTO E OUTRAS PREPARACOES DE COURO"
+    },
+    {
+        "code": "7410202",
+        "description": "DECORACAO DE INTERIORES"
+    },
+    {
+        "code": "2399101",
+        "description": "DECORACAO LAPIDACAO GRAVACAO VITRIFICACAO E OUTROS TRABALHOS EM CERAMICA LOUCA VIDRO E CRISTAL"
+    },
+    {
+        "code": "8422100",
+        "description": "DEFESA"
+    },
+    {
+        "code": "8425600",
+        "description": "DEFESA CIVIL"
+    },
+    {
+        "code": "4311801",
+        "description": "DEMOLICAO DE EDIFICIOS E OUTRAS ESTRUTURAS"
+    },
+    {
+        "code": "5211799",
+        "description": "DEPOSITOS DE MERCADORIAS PARA TERCEIROS EXCETO ARMAZENS GERAIS E GUARDA MOVEIS"
+    },
+    {
+        "code": "3900500",
+        "description": "DESCONTAMINACAO E OUTROS SERVICOS DE GESTAO DE RESIDUOS"
+    },
+    {
+        "code": "6201500",
+        "description": "DESENVOLVIMENTO DE PROGRAMAS DE COMPUTADOR SOB ENCOMENDA"
+    },
+    {
+        "code": "6201501",
+        "description": "DESENVOLVIMENTO DE PROGRAMAS DE COMPUTADOR SOB ENCOMENDA"
+    },
+    {
+        "code": "6202300",
+        "description": "DESENVOLVIMENTO E LICENCIAMENTO DE PROGRAMAS DE COMPUTADOR CUSTOMIZAVEIS"
+    },
+    {
+        "code": "6203100",
+        "description": "DESENVOLVIMENTO E LICENCIAMENTO DE PROGRAMAS DE COMPUTADOR NAO CUSTOMIZAVEIS"
+    },
+    {
+        "code": "7410201",
+        "description": "DESIGN"
+    },
+    {
+        "code": "7410203",
+        "description": "DESIGN DE PRODUTO"
+    },
+    {
+        "code": "9329801",
+        "description": "DISCOTECAS DANCETERIAS SALOES DE DANCA E SIMILARES"
+    },
+    {
+        "code": "5913800",
+        "description": "DISTRIBUICAO CINEMATOGRAFICA DE VIDEO E DE PROGRAMAS DE TELEVISAO"
+    },
+    {
+        "code": "3600602",
+        "description": "DISTRIBUICAO DE AGUA POR CAMINHOES"
+    },
+    {
+        "code": "3520402",
+        "description": "DISTRIBUICAO DE COMBUSTIVEIS GASOSOS POR REDES URBANAS"
+    },
+    {
+        "code": "3514000",
+        "description": "DISTRIBUICAO DE ENERGIA ELETRICA"
+    },
+    {
+        "code": "6612602",
+        "description": "DISTRIBUIDORAS DE TITULOS E codeES MOBILIARIOS"
+    },
+    {
+        "code": "5819100",
+        "description": "EDICAO DE CADASTROS LISTAS E OUTROS PRODUTOS GRAFICOS"
+    },
+    {
+        "code": "5812300",
+        "description": "EDICAO DE JORNAIS"
+    },
+    {
+        "code": "5812301",
+        "description": "EDIÇÃO DE JORNAIS DIÁRIOS"
+    },
+    {
+        "code": "5812302",
+        "description": "EDIÇÃO DE JORNAIS NÃO DIÁRIOS"
+    },
+    {
+        "code": "5811500",
+        "description": "EDICAO DE LIVROS"
+    },
+    {
+        "code": "5813100",
+        "description": "EDICAO DE REVISTAS"
+    },
+    {
+        "code": "5829800",
+        "description": "EDICAO INTEGRADA A IMPRESSAO DE CADASTROS LISTAS E OUTROS PRODUTOS GRAFICOS"
+    },
+    {
+        "code": "5822100",
+        "description": "EDICAO INTEGRADA A IMPRESSAO DE JORNAIS"
+    },
+    {
+        "code": "5822101",
+        "description": "EDIÇÃO INTEGRADA À IMPRESSÃO DE JORNAIS DIÁRIOS"
+    },
+    {
+        "code": "5822102",
+        "description": "EDIÇÃO INTEGRADA À IMPRESSÃO DE JORNAIS NÃO DIÁRIOS"
+    },
+    {
+        "code": "5821200",
+        "description": "EDICAO INTEGRADA A IMPRESSAO DE LIVROS"
+    },
+    {
+        "code": "5823900",
+        "description": "EDICAO INTEGRADA A IMPRESSAO DE REVISTAS"
+    },
+    {
+        "code": "8511200",
+        "description": "EDUCACAO INFANTIL CRECHE"
+    },
+    {
+        "code": "8512100",
+        "description": "EDUCACAO INFANTIL PRE ESCOLA"
+    },
+    {
+        "code": "8541400",
+        "description": "EDUCACAO PROFISSIONAL DE NIVEL TECNICO"
+    },
+    {
+        "code": "8542200",
+        "description": "EDUCACAO PROFISSIONAL DE NIVEL TECNOLOGICO"
+    },
+    {
+        "code": "8531700",
+        "description": "EDUCACAO SUPERIOR GRADUACAO"
+    },
+    {
+        "code": "8532500",
+        "description": "EDUCACAO SUPERIOR GRADUACAO E POS GRADUACAO"
+    },
+    {
+        "code": "8533300",
+        "description": "EDUCACAO SUPERIOR POS GRADUACAO E EXTENSAO"
+    },
+    {
+        "code": "2019301",
+        "description": "ELABORACAO DE COMBUSTIVEIS NUCLEARES"
+    },
+    {
+        "code": "8299702",
+        "description": "EMISSAO DE VALES ALIMENTACAO VALES TRANSPORTE E SIMILARES"
+    },
+    {
+        "code": "8592999",
+        "description": "ENSINO DE ARTE E CULTURA NAO ESPECIFICADO ANTERIORMENTE"
+    },
+    {
+        "code": "8592902",
+        "description": "ENSINO DE ARTES CENICAS EXCETO DANCA"
+    },
+    {
+        "code": "8592901",
+        "description": "ENSINO DE DANCA"
+    },
+    {
+        "code": "8591100",
+        "description": "ENSINO DE ESPORTES"
+    },
+    {
+        "code": "8593700",
+        "description": "ENSINO DE IDIOMAS"
+    },
+    {
+        "code": "8592903",
+        "description": "ENSINO DE MUSICA"
+    },
+    {
+        "code": "8513900",
+        "description": "ENSINO FUNDAMENTAL"
+    },
+    {
+        "code": "8520100",
+        "description": "ENSINO MEDIO"
+    },
+    {
+        "code": "8292000",
+        "description": "ENVASAMENTO E EMPACOTAMENTO SOB CONTRATO"
+    },
+    {
+        "code": "7490102",
+        "description": "ESCAFANDRIA E MERGULHO"
+    },
+    {
+        "code": "5223100",
+        "description": "ESTACIONAMENTO DE VEICULOS"
+    },
+    {
+        "code": "1340501",
+        "description": "ESTAMPARIA E TEXTURIZACAO EM FIOS TECIDOS ARTEFATOS TEXTEIS E PECAS DO VESTUARIO"
+    },
+    {
+        "code": "5911101",
+        "description": "ESTUDIOS CINEMATOGRAFICOS"
+    },
+    {
+        "code": "9200302",
+        "description": "EXPLORACAO DE APOSTAS EM CORRIDAS DE CAVALOS"
+    },
+    {
+        "code": "9329802",
+        "description": "EXPLORACAO DE BOLICHES"
+    },
+    {
+        "code": "9200399",
+        "description": "EXPLORACAO DE JOGOS DE AZAR E APOSTAS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "9329803",
+        "description": "EXPLORACAO DE JOGOS DE SINUCA BILHAR E SIMILARES"
+    },
+    {
+        "code": "9329804",
+        "description": "EXPLORACAO DE JOGOS ELETRONICOS RECREATIVOS"
+    },
+    {
+        "code": "9609204",
+        "description": "EXPLORACAO DE MAQUINAS DE SERVICOS PESSOAIS ACIONADAS POR MOEDA"
+    },
+    {
+        "code": "899103",
+        "description": "EXTRACAO DE AMIANTO"
+    },
+    {
+        "code": "810001",
+        "description": "EXTRACAO DE ARDOSIA E BENEFICIAMENTO ASSOCIADO"
+    },
+    {
+        "code": "810006",
+        "description": "EXTRACAO DE AREIA CASCALHO OU PEDREGULHO E BENEFICIAMENTO ASSOCIADO"
+    },
+    {
+        "code": "810007",
+        "description": "EXTRACAO DE ARGILA E BENEFICIAMENTO ASSOCIADO"
+    },
+    {
+        "code": "810009",
+        "description": "EXTRACAO DE BASALTO E BENEFICIAMENTO ASSOCIADO"
+    },
+    {
+        "code": "810004",
+        "description": "EXTRACAO DE CALCARIO E DOLOMITA E BENEFICIAMENTO ASSOCIADO"
+    },
+    {
+        "code": "500301",
+        "description": "EXTRACAO DE CARVAO MINERAL"
+    },
+    {
+        "code": "893200",
+        "description": "EXTRACAO DE GEMAS (PEDRAS PRECIOSAS E SEMIPRECIOSAS)"
+    },
+    {
+        "code": "810005",
+        "description": "EXTRACAO DE GESSO E CAULIM"
+    },
+    {
+        "code": "899101",
+        "description": "EXTRACAO DE GRAFITA"
+    },
+    {
+        "code": "810002",
+        "description": "EXTRACAO DE GRANITO E BENEFICIAMENTO ASSOCIADO"
+    },
+    {
+        "code": "220901",
+        "description": "EXTRACAO DE MADEIRA EM FLORESTAS NATIVAS"
+    },
+    {
+        "code": "210107",
+        "description": "EXTRACAO DE MADEIRA EM FLORESTAS PLANTADAS"
+    },
+    {
+        "code": "810003",
+        "description": "EXTRACAO DE MARMORE E BENEFICIAMENTO ASSOCIADO"
+    },
+    {
+        "code": "891600",
+        "description": "EXTRACAO DE MINERAIS PARA FABRICACAO DE ADUBOS FERTILIZANTES E OUTROS PRODUTOS QUIMICOS"
+    },
+    {
+        "code": "725100",
+        "description": "EXTRACAO DE MINERAIS RADIOATIVOS"
+    },
+    {
+        "code": "721901",
+        "description": "EXTRACAO DE MINERIO DE ALUMINIO"
+    },
+    {
+        "code": "722701",
+        "description": "EXTRACAO DE MINERIO DE ESTANHO"
+    },
+    {
+        "code": "710301",
+        "description": "EXTRACAO DE MINERIO DE FERRO"
+    },
+    {
+        "code": "723501",
+        "description": "EXTRACAO DE MINERIO DE MANGANES"
+    },
+    {
+        "code": "724301",
+        "description": "EXTRACAO DE MINERIO DE METAIS PRECIOSOS"
+    },
+    {
+        "code": "729403",
+        "description": "EXTRACAO DE MINERIO DE NIQUEL"
+    },
+    {
+        "code": "729402",
+        "description": "EXTRACAO DE MINERIO DE TUNGSTENIO"
+    },
+    {
+        "code": "729404",
+        "description": "EXTRACAO DE MINERIOS DE COBRE CHUMBO ZINCO E OUTROS MINERAIS METALICOS NAO FERROSOS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "729401",
+        "description": "EXTRACAO DE MINERIOS DE NIOBIO E TITANIO"
+    },
+    {
+        "code": "899199",
+        "description": "EXTRACAO DE OUTROS MINERAIS NAO METALICOS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "600001",
+        "description": "EXTRACAO DE PETROLEO E GAS NATURAL"
+    },
+    {
+        "code": "899102",
+        "description": "EXTRACAO DE QUARTZO"
+    },
+    {
+        "code": "810008",
+        "description": "EXTRACAO DE SAIBRO E BENEFICIAMENTO ASSOCIADO"
+    },
+    {
+        "code": "892402",
+        "description": "EXTRACAO DE SAL GEMA"
+    },
+    {
+        "code": "892401",
+        "description": "EXTRACAO DE SAL MARINHO"
+    },
+    {
+        "code": "600003",
+        "description": "EXTRACAO E BENEFICIAMENTO DE AREIAS BETUMINOSAS"
+    },
+    {
+        "code": "600002",
+        "description": "EXTRACAO E BENEFICIAMENTO DE XISTO"
+    },
+    {
+        "code": "810099",
+        "description": "EXTRACAO E BRITAMENTO DE PEDRAS E OUTROS MATERIAIS PARA CONSTRUCAO E BENEFICIAMENTO ASSOCIADO"
+    },
+    {
+        "code": "2399102",
+        "description": "FABRICACAO DE ABRASIVOS"
+    },
+    {
+        "code": "1742702",
+        "description": "FABRICACAO DE ABSORVENTES HIGIENICOS"
+    },
+    {
+        "code": "1414200",
+        "description": "FABRICACAO DE ACESSORIOS DO VESTUARIO EXCETO PARA SEGURANCA E PROTECAO"
+    },
+    {
+        "code": "1072401",
+        "description": "FABRICACAO DE ACUCAR DE CANA REFINADO"
+    },
+    {
+        "code": "1072402",
+        "description": "FABRICACAO DE ACUCAR DE CEREAIS (DEXTROSE) E DE BETERRABA"
+    },
+    {
+        "code": "1071600",
+        "description": "FABRICACAO DE ACUCAR EM BRUTO"
+    },
+    {
+        "code": "2091600",
+        "description": "FABRICACAO DE ADESIVOS E SELANTES"
+    },
+    {
+        "code": "2093200",
+        "description": "FABRICACAO DE ADITIVOS DE USO INDUSTRIAL"
+    },
+    {
+        "code": "1099606",
+        "description": "FABRICACAO DE ADOCANTES NATURAIS E ARTIFICIAIS"
+    },
+    {
+        "code": "2013400",
+        "description": "FABRICACAO DE ADUBOS E FERTILIZANTES"
+    },
+    {
+        "code": "2013401",
+        "description": "FABRICAÇÃO DE ADUBOS E FERTILIZANTES ORGANO-MINERAIS"
+    },
+    {
+        "code": "2013402",
+        "description": "FABRICAÇÃO DE ADUBOS E FERTILIZANTES, EXCETO ORGANO-MINERAIS"
+    },
+    {
+        "code": "3041500",
+        "description": "FABRICACAO DE AERONAVES"
+    },
+    {
+        "code": "1111901",
+        "description": "FABRICACAO DE AGUARDENTE DE CANA DE ACUCAR"
+    },
+    {
+        "code": "1121600",
+        "description": "FABRICACAO DE AGUAS ENVASADAS"
+    },
+    {
+        "code": "1931400",
+        "description": "FABRICACAO DE ALCOOL"
+    },
+    {
+        "code": "1099607",
+        "description": "FABRICACAO DE ALIMENTOS DIETETICOS E COMPLEMENTOS ALIMENTARES"
+    },
+    {
+        "code": "1096100",
+        "description": "FABRICACAO DE ALIMENTOS E PRATOS PRONTOS"
+    },
+    {
+        "code": "1066000",
+        "description": "FABRICACAO DE ALIMENTOS PARA ANIMAIS"
+    },
+    {
+        "code": "1065101",
+        "description": "FABRICACAO DE AMIDOS E FECULAS DE VEGETAIS"
+    },
+    {
+        "code": "2640000",
+        "description": "FABRICACAO DE APARELHOS DE RECEPCAO REPRODUCAO GRAVACAO E AMPLIFICACAO DE AUDIO E VIDEO"
+    },
+    {
+        "code": "2824101",
+        "description": "FABRICACAO DE APARELHOS E EQUIPAMENTOS DE AR CONDICIONADO PARA USO INDUSTRIAL"
+    },
+    {
+        "code": "2824102",
+        "description": "FABRICACAO DE APARELHOS E EQUIPAMENTOS DE AR CONDICIONADO PARA USO NAO INDUSTRIAL"
+    },
+    {
+        "code": "2651500",
+        "description": "FABRICACAO DE APARELHOS E EQUIPAMENTOS DE MEDIDA TESTE E CONTROLE"
+    },
+    {
+        "code": "2731700",
+        "description": "FABRICACAO DE APARELHOS E EQUIPAMENTOS PARA DISTRIBUICAO E CONTROLE DE ENERGIA ELETRICA"
+    },
+    {
+        "code": "3250704",
+        "description": "FABRICACAO DE APARELHOS E UTENSILIOS PARA CORRECAO DE DEFEITOS FISICOS E APARELHOS ORTOPEDICOS EM GERAL EXCETO SOB ENCOMENDA"
+    },
+    {
+        "code": "3250703",
+        "description": "FABRICACAO DE APARELHOS E UTENSILIOS PARA CORRECAO DE DEFEITOS FISICOS E APARELHOS ORTOPEDICOS EM GERAL SOB ENCOMENDA"
+    },
+    {
+        "code": "2759701",
+        "description": "FABRICACAO DE APARELHOS ELETRICOS DE USO PESSOAL PECAS E ACESSORIOS"
+    },
+    {
+        "code": "2660400",
+        "description": "FABRICACAO DE APARELHOS ELETROMEDICOS E ELETROTERAPEUTICOS E EQUIPAMENTOS DE IRRADIACAO"
+    },
+    {
+        "code": "2670102",
+        "description": "FABRICACAO DE APARELHOS FOTOGRAFICOS E CINEMATOGRAFICOS PECAS E ACESSORIOS"
+    },
+    {
+        "code": "2632900",
+        "description": "FABRICACAO DE APARELHOS TELEFONICOS E DE OUTROS EQUIPAMENTOS DE COMUNICACAO PECAS E ACESSORIOS"
+    },
+    {
+        "code": "2550102",
+        "description": "FABRICACAO DE ARMAS DE FOGO OUTRAS ARMAS E MUNICOES"
+    },
+    {
+        "code": "2219600",
+        "description": "FABRICACAO DE ARTEFATOS DE BORRACHA NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "2342702",
+        "description": "FABRICACAO DE ARTEFATOS DE CERAMICA E BARRO COZIDO PARA USO NA CONSTRUCAO EXCETO AZULEJOS E PISOS"
+    },
+    {
+        "code": "2330302",
+        "description": "FABRICACAO DE ARTEFATOS DE CIMENTO PARA USO NA CONSTRUCAO"
+    },
+    {
+        "code": "1353700",
+        "description": "FABRICACAO DE ARTEFATOS DE CORDOARIA"
+    },
+    {
+        "code": "1529700",
+        "description": "FABRICACAO DE ARTEFATOS DE COURO NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "2330303",
+        "description": "FABRICACAO DE ARTEFATOS DE FIBROCIMENTO PARA USO NA CONSTRUCAO"
+    },
+    {
+        "code": "3211602",
+        "description": "FABRICACAO DE ARTEFATOS DE JOALHERIA E OURIVESARIA"
+    },
+    {
+        "code": "2229399",
+        "description": "FABRICACAO DE ARTEFATOS DE MATERIAL PLASTICO PARA OUTROS USOS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "2229303",
+        "description": "FABRICACAO DE ARTEFATOS DE MATERIAL PLASTICO PARA USO NA CONSTRUCAO EXCETO TUBOS E ACESSORIOS"
+    },
+    {
+        "code": "2229301",
+        "description": "FABRICACAO DE ARTEFATOS DE MATERIAL PLASTICO PARA USO PESSOAL E DOMESTICO"
+    },
+    {
+        "code": "2229302",
+        "description": "FABRICACAO DE ARTEFATOS DE MATERIAL PLASTICO PARA USOS INDUSTRIAIS"
+    },
+    {
+        "code": "1623400",
+        "description": "FABRICACAO DE ARTEFATOS DE TANOARIA E DE EMBALAGENS DE MADEIRA"
+    },
+    {
+        "code": "1352900",
+        "description": "FABRICACAO DE ARTEFATOS DE TAPECARIA"
+    },
+    {
+        "code": "3250708",
+        "description": "FABRICACAO DE ARTEFATOS DE TECIDO NAO TECIDO PARA USO ODONTO MEDICO HOSPITALAR"
+    },
+    {
+        "code": "1629302",
+        "description": "FABRICACAO DE ARTEFATOS DIVERSOS DE CORTICA BAMBU PALHA VIME E OUTROS MATERIAIS TRANCADOS EXCETO MOVEIS"
+    },
+    {
+        "code": "1629301",
+        "description": "FABRICACAO DE ARTEFATOS DIVERSOS DE MADEIRA EXCETO MOVEIS"
+    },
+    {
+        "code": "3230200",
+        "description": "FABRICACAO DE ARTEFATOS PARA PESCA E ESPORTE"
+    },
+    {
+        "code": "1351100",
+        "description": "FABRICACAO DE ARTEFATOS TEXTEIS PARA USO DOMESTICO"
+    },
+    {
+        "code": "2541100",
+        "description": "FABRICACAO DE ARTIGOS DE CUTELARIA"
+    },
+    {
+        "code": "2593400",
+        "description": "FABRICACAO DE ARTIGOS DE METAL PARA USO DOMESTICO E PESSOAL"
+    },
+    {
+        "code": "2542000",
+        "description": "FABRICACAO DE ARTIGOS DE SERRALHERIA EXCETO ESQUADRIAS"
+    },
+    {
+        "code": "2319200",
+        "description": "FABRICACAO DE ARTIGOS DE VIDRO"
+    },
+    {
+        "code": "1422300",
+        "description": "FABRICACAO DE ARTIGOS DO VESTUARIO PRODUZIDOS EM MALHARIAS E TRICOTAGENS EXCETO MEIAS"
+    },
+    {
+        "code": "3250707",
+        "description": "FABRICACAO DE ARTIGOS OPTICOS"
+    },
+    {
+        "code": "1521100",
+        "description": "FABRICACAO DE ARTIGOS PARA VIAGEM BOLSAS E SEMELHANTES DE QUALQUER MATERIAL"
+    },
+    {
+        "code": "2092402",
+        "description": "FABRICACAO DE ARTIGOS PIROTECNICOS"
+    },
+    {
+        "code": "2910701",
+        "description": "FABRICACAO DE AUTOMOVEIS CAMIONETAS E UTILITARIOS"
+    },
+    {
+        "code": "3299005",
+        "description": "FABRICACAO DE AVIAMENTOS PARA COSTURA"
+    },
+    {
+        "code": "2342701",
+        "description": "FABRICACAO DE AZULEJOS E PISOS"
+    },
+    {
+        "code": "2949201",
+        "description": "FABRICACAO DE BANCOS E ESTOFADOS PARA VEICULOS AUTOMOTORES"
+    },
+    {
+        "code": "2722801",
+        "description": "FABRICACAO DE BATERIAS E ACUMULADORES PARA VEICULOS AUTOMOTORES"
+    },
+    {
+        "code": "1122404",
+        "description": "FABRICACAO DE BEBIDAS ISOTONICAS"
+    },
+    {
+        "code": "3092000",
+        "description": "FABRICACAO DE BICICLETAS E TRICICLOS NAO MOTORIZADOS PECAS E ACESSORIOS"
+    },
+    {
+        "code": "3212400",
+        "description": "FABRICACAO DE BIJUTERIAS E ARTEFATOS SEMELHANTES"
+    },
+    {
+        "code": "1932200",
+        "description": "FABRICACAO DE BIOCOMBUSTIVEIS EXCETO ALCOOL"
+    },
+    {
+        "code": "1092900",
+        "description": "FABRICACAO DE BISCOITOS E BOLACHAS"
+    },
+    {
+        "code": "2930101",
+        "description": "FABRICACAO DE CABINES CARROCERIAS E REBOQUES PARA CAMINHOES"
+    },
+    {
+        "code": "2930103",
+        "description": "FABRICACAO DE CABINES CARROCERIAS E REBOQUES PARA OUTROS VEICULOS AUTOMOTORES EXCETO CAMINHOES E ONIBUS"
+    },
+    {
+        "code": "2392300",
+        "description": "FABRICACAO DE CAL E GESSO"
+    },
+    {
+        "code": "1531901",
+        "description": "FABRICACAO DE CALCADOS DE COURO"
+    },
+    {
+        "code": "1539400",
+        "description": "FABRICACAO DE CALCADOS DE MATERIAIS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "1533500",
+        "description": "FABRICACAO DE CALCADOS DE MATERIAL SINTETICO"
+    },
+    {
+        "code": "2522500",
+        "description": "FABRICACAO DE CALDEIRAS GERADORAS DE VAPOR EXCETO PARA AQUECIMENTO CENTRAL E PARA VEICULOS"
+    },
+    {
+        "code": "2920401",
+        "description": "FABRICACAO DE CAMINHOES E ONIBUS"
+    },
+    {
+        "code": "3299002",
+        "description": "FABRICACAO DE CANETAS LAPIS E OUTROS ARTIGOS PARA ESCRITORIO"
+    },
+    {
+        "code": "2930102",
+        "description": "FABRICACAO DE CARROCERIAS PARA ONIBUS"
+    },
+    {
+        "code": "1722200",
+        "description": "FABRICACAO DE CARTOLINA E PAPEL CARTAO"
+    },
+    {
+        "code": "1622601",
+        "description": "FABRICACAO DE CASAS DE MADEIRA PRE FABRICADAS"
+    },
+    {
+        "code": "2330304",
+        "description": "FABRICACAO DE CASAS PRE MOLDADAS DE CONCRETO"
+    },
+    {
+        "code": "2094100",
+        "description": "FABRICACAO DE CATALISADORES"
+    },
+    {
+        "code": "1710900",
+        "description": "FABRICACAO DE CELULOSE E OUTRAS PASTAS PARA A FABRICACAO DE PAPEL"
+    },
+    {
+        "code": "1113502",
+        "description": "FABRICACAO DE CERVEJAS E CHOPES"
+    },
+    {
+        "code": "1122402",
+        "description": "FABRICACAO DE CHA MATE E OUTROS CHAS PRONTOS PARA CONSUMO"
+    },
+    {
+        "code": "1733800",
+        "description": "FABRICACAO DE CHAPAS E DE EMBALAGENS DE PAPELAO ONDULADO"
+    },
+    {
+        "code": "2099101",
+        "description": "FABRICACAO DE CHAPAS FILMES PAPEIS E OUTROS MATERIAIS E PRODUTOS QUIMICOS PARA FOTOGRAFIA"
+    },
+    {
+        "code": "2910702",
+        "description": "FABRICACAO DE CHASSIS COM MOTOR PARA AUTOMOVEIS CAMIONETAS E UTILITARIOS"
+    },
+    {
+        "code": "1220402",
+        "description": "FABRICACAO DE CIGARRILHAS E CHARUTOS"
+    },
+    {
+        "code": "1220401",
+        "description": "FABRICACAO DE CIGARROS"
+    },
+    {
+        "code": "2320600",
+        "description": "FABRICACAO DE CIMENTO"
+    },
+    {
+        "code": "2011800",
+        "description": "FABRICACAO DE CLORO E ALCALIS"
+    },
+    {
+        "code": "3104700",
+        "description": "FABRICACAO DE COLCHOES"
+    },
+    {
+        "code": "2610800",
+        "description": "FABRICACAO DE COMPONENTES ELETRONICOS"
+    },
+    {
+        "code": "2814301",
+        "description": "FABRICACAO DE COMPRESSORES PARA USO INDUSTRIAL PECAS E ACESSORIOS"
+    },
+    {
+        "code": "2814302",
+        "description": "FABRICACAO DE COMPRESSORES PARA USO NAO INDUSTRIAL PECAS E ACESSORIOS"
+    },
+    {
+        "code": "1031700",
+        "description": "FABRICACAO DE CONSERVAS DE FRUTAS"
+    },
+    {
+        "code": "1032599",
+        "description": "FABRICACAO DE CONSERVAS DE LEGUMES E OUTROS VEGETAIS EXCETO PALMITO"
+    },
+    {
+        "code": "1032501",
+        "description": "FABRICACAO DE CONSERVAS DE PALMITO"
+    },
+    {
+        "code": "1020102",
+        "description": "FABRICACAO DE CONSERVAS DE PEIXES CRUSTACEOS E MOLUSCOS"
+    },
+    {
+        "code": "2063100",
+        "description": "FABRICACAO DE COSMETICOS PRODUTOS DE PERFUMARIA E DE HIGIENE PESSOAL"
+    },
+    {
+        "code": "2652300",
+        "description": "FABRICACAO DE CROdescriptionTROS E RELOGIOS"
+    },
+    {
+        "code": "2051700",
+        "description": "FABRICACAO DE DEFENSIVOS AGRICOLAS"
+    },
+    {
+        "code": "2052500",
+        "description": "FABRICACAO DE DESINFESTANTES DOMISSANITARIOS"
+    },
+    {
+        "code": "2033900",
+        "description": "FABRICACAO DE ELASTOMEROS"
+    },
+    {
+        "code": "2790201",
+        "description": "FABRICACAO DE ELETRODOS CONTATOS E OUTROS ARTIGOS DE CARVAO E GRAFITA PARA USO ELETRICO ELETROIMAS E ISOLADORES"
+    },
+    {
+        "code": "1732000",
+        "description": "FABRICACAO DE EMBALAGENS DE CARTOLINA E PAPEL CARTAO"
+    },
+    {
+        "code": "2222600",
+        "description": "FABRICACAO DE EMBALAGENS DE MATERIAL PLASTICO"
+    },
+    {
+        "code": "1731100",
+        "description": "FABRICACAO DE EMBALAGENS DE PAPEL"
+    },
+    {
+        "code": "2312500",
+        "description": "FABRICACAO DE EMBALAGENS DE VIDRO"
+    },
+    {
+        "code": "2591800",
+        "description": "FABRICACAO DE EMBALAGENS METALICAS"
+    },
+    {
+        "code": "2550101",
+        "description": "FABRICACAO DE EQUIPAMENTO BELICO PESADO EXCETO VEICULOS MILITARES DE COMBATE"
+    },
+    {
+        "code": "2621300",
+        "description": "FABRICACAO DE EQUIPAMENTOS DE INFORMATICA"
+    },
+    {
+        "code": "2815102",
+        "description": "FABRICACAO DE EQUIPAMENTOS DE TRANSMISSAO PARA FINS INDUSTRIAIS EXCETO ROLAMENTOS"
+    },
+    {
+        "code": "3099700",
+        "description": "FABRICACAO DE EQUIPAMENTOS DE TRANSPORTE NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "3292202",
+        "description": "FABRICACAO DE EQUIPAMENTOS E ACESSORIOS PARA SEGURANCA PESSOAL E PROFISSIONAL"
+    },
+    {
+        "code": "2670101",
+        "description": "FABRICACAO DE EQUIPAMENTOS E INSTRUMENTOS OPTICOS PECAS E ACESSORIOS"
+    },
+    {
+        "code": "2812700",
+        "description": "FABRICACAO DE EQUIPAMENTOS HIDRAULICOS E PNEUMATICOS PECAS E ACESSORIOS EXCETO VALVULAS"
+    },
+    {
+        "code": "2832100",
+        "description": "FABRICACAO DE EQUIPAMENTOS PARA IRRIGACAO AGRICOLA PECAS E ACESSORIOS"
+    },
+    {
+        "code": "2790202",
+        "description": "FABRICACAO DE EQUIPAMENTOS PARA SINALIZACAO E ALARME"
+    },
+    {
+        "code": "2631100",
+        "description": "FABRICACAO DE EQUIPAMENTOS TRANSMISSORES DE COMUNICACAO PECAS E ACESSORIOS"
+    },
+    {
+        "code": "3291400",
+        "description": "FABRICACAO DE ESCOVAS PINCEIS E VASSOURAS"
+    },
+    {
+        "code": "1095300",
+        "description": "FABRICACAO DE ESPECIARIAS MOLHOS TEMPEROS E CONDIMENTOS"
+    },
+    {
+        "code": "1622602",
+        "description": "FABRICACAO DE ESQUADRIAS DE MADEIRA E DE PECAS DE MADEIRA PARA INSTALACOES INDUSTRIAIS E COMERCIAIS"
+    },
+    {
+        "code": "2512800",
+        "description": "FABRICACAO DE ESQUADRIAS DE METAL"
+    },
+    {
+        "code": "2511000",
+        "description": "FABRICACAO DE ESTRUTURAS METALICAS"
+    },
+    {
+        "code": "2330301",
+        "description": "FABRICACAO DE ESTRUTURAS PRE MOLDADAS DE CONCRETO ARMADO EM SERIE E SOB ENCOMENDA"
+    },
+    {
+        "code": "2821602",
+        "description": "FABRICACAO DE ESTUFAS E FORNOS ELETRICOS PARA FINS INDUSTRIAIS PECAS E ACESSORIOS"
+    },
+    {
+        "code": "1063500",
+        "description": "FABRICACAO DE FARINHA DE MANDIOCA E DERIVADOS"
+    },
+    {
+        "code": "1064300",
+        "description": "FABRICACAO DE FARINHA DE MILHO E DERIVADOS EXCETO OLEOS DE MILHO"
+    },
+    {
+        "code": "1099603",
+        "description": "FABRICACAO DE FERMENTOS E LEVEDURAS"
+    },
+    {
+        "code": "2543800",
+        "description": "FABRICACAO DE FERRAMENTAS"
+    },
+    {
+        "code": "2040100",
+        "description": "FABRICACAO DE FIBRAS ARTIFICIAIS E SINTETICAS"
+    },
+    {
+        "code": "1220403",
+        "description": "FABRICACAO DE FILTROS PARA CIGARROS"
+    },
+    {
+        "code": "2733300",
+        "description": "FABRICACAO DE FIOS CABOS E CONDUTORES ELETRICOS ISOLADOS"
+    },
+    {
+        "code": "2751100",
+        "description": "FABRICACAO DE FOGOES REFRIGERADORES E MAQUINAS DE LAVAR E SECAR PARA USO DOMESTICO PECAS E ACESSORIOS"
+    },
+    {
+        "code": "1741901",
+        "description": "FABRICACAO DE FORMULARIOS CONTINUOS"
+    },
+    {
+        "code": "2821601",
+        "description": "FABRICACAO DE FORNOS INDUSTRIAIS APARELHOS E EQUIPAMENTOS NAO ELETRICOS PARA INSTALACOES TERMICAS PECAS E ACESSORIOS"
+    },
+    {
+        "code": "2092403",
+        "description": "FABRICACAO DE FOSFOROS DE SEGURANCA"
+    },
+    {
+        "code": "1742701",
+        "description": "FABRICACAO DE FRALDAS DESCARTAVEIS"
+    },
+    {
+        "code": "1093702",
+        "description": "FABRICACAO DE FRUTAS CRISTALIZADAS BALAS E SEMELHANTES"
+    },
+    {
+        "code": "2014200",
+        "description": "FABRICACAO DE GASES INDUSTRIAIS"
+    },
+    {
+        "code": "1099604",
+        "description": "FABRICACAO DE GELO COMUM"
+    },
+    {
+        "code": "2710401",
+        "description": "FABRICACAO DE GERADORES DE CORRENTE CONTINUA E ALTERNADA PECAS E ACESSORIOS"
+    },
+    {
+        "code": "3299001",
+        "description": "FABRICACAO DE GUARDA CHUVAS E SIMILARES"
+    },
+    {
+        "code": "2073800",
+        "description": "FABRICACAO DE IMPERMEABILIZANTES SOLVENTES E PRODUTOS AFINS"
+    },
+    {
+        "code": "3220500",
+        "description": "FABRICACAO DE INSTRUMENTOS MUSICAIS PECAS E ACESSORIOS"
+    },
+    {
+        "code": "3250701",
+        "description": "FABRICACAO DE INSTRUMENTOS NAO ELETRONICOS E UTENSILIOS PARA USO MEDICO CIRURGICO ODONTOLOGICO E DE LABORATORIO"
+    },
+    {
+        "code": "2012600",
+        "description": "FABRICACAO DE INTERMEDIARIOS PARA FERTILIZANTES"
+    },
+    {
+        "code": "2022300",
+        "description": "FABRICACAO DE INTERMEDIARIOS PARA PLASTIFICANTES RESINAS E FIBRAS"
+    },
+    {
+        "code": "3240001",
+        "description": "FABRICACAO DE JOGOS ELETRONICOS"
+    },
+    {
+        "code": "2221800",
+        "description": "FABRICACAO DE LAMINADOS PLANOS E TUBULARES DE MATERIAL PLASTICO"
+    },
+    {
+        "code": "2740601",
+        "description": "FABRICACAO DE LAMPADAS"
+    },
+    {
+        "code": "1052000",
+        "description": "FABRICACAO DE LATICINIOS"
+    },
+    {
+        "code": "3299003",
+        "description": "FABRICACAO DE LETRAS LETREIROS E PLACAS DE QUALQUER MATERIAL EXCETO LUMINOSOS"
+    },
+    {
+        "code": "1314600",
+        "description": "FABRICACAO DE LINHAS PARA COSTURAR E BORDAR"
+    },
+    {
+        "code": "3031800",
+        "description": "FABRICACAO DE LOCOMOTIVAS VAGOES E OUTROS MATERIAIS RODANTES"
+    },
+    {
+        "code": "2740602",
+        "description": "FABRICACAO DE LUMINARIAS E OUTROS EQUIPAMENTOS DE ILUMINACAO"
+    },
+    {
+        "code": "1621800",
+        "description": "FABRICACAO DE MADEIRA LAMINADA E DE CHAPAS DE MADEIRA COMPENSADA PRENSADA E AGLOMERADA"
+    },
+    {
+        "code": "1113501",
+        "description": "FABRICACAO DE MALTE INCLUSIVE MALTE UISQUE"
+    },
+    {
+        "code": "2829101",
+        "description": "FABRICACAO DE MAQUINAS DE ESCREVER CALCULAR E OUTROS EQUIPAMENTOS NAO ELETRONICOS PARA ESCRITORIO PECAS E ACESSORIOS"
+    },
+    {
+        "code": "2823200",
+        "description": "FABRICACAO DE MAQUINAS E APARELHOS DE REFRIGERACAO E VENTILACAO PARA USO INDUSTRIAL E COMERCIAL PECAS E ACESSORIOS"
+    },
+    {
+        "code": "2833000",
+        "description": "FABRICACAO DE MAQUINAS E EQUIPAMENTOS PARA A AGRICULTURA E PECUARIA PECAS E ACESSORIOS EXCETO PARA IRRIGACAO"
+    },
+    {
+        "code": "2866600",
+        "description": "FABRICACAO DE MAQUINAS E EQUIPAMENTOS PARA A INDUSTRIA DO PLASTICO PECAS E ACESSORIOS"
+    },
+    {
+        "code": "2863100",
+        "description": "FABRICACAO DE MAQUINAS E EQUIPAMENTOS PARA A INDUSTRIA TEXTIL PECAS E ACESSORIOS"
+    },
+    {
+        "code": "2851800",
+        "description": "FABRICACAO DE MAQUINAS E EQUIPAMENTOS PARA A PROSPECCAO E EXTRACAO DE PETROLEO PECAS E ACESSORIOS"
+    },
+    {
+        "code": "2862300",
+        "description": "FABRICACAO DE MAQUINAS E EQUIPAMENTOS PARA AS INDUSTRIAS DE ALIMENTOS BEBIDAS E FUMO PECAS E ACESSORIOS"
+    },
+    {
+        "code": "2865800",
+        "description": "FABRICACAO DE MAQUINAS E EQUIPAMENTOS PARA AS INDUSTRIAS DE CELULOSE PAPEL E PAPELAO E ARTEFATOS PECAS E ACESSORIOS"
+    },
+    {
+        "code": "2864000",
+        "description": "FABRICACAO DE MAQUINAS E EQUIPAMENTOS PARA AS INDUSTRIAS DO VESTUARIO DO COURO E DE CALCADOS PECAS E ACESSORIOS"
+    },
+    {
+        "code": "2825900",
+        "description": "FABRICACAO DE MAQUINAS E EQUIPAMENTOS PARA SANEAMENTO BASICO E AMBIENTAL PECAS E ACESSORIOS"
+    },
+    {
+        "code": "2854200",
+        "description": "FABRICACAO DE MAQUINAS E EQUIPAMENTOS PARA TERRAPLENAGEM PAVIMENTACAO E CONSTRUCAO PECAS E ACESSORIOS EXCETO TRATORES"
+    },
+    {
+        "code": "2869100",
+        "description": "FABRICACAO DE MAQUINAS E EQUIPAMENTOS PARA USO INDUSTRIAL ESPECIFICO NAO ESPECIFICADOS ANTERIORMENTE PECAS E ACESSORIOS"
+    },
+    {
+        "code": "2822402",
+        "description": "FABRICACAO DE MAQUINAS EQUIPAMENTOS E APARELHOS PARA TRANSPORTE E ELEVACAO DE CARGAS PECAS E ACESSORIOS"
+    },
+    {
+        "code": "2822401",
+        "description": "FABRICACAO DE MAQUINAS EQUIPAMENTOS E APARELHOS PARA TRANSPORTE E ELEVACAO DE PESSOAS PECAS E ACESSORIOS"
+    },
+    {
+        "code": "2840200",
+        "description": "FABRICACAO DE MAQUINAS FERRAMENTA PECAS E ACESSORIOS"
+    },
+    {
+        "code": "2861500",
+        "description": "FABRICACAO DE MAQUINAS PARA A INDUSTRIA METALURGICA PECAS E ACESSORIOS EXCETO MAQUINAS FERRAMENTA"
+    },
+    {
+        "code": "1043100",
+        "description": "FABRICACAO DE MARGARINA E OUTRAS GORDURAS VEGETAIS E DE OLEOS NAO COMESTIVEIS DE ANIMAIS"
+    },
+    {
+        "code": "1094500",
+        "description": "FABRICACAO DE MASSAS ALIMENTICIAS"
+    },
+    {
+        "code": "3250705",
+        "description": "FABRICACAO DE MATERIAIS PARA MEDICINA E ODONTOLOGIA"
+    },
+    {
+        "code": "2945000",
+        "description": "FABRICACAO DE MATERIAL ELETRICO E ELETRONICO PARA VEICULOS AUTOMOTORES EXCETO BATERIAS"
+    },
+    {
+        "code": "2732500",
+        "description": "FABRICACAO DE MATERIAL ELETRICO PARA INSTALACOES EM CIRCUITO DE CONSUMO"
+    },
+    {
+        "code": "2349401",
+        "description": "FABRICACAO DE MATERIAL SANITARIO DE CERAMICA"
+    },
+    {
+        "code": "2121101",
+        "description": "FABRICACAO DE MEDICAMENTOS ALOPATICOS PARA USO HUMANO"
+    },
+    {
+        "code": "2121103",
+        "description": "FABRICACAO DE MEDICAMENTOS FITOTERAPICOS PARA USO HUMANO"
+    },
+    {
+        "code": "2121102",
+        "description": "FABRICACAO DE MEDICAMENTOS HOMEOPATICOS PARA USO HUMANO"
+    },
+    {
+        "code": "2122000",
+        "description": "FABRICACAO DE MEDICAMENTOS PARA USO VETERINARIO"
+    },
+    {
+        "code": "1421500",
+        "description": "FABRICACAO DE MEIAS"
+    },
+    {
+        "code": "3240003",
+        "description": "FABRICACAO DE MESAS DE BILHAR DE SINUCA E ACESSORIOS ASSOCIADA A LOCACAO"
+    },
+    {
+        "code": "3240002",
+        "description": "FABRICACAO DE MESAS DE BILHAR DE SINUCA E ACESSORIOS NAO ASSOCIADA A LOCACAO"
+    },
+    {
+        "code": "2680900",
+        "description": "FABRICACAO DE MIDIAS VIRGENS MAGNETICAS E OPTICAS"
+    },
+    {
+        "code": "3250702",
+        "description": "FABRICACAO DE MOBILIARIO PARA USO MEDICO CIRURGICO ODONTOLOGICO E DE LABORATORIO"
+    },
+    {
+        "code": "3091101",
+        "description": "FABRICACAO DE MOTOCICLETAS"
+    },
+    {
+        "code": "3091100",
+        "description": "FABRICACAO DE MOTOCICLETAS PECAS E ACESSORIOS"
+    },
+    {
+        "code": "2811900",
+        "description": "FABRICACAO DE MOTORES E TURBINAS PECAS E ACESSORIOS EXCETO PARA AVIOES E VEICULOS RODOVIARIOS"
+    },
+    {
+        "code": "2710403",
+        "description": "FABRICACAO DE MOTORES ELETRICOS PECAS E ACESSORIOS"
+    },
+    {
+        "code": "2910703",
+        "description": "FABRICACAO DE MOTORES PARA AUTOMOVEIS CAMIONETAS E UTILITARIOS"
+    },
+    {
+        "code": "2920402",
+        "description": "FABRICACAO DE MOTORES PARA CAMINHOES E ONIBUS"
+    },
+    {
+        "code": "3101200",
+        "description": "FABRICACAO DE MOVEIS COM PREDOMINANCIA DE MADEIRA"
+    },
+    {
+        "code": "3102100",
+        "description": "FABRICACAO DE MOVEIS COM PREDOMINANCIA DE METAL"
+    },
+    {
+        "code": "3103900",
+        "description": "FABRICACAO DE MOVEIS DE OUTROS MATERIAIS EXCETO MADEIRA E METAL"
+    },
+    {
+        "code": "2513600",
+        "description": "FABRICACAO DE OBRAS DE CALDEIRARIA PESADA"
+    },
+    {
+        "code": "1065102",
+        "description": "FABRICACAO DE OLEO DE MILHO EM BRUTO"
+    },
+    {
+        "code": "1065103",
+        "description": "FABRICACAO DE OLEO DE MILHO REFINADO"
+    },
+    {
+        "code": "1041400",
+        "description": "FABRICACAO DE OLEOS VEGETAIS EM BRUTO EXCETO OLEO DE MILHO"
+    },
+    {
+        "code": "1042200",
+        "description": "FABRICACAO DE OLEOS VEGETAIS REFINADOS EXCETO OLEO DE MILHO"
+    },
+    {
+        "code": "1111902",
+        "description": "FABRICACAO DE OUTRAS AGUARDENTES E BEBIDAS DESTILADAS"
+    },
+    {
+        "code": "1122499",
+        "description": "FABRICACAO DE OUTRAS BEBIDAS NAO ALCOOLICAS NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "2829199",
+        "description": "FABRICACAO DE OUTRAS MAQUINAS E EQUIPAMENTOS DE USO GERAL NAO ESPECIFICADOS ANTERIORMENTE PECAS E ACESSORIOS"
+    },
+    {
+        "code": "2852600",
+        "description": "FABRICACAO DE OUTRAS MAQUINAS E EQUIPAMENTOS PARA USO NA EXTRACAO MINERAL PECAS E ACESSORIOS EXCETO NA EXTRACAO DE PETROLEO"
+    },
+    {
+        "code": "2949299",
+        "description": "FABRICACAO DE OUTRAS PECAS E ACESSORIOS PARA VEICULOS AUTOMOTORES NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "2759799",
+        "description": "FABRICACAO DE OUTROS APARELHOS ELETRODOMESTICOS NAO ESPECIFICADOS ANTERIORMENTE PECAS E ACESSORIOS"
+    },
+    {
+        "code": "2330399",
+        "description": "FABRICACAO DE OUTROS ARTEFATOS E PRODUTOS DE CONCRETO CIMENTO FIBROCIMENTO GESSO E MATERIAIS SEMELHANTES"
+    },
+    {
+        "code": "1622699",
+        "description": "FABRICACAO DE OUTROS ARTIGOS DE CARPINTARIA PARA CONSTRUCAO"
+    },
+    {
+        "code": "3240099",
+        "description": "FABRICACAO DE OUTROS BRINQUEDOS E JOGOS RECREATIVOS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "2790299",
+        "description": "FABRICACAO DE OUTROS EQUIPAMENTOS E APARELHOS ELETRICOS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "1099699",
+        "description": "FABRICACAO DE OUTROS PRODUTOS ALIMENTICIOS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "2599399",
+        "description": "FABRICACAO DE OUTROS PRODUTOS DE METAL NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "2399199",
+        "description": "FABRICACAO DE OUTROS PRODUTOS DE MINERAIS NAO METALICOS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "1922599",
+        "description": "FABRICACAO DE OUTROS PRODUTOS DERIVADOS DO PETROLEO EXCETO PRODUTOS DO REFINO"
+    },
+    {
+        "code": "1220499",
+        "description": "FABRICACAO DE OUTROS PRODUTOS DO FUMO EXCETO CIGARROS CIGARRILHAS E CHARUTOS"
+    },
+    {
+        "code": "2019399",
+        "description": "FABRICACAO DE OUTROS PRODUTOS QUIMICOS INORGANICOS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "2099199",
+        "description": "FABRICACAO DE OUTROS PRODUTOS QUIMICOS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "1359600",
+        "description": "FABRICACAO DE OUTROS PRODUTOS TEXTEIS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "3299004",
+        "description": "FABRICACAO DE PAINEIS E LETREIROS LUMINOSOS"
+    },
+    {
+        "code": "1721400",
+        "description": "FABRICACAO DE PAPEL"
+    },
+    {
+        "code": "1540800",
+        "description": "FABRICACAO DE PARTES PARA CALCADOS DE QUALQUER MATERIAL"
+    },
+    {
+        "code": "3091102",
+        "description": "FABRICACAO DE PECAS E ACESSORIOS PARA MOTOCICLETAS"
+    },
+    {
+        "code": "2944100",
+        "description": "FABRICACAO DE PECAS E ACESSORIOS PARA O SISTEMA DE DIRECAO E SUSPENSAO DE VEICULOS AUTOMOTORES"
+    },
+    {
+        "code": "2943300",
+        "description": "FABRICACAO DE PECAS E ACESSORIOS PARA O SISTEMA DE FREIOS DE VEICULOS AUTOMOTORES"
+    },
+    {
+        "code": "2941700",
+        "description": "FABRICACAO DE PECAS E ACESSORIOS PARA O SISTEMA MOTOR DE VEICULOS AUTOMOTORES"
+    },
+    {
+        "code": "2942500",
+        "description": "FABRICACAO DE PECAS E ACESSORIOS PARA OS SISTEMAS DE MARCHA E TRANSMISSAO DE VEICULOS AUTOMOTORES"
+    },
+    {
+        "code": "3032600",
+        "description": "FABRICACAO DE PECAS E ACESSORIOS PARA VEICULOS FERROVIARIOS"
+    },
+    {
+        "code": "2622100",
+        "description": "FABRICACAO DE PERIFERICOS PARA EQUIPAMENTOS DE INFORMATICA"
+    },
+    {
+        "code": "2721000",
+        "description": "FABRICACAO DE PILHAS BATERIAS E ACUMULADORES ELETRICOS EXCETO PARA VEICULOS AUTOMOTORES"
+    },
+    {
+        "code": "2211100",
+        "description": "FABRICACAO DE PNEUMATICOS E DE CAMARAS DE AR"
+    },
+    {
+        "code": "2092401",
+        "description": "FABRICACAO DE POLVORAS EXPLOSIVOS E DETONANTES"
+    },
+    {
+        "code": "1099602",
+        "description": "FABRICACAO DE POS ALIMENTICIOS"
+    },
+    {
+        "code": "2123800",
+        "description": "FABRICACAO DE PREPARACOES FARMACEUTICAS"
+    },
+    {
+        "code": "1082100",
+        "description": "FABRICACAO DE PRODUTOS A BASE DE CAFE"
+    },
+    {
+        "code": "2349499",
+        "description": "FABRICACAO DE PRODUTOS CERAMICOS NAO REFRATARIOS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "2341900",
+        "description": "FABRICACAO DE PRODUTOS CERAMICOS REFRATARIOS"
+    },
+    {
+        "code": "1013901",
+        "description": "FABRICACAO DE PRODUTOS DE CARNE"
+    },
+    {
+        "code": "2062200",
+        "description": "FABRICACAO DE PRODUTOS DE LIMPEZA E POLIMENTO"
+    },
+    {
+        "code": "1091102",
+        "description": "FABRICACAO DE PRODUTOS DE PADARIA E CONFEITARIA COM PREDOMINANCIA DE PRODUCAO PROPRIA"
+    },
+    {
+        "code": "1091100",
+        "description": "FABRICACAO DE PRODUTOS DE PANIFICACAO"
+    },
+    {
+        "code": "1091101",
+        "description": "FABRICACAO DE PRODUTOS DE PANIFICACAO INDUSTRIAL"
+    },
+    {
+        "code": "1741902",
+        "description": "FABRICACAO DE PRODUTOS DE PAPEL CARTOLINA PAPEL CARTAO E PAPELAO ONDULADO PARA USO COMERCIAL E DE ESCRITORIO"
+    },
+    {
+        "code": "1742799",
+        "description": "FABRICACAO DE PRODUTOS DE PAPEL PARA USO DOMESTICO E HIGIENICO SANITARIO NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "1749400",
+        "description": "FABRICACAO DE PRODUTOS DE PASTAS CELULOSICAS PAPEL CARTOLINA PAPEL CARTAO E PAPELAO ONDULADO NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "2592602",
+        "description": "FABRICACAO DE PRODUTOS DE TREFILADOS DE METAL EXCETO PADRONIZADOS"
+    },
+    {
+        "code": "2592601",
+        "description": "FABRICACAO DE PRODUTOS DE TREFILADOS DE METAL PADRONIZADOS"
+    },
+    {
+        "code": "1093701",
+        "description": "FABRICACAO DE PRODUTOS DERIVADOS DO CACAU E DE CHOCOLATES"
+    },
+    {
+        "code": "3299099",
+        "description": "FABRICACAO DE PRODUTOS DIVERSOS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "1061902",
+        "description": "FABRICACAO DE PRODUTOS DO ARROZ"
+    },
+    {
+        "code": "1921700",
+        "description": "FABRICACAO DE PRODUTOS DO REFINO DE PETROLEO"
+    },
+    {
+        "code": "2110600",
+        "description": "FABRICACAO DE PRODUTOS FARMOQUIMICOS"
+    },
+    {
+        "code": "1099605",
+        "description": "FABRICACAO DE PRODUTOS PARA INFUSAO (CHA MATE ETC )"
+    },
+    {
+        "code": "2021500",
+        "description": "FABRICACAO DE PRODUTOS PETROQUIMICOS BASICOS"
+    },
+    {
+        "code": "2029100",
+        "description": "FABRICACAO DE PRODUTOS QUIMICOS ORGANICOS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "1122403",
+        "description": "FABRICACAO DE REFRESCOS XAROPES E POS PARA REFRESCOS EXCETO REFRESCOS DE FRUTAS"
+    },
+    {
+        "code": "1122401",
+        "description": "FABRICACAO DE REFRIGERANTES"
+    },
+    {
+        "code": "2032100",
+        "description": "FABRICACAO DE RESINAS TERMOFIXAS"
+    },
+    {
+        "code": "2031200",
+        "description": "FABRICACAO DE RESINAS TERMOPLASTICAS"
+    },
+    {
+        "code": "2815101",
+        "description": "FABRICACAO DE ROLAMENTOS PARA FINS INDUSTRIAIS"
+    },
+    {
+        "code": "3292201",
+        "description": "FABRICACAO DE ROUPAS DE PROTECAO E SEGURANCA E RESISTENTES A FOGO"
+    },
+    {
+        "code": "2061400",
+        "description": "FABRICACAO DE SABOES E DETERGENTES SINTETICOS"
+    },
+    {
+        "code": "1053800",
+        "description": "FABRICACAO DE SORVETES E OUTROS GELADOS COMESTIVEIS"
+    },
+    {
+        "code": "1033301",
+        "description": "FABRICACAO DE SUCOS CONCENTRADOS DE FRUTAS HORTALICAS E LEGUMES"
+    },
+    {
+        "code": "1033302",
+        "description": "FABRICACAO DE SUCOS DE FRUTAS HORTALICAS E LEGUMES EXCETO CONCENTRADOS"
+    },
+    {
+        "code": "2521700",
+        "description": "FABRICACAO DE TANQUES RESERVATORIOS METALICOS E CALDEIRAS PARA AQUECIMENTO CENTRAL"
+    },
+    {
+        "code": "1330800",
+        "description": "FABRICACAO DE TECIDOS DE MALHA"
+    },
+    {
+        "code": "1354500",
+        "description": "FABRICACAO DE TECIDOS ESPECIAIS INCLUSIVE ARTEFATOS"
+    },
+    {
+        "code": "1532700",
+        "description": "FABRICACAO DE TENIS DE QUALQUER MATERIAL"
+    },
+    {
+        "code": "2072000",
+        "description": "FABRICACAO DE TINTAS DE IMPRESSAO"
+    },
+    {
+        "code": "2071100",
+        "description": "FABRICACAO DE TINTAS VERNIZES ESMALTES E LACAS"
+    },
+    {
+        "code": "2710402",
+        "description": "FABRICACAO DE TRANSFORMADORES INDUTORES CONVERSORES SINCRONIZADORES E SEMELHANTES PECAS E ACESSORIOS"
+    },
+    {
+        "code": "2831300",
+        "description": "FABRICACAO DE TRATORES AGRICOLAS PECAS E ACESSORIOS"
+    },
+    {
+        "code": "2853400",
+        "description": "FABRICACAO DE TRATORES PECAS E ACESSORIOS EXCETO AGRICOLAS"
+    },
+    {
+        "code": "2223400",
+        "description": "FABRICACAO DE TUBOS E ACESSORIOS DE MATERIAL PLASTICO PARA USO NA CONSTRUCAO"
+    },
+    {
+        "code": "3042300",
+        "description": "FABRICACAO DE TURBINAS MOTORES E OUTROS COMPONENTES E PECAS PARA AERONAVES"
+    },
+    {
+        "code": "2813500",
+        "description": "FABRICACAO DE VALVULAS REGISTROS E DISPOSITIVOS SEMELHANTES PECAS E ACESSORIOS"
+    },
+    {
+        "code": "3050400",
+        "description": "FABRICACAO DE VEICULOS MILITARES DE COMBATE"
+    },
+    {
+        "code": "3299006",
+        "description": "FABRICACAO DE VELAS INCLUSIVE DECORATIVAS"
+    },
+    {
+        "code": "2311700",
+        "description": "FABRICACAO DE VIDRO PLANO E DE SEGURANCA"
+    },
+    {
+        "code": "1099601",
+        "description": "FABRICACAO DE VINAGRES"
+    },
+    {
+        "code": "1112700",
+        "description": "FABRICACAO DE VINHO"
+    },
+    {
+        "code": "1412603",
+        "description": "FACCAO DE PECAS DO VESTUARIO EXCETO ROUPAS INTIMAS"
+    },
+    {
+        "code": "1411802",
+        "description": "FACCAO DE ROUPAS INTIMAS"
+    },
+    {
+        "code": "1413403",
+        "description": "FACCAO DE ROUPAS PROFISSIONAIS"
+    },
+    {
+        "code": "1313800",
+        "description": "FIACAO DE FIBRAS ARTIFICIAIS E SINTETICAS"
+    },
+    {
+        "code": "7420004",
+        "description": "FILMAGEM DE FESTAS E EVENTOS"
+    },
+    {
+        "code": "8599601",
+        "description": "FORMACAO DE CONDUTORES"
+    },
+    {
+        "code": "1922501",
+        "description": "FORMULACAO DE COMBUSTIVEIS"
+    },
+    {
+        "code": "5620104",
+        "description": "FORNECIMENTO DE ALIMENTOS PREPARADOS PREPONDERANTEMENTE PARA CONSUMO DOMICILIAR"
+    },
+    {
+        "code": "5620101",
+        "description": "FORNECIMENTO DE ALIMENTOS PREPARADOS PREPONDERANTEMENTE PARA EMPRESAS"
+    },
+    {
+        "code": "7830200",
+        "description": "FORNECIMENTO E GESTAO DE RECURSOS HUMANOS PARA TERCEIROS"
+    },
+    {
+        "code": "8219901",
+        "description": "FOTOCOPIAS"
+    },
+    {
+        "code": "1011201",
+        "description": "FRIGORIFICO ABATE DE BOVINOS"
+    },
+    {
+        "code": "1011204",
+        "description": "FRIGORIFICO ABATE DE BUFALINOS"
+    },
+    {
+        "code": "1011202",
+        "description": "FRIGORIFICO ABATE DE EQUINOS"
+    },
+    {
+        "code": "1011203",
+        "description": "FRIGORIFICO ABATE DE OVINOS E CAPRINOS"
+    },
+    {
+        "code": "1012103",
+        "description": "FRIGORIFICO ABATE DE SUINOS"
+    },
+    {
+        "code": "2451200",
+        "description": "FUNDICAO DE FERRO E ACO"
+    },
+    {
+        "code": "2452100",
+        "description": "FUNDICAO DE METAIS NAO FERROSOS E SUAS LIGAS"
+    },
+    {
+        "code": "6499903",
+        "description": "FUNDO GARANTIDOR DE CREDITO"
+    },
+    {
+        "code": "6470101",
+        "description": "FUNDOS DE INVESTIMENTO EXCETO PREVIDENCIARIOS E IMOBILIARIOS"
+    },
+    {
+        "code": "6470103",
+        "description": "FUNDOS DE INVESTIMENTO IMOBILIARIOS"
+    },
+    {
+        "code": "6470102",
+        "description": "FUNDOS DE INVESTIMENTO PREVIDENCIARIOS"
+    },
+    {
+        "code": "3511500",
+        "description": "GERACAO DE ENERGIA ELETRICA"
+    },
+    {
+        "code": "3511501",
+        "description": "GERACAO DE ENERGIA ELETRICA"
+    },
+    {
+        "code": "7740300",
+        "description": "GESTAO DE ATIVOS INTANGIVEIS NAO FINANCEIROS"
+    },
+    {
+        "code": "9003500",
+        "description": "GESTAO DE ESPACOS PARA ARTES CENICAS ESPETACULOS E OUTRAS ATIVIDADES ARTISTICAS"
+    },
+    {
+        "code": "9311500",
+        "description": "GESTAO DE INSTALACOES DE ESPORTES"
+    },
+    {
+        "code": "3701100",
+        "description": "GESTAO DE REDES DE ESGOTO"
+    },
+    {
+        "code": "5231103",
+        "description": "GESTÃO DE TERMINAIS AQUAVIÁRIOS "
+    },
+    {
+        "code": "6822600",
+        "description": "GESTAO E ADMINISTRACAO DA PROPRIEDADE IMOBILIARIA"
+    },
+    {
+        "code": "9603301",
+        "description": "GESTAO E MANUTENCAO DE CEMITERIOS"
+    },
+    {
+        "code": "5211702",
+        "description": "GUARDA MOVEIS"
+    },
+    {
+        "code": "9609208",
+        "description": "HIGIENE E EMBELEZAMENTO DE ANIMAIS DOMÉSTICOS"
+    },
+    {
+        "code": "6461100",
+        "description": "HOLDINGS DE INSTITUICOES FINANCEIRAS"
+    },
+    {
+        "code": "6462000",
+        "description": "HOLDINGS DE INSTITUICOES NAO FINANCEIRAS"
+    },
+    {
+        "code": "121101",
+        "description": "HORTICULTURA EXCETO MORANGO"
+    },
+    {
+        "code": "5510801",
+        "description": "HOTEIS"
+    },
+    {
+        "code": "4330401",
+        "description": "IMPERMEABILIZACAO EM OBRAS DE ENGENHARIA CIVIL"
+    },
+    {
+        "code": "1811301",
+        "description": "IMPRESSAO DE JORNAIS"
+    },
+    {
+        "code": "1811302",
+        "description": "IMPRESSAO DE LIVROS REVISTAS E OUTRAS PUBLICACOES PERIODICAS"
+    },
+    {
+        "code": "1812100",
+        "description": "IMPRESSAO DE MATERIAL DE SEGURANCA"
+    },
+    {
+        "code": "1813099",
+        "description": "IMPRESSAO DE MATERIAL PARA OUTROS USOS"
+    },
+    {
+        "code": "1813001",
+        "description": "IMPRESSAO DE MATERIAL PARA USO PUBLICITARIO"
+    },
+    {
+        "code": "8122200",
+        "description": "IMUNIZACAO E CONTROLE DE PRAGAS URBANAS"
+    },
+    {
+        "code": "4110700",
+        "description": "INCORPORACAO DE EMPREENDIMENTOS IMOBILIARIOS"
+    },
+    {
+        "code": "4329102",
+        "description": "INSTALACAO DE EQUIPAMENTOS PARA ORIENTACAO A NAVEGACAO MARITIMA FLUVIAL E LACUSTRE"
+    },
+    {
+        "code": "3321000",
+        "description": "INSTALACAO DE MAQUINAS E EQUIPAMENTOS INDUSTRIAIS"
+    },
+    {
+        "code": "3329599",
+        "description": "INSTALACAO DE OUTROS EQUIPAMENTOS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "4329101",
+        "description": "INSTALACAO DE PAINEIS PUBLICITARIOS"
+    },
+    {
+        "code": "4330402",
+        "description": "INSTALACAO DE PORTAS JANELAS TETOS DIVISORIAS E ARMARIOS EMBUTIDOS DE QUALQUER MATERIAL"
+    },
+    {
+        "code": "4322302",
+        "description": "INSTALACAO E MANUTENCAO DE SISTEMAS CENTRAIS DE AR CONDICIONADO DE VENTILACAO E REFRIGERACAO"
+    },
+    {
+        "code": "4321500",
+        "description": "INSTALACAO E MANUTENCAO ELETRICA"
+    },
+    {
+        "code": "4329103",
+        "description": "INSTALACAO MANUTENCAO E REPARACAO DE ELEVADORES ESCADAS E ESTEIRAS ROLANTES"
+    },
+    {
+        "code": "4322303",
+        "description": "INSTALACOES DE SISTEMA DE PREVENCAO CONTRA INCENDIO"
+    },
+    {
+        "code": "4322301",
+        "description": "INSTALACOES HIDRAULICAS SANITARIAS E DE GAS"
+    },
+    {
+        "code": "8711502",
+        "description": "INSTITUICOES DE LONGA PERMANENCIA PARA IDOSOS"
+    },
+    {
+        "code": "8423000",
+        "description": "JUSTICA"
+    },
+    {
+        "code": "8640202",
+        "description": "LABORATORIOS CLINICOS"
+    },
+    {
+        "code": "8640201",
+        "description": "LABORATORIOS DE ANATOMIA PATOLOGICA E CITOLOGICA"
+    },
+    {
+        "code": "7420003",
+        "description": "LABORATORIOS FOTOGRAFICOS"
+    },
+    {
+        "code": "5611203",
+        "description": "LANCHONETES CASAS DE CHA DE SUCOS E SIMILARES"
+    },
+    {
+        "code": "3211601",
+        "description": "LAPIDACAO DE GEMAS"
+    },
+    {
+        "code": "9601701",
+        "description": "LAVANDERIAS"
+    },
+    {
+        "code": "8299704",
+        "description": "LEILOEIROS INDEPENDENTES"
+    },
+    {
+        "code": "8121400",
+        "description": "LIMPEZA EM PREDIOS E EM DOMICILIOS"
+    },
+    {
+        "code": "7719502",
+        "description": "LOCACAO DE AERONAVES SEM TRIPULACAO"
+    },
+    {
+        "code": "7711000",
+        "description": "LOCACAO DE AUTOMOVEIS SEM CONDUTOR"
+    },
+    {
+        "code": "7719501",
+        "description": "LOCACAO DE EMBARCACOES SEM TRIPULACAO EXCETO PARA FINS RECREATIVOS"
+    },
+    {
+        "code": "7820500",
+        "description": "LOCACAO DE MAO DE OBRA TEMPORARIA"
+    },
+    {
+        "code": "7719599",
+        "description": "LOCACAO DE OUTROS MEIOS DE TRANSPORTE NAO ESPECIFICADOS ANTERIORMENTE SEM CONDUTOR"
+    },
+    {
+        "code": "4713001",
+        "description": "LOJAS DE DEPARTAMENTOS OU MAGAZINES"
+    },
+    {
+        "code": "4713004",
+        "description": "LOJAS DE DEPARTAMENTOS OU MAGAZINES EXCETO LOJAS FRANCAS (DUTY FREE)"
+    },
+    {
+        "code": "4713002",
+        "description": "LOJAS DE VARIEDADES EXCETO LOJAS DE DEPARTAMENTOS OU MAGAZINES"
+    },
+    {
+        "code": "4713003",
+        "description": "LOJAS DUTY FREE DE AEROPORTOS INTERNACIONAIS"
+    },
+    {
+        "code": "1610204",
+        "description": "LOJAS FRANCAS (DUTY FREE) DE AEROPORTOS PORTOS E EM FRONTEIRAS TERRESTRES"
+    },
+    {
+        "code": "6810203",
+        "description": "LOTEAMENTO DE IMOVEIS PROPRIOS"
+    },
+    {
+        "code": "3316302",
+        "description": "MANUTENCAO DE AERONAVES NA PISTA"
+    },
+    {
+        "code": "4221905",
+        "description": "MANUTENCAO DE ESTACOES E REDES DE TELECOMUNICACOES"
+    },
+    {
+        "code": "4221903",
+        "description": "MANUTENCAO DE REDES DE DISTRIBUICAO DE ENERGIA ELETRICA"
+    },
+    {
+        "code": "3316301",
+        "description": "MANUTENCAO E REPARACAO DE AERONAVES EXCETO A MANUTENCAO NA PISTA"
+    },
+    {
+        "code": "3312102",
+        "description": "MANUTENCAO E REPARACAO DE APARELHOS E INSTRUMENTOS DE MEDIDA TESTE E CONTROLE"
+    },
+    {
+        "code": "3312103",
+        "description": "MANUTENCAO E REPARACAO DE APARELHOS ELETROMEDICOS E ELETROTERAPEUTICOS E EQUIPAMENTOS DE IRRADIACAO"
+    },
+    {
+        "code": "3313902",
+        "description": "MANUTENCAO E REPARACAO DE BATERIAS E ACUMULADORES ELETRICOS EXCETO PARA VEICULOS"
+    },
+    {
+        "code": "3314704",
+        "description": "MANUTENCAO E REPARACAO DE COMPRESSORES"
+    },
+    {
+        "code": "3317101",
+        "description": "MANUTENCAO E REPARACAO DE EMBARCACOES E ESTRUTURAS FLUTUANTES"
+    },
+    {
+        "code": "3317102",
+        "description": "MANUTENCAO E REPARACAO DE EMBARCACOES PARA ESPORTE E LAZER"
+    },
+    {
+        "code": "3314705",
+        "description": "MANUTENCAO E REPARACAO DE EQUIPAMENTOS DE TRANSMISSAO PARA FINS INDUSTRIAIS"
+    },
+    {
+        "code": "3312104",
+        "description": "MANUTENCAO E REPARACAO DE EQUIPAMENTOS E INSTRUMENTOS OPTICOS"
+    },
+    {
+        "code": "3319800",
+        "description": "MANUTENCAO E REPARACAO DE EQUIPAMENTOS E PRODUTOS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "3314702",
+        "description": "MANUTENCAO E REPARACAO DE EQUIPAMENTOS HIDRAULICOS E PNEUMATICOS EXCETO VALVULAS"
+    },
+    {
+        "code": "3313901",
+        "description": "MANUTENCAO E REPARACAO DE GERADORES TRANSFORMADORES E MOTORES ELETRICOS"
+    },
+    {
+        "code": "3314706",
+        "description": "MANUTENCAO E REPARACAO DE MAQUINAS APARELHOS E EQUIPAMENTOS PARA INSTALACOES TERMICAS"
+    },
+    {
+        "code": "3313999",
+        "description": "MANUTENCAO E REPARACAO DE MAQUINAS APARELHOS E MATERIAIS ELETRICOS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "3314709",
+        "description": "MANUTENCAO E REPARACAO DE MAQUINAS DE ESCREVER CALCULAR E DE OUTROS EQUIPAMENTOS NAO ELETRONICOS PARA ESCRITORIO"
+    },
+    {
+        "code": "3314707",
+        "description": "MANUTENCAO E REPARACAO DE MAQUINAS E APARELHOS DE REFRIGERACAO E VENTILACAO PARA USO INDUSTRIAL E COMERCIAL"
+    },
+    {
+        "code": "3314721",
+        "description": "MANUTENCAO E REPARACAO DE MAQUINAS E APARELHOS PARA A INDUSTRIA DE CELULOSE PAPEL E PAPELAO E ARTEFATOS"
+    },
+    {
+        "code": "3314722",
+        "description": "MANUTENCAO E REPARACAO DE MAQUINAS E APARELHOS PARA A INDUSTRIA DO PLASTICO"
+    },
+    {
+        "code": "3314717",
+        "description": "MANUTENCAO E REPARACAO DE MAQUINAS E EQUIPAMENTOS DE TERRAPLENAGEM PAVIMENTACAO E CONSTRUCAO EXCETO TRATORES"
+    },
+    {
+        "code": "3314720",
+        "description": "MANUTENCAO E REPARACAO DE MAQUINAS E EQUIPAMENTOS PARA A INDUSTRIA TEXTIL DO VESTUARIO DO COURO E CALCADOS"
+    },
+    {
+        "code": "3314714",
+        "description": "MANUTENCAO E REPARACAO DE MAQUINAS E EQUIPAMENTOS PARA A PROSPECCAO E EXTRACAO DE PETROLEO"
+    },
+    {
+        "code": "3314711",
+        "description": "MANUTENCAO E REPARACAO DE MAQUINAS E EQUIPAMENTOS PARA AGRICULTURA E PECUARIA"
+    },
+    {
+        "code": "3314719",
+        "description": "MANUTENCAO E REPARACAO DE MAQUINAS E EQUIPAMENTOS PARA AS INDUSTRIAS DE ALIMENTOS BEBIDAS E FUMO"
+    },
+    {
+        "code": "3314710",
+        "description": "MANUTENCAO E REPARACAO DE MAQUINAS E EQUIPAMENTOS PARA USO GERAL NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "3314715",
+        "description": "MANUTENCAO E REPARACAO DE MAQUINAS E EQUIPAMENTOS PARA USO NA EXTRACAO MINERAL EXCETO NA EXTRACAO DE PETROLEO"
+    },
+    {
+        "code": "3314708",
+        "description": "MANUTENCAO E REPARACAO DE MAQUINAS EQUIPAMENTOS E APARELHOS PARA TRANSPORTE E ELEVACAO DE CARGAS"
+    },
+    {
+        "code": "3314713",
+        "description": "MANUTENCAO E REPARACAO DE MAQUINAS FERRAMENTA"
+    },
+    {
+        "code": "3314701",
+        "description": "MANUTENCAO E REPARACAO DE MAQUINAS MOTRIZES NAO ELETRICAS"
+    },
+    {
+        "code": "3314718",
+        "description": "MANUTENCAO E REPARACAO DE MAQUINAS PARA A INDUSTRIA METALURGICA EXCETO MAQUINAS FERRAMENTA"
+    },
+    {
+        "code": "4543900",
+        "description": "MANUTENCAO E REPARACAO DE MOTOCICLETAS E MOTONETAS"
+    },
+    {
+        "code": "3314799",
+        "description": "MANUTENCAO E REPARACAO DE OUTRAS MAQUINAS E EQUIPAMENTOS PARA USOS INDUSTRIAIS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "3311200",
+        "description": "MANUTENCAO E REPARACAO DE TANQUES RESERVATORIOS METALICOS E CALDEIRAS EXCETO PARA VEICULOS"
+    },
+    {
+        "code": "3314712",
+        "description": "MANUTENCAO E REPARACAO DE TRATORES AGRICOLAS"
+    },
+    {
+        "code": "3314716",
+        "description": "MANUTENCAO E REPARACAO DE TRATORES EXCETO AGRICOLAS"
+    },
+    {
+        "code": "3314703",
+        "description": "MANUTENCAO E REPARACAO DE VALVULAS INDUSTRIAIS"
+    },
+    {
+        "code": "3315500",
+        "description": "MANUTENCAO E REPARACAO DE VEICULOS FERROVIARIOS"
+    },
+    {
+        "code": "7319003",
+        "description": "MARKETING DIRETO"
+    },
+    {
+        "code": "1011205",
+        "description": "MATADOURO ABATE DE RESES SOB CONTRATO EXCETO ABATE DE SUINOS"
+    },
+    {
+        "code": "1012104",
+        "description": "MATADOURO ABATE DE SUINOS SOB CONTRATO"
+    },
+    {
+        "code": "8299701",
+        "description": "MEDICAO DE CONSUMO DE ENERGIA ELETRICA GAS E AGUA"
+    },
+    {
+        "code": "2449199",
+        "description": "METALURGIA DE OUTROS METAIS NAO FERROSOS E SUAS LIGAS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "2443100",
+        "description": "METALURGIA DO COBRE"
+    },
+    {
+        "code": "2532202",
+        "description": "METALURGIA DO PO"
+    },
+    {
+        "code": "2442300",
+        "description": "METALURGIA DOS METAIS PRECIOSOS"
+    },
+    {
+        "code": "1062700",
+        "description": "MOAGEM DE TRIGO E FABRICACAO DE DERIVADOS"
+    },
+    {
+        "code": "1069400",
+        "description": "MOAGEM E FABRICACAO DE PRODUTOS DE ORIGEM VEGETAL NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "4292801",
+        "description": "MONTAGEM DE ESTRUTURAS METALICAS"
+    },
+    {
+        "code": "4399102",
+        "description": "MONTAGEM E DESMONTAGEM DE ANDAIMES E OUTRAS ESTRUTURAS TEMPORARIAS"
+    },
+    {
+        "code": "4329104",
+        "description": "MONTAGEM E INSTALACAO DE SISTEMAS E EQUIPAMENTOS DE ILUMINACAO E SINALIZACAO EM VIAS PUBLICAS PORTOS E AEROPORTOS"
+    },
+    {
+        "code": "5510803",
+        "description": "MOTEIS"
+    },
+    {
+        "code": "5030101",
+        "description": "NAVEGACAO DE APOIO MARITIMO"
+    },
+    {
+        "code": "5030102",
+        "description": "NAVEGACAO DE APOIO PORTUARIO"
+    },
+    {
+        "code": "4330403",
+        "description": "OBRAS DE ACABAMENTO EM GESSO E ESTUQUE"
+    },
+    {
+        "code": "4399103",
+        "description": "OBRAS DE ALVENARIA"
+    },
+    {
+        "code": "4391600",
+        "description": "OBRAS DE FUNDACOES"
+    },
+    {
+        "code": "4222702",
+        "description": "OBRAS DE IRRIGACAO"
+    },
+    {
+        "code": "4292802",
+        "description": "OBRAS DE MONTAGEM INDUSTRIAL"
+    },
+    {
+        "code": "4313400",
+        "description": "OBRAS DE TERRAPLENAGEM"
+    },
+    {
+        "code": "4213800",
+        "description": "OBRAS DE URBANIZACAO RUAS PRACAS E CALCADAS"
+    },
+    {
+        "code": "4291000",
+        "description": "OBRAS PORTUARIAS MARITIMAS E FLUVIAIS"
+    },
+    {
+        "code": "5240101",
+        "description": "OPERACAO DOS AEROPORTOS E CAMPOS DE ATERRISSAGEM"
+    },
+    {
+        "code": "5231102",
+        "description": "OPERACOES DE TERMINAIS"
+    },
+    {
+        "code": "5250805",
+        "description": "OPERADOR DE TRANSPORTE MULTIMODAL OTM"
+    },
+    {
+        "code": "6619305",
+        "description": "OPERADORAS DE CARTOES DE DEBITO"
+    },
+    {
+        "code": "6141800",
+        "description": "OPERADORAS DE TELEVISAO POR ASSINATURA POR CABO"
+    },
+    {
+        "code": "6142600",
+        "description": "OPERADORAS DE TELEVISAO POR ASSINATURA POR MICROONDAS"
+    },
+    {
+        "code": "6143400",
+        "description": "OPERADORAS DE TELEVISAO POR ASSINATURA POR SATELITE"
+    },
+    {
+        "code": "7912100",
+        "description": "OPERADORES TURISTICOS"
+    },
+    {
+        "code": "8730101",
+        "description": "ORFANATOS"
+    },
+    {
+        "code": "9900800",
+        "description": "ORGANISMOS INTERNACIONAIS E OUTRAS INSTITUICOES EXTRATERRITORIAIS"
+    },
+    {
+        "code": "4929904",
+        "description": "ORGANIZACAO DE EXCURSOES EM VEICULOS RODOVIARIOS PROPRIOS INTERMUNICIPAL INTERESTADUAL E INTERNACIONAL"
+    },
+    {
+        "code": "4929903",
+        "description": "ORGANIZACAO DE EXCURSOES EM VEICULOS RODOVIARIOS PROPRIOS MUNICIPAL"
+    },
+    {
+        "code": "5250804",
+        "description": "ORGANIZACAO LOGISTICA DO TRANSPORTE DE CARGA"
+    },
+    {
+        "code": "9412099",
+        "description": "OUTRAS ATIVIDADES ASSOCIATIVAS PROFISSIONAIS"
+    },
+    {
+        "code": "6619399",
+        "description": "OUTRAS ATIVIDADES AUXILIARES DOS SERVICOS FINANCEIROS NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "5229099",
+        "description": "OUTRAS ATIVIDADES AUXILIARES DOS TRANSPORTES TERRESTRES NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "8690999",
+        "description": "OUTRAS ATIVIDADES DE ATENCAO A SAUDE HUMANA NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "8599699",
+        "description": "OUTRAS ATIVIDADES DE ENSINO NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "6399200",
+        "description": "OUTRAS ATIVIDADES DE PRESTACAO DE SERVICOS DE INFORMACAO NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "7319099",
+        "description": "OUTRAS ATIVIDADES DE PUBLICIDADE NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "9329899",
+        "description": "OUTRAS ATIVIDADES DE RECREACAO E LAZER NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "8020002",
+        "description": "OUTRAS ATIVIDADES DE SERVIÇOS DE SEGURANÇA"
+    },
+    {
+        "code": "6499999",
+        "description": "OUTRAS ATIVIDADES DE SERVICOS FINANCEIROS NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "9609299",
+        "description": "OUTRAS ATIVIDADES DE SERVICOS PESSOAIS NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "8299799",
+        "description": "OUTRAS ATIVIDADES DE SERVICOS PRESTADOS PRINCIPALMENTE AS EMPRESAS NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "6190699",
+        "description": "OUTRAS ATIVIDADES DE TELECOMUNICACOES NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "9319199",
+        "description": "OUTRAS ATIVIDADES ESPORTIVAS NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "7490199",
+        "description": "OUTRAS ATIVIDADES PROFISSIONAIS CIENTIFICAS E TECNICAS NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "6438799",
+        "description": "OUTRAS INSTITUICOES DE INTERMEDIACAO NAO MONETARIA NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "4330499",
+        "description": "OUTRAS OBRAS DE ACABAMENTO DA CONSTRUCAO"
+    },
+    {
+        "code": "4299599",
+        "description": "OUTRAS OBRAS DE ENGENHARIA CIVIL NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "4329199",
+        "description": "OUTRAS OBRAS DE INSTALACOES EM CONSTRUCOES NAO ESPECIFICADAS ANTERIORMENTE"
+    },
+    {
+        "code": "6463800",
+        "description": "OUTRAS SOCIEDADES DE PARTICIPACAO EXCETO HOLDINGS"
+    },
+    {
+        "code": "5590699",
+        "description": "OUTROS ALOJAMENTOS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "4618499",
+        "description": "OUTROS REPRESENTANTES COMERCIAIS E AGENTES DO COMERCIO ESPECIALIZADO EM PRODUTOS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "1340599",
+        "description": "OUTROS SERVICOS DE ACABAMENTO EM FIOS TECIDOS ARTEFATOS TEXTEIS E PECAS DO VESTUARIO"
+    },
+    {
+        "code": "5112999",
+        "description": "OUTROS SERVICOS DE TRANSPORTE AEREO DE PASSAGEIROS NAO REGULAR"
+    },
+    {
+        "code": "5099899",
+        "description": "OUTROS TRANSPORTES AQUAVIARIOS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "4929999",
+        "description": "OUTROS TRANSPORTES RODOVIARIOS DE PASSAGEIROS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "4721101",
+        "description": "PADARIA E CONFEITARIA COM PREDOMINANCIA DE PRODUCAO PROPRIA"
+    },
+    {
+        "code": "4721102",
+        "description": "PADARIA E CONFEITARIA COM PREDOMINANCIA DE REVENDA"
+    },
+    {
+        "code": "9321200",
+        "description": "PARQUES DE DIVERSAO E PARQUES TEMATICOS"
+    },
+    {
+        "code": "4722902",
+        "description": "PEIXARIA"
+    },
+    {
+        "code": "710302",
+        "description": "PELOTIZACAO SINTERIZACAO E OUTROS BENEFICIAMENTOS DE MINERIO DE FERRO"
+    },
+    {
+        "code": "5590603",
+        "description": "PENSOES (ALOJAMENTO)"
+    },
+    {
+        "code": "4399105",
+        "description": "PERFURACAO E CONSTRUCAO DE POCOS DE AGUA"
+    },
+    {
+        "code": "4312600",
+        "description": "PERFURACOES E SONDAGENS"
+    },
+    {
+        "code": "6621501",
+        "description": "PERITOS E AVALIADORES DE SEGUROS"
+    },
+    {
+        "code": "312402",
+        "description": "PESCA DE CRUSTACEOS E MOLUSCOS EM AGUA DOCE"
+    },
+    {
+        "code": "311602",
+        "description": "PESCA DE CRUSTACEOS E MOLUSCOS EM AGUA SALGADA"
+    },
+    {
+        "code": "312401",
+        "description": "PESCA DE PEIXES EM AGUA DOCE"
+    },
+    {
+        "code": "311601",
+        "description": "PESCA DE PEIXES EM AGUA SALGADA"
+    },
+    {
+        "code": "7210000",
+        "description": "PESQUISA E DESENVOLVIMENTO EXPERIMENTAL EM CIENCIAS FISICAS E NATURAIS"
+    },
+    {
+        "code": "7220700",
+        "description": "PESQUISA E DESENVOLVIMENTO EXPERIMENTAL EM CIENCIAS SOCIAIS E HUMANAS"
+    },
+    {
+        "code": "7320300",
+        "description": "PESQUISAS DE MERCADO E DE OPINIAO PUBLICA"
+    },
+    {
+        "code": "4211102",
+        "description": "PINTURA PARA SINALIZACAO EM PISTAS RODOVIARIAS E AEROPORTOS"
+    },
+    {
+        "code": "6511102",
+        "description": "PLANOS DE AUXILIO FUNERAL"
+    },
+    {
+        "code": "6550200",
+        "description": "PLANOS DE SAUDE"
+    },
+    {
+        "code": "6319400",
+        "description": "PORTAIS PROVEDORES DE CONTEUDO E OUTROS SERVICOS DE INFORMACAO NA INTERNET"
+    },
+    {
+        "code": "4311802",
+        "description": "PREPARACAO DE CANTEIRO E LIMPEZA DE TERRENO"
+    },
+    {
+        "code": "8219999",
+        "description": "PREPARACAO DE DOCUMENTOS E SERVICOS ESPECIALIZADOS DE APOIO ADMINISTRATIVO NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "2330305",
+        "description": "PREPARACAO DE MASSA DE CONCRETO E ARGAMASSA PARA CONSTRUCAO"
+    },
+    {
+        "code": "1013902",
+        "description": "PREPARACAO DE SUBPRODUTOS DO ABATE"
+    },
+    {
+        "code": "1051100",
+        "description": "PREPARACAO DO LEITE"
+    },
+    {
+        "code": "1311100",
+        "description": "PREPARACAO E FIACAO DE FIBRAS DE ALGODAO"
+    },
+    {
+        "code": "1312000",
+        "description": "PREPARACAO E FIACAO DE FIBRAS TEXTEIS NATURAIS EXCETO ALGODAO"
+    },
+    {
+        "code": "1020101",
+        "description": "PRESERVACAO DE PEIXES CRUSTACEOS E MOLUSCOS"
+    },
+    {
+        "code": "6542100",
+        "description": "PREVIDENCIA COMPLEMENTAR ABERTA"
+    },
+    {
+        "code": "6541300",
+        "description": "PREVIDENCIA COMPLEMENTAR FECHADA"
+    },
+    {
+        "code": "1210700",
+        "description": "PROCESSAMENTO INDUSTRIAL DO FUMO"
+    },
+    {
+        "code": "2441501",
+        "description": "PRODUCAO DE ALUMINIO E SUAS LIGAS EM FORMAS PRIMARIAS"
+    },
+    {
+        "code": "2424501",
+        "description": "PRODUCAO DE ARAMES DE ACO"
+    },
+    {
+        "code": "2532201",
+        "description": "PRODUCAO DE ARTEFATOS ESTAMPADOS DE METAL"
+    },
+    {
+        "code": "220902",
+        "description": "PRODUCAO DE CARVAO VEGETAL FLORESTAS NATIVAS"
+    },
+    {
+        "code": "210108",
+        "description": "PRODUCAO DE CARVAO VEGETAL FLORESTAS PLANTADAS"
+    },
+    {
+        "code": "210109",
+        "description": "PRODUCAO DE CASCA DE ACACIA NEGRA FLORESTAS PLANTADAS"
+    },
+    {
+        "code": "9001904",
+        "description": "PRODUCAO DE ESPETACULOS CIRCENSES DE MARIONETES E SIMILARES"
+    },
+    {
+        "code": "9001903",
+        "description": "PRODUCAO DE ESPETACULOS DE DANCA"
+    },
+    {
+        "code": "9001905",
+        "description": "PRODUCAO DE ESPETACULOS DE RODEIOS VAQUEJADAS E SIMILARES"
+    },
+    {
+        "code": "2411300",
+        "description": "PRODUCAO DE FERRO GUSA"
+    },
+    {
+        "code": "2412100",
+        "description": "PRODUCAO DE FERROLIGAS"
+    },
+    {
+        "code": "5911102",
+        "description": "PRODUCAO DE FILMES PARA PUBLICIDADE"
+    },
+    {
+        "code": "2531401",
+        "description": "PRODUCAO DE FORJADOS DE ACO"
+    },
+    {
+        "code": "2531402",
+        "description": "PRODUCAO DE FORJADOS DE METAIS NAO FERROSOS E SUAS LIGAS"
+    },
+    {
+        "code": "3520401",
+        "description": "PRODUCAO DE GAS PROCESSAMENTO DE GAS NATURAL"
+    },
+    {
+        "code": "2441502",
+        "description": "PRODUCAO DE LAMINADOS DE ALUMINIO"
+    },
+    {
+        "code": "2449102",
+        "description": "PRODUCAO DE LAMINADOS DE ZINCO"
+    },
+    {
+        "code": "2423702",
+        "description": "PRODUCAO DE LAMINADOS LONGOS DE ACO EXCETO TUBOS"
+    },
+    {
+        "code": "2422901",
+        "description": "PRODUCAO DE LAMINADOS PLANOS DE ACO AO CARBONO REVESTIDOS OU NAO"
+    },
+    {
+        "code": "2422902",
+        "description": "PRODUCAO DE LAMINADOS PLANOS DE ACOS ESPECIAIS"
+    },
+    {
+        "code": "142300",
+        "description": "PRODUCAO DE MUDAS E OUTRAS FORMAS DE PROPAGACAO VEGETAL CERTIFICADAS"
+    },
+    {
+        "code": "2439300",
+        "description": "PRODUCAO DE OUTROS TUBOS DE FERRO E ACO"
+    },
+    {
+        "code": "155505",
+        "description": "PRODUCAO DE OVOS"
+    },
+    {
+        "code": "155502",
+        "description": "PRODUCAO DE PINTOS DE UM DIA"
+    },
+    {
+        "code": "210199",
+        "description": "PRODUCAO DE PRODUTOS NAO MADEIREIROS NAO ESPECIFICADOS ANTERIORMENTE EM FLORESTAS PLANTADAS"
+    },
+    {
+        "code": "2424502",
+        "description": "PRODUCAO DE RELAMINADOS TREFILADOS E PERFILADOS DE ACO EXCETO ARAMES"
+    },
+    {
+        "code": "141502",
+        "description": "PRODUCAO DE SEMENTES CERTIFICADAS DE FORRAGEIRAS PARA FORMACAO DE PASTO"
+    },
+    {
+        "code": "141501",
+        "description": "PRODUCAO DE SEMENTES CERTIFICADAS EXCETO DE FORRAGEIRAS PARA PASTO"
+    },
+    {
+        "code": "2421100",
+        "description": "PRODUCAO DE SEMI ACABADOS DE ACO"
+    },
+    {
+        "code": "2449103",
+        "description": "PRODUCAO DE SOLDAS E ANODOS PARA GALVANOPLASTIA"
+    },
+    {
+        "code": "2431800",
+        "description": "PRODUCAO DE TUBOS DE ACO COM COSTURA"
+    },
+    {
+        "code": "2423701",
+        "description": "PRODUCAO DE TUBOS DE ACO SEM COSTURA"
+    },
+    {
+        "code": "2449101",
+        "description": "PRODUCAO DE ZINCO EM FORMAS PRIMARIAS"
+    },
+    {
+        "code": "3530100",
+        "description": "PRODUCAO E DISTRIBUICAO DE VAPOR AGUA QUENTE E AR CONDICIONADO"
+    },
+    {
+        "code": "9319101",
+        "description": "PRODUCAO E PROMOCAO DE EVENTOS ESPORTIVOS"
+    },
+    {
+        "code": "9001902",
+        "description": "PRODUCAO MUSICAL"
+    },
+    {
+        "code": "9001901",
+        "description": "PRODUCAO TEATRAL"
+    },
+    {
+        "code": "6022501",
+        "description": "PROGRAMADORAS"
+    },
+    {
+        "code": "7319002",
+        "description": "PROMOCAO DE VENDAS"
+    },
+    {
+        "code": "6190601",
+        "description": "PROVEDORES DE ACESSO AS REDES DE COMUNICACOES"
+    },
+    {
+        "code": "6190602",
+        "description": "PROVEDORES DE VOZ SOBRE PROTOCOLO INTERNET VOIP"
+    },
+    {
+        "code": "322105",
+        "description": "RANICULTURA"
+    },
+    {
+        "code": "4751202",
+        "description": "RECARGA DE CARTUCHOS PARA EQUIPAMENTOS DE INFORMATICA"
+    },
+    {
+        "code": "2722802",
+        "description": "RECONDICIONAMENTO DE BATERIAS E ACUMULADORES PARA VEICULOS AUTOMOTORES"
+    },
+    {
+        "code": "2950600",
+        "description": "RECONDICIONAMENTO E RECUPERACAO DE MOTORES PARA VEICULOS AUTOMOTORES"
+    },
+    {
+        "code": "3831999",
+        "description": "RECUPERACAO DE MATERIAIS METALICOS EXCETO ALUMINIO"
+    },
+    {
+        "code": "3839499",
+        "description": "RECUPERACAO DE MATERIAIS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "3832700",
+        "description": "RECUPERACAO DE MATERIAIS PLASTICOS"
+    },
+    {
+        "code": "3831901",
+        "description": "RECUPERACAO DE SUCATAS DE ALUMINIO"
+    },
+    {
+        "code": "892403",
+        "description": "REFINO E OUTROS TRATAMENTOS DO SAL"
+    },
+    {
+        "code": "2212900",
+        "description": "REFORMA DE PNEUMATICOS USADOS"
+    },
+    {
+        "code": "8412400",
+        "description": "REGULACAO DAS ATIVIDADES DE SAUDE EDUCACAO SERVICOS CULTURAIS E OUTROS SERVICOS SOCIAIS"
+    },
+    {
+        "code": "8413200",
+        "description": "REGULACAO DAS ATIVIDADES ECONOMICAS"
+    },
+    {
+        "code": "8421300",
+        "description": "RELACOES EXTERIORES"
+    },
+    {
+        "code": "9529105",
+        "description": "REPARACAO DE ARTIGOS DO MOBILIARIO"
+    },
+    {
+        "code": "9529104",
+        "description": "REPARACAO DE BICICLETAS TRICICLOS E OUTROS VEICULOS NAO MOTORIZADOS"
+    },
+    {
+        "code": "9529101",
+        "description": "REPARACAO DE CALCADOS BOLSAS E ARTIGOS DE VIAGEM"
+    },
+    {
+        "code": "9529106",
+        "description": "REPARACAO DE JOIAS"
+    },
+    {
+        "code": "9529103",
+        "description": "REPARACAO DE RELOGIOS"
+    },
+    {
+        "code": "9511800",
+        "description": "REPARACAO E MANUTENCAO DE COMPUTADORES E DE EQUIPAMENTOS PERIFERICOS"
+    },
+    {
+        "code": "9512600",
+        "description": "REPARACAO E MANUTENCAO DE EQUIPAMENTOS DE COMUNICACAO"
+    },
+    {
+        "code": "9521500",
+        "description": "REPARACAO E MANUTENCAO DE EQUIPAMENTOS ELETROELETRONICOS DE USO PESSOAL E DOMESTICO"
+    },
+    {
+        "code": "9529199",
+        "description": "REPARACAO E MANUTENCAO DE OUTROS OBJETOS E EQUIPAMENTOS PESSOAIS E DOMESTICOS NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "6619303",
+        "description": "REPRESENTACOES DE BANCOS ESTRANGEIROS"
+    },
+    {
+        "code": "4612500",
+        "description": "REPRESENTANTES COMERCIAIS E AGENTES DO COMERCIO DE COMBUSTIVEIS MINERAIS PRODUTOS SIDERURGICOS E QUIMICOS"
+    },
+    {
+        "code": "4615000",
+        "description": "REPRESENTANTES COMERCIAIS E AGENTES DO COMERCIO DE ELETRODOMESTICOS MOVEIS E ARTIGOS DE USO DOMESTICO"
+    },
+    {
+        "code": "4618402",
+        "description": "REPRESENTANTES COMERCIAIS E AGENTES DO COMERCIO DE INSTRUMENTOS E MATERIAIS ODONTO MEDICO HOSPITALARES"
+    },
+    {
+        "code": "4618403",
+        "description": "REPRESENTANTES COMERCIAIS E AGENTES DO COMERCIO DE JORNAIS REVISTAS E OUTRAS PUBLICACOES"
+    },
+    {
+        "code": "4613300",
+        "description": "REPRESENTANTES COMERCIAIS E AGENTES DO COMERCIO DE MADEIRA MATERIAL DE CONSTRUCAO E FERRAGENS"
+    },
+    {
+        "code": "4614100",
+        "description": "REPRESENTANTES COMERCIAIS E AGENTES DO COMERCIO DE MAQUINAS EQUIPAMENTOS EMBARCACOES E AERONAVES"
+    },
+    {
+        "code": "4611700",
+        "description": "REPRESENTANTES COMERCIAIS E AGENTES DO COMERCIO DE MATERIAS PRIMAS AGRICOLAS E ANIMAIS VIVOS"
+    },
+    {
+        "code": "4618401",
+        "description": "REPRESENTANTES COMERCIAIS E AGENTES DO COMERCIO DE MEDICAMENTOS COSMETICOS E PRODUTOS DE PERFUMARIA"
+    },
+    {
+        "code": "4619200",
+        "description": "REPRESENTANTES COMERCIAIS E AGENTES DO COMERCIO DE MERCADORIAS EM GERAL NAO ESPECIALIZADO"
+    },
+    {
+        "code": "4542101",
+        "description": "REPRESENTANTES COMERCIAIS E AGENTES DO COMERCIO DE MOTOCICLETAS E MOTONETAS PECAS E ACESSORIOS"
+    },
+    {
+        "code": "4530706",
+        "description": "REPRESENTANTES COMERCIAIS E AGENTES DO COMERCIO DE PECAS E ACESSORIOS NOVOS E USADOS PARA VEICULOS AUTOMOTORES"
+    },
+    {
+        "code": "4617600",
+        "description": "REPRESENTANTES COMERCIAIS E AGENTES DO COMERCIO DE PRODUTOS ALIMENTICIOS BEBIDAS E FUMO"
+    },
+    {
+        "code": "4616800",
+        "description": "REPRESENTANTES COMERCIAIS E AGENTES DO COMERCIO DE TEXTEIS VESTUARIO CALCADOS E ARTIGOS DE VIAGEM"
+    },
+    {
+        "code": "4512901",
+        "description": "REPRESENTANTES COMERCIAIS E AGENTES DO COMERCIO DE VEICULOS AUTOMOTORES"
+    },
+    {
+        "code": "1830003",
+        "description": "REPRODUCAO DE SOFTWARE EM QUALQUER SUPORTE"
+    },
+    {
+        "code": "1830001",
+        "description": "REPRODUCAO DE SOM EM QUALQUER SUPORTE"
+    },
+    {
+        "code": "1830002",
+        "description": "REPRODUCAO DE VIDEO EM QUALQUER SUPORTE"
+    },
+    {
+        "code": "1922502",
+        "description": "RERREFINO DE OLEOS LUBRIFICANTES"
+    },
+    {
+        "code": "6530800",
+        "description": "RESSEGUROS"
+    },
+    {
+        "code": "9002702",
+        "description": "RESTAURACAO DE OBRAS DE ARTE"
+    },
+    {
+        "code": "9102302",
+        "description": "RESTAURACAO E CONSERVACAO DE LUGARES E PREDIOS HISTORICOS"
+    },
+    {
+        "code": "5611201",
+        "description": "RESTAURANTES E SIMILARES"
+    },
+    {
+        "code": "8299707",
+        "description": "SALAS DE ACESSO A INTERNET"
+    },
+    {
+        "code": "6492100",
+        "description": "SECURITIZACAO DE CREDITOS"
+    },
+    {
+        "code": "8424800",
+        "description": "SEGURANCA E ORDEM PUBLICA"
+    },
+    {
+        "code": "8430200",
+        "description": "SEGURIDADE SOCIAL OBRIGATORIA"
+    },
+    {
+        "code": "6511101",
+        "description": "SEGUROS DE VIDA"
+    },
+    {
+        "code": "6512000",
+        "description": "SEGUROS NAO VIDA"
+    },
+    {
+        "code": "6520100",
+        "description": "SEGUROS SAUDE"
+    },
+    {
+        "code": "7810800",
+        "description": "SELECAO E AGENCIAMENTO DE MAO DE OBRA"
+    },
+    {
+        "code": "1610201",
+        "description": "SERRARIAS COM DESDOBRAMENTO DE MADEIRA"
+    },
+    {
+        "code": "1610203",
+        "description": "SERRARIAS COM DESDOBRAMENTO DE MADEIRA EM BRUTO"
+    },
+    {
+        "code": "4713005",
+        "description": "SERRARIAS COM DESDOBRAMENTO DE MADEIRA EM BRUTO"
+    },
+    {
+        "code": "1610202",
+        "description": "SERRARIAS SEM DESDOBRAMENTO DE MADEIRA"
+    },
+    {
+        "code": "2599302",
+        "description": "SERVICO DE CORTE E DOBRA DE METAIS"
+    },
+    {
+        "code": "162801",
+        "description": "SERVICO DE INSEMINACAO ARTIFICIAL EM ANIMAIS"
+    },
+    {
+        "code": "3250709",
+        "description": "SERVICO DE LABORATORIO OPTICO"
+    },
+    {
+        "code": "162803",
+        "description": "SERVICO DE MANEJO DE ANIMAIS"
+    },
+    {
+        "code": "161002",
+        "description": "SERVICO DE PODA DE ARVORES PARA LAVOURAS"
+    },
+    {
+        "code": "161003",
+        "description": "SERVICO DE PREPARACAO DE TERRENO CULTIVO E COLHEITA"
+    },
+    {
+        "code": "161001",
+        "description": "SERVICO DE PULVERIZACAO E CONTROLE DE PRAGAS AGRICOLAS"
+    },
+    {
+        "code": "5030103",
+        "description": "SERVIÇO DE REBOCADORES E EMPURRADORES"
+    },
+    {
+        "code": "4923001",
+        "description": "SERVICO DE TAXI"
+    },
+    {
+        "code": "5112901",
+        "description": "SERVICO DE TAXI AEREO E LOCACAO DE AERONAVES COM TRIPULACAO"
+    },
+    {
+        "code": "162802",
+        "description": "SERVICO DE TOSQUIAMENTO DE OVINOS"
+    },
+    {
+        "code": "4923002",
+        "description": "SERVICO DE TRANSPORTE DE PASSAGEIROS LOCACAO DE AUTOMOVEIS COM MOTORISTA"
+    },
+    {
+        "code": "1610205",
+        "description": "SERVICO DE TRATAMENTO DE MADEIRA REALIZADO SOB CONTRATO"
+    },
+    {
+        "code": "6120502",
+        "description": "SERVICO MOVEL ESPECIALIZADO SME"
+    },
+    {
+        "code": "6911701",
+        "description": "SERVICOS ADVOCATICIOS"
+    },
+    {
+        "code": "5612100",
+        "description": "SERVICOS AMBULANTES DE ALIMENTACAO"
+    },
+    {
+        "code": "8211300",
+        "description": "SERVICOS COMBINADOS DE ESCRITORIO E APOIO ADMINISTRATIVO"
+    },
+    {
+        "code": "8111700",
+        "description": "SERVICOS COMBINADOS PARA APOIO A EDIFICIOS EXCETO CONDOMINIOS PREDIAIS"
+    },
+    {
+        "code": "1822900",
+        "description": "SERVICOS DE ACABAMENTOS GRAFICOS"
+    },
+    {
+        "code": "1822999",
+        "description": "SERVICOS DE ACABAMENTOS GRAFICOS EXCETO ENCADERNACAO E PLASTIFICACAO"
+    },
+    {
+        "code": "8011102",
+        "description": "SERVICOS DE ADESTRAMENTO DE CAES DE GUARDA"
+    },
+    {
+        "code": "7490103",
+        "description": "SERVICOS DE AGRONOMIA E DE CONSULTORIA AS ATIVIDADES AGRICOLAS E PECUARIAS"
+    },
+    {
+        "code": "5620102",
+        "description": "SERVICOS DE ALIMENTACAO PARA EVENTOS E RECEPCOES BUFE"
+    },
+    {
+        "code": "4520004",
+        "description": "SERVICOS DE ALINHAMENTO E BALANCEAMENTO DE VEICULOS AUTOMOTORES"
+    },
+    {
+        "code": "5229001",
+        "description": "SERVICOS DE APOIO AO TRANSPORTE POR TAXI INCLUSIVE CENTRAIS DE CHAMADA"
+    },
+    {
+        "code": "7111100",
+        "description": "SERVICOS DE ARQUITETURA"
+    },
+    {
+        "code": "8800600",
+        "description": "SERVICOS DE ASSISTENCIA SOCIAL SEM ALOJAMENTO"
+    },
+    {
+        "code": "8640214",
+        "description": "SERVICOS DE BANCOS DE CELULAS E TECIDOS HUMANOS"
+    },
+    {
+        "code": "4520006",
+        "description": "SERVICOS DE BORRACHARIA PARA VEICULOS AUTOMOTORES"
+    },
+    {
+        "code": "4520008",
+        "description": "SERVICOS DE CAPOTARIA"
+    },
+    {
+        "code": "7119701",
+        "description": "SERVICOS DE CARTOGRAFIA TOPOGRAFIA E GEODESIA"
+    },
+    {
+        "code": "6110803",
+        "description": "SERVICOS DE COMUNICACAO MULTIMIDIA SCM"
+    },
+    {
+        "code": "2599301",
+        "description": "SERVICOS DE CONFECCAO DE ARMACOES METALICAS PARA A CONSTRUCAO"
+    },
+    {
+        "code": "9603302",
+        "description": "SERVICOS DE CREMACAO"
+    },
+    {
+        "code": "7119703",
+        "description": "SERVICOS DE DESENHO TECNICO RELACIONADOS A ARQUITETURA E ENGENHARIA"
+    },
+    {
+        "code": "8640205",
+        "description": "SERVICOS DE DIAGNOSTICO POR IMAGEM COM USO DE RADIACAO IONIZANTE EXCETO TOMOGRAFIA"
+    },
+    {
+        "code": "8640207",
+        "description": "SERVICOS DE DIAGNOSTICO POR IMAGEM SEM USO DE RADIACAO IONIZANTE EXCETO RESSONANCIA MAGNETICA"
+    },
+    {
+        "code": "8640209",
+        "description": "SERVICOS DE DIAGNOSTICO POR METODOS OPTICOS ENDOSCOPIA E OUTROS EXAMES ANALOGOS"
+    },
+    {
+        "code": "8640208",
+        "description": "SERVICOS DE DIAGNOSTICO POR REGISTRO GRAFICO ECG EEG E OUTROS EXAMES ANALOGOS"
+    },
+    {
+        "code": "8640203",
+        "description": "SERVICOS DE DIALISE E NEFROLOGIA"
+    },
+    {
+        "code": "5912001",
+        "description": "SERVICOS DE DUBLAGEM"
+    },
+    {
+        "code": "1822901",
+        "description": "SERVICOS DE ENCADERNACAO E PLASTIFICACAO"
+    },
+    {
+        "code": "7112000",
+        "description": "SERVICOS DE ENGENHARIA"
+    },
+    {
+        "code": "5320202",
+        "description": "SERVICOS DE ENTREGA RAPIDA"
+    },
+    {
+        "code": "9603304",
+        "description": "SERVICOS DE FUNERARIAS"
+    },
+    {
+        "code": "8299703",
+        "description": "SERVICOS DE GRAVACAO DE CARIMBOS EXCETO CONFECCAO"
+    },
+    {
+        "code": "8640212",
+        "description": "SERVICOS DE HEMOTERAPIA"
+    },
+    {
+        "code": "4520007",
+        "description": "SERVICOS DE INSTALACAO MANUTENCAO E REPARACAO DE ACESSORIOS PARA VEICULOS AUTOMOTORES"
+    },
+    {
+        "code": "4520002",
+        "description": "SERVICOS DE LANTERNAGEM OU FUNILARIA E PINTURA DE VEICULOS AUTOMOTORES"
+    },
+    {
+        "code": "4520005",
+        "description": "SERVICOS DE LAVAGEM LUBRIFICACAO E POLIMENTO DE VEICULOS AUTOMOTORES"
+    },
+    {
+        "code": "8299705",
+        "description": "SERVICOS DE LEVANTAMENTO DE FUNDOS SOB CONTRATO"
+    },
+    {
+        "code": "6619301",
+        "description": "SERVICOS DE LIQUIDACAO E CUSTODIA"
+    },
+    {
+        "code": "8640213",
+        "description": "SERVICOS DE LITOTRIPSIA"
+    },
+    {
+        "code": "5320201",
+        "description": "SERVICOS DE MALOTE NAO REALIZADOS PELO CORREIO NACIONAL"
+    },
+    {
+        "code": "4520003",
+        "description": "SERVICOS DE MANUTENCAO E REPARACAO ELETRICA DE VEICULOS AUTOMOTORES"
+    },
+    {
+        "code": "4520001",
+        "description": "SERVICOS DE MANUTENCAO E REPARACAO MECANICA DE VEICULOS AUTOMOTORES"
+    },
+    {
+        "code": "7420005",
+        "description": "SERVICOS DE MICROFILMAGEM"
+    },
+    {
+        "code": "5912002",
+        "description": "SERVICOS DE MIXAGEM SONORA EM PRODUCAO AUDIOVISUAL"
+    },
+    {
+        "code": "3329501",
+        "description": "SERVICOS DE MONTAGEM DE MOVEIS DE QUALQUER MATERIAL"
+    },
+    {
+        "code": "4399104",
+        "description": "SERVICOS DE OPERACAO E FORNECIMENTO DE EQUIPAMENTOS PARA TRANSPORTE E ELEVACAO DE CARGAS E PESSOAS PARA USO EM OBRAS"
+    },
+    {
+        "code": "8230001",
+        "description": "SERVICOS DE ORGANIZACAO DE FEIRAS CONGRESSOS EXPOSICOES E FESTAS"
+    },
+    {
+        "code": "7119704",
+        "description": "SERVICOS DE PERICIA TECNICA RELACIONADOS A SEGURANCA DO TRABALHO"
+    },
+    {
+        "code": "4330404",
+        "description": "SERVICOS DE PINTURA DE EDIFICIOS EM GERAL"
+    },
+    {
+        "code": "5239701",
+        "description": "SERVIÇOS DE PRATICAGEM"
+    },
+    {
+        "code": "1821100",
+        "description": "SERVICOS DE PRE IMPRESSAO"
+    },
+    {
+        "code": "4319300",
+        "description": "SERVICOS DE PREPARACAO DO TERRENO NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "3250706",
+        "description": "SERVICOS DE PROTESE DENTARIA"
+    },
+    {
+        "code": "8640210",
+        "description": "SERVICOS DE QUIMIOTERAPIA"
+    },
+    {
+        "code": "8640211",
+        "description": "SERVICOS DE RADIOTERAPIA"
+    },
+    {
+        "code": "5229002",
+        "description": "SERVICOS DE REBOQUE DE VEICULOS"
+    },
+    {
+        "code": "6110802",
+        "description": "SERVICOS DE REDES DE TRANSPORTE DE TELECOMUNICACOES SRTT"
+    },
+    {
+        "code": "8622400",
+        "description": "SERVICOS DE REMOCAO DE PACIENTES EXCETO OS SERVICOS MOVEIS DE ATENDIMENTO A URGENCIAS"
+    },
+    {
+        "code": "7990200",
+        "description": "SERVICOS DE RESERVAS E OUTROS SERVICOS DE TURISMO NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "8640206",
+        "description": "SERVICOS DE RESSONANCIA MAGNETICA"
+    },
+    {
+        "code": "9603303",
+        "description": "SERVICOS DE SEPULTAMENTO"
+    },
+    {
+        "code": "9603305",
+        "description": "SERVICOS DE SOMATOCONSERVACAO"
+    },
+    {
+        "code": "9609206",
+        "description": "SERVICOS DE TATUAGEM E COLOCACAO DE PIERCING"
+    },
+    {
+        "code": "6110899",
+        "description": "SERVICOS DE TELECOMUNICACOES POR FIO NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "6120599",
+        "description": "SERVICOS DE TELECOMUNICACOES SEM FIO NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "6110801",
+        "description": "SERVICOS DE TELEFONIA FIXA COMUTADA STFC"
+    },
+    {
+        "code": "8640204",
+        "description": "SERVICOS DE TOMOGRAFIA"
+    },
+    {
+        "code": "7490101",
+        "description": "SERVICOS DE TRADUCAO INTERPRETACAO E SIMILARES"
+    },
+    {
+        "code": "2539002",
+        "description": "SERVICOS DE TRATAMENTO E REVESTIMENTO EM METAIS"
+    },
+    {
+        "code": "2539000",
+        "description": "SERVICOS DE USINAGEM SOLDA TRATAMENTO E REVESTIMENTO EM METAIS"
+    },
+    {
+        "code": "2539001",
+        "description": "SERVICOS DE USINAGEM TORNEARIA E SOLDA"
+    },
+    {
+        "code": "8630506",
+        "description": "SERVICOS DE VACINACAO E IMUNIZACAO HUMANA"
+    },
+    {
+        "code": "9700500",
+        "description": "SERVICOS DOMESTICOS"
+    },
+    {
+        "code": "4399199",
+        "description": "SERVICOS ESPECIALIZADOS PARA CONSTRUCAO NAO ESPECIFICADOS ANTERIORMENTE"
+    },
+    {
+        "code": "8621602",
+        "description": "SERVICOS MOVEIS DE ATENDIMENTO A URGENCIAS EXCETO POR UTI MOVEL"
+    },
+    {
+        "code": "6450600",
+        "description": "SOCIEDADES DE CAPITALIZACAO"
+    },
+    {
+        "code": "6437900",
+        "description": "SOCIEDADES DE CREDITO AO MICROEMPREENDEDOR"
+    },
+    {
+        "code": "6436100",
+        "description": "SOCIEDADES DE CREDITO FINANCIAMENTO E INVESTIMENTO FINANCEIRAS"
+    },
+    {
+        "code": "6435201",
+        "description": "SOCIEDADES DE CREDITO IMOBILIARIO"
+    },
+    {
+        "code": "6491300",
+        "description": "SOCIEDADES DE FOMENTO MERCANTIL FACTORING"
+    },
+    {
+        "code": "6499902",
+        "description": "SOCIEDADES DE INVESTIMENTO"
+    },
+    {
+        "code": "6209100",
+        "description": "SUPORTE TECNICO MANUTENCAO E OUTROS SERVICOS EM TECNOLOGIA DA INFORMACAO"
+    },
+    {
+        "code": "4729601",
+        "description": "TABACARIA"
+    },
+    {
+        "code": "1321900",
+        "description": "TECELAGEM DE FIOS DE ALGODAO"
+    },
+    {
+        "code": "1323500",
+        "description": "TECELAGEM DE FIOS DE FIBRAS ARTIFICIAIS E SINTETICAS"
+    },
+    {
+        "code": "1322700",
+        "description": "TECELAGEM DE FIOS DE FIBRAS TEXTEIS NATURAIS EXCETO ALGODAO"
+    },
+    {
+        "code": "6130200",
+        "description": "TELECOMUNICACOES POR SATELITE"
+    },
+    {
+        "code": "6120501",
+        "description": "TELEFONIA MOVEL CELULAR"
+    },
+    {
+        "code": "5222200",
+        "description": "TERMINAIS RODOVIARIOS E FERROVIARIOS"
+    },
+    {
+        "code": "7120100",
+        "description": "TESTES E ANALISES TECNICAS"
+    },
+    {
+        "code": "9601702",
+        "description": "TINTURARIAS"
+    },
+    {
+        "code": "9601703",
+        "description": "TOALHEIROS"
+    },
+    {
+        "code": "1081302",
+        "description": "TORREFACAO E MOAGEM DE CAFE"
+    },
+    {
+        "code": "3512300",
+        "description": "TRANSMISSAO DE ENERGIA ELETRICA"
+    },
+    {
+        "code": "5120000",
+        "description": "TRANSPORTE AEREO DE CARGA"
+    },
+    {
+        "code": "5111100",
+        "description": "TRANSPORTE AEREO DE PASSAGEIROS REGULAR"
+    },
+    {
+        "code": "5099801",
+        "description": "TRANSPORTE AQUAVIARIO PARA PASSEIOS TURISTICOS"
+    },
+    {
+        "code": "4940000",
+        "description": "TRANSPORTE DUTOVIARIO"
+    },
+    {
+        "code": "4924800",
+        "description": "TRANSPORTE ESCOLAR"
+    },
+    {
+        "code": "5130700",
+        "description": "TRANSPORTE ESPACIAL"
+    },
+    {
+        "code": "4911600",
+        "description": "TRANSPORTE FERROVIARIO DE CARGA"
+    },
+    {
+        "code": "4912401",
+        "description": "TRANSPORTE FERROVIARIO DE PASSAGEIROS INTERMUNICIPAL E INTERESTADUAL"
+    },
+    {
+        "code": "4912402",
+        "description": "TRANSPORTE FERROVIARIO DE PASSAGEIROS MUNICIPAL E EM REGIAO METROPOLITANA"
+    },
+    {
+        "code": "5011401",
+        "description": "TRANSPORTE MARITIMO DE CABOTAGEM CARGA"
+    },
+    {
+        "code": "5011402",
+        "description": "TRANSPORTE MARITIMO DE CABOTAGEM PASSAGEIROS"
+    },
+    {
+        "code": "5012201",
+        "description": "TRANSPORTE MARITIMO DE LONGO CURSO CARGA"
+    },
+    {
+        "code": "5012202",
+        "description": "TRANSPORTE MARITIMO DE LONGO CURSO PASSAGEIROS"
+    },
+    {
+        "code": "4912403",
+        "description": "TRANSPORTE METROVIARIO"
+    },
+    {
+        "code": "5091202",
+        "description": "TRANSPORTE POR NAVEGACAO DE TRAVESSIA INTERMUNICIPAL"
+    },
+    {
+        "code": "5091201",
+        "description": "TRANSPORTE POR NAVEGACAO DE TRAVESSIA MUNICIPAL"
+    },
+    {
+        "code": "5021102",
+        "description": "TRANSPORTE POR NAVEGACAO INTERIOR DE CARGA INTERMUNICIPAL INTERESTADUAL E INTERNACIONAL EXCETO TRAVESSIA"
+    },
+    {
+        "code": "5021101",
+        "description": "TRANSPORTE POR NAVEGACAO INTERIOR DE CARGA MUNICIPAL EXCETO TRAVESSIA"
+    },
+    {
+        "code": "5022002",
+        "description": "TRANSPORTE POR NAVEGACAO INTERIOR DE PASSAGEIROS EM LINHAS REGULARES INTERMUNICIPAL INTERESTADUAL E INTERNACIONAL EXCETO TRAVESSIA"
+    },
+    {
+        "code": "5022001",
+        "description": "TRANSPORTE POR NAVEGACAO INTERIOR DE PASSAGEIROS EM LINHAS REGULARES MUNICIPAL EXCETO TRAVESSIA"
+    },
+    {
+        "code": "4922102",
+        "description": "TRANSPORTE RODOVIARIO COLETIVO DE PASSAGEIROS COM ITINERARIO FIXO INTERESTADUAL"
+    },
+    {
+        "code": "4921302",
+        "description": "TRANSPORTE RODOVIARIO COLETIVO DE PASSAGEIROS COM ITINERARIO FIXO INTERMUNICIPAL EM REGIAO METROPOLITANA"
+    },
+    {
+        "code": "4922101",
+        "description": "TRANSPORTE RODOVIARIO COLETIVO DE PASSAGEIROS COM ITINERARIO FIXO INTERMUNICIPAL EXCETO EM REGIAO METROPOLITANA"
+    },
+    {
+        "code": "4922103",
+        "description": "TRANSPORTE RODOVIARIO COLETIVO DE PASSAGEIROS COM ITINERARIO FIXO INTERNACIONAL"
+    },
+    {
+        "code": "4921301",
+        "description": "TRANSPORTE RODOVIARIO COLETIVO DE PASSAGEIROS COM ITINERARIO FIXO MUNICIPAL"
+    },
+    {
+        "code": "4929902",
+        "description": "TRANSPORTE RODOVIARIO COLETIVO DE PASSAGEIROS SOB REGIME DE FRETAMENTO INTERMUNICIPAL INTERESTADUAL E INTERNACIONAL"
+    },
+    {
+        "code": "4929901",
+        "description": "TRANSPORTE RODOVIARIO COLETIVO DE PASSAGEIROS SOB REGIME DE FRETAMENTO MUNICIPAL"
+    },
+    {
+        "code": "4930202",
+        "description": "TRANSPORTE RODOVIARIO DE CARGA EXCETO PRODUTOS PERIGOSOS E MUDANCAS INTERMUNICIPAL INTERESTADUAL E INTERNACIONAL"
+    },
+    {
+        "code": "4930201",
+        "description": "TRANSPORTE RODOVIARIO DE CARGA EXCETO PRODUTOS PERIGOSOS E MUDANCAS MUNICIPAL"
+    },
+    {
+        "code": "4930204",
+        "description": "TRANSPORTE RODOVIARIO DE MUDANCAS"
+    },
+    {
+        "code": "4930203",
+        "description": "TRANSPORTE RODOVIARIO DE PRODUTOS PERIGOSOS"
+    },
+    {
+        "code": "6311900",
+        "description": "TRATAMENTO DE DADOS PROVEDORES DE SERVICOS DE APLICACAO E SERVICOS DE HOSPEDAGEM NA INTERNET"
+    },
+    {
+        "code": "3821100",
+        "description": "TRATAMENTO E DISPOSICAO DE RESIDUOS NAO PERIGOSOS"
+    },
+    {
+        "code": "3822000",
+        "description": "TRATAMENTO E DISPOSICAO DE RESIDUOS PERIGOSOS"
+    },
+    {
+        "code": "4329105",
+        "description": "TRATAMENTOS TERMICOS ACUSTICOS OU DE VIBRACAO"
+    },
+    {
+        "code": "8599604",
+        "description": "TREINAMENTO EM DESENVOLVIMENTO PROFISSIONAL E GERENCIAL"
+    },
+    {
+        "code": "8599603",
+        "description": "TREINAMENTO EM INFORMATICA"
+    },
+    {
+        "code": "4950700",
+        "description": "TRENS TURISTICOS TELEFERICOS E SIMILARES"
+    },
+    {
+        "code": "3839401",
+        "description": "USINAS DE COMPOSTAGEM"
+    },
+    {
+        "code": "8621601",
+        "description": "UTI MOVEL"
+    },
+    {
+        "code": "6201502",
+        "description": "WEB DESIGN"
+    }
+]

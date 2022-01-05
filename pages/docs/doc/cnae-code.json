@@ -1,0 +1,38 @@
+{
+    "tags": [
+        {
+            "name": "Código CNAE",
+            "description": "Lista de cnaes"
+        }
+    ],
+    "paths": {
+        "/cnae-code/v1": {
+            "get": {
+                "tags": [
+                    "Código CNAE" 
+                ],
+                "summary": "Retorna uma lista de códigos cnaes",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "Sucesso",
+                        "content": {
+                            "application/json":{
+                                "example": [
+                                    {
+                                        "code": "1012101",
+                                        "description": "ABATE DE AVES"
+                                    },
+                                    {
+                                        "code": "1012102",
+                                        "description": "ABATE DE PEQUENOS ANIMAIS"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
