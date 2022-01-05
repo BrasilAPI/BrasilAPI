@@ -6,7 +6,7 @@
         }
     ],
     "paths": {
-        "/cnae-code/v1": {
+        "/cnae/v1": {
             "get": {
                 "tags": [
                     "Código CNAE" 
