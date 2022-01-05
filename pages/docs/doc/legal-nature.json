@@ -6,7 +6,7 @@
         }
     ],
     "paths": {
-        "/legal-nature": {
+        "/legal-nature/v1": {
             "get": {
                 "tags": [
                    "Natureza Jurídica" 
