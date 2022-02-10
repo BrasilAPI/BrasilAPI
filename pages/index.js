@@ -20,7 +20,7 @@ export default function Index() {
               disponibilizar endpoints modernos com baixíssima latência
               independente de sua fonte.
             </p>
-            <a href="https://brasilapi.com.br/docs">
+            <a href="/docs">
               <button type="button">Começar agora</button>
             </a>
           </div>
