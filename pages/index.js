@@ -46,7 +46,7 @@ export default function Index() {
               independente de sua fonte.
             </p>
             <a
-              href="https://brasilapi.com.br/docs"
+              href="/docs"
               className={styles.buttonStartNow}
             >
               Começar agora
@@ -60,24 +60,6 @@ export default function Index() {
             height="286"
           />
         </section>
-        <section className={styles.requests}>
-          <div>
-            <h2>Estatísticas</h2>
-            <p>
-              Aqui você pode ver os dados de utilização de cada API que
-              fornecemos!
-            </p>
-
-            <div className={styles.iframeContainer}>
-              <iframe
-                src="https://p.datadoghq.com/sb/bciualk0rip6udi8-8ca0a926273a610e863a483b09b4cc6f?theme=dark"
-                height="550"
-                title="Datadog"
-              />
-            </div>
-          </div>
-        </section>
-
         <section className={styles.motivation}>
           <h2>Motivo</h2>
           <p>

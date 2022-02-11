@@ -17,7 +17,7 @@ export function Header() {
           <a href="https://github.com/BrasilAPI/BrasilAPI" aria-label="Github">
             <FaGithub color="#1A2E46" />
           </a>
-          <a href="https://brasilapi.com.br/docs" className={styles.button}>
+          <a href="/docs" className={styles.button}>
             Documentação
           </a>
         </div>
