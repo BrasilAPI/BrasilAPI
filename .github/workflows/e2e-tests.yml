@@ -16,6 +16,15 @@ jobs:
         with:
           node-version: '12.x'
 
+      - name: Cacheando dependencias
+        id: cache_dependencies
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-dependencies-${{ hashFiles('./package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: Instalar as dependências do npm
         run: npm ci
 
