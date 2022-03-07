@@ -19,7 +19,7 @@ pids
 lib-cov
 
 # Coverage directory used by tools like istanbul
-coverage
+reports/coverage
 *.lcov
 
 # nyc test coverage
@@ -107,3 +107,9 @@ dist
 
 # IDE
 .vscode/
+
+# Vercel
+.vercel
+
+# IntelliJ IDEA
+.idea

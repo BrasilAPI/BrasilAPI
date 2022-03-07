@@ -1,0 +1,163 @@
+.mainContainer {
+  width: 100%;
+
+  .sectionHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    max-width: 68.125rem;
+
+    margin: 0 auto;
+    padding: 5rem 0 8rem;
+
+    .content {
+      width: 28.93rem;
+
+      h2 {
+        margin-bottom: 1.5rem;
+        width: 19.5rem;
+      }
+
+      p {
+        line-height: 1.56rem;
+        text-align: justify;
+      }
+
+      .buttonStartNow {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+    
+        width:100%;
+    
+        @media (min-width: 767px) {
+          width: min-content;  
+        }
+    
+        min-width: 11.56rem;
+        height: 2.93rem;
+        margin-top: 2rem;
+    
+        border: 0;
+        border-radius: 0.5rem;
+        background: var(--green-600);
+        color: var(--white);
+    
+        transition: filter 0.2s;
+    
+        &:hover {
+          filter: brightness(0.9);
+        }
+      }
+    }
+  }
+
+  .requests {
+    background: var(--blue-50);
+
+    > div {
+      max-width: 68.125rem;
+      margin: 0 auto;
+
+      padding: 4rem;
+
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      h2 {
+        margin-bottom: 1.5rem;
+      }
+
+      iframe {
+        border: 0;
+        border-radius: 0.5rem;
+        margin-top: 2rem;
+
+        max-width: 68.125rem;
+      }
+    }
+  }
+
+  .motivation {
+    max-width: 68.125rem;
+    margin: 0 auto;
+
+    padding: 5rem 0;
+    text-align: center;
+
+    p {
+      margin: 3rem auto;
+      width: 70%;
+      line-height: 1.562rem;
+
+      text-align: justify;
+    }
+  }
+
+  @media (max-width: 980px) {
+
+    .sectionHeader {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+      width: 100%;
+      max-width: 100%;
+      padding: 4rem 1rem;
+
+      .content {
+        width: 100%;
+
+        h2 {
+          width: 100%;
+        }
+
+        a button {
+          width: 100%;
+        }
+      }
+
+      .schemaDesk {
+        display: none;
+      }
+
+      img {
+        width: 100%;
+        margin-bottom: 2rem;
+      }
+    }
+
+    .requests {
+
+      > p {
+        text-align: center;
+      }
+
+      > div {
+        padding: 2rem 1rem;
+      }
+
+      iframe {
+        width: 100%;
+      }
+    }
+
+    .motivation {
+      padding: 5rem 1rem;
+
+      p {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.iframeContainer{
+  width:100%;
+
+  iframe {
+    width: 100%;
+  }
+}

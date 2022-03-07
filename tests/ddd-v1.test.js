@@ -1,37 +1,27 @@
 const axios = require('axios');
 
-const createServer = require('./helpers/server.js');
-const server = createServer();
+const { validResponse, invalidResponse } = require('./helpers/ddd');
 
-const scenariosDdd = {
-  sucess: require('./helpers/scenarios/ddd/success'),
-  inexistent: require('./helpers/scenarios/ddd/inexistent'),
-  incorrect: require('./helpers/scenarios/ddd/incorrect'),
-};
+const requestUrl = `${global.SERVER_URL}/api/ddd/v1`;
 
-const requestUrl = `${server.getUrl()}/api/ddd/v1`;
+describe('api/ddd/v1 (E2E)', () => {
+  test('Utilizando um DDD válido: 11', async () => {
+    const response = await axios.get(`${requestUrl}/11`);
+    const { data, status } = response;
 
-beforeAll(async () => {
-  await server.start();
-});
-
-afterAll(async () => {
-  await server.stop();
-});
-
-describe.skip('api/ddd/v1 (E2E)', () => {
-  test('Utilizando um DDD válido: 12', async () => {
-    const response = await axios.get(`${requestUrl}/12`);
-    expect(response.data).toEqual(scenariosDdd.sucess);
+    expect(status).toEqual(200);
+    expect(data).toEqual(validResponse);
   });
 
   test('Utilizando um DDD inexistente: 01', async () => {
-    const response = await axios.get(`${requestUrl}/01`);
-    expect(response.data).toEqual(scenariosDdd.inexistent);
-  });
+    try {
+      await axios.get(`${requestUrl}/01`);
+    } catch (error) {
+      const { response } = error;
+      const { data, status } = response;
 
-  test('Utilizando um DDD inválido: 9999', async () => {
-    const response = await axios.get(`${requestUrl}/9999`);
-    expect(response.data).toEqual(scenariosDdd.incorrect);
+      expect(status).toEqual(404);
+      expect(data).toEqual(invalidResponse);
+    }
   });
 });
