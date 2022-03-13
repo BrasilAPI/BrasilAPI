@@ -44,7 +44,7 @@ const rankingNameTest = expect.objectContaining({
 
 describe('/ibge/nomes/v1 (E2E)', () => {
   beforeEach(() => {
-    jest.setTimeout(50000);
+    jest.setTimeout(40000);
   });
 
   test('Utilizando um nome válido: Pedro', async () => {
