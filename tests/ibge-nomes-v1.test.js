@@ -43,6 +43,10 @@ const rankingNameTest = expect.objectContaining({
 });
 
 describe('/ibge/nomes/v1 (E2E)', () => {
+  beforeEach(() => {
+    jest.setTimeout(50000);
+  });
+
   test('Utilizando um nome válido: Pedro', async () => {
     const requestUrl = `${global.SERVER_URL}/api/ibge/nomes/v1/pedro`;
     const response = await axios.get(requestUrl);
@@ -100,6 +104,10 @@ describe('/ibge/nomes/v1 (E2E)', () => {
 });
 
 describe('/ibge/nomes/v1/ranking (E2E)', () => {
+  beforeEach(() => {
+    jest.setTimeout(50000);
+  });
+
   test('Buscando o ranking', async () => {
     const requestUrl = `${global.SERVER_URL}/api/ibge/nomes/v1/ranking`;
     const response = await axios.get(requestUrl);
