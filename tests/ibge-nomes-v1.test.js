@@ -105,7 +105,7 @@ describe('/ibge/nomes/v1 (E2E)', () => {
 
 describe('/ibge/nomes/v1/ranking (E2E)', () => {
   beforeEach(() => {
-    jest.setTimeout(50000);
+    jest.setTimeout(100000);
   });
 
   test('Buscando o ranking', async () => {
