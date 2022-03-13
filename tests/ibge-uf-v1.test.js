@@ -2,7 +2,7 @@ const axios = require('axios');
 
 describe('/ibge/uf/v1 (E2E)', () => {
   beforeEach(() => {
-    jest.setTimeout(50000);
+    jest.setTimeout(100000);
   });
 
   test('Utilizando um Codigo válido: 22', async () => {
