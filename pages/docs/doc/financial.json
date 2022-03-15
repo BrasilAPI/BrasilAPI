@@ -1,0 +1,128 @@
+{
+    "tags": [
+        {
+            "name": "FINANCIAL",
+            "description": "Informações de índices financeiros Brasileiro"
+        }
+    ],
+    "paths": {
+        "/financial/v1/ipca": {
+            "get": {
+                "tags": ["FINANCIAL"],
+                "summary": "Retorna o último IPCA apurado pelo IBGE",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Ipca"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                      "description": "Não foi possível localizar o último IPCA apurado",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ErrorIpca"
+                          },
+                          "example": {
+                            "message": "Não foi possível localizar o último IPCA apurado"
+                          }
+                        }
+                      }
+                    }
+                }
+            }
+        },
+        "/financial/v1/ipca/historical": {
+          "get": {
+            "tags": ["FINANCIAL"],
+            "summary": "Retorna o histórico do IPCA desde 01/1991",
+            "description": "",
+            "responses": {
+              "200": {
+                "description": "Success",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/IpcaHistorical"
+                      }
+                    }
+                  }
+                }
+              },
+              "404": {
+                "description": "Não foi possível localizar o histórico do IPCA",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/ErrorIpca"
+                    },
+                    "example": {
+                      "message": "Não foi possível localizar o histórico do IPCA"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Ipca": {
+                "title": "IPCA",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "string"
+                    },
+                    "valor": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                  "data": "01/02/2022",
+                  "valor": "1.10"
+                }
+            },
+            "IpcaHistorical": {
+              "title": "IPCA",
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "string"
+                },
+                "valor": {
+                  "type": "string"
+                }
+              },
+              "example": [
+                {
+                  "data": "01/01/1991",
+                  "valor": "20.27"
+                },
+                {
+                  "data": "01/02/2022",
+                  "valor": "1.10"
+                }
+              ]
+            },
+            "ErrorIpca": {
+              "title": "ErrorIPca",
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+        }
+    }
+}
