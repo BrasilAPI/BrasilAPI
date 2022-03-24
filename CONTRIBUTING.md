@@ -26,7 +26,7 @@ Para saber mais, acesse esses links:
 - [Regras do @commitlint/config-conventional](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional).
 
 ## Documentação dos Endpoints
-Se possíve, além do endpoint crie também a documentação para o mesmo, utilizamos uma implementação básica da [OpenAPI 3.0](https://swagger.io/docs/specification/about/) em **json**. 
+Se possível, além do endpoint crie também a documentação para o mesmo, utilizamos uma implementação básica da [OpenAPI 3.0](https://swagger.io/docs/specification/about/) em **json**. 
 A fim de facilitar o a contribuição e evitar conflitos, modularizamos a documentação dos endpoints, assim temos arquivos mais objetivos e enxutos.
 ### Como criar a documentação
 1- Acesse o diretório [`docs/doc`](pages/docs/doc);
