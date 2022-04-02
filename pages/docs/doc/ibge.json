@@ -217,6 +217,123 @@
                     }
                 }
             }
+        },
+        "/ibge/nomes/v1/{nome}": {
+            "get": {
+                "tags": ["IBGE"],
+                "summary": "Busca a frequencia de um determinado nome",
+                "description": "Um ou mais nomes delimitados pelo caracter | (pipe)",
+                "parameters": [
+                    {
+                        "name": "sexo",
+                        "description": "Filtrar pelo sexo, cujos valores podem ser M (Masculino) ou F (Feminino)\n",
+                        "in": "query"
+                    },
+                    {
+                        "name": "groupBy",
+                        "description": "Caso deseje obter a frequência por algum nível geográfico, informe o parâmetro groupBy\n",
+                        "in": "query"
+                    },
+                    {
+                        "name": "localidade",
+                        "description": "Caso deseje obter a frequência referente a uma dada localidade\n",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NameFrequency"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "O nome não foi encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "name": "NotFoundError",
+                                    "message": "UF não encontrado",
+                                    "type": "not_found"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro de sintaxe",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "name": "BadRequestError",
+                                    "message": "O parametro \"nome\" não foi fornecido.",
+                                    "type": "bad_request"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ibge/nomes/v1/ranking": {
+            "get": {
+                "tags": ["IBGE"],
+                "summary": "Busca o ranking do Brasil ou de um determinado estado",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "decada",
+                        "description": "Obter o ranking referente a uma década de nascimento específica\n",
+                        "in": "query"
+                    },
+                    {
+                        "name": "localidade",
+                        "description": "Obter o ranking referente a uma dada localidade\n",
+                        "in": "query"
+                    },
+                    {
+                        "name": "sexo",
+                        "description": "Filtrar pelo sexo, cujos valores podem ser M (Masculino) ou F (Feminino)\n",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NameRanking"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro de sintaxe",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "name": "BadRequestError",
+                                    "message": "O parametro \"sexo\" tem que ser \"f\" ou \"m\".",
+                                    "type": "bad_request"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -272,6 +389,56 @@
                     "id": 3,
                     "sigla": "SE",
                     "nome": "Sudeste"
+                }
+            },
+            "NameFrequency": {
+                "title": "NameFrequency",
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string"
+                    },
+                    "sexo": {
+                        "type": ["string", "null"]
+                    },
+                    "localidade": {
+                      "type": "string"
+                    },
+                    "res": {
+                        "items": {
+                            "periodo": {
+                                "type": "string"
+                            },
+                            "frequencia": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            },
+            "NameRanking": {
+                "title": "NameRanking",
+                "type": "object",
+                "properties": {
+                    "sexo": {
+                        "type": ["string", "null"]
+                    },
+                    "localidade": {
+                      "type": "string"
+                    },
+                    "res": {
+                        "items": {
+                            "nome": {
+                                "type": "string"
+                            },
+                            "frequencia": {
+                                "type": "integer"
+                            },
+                            "ranking": {
+                                "type": "integer"
+                            }
+                        }
+                    }
                 }
             }
         }
