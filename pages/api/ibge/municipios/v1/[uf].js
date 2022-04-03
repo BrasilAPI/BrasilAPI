@@ -3,9 +3,12 @@ import { getStateCities, CODIGOS_ESTADOS } from '@/services/ibge/wikipedia';
 import { getDistrictsByUf } from '@/services/ibge/gov';
 
 import NotFoundError from '@/errors/NotFoundError';
+import { getCities } from '@/services/dados-abertos-br/cities';
 
 const getData = (uf) => {
-  return getDistrictsByUf(uf).catch(() => getStateCities(uf));
+  return getDistrictsByUf(uf)
+    .catch(() => getStateCities(uf))
+    .catch(() => getCities(uf));
 };
 
 const action = async (request, response) => {
