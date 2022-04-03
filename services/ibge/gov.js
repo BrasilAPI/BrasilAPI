@@ -8,5 +8,13 @@ export const getUfByCode = (code) => axios.get(`${URL_UF}/${code}`);
 export const getDistrictsByUf = async (uf) => {
   const { data } = await axios.get(`${URL_UF}/${uf}/distritos`);
 
-  return data.map((item) => ({ nome: item.nome, codigo_ibge: `${item.id}` }));
+  return data
+    .map((item) => ({
+      nome: item.municipio.nome,
+      codigo_ibge: `${item.municipio.id}`,
+    }))
+    .filter(
+      (item, index, array) =>
+        array.findIndex((i) => i.codigo_ibge === item.codigo_ibge) === index
+    );
 };

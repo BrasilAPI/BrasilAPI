@@ -4,8 +4,12 @@ import { getDistrictsByUf } from '@/services/ibge/gov';
 
 import NotFoundError from '@/errors/NotFoundError';
 
-const getData = (uf) => {
-  return getDistrictsByUf(uf).catch(() => getStateCities(uf));
+const getData = async (uf) => {
+  const data = await getDistrictsByUf(uf).catch(() => getStateCities(uf));
+
+  return data
+    .map((item) => ({ ...item, nome: item.nome.toUppserCase() }))
+    .sort((a, b) => a.codigo_ibge - b.codigo_ibge);
 };
 
 const action = async (request, response) => {
