@@ -8,7 +8,7 @@ const getData = async (uf) => {
   const data = await getContiesByUf(uf).catch(() => getStateCities(uf));
 
   return data
-    .map((item) => ({ ...item, nome: item.nome.toUppserCase() }))
+    .map((item) => ({ ...item, nome: item.nome.toUpperCase() }))
     .sort((a, b) => a.codigo_ibge - b.codigo_ibge);
 };
 
