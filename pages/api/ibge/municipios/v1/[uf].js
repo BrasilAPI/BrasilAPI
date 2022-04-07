@@ -1,11 +1,11 @@
 import app from '@/app';
 import { getStateCities, CODIGOS_ESTADOS } from '@/services/ibge/wikipedia';
-import { getDistrictsByUf } from '@/services/ibge/gov';
+import { getContiesByUf } from '@/services/ibge/gov';
 
 import NotFoundError from '@/errors/NotFoundError';
 
 const getData = async (uf) => {
-  const data = await getDistrictsByUf(uf).catch(() => getStateCities(uf));
+  const data = await getContiesByUf(uf).catch(() => getStateCities(uf));
 
   return data
     .map((item) => ({ ...item, nome: item.nome.toUppserCase() }))
