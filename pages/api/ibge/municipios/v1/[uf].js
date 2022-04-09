@@ -1,3 +1,5 @@
+import { Promise } from 'bluebird';
+
 import app from '@/app';
 import { getStateCities, CODIGOS_ESTADOS } from '@/services/ibge/wikipedia';
 import { getDistrictsByUf } from '@/services/ibge/gov';
@@ -6,9 +8,7 @@ import NotFoundError from '@/errors/NotFoundError';
 import { getCities } from '@/services/dados-abertos-br/cities';
 
 const getData = (uf) => {
-  return getDistrictsByUf(uf)
-    .catch(() => getStateCities(uf))
-    .catch(() => getCities(uf));
+  return Promise.any([getDistrictsByUf(uf), getStateCities(uf), getCities(uf)]);
 };
 
 const action = async (request, response) => {
