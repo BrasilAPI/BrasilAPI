@@ -1,0 +1,6 @@
+Sitemap: https://brasilapi.com.br
+
+User-agent: *
+Allow: /*
+
+Disallow: /api/*

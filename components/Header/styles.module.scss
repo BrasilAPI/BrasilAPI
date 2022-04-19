@@ -24,10 +24,19 @@
         margin-right: 1.25rem;
       }
 
-      button {
+      .button {
         min-width: 11.56rem;
         height: 2.93rem;
+        color: #000;
+        text-decoration: none;
 
+        @media (min-width: 980px) {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+        }
+        
         border: 1px solid var(--blue-800);
         border-radius: 0.5rem;
         background: none;
@@ -52,7 +61,7 @@
     }
 
     .ctas {
-      button {
+      .button {
         display: none;
       }
     }
