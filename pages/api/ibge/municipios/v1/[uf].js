@@ -2,13 +2,17 @@ import { Promise } from 'bluebird';
 
 import app from '@/app';
 import { getStateCities, CODIGOS_ESTADOS } from '@/services/ibge/wikipedia';
-import { getDistrictsByUf } from '@/services/ibge/gov';
+import { getContiesByUf } from '@/services/ibge/gov';
 
 import NotFoundError from '@/errors/NotFoundError';
 import { getCities } from '@/services/dados-abertos-br/cities';
 
-const getData = (uf) => {
-  return Promise.any([getDistrictsByUf(uf), getStateCities(uf), getCities(uf)]);
+const getData = async (uf) => {
+  const data = await Promise.any([getContiesByUf(uf), getStateCities(uf), getCities(uf)]);
+
+  return data
+    .map((item) => ({ ...item, nome: item.nome.toUpperCase() }))
+    .sort((a, b) => a.codigo_ibge - b.codigo_ibge);
 };
 
 const action = async (request, response) => {
