@@ -1,11 +1,14 @@
+import { Promise } from 'bluebird';
+
 import app from '@/app';
 import { getStateCities, CODIGOS_ESTADOS } from '@/services/ibge/wikipedia';
 import { getContiesByUf } from '@/services/ibge/gov';
 
 import NotFoundError from '@/errors/NotFoundError';
+import { getCities } from '@/services/dados-abertos-br/cities';
 
 const getData = async (uf) => {
-  const data = await getContiesByUf(uf).catch(() => getStateCities(uf));
+  const data = await Promise.any([getContiesByUf(uf), getStateCities(uf), getCities(uf)]);
 
   return data
     .map((item) => ({ ...item, nome: item.nome.toUpperCase() }))
