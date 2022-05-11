@@ -5,7 +5,7 @@ import InternalError from '@/errors/InternalError';
 
 import { getProtocolAnvisa, getAnvisa } from '@/services/anvisa';
 
-async function anvisa(request, response, next) {
+async function code(request, response, next) {
   try {
     const { code: queryString } = request.query;
     const protocolData = await (await getProtocolAnvisa(queryString)).json();
@@ -32,4 +32,4 @@ async function anvisa(request, response, next) {
   }
 }
 
-export default app().get(anvisa);
+export default app().get(code);
