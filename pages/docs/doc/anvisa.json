@@ -6,7 +6,7 @@
         }
     ],
     "paths": {
-        "/anvisa/v1/{anvisa}": {
+        "/anvisa/v1/{code}": {
             "get": {
                 "tags": [
                     "ANVISA"
