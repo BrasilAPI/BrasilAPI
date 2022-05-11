@@ -1,8 +1,8 @@
 import cep from 'cep-promise';
 
 import app from '@/app';
-import BadRequestError from '@/errors/bad-request';
-import NotFoundError from '@/errors/not-found';
+import BadRequestError from '@/errors/BadRequestError';
+import NotFoundError from '@/errors/NotFoundError';
 
 const providers = ['correios', 'viacep', 'widenet'];
 

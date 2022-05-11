@@ -21,6 +21,8 @@ describe('api/cnpj/v1 (E2E)', () => {
       expect(status).toEqual(404);
       expect(data).toEqual({
         message: 'CNPJ 00.000.000/0000-00 não encontrado.',
+        name: 'NotFoundError',
+        type: 'not_found',
       });
     }
   });
@@ -35,6 +37,8 @@ describe('api/cnpj/v1 (E2E)', () => {
       expect(status).toEqual(400);
       expect(data).toEqual({
         message: 'CNPJ 123 inválido.',
+        name: 'BadRequestError',
+        type: 'bad_request',
       });
     }
   });
