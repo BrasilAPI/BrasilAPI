@@ -1,0 +1,85 @@
+{
+    "tags": [
+        {
+            "name": "BANKS",
+            "description": "Informações sobre sistema bancário"
+        }
+    ],
+    "paths": {
+        "/anvisa/v1/{anvisa}": {
+            "get": {
+                "tags": [
+                    "ANVISA"
+                ],
+                "summary": "Busca as informações de registro anvisa a partir de seu número",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "produto": "KAVO KEY LASER 1242/1243  - TRATAMENTO DE CARIES ETERAPIAS EM TECIDOS DUROS",
+                                    "empresa": {
+                                        "cnpj": "84683556000110",
+                                        "razaoSocial": "KAVO DO BRASIL INDÚSTRIA E COMÉRCIO LTDA",
+                                        "autorizacao": "1006401"
+                                    },
+                                    "mensagem": {
+                                        "situacao": null,
+                                        "resolucao": null,
+                                        "motivo": null,
+                                        "negativo": false
+                                    },
+                                    "nomeTecnico": "Aparelho a Laser Para Tratamento Odontologico",
+                                    "registro": "10064010018",
+                                    "cancelado": false,
+                                    "dataCancelamento": null,
+                                    "processo": "250000243789806",
+                                    "apresentacoes": [
+                                        {
+                                            "modelo": "KAVO KEY LASER 1242KAVO KEY LASER 1243",
+                                            "componente": null,
+                                            "apresentacao": null
+                                        }
+                                    ],
+                                    "fabricantes": [
+                                        {
+                                            "atividade": null,
+                                            "razaoSocial": null,
+                                            "pais": null,
+                                            "local": "KAVO DENTAL - ALEMANHA  "
+                                        }
+                                    ],
+                                    "risco": {
+                                        "sigla": "III",
+                                        "descricao": "ALTO RISCO"
+                                    },
+                                    "vencimento": {
+                                        "data": null,
+                                        "descricao": "MODELO"
+                                    },
+                                    "publicacao": null,
+                                    "apresentacaoModelo": false,
+                                    "arquivos": [],
+                                    "processoMedidaCautelar": null,
+                                    "tooltip": "A atualização deste documento é voluntária e executada diretamente pela empresa responsável pela regularização do produto, a qual declara que seu conteúdo guarda estrita concordância com a legislação vigente."
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "O protocolo / código do anvisa não foi encontrado",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Protocolo do ANVISA 123 não encontrado."
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

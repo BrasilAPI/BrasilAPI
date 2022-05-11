@@ -1,13 +1,13 @@
 import app from '@/app';
 
-import BaseError from '@/errors/base';
-import InternalError from '@/errors/internal';
+import BaseError from '@/errors/BaseError';
+import InternalError from '@/errors/InternalError';
 
 import { getProtocolAnvisa, getAnvisa } from '@/services/anvisa';
 
 async function anvisa(request, response, next) {
   try {
-    const { anvisa: queryString } = request.query;
+    const { code: queryString } = request.query;
     const protocolData = await (await getProtocolAnvisa(queryString)).json();
 
     if (!protocolData.content[0]) {
