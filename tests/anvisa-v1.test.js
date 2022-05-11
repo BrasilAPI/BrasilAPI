@@ -2,7 +2,8 @@ const axios = require('axios');
 
 const requestUrl = `${global.SERVER_URL}/api/anvisa/v1`;
 
-describe('api/anvisa/v1 (E2E)', () => {
+// TODO: This test is intermitent at Github Actions provider
+describe.skip('api/anvisa/v1 (E2E)', () => {
   test('Utilizando um ANVISA válido: 10064010018', async () => {
     const response = await axios.get(`${requestUrl}/10064010018`);
     const { data, status } = response;
