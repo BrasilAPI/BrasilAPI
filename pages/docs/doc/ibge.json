@@ -1,0 +1,279 @@
+{
+    "tags": [
+        {
+            "name": "IBGE",
+            "description": "Informações sobre estados Provenientes do IBGE"
+        }
+    ],
+    "paths": {
+        "/ibge/municipios/v1/{siglaUF}": {
+            "get": {
+              "tags": [
+                "IBGE"
+              ],
+              "summary": "Retorna os municípios da unidade federativa",
+              "description": "",
+              "parameters": [
+                {
+                  "name": "siglaUF",
+                  "description": "Sigla da unidade federativa, por exemplo SP, RJ, SC, etc.\n",
+                  "in": "path",
+                  "required": true,
+                  "schema": {
+                    "type": "string",
+                    "format": "string"
+                  }
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "Successo",
+                  "content": {
+                    "application/json": {
+                      "example": [
+                        {
+                          "nome": "Tubarão",
+                          "codigo_ibge": "421870705"
+                        },
+                        {
+                          "nome": "Tunápolis",
+                          "codigo_ibge": "421875605"
+                        },
+                        {
+                          "nome": "Turvo",
+                          "codigo_ibge": "421880605"
+                        },
+                        {
+                          "nome": "Morro Chato",
+                          "codigo_ibge": "421880620"
+                        },
+                        {
+                          "nome": "União do Oeste",
+                          "codigo_ibge": "421885505"
+                        },
+                        {
+                          "nome": "Urubici",
+                          "codigo_ibge": "421890505"
+                        },
+                        {
+                          "nome": "Águas Brancas",
+                          "codigo_ibge": "421890510"
+                        },
+                        {
+                          "nome": "Santa Teresinha",
+                          "codigo_ibge": "421890520"
+                        },
+                        {
+                          "nome": "Urupema",
+                          "codigo_ibge": "421895405"
+                        },
+                        {
+                          "nome": "Urussanga",
+                          "codigo_ibge": "421900205"
+                        },
+                        {
+                          "nome": "Vargeão",
+                          "codigo_ibge": "421910105"
+                        },
+                        {
+                          "nome": "Vargem",
+                          "codigo_ibge": "421915005"
+                        },
+                        {
+                          "nome": "Vargem Bonita",
+                          "codigo_ibge": "421917605"
+                        },
+                        {
+                          "nome": "Vidal Ramos",
+                          "codigo_ibge": "421920005"
+                        },
+                        {
+                          "nome": "Videira",
+                          "codigo_ibge": "421930905"
+                        },
+                        {
+                          "nome": "Anta Gorda",
+                          "codigo_ibge": "421930910"
+                        },
+                        {
+                          "nome": "Lourdes",
+                          "codigo_ibge": "421930925"
+                        },
+                        {
+                          "nome": "Vitor Meireles",
+                          "codigo_ibge": "421935805"
+                        },
+                        {
+                          "nome": "Barra da Prata",
+                          "codigo_ibge": "421935810"
+                        },
+                        {
+                          "nome": "Witmarsum",
+                          "codigo_ibge": "421940805"
+                        },
+                        {
+                          "nome": "Xanxerê",
+                          "codigo_ibge": "421950705"
+                        },
+                        {
+                          "nome": "Cambuinzal",
+                          "codigo_ibge": "421950715"
+                        },
+                        {
+                          "nome": "Xavantina",
+                          "codigo_ibge": "421960605"
+                        },
+                        {
+                          "nome": "Linha das Palmeiras",
+                          "codigo_ibge": "421960610"
+                        },
+                        {
+                          "nome": "Xaxim",
+                          "codigo_ibge": "421970505"
+                        },
+                        {
+                          "nome": "Anita Garibaldi",
+                          "codigo_ibge": "421970511"
+                        },
+                        {
+                          "nome": "Diadema",
+                          "codigo_ibge": "421970516"
+                        },
+                        {
+                          "nome": "Zortéa",
+                          "codigo_ibge": "421985305"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "404": {
+                  "description": "Sigla inexistente ou inválida",
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "name": "NotFoundError",
+                        "message": "UF não encontrada",
+                        "type": "not_found"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+        "/ibge/uf/v1": {
+            "get": {
+                "tags": ["IBGE"],
+                "summary": "Retorna informações de todos estados do Brasil",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/State"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ibge/uf/v1/{code}": {
+            "get": {
+                "tags": ["IBGE"],
+                "summary": "Busca as informações de um estado a partir da sigla ou código",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/State"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "O código / sigla do estado não foi encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "name": "NotFoundError",
+                                    "message": "UF não encontrado",
+                                    "type": "not_found"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "State": {
+                "title": "State",
+                "required": ["id", "sigla", "nome", "regiao"],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "sigla": {
+                        "type": "string"
+                    },
+                    "nome": {
+                        "type": "string"
+                    },
+                    "regiao": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/Region"
+                    }
+                },
+                "example": {
+                    "id": 35,
+                    "sigla": "SP",
+                    "nome": "São Paulo",
+                    "regiao": {
+                        "id": 3,
+                        "sigla": "SE",
+                        "nome": "Sudeste"
+                    }
+                }
+            },
+            "Region": {
+                "title": "Region",
+                "required": ["id", "sigla", "nome"],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "sigla": {
+                        "type": "string"
+                    },
+                    "nome": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "id": 3,
+                    "sigla": "SE",
+                    "nome": "Sudeste"
+                }
+            }
+        }
+    }
+}
