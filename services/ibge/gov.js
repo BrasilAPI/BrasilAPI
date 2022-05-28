@@ -5,8 +5,11 @@ const URL_UF = 'https://servicodados.ibge.gov.br/api/v1/localidades/estados';
 export const getUfs = async () => await axios.get(URL_UF);
 export const getUfByCode = async (code) => await axios.get(`${URL_UF}/${code}`);
 
-export const getDistrictsByUf = async (uf) => {
-  const { data } = await axios.get(`${URL_UF}/${uf}/distritos`);
+export const getContiesByUf = async (uf) => {
+  const { data } = await axios.get(`${URL_UF}/${uf}/municipios`);
 
-  return data.map((item) => ({ nome: item.nome, codigo_ibge: `${item.id}` }));
+  return data.map((item) => ({
+    nome: item.nome,
+    codigo_ibge: `${item.id}`,
+  }));
 };
