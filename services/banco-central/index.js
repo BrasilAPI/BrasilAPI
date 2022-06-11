@@ -10,14 +10,6 @@ const fetchBanksListFromBacen = async () => {
   return body;
 };
 
-const fetchBanksList = async () => {
-  try {
-    return await fetchBanksListFromBacen();
-  } catch (err) {
-    return banksList;
-  }
-};
-
 const formatCsvFile = (file) => {
   const LINE_BREAK = '\r\n';
   const lines = file.split(LINE_BREAK);
@@ -48,15 +40,11 @@ const formatCsvFile = (file) => {
     );
 };
 
-const formatResponse = (response) => {
-  if (response[0].code && response[0].code === 1) {
-    return response;
-  }
-
-  return formatCsvFile(response);
-};
-
 export const getBanksData = async () => {
-  const response = await fetchBanksList();
-  return formatResponse(response);
+  try {
+    const response = await fetchBanksListFromBacen();
+    return formatCsvFile(response);
+  } catch (err) {
+    return banksList;
+  }
 };
