@@ -52,8 +52,12 @@ Abaixo segue uma lista de integrações com a BrasilApi fornecidas pela comunida
 
 **Go**:
   * **[brasilapi-go](https://github.com/isaqueveras/brasilapi-go)** criado por [@isaqueveras](https://github.com/isaqueveras)
+
+
 **JS**
   * **[brasil-api-promisse](https://github.com/guhcostan/brasil-api-promisse)** criado por [@guhcostan](https://github.com/guhcostan)
+
+
 **Flutter**
   * **[brazilian_banks](https://github.com/credifit-br/brazilian_banks)** criado por [@credifit-br](https://github.com/credifit-br)
 
