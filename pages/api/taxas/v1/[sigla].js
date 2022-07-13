@@ -4,11 +4,11 @@ import * as selic from 'selic';
 
 const action = async (request, response) => {
   const sigla = request.query.sigla.toLowerCase();
-  const taxas = await selic.getRatesList();
+  const taxas = await selic.getRatesObject();
 
-  const item = taxas.find((taxa) => taxa.name.toLowerCase() === sigla);
+  const valor = taxas[sigla];
 
-  if (!item) {
+  if (!valor) {
     response.status(404);
     throw new NotFoundError({
       name: 'NotFoundError',
@@ -18,7 +18,7 @@ const action = async (request, response) => {
   }
 
   response.status(200);
-  response.json({ nome: item.name, valor: item.apy });
+  response.json({ nome: sigla.toUpperCase(), valor });
 };
 
 export default app().get(action);

@@ -23,6 +23,22 @@ describe('api/taxas/v1 (E2E)', () => {
     expect(data).toHaveProperty('valor', expect.any(Number));
   });
 
+  test('Buscando uma taxa válida: selic', async () => {
+    const response = await axios.get(`${requestUrl}/selic`);
+    const { data, status } = response;
+    expect(status).toEqual(200);
+    expect(data).toHaveProperty('nome', 'SELIC');
+    expect(data).toHaveProperty('valor', expect.any(Number));
+  });
+
+  test('Buscando uma taxa válida: ipca', async () => {
+    const response = await axios.get(`${requestUrl}/ipca`);
+    const { data, status } = response;
+    expect(status).toEqual(200);
+    expect(data).toHaveProperty('nome', 'IPCA');
+    expect(data).toHaveProperty('valor', expect.any(Number));
+  });
+
   test('Buscando uma taxa inválida: xpto', async () => {
     try {
       await axios.get(`${requestUrl}/xpto`);

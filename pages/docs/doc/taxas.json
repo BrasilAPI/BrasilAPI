@@ -11,7 +11,7 @@
                 "tags": [
                     "TAXAS"
                 ],
-                "summary": "Retorna as taxas de juros e alguns índices oficiais Brasil",
+                "summary": "Retorna as taxas de juros e alguns índices oficiais do Brasil",
                 "description": "",
                 "responses": {
                     "200": {
