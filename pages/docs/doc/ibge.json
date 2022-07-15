@@ -2,169 +2,171 @@
     "tags": [
         {
             "name": "IBGE",
-            "description": "Informações sobre estados Provenientes do IBGE"
+            "description": "Informações sobre estados e atividades econômicas Provenientes do IBGE"
         }
     ],
     "paths": {
         "/ibge/municipios/v1/{siglaUF}": {
             "get": {
-              "tags": [
-                "IBGE"
-              ],
-              "summary": "Retorna os municípios da unidade federativa",
-              "description": "",
-              "parameters": [
-                {
-                  "name": "siglaUF",
-                  "description": "Sigla da unidade federativa, por exemplo SP, RJ, SC, etc.\n",
-                  "in": "path",
-                  "required": true,
-                  "schema": {
-                    "type": "string",
-                    "format": "string"
-                  }
-                }
-              ],
-              "responses": {
-                "200": {
-                  "description": "Successo",
-                  "content": {
-                    "application/json": {
-                      "example": [
-                        {
-                          "nome": "Tubarão",
-                          "codigo_ibge": "421870705"
-                        },
-                        {
-                          "nome": "Tunápolis",
-                          "codigo_ibge": "421875605"
-                        },
-                        {
-                          "nome": "Turvo",
-                          "codigo_ibge": "421880605"
-                        },
-                        {
-                          "nome": "Morro Chato",
-                          "codigo_ibge": "421880620"
-                        },
-                        {
-                          "nome": "União do Oeste",
-                          "codigo_ibge": "421885505"
-                        },
-                        {
-                          "nome": "Urubici",
-                          "codigo_ibge": "421890505"
-                        },
-                        {
-                          "nome": "Águas Brancas",
-                          "codigo_ibge": "421890510"
-                        },
-                        {
-                          "nome": "Santa Teresinha",
-                          "codigo_ibge": "421890520"
-                        },
-                        {
-                          "nome": "Urupema",
-                          "codigo_ibge": "421895405"
-                        },
-                        {
-                          "nome": "Urussanga",
-                          "codigo_ibge": "421900205"
-                        },
-                        {
-                          "nome": "Vargeão",
-                          "codigo_ibge": "421910105"
-                        },
-                        {
-                          "nome": "Vargem",
-                          "codigo_ibge": "421915005"
-                        },
-                        {
-                          "nome": "Vargem Bonita",
-                          "codigo_ibge": "421917605"
-                        },
-                        {
-                          "nome": "Vidal Ramos",
-                          "codigo_ibge": "421920005"
-                        },
-                        {
-                          "nome": "Videira",
-                          "codigo_ibge": "421930905"
-                        },
-                        {
-                          "nome": "Anta Gorda",
-                          "codigo_ibge": "421930910"
-                        },
-                        {
-                          "nome": "Lourdes",
-                          "codigo_ibge": "421930925"
-                        },
-                        {
-                          "nome": "Vitor Meireles",
-                          "codigo_ibge": "421935805"
-                        },
-                        {
-                          "nome": "Barra da Prata",
-                          "codigo_ibge": "421935810"
-                        },
-                        {
-                          "nome": "Witmarsum",
-                          "codigo_ibge": "421940805"
-                        },
-                        {
-                          "nome": "Xanxerê",
-                          "codigo_ibge": "421950705"
-                        },
-                        {
-                          "nome": "Cambuinzal",
-                          "codigo_ibge": "421950715"
-                        },
-                        {
-                          "nome": "Xavantina",
-                          "codigo_ibge": "421960605"
-                        },
-                        {
-                          "nome": "Linha das Palmeiras",
-                          "codigo_ibge": "421960610"
-                        },
-                        {
-                          "nome": "Xaxim",
-                          "codigo_ibge": "421970505"
-                        },
-                        {
-                          "nome": "Anita Garibaldi",
-                          "codigo_ibge": "421970511"
-                        },
-                        {
-                          "nome": "Diadema",
-                          "codigo_ibge": "421970516"
-                        },
-                        {
-                          "nome": "Zortéa",
-                          "codigo_ibge": "421985305"
+                "tags": [
+                    "IBGE"
+                ],
+                "summary": "Retorna os municípios da unidade federativa",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "siglaUF",
+                        "description": "Sigla da unidade federativa, por exemplo SP, RJ, SC, etc.\n",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "string"
                         }
-                      ]
                     }
-                  }
-                },
-                "404": {
-                  "description": "Sigla inexistente ou inválida",
-                  "content": {
-                    "application/json": {
-                      "example": {
-                        "name": "NotFoundError",
-                        "message": "UF não encontrada",
-                        "type": "not_found"
-                      }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "example": [
+                                    {
+                                        "nome": "Tubarão",
+                                        "codigo_ibge": "421870705"
+                                    },
+                                    {
+                                        "nome": "Tunápolis",
+                                        "codigo_ibge": "421875605"
+                                    },
+                                    {
+                                        "nome": "Turvo",
+                                        "codigo_ibge": "421880605"
+                                    },
+                                    {
+                                        "nome": "Morro Chato",
+                                        "codigo_ibge": "421880620"
+                                    },
+                                    {
+                                        "nome": "União do Oeste",
+                                        "codigo_ibge": "421885505"
+                                    },
+                                    {
+                                        "nome": "Urubici",
+                                        "codigo_ibge": "421890505"
+                                    },
+                                    {
+                                        "nome": "Águas Brancas",
+                                        "codigo_ibge": "421890510"
+                                    },
+                                    {
+                                        "nome": "Santa Teresinha",
+                                        "codigo_ibge": "421890520"
+                                    },
+                                    {
+                                        "nome": "Urupema",
+                                        "codigo_ibge": "421895405"
+                                    },
+                                    {
+                                        "nome": "Urussanga",
+                                        "codigo_ibge": "421900205"
+                                    },
+                                    {
+                                        "nome": "Vargeão",
+                                        "codigo_ibge": "421910105"
+                                    },
+                                    {
+                                        "nome": "Vargem",
+                                        "codigo_ibge": "421915005"
+                                    },
+                                    {
+                                        "nome": "Vargem Bonita",
+                                        "codigo_ibge": "421917605"
+                                    },
+                                    {
+                                        "nome": "Vidal Ramos",
+                                        "codigo_ibge": "421920005"
+                                    },
+                                    {
+                                        "nome": "Videira",
+                                        "codigo_ibge": "421930905"
+                                    },
+                                    {
+                                        "nome": "Anta Gorda",
+                                        "codigo_ibge": "421930910"
+                                    },
+                                    {
+                                        "nome": "Lourdes",
+                                        "codigo_ibge": "421930925"
+                                    },
+                                    {
+                                        "nome": "Vitor Meireles",
+                                        "codigo_ibge": "421935805"
+                                    },
+                                    {
+                                        "nome": "Barra da Prata",
+                                        "codigo_ibge": "421935810"
+                                    },
+                                    {
+                                        "nome": "Witmarsum",
+                                        "codigo_ibge": "421940805"
+                                    },
+                                    {
+                                        "nome": "Xanxerê",
+                                        "codigo_ibge": "421950705"
+                                    },
+                                    {
+                                        "nome": "Cambuinzal",
+                                        "codigo_ibge": "421950715"
+                                    },
+                                    {
+                                        "nome": "Xavantina",
+                                        "codigo_ibge": "421960605"
+                                    },
+                                    {
+                                        "nome": "Linha das Palmeiras",
+                                        "codigo_ibge": "421960610"
+                                    },
+                                    {
+                                        "nome": "Xaxim",
+                                        "codigo_ibge": "421970505"
+                                    },
+                                    {
+                                        "nome": "Anita Garibaldi",
+                                        "codigo_ibge": "421970511"
+                                    },
+                                    {
+                                        "nome": "Diadema",
+                                        "codigo_ibge": "421970516"
+                                    },
+                                    {
+                                        "nome": "Zortéa",
+                                        "codigo_ibge": "421985305"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Sigla inexistente ou inválida",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "name": "NotFoundError",
+                                    "message": "UF não encontrada",
+                                    "type": "not_found"
+                                }
+                            }
+                        }
                     }
-                  }
                 }
-              }
             }
-          },
+        },
         "/ibge/uf/v1": {
             "get": {
-                "tags": ["IBGE"],
+                "tags": [
+                    "IBGE"
+                ],
                 "summary": "Retorna informações de todos estados do Brasil",
                 "description": "",
                 "responses": {
@@ -186,7 +188,9 @@
         },
         "/ibge/uf/v1/{code}": {
             "get": {
-                "tags": ["IBGE"],
+                "tags": [
+                    "IBGE"
+                ],
                 "summary": "Busca as informações de um estado a partir da sigla ou código",
                 "description": "",
                 "responses": {
@@ -217,13 +221,260 @@
                     }
                 }
             }
+        },
+        "/ibge/cnae/v1/classes": {
+            "get": {
+                "tags": [
+                    "IBGE"
+                ],
+                "summary": "Retorna as classes CNAE registradas no IBGE",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Class"
+                                    }
+                                },
+                                "example": [
+                                    {
+                                        "id": "01113",
+                                        "descricao": "CULTIVO DE CEREAIS",
+                                        "grupo": {
+                                            "id": "011",
+                                            "descricao": "PRODUÇÃO DE LAVOURAS TEMPORÁRIAS",
+                                            "divisao": {
+                                                "id": "01",
+                                                "descricao": "AGRICULTURA, PECUÁRIA E SERVIÇOS RELACIONADOS",
+                                                "secao": {
+                                                    "id": "A",
+                                                    "descricao": "AGRICULTURA, PECUÁRIA, PRODUÇÃO FLORESTAL, PESCA E AQÜICULTURA"
+                                                }
+                                            }
+                                        },
+                                        "observacoes": [
+                                            "Esta classe compreende - o cultivo de alpiste, arroz, aveia, centeio, cevada, milho, milheto, painço, sorgo, trigo, trigo preto, triticale e outros cereais não especificados anteriormente",
+                                            "Esta classe compreende ainda - o beneficiamento de cereais em estabelecimento agrícola, quando atividade complementar ao cultivo\r\n- a produção de sementes de cereais, quando atividade complementar ao cultivo",
+                                            "Esta classe NÃO compreende - a produção de sementes certificadas dos cereais desta classe, inclusive modificadas geneticamente (01.41-5)\r\n- os serviços de preparação de terreno, cultivo e colheita realizados sob contrato (01.61-0)\r\n- o beneficiamento de cereais em estabelecimento agrícola realizado sob contrato (01.63-6)\r\n- o processamento ou beneficiamento de cereais em estabelecimento não-agrícola (grupo 10.4) e (grupo 10.6)\r\n- a produção de biocombustível (19.32-2)"
+                                        ]
+                                    },
+                                    {
+                                        "id": "01121",
+                                        "descricao": "CULTIVO DE ALGODÃO HERBÁCEO E DE OUTRAS FIBRAS DE LAVOURA TEMPORÁRIA",
+                                        "grupo": {
+                                            "id": "011",
+                                            "descricao": "PRODUÇÃO DE LAVOURAS TEMPORÁRIAS",
+                                            "divisao": {
+                                                "id": "01",
+                                                "descricao": "AGRICULTURA, PECUÁRIA E SERVIÇOS RELACIONADOS",
+                                                "secao": {
+                                                    "id": "A",
+                                                    "descricao": "AGRICULTURA, PECUÁRIA, PRODUÇÃO FLORESTAL, PESCA E AQÜICULTURA"
+                                                }
+                                            }
+                                        },
+                                        "observacoes": [
+                                            "Esta classe compreende - o cultivo de algodão herbáceo\r\n- o cultivo de juta, junco, linho, malva, rami, sorgo vassoura e outras fibras de lavoura temporária não especificadas anteriormente",
+                                            "Esta classe compreende ainda - o descaroçamento do algodão, quando atividade complementar ao cultivo\r\n- o processo de maceração e secagem das fibras desta classe\r\n- a produção de sementes e mudas das fibras desta classe, quando atividade complementar ao cultivo",
+                                            "Esta classe NÃO compreende - o cultivo de algodão arbóreo (01.39-3)\r\n- a produção de sementes e mudas certificadas das fibras desta classe, inclusive modificadas geneticamente (grupo 01.4)\r\n- os serviços de preparação de terreno, cultivo e colheita realizados sob contrato (01.61-0)\r\n- o serviço de descaroçamento de algodão realizado sob contrato (01.63-6)\r\n- a preparação do algodão e de outras fibras de lavoura temporária, em estabelecimento não-agrícola (13.11-1) e (13.12-0)"
+                                        ]
+                                    },
+                                    {
+                                        "id": "01130",
+                                        "descricao": "CULTIVO DE CANA-DE-AÇÚCAR",
+                                        "grupo": {
+                                            "id": "011",
+                                            "descricao": "PRODUÇÃO DE LAVOURAS TEMPORÁRIAS",
+                                            "divisao": {
+                                                "id": "01",
+                                                "descricao": "AGRICULTURA, PECUÁRIA E SERVIÇOS RELACIONADOS",
+                                                "secao": {
+                                                    "id": "A",
+                                                    "descricao": "AGRICULTURA, PECUÁRIA, PRODUÇÃO FLORESTAL, PESCA E AQÜICULTURA"
+                                                }
+                                            }
+                                        },
+                                        "observacoes": [
+                                            "Esta classe compreende - o cultivo de cana-de-açúcar",
+                                            "Esta classe compreende ainda - a produção de toletes (mudas) de cana-de-açúcar, quando atividade complementar ao cultivo",
+                                            "Esta classe NÃO compreende - a produção de toletes (mudas) certificadas de cana-de-açúcar, inclusive modificadas geneticamente (01.42-3)\r\n- os serviços de preparação de terreno, cultivo e corte da cana realizados sob contrato (01.61-0)\r\n- a produção de açúcar em bruto (usinas de açúcar) (10.71-6)\r\n- a fabricação, refino e moagem de açúcar de cana (10.72-4)\r\n- a produção de álcool de cana (19.31-4)"
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ibge/cnae/v1/classes/{codigoClasse}": {
+            "get": {
+                "tags": [
+                    "IBGE"
+                ],
+                "summary": "Busca as classes CNAE a partir do código da classe",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "codigoClasse",
+                        "description": "Código da Classe CNAE como 01113",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Class"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Classe CNAE não encontrada.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "message": "Classe CNAE não encontrada.",
+                                    "type": "not_found",
+                                    "name": "NotFoundError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ibge/cnae/v1/divisoes/{codigoDivisao}": {
+            "get": {
+                "tags": [
+                    "IBGE"
+                ],
+                "summary": "Busca as classes CNAE a partir do código da divisão",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "codigoDivisao",
+                        "description": "Código da divisão CNAE como 99, 01, 05...",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Class"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Divisão CNAE não encontrada.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "message": "Divisão CNAE não encontrada.",
+                                    "type": "not_found",
+                                    "name": "NotFoundError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ibge/cnae/v1/grupos/{codigoGrupos}": {
+            "get": {
+                "tags": [
+                    "IBGE"
+                ],
+                "summary": "Busca as classes CNAE a partir do código do grupo",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "codigoGrupo",
+                        "description": "Código do grupo CNAE como 990, 239, etc.",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Class"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Grupo CNAE não encontrado.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "message": "Grupo CNAE não encontrado.",
+                                    "type": "not_found",
+                                    "name": "NotFoundError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
         "schemas": {
             "State": {
                 "title": "State",
-                "required": ["id", "sigla", "nome", "regiao"],
+                "required": [
+                    "id",
+                    "sigla",
+                    "nome",
+                    "regiao"
+                ],
                 "type": "object",
                 "properties": {
                     "id": {
@@ -254,7 +505,11 @@
             },
             "Region": {
                 "title": "Region",
-                "required": ["id", "sigla", "nome"],
+                "required": [
+                    "id",
+                    "sigla",
+                    "nome"
+                ],
                 "type": "object",
                 "properties": {
                     "id": {
@@ -272,6 +527,112 @@
                     "id": 3,
                     "sigla": "SE",
                     "nome": "Sudeste"
+                }
+            },
+            "Group": {
+                "title": "Group",
+                "required": [
+                    "id",
+                    "descricao",
+                    "divisao"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "descricao": {
+                        "type": "string"
+                    },
+                    "divisao": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/Division"
+                    }
+                }
+            },
+            "Section": {
+                "title": "Section",
+                "required": [
+                    "id",
+                    "descricao"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "descricao": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Division": {
+                "title": "Division",
+                "required": [
+                    "id",
+                    "descricao",
+                    "secao"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "descricao": {
+                        "type": "string"
+                    },
+                    "secao": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/Section"
+                    }
+                }
+            },
+            "Class": {
+                "title": "Class",
+                "required": [
+                    "id",
+                    "divisao",
+                    "descricao",
+                    "grupo",
+                    "observacoes"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "descricao": {
+                        "type": "string"
+                    },
+                    "grupo": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/Group"
+                    },
+                    "observacoes": {
+                        "type": "array",
+                        "format": "string"
+                    }
+                },
+                "example": {
+                    "id": "99008",
+                    "descricao": "ORGANISMOS INTERNACIONAIS E OUTRAS INSTITUIÇÕES EXTRATERRITORIAIS",
+                    "grupo": {
+                        "id": "990",
+                        "descricao": "ORGANISMOS INTERNACIONAIS E OUTRAS INSTITUIÇÕES EXTRATERRITORIAIS",
+                        "divisao": {
+                            "id": "99",
+                            "descricao": "ORGANISMOS INTERNACIONAIS E OUTRAS INSTITUIÇÕES EXTRATERRITORIAIS",
+                            "secao": {
+                                "id": "U",
+                                "descricao": "ORGANISMOS INTERNACIONAIS E OUTRAS INSTITUIÇÕES EXTRATERRITORIAIS"
+                            }
+                        }
+                    },
+                    "observacoes": [
+                        "Esta classe compreende - as atividades de embaixadas e consulados estrangeiros no Brasil\r\n- as atividades exercidas no Brasil por representantes de organizações internacionais, tais como: as Organizações das Nações Unidas - ONU e de suas agências especializadas e regionais, o Banco Mundial, o Fundo Monetário Internacional - FMI, o Banco Interamericano de Desenvolvimento - BID, a Organização para a Cooperação e Desenvolvimento Econômico - OCDE, a Organização dos Países Exportadores de Petróleo - OPEP, a Comunidade Européia, etc.",
+                        "Esta classe compreende ainda - as atividades de missões diplomáticas e consulares quando determinadas pelo país em que estão localizadas e não pelo país que representam",
+                        "Esta classe NÃO compreende - as atividades de consulados e embaixadas brasileiras no exterior (84.21-3)\r\n- as atividades de organismos públicos estrangeiros atuando no Brasil sem status diplomático que são classificados nas atividades correspondentes"
+                    ]
                 }
             }
         }
