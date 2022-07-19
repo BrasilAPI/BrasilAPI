@@ -1,0 +1,38 @@
+{
+    "tags": [
+        {
+            "name": "Natureza Jurídica",
+            "description": "Lista de tipos societários"
+        }
+    ],
+    "paths": {
+        "/legal-nature/v1": {
+            "get": {
+                "tags": [
+                   "Natureza Jurídica" 
+                ],
+                "summary": "Retorna uma lista de tipos societários",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "Sucesso",
+                        "content": {
+                            "application/json":{
+                                "example": [
+                                    {
+                                        "code": "",
+                                        "description": "Não Informado"
+                                    },
+                                    {
+                                        "code": "1015",
+                                        "description": "Orgao Publico do Poder Executivo Federal"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

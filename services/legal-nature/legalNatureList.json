@@ -1,0 +1,358 @@
+[
+    {
+        "code": "",
+        "description": "Não Informado"
+    },
+    {
+        "code": "1015",
+        "description": "Orgao Publico do Poder Executivo Federal"
+    },
+    {
+        "code": "1023",
+        "description": "Orgao Publico do Poder Executivo Estadual ou do Distrito Federal"
+    },
+    {
+        "code": "1031",
+        "description": "Orgao Publico do Poder Executivo Municipal"
+    },
+    {
+        "code": "1040",
+        "description": "Orgao Publico do Poder Legislativo Federal"
+    },
+    {
+        "code": "1058",
+        "description": "Orgao Publico do Poder Legislativo Estadual ou do Distrito Federal"
+    },
+    {
+        "code": "1066",
+        "description": "Orgao Publico do Poder Legislativo Municipal"
+    },
+    {
+        "code": "1074",
+        "description": "Orgao Publico do Poder Judiciario Federal"
+    },
+    {
+        "code": "1082",
+        "description": "Orgao Publico do Poder Judiciario Estadual"
+    },
+    {
+        "code": "1104",
+        "description": "Autarquia Federal"
+    },
+    {
+        "code": "1112",
+        "description": "Autarquia Estadual ou do Distrito Federal"
+    },
+    {
+        "code": "1120",
+        "description": "Autarquia Municipal"
+    },
+    {
+        "code": "1139",
+        "description": "Fundacao Federal"
+    },
+    {
+        "code": "1147",
+        "description": "Fundacao Estadual ou do Distrito Federal"
+    },
+    {
+        "code": "1155",
+        "description": "Fundacao Municipal"
+    },
+    {
+        "code": "1163",
+        "description": "Orgao Publico Autonomo da Uniao"
+    },
+    {
+        "code": "1171",
+        "description": "Orgao Publico Autonomo Estadual ou do Distrito Federal"
+    },
+    {
+        "code": "1180",
+        "description": "Orgao Publico Autonomo Municipal"
+    },
+    {
+        "code": "1198",
+        "description": "Comissão Polinacional"
+    },
+    {
+        "code": "1201",
+        "description": "Fundo Público"
+    },
+    {
+        "code": "1210",
+        "description": "Consórcio Público de Direito Público (Associação Pública)"
+    },
+    {
+        "code": "1228",
+        "description": "Consórcio Público de Direito Privado"
+    },
+    {
+        "code": "1236",
+        "description": "Estado ou Distrito Federal"
+    },
+    {
+        "code": "1244",
+        "description": "Município"
+    },
+    {
+        "code": "1252",
+        "description": "Fundação Pública de Direito Privado Federal"
+    },
+    {
+        "code": "1260",
+        "description": "Fundação Pública de Direito Privado Estadual ou do Distrito Federal"
+    },
+    {
+        "code": "1279",
+        "description": "Fundação Pública de Direito Privado Municipal"
+    },
+    {
+        "code": "2011",
+        "description": "Empresa Publica"
+    },
+    {
+        "code": "2038",
+        "description": "Sociedade de Economia Mista"
+    },
+    {
+        "code": "2046",
+        "description": "Sociedade Anonima Aberta"
+    },
+    {
+        "code": "2054",
+        "description": "Sociedade Anonima Fechada"
+    },
+    {
+        "code": "2062",
+        "description": "Sociedade Empresaria Limitada"
+    },
+    {
+        "code": "2070",
+        "description": "Sociedade Empresária em description Coletivo"
+    },
+    {
+        "code": "2076",
+        "description": "Sociedade Empresaria em description Coletivo"
+    },
+    {
+        "code": "2089",
+        "description": "Sociedade Empresaria em Comandita Simples"
+    },
+    {
+        "code": "2097",
+        "description": "Sociedade Empresaria em Comandita por Acoes"
+    },
+    {
+        "code": "2100",
+        "description": "Sociedade Mercantil de Capital e Industria (extinta pelo NCC/2002)"
+    },
+    {
+        "code": "2127",
+        "description": "Sociedade Empresaria em Conta de Participacao"
+    },
+    {
+        "code": "2135",
+        "description": "Empresario (Individual)"
+    },
+    {
+        "code": "2143",
+        "description": "Cooperativa"
+    },
+    {
+        "code": "2151",
+        "description": "Consorcio de Sociedades"
+    },
+    {
+        "code": "2160",
+        "description": "Grupo de Sociedades"
+    },
+    {
+        "code": "2178",
+        "description": "Estabelecimento, no Brasil, de Sociedade Estrangeira"
+    },
+    {
+        "code": "2194",
+        "description": "Estabelecimento, no Brasil, de Empresa Binacional Argentino-Brasileira"
+    },
+    {
+        "code": "2208",
+        "description": "Entidade Binacional Itaipu"
+    },
+    {
+        "code": "2216",
+        "description": "Empresa Domiciliada no Exterior"
+    },
+    {
+        "code": "2224",
+        "description": "Clube/Fundo de Investimento"
+    },
+    {
+        "code": "2232",
+        "description": "Sociedade Simples Pura"
+    },
+    {
+        "code": "2240",
+        "description": "Sociedade Simples Limitada"
+    },
+    {
+        "code": "2259",
+        "description": "Sociedade em description Coletivo"
+    },
+    {
+        "code": "2267",
+        "description": "Sociedade em Comandita Simples"
+    },
+    {
+        "code": "2275",
+        "description": "Sociedade Simples em Conta de Participacao"
+    },
+    {
+        "code": "2283",
+        "description": "Consórcio de Empregadores"
+    },
+    {
+        "code": "2291",
+        "description": "Consórcio Simples"
+    },
+    {
+        "code": "2305",
+        "description": "Empresa Individual de Responsabilidade Limitada (de Natureza Empresária)"
+    },
+    {
+        "code": "2313",
+        "description": "Empresa Individual de Responsabilidade Limitada (de Natureza Simples)"
+    },
+    {
+        "code": "3034",
+        "description": "Servico Notarial e Registral (Cartorio)"
+    },
+    {
+        "code": "3042",
+        "description": "Organizacao Social"
+    },
+    {
+        "code": "3050",
+        "description": "Organizacao da Sociedade Civil de Interesse Publico (Oscip)"
+    },
+    {
+        "code": "3069",
+        "description": "Outras Formas de Fundacoes Mantidas com Recursos Privados"
+    },
+    {
+        "code": "3077",
+        "description": "Servico Social Autonomo"
+    },
+    {
+        "code": "3085",
+        "description": "Condominio Edilicios"
+    },
+    {
+        "code": "3093",
+        "description": "Unidade Executora (Programa Dinheiro Direto na Escola)"
+    },
+    {
+        "code": "3107",
+        "description": "Comissao de Conciliacao Previa"
+    },
+    {
+        "code": "3115",
+        "description": "Entidade de Mediacao e Arbitragem"
+    },
+    {
+        "code": "3123",
+        "description": "Partido Politico"
+    },
+    {
+        "code": "3131",
+        "description": "Entidade Sindical"
+    },
+    {
+        "code": "3204",
+        "description": "Estabelecimento, no Brasil, de Fundacao ou Associacao Estrangeiras"
+    },
+    {
+        "code": "3212",
+        "description": "Fundacao ou Associacao Domiciliada no Exterior"
+    },
+    {
+        "code": "3220",
+        "description": "Organização Religiosa"
+    },
+    {
+        "code": "3239",
+        "description": "Comunidade Indígena"
+    },
+    {
+        "code": "3247",
+        "description": "Fundo Privado"
+    },
+    {
+        "code": "3255",
+        "description": "Órgão de Direção Nacional de Partido Político"
+    },
+    {
+        "code": "3263",
+        "description": "Órgão de Direção Regional de Partido Político"
+    },
+    {
+        "code": "3271",
+        "description": "Órgão de Direção Local de Partido Político"
+    },
+    {
+        "code": "3280",
+        "description": "Comitê Financeiro de Partido Político"
+    },
+    {
+        "code": "3298",
+        "description": "Frente Plebiscitária ou Referendária"
+    },
+    {
+        "code": "3301",
+        "description": "Organização Social (OS)"
+    },
+    {
+        "code": "3999",
+        "description": "Outras Formas de Associacao"
+    },
+    {
+        "code": "4014",
+        "description": "Empresa Individual Imobiliaria"
+    },
+    {
+        "code": "4022",
+        "description": "Segurado Especial"
+    },
+    {
+        "code": "4081",
+        "description": "Contribuinte individual"
+    },
+    {
+        "code": "4090",
+        "description": "Candidato a Cargo Político Eletivo"
+    },
+    {
+        "code": "4111",
+        "description": "Leiloeiro"
+    },
+    {
+        "code": "4120",
+        "description": "Produtor Rural (Pessoa Física)"
+    },
+    {
+        "code": "5002",
+        "description": "Organizacao Internacional e Outras Instituicoes Extraterritoriais"
+    },
+    {
+        "code": "5010",
+        "description": "Organização Internacional"
+    },
+    {
+        "code": "5029",
+        "description": "Representação Diplomática Estrangeira"
+    },
+    {
+        "code": "5037",
+        "description": "Outras Instituições Extraterritoriais"
+    }
+]
