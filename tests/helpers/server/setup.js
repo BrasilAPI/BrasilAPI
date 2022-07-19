@@ -1,4 +1,4 @@
-const createServer = require('./index.js');
+const createServer = require('./index');
 
 module.exports = async () => {
   console.log('\n[Start] Global setup');

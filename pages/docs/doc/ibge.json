@@ -6,7 +6,7 @@
         }
     ],
     "paths": {
-        "/ibge/municipios/v1/{siglaUF}": {
+        "/ibge/municipios/v1/{siglaUF}?providers=dados-abertos-br,gov,wikipedia": {
             "get": {
               "tags": [
                 "IBGE"
@@ -19,6 +19,16 @@
                   "description": "Sigla da unidade federativa, por exemplo SP, RJ, SC, etc.\n",
                   "in": "path",
                   "required": true,
+                  "schema": {
+                    "type": "string",
+                    "format": "string"
+                  }
+                },
+                {
+                  "name": "providers",
+                  "description": "Lista de provedores separados por vírgula.<br><strong>Provedores disponíveis:</strong> <ul><li>dados-abertos-br</li><li>gov</li><li>wikipedia</li></ul>",
+                  "in": "query",
+                  "required": false,
                   "schema": {
                     "type": "string",
                     "format": "string"

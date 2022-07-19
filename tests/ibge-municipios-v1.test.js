@@ -29,6 +29,30 @@ describe.skip('/ibge/municipios/v1 (E2E)', () => {
     expect(response.data).toEqual(validTestArray);
   });
 
+  test('Utilizando provider gov: ', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/ibge/municipios/v1/RS?providers=gov`;
+    const response = await axios.get(requestUrl);
+
+    expect(response.status).toBe(200);
+    expect(response.data).toEqual(validTestArray);
+  });
+
+  test('Utilizando provider dados-abertos-br: ', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/ibge/municipios/v1/RS?providers=dados-abertos-br`;
+    const response = await axios.get(requestUrl);
+
+    expect(response.status).toBe(200);
+    expect(response.data).toEqual(validTestArray);
+  });
+
+  test('Utilizando provider wikipedia: ', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/ibge/municipios/v1/RS?providers=wikipedia`;
+    const response = await axios.get(requestUrl);
+
+    expect(response.status).toBe(200);
+    expect(response.data).toEqual(validTestArray);
+  });
+
   test('Utilizando uma sigla inexistente ou inválida: AA', async () => {
     const requestUrl = `${global.SERVER_URL}/api/ibge/municipios/v1/AA`;
 
