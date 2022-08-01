@@ -20,8 +20,9 @@
     "react-icons": "4.2.0",
     "redoc": "2.0.0-rc.53",
     "sass": "1.42.1",
+    "selic": "1.0.0",
     "styled-components": "5.3.1",
-    "wikijs": "6.3.2"
+    "wikijs": "6.3.3"
   },
   "devDependencies": {
     "commitizen": "4.2.4",
@@ -30,7 +31,7 @@
     "eslint-config-airbnb": "18.2.1",
     "eslint-config-prettier": "8.3.0",
     "eslint-import-resolver-alias": "1.1.2",
-    "eslint-plugin-import": "2.24.2",
+    "eslint-plugin-import": "2.26.0",
     "eslint-plugin-jsx-a11y": "6.4.1",
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-react": "7.26.0",

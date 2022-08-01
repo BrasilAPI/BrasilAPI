@@ -9,12 +9,23 @@ const pascoaDaysByYear = {
   2010: '2010-04-04',
 };
 
+const goodFridayDaysByYear = {
+  2020: '2020-04-10',
+  2019: '2019-04-19',
+  2010: '2010-04-02',
+};
+
 const corpusChristiDaysByYear = {
   2020: '2020-06-11',
   2010: '2010-06-03',
 };
 
-const easterHolidaysName = ['Carnaval', 'Páscoa', 'Corpus Christi'];
+const easterHolidaysName = [
+  'Carnaval',
+  'Páscoa',
+  'Sexta-feira Santa',
+  'Corpus Christi',
+];
 const fixedHolidaysName = [
   'Confraternização mundial',
   'Tiradentes',
@@ -36,6 +47,11 @@ const getEasterHolidays = (year, holidaysName = easterHolidaysName) =>
     {
       date: pascoaDaysByYear[year],
       name: 'Páscoa',
+      type: 'national',
+    },
+    {
+      date: goodFridayDaysByYear[year],
+      name: 'Sexta-feira Santa',
       type: 'national',
     },
     {

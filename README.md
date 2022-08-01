@@ -47,6 +47,20 @@ O BrasilAPI é uma iniciativa feita de brasileiros para brasileiros, por favor, 
 
 <a href="https://github.com/brasilapi/brasilapi/graphs/contributors"><img src="https://contrib.rocks/image?repo=brasilapi/brasilapi" /></a>
 
+## 📦 Bibliotecas da comunidade
+Abaixo segue uma lista de integrações com a BrasilApi fornecidas pela comunidade (muito obrigado a eles!):
+
+**Go**:
+  * **[brasilapi-go](https://github.com/isaqueveras/brasilapi-go)** criado por [@isaqueveras](https://github.com/isaqueveras)
+
+
+**JS**
+  * **[brasil-api-promisse](https://github.com/guhcostan/brasil-api-promisse)** criado por [@guhcostan](https://github.com/guhcostan)
+
+
+**Flutter**
+  * **[brazilian_banks](https://github.com/credifit-br/brazilian_banks)** criado por [@credifit-br](https://github.com/credifit-br)
+
 ## Autores
 
 | [<img src="https://github.com/filipedeschamps.png?size=115" width=115><br><sub>@filipedeschamps</sub>](https://github.com/filipedeschamps) | [<img src="https://github.com/lucianopf.png?size=115" width=115><br><sub>@lucianopf</sub>](https://github.com/lucianopf) |
