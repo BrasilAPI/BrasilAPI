@@ -1,0 +1,95 @@
+{
+    "tags": [
+        {
+            "name": "TAXAS",
+            "description": "Taxas de juros e índices oficiais"
+        }
+    ],
+    "paths": {
+        "/taxas/v1": {
+            "get": {
+                "tags": [
+                    "TAXAS"
+                ],
+                "summary": "Retorna as taxas de juros e alguns índices oficiais do Brasil",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Taxa"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/taxas/v1/{sigla}": {
+            "get": {
+                "tags": [
+                    "TAXAS"
+                ],
+                "summary": "Busca as informações de uma taxa a partir do seu nome/sigla",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Taxa"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Taxa ou Índice não foi encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "name": "NotFoundError",
+                                    "message": "Taxa ou Índice não encontrada.",
+                                    "type": "not_found"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Taxa": {
+                "title": "Taxa",
+                "required": [
+                    "nome",
+                    "valor"
+                ],
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string"
+                    },
+                    "valor": {
+                        "type": "decimal",
+                        "format": "double"
+                    }
+                },
+                "example": {
+                    "name": "CDI",
+                    "value": 7.65
+                }
+            }
+        }
+    }
+}

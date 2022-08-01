@@ -61,7 +61,11 @@ export function getEasterHolidays(year) {
     type: 'national',
   });
   movingDate.setDate(movingDate.getDate() - 2);
-  // Sexta feira Santa / Paixão de Cristo não é feriado nacional
+  holidays.push({
+    date: formatDate(movingDate),
+    name: 'Sexta-feira Santa',
+    type: 'national',
+  });
   movingDate.setDate(movingDate.getDate() - 45);
   holidays.push({
     date: formatDate(movingDate),
