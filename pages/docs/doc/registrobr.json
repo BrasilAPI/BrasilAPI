@@ -1,0 +1,120 @@
+{
+    "tags": [
+        {
+            "name": "REGISTROBR",
+            "description": "Avalia um dominio no registro.br"
+        }
+    ],
+    "paths": {
+        "/registrobr/v1/{domain}": {
+            "get": {
+                "tags": ["REGISTROBR"],
+                "summary": "Avalia o status de um dominio",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "domain",
+                        "description": "O domínio ou nome a ser avaliado .\n",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/REGISTROBR"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "REGISTROBR": {
+                "title": "REGISTROBR avail",
+                "type": "object",
+                "required":[
+                    "status",
+                    "fqdn"
+                ],
+                "properties": {
+                    "status": {
+                        "type": "integer",
+                        "description": "0 - domínio disponível | 1 - disponível com tickets concorrentes | 2 - já registrado | 3 - indisponível | 4 - inválido | 5 - aguardando processo de liberação | 6 - disponível no processo de liberação em andamento | 7 - disponível no processo de liberação em andamento com tickets concorrentes | 8 - erro | 9 - domínio em processo de liberação competitivo"
+                    },
+                    "fqdn": {
+                        "type": "string",
+                        "description": "Domínio pesquisado"
+                    },
+                    "suggestions": {
+                        "type": "array",
+                        "description": "Caso o dominio esteja indisponivel o registro podera sugerir extensões disponíveis para o registro"
+                    },
+                    "fqdnace": {
+                        "type": "string"
+                    },
+                    "exempt": {
+                        "type": "boolean"
+                    },
+                    "hosts": {
+                        "type": "array"
+                    },
+                    "publication-status": {
+                        "type": "string"
+                    },
+                    "expires-at": {
+                        "type": "Date"
+                    }
+                },
+                "example": {
+                    "status": 2,
+                    "fqdn": "brasilapi.com.br",
+                    "fqdnace": "",
+                    "exempt": false,
+                    "hosts": [
+                        "bob.ns.cloudflare.com",
+                        "lily.ns.cloudflare.com"
+                    ],
+                    "publication-status": "published",
+                    "expires-at": "2022-09-23T00:00:00-03:00",
+                    "suggestions": [
+                        "agr.br",
+                        "app.br",
+                        "art.br",
+                        "blog.br",
+                        "dev.br",
+                        "eco.br",
+                        "esp.br",
+                        "etc.br",
+                        "far.br",
+                        "flog.br",
+                        "imb.br",
+                        "ind.br",
+                        "inf.br",
+                        "log.br",
+                        "net.br",
+                        "ong.br",
+                        "rec.br",
+                        "seg.br",
+                        "srv.br",
+                        "tec.br",
+                        "tmp.br",
+                        "tur.br",
+                        "tv.br",
+                        "vlog.br",
+                        "wiki.br"
+                    ]
+                }
+            }
+        }
+    }
+}
