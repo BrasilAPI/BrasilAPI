@@ -45,10 +45,7 @@ export default function Index() {
               disponibilizar endpoints modernos com baixíssima latência
               independente de sua fonte.
             </p>
-            <a
-              href="/docs"
-              className={styles.buttonStartNow}
-            >
+            <a href="/docs" className={styles.buttonStartNow}>
               Começar agora
             </a>
           </div>
