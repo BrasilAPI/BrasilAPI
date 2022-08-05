@@ -1,20 +1,20 @@
 {
     "tags": [
         {
-            "name": "REGISTROBR",
+            "name": "REGISTRO BR",
             "description": "Avalia um dominio no registro.br"
         }
     ],
     "paths": {
         "/registrobr/v1/{domain}": {
             "get": {
-                "tags": ["REGISTROBR"],
-                "summary": "Avalia o status de um dominio",
+                "tags": ["REGISTRO BR"],
+                "summary": "Avalia o status de um dominio .br",
                 "description": "",
                 "parameters": [
                     {
                         "name": "domain",
-                        "description": "O domínio ou nome a ser avaliado .\n",
+                        "description": "O domínio ou nome a ser avaliado",
                         "in": "path",
                         "required": true,
                         "schema": {
@@ -32,6 +32,16 @@
                                 }
                             }
                         }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/REGISTROBR_BAD_REQUEST"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -40,16 +50,21 @@
     "components": {
         "schemas": {
             "REGISTROBR": {
-                "title": "REGISTROBR avail",
+                "title": "Avaliação de domínio .br",
                 "type": "object",
                 "required":[
+                    "status_code",
                     "status",
                     "fqdn"
                 ],
                 "properties": {
-                    "status": {
+                    "status_code": {
                         "type": "integer",
-                        "description": "0 - domínio disponível | 1 - disponível com tickets concorrentes | 2 - já registrado | 3 - indisponível | 4 - inválido | 5 - aguardando processo de liberação | 6 - disponível no processo de liberação em andamento | 7 - disponível no processo de liberação em andamento com tickets concorrentes | 8 - erro | 9 - domínio em processo de liberação competitivo"
+                        "description": "0 - domínio disponível | 1 - disponível com tickets concorrentes | 2 - já registrado | 3 - indisponível | 4 - inválido | 5 - aguardando processo de liberação | 6 - disponível no processo de liberação em andamento | 7 - disponível no processo de liberação em andamento com tickets concorrentes | 8 - erro | 9 - domínio em processo de liberação competitivo | 10 - desconhecido"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "AVAILABLE | AVAILABLE_WITH_TICKET | REGISTERED | UNAVAILABLE | INVALID_QUERY | RELEASE_WAITING | RELEASE_IN_PROGRESS | RELEASE_IN_PROGRESS_WITH_TICKETS | ERROR | DOMAIN_PROCESS_RELEASE | UNKNOW"
                     },
                     "fqdn": {
                         "type": "string",
@@ -59,27 +74,27 @@
                         "type": "array",
                         "description": "Caso o dominio esteja indisponivel o registro podera sugerir extensões disponíveis para o registro"
                     },
-                    "fqdnace": {
-                        "type": "string"
-                    },
-                    "exempt": {
-                        "type": "boolean"
-                    },
                     "hosts": {
-                        "type": "array"
+                        "type": "array",
+                        "description": "CDN's de um domínio publicado"
                     },
                     "publication-status": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Status de um dominio registrado"
                     },
                     "expires-at": {
-                        "type": "Date"
+                        "type": "Date",
+                        "description": "Vencimento do domínio"
+                    },
+                    "reasons": {
+                        "type": "array",
+                        "description": "Justificativas da indisponibilidade de registro ainda não registrado"
                     }
                 },
                 "example": {
-                    "status": 2,
+                    "status_code": 2,
+                    "status": "REGISTERED",
                     "fqdn": "brasilapi.com.br",
-                    "fqdnace": "",
-                    "exempt": false,
                     "hosts": [
                         "bob.ns.cloudflare.com",
                         "lily.ns.cloudflare.com"
@@ -113,6 +128,34 @@
                         "vlog.br",
                         "wiki.br"
                     ]
+                }
+            },
+            "REGISTROBR_BAD_REQUEST": {
+                "title": "Erro ao avaliar o domínio",
+                "type": "object",
+                "required":[
+                    "message",
+                    "type",
+                    "name"
+                ],
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "description": "Mensagem de erro"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "Tipo do erro"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Nome do erro"
+                    }
+                },
+                "example": {
+                    "message": "O domínio não foi informado corretamente!",
+                    "type": "bad_request",
+                    "name": "BadRequestError"
                 }
             }
         }
