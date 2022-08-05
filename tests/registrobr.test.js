@@ -17,7 +17,7 @@ describe('api/registrobr/v1 (E2E)', () => {
   });
   test('Pesquisando domínios inválidos', async () => {
     try {
-      throw new Error(await axios.get(`${URL}/Ç{á}$`));
+      throw await axios.get(`${URL}/Ç{á}$`);
     } catch (error) {
       expect(error.response.status).toBe(400);
       expect(error.response.data.type).toBe('bad_request');

@@ -35,4 +35,4 @@ async function data(request, response) {
   }
 }
 
-export default app({ cache: 172800 }).get(data);
+export default app({ cache: 7200 }).get(data);
