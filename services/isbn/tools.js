@@ -1,4 +1,4 @@
-const ISBN_PATTERN = /^978(6|8)5[0-9]{8}$|^(6|8)5[0-9]{7}[0-9xX]{1}$/;
+const ISBN_PATTERN = /^978[68]5\d{8}$|^[68]5\d{7}[0-9xX]{1}$/;
 
 /**
  * Validates a ISBN string by checking the verififier digit.

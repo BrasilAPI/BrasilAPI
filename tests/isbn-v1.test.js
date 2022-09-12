@@ -26,8 +26,8 @@ describe('api/isbn/v1 (E2E)', () => {
       expect(status).toEqual(400);
       expect(data).toEqual({
         message: 'ISBN inválido',
-        name: 'ISBN_INVALID',
-        type: 'isbn_error',
+        name: 'BadRequestError',
+        type: 'bad_request',
       });
     }
   });

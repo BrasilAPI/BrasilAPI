@@ -94,11 +94,7 @@ export default async function cblSearch(isbn) {
   });
 
   if (!response.data.value || !response.data.value[0]) {
-    throw new NotFoundError({
-      message: 'ISBN não encontrado',
-      type: 'isbn_error',
-      name: 'ISBN_NOT_FOUND',
-    });
+    throw new NotFoundError({ message: 'ISBN não encontrado' });
   }
 
   const cblBook = response.data.value[0];
@@ -114,7 +110,9 @@ export default async function cblSearch(isbn) {
     year: cblBook.Ano ? parseInt(cblBook.Ano, 10) : null,
     format: cblBook.Formato === 'Papel' ? 'PHYSICAL' : 'DIGITAL',
     page_count: cblBook.Paginas ? parseInt(cblBook.Paginas, 10) : null,
-    subjects: cblBook.Subject ? [cblBook.Subject] : [],
+    subjects: [cblBook.Subject]
+      .concat(cblBook.PalavrasChave || [])
+      .filter(Boolean),
     location: parseLocation(cblBook.Cidade, cblBook.UF),
     retail_price: null,
     cover_url: null,

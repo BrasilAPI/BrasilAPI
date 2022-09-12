@@ -18,7 +18,8 @@
                         "in": "path",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "string",
+                            "example": "9788545702870"
                         }
                     },
                     {
@@ -56,9 +57,9 @@
                                     "$ref": "#/components/schemas/ErrorMessage"
                                 },
                                 "example": {
-                                    "name": "isbn_error",
+                                    "name": "BadRequestError",
                                     "message": "ISBN inválido",
-                                    "type": "ISBN_INVALID"
+                                    "type": "bad_request"
                                 }
                             }
                         }
@@ -71,9 +72,9 @@
                                     "$ref": "#/components/schemas/ErrorMessage"
                                 },
                                 "example": {
-                                    "name": "isbn_error",
+                                    "name": "NotFoundError",
                                     "message": "ISBN não encontrado",
-                                    "type": "ISBN_NOT_FOUND"
+                                    "type": "not_found"
                                 }
                             }
                         }
@@ -86,9 +87,9 @@
                                     "$ref": "#/components/schemas/ErrorMessage"
                                 },
                                 "example": {
-                                    "name": "isbn_error",
+                                    "name": "InternalError",
                                     "message": "Todos os serviços de ISBN retornaram erro.",
-                                    "type": "service_error"
+                                    "type": "internal"
                                 }
                             }
                         }
@@ -112,7 +113,7 @@
                     },
                     "unit": {
                         "type": "string",
-                        "enum": ["CENTIMETER"]
+                        "enum": ["CENTIMETER", "INCH"]
                     }
                 },
                 "example": {
@@ -173,7 +174,8 @@
                         "type": "integer"
                     },
                     "format": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": ["PHYSICAL", "DIGITAL"]
                     },
                     "page_count": {
                         "type": "integer"

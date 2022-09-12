@@ -17,9 +17,9 @@ function parseDimensions(dimensions) {
   }
 
   return {
-    width: parseFloat(dimensions.width.replace(/\s[a-zA-Z]+$/, '')),
-    height: parseFloat(dimensions.height.replace(/\s[a-zA-Z]+$/, '')),
-    unit: 'CENTIMETER',
+    width: parseFloat(dimensions.width.replace(/\s(cm|in)+$/, '')),
+    height: parseFloat(dimensions.height.replace(/\s(cm|in)+$/, '')),
+    unit: dimensions.width.includes('cm') ? 'CENTIMETER' : 'INCH',
   };
 }
 
@@ -53,11 +53,7 @@ export default async function googleBooksSearch(isbn) {
   });
 
   if (!response.data.items || !response.data.items[0]) {
-    throw new NotFoundError({
-      message: 'ISBN não encontrado',
-      type: 'isbn_error',
-      name: 'ISBN_NOT_FOUND',
-    });
+    throw new NotFoundError({ message: 'ISBN não encontrado' });
   }
 
   const gbBook = response.data.items[0];

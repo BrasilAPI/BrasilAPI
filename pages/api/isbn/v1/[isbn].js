@@ -54,11 +54,7 @@ async function action(request, response) {
     if (!validateIsbn(requestedIsbn)) {
       response.status(400);
 
-      throw new BadRequestError({
-        message: 'ISBN inválido',
-        type: 'isbn_error',
-        name: 'ISBN_INVALID',
-      });
+      throw new BadRequestError({ message: 'ISBN inválido' });
     }
 
     const result = await isbnSearch(requestedIsbn, providers);
@@ -75,17 +71,12 @@ async function action(request, response) {
       const isNotFound = errors.some((err) => err instanceof NotFoundError);
 
       if (isNotFound) {
-        throw new NotFoundError({
-          message: 'ISBN não encontrado',
-          type: 'isbn_error',
-          name: 'ISBN_NOT_FOUND',
-        });
+        throw new NotFoundError({ message: 'ISBN não encontrado' });
       }
     }
 
     throw new InternalError({
       message: 'Todos os serviços de ISBN retornaram erro.',
-      type: 'service_error',
     });
   }
 }

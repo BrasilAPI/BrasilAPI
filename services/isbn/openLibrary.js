@@ -29,7 +29,7 @@ function parseDimensions(dimensions) {
   return {
     width: values[1],
     height: values[0],
-    unit: dimensions.includes('centimeters') ? 'CENTIMETER' : 'INCHES',
+    unit: dimensions.includes('centimeters') ? 'CENTIMETER' : 'INCH',
   };
 }
 
@@ -52,11 +52,7 @@ export default async function openLibrarySearch(isbn) {
   });
 
   if (Object.keys(response.data).length === 0 || !response.data[bibKey]) {
-    throw new NotFoundError({
-      message: 'ISBN não encontrado',
-      type: 'isbn_error',
-      name: 'ISBN_NOT_FOUND',
-    });
+    throw new NotFoundError({ message: 'ISBN não encontrado' });
   }
 
   const olBook = response.data[bibKey];
@@ -78,7 +74,7 @@ export default async function openLibrarySearch(isbn) {
     publisher: olBook.publishers.map((publisher) => publisher.name).join(' & '),
     synopsis: details.description && details.description.value,
     dimensions: parseDimensions(details.physical_dimensions),
-    year: olBook.publish_date && olBook.publish_date.match(/[0-9]{4}/)[0],
+    year: olBook.publish_date && olBook.publish_date.match(/\d{4}/)[0],
     format: 'PHYSICAL',
     page_count: olBook.number_of_pages,
     subjects: (olBook.subjects || []).map((subject) => subject.name),

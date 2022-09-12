@@ -59,11 +59,7 @@ export default async function mercadoEditorialSearch(isbn) {
   });
 
   if (!response.data.books || !response.data.books[0]) {
-    throw new NotFoundError({
-      message: 'ISBN não encontrado',
-      type: 'isbn_error',
-      name: 'ISBN_NOT_FOUND',
-    });
+    throw new NotFoundError({ message: 'ISBN não encontrado' });
   }
 
   const meBook = response.data.books[0];
