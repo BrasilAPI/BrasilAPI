@@ -17,8 +17,8 @@ function parseDimensions(dimensions) {
   }
 
   return {
-    width: parseFloat(dimensions.width.replace(/\s(.*)$/, '')),
-    height: parseFloat(dimensions.height.replace(/\s(.*)$/, '')),
+    width: parseFloat(dimensions.width.replace(/\s[a-zA-Z]+$/, '')),
+    height: parseFloat(dimensions.height.replace(/\s[a-zA-Z]+$/, '')),
     unit: 'CENTIMETER',
   };
 }
