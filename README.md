@@ -62,7 +62,7 @@ Abaixo segue uma lista de integrações com a BrasilApi fornecidas pela comunida
   * **[brazilian_banks](https://github.com/credifit-br/brazilian_banks)** criado por [@credifit-br](https://github.com/credifit-br)
 
 
-**;Net**
+**.Net**
   * **[BrasilAPI-DotNet](https://github.com/farukaf/BrasilAPI-DotNet)** criado por [@farukaf](https://github.com/farukaf)
 
 
