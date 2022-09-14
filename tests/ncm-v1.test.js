@@ -9,8 +9,8 @@ describe('ncm v1 (E2E)', () => {
       expect(response.data).toEqual({
         Codigo: '3305.10.00',
         Descricao: '- Xampus',
-        Data_Inicio: '01/04/2022',
-        Data_Fim: '31/12/9999',
+        Data_Inicio: '2022-01-04',
+        Data_Fim: '9999-12-31',
         Tipo_Ato: 'Res Camex',
         Numero_Ato: '000272',
         Ano_Ato: '2021',
@@ -19,18 +19,13 @@ describe('ncm v1 (E2E)', () => {
 
     test('Utilizando um código inexistente: 00', async () => {
       const requestUrl = `${global.SERVER_URL}/api/ncm/v1/0`;
+      const response = await axios.get(requestUrl);
 
-      try {
-        await axios.get(requestUrl);
-      } catch (error) {
-        const { response } = error;
-
-        expect(response.status).toBe(404);
-        expect(response.data).toMatchObject({
-          message: 'Código NCM não encontrado',
-          type: 'NCM_CODE_NOT_FOUND',
-        });
-      }
+      expect(response.status).toBe(404);
+      expect(response.data).toMatchObject({
+        message: 'Código NCM não encontrado',
+        type: 'NCM_CODE_NOT_FOUND',
+      });
     });
   });
 
@@ -43,8 +38,8 @@ describe('ncm v1 (E2E)', () => {
         {
           Codigo: '3305.10.00',
           Descricao: '- Xampus',
-          Data_Inicio: '01/04/2022',
-          Data_Fim: '31/12/9999',
+          Data_Inicio: '2022-01-04',
+          Data_Fim: '9999-12-31',
           Tipo_Ato: 'Res Camex',
           Numero_Ato: '000272',
           Ano_Ato: '2021',
@@ -54,15 +49,10 @@ describe('ncm v1 (E2E)', () => {
 
     test('Utilizando uma descrição inexistente: localhost', async () => {
       const requestUrl = `${global.SERVER_URL}/api/ncm/v1?search=localhost`;
+      const response = await axios.get(requestUrl);
 
-      try {
-        await axios.get(requestUrl);
-      } catch (error) {
-        const { response } = error;
-
-        expect(response.status).toBe(200);
-        expect(response.data).toMatchObject([]);
-      }
+      expect(response.status).toBe(200);
+      expect(response.data).toMatchObject([]);
     });
     test('Utilizando um código válido: 330410', async () => {
       const requestUrl = `${global.SERVER_URL}/api/ncm/v1?search=330410`;
@@ -72,8 +62,8 @@ describe('ncm v1 (E2E)', () => {
         {
           Codigo: '3304.10.00',
           Descricao: '- Produtos de maquiagem para os lábios',
-          Data_Inicio: '01/04/2022',
-          Data_Fim: '31/12/9999',
+          Data_Inicio: '2022-04-01',
+          Data_Fim: '9999-12-31',
           Tipo_Ato: 'Res Camex',
           Numero_Ato: '000272',
           Ano_Ato: '2021',

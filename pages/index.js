@@ -14,7 +14,7 @@ export default function Index() {
         <link rel="canonical" href="https://brasilapi.com.br/" />
         <meta
           name="keywords"
-          content="Brasil API, cep, ddd, bancos, cnpj, receita federal, ibge, feriados, tabela fipe, municípios"
+          content="Brasil API, cep, ddd, bancos, cnpj, receita federal, ibge, feriados, tabela fipe, municípios, ncm"
         />
         <meta
           name="description"
@@ -45,10 +45,7 @@ export default function Index() {
               disponibilizar endpoints modernos com baixíssima latência
               independente de sua fonte.
             </p>
-            <a
-              href="/docs"
-              className={styles.buttonStartNow}
-            >
+            <a href="/docs" className={styles.buttonStartNow}>
               Começar agora
             </a>
           </div>
