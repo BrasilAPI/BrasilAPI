@@ -86,8 +86,8 @@
                     }
                 },
                 "example": {
-                    "name": "CDI",
-                    "value": 7.65
+                    "nome": "CDI",
+                    "valor": 7.65
                 }
             }
         }
