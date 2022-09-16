@@ -1,12 +1,18 @@
 import axios from 'axios';
 import ncmList from './ncmList.json';
 
-/**
- * @param Date date
- * @return string
- */
-function formatDate(date) {
-  return date.toISOString().substr(0, 10);
+function parseObject(obj) {
+  const formatDate = (date) => {
+    const newDate = new Date(date.split('/').reverse());
+    return newDate.toISOString().slice(0, 10);
+  };
+
+  const newObj = Object.fromEntries(
+    Object.entries(obj).map(([k, v]) => [k.toLowerCase(), v])
+  );
+  newObj.data_fim = formatDate(newObj.data_fim);
+  newObj.data_inicio = formatDate(newObj.data_inicio);
+  return newObj;
 }
 
 const fetchNcmListFromSefaz = async () => {
@@ -22,19 +28,11 @@ export const getNcmData = async () => {
   try {
     const response = await fetchNcmListFromSefaz();
     return response.Nomenclaturas.map((el) => {
-      return {
-        ...el,
-        Data_Inicio: formatDate(el.Data_Inicio),
-        Data_Fim: formatDate(el.Data_Fim),
-      };
+      return parseObject(el);
     });
   } catch (err) {
     return ncmList.Nomenclaturas.map((el) => {
-      return {
-        ...el,
-        Data_Inicio: formatDate(el.Data_Inicio),
-        Data_Fim: formatDate(el.Data_Fim),
-      };
+      return parseObject(el);
     });
   }
 };

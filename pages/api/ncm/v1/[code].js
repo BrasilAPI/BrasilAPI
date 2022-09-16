@@ -6,7 +6,7 @@ const action = async (request, response) => {
   const ncmCode = code.replace(/\D/g, '');
   const allNcmData = await getNcmData();
   const ncmData = allNcmData.find(
-    ({ Codigo }) => Codigo.replace(/\D/g, '') === ncmCode
+    ({ codigo }) => codigo.replace(/\D/g, '') === ncmCode
   );
 
   if (!ncmData) {

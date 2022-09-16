@@ -17,10 +17,19 @@ const action = async (request, response) => {
 
     ncmData = ncmData.filter((ncm) => {
       return (
-        searchByDescription(ncm.Descricao, search) ||
-        searchByCode(ncm.Codigo, search)
+        searchByDescription(ncm.descricao, search) ||
+        searchByCode(ncm.codigo, search)
       );
     });
+
+    if (!ncmData) {
+      response.status(404);
+      response.json({
+        message: 'Código NCM não encontrado',
+        type: 'NCM_CODE_NOT_FOUND',
+      });
+      return;
+    }
   }
 
   response.status(200);
