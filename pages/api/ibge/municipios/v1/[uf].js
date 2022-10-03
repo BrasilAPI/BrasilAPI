@@ -5,6 +5,9 @@ import { getStateCities, CODIGOS_ESTADOS } from '@/services/ibge/wikipedia';
 import { getContiesByUf } from '@/services/ibge/gov';
 
 import NotFoundError from '@/errors/NotFoundError';
+import InternalError from '@/errors/InternalError';
+import BaseError from '@/errors/BaseError';
+
 import { getCities } from '@/services/dados-abertos-br/cities';
 
 const getData = async (uf, providers = null) => {
@@ -40,17 +43,23 @@ const action = async (request, response) => {
       : null;
 
     if (!uf || !CODIGOS_ESTADOS[uf.toUpperCase()]) {
-      throw new Error('EstadoNotFoundException');
+      throw new NotFoundError({
+        message: 'UF não encontrada.',
+        name: 'EstadoNotFoundException',
+      });
     }
 
     const data = await getData(uf, providers);
     return response.status(200).json(data);
   } catch (err) {
-    if (err.message === 'EstadoNotFoundException') {
-      throw new NotFoundError({ message: 'UF não encontrada' });
+    if (err instanceof BaseError) {
+      throw err;
     }
 
-    throw err;
+    throw new InternalError({
+      message: 'Erro ao buscar UF.',
+      name: 'EstadoInternalException',
+    });
   }
 };
 
