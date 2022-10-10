@@ -15,8 +15,6 @@ async function citiesOfDdd(request, response, next) {
     const dddData = allDddData.filter(({ ddd }) => ddd === requestedDdd);
 
     if (dddData.length === 0) {
-      response.status(404);
-
       throw new NotFoundError({
         message: 'DDD não encontrado',
         type: 'ddd_error',

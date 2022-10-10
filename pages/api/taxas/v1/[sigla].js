@@ -9,11 +9,8 @@ const action = async (request, response) => {
   const valor = taxas[sigla];
 
   if (!valor) {
-    response.status(404);
     throw new NotFoundError({
-      name: 'NotFoundError',
       message: 'Taxa ou Índice não encontrada.',
-      type: 'not_found',
     });
   }
 
