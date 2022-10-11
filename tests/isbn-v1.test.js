@@ -197,6 +197,11 @@ describe('api/isbn/v1 (E2E)', () => {
     const { data, status } = response;
 
     expect(status).toEqual(200);
+
+    // The retail_price test is skipped because the return depends on
+    // where the Google Books API is being accessed. If called by a
+    // Brazilian IP, it will return the sale information. If called
+    // by an IP from other country, it will skip that part.
     expect(data).toEqual(
       expect.objectContaining({
         isbn: '9788545712466',
@@ -211,10 +216,6 @@ describe('api/isbn/v1 (E2E)', () => {
         page_count: 432,
         subjects: expect.arrayContaining(['Comics & Graphic Novels']),
         location: null,
-        retail_price: expect.objectContaining({
-          currency: 'BRL',
-          amount: 32.9,
-        }),
         cover_url:
           'https://books.google.com/books/content?id=hU2jDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
         provider: 'google-books',
