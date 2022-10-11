@@ -1,3 +1,5 @@
+import { Promise } from 'bluebird';
+
 import app from '@/app';
 
 import BaseError from '@/errors/BaseError';
