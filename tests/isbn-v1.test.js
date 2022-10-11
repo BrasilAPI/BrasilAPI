@@ -32,7 +32,7 @@ describe('api/isbn/v1 (E2E)', () => {
         subjects: expect.arrayContaining([expect.any(String)]),
         location: expect.stringMatching(/s[aã]o paulo/i),
         provider: expect.stringMatching(
-          /^cbl|mercado-editorial|google-books|open-library$/
+          /^(?:cbl|mercado-editorial|google-books|open-library)$/
         ),
       })
     );
