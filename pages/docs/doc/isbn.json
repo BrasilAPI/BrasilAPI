@@ -2,7 +2,7 @@
     "tags": [
         {
             "name": "ISBN",
-            "description": "Informações sobre livros publicados no Brasil a partir do <abbr title=\"International Standard Book Number\">ISBN</abbr>, um sistema internacional de identificação de livros que utiliza números para classificá-los por título, autor, país, editora e edição."
+            "description": "Informações sobre livros publicados no <strong>Brasil</strong> (prefixo <code>65</code> ou <code>85</code>) a partir do <abbr title=\"International Standard Book Number\">ISBN</abbr>, um sistema internacional de identificação de livros que utiliza números para classificá-los por título, autor, país, editora e edição."
         }
     ],
     "paths": {
@@ -24,7 +24,7 @@
                     },
                     {
                         "name": "providers",
-                        "description": "Lista de provedores separados por vírgula.",
+                        "description": "Lista de provedores separados por vírgula. Se não especificado, será realizado uma busca em todos os provedores e o que retornar as informações mais rapidamente será o escolhido.",
                         "in": "query",
                         "required": false,
                         "style": "pipeDelimited",
@@ -199,7 +199,7 @@
                     },
                     "provider": {
                         "type": "string",
-                        "enum": ["CBL", "MERCADO_EDITORIAL", "OPEN_LIBRARY", "GOOGLE_BOOKS"]
+                        "enum": ["cbl", "mercado-editorial", "open-library", "google-books"]
                     }
                 },
                 "example": {
@@ -223,11 +223,11 @@
                     "year": 2017,
                     "format": "PHYSICAL",
                     "page_count": 364,
-                    "subjects": ["Cartoons; caricaturas e quadrinhos"],
+                    "subjects": ["Cartoons; caricaturas e quadrinhos", "mangá", "motocicleta", "gangue", "Delinquência"],
                     "location": "SÃO PAULO, SP",
                     "retail_price": null,
                     "cover_url": null,
-                    "provider": "CBL"
+                    "provider": "cbl"
                 }
             }
         }

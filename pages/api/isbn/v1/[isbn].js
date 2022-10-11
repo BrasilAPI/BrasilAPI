@@ -5,23 +5,20 @@ import BadRequestError from '@/errors/BadRequestError';
 import InternalError from '@/errors/InternalError';
 import NotFoundError from '@/errors/NotFoundError';
 
-import { validateIsbn } from '@/services/isbn/tools';
-import cblSearch from '@/services/isbn/cbl';
-import googleBooksSearch from '@/services/isbn/googleBooks';
-import mercadoEditorialSearch from '@/services/isbn/mercadoEditorial';
-import openLibrarySearch from '@/services/isbn/openLibrary';
+import { isValidIsbn } from '@/services/isbn/tools';
+import searchInCbl from '@/services/isbn/cbl';
+import searchInGoogleBooks from '@/services/isbn/googleBooks';
+import searchInMercadoEditorial from '@/services/isbn/mercadoEditorial';
+import searchInOpenLibrary from '@/services/isbn/openLibrary';
 
 const PROVIDER_MAP = {
-  cbl: cblSearch,
-  'google-books': googleBooksSearch,
-  'mercado-editorial': mercadoEditorialSearch,
-  'open-library': openLibrarySearch,
+  cbl: searchInCbl,
+  'google-books': searchInGoogleBooks,
+  'mercado-editorial': searchInMercadoEditorial,
+  'open-library': searchInOpenLibrary,
 };
 
-const CACHE_CONTROL_HEADER_VALUE =
-  'max-age=0, s-maxage=86400, stale-while-revalidate, public';
-
-async function isbnSearch(isbn, providers = null) {
+async function searchIsbn(isbn, providers = null) {
   let promises = [];
   const allProviders = Object.values(PROVIDER_MAP);
 
@@ -49,15 +46,13 @@ async function action(request, response) {
       ? request.query.providers.split(',')
       : null;
 
-    response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
-
-    if (!validateIsbn(requestedIsbn)) {
+    if (!isValidIsbn(requestedIsbn)) {
       response.status(400);
 
       throw new BadRequestError({ message: 'ISBN inválido' });
     }
 
-    const result = await isbnSearch(requestedIsbn, providers);
+    const result = await searchIsbn(requestedIsbn, providers);
 
     return response.status(200).json(result);
   } catch (error) {

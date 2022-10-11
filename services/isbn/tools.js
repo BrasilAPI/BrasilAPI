@@ -10,7 +10,7 @@ const ISBN_PATTERN = /^978[68]5\d{8}$|^[68]5\d{7}[0-9xX]{1}$/;
  * @param {string} isbn The ISBN to be validated
  * @returns true if the ISBN provided is valid
  */
-export function validateIsbn(isbn) {
+export function isValidIsbn(isbn) {
   const isbnDigits = isbn.toUpperCase();
 
   if (isbnDigits.length !== 10 && isbnDigits.length !== 13) {
@@ -45,7 +45,7 @@ export function validateIsbn(isbn) {
  * @returns The ISBN-10 representation.
  */
 export function convertIsbn13ToIsbn10(isbn13) {
-  if (!validateIsbn(isbn13)) {
+  if (!isValidIsbn(isbn13)) {
     return null;
   }
 
@@ -70,7 +70,7 @@ export function convertIsbn13ToIsbn10(isbn13) {
  * @returns The ISBN-13 representation.
  */
 export function convertIsbn10ToIsbn13(isbn10) {
-  if (!validateIsbn(isbn10)) {
+  if (!isValidIsbn(isbn10)) {
     return null;
   }
 

@@ -52,7 +52,7 @@ function parsePrice(currency, price) {
  * @param {string} isbn The ISBN to search.
  * @returns The book details if found.
  */
-export default async function mercadoEditorialSearch(isbn) {
+export default async function searchInMercadoEditorial(isbn) {
   const response = await axios.get(API_SEARCH_URL, {
     params: { isbn },
     headers: { Accept: 'application/json' },
@@ -67,7 +67,7 @@ export default async function mercadoEditorialSearch(isbn) {
   return {
     isbn: meBook.isbn,
     title: meBook.titulo,
-    subtitle: meBook.subtitulo,
+    subtitle: meBook.subtitulo.length > 0 ? meBook.subtitulo : null,
     authors: meBook.contribuicao.map(
       (contributor) => `${contributor.nome} ${contributor.sobrenome}`
     ),
@@ -88,6 +88,6 @@ export default async function mercadoEditorialSearch(isbn) {
       meBook.imagens &&
       meBook.imagens.imagem_primeira_capa &&
       meBook.imagens.imagem_primeira_capa.grande,
-    provider: 'MERCADO_EDITORIAL',
+    provider: 'mercado-editorial',
   };
 }

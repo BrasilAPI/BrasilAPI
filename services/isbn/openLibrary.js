@@ -34,12 +34,24 @@ function parseDimensions(dimensions) {
 }
 
 /**
+ * Parse the Open Library publish date into a proper year number.
+ *
+ * @param {string} publishDate The Open Library publish date.
+ * @returns A parsed year as a number if it matches
+ */
+function parseYear(publishDate) {
+  const match = publishDate && publishDate.match(/\d{4}/)[0];
+
+  return match ? parseInt(match, 10) : null;
+}
+
+/**
  * Search for book details into the Open Library database.
  *
  * @param {string} isbn The ISBN to search.
  * @returns The book details if found.
  */
-export default async function openLibrarySearch(isbn) {
+export default async function searchInOpenLibrary(isbn) {
   const bibKey = `ISBN:${isbn}`;
 
   const response = await axios.get(API_SEARCH_URL, {
@@ -74,7 +86,7 @@ export default async function openLibrarySearch(isbn) {
     publisher: olBook.publishers.map((publisher) => publisher.name).join(' & '),
     synopsis: details.description && details.description.value,
     dimensions: parseDimensions(details.physical_dimensions),
-    year: olBook.publish_date && olBook.publish_date.match(/\d{4}/)[0],
+    year: parseYear(olBook.publish_date),
     format: 'PHYSICAL',
     page_count: olBook.number_of_pages,
     subjects: (olBook.subjects || []).map((subject) => subject.name),
@@ -85,6 +97,6 @@ export default async function openLibrarySearch(isbn) {
       olBook.publish_places[0].name.replace('Brazil', 'Brasil'),
     retail_price: null,
     cover_url: olBook.cover && olBook.cover.large,
-    provider: 'OPEN_LIBRARY',
+    provider: 'open-library',
   };
 }

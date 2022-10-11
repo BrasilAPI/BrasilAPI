@@ -67,7 +67,7 @@ function parseLocation(city, state) {
  * @param {string} isbn The ISBN to search.
  * @returns The book details if found.
  */
-export default async function cblSearch(isbn) {
+export default async function searchInCbl(isbn) {
   const isbn13 = isbn.length === 10 ? convertIsbn10ToIsbn13(isbn) : isbn;
   const isbn10 = isbn.length === 13 ? convertIsbn13ToIsbn10(isbn) : isbn;
 
@@ -116,6 +116,6 @@ export default async function cblSearch(isbn) {
     location: parseLocation(cblBook.Cidade, cblBook.UF),
     retail_price: null,
     cover_url: null,
-    provider: 'CBL',
+    provider: 'cbl',
   };
 }
