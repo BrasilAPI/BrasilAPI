@@ -47,8 +47,6 @@ async function action(request, response) {
       : null;
 
     if (!isValidIsbn(requestedIsbn)) {
-      response.status(400);
-
       throw new BadRequestError({ message: 'ISBN inválido' });
     }
 
