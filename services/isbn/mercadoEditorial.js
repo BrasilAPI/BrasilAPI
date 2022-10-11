@@ -67,7 +67,8 @@ export default async function searchInMercadoEditorial(isbn) {
   return {
     isbn: meBook.isbn,
     title: meBook.titulo,
-    subtitle: meBook.subtitulo.length > 0 ? meBook.subtitulo : null,
+    subtitle:
+      meBook.subtitulo && meBook.subtitulo.length > 0 ? meBook.subtitulo : null,
     authors: meBook.contribuicao.map(
       (contributor) => `${contributor.nome} ${contributor.sobrenome}`
     ),
