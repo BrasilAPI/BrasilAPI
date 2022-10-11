@@ -219,7 +219,7 @@
                                 },
                                 "example": {
                                     "name": "NotFoundError",
-                                    "message": "UF não encontrado",
+                                    "message": "UF não encontrada.",
                                     "type": "not_found"
                                 }
                             }
