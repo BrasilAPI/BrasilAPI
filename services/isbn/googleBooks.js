@@ -60,6 +60,14 @@ export default async function searchInGoogleBooks(isbn) {
 
   const { volumeInfo } = gbBook;
 
+  const coverUrl =
+    volumeInfo.imageLinks.extraLarge ||
+    volumeInfo.imageLinks.large ||
+    volumeInfo.imageLinks.medium ||
+    volumeInfo.imageLinks.small ||
+    volumeInfo.imageLinks.thumbnail ||
+    volumeInfo.imageLinks.smallThumbnail;
+
   return {
     isbn,
     title: volumeInfo.title.trim(),
@@ -76,13 +84,7 @@ export default async function searchInGoogleBooks(isbn) {
     subjects: volumeInfo.categories,
     location: null,
     retail_price: parsePrice(gbBook.saleInfo),
-    cover_url:
-      volumeInfo.imageLinks.extraLarge ||
-      volumeInfo.imageLinks.large ||
-      volumeInfo.imageLinks.medium ||
-      volumeInfo.imageLinks.small ||
-      volumeInfo.imageLinks.thumbnail ||
-      volumeInfo.imageLinks.smallThumbnail,
+    cover_url: coverUrl && coverUrl.replace('http://', 'https://'),
     provider: 'google-books',
   };
 }

@@ -216,7 +216,7 @@ describe('api/isbn/v1 (E2E)', () => {
           amount: 32.9,
         }),
         cover_url:
-          'http://books.google.com/books/content?id=hU2jDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
+          'https://books.google.com/books/content?id=hU2jDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
         provider: 'google-books',
       })
     );
