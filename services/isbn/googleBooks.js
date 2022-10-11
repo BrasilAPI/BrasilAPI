@@ -79,7 +79,7 @@ export default async function searchInGoogleBooks(isbn) {
     year:
       volumeInfo.publishedDate &&
       parseInt(volumeInfo.publishedDate.substring(0, 4), 10),
-    format: gbBook.saleInfo.isEbook ? 'DIGITAL' : 'PHYSICAL',
+    format: volumeInfo.dimensions ? 'PHYSICAL' : 'DIGITAL',
     page_count: volumeInfo.pageCount,
     subjects: volumeInfo.categories,
     location: null,
