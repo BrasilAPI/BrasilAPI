@@ -48,7 +48,7 @@ function parsePrice(saleInfo) {
  */
 export default async function searchInGoogleBooks(isbn) {
   const response = await axios.get(API_SEARCH_URL, {
-    params: { q: `isbn:${isbn}` },
+    params: { q: `isbn:${isbn}`, country: 'BR' },
     headers: { Accept: 'application/json' },
   });
 

@@ -216,6 +216,10 @@ describe('api/isbn/v1 (E2E)', () => {
         page_count: 432,
         subjects: expect.arrayContaining(['Comics & Graphic Novels']),
         location: null,
+        retail_price: expect.objectContaining({
+          currency: 'BRL',
+          amount: 32.9,
+        }),
         cover_url: expect.stringContaining(
           'https://books.google.com/books/content?id=hU2jDwAAQBAJ'
         ),
