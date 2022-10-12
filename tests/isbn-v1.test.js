@@ -216,8 +216,9 @@ describe('api/isbn/v1 (E2E)', () => {
         page_count: 432,
         subjects: expect.arrayContaining(['Comics & Graphic Novels']),
         location: null,
-        cover_url:
-          'https://books.google.com/books/content?id=hU2jDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
+        cover_url: expect.stringContaining(
+          'https://books.google.com/books/content?id=hU2jDwAAQBAJ'
+        ),
         provider: 'google-books',
       })
     );
