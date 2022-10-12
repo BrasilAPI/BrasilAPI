@@ -197,11 +197,6 @@ describe('api/isbn/v1 (E2E)', () => {
     const { data, status } = response;
 
     expect(status).toEqual(200);
-
-    // The retail_price test is skipped because the return depends on
-    // where the Google Books API is being accessed. If called by a
-    // Brazilian IP, it will return the sale information. If called
-    // by an IP from other country, it will skip that part.
     expect(data).toEqual(
       expect.objectContaining({
         isbn: '9788545712466',
