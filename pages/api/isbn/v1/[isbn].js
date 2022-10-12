@@ -56,8 +56,6 @@ async function action(request, response) {
 
     return response.status(200).json(result);
   } catch (error) {
-    console.log(error);
-
     if (error instanceof BaseError) {
       throw error;
     }
