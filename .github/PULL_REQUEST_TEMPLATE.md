@@ -1,4 +1,4 @@
-## :memo: PR Checklist
+# :memo: PR Checklist
 
 Selecione quais requisitos o seu PR atende:
 
