@@ -30,10 +30,8 @@ ID da Issue: N/A
 
 
 ## :warning: Este PR introduz uma breaking change?
-```
-[ ] Sim
-[ ] Não
-```
+- [ ] Sim
+- [ ] Não
 
 <!-- Se o PR adiciona uma breaking change, descreve o impacto e o caminho de migração para as aplicações existentes abaixo-->
 
