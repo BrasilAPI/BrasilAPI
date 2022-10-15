@@ -1,34 +1,48 @@
-import cities from 'cidades-promise';
-import microCors from 'micro-cors';
+import app from '@/app';
 
-const CACHE_CONTROL_HEADER_VALUE = 'max-age=0, s-maxage=86400, stale-while-revalidate';
-const cors = microCors();
+import BaseError from '@/errors/BaseError';
+import InternalError from '@/errors/InternalError';
+import NotFoundError from '@/errors/NotFoundError';
 
+import { getDddsData } from '@/services/ddd';
 
-// retorna estado e lista de cidades por DDD 
-// exemplo da rota: /api/cities/v1/ddd/21 
+async function citiesOfDdd(request, response, next) {
+  try {
+    const requestedDdd = request.query.ddd;
 
-async function CitiesByDdd(request, response) {
-    const requestedCities = request.query.ddd;
+    const allDddData = await getDddsData();
 
-    response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
+    const dddData = allDddData.filter(({ ddd }) => ddd === requestedDdd);
 
-    try {
-        const citiesResult = await cities.getCitiesByDdd(requestedCities);
-        
-        response.status(200);
-        response.json(citiesResult);
-
-    } catch (error) {
-        if (error.name === 'citiesPromiseError') {
-            response.status(404);
-            response.json(error);
-            return;
-        }
-
-        response.status(500);
-        response.json(error);
+    if (dddData.length === 0) {
+      throw new NotFoundError({
+        message: 'DDD não encontrado',
+        type: 'ddd_error',
+        name: 'DDD_NOT_FOUND',
+      });
     }
+
+    const { state } = dddData[0];
+
+    const cities = dddData.map((ddd) => ddd.city);
+
+    const dddResult = {
+      state,
+      cities,
+    };
+
+    response.status(200);
+    return response.json(dddResult);
+  } catch (error) {
+    if (error instanceof BaseError) {
+      return next(error);
+    }
+
+    throw new InternalError({
+      message: 'Todos os serviços de DDD retornaram erro.',
+      type: 'service_error',
+    });
+  }
 }
 
-export default cors(CitiesByDdd);
+export default app().get(citiesOfDdd);
