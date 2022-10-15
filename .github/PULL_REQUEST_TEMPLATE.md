@@ -26,7 +26,6 @@ Que tipo de mudança esse PR propõe?
 
 ID da Issue: N/A
 
-
 ## :construction_worker: Qual o novo comportamento?
 
 
