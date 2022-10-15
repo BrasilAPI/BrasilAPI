@@ -50,7 +50,7 @@ O BrasilAPI é uma iniciativa feita de brasileiros para brasileiros, por favor, 
 ## 📦 Bibliotecas da comunidade
 Abaixo segue uma lista de integrações com a BrasilApi fornecidas pela comunidade (muito obrigado a eles!):
 
-**Go**:
+**Go**
   * **[brasilapi-go](https://github.com/isaqueveras/brasilapi-go)** criado por [@isaqueveras](https://github.com/isaqueveras)
 
 
@@ -60,6 +60,14 @@ Abaixo segue uma lista de integrações com a BrasilApi fornecidas pela comunida
 
 **Flutter**
   * **[brazilian_banks](https://github.com/credifit-br/brazilian_banks)** criado por [@credifit-br](https://github.com/credifit-br)
+
+
+**.Net**
+  * **[BrasilAPI-DotNet](https://github.com/farukaf/BrasilAPI-DotNet)** criado por [@farukaf](https://github.com/farukaf)
+
+**Python**
+  * **[brasilapy](https://github.com/lipe14-ops/brasilapy)** Criado por [@lipe14-ops](https://github.com/lipe14-ops)
+
 
 ## Autores
 
