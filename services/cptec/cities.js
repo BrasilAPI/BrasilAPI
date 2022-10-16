@@ -7,7 +7,7 @@ import { CPTEC_URL, CITY_TEMPLATE } from './constants';
  * @returns {Array}
  */
 export const getAllCitiesData = async () => {
-  const citiesData = await axios.get(`${CPTEC_URL}listaCidades`, {
+  const citiesData = await axios.get(`${CPTEC_URL}/listaCidades`, {
     responseType: 'application/xml',
     responseEncoding: 'binary',
   });
@@ -21,7 +21,7 @@ export const getAllCitiesData = async () => {
  * @returns {Array}
  */
 export const getCityData = async (name) => {
-  const citiesData = await axios.get(`${CPTEC_URL}listaCidades?city=${name}`, {
+  const citiesData = await axios.get(`${CPTEC_URL}/listaCidades?city=${name}`, {
     responseType: 'application/xml',
     responseEncoding: 'binary',
   });

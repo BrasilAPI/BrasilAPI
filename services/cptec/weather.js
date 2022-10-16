@@ -21,7 +21,7 @@ function normalizeItem(item) {
  */
 export const getCurrentCapitalWeatherData = async () => {
   const currentData = await axios.get(
-    `${CPTEC_URL}capitais/condicoesAtuais.xml`,
+    `${CPTEC_URL}/capitais/condicoesAtuais.xml`,
     {
       responseType: 'application/xml',
       responseEncoding: 'binary',
@@ -43,7 +43,7 @@ export const getCurrentCapitalWeatherData = async () => {
  */
 export const getCurrentAirportWeather = async (icaoCode) => {
   const airportWeather = await axios.get(
-    `${CPTEC_URL}estacao/${icaoCode}/condicoesAtuais.xml`,
+    `${CPTEC_URL}/estacao/${icaoCode}/condicoesAtuais.xml`,
     {
       responseType: 'application/xml',
       responseEncoding: 'binary',
@@ -72,7 +72,7 @@ export const getCurrentAirportWeather = async (icaoCode) => {
  * @returns {object}
  */
 export const getPredictionWeather = async (cityCode, days) => {
-  const baseUrl = `${CPTEC_URL}cidade/`;
+  const baseUrl = `${CPTEC_URL}/cidade/`;
   let url = baseUrl;
   if (days <= 4) {
     url += `${cityCode}/previsao.xml`;

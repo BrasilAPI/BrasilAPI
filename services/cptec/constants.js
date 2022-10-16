@@ -1,5 +1,5 @@
 // Calling https because limitations on tls of webservice
-export const CPTEC_URL = 'http://servicos.cptec.inpe.br/XML/';
+export const CPTEC_URL = 'http://servicos.cptec.inpe.br/XML';
 
 export const CITY_TEMPLATE = [
   'cidades/cidade',

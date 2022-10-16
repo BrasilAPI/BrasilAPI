@@ -3,7 +3,7 @@ import { transform } from 'camaro';
 import { CPTEC_URL, SWELL_TEMPLATE } from './constants';
 
 export const getSwellData = async (cityCode, days) => {
-  const url = `${CPTEC_URL}cidade/${cityCode}/todos/tempos/ondas.xml`;
+  const url = `${CPTEC_URL}/cidade/${cityCode}/todos/tempos/ondas.xml`;
 
   try {
     const swellData = await axios.get(url, {
