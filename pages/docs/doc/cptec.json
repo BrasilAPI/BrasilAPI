@@ -356,7 +356,7 @@
         "/cptec/v1/clima/aeroporto/{icaoCode}": {
             "get": {
                 "tags": ["CPTEC"],
-                "summary": "Condições atuais nos aeroportos (/cptec/v1/clima/aeroporto/:icaoCode)",
+                "summary": "Condições atuais no aeroporto (/cptec/v1/clima/aeroporto/:icaoCode)",
                 "description": "Retorna condições meteorológicas atuais no aeroporto solicitado. Este endpoint utiliza o código ICAO (4 dígitos) do aeroporto.",
                 "operationId": "airportcurrentcondition(/cptec/v1/clima/aeroporto/:icaoCode)",
                 "parameters": [
