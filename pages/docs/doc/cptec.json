@@ -209,7 +209,7 @@
             "get": {
                 "tags": ["CPTEC"],
                 "summary": "Previsão meteorológica para, até, 14 dias",
-                "description": "Retorna a previsão meteorológica para a cidade informada para um período de, até, 14 dias.",
+                "description": "Retorna a previsão meteorológica para a cidade informada para um período de 1 até 14 dias.",
                 "operationId": "upto14daysprediction(/cptec/v1/clima/previsao/:cityCode/:days)",
                 "parameters": [
                     {
