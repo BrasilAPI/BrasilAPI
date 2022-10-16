@@ -446,8 +446,8 @@
                     "temp": "28"
                 }
             },
-            "climaPrediction": {
-                "title": "climaPrediction",
+            "ClimaPrediction": {
+                "title": "ClimaPrediction",
                 "required": ["city_name", "state", "last_update", "clima"],
                 "type": "object",
                 "properties": {
