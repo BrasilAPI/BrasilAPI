@@ -256,7 +256,7 @@
             "get": {
                 "tags": ["CPTEC"],
                 "summary": "Previsão oceânica",
-                "description": "Retorna a previsão oceÇanica para a cidade informada para um dia",
+                "description": "Retorna a previsão oceânica para a cidade informada para 1 dia",
                 "operationId": "ondaspredictionwithoutdays(/cptec/v1/ondas/:cityCode)",
                 "parameters": [
                     {
