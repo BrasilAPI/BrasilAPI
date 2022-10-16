@@ -492,8 +492,8 @@
                     ]
                 }
             },
-            "clima": {
-                "title": "clima",
+            "Clima": {
+                "title": "Clima",
                 "required": [
                     "date",
                     "condition",
