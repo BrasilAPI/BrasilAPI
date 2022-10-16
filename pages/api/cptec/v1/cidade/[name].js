@@ -2,21 +2,44 @@ import removeSpecialChars from '@/services/util/removeSpecialChars';
 import { getCityData } from '@/services/cptec';
 import NotFoundError from '@/errors/NotFoundError';
 import app from '@/app';
+import BaseError from '@/errors/BaseError';
+import InternalError from '@/errors/InternalError';
+import BadRequestError from '@/errors/BadRequestError';
 
 const action = async (request, response) => {
-  const cityName = removeSpecialChars(request.query.name);
+  try {
+    const cityName = removeSpecialChars(request.query.name);
 
-  const cityData = await getCityData(cityName);
+    if (cityName.length === 0) {
+      throw new BadRequestError({
+        message: 'Nome da cidade inválido',
+        type: 'city_error',
+        name: 'CITY_NAME_ERROR',
+      });
+    }
 
-  if (!cityData || cityData.length === 0) {
-    throw new NotFoundError({
-      message: 'Nenhuma cidade localizada',
+    const cityData = await getCityData(cityName);
+
+    if (!cityData || cityData.length === 0) {
+      throw new NotFoundError({
+        message: 'Nenhuma cidade localizada',
+        type: 'city_error',
+        name: 'NO_CITY_NOT_FOUND',
+      });
+    }
+
+    response.json(cityData);
+  } catch (err) {
+    if (err instanceof BaseError) {
+      throw err;
+    }
+
+    throw new InternalError({
+      message: 'Erro ao buscar informações sobre cidade',
       type: 'city_error',
-      name: 'NO_CITY_NOT_FOUND',
+      name: 'CITY_INTERNAL',
     });
   }
-
-  response.json(cityData);
 };
 
 export default app().get(action);
