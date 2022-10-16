@@ -532,8 +532,8 @@
                     "condition_desc": "Pancadas de Chuva"
                 }
             },
-            "ondasPrediction": {
-                "title": "ondasPrediction",
+            "OndasPrediction": {
+                "title": "OndasPrediction",
                 "required": ["city_name", "state", "last_update", "ondas"],
                 "type": "object",
                 "properties": {
