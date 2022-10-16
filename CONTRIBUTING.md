@@ -2,14 +2,6 @@
 
 Qualquer ajuda que agregue valor ao projeto, seja na edição do código-fonte ou nas documentações, e consequentemente a vida das pessoas é muito bem-vindo, por isso decidimos torna-lo opensource.
 
-**Antes de iniciar o desenvolvimento recomendamos a leitura do nosso [Guia de Boas Práticas](GOOD_PRACTICES.md)**
-
-### Modo 1 - Editar localmente e fazer o upload com sincronização do Git com o Github
-
-**Antes de iniciar o desenvolvimento recomendamos a leitura do nosso [Guia de Boas Práticas](GOOD_PRACTICES.md)**
-
-### Modo 1 - Editar localmente e fazer o upload com sincronização do Git com o Github
-
 ## Iniciando
 
 Certifique-se de estar na pasta raiz do projeto para executar:
