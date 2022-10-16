@@ -19,4 +19,4 @@ const action = async (request, response) => {
   response.json(airportWeather);
 };
 
-export default app({ cache: 172800 }).get(action);
+export default app().get(action);
