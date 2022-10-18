@@ -20,6 +20,7 @@ const getDocs = () => {
     'FIPE',
     'IBGE',
     'NCM',
+    'ISBN',
   ];
 };
 
