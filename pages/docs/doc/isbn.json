@@ -1,0 +1,235 @@
+{
+    "tags": [
+        {
+            "name": "ISBN",
+            "description": "Informações sobre livros publicados no <strong>Brasil</strong> (prefixo <code>65</code> ou <code>85</code>) a partir do <abbr title=\"International Standard Book Number\">ISBN</abbr>, um sistema internacional de identificação de livros que utiliza números para classificá-los por título, autor, país, editora e edição."
+        }
+    ],
+    "paths": {
+        "/isbn/v1/{isbn}": {
+            "get": {
+                "tags": ["ISBN"],
+                "summary": "Informações sobre o livro a partir do ISBN",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "isbn",
+                        "description": "O código informado pode conter traços (<code>-</code>) e ambos os formatos são aceitos, sendo eles o obsoleto de 10 dígitos e o atual de 13 dígitos.",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "9788545702870"
+                        }
+                    },
+                    {
+                        "name": "providers",
+                        "description": "Lista de provedores separados por vírgula. Se não especificado, será realizado uma busca em todos os provedores e o que retornar as informações mais rapidamente será o escolhido.",
+                        "in": "query",
+                        "required": false,
+                        "style": "pipeDelimited",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": ["cbl", "mercado-editorial", "open-library", "google-books"]
+                            },
+                            "format": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ISBNInfo"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "ISBN inválido",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "name": "BadRequestError",
+                                    "message": "ISBN inválido",
+                                    "type": "bad_request"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "ISBN não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "name": "NotFoundError",
+                                    "message": "ISBN não encontrado",
+                                    "type": "not_found"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Todos os serviços de ISBN retornaram erro",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "name": "InternalError",
+                                    "message": "Todos os serviços de ISBN retornaram erro.",
+                                    "type": "internal"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Dimensions": {
+                "title": "Dimensions",
+                "required": ["width", "height", "unit"],
+                "type": "object",
+                "properties": {
+                    "width": {
+                        "type": "float"
+                    },
+                    "height": {
+                        "type": "float"
+                    },
+                    "unit": {
+                        "type": "string",
+                        "enum": ["CENTIMETER", "INCH"]
+                    }
+                },
+                "example": {
+                    "width": 17.5,
+                    "height": 25.7,
+                    "unit": "CENTIMETER"
+                }
+            },
+            "Price": {
+                "title": "Price",
+                "required": ["currency", "amount"],
+                "type": "object",
+                "properties": {
+                    "currency": {
+                        "type": "string",
+                        "description": "Código ISO 4217"
+                    },
+                    "amount": {
+                        "type": "float"
+                    }
+                },
+                "example": {
+                    "currency": "BRL",
+                    "amount": 104
+                }
+            },
+            "ISBNInfo": {
+                "title": "ISBN Info",
+                "required": ["isbn", "title", "provider"],
+                "type": "object",
+                "properties": {
+                    "isbn": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "subtitle": {
+                      "type": "string"
+                    },
+                    "authors": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "publisher": {
+                        "type": "string"
+                    },
+                    "synopsis": {
+                        "type": "string"
+                    },
+                    "dimensions": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/Dimensions"
+                    },
+                    "year": {
+                        "type": "integer"
+                    },
+                    "format": {
+                        "type": "string",
+                        "enum": ["PHYSICAL", "DIGITAL"]
+                    },
+                    "page_count": {
+                        "type": "integer"
+                    },
+                    "subjects": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "location": {
+                        "type": "string"
+                    },
+                    "retail_price": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/Price"
+                    },
+                    "cover_url": {
+                        "type": "string",
+                        "format": "uri"
+                    },
+                    "provider": {
+                        "type": "string",
+                        "enum": ["cbl", "mercado-editorial", "open-library", "google-books"]
+                    }
+                },
+                "example": {
+                    "isbn": "9788545702870",
+                    "title": "Akira",
+                    "subtitle": null,
+                    "authors": [
+                        "KATSUHIRO OTOMO",
+                        "DRIK SADA",
+                        "CASSIUS MEDAUAR",
+                        "MARCELO DEL GRECO",
+                        "DENIS TAKATA"
+                    ],
+                    "publisher": "Japorama Editora e Comunicação",
+                    "synopsis": "Um dos marcos da ficção científica oriental que revolucionou a chegada dos mangás e da cultura pop japonesa no Ocidente retorna em uma nova edição especial. Após atropelar uma criança de aparência estranha, Tetsuo Shima (o melhor amigo de Kaneda), começa a sentir algumas reações anormais. Isso acaba chamando a atenção do governo que está projetando diversas experiências secretas e acabam sequestrando Tetsuo. Nesta aventura cheia de ficção, Kaneda entra em cena para salvar o amigo, enquanto uma terrível e monstruosa entidade ameaça despertar.",
+                    "dimensions": {
+                        "width": 17.5,
+                        "height": 25.7,
+                        "unit": "CENTIMETER"
+                    },
+                    "year": 2017,
+                    "format": "PHYSICAL",
+                    "page_count": 364,
+                    "subjects": ["Cartoons; caricaturas e quadrinhos", "mangá", "motocicleta", "gangue", "Delinquência"],
+                    "location": "SÃO PAULO, SP",
+                    "retail_price": null,
+                    "cover_url": null,
+                    "provider": "cbl"
+                }
+            }
+        }
+    }
+}

@@ -19,6 +19,8 @@ const getDocs = () => {
     'Feriados-Nacionais',
     'FIPE',
     'IBGE',
+    'NCM',
+    'ISBN',
   ];
 };
 
