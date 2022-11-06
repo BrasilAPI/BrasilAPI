@@ -4,6 +4,16 @@ Qualquer ajuda que agregue valor ao projeto, seja na edição do código-fonte o
 
 ## Iniciando
 
+O projeto foi criado para usar o node v16 e npm v8.
+
+### Instalando o node via NVM
+Caso esteja utilizando o [Node Version Manager](https://github.com/nvm-sh/nvm), voce pode instalar a versão do node/npm usando o seguinte comando:
+
+    $ nvm install 16
+    $ nvm use 16
+
+### Instalando dependências
+
 Certifique-se de estar na pasta raiz do projeto para executar:
 
 ```npm install```
@@ -26,7 +36,7 @@ Para saber mais, acesse esses links:
 - [Regras do @commitlint/config-conventional](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional).
 
 ## Documentação dos Endpoints
-Se possível, além do endpoint crie também a documentação para o mesmo, utilizamos uma implementação básica da [OpenAPI 3.0](https://swagger.io/docs/specification/about/) em **json**. 
+Se possível, além do endpoint crie também a documentação para o mesmo, utilizamos uma implementação básica da [OpenAPI 3.0](https://swagger.io/docs/specification/about/) em **json**.
 A fim de facilitar o a contribuição e evitar conflitos, modularizamos a documentação dos endpoints, assim temos arquivos mais objetivos e enxutos.
 ### Como criar a documentação
 1- Acesse o diretório [`docs/doc`](pages/docs/doc);
