@@ -21,8 +21,10 @@ async function Cep(request, response) {
       request.url.includes('/api/cep/v2/0'))
   ) {
     response.status(508);
-    response.send('please stop abusing our public API, join our slack to chat a bit https://join.slack.com/t/brasilapi/shared_invite/zt-1k9w5h27p-4yLWoOQqIMgwqunnHCyWCQ');
-    return true;
+    response.send(
+      'please stop abusing our public API, join our slack to chat a bit https://join.slack.com/t/brasilapi/shared_invite/zt-1k9w5h27p-4yLWoOQqIMgwqunnHCyWCQ'
+    );
+    return;
   }
 
   const requestedCep = request.query.cep;
