@@ -14,19 +14,6 @@ async function getCepFromCepPromise(requestedCep) {
 }
 
 async function Cep(request, response) {
-  if (
-    request.headers['user-agent'] === 'axios/0.21.4' &&
-    !request.headers.origin &&
-    (request.url.includes('/api/cep/v2/1') ||
-      request.url.includes('/api/cep/v2/0'))
-  ) {
-    response.status(508);
-    response.send(
-      'please stop abusing our public API, join our slack to chat a bit https://join.slack.com/t/brasilapi/shared_invite/zt-1k9w5h27p-4yLWoOQqIMgwqunnHCyWCQ'
-    );
-    return;
-  }
-
   const requestedCep = request.query.cep;
 
   response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
