@@ -30,24 +30,24 @@
         justify-content: center;
         align-items: center;
         text-decoration: none;
-    
+
         width:100%;
-    
+
         @media (min-width: 767px) {
-          width: min-content;  
+          width: min-content;
         }
-    
+
         min-width: 11.56rem;
         height: 2.93rem;
         margin-top: 2rem;
-    
+
         border: 0;
         border-radius: 0.5rem;
         background: var(--green-600);
         color: var(--white);
-    
+
         transition: filter 0.2s;
-    
+
         &:hover {
           filter: brightness(0.9);
         }
@@ -95,6 +95,32 @@
       line-height: 1.562rem;
 
       text-align: justify;
+    }
+  }
+
+  .terms {
+    max-width: 68.125rem;
+    margin: 0 auto;
+
+    padding: 5rem 0;
+    text-align: center;
+
+    p {
+      margin: 3rem auto;
+      width: 70%;
+      line-height: 1.562rem;
+
+      text-align: justify;
+    }
+
+    .termsList {
+      margin: 3rem auto;
+      width: 70%;
+      text-align: left;
+
+      ul {
+        margin: 1rem 3rem;
+      }
     }
   }
 
@@ -149,6 +175,24 @@
 
       p {
         width: 100%;
+      }
+    }
+
+    .terms {
+      padding: 5rem 1rem;
+
+      p {
+        width: 100%;
+      }
+
+      .termsList {
+        margin: 3rem auto;
+        width: 100%;
+        text-align: left;
+
+        ul {
+          margin: 1rem 3rem;
+        }
       }
     }
   }

@@ -36,9 +36,30 @@
           justify-content: center;
           align-items: center;
         }
-        
+
         border: 1px solid var(--blue-800);
         border-radius: 0.5rem;
+        background: none;
+
+        transition: opacity 0.2s;
+
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+
+      .link {
+        min-width: 11.56rem;
+        color: #000;
+        text-decoration: underline;
+
+        @media (min-width: 980px) {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+        }
+
         background: none;
 
         transition: opacity 0.2s;
