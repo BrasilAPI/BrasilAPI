@@ -71,6 +71,8 @@ Abaixo segue uma lista de integrações com a BrasilApi fornecidas pela comunida
 **Rust**
   * **[brasilapi-rs](https://github.com/pedrinfx/brasilapi-rs)** Criado por [@pedrinfx](https://github.com/pedrinfx)
 
+**Java**
+  * **[BrasilAPI-Java](https://github.com/SavioAndres/BrasilAPI-Java)** Criado por [@SavioAndres](https://github.com/SavioAndres)
 
 ## Autores
 
