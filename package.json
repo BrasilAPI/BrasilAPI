@@ -16,7 +16,7 @@
     "lodash": "4.17.21",
     "micro-cors": "0.1.1",
     "mobx": "6.3.3",
-    "next": "11.1.2",
+    "next": "11.1.4",
     "next-connect": "0.10.2",
     "next-sitemap": "1.6.168",
     "react": "17.0.2",
