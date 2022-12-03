@@ -15,7 +15,7 @@
     "graphql": "15.8.0",
     "lodash": "4.17.21",
     "micro-cors": "0.1.1",
-    "mobx": "6.3.3",
+    "mobx": "6.7.0",
     "next": "11.1.4",
     "next-connect": "0.10.2",
     "next-sitemap": "1.6.168",
