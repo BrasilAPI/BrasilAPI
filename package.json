@@ -22,7 +22,7 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-icons": "4.2.0",
-    "redoc": "2.0.0-rc.53",
+    "redoc": "2.0.0",
     "sass": "1.42.1",
     "selic": "1.0.0",
     "styled-components": "5.3.1",
