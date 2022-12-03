@@ -41,7 +41,7 @@
     "eslint-plugin-react": "7.26.0",
     "eslint-plugin-react-hooks": "4.2.0",
     "github-contributors-list": "1.2.5",
-    "husky": "4.2.5",
+    "husky": "8.0.0",
     "jest": "27.2.1",
     "lint-staged": "11.1.2",
     "prettier": "2.4.1",
@@ -55,12 +55,9 @@
     "test:watch": "jest --watch",
     "fix": "eslint . --ext .js --fix",
     "commit": "cz",
-    "gen:contributors": "githubcontrib --owner BrasilAPI --repo BrasilAPI --sortBy contributions --sortOrder desc --filter filipedeschamps,lucianopf,dependabot[bot] --layoutStrategy $INIT_CWD/.github/contributors-list/layout-strategy-custom.js"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "precommit": "lint-staged",
+    "gen:contributors": "githubcontrib --owner BrasilAPI --repo BrasilAPI --sortBy contributions --sortOrder desc --filter filipedeschamps,lucianopf,dependabot[bot] --layoutStrategy $INIT_CWD/.github/contributors-list/layout-strategy-custom.js",
+    "prepare": "husky install"
   },
   "lint-staged": {
     "*.{js,jsx}": "npm run fix"
