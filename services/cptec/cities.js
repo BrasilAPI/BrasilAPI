@@ -1,6 +1,16 @@
 import axios from 'axios';
-import { transform } from 'camaro';
-import { CPTEC_URL, CITY_TEMPLATE } from './constants';
+import { XMLParser } from 'fast-xml-parser';
+import { CPTEC_URL } from './constants';
+
+const parser = new XMLParser();
+
+const formatCity = (city) => {
+  const newCity = city;
+  newCity.estado = city.uf;
+  delete newCity.uf;
+
+  return newCity;
+};
 
 /**
  * Get all Brazilian cities on CPTEC database
@@ -12,7 +22,10 @@ export const getAllCitiesData = async () => {
     responseEncoding: 'binary',
   });
 
-  return transform(citiesData.data, CITY_TEMPLATE);
+  if (parser.parse(citiesData.data).cidades.cidade) {
+    return parser.parse(citiesData.data).cidades.cidade.map(formatCity);
+  }
+  return [];
 };
 
 /**
@@ -26,5 +39,8 @@ export const getCityData = async (name) => {
     responseEncoding: 'binary',
   });
 
-  return transform(citiesData.data, CITY_TEMPLATE);
+  if (parser.parse(citiesData.data).cidades.cidade) {
+    return parser.parse(citiesData.data).cidades.cidade.map(formatCity);
+  }
+  return [];
 };

@@ -9,7 +9,7 @@ describe('weather capital v1 (E2E)', () => {
     expect(Array.isArray(response.data)).toBe(true);
 
     expect(response.data[0]).toMatchObject({
-      icao_code: 'SBAR',
+      codigo_icao: 'SBAR',
     });
   });
 });

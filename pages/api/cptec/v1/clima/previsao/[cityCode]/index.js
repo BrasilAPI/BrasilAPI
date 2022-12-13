@@ -18,7 +18,7 @@ const action = async (request, response) => {
       });
     }
 
-    if (weatherPredictions.weather.length === 0) {
+    if (weatherPredictions.clima.length === 0) {
       throw new NotFoundError({
         message: 'Previsões meteorológicas não localizadas',
         type: 'weather_error',

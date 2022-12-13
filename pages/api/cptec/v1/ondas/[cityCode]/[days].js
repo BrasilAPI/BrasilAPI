@@ -35,7 +35,7 @@ const action = async (request, response) => {
       });
     }
 
-    if (swellPredictions.swell.length === 0) {
+    if (swellPredictions.ondas.length === 0) {
       throw new NotFoundError({
         message: 'Previsões de ondas não disponíveis',
         type: 'weather_error',
@@ -46,6 +46,7 @@ const action = async (request, response) => {
     response.status(200);
     response.json(swellPredictions);
   } catch (err) {
+    console.log(err);
     if (err instanceof BaseError) {
       throw err;
     }
@@ -53,7 +54,7 @@ const action = async (request, response) => {
     throw new InternalError({
       message: 'Erro ao buscar informações sobre ondas',
       type: 'weather_error',
-      name: 'SWELL_PREDICTIONS_NOT_FOUND',
+      name: 'SWELL_PREDICTIONS_ERROR',
     });
   }
 };

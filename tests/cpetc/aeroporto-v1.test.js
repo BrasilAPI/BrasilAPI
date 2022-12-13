@@ -26,7 +26,7 @@ describe('weather airport v1 (E2E)', () => {
     expect(Array.isArray(response.data)).toBe(false);
 
     expect(response.data).toMatchObject({
-      icao_code: 'SBSP',
+      codigo_icao: 'SBSP',
     });
   });
 });

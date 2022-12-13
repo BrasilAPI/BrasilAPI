@@ -1,7 +1,7 @@
 const axios = require('axios');
 
-describe('Swell prediction v1 (E2E)', () => {
-  describe('Route WITHOUT number of days for swell', () => {
+describe('ondas prediction v1 (E2E)', () => {
+  describe('Route WITHOUT number of days for ondas', () => {
     test('GET /api/cptec/v1/ondas/:cityCode (Invalid City Code) ', async () => {
       const requestUrl = `${global.SERVER_URL}/api/cptec/v1/ondas/9999`;
 
@@ -27,12 +27,12 @@ describe('Swell prediction v1 (E2E)', () => {
       expect(Array.isArray(response.data)).toBe(false);
 
       expect(response.data).toMatchObject({
-        city_name: 'Rio de Janeiro',
-        state: 'RJ',
+        cidade: 'Rio de Janeiro',
+        estado: 'RJ',
       });
 
-      expect(Array.isArray(response.data.swell)).toBe(true);
-      expect(response.data.swell.length).toBe(1);
+      expect(Array.isArray(response.data.ondas)).toBe(true);
+      expect(response.data.ondas.length).toBe(1);
     });
   });
 
@@ -44,8 +44,8 @@ describe('Swell prediction v1 (E2E)', () => {
       expect(response.status).toBe(200);
       expect(Array.isArray(response.data)).toBe(false);
 
-      expect(Array.isArray(response.data.swell)).toBe(true);
-      expect(response.data.swell.length).toBe(2);
+      expect(Array.isArray(response.data.ondas)).toBe(true);
+      expect(response.data.ondas.length).toBe(2);
     });
 
     test('GET /api/cptec/v1/ondas/:cityCode/days (Invalid number of days) ', async () => {

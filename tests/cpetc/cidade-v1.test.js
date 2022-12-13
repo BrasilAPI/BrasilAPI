@@ -9,9 +9,9 @@ describe('cities v1 (E2E)', () => {
       expect(response.status).toBe(200);
       expect(Array.isArray(response.data)).toBe(true);
       expect(response.data[1]).toEqual({
-        code: '5051',
-        name: 'São Sebastião',
-        state: 'SP',
+        id: 5051,
+        nome: 'São Sebastião',
+        estado: 'SP',
       });
     });
 

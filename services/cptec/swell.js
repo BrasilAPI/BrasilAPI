@@ -1,6 +1,8 @@
 import axios from 'axios';
-import { transform } from 'camaro';
-import { CPTEC_URL, SWELL_TEMPLATE } from './constants';
+import { XMLParser } from 'fast-xml-parser';
+import { CPTEC_URL } from './constants';
+
+const parser = new XMLParser();
 
 export const getSwellData = async (cityCode, days) => {
   const url = `${CPTEC_URL}/cidade/${cityCode}/todos/tempos/ondas.xml`;
@@ -11,36 +13,49 @@ export const getSwellData = async (cityCode, days) => {
       responseEncoding: 'binary',
     });
 
-    const jsonData = await transform(swellData.data, SWELL_TEMPLATE);
+    const jsonData = parser.parse(swellData.data);
+    const newSwellArr = {
+      cidade: jsonData.cidade.nome,
+      estado: jsonData.cidade.uf,
+      atualizado_em: jsonData.cidade.atualizacao,
+      ondas: [],
+    };
 
     // group data by day
     let oldDate = '';
-    const newSwellArr = {
-      city_name: jsonData.city_name,
-      state: jsonData.state,
-      swell: [],
-    };
+
     let newItem = {};
-    jsonData.swell.map((item) => {
-      const datePart = item.date_time.split(' ');
+
+    newSwellArr.ondas = [];
+
+    jsonData.cidade.previsao.forEach((oneDay) => {
+      const datePart = oneDay.dia.split(' ');
       const [date, hour, tz] = datePart;
+
       if (date !== oldDate) {
         [oldDate] = datePart;
+
         newItem = {};
-        newItem.date = oldDate;
-        newItem.swell_data = [];
-        newSwellArr.swell.push(newItem);
+        newItem.data = oldDate;
+        newItem.dados_ondas = [];
+        newSwellArr.ondas.push(newItem);
       }
-      delete newItem.date_time;
-      newItem.hour = `${hour} ${tz}`;
-      newItem.swell_data = item;
+
+      newItem.dados_ondas.push({
+        hora: `${hour.replace('h', ':')}00${tz}`,
+        vento: oneDay.vento,
+        direcao_vento: oneDay.vento_dir,
+        altura_onda: oneDay.altura,
+        direcao_onda: oneDay.direcao,
+        agitation: oneDay.agitacao,
+      });
+
       return newItem;
     });
 
     // IF total data greater than requested number of days, slice array into correct size
-    if (newSwellArr.swell.length > days) {
-      newSwellArr.swell = newSwellArr.swell.slice(0, days);
-      return newSwellArr;
+    if (newSwellArr.ondas.length > days) {
+      newSwellArr.ondas = newSwellArr.ondas.slice(0, days);
     }
 
     return newSwellArr;

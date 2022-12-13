@@ -1,8 +1,8 @@
 {
     "tags": [
         {
-          "name": "CPTEC",
-          "description": "Abstração e normalização de dados provenientes da CPTEC"
+            "name": "CPTEC",
+            "description": "Abstração e normalização de dados provenientes da CPTEC"
         }
     ],
     "paths": {
@@ -10,7 +10,7 @@
             "get": {
                 "tags": ["CPTEC"],
                 "summary": "Listar localidades",
-                "description": "Retorna listagem com todas as cidades junto a seus respectivos códigos presentes nos serviços da CPTEC.\nO Código destas cidades será utilizado para os serviços de meteorologia e a ondas (previsão oceânica) fornecido pelo centro.",
+                "description": "Retorna listagem com todas as cidades junto a seus respectivos códigos presentes nos serviços da CPTEC.\nO Código destas cidades será utilizado para os serviços de meteorologia e a ondas (previsão oceânica) fornecido pelo centro.\nLeve em consideração que o WebService do CPTEC as vezes é instável, então se não encontrar uma determinada cidade na listagem completa, tente buscando por parte de seu nome no endpoint de busca.",
                 "operationId": "listcities(/cptec/v1/cidade)",
                 "parameters": [],
                 "responses": {
@@ -98,7 +98,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/CurrentCondition"
+                                        "$ref": "#/components/schemas/Currentcondicao"
                                     }
                                 }
                             }
@@ -113,7 +113,7 @@
                 "tags": ["CPTEC"],
                 "summary": "Condições atuais no aeroporto (/cptec/v1/clima/aeroporto/:icaoCode)",
                 "description": "Retorna condições meteorológicas atuais no aeroporto solicitado. Este endpoint utiliza o código ICAO (4 dígitos) do aeroporto.",
-                "operationId": "airportcurrentcondition(/cptec/v1/clima/aeroporto/:icaoCode)",
+                "operationId": "airportcurrentcondicao(/cptec/v1/clima/aeroporto/:icaoCode)",
                 "parameters": [
                     {
                         "name": "icaoCode",
@@ -133,7 +133,7 @@
                         "content": {
                             "application/json; charset=utf-8": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/CurrentCondition"
+                                    "$ref": "#/components/schemas/Currentcondicao"
                                 }
                             }
                         }
@@ -147,7 +147,7 @@
                                 },
                                 "example": {
                                     "message": "Condições meteorológicas ou aeroporto não localizados",
-                                    "type": "AIRPORT_CONDITIONS_NOT_FOUND"
+                                    "type": "AIRPORT_condicaoS_NOT_FOUND"
                                 }
                             }
                         }
@@ -367,66 +367,66 @@
         "schemas": {
             "City": {
                 "title": "City",
-                "required": ["name", "state", "code"],
+                "required": ["nome", "estado", "id"],
                 "type": "object",
                 "properties": {
-                    "name": {
+                    "nome": {
                         "type": "string"
                     },
-                    "state": {
+                    "estado": {
                         "type": "string"
                     },
-                    "code": {
-                        "type": "string"
+                    "id": {
+                        "type": "integer"
                     }
                 },
                 "example": {
-                    "name": "São Benedito",
-                    "state": "CE",
-                    "code": "4750"
+                    "nome": "São Benedito",
+                    "estado": "CE",
+                    "id": 4750
                 }
             },
-            "CurrentCondition": {
-                "title": "CurrentCondition",
+            "Currentcondicao": {
+                "title": "Currentcondicao",
                 "required": [
-                    "icao_code",
-                    "last_update",
-                    "pressure",
-                    "visibility",
-                    "wind",
-                    "wind_direction",
-                    "humidity",
-                    "clima_code",
-                    "clima_desc",
+                    "codigo_icao",
+                    "atualizado_em",
+                    "pressao_atmosferica",
+                    "visibilidade",
+                    "vento",
+                    "direcao_vento",
+                    "umidade",
+                    "codigo_clima",
+                    "desc_clima",
                     "temp"
                 ],
                 "type": "object",
                 "properties": {
-                    "icao_code": {
+                    "codigo_icao": {
                         "type": "string"
                     },
-                    "last_update": {
+                    "atualizado_em": {
                         "type": "string"
                     },
-                    "pressure": {
+                    "pressao_atmosferica": {
                         "type": "string"
                     },
-                    "visibility": {
+                    "visibilidade": {
                         "type": "string"
                     },
-                    "wind": {
+                    "vento": {
                         "type": "string"
                     },
-                    "wind_direction": {
+                    "direcao_vento": {
                         "type": "string"
                     },
-                    "humidity": {
+                    "umidade": {
                         "type": "string"
                     },
-                    "clima_code": {
+                    "codigo_clima": {
                         "type": "string"
                     },
-                    "clima_desc": {
+                    "desc_clima": {
                         "type": "string"
                     },
                     "temp": {
@@ -434,30 +434,30 @@
                     }
                 },
                 "example": {
-                    "icao_code": "SBAR",
-                    "last_update": "2021-01-27T15:00:00.974Z",
-                    "pressure": "1014",
-                    "visibility": "9000",
-                    "wind": "29",
-                    "wind_direction": "90",
-                    "humidity": "74",
-                    "clima_code": "ps",
-                    "clima_desc": "Predomínio de Sol",
+                    "codigo_icao": "SBAR",
+                    "atualizado_em": "2021-01-27T15:00:00.974Z",
+                    "pressao_atmosferica": "1014",
+                    "visibilidade": "9000",
+                    "vento": "29",
+                    "direcao_vento": "90",
+                    "umidade": "74",
+                    "codigo_clima": "ps",
+                    "desc_clima": "Predomínio de Sol",
                     "temp": "28"
                 }
             },
             "ClimaPrediction": {
                 "title": "ClimaPrediction",
-                "required": ["city_name", "state", "last_update", "clima"],
+                "required": ["cidade", "estado", "atualizado_em", "clima"],
                 "type": "object",
                 "properties": {
-                    "city_name": {
+                    "cidade": {
                         "type": "string"
                     },
-                    "state": {
+                    "estado": {
                         "type": "string"
                     },
-                    "last_update": {
+                    "atualizado_em": {
                         "type": "string"
                     },
                     "clima": {
@@ -469,25 +469,25 @@
                     }
                 },
                 "example": {
-                    "city_name": "Brejo Alegre",
-                    "state": "SP",
-                    "last_update": "2020-12-27",
+                    "cidade": "Brejo Alegre",
+                    "estado": "SP",
+                    "atualizado_em": "2020-12-27",
                     "clima": [
                         {
-                            "date": "2020-12-27",
-                            "condition": "pc",
+                            "data": "2020-12-27",
+                            "condicao": "pc",
                             "min": "20",
                             "max": "30",
-                            "uv_index": "13.0",
-                            "condition_desc": "Pancadas de Chuva"
+                            "indice_uv": "13.0",
+                            "condicao_desc": "Pancadas de Chuva"
                         },
                         {
-                            "date": "2020-12-28",
-                            "condition": "pc",
+                            "data": "2020-12-28",
+                            "condicao": "pc",
                             "min": "22",
                             "max": "29",
-                            "uv_index": "13.0",
-                            "condition_desc": "Pancadas de Chuva"
+                            "indice_uv": "13.0",
+                            "condicao_desc": "Pancadas de Chuva"
                         }
                     ]
                 }
@@ -495,19 +495,19 @@
             "Clima": {
                 "title": "Clima",
                 "required": [
-                    "date",
-                    "condition",
+                    "data",
+                    "condicao",
                     "min",
                     "max",
-                    "uv_index",
-                    "condition_desc"
+                    "indice_uv",
+                    "condicao_desc"
                 ],
                 "type": "object",
                 "properties": {
-                    "date": {
+                    "data": {
                         "type": "string"
                     },
-                    "condition": {
+                    "condicao": {
                         "type": "string"
                     },
                     "min": {
@@ -516,79 +516,79 @@
                     "max": {
                         "type": "string"
                     },
-                    "uv_index": {
+                    "indice_uv": {
                         "type": "string"
                     },
-                    "condition_desc": {
+                    "condicao_desc": {
                         "type": "string"
                     }
                 },
                 "example": {
-                    "date": "2020-12-27",
-                    "condition": "pc",
+                    "data": "2020-12-27",
+                    "condicao": "pc",
                     "min": "20",
                     "max": "30",
-                    "uv_index": "13.0",
-                    "condition_desc": "Pancadas de Chuva"
+                    "indice_uv": "13.0",
+                    "condicao_desc": "Pancadas de Chuva"
                 }
             },
             "OndasPrediction": {
                 "title": "OndasPrediction",
-                "required": ["city_name", "state", "last_update", "ondas"],
+                "required": ["cidade", "estado", "atualizado_em", "ondas"],
                 "type": "object",
                 "properties": {
-                    "city_name": {
+                    "cidade": {
                         "type": "string"
                     },
-                    "state": {
+                    "estado": {
                         "type": "string"
                     },
-                    "last_update": {
+                    "atualizado_em": {
                         "type": "string"
                     },
                     "ondas": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/components/schemas/ondasDate"
+                            "$ref": "#/components/schemas/ondasdata"
                         },
                         "description": ""
                     }
                 },
                 "example": {
-                    "city_name": "Rio de Janeiro",
-                    "state": "RJ",
-                    "last_update": "2020-12-27",
+                    "cidade": "Rio de Janeiro",
+                    "estado": "RJ",
+                    "atualizado_em": "2020-12-27",
                     "ondas": [
                         {
-                            "date": "27-12-2020",
-                            "ondas_data": [
+                            "data": "27-12-2020",
+                            "dados_ondas": [
                                 {
-                                    "wind": "5.2",
-                                    "wind_direction": "E",
-                                    "wave_height": "0.8",
-                                    "wave_direction": "ESE",
-                                    "agitation": "Fraco",
-                                    "hour": "00h Z"
+                                    "vento": "5.2",
+                                    "direcao_vento": "E",
+                                    "altura_onda": "0.8",
+                                    "direcao_onda": "ESE",
+                                    "agitacao": "Fraco",
+                                    "hora": "00h Z"
                                 },
                                 {
-                                    "wind": "4.1",
-                                    "wind_direction": "ENE",
-                                    "wave_height": "0.8",
-                                    "wave_direction": "ESE",
-                                    "agitation": "Fraco",
-                                    "hour": "03h Z"
+                                    "vento": "4.1",
+                                    "direcao_vento": "ENE",
+                                    "altura_onda": "0.8",
+                                    "direcao_onda": "ESE",
+                                    "agitacao": "Fraco",
+                                    "hora": "03h Z"
                                 }
                             ]
                         }
                     ]
                 }
             },
-            "ondasDate": {
-                "title": "ondasDate",
-                "required": ["date", "ondas_data"],
+            "ondasdata": {
+                "title": "ondasdata",
+                "required": ["data", "ondas_data"],
                 "type": "object",
                 "properties": {
-                    "date": {
+                    "data": {
                         "type": "string"
                     },
                     "ondas_data": {
@@ -600,23 +600,23 @@
                     }
                 },
                 "example": {
-                    "date": "27-12-2020",
+                    "data": "27-12-2020",
                     "ondas_data": [
                         {
-                            "wind": "5.2",
-                            "wind_direction": "E",
-                            "wave_height": "0.8",
-                            "wave_direction": "ESE",
-                            "agitation": "Fraco",
-                            "hour": "00h Z"
+                            "vento": "5.2",
+                            "direcao_vento": "E",
+                            "altura_onda": "0.8",
+                            "direcao_onda": "ESE",
+                            "agitacao": "Fraco",
+                            "hora": "00h Z"
                         },
                         {
-                            "wind": "4.1",
-                            "wind_direction": "ENE",
-                            "wave_height": "0.8",
-                            "wave_direction": "ESE",
-                            "agitation": "Fraco",
-                            "hour": "03h Z"
+                            "vento": "4.1",
+                            "direcao_vento": "ENE",
+                            "altura_onda": "0.8",
+                            "direcao_onda": "ESE",
+                            "agitacao": "Fraco",
+                            "hora": "03h Z"
                         }
                     ]
                 }
@@ -624,41 +624,41 @@
             "ondas": {
                 "title": "ondas",
                 "required": [
-                    "wind",
-                    "wind_direction",
-                    "wave_height",
-                    "wave_direction",
-                    "agitation",
-                    "hour"
+                    "vento",
+                    "direcao_vento",
+                    "altura_onda",
+                    "direcao_onda",
+                    "agitacao",
+                    "hora"
                 ],
                 "type": "object",
                 "properties": {
-                    "wind": {
+                    "vento": {
                         "type": "string"
                     },
-                    "wind_direction": {
+                    "direcao_vento": {
                         "type": "string"
                     },
-                    "wave_height": {
+                    "altura_onda": {
                         "type": "string"
                     },
-                    "wave_direction": {
+                    "direcao_onda": {
                         "type": "string"
                     },
-                    "agitation": {
+                    "agitacao": {
                         "type": "string"
                     },
-                    "hour": {
+                    "hora": {
                         "type": "string"
                     }
                 },
                 "example": {
-                    "wind": "5.2",
-                    "wind_direction": "E",
-                    "wave_height": "0.8",
-                    "wave_direction": "ESE",
-                    "agitation": "Fraco",
-                    "hour": "00h Z"
+                    "vento": "5.2",
+                    "direcao_vento": "E",
+                    "altura_onda": "0.8",
+                    "direcao_onda": "ESE",
+                    "agitacao": "Fraco",
+                    "hora": "00h Z"
                 }
             }            
         }

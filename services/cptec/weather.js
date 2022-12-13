@@ -1,18 +1,59 @@
 import axios from 'axios';
-import { transform } from 'camaro';
-import {
-  CPTEC_URL,
-  CAPITAL_TEMPLATE,
-  AIRPORT_TEMPLATE,
-  PREDICTION_TEMPLATE,
-  CONDITION_DESCRIPTIONS,
-} from './constants';
+import { XMLParser } from 'fast-xml-parser';
+import { CONDITION_DESCRIPTIONS, CPTEC_URL } from './constants';
 import normalizeBrazilianDate from '../util/normalizeBrazilianDate';
 
-function normalizeItem(item) {
+const parser = new XMLParser();
+
+/**
+ * Format meteorology metadata
+ * @param {object} item
+ * @returns {object}
+ */
+function formatMetar(item) {
   const newItem = item;
-  newItem.last_update = normalizeBrazilianDate(item.last_update);
+  newItem.codigo_icao = item.codigo;
+  newItem.pressao_atmosferica = item.pressao;
+  newItem.vento = item.vento_int;
+  newItem.direcao_vento = item.vento_dir;
+  newItem.codigo_clima = item.tempo;
+  newItem.desc_clima = item.tempo_desc;
+  newItem.temp = item.temperatura;
+
+  delete newItem.codigo;
+  delete newItem.pressao;
+  delete newItem.vento_int;
+  delete newItem.vento_dir;
+  delete newItem.tempo;
+  delete newItem.tempo_desc;
+  delete newItem.temperatura;
+
+  newItem.atualizado_em = normalizeBrazilianDate(item.atualizacao);
   return newItem;
+}
+
+/**
+ * Format prediction to return
+ * @param {object} unformattedData
+ * @returns {object}
+ */
+function formatPrediction(unformattedData) {
+  const formattedData = {
+    cidade: unformattedData.cidade.nome,
+    estado: unformattedData.cidade.uf,
+    atualizado_em: unformattedData.cidade.atualizacao,
+    clima: unformattedData.cidade.previsao.map((oneDay) => {
+      return {
+        data: oneDay.data,
+        condicao: oneDay.tempo,
+        condicao_desc: CONDITION_DESCRIPTIONS[oneDay.tempo],
+        min: oneDay.minima,
+        max: oneDay.maxima,
+        indice_uv: oneDay.iuv,
+      };
+    }),
+  };
+  return formattedData;
 }
 
 /**
@@ -24,16 +65,16 @@ export const getCurrentCapitalWeatherData = async () => {
     `${CPTEC_URL}/capitais/condicoesAtuais.xml`,
     {
       responseType: 'application/xml',
-      responseEncoding: 'binary',
+      responseEncoding: 'utf-8',
     }
   );
 
-  const jsonData = await transform(currentData.data, CAPITAL_TEMPLATE);
-  jsonData.map((item) => {
-    return normalizeItem(item);
-  });
+  const parsed = parser.parse(currentData.data);
 
-  return jsonData;
+  if (parsed.capitais.metar) {
+    return parsed.capitais.metar.map(formatMetar);
+  }
+  return [];
 };
 
 /**
@@ -46,23 +87,15 @@ export const getCurrentAirportWeather = async (icaoCode) => {
     `${CPTEC_URL}/estacao/${icaoCode}/condicoesAtuais.xml`,
     {
       responseType: 'application/xml',
-      responseEncoding: 'binary',
+      responseEncoding: 'utf-8',
     }
   );
+  const parsed = parser.parse(airportWeather.data);
 
-  const jsonData = await transform(airportWeather.data, AIRPORT_TEMPLATE);
-
-  if (
-    jsonData.length === 0 ||
-    jsonData[0].last_update === '00/00/0000 00:00:00'
-  ) {
-    return null;
+  if (parsed.metar) {
+    return formatMetar(parsed.metar);
   }
-  jsonData.map((item) => {
-    return normalizeItem(item);
-  });
-
-  return jsonData[0];
+  return [];
 };
 
 /**
@@ -85,42 +118,39 @@ export const getPredictionWeather = async (cityCode, days) => {
     responseEncoding: 'binary',
   });
 
-  const jsonData = await transform(
-    weatherPredictions.data,
-    PREDICTION_TEMPLATE
-  );
-  if (jsonData.city_name === 'null') {
-    return null;
-  }
+  const parsed = parser.parse(weatherPredictions.data);
 
-  // If number of days requested was greater than 7, load extended data from service
-  if (days > 7) {
-    const extendedPredictions = await axios.get(
-      `${baseUrl + cityCode}/estendida.xml`,
-      {
-        responseType: 'application/xml',
-        responseEncoding: 'binary',
+  if (parsed.cidade) {
+    const jsonData = formatPrediction(parsed);
+    if (jsonData.cidade === 'null') {
+      return null;
+    }
+
+    // If number of days requested was greater than 7, load extended data from service
+    if (days > 7) {
+      const extendedPredictions = await axios.get(
+        `${baseUrl + cityCode}/estendida.xml`,
+        {
+          responseType: 'application/xml',
+          responseEncoding: 'binary',
+        }
+      );
+
+      const extendedJsonData = parser.parse(extendedPredictions.data);
+      if (extendedJsonData.cidade) {
+        jsonData.clima = [
+          ...jsonData.clima,
+          ...formatPrediction(extendedJsonData).clima,
+        ];
       }
-    );
+    }
 
-    const extendedJsonData = await transform(
-      extendedPredictions.data,
-      PREDICTION_TEMPLATE
-    );
+    // IF total data greater than requested number of days, slice array into correct size
+    if (jsonData.clima.length > days) {
+      jsonData.clima = jsonData.clima.slice(0, days);
+    }
 
-    jsonData.weather = [...jsonData.weather, ...extendedJsonData.weather];
+    return jsonData;
   }
-
-  // IF total data greater than requested number of days, slice array into correct size
-  if (jsonData.weather.length > days) {
-    jsonData.weather = jsonData.weather.slice(0, days);
-  }
-
-  jsonData.weather.map((pred) => {
-    const newPred = pred;
-    newPred.condition_desc = CONDITION_DESCRIPTIONS[pred.condition];
-    return newPred;
-  });
-
-  return jsonData;
+  return [];
 };
