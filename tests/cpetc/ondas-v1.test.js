@@ -46,6 +46,10 @@ describe('ondas prediction v1 (E2E)', () => {
 
       expect(Array.isArray(response.data.ondas)).toBe(true);
       expect(response.data.ondas.length).toBe(2);
+      expect(response.data).toMatchObject({
+        cidade: 'Rio de Janeiro',
+        estado: 'RJ',
+      });
     });
 
     test('GET /api/cptec/v1/ondas/:cityCode/days (Invalid number of days) ', async () => {

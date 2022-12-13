@@ -26,13 +26,12 @@ describe('weather prediction v1 (E2E)', () => {
       expect(response.status).toBe(200);
       expect(Array.isArray(response.data)).toBe(false);
 
+      expect(Array.isArray(response.data.clima)).toBe(true);
+      expect(response.data.clima.length).toBe(1);
       expect(response.data).toMatchObject({
         cidade: 'Brejo Alegre',
         estado: 'SP',
       });
-
-      expect(Array.isArray(response.data.clima)).toBe(true);
-      expect(response.data.clima.length).toBe(1);
     });
   });
 
@@ -46,6 +45,11 @@ describe('weather prediction v1 (E2E)', () => {
 
       expect(Array.isArray(response.data.clima)).toBe(true);
       expect(response.data.clima.length).toBe(2);
+
+      expect(response.data).toMatchObject({
+        cidade: 'Brejo Alegre',
+        estado: 'SP',
+      });
     });
 
     test('GET /api/cptec/v1/clima/previsao/:cityCode/:days (Invalid number of days) ', async () => {
