@@ -53,7 +53,7 @@ const action = async (request, response) => {
     throw new InternalError({
       message: 'Erro ao buscar previsões para a cidade',
       type: 'weather_error',
-      name: 'CITY_WEATHER_PREDICTIONS_INTERNAL',
+      name: 'CITY_WEATHER_PREDICTIONS_ERROR',
     });
   }
 };
