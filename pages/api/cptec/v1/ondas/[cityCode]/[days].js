@@ -8,7 +8,7 @@ import { getSwellData } from '@/services/cptec';
 const action = async (request, response) => {
   const { days, cityCode } = request.query;
 
-  if (Number.isNaN(Number(days))) {
+  if (!Number.isFinite(Number(days))) {
     throw new BadRequestError({
       message: 'Quantidade de dias inválida, informe um valor numérico',
       type: 'request_error',
