@@ -4,11 +4,12 @@ import BaseError from '@/errors/BaseError';
 import InternalError from '@/errors/InternalError';
 import NotFoundError from '@/errors/NotFoundError';
 import { getPredictionWeather } from '@/services/cptec';
+import { MAX_WEATHER_DAYS, MIN_DAYS } from '@/services/cptec/constants';
 
 const action = async (request, response) => {
   const { days, cityCode } = request.query;
 
-  if (Number.isNaN(Number(days))) {
+  if (!Number.isFinite(Number(days))) {
     throw new BadRequestError({
       message: 'Quantidade de dias inválida, informe um valor numérico',
       type: 'request_error',
@@ -16,7 +17,7 @@ const action = async (request, response) => {
     });
   }
 
-  if (days < 1 || days > 14) {
+  if (days < MIN_DAYS || days > MAX_WEATHER_DAYS) {
     throw new BadRequestError({
       message: 'Quantidade de dias inválida (mínimo 1 dia e máximo 14 dias)',
       type: 'request_error',

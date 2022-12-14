@@ -1,6 +1,13 @@
-// Calling https because limitations on tls of webservice
+// Calling http because limitations on tls of webservice
 export const CPTEC_URL = 'http://servicos.cptec.inpe.br/XML';
 
+export const MIN_DAYS = 1;
+
+// Max numbers of days (CPTEC limitations)
+export const MAX_SWELL_DAYS = 6;
+export const MAX_WEATHER_DAYS = 14;
+
+// Descriptions extracted from CPTEC docs: http://servicos.cptec.inpe.br/XML/#condicoes-tempo
 export const CONDITION_DESCRIPTIONS = {
   ec: 'Encoberto com Chuvas Isoladas',
   ci: 'Chuvas Isoladas',

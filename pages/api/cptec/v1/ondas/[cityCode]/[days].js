@@ -4,6 +4,7 @@ import BaseError from '@/errors/BaseError';
 import InternalError from '@/errors/InternalError';
 import NotFoundError from '@/errors/NotFoundError';
 import { getSwellData } from '@/services/cptec';
+import { MAX_SWELL_DAYS, MIN_DAYS } from '@/services/cptec/constants';
 
 const action = async (request, response) => {
   const { days, cityCode } = request.query;
@@ -16,7 +17,7 @@ const action = async (request, response) => {
     });
   }
 
-  if (days < 1 || days > 6) {
+  if (days < MIN_DAYS || days > MAX_SWELL_DAYS) {
     throw new BadRequestError({
       message: 'Quantidade de dias inválida (mínimo 1 dia e máximo 6 dias)',
       type: 'request_error',
