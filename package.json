@@ -10,7 +10,7 @@
     "apollo-server-micro": "2.24.0",
     "axios": "0.21.1",
     "bluebird": "3.7.2",
-    "cep-promise": "4.1.0",
+    "cep-promise": "4.3.0",
     "cors": "2.8.5",
     "fast-xml-parser": "4.0.11",
     "graphql": "15.5.0",
