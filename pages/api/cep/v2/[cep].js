@@ -3,7 +3,7 @@ import cepPromise from 'cep-promise';
 
 import fetchGeocoordinateFromBrazilLocation from '../../../../lib/fetchGeocoordinateFromBrazilLocation';
 
-const providers = ['correios', 'viacep', 'widenet'];
+const providers = ['correios', 'viacep', 'widenet', 'correios-alt'];
 
 const CACHE_CONTROL_HEADER_VALUE =
   'max-age=0, s-maxage=86400, stale-while-revalidate, public';
