@@ -7,7 +7,11 @@ export const MIN_DAYS = 1;
 export const MAX_SWELL_DAYS = 6;
 export const MAX_WEATHER_DAYS = 14;
 
-// Descriptions extracted from CPTEC docs: http://servicos.cptec.inpe.br/XML/#condicoes-tempo
+/**
+ * Descriptions extracted from CPTEC docs:
+ * http://servicos.cptec.inpe.br/XML/#condicoes-tempo
+ */
+
 export const CONDITION_DESCRIPTIONS = {
   ec: 'Encoberto com Chuvas Isoladas',
   ci: 'Chuvas Isoladas',
@@ -49,4 +53,30 @@ export const CONDITION_DESCRIPTIONS = {
   ppn: 'Poss. de Panc. de Chuva a Noite',
   ppt: 'Poss. de Panc. de Chuva a Tarde',
   ppm: 'Poss. de Panc. de Chuva pela Manhã',
+};
+
+/**
+ * Descriptions  extracted from https://brasilescola.uol.com.br/geografia/rosa-dos-ventos.htm#Pontos+cardeais
+ */
+export const WIND_SWELL_DIRECTIONS = {
+  N: 'Norte',
+  S: 'Sul',
+  L: 'Leste',
+  E: 'Leste',
+  O: 'Oeste',
+  W: 'Oeste',
+
+  NE: 'Nordeste',
+  SE: 'Sudeste',
+  NO: 'Noroeste',
+  SO: 'Sudoeste',
+
+  NNE: 'Norte-nordeste',
+  ENE: 'Lés-nordeste',
+  ESE: 'Lés-sudeste',
+  SSE: 'Sul-sudeste',
+  SSO: 'Sul-sudoeste',
+  OSO: 'Oés-sudoeste',
+  ONO: 'Oés-noroeste',
+  NNO: 'Nor-noroeste',
 };

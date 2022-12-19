@@ -403,34 +403,44 @@
                 "type": "object",
                 "properties": {
                     "codigo_icao": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Código ICAO do aeroporto"
                     },
                     "atualizado_em": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Data de última atualização em formato ISO."
                     },
                     "pressao_atmosferica": {
-                        "type": "string"
+                        "type": "integer",
+                        "description": "Pressão atmosférica medida na estação meteorológica do aeroporto expressa em hPa (Hectopascal). "
                     },
                     "visibilidade": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Condição atual de visibilidade em metros."
                     },
                     "vento": {
-                        "type": "string"
+                        "type": "integer",
+                        "description": "Intensidade do vendo em km/h."
                     },
                     "direcao_vento": {
-                        "type": "string"
+                        "type": "integer",
+                        "description": "Direção do vento em graus (de 0° a 360°"
                     },
                     "umidade": {
-                        "type": "string"
+                        "type": "integer",
+                        "description": "Umidade relativa do ar em porcentagem."
                     },
-                    "codigo_clima": {
-                        "type": "string"
+                    "condicao": {
+                        "type": "string",
+                        "description": "Código da condição meteorológica"
                     },
-                    "desc_clima": {
-                        "type": "string"
+                    "condicao_desc": {
+                        "type": "string",
+                        "description": "Texto descritivo para a condição meteorológica."
                     },
                     "temp": {
-                        "type": "string"
+                        "type": "float",
+                        "description": "Temperatura (em graus celsius)"
                     }
                 },
                 "example": {
@@ -438,12 +448,12 @@
                     "atualizado_em": "2021-01-27T15:00:00.974Z",
                     "pressao_atmosferica": "1014",
                     "visibilidade": "9000",
-                    "vento": "29",
-                    "direcao_vento": "90",
-                    "umidade": "74",
-                    "codigo_clima": "ps",
-                    "desc_clima": "Predomínio de Sol",
-                    "temp": "28"
+                    "vento": 29,
+                    "direcao_vento": 90,
+                    "umidade": 74,
+                    "condicao": "ps",
+                    "condicao_Desc": "Predomínio de Sol",
+                    "temp": 28
                 }
             },
             "ClimaPrediction": {
@@ -463,9 +473,9 @@
                     "clima": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/components/schemas/clima"
+                            "$ref": "#/components/schemas/Clima"
                         },
-                        "description": ""
+                        "description": "Lista com condições climáticas dia a dia"
                     }
                 },
                 "example": {
@@ -476,17 +486,17 @@
                         {
                             "data": "2020-12-27",
                             "condicao": "pc",
-                            "min": "20",
-                            "max": "30",
-                            "indice_uv": "13.0",
+                            "min": 20,
+                            "max": 30,
+                            "indice_uv": 13.0,
                             "condicao_desc": "Pancadas de Chuva"
                         },
                         {
                             "data": "2020-12-28",
                             "condicao": "pc",
-                            "min": "22",
-                            "max": "29",
-                            "indice_uv": "13.0",
+                            "min": 22,
+                            "max": 29,
+                            "indice_uv": 13.0,
                             "condicao_desc": "Pancadas de Chuva"
                         }
                     ]
@@ -505,30 +515,36 @@
                 "type": "object",
                 "properties": {
                     "data": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Data em formato ISO"
                     },
                     "condicao": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Código da condição meteorológica"
                     },
                     "min": {
-                        "type": "string"
+                        "type": "integer",
+                        "description": "Temperatura mínima (em graus celsius) prevista."
                     },
                     "max": {
-                        "type": "string"
+                        "type": "integer",
+                        "description": "Temperatura máxima (em graus celsius) prevista."
                     },
                     "indice_uv": {
-                        "type": "string"
+                        "type": "float",
+                        "description": "O IUV representa o valor máximo diário da radiação ultravioleta, isto é, no período referente ao meio-dia solar, o horário de máxima intensidade de radiação solar."
                     },
                     "condicao_desc": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Texto descritivo para a condição meteorológica."
                     }
                 },
                 "example": {
                     "data": "2020-12-27",
                     "condicao": "pc",
-                    "min": "20",
-                    "max": "30",
-                    "indice_uv": "13.0",
+                    "min": 20,
+                    "max": 30,
+                    "indice_uv": 13.0,
                     "condicao_desc": "Pancadas de Chuva"
                 }
             },
@@ -544,7 +560,8 @@
                         "type": "string"
                     },
                     "atualizado_em": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Data no formato ISO"
                     },
                     "ondas": {
                         "type": "array",
@@ -563,18 +580,22 @@
                             "data": "27-12-2020",
                             "dados_ondas": [
                                 {
-                                    "vento": "5.2",
+                                    "vento": 5.2,
                                     "direcao_vento": "E",
-                                    "altura_onda": "0.8",
+                                    "direcao_vento_desc": "Leste",
+                                    "altura_onda": 0.8,
                                     "direcao_onda": "ESE",
+                                    "direcao_onda_desc": "Lés-sudeste",
                                     "agitacao": "Fraco",
                                     "hora": "00h Z"
                                 },
                                 {
-                                    "vento": "4.1",
-                                    "direcao_vento": "ENE",
-                                    "altura_onda": "0.8",
+                                    "vento": 4.8,
+                                    "direcao_vento": "E",
+                                    "direcao_vento_desc": "Leste",
+                                    "altura_onda": 0.5,
                                     "direcao_onda": "ESE",
+                                    "direcao_onda_desc": "Lés-sudeste",
                                     "agitacao": "Fraco",
                                     "hora": "03h Z"
                                 }
@@ -600,21 +621,25 @@
                     }
                 },
                 "example": {
-                    "data": "27-12-2020",
+                    "data": "2020-12-07",
                     "ondas_data": [
                         {
-                            "vento": "5.2",
+                            "vento": 5.2,
                             "direcao_vento": "E",
-                            "altura_onda": "0.8",
+                            "direcao_vento_desc": "Leste",
+                            "altura_onda": 0.8,
                             "direcao_onda": "ESE",
+                            "direcao_onda_desc": "Lés-sudeste",
                             "agitacao": "Fraco",
                             "hora": "00h Z"
                         },
                         {
-                            "vento": "4.1",
-                            "direcao_vento": "ENE",
-                            "altura_onda": "0.8",
+                            "vento": 4.8,
+                            "direcao_vento": "E",
+                            "direcao_vento_desc": "Leste",
+                            "altura_onda": 0.5,
                             "direcao_onda": "ESE",
+                            "direcao_onda_desc": "Lés-sudeste",
                             "agitacao": "Fraco",
                             "hora": "03h Z"
                         }
@@ -626,37 +651,47 @@
                 "required": [
                     "vento",
                     "direcao_vento",
+                    "direcao_vento_desc",
                     "altura_onda",
                     "direcao_onda",
+                    "direcao_onda_desc",
                     "agitacao",
                     "hora"
                 ],
                 "type": "object",
                 "properties": {
                     "vento": {
-                        "type": "string"
+                        "type": "float",
+                        "description": "Velocidade do vento em km/h."
                     },
                     "direcao_vento": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Sigla do ponto cardeal, colateral ou subcolateral que indica a direção do vento."
                     },
                     "altura_onda": {
-                        "type": "string"
+                        "type": "float",
+                        "description": "Altura em metros das ondas no município ou localidade litorâneo(a) selecionado(a) no determinado período do dia, representada por um número decimal."
                     },
                     "direcao_onda": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Sigla do ponto cardeal, colateral ou subcolateral que indica a direção das ondas."
                     },
                     "agitacao": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Texto que indica a agitação do mar."
                     },
                     "hora": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Hora do dia para a condição prevista"
                     }
                 },
                 "example": {
-                    "vento": "5.2",
+                    "vento": 5.2,
                     "direcao_vento": "E",
-                    "altura_onda": "0.8",
+                    "direcao_vento_desc": "Leste",
+                    "altura_onda": 0.8,
                     "direcao_onda": "ESE",
+                    "direcao_onda_desc": "Lés-sudeste",
                     "agitacao": "Fraco",
                     "hora": "00h Z"
                 }

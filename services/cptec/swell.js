@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { XMLParser } from 'fast-xml-parser';
-import { CPTEC_URL } from './constants';
+import { CPTEC_URL, WIND_SWELL_DIRECTIONS } from './constants';
+import normalizeBrazilianDate from '../util/normalizeBrazilianDate';
 
 const parser = new XMLParser();
 
@@ -36,7 +37,9 @@ export const getSwellData = async (cityCode, days) => {
         [oldDate] = datePart;
 
         newItem = {};
-        newItem.data = oldDate;
+        [newItem.data] = normalizeBrazilianDate(oldDate, '-', false)
+          .toISOString()
+          .split('T');
         newItem.dados_ondas = [];
         newSwellArr.ondas.push(newItem);
       }
@@ -45,8 +48,10 @@ export const getSwellData = async (cityCode, days) => {
         hora: `${hour.replace('h', ':')}00${tz}`,
         vento: oneDay.vento,
         direcao_vento: oneDay.vento_dir,
+        direcao_vento_desc: WIND_SWELL_DIRECTIONS[oneDay.vento_dir],
         altura_onda: oneDay.altura,
         direcao_onda: oneDay.direcao,
+        direcao_onda_desc: WIND_SWELL_DIRECTIONS[oneDay.direcao],
         agitation: oneDay.agitacao,
       });
 

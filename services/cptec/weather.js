@@ -16,9 +16,10 @@ function formatMetar(item) {
   newItem.pressao_atmosferica = item.pressao;
   newItem.vento = item.vento_int;
   newItem.direcao_vento = item.vento_dir;
-  newItem.codigo_clima = item.tempo;
-  newItem.desc_clima = item.tempo_desc;
+  newItem.condicao = item.tempo;
+  newItem.condicao_desc = item.tempo_desc;
   newItem.temp = item.temperatura;
+  newItem.atualizado_em = normalizeBrazilianDate(item.atualizacao);
 
   delete newItem.codigo;
   delete newItem.pressao;
@@ -27,8 +28,8 @@ function formatMetar(item) {
   delete newItem.tempo;
   delete newItem.tempo_desc;
   delete newItem.temperatura;
+  delete newItem.atualizacao;
 
-  newItem.atualizado_em = normalizeBrazilianDate(item.atualizacao);
   return newItem;
 }
 
@@ -44,7 +45,7 @@ function formatPrediction(unformattedData) {
     atualizado_em: unformattedData.cidade.atualizacao,
     clima: unformattedData.cidade.previsao.map((oneDay) => {
       return {
-        data: oneDay.data,
+        data: oneDay.dia,
         condicao: oneDay.tempo,
         condicao_desc: CONDITION_DESCRIPTIONS[oneDay.tempo],
         min: oneDay.minima,
