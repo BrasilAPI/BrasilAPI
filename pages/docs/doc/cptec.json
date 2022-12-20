@@ -2,7 +2,7 @@
     "tags": [
         {
             "name": "CPTEC",
-            "description": "Abstração e normalização de dados provenientes da CPTEC"
+            "description": "Abstração e normalização de dados provenientes da CPTEC. Fonte oficial: CPTEC/INPE"
         }
     ],
     "paths": {
