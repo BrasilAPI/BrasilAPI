@@ -128,7 +128,8 @@ export const getPredictionWeather = async (cityCode, days) => {
     }
 
     // If number of days requested was greater than 7, load extended data from service
-    if (days > 7) {
+    // Disabled by inconsistences on CPTEC endpoints
+    /* if (days > 7) {
       const extendedPredictions = await axios.get(
         `${baseUrl + cityCode}/estendida.xml`,
         {
@@ -144,7 +145,7 @@ export const getPredictionWeather = async (cityCode, days) => {
           ...formatPrediction(extendedJsonData).clima,
         ];
       }
-    }
+    } */
 
     // IF total data greater than requested number of days, slice array into correct size
     if (jsonData.clima.length > days) {

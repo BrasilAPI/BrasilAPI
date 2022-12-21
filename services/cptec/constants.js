@@ -5,7 +5,7 @@ export const MIN_DAYS = 1;
 
 // Max numbers of days (CPTEC limitations)
 export const MAX_SWELL_DAYS = 6;
-export const MAX_WEATHER_DAYS = 14;
+export const MAX_WEATHER_DAYS = 6;
 
 /**
  * Descriptions extracted from CPTEC docs:
