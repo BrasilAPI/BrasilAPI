@@ -208,8 +208,8 @@
         "/cptec/v1/clima/previsao/{cityCode}/{days}": {
             "get": {
                 "tags": ["CPTEC"],
-                "summary": "Previsão meteorológica para, até, 14 dias",
-                "description": "Retorna a previsão meteorológica para a cidade informada para um período de 1 até 14 dias.",
+                "summary": "Previsão meteorológica para, até, 6 dias",
+                "description": "Retorna a previsão meteorológica para a cidade informada para um período de 1 até 6 dias.\nDevido a inconsistências encontradas nos retornos da CPTEC nossa API só consegue retornar com precisão o período máximo de 6 dias.",
                 "operationId": "upto14daysprediction(/cptec/v1/clima/previsao/:cityCode/:days)",
                 "parameters": [
                     {
