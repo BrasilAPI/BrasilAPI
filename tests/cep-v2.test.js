@@ -12,7 +12,7 @@ describe('/cep/v2 (E2E)', () => {
       neighborhood: 'Perdizes',
       street: 'Rua Caiubi',
       service: expect.any(String),
-      ddd: expect.any(String),
+      ddd: '11',
       location: {
         type: 'Point',
         coordinates: {

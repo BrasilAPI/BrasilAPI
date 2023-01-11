@@ -53,7 +53,7 @@
     "wait-on": "4.0.0"
   },
   "scripts": {
-    "dev": "SET NODE_OPTIONS=--openssl-legacy-provider && next",
+    "dev": "next",
     "build": "next build",
     "start": "next start",
     "test": "jest --forceExit",
