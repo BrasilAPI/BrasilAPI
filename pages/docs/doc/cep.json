@@ -144,6 +144,7 @@
                     "neighborhood",
                     "street",
                     "service",
+                    "ddd",
                     "location"
                 ],
                 "type": "object",
@@ -166,6 +167,9 @@
                     "service": {
                         "type": "string"
                     },
+                    "ddd": {
+                      "type": "string"
+                    },
                     "location": {
                         "schema": {
                             "$ref": "#/components/schemas/Location"
@@ -179,6 +183,7 @@
                     "neighborhood": "Centro",
                     "street": "Rua Doutor Luiz de Freitas Melro",
                     "service": "viacep",
+                    "ddd": "47",
                     "location": {
                         "type": "Point",
                         "coordinates": {
