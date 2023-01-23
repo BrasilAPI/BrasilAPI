@@ -18,43 +18,18 @@ async function listAutomakers({ vehicleType, referenceTable }) {
     }
   );
 
-  return data
-    .map((item) => ({ nome: item.Label, valor: item.Value }))
-    .sort((a, b) => parseInt(a.valor, 10) - parseInt(b.valor, 10));
+  return sortAutomakers(data);
 }
 
-export async function listCarAutomakers(
-  { referenceTable } = { referenceTable: undefined }
-) {
-  const referenceTableCode =
-    referenceTable || (await getLatestReferenceTable());
+const sortAutomakers = (data) => data
+  .map((item) => ({ nome: item.Label, valor: item.Value }))
+  .sort((a, b) => parseInt(a.valor, 10) - parseInt(b.valor, 10));
 
-  return listAutomakers({
-    vehicleType: VEHICLE_TYPE.CAR,
-    referenceTable: referenceTableCode,
-  });
-}
+const getAutomakers = async (vehicleType, referenceTable = await getLatestReferenceTable()) => listAutomakers({
+  vehicleType,
+  referenceTable,
+});
 
-export async function listMotorcycleAutomakers(
-  { referenceTable } = { referenceTable: undefined }
-) {
-  const referenceTableCode =
-    referenceTable || (await getLatestReferenceTable());
-
-  return listAutomakers({
-    vehicleType: VEHICLE_TYPE.MOTORCYCLE,
-    referenceTable: referenceTableCode,
-  });
-}
-
-export async function listTruckAutomakers(
-  { referenceTable } = { referenceTable: undefined }
-) {
-  const referenceTableCode =
-    referenceTable || (await getLatestReferenceTable());
-
-  return listAutomakers({
-    vehicleType: VEHICLE_TYPE.TRUCK,
-    referenceTable: referenceTableCode,
-  });
-}
+export const listCarAutomakers = () => getAutomakers(VEHICLE_TYPE.CAR);
+export const listMotorcycleAutomakers = () => getAutomakers(VEHICLE_TYPE.MOTORCYCLE);
+export const listTruckAutomakers = () => getAutomakers(VEHICLE_TYPE.TRUCK);
