@@ -25,10 +25,15 @@ const sortAutomakers = (data) => data
   .map((item) => ({ nome: item.Label, valor: item.Value }))
   .sort((a, b) => parseInt(a.valor, 10) - parseInt(b.valor, 10));
 
-const getAutomakers = async (vehicleType, referenceTable = await getLatestReferenceTable()) => listAutomakers({
-  vehicleType,
-  referenceTable,
-});
+const getAutomakers = async (vehicleType, referenceTable) => {
+  if (!referenceTable) {
+    referenceTable = await getLatestReferenceTable();
+  }
+  return listAutomakers({
+    vehicleType,
+    referenceTable,
+  });
+};
 
 export const listCarAutomakers = () => getAutomakers(VEHICLE_TYPE.CAR);
 export const listMotorcycleAutomakers = () => getAutomakers(VEHICLE_TYPE.MOTORCYCLE);
