@@ -1,0 +1,128 @@
+{
+    "tags": [
+        {
+            "name": "NCM",
+            "description": "Informações referentes a NCMs"
+        }
+    ],
+    "paths": {
+        "/ncm/v1": {
+            "get": {
+                "tags": ["NCM"],
+                "summary": "Retorna informações de todos os NCMs",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/NCM"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ncm/v1?search={code}": {
+            "get": {
+                "tags": ["NCM"],
+                "summary": "Pesquisa por NCMs a partir  de um código ou descrição.",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/NCM"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ncm/v1/{code}": {
+            "get": {
+                "tags": ["NCM"],
+                "summary": "Busca as informações de um NCM a partir de um código",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NCM"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "O código do NCM não foi encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "message": "Código NCM não encontrado",
+                                    "type": "NCM_CODE_NOT_FOUND"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "NCM": {
+                "title": "NCM",
+                "required": ["codigo", "descricao", "data_inicio", "data_fim", "tipo_ato", "numero_ato", "ano"],
+                "type": "object",
+                "properties": {
+                    "codigo": {
+                        "type": "string"
+                    },
+                    "descricao": {
+                        "type": "string"
+                    },
+                    "data_inicio": {
+                        "type": "string"
+                    },
+                    "data_fim": {
+                        "type": "string"
+                    },
+                    "tipo_ato": {
+                        "type": "string"
+                    },
+                    "numero_ato": {
+                        "type": "string"
+                    },
+                    "ano": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "codigo": "3305.10.00",
+                    "descricao": "- Xampus",
+                    "data_inicio": "2022-04-01",
+                    "data_fim": "9999-12-31",
+                    "tipo_ato": "Res Camex",
+                    "numero_ato": "000272",
+                    "ano_ato": "2021"
+                  }
+            }
+        }
+    }
+}

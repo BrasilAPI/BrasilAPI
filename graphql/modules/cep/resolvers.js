@@ -29,8 +29,7 @@ export default {
 
       try {
         _context.res.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
-        const cepResult = await cep(_args.cep);
-        return cepResult;
+        return await cep(_args.cep);
       } catch (err) {
         throw new ApolloError('Erro ao consultar CEP', err.type, err.errors);
       }

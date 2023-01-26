@@ -1,0 +1,110 @@
+{
+    "tags": [
+        {
+            "name": "DDD",
+            "description": "Informações relacionadas a DDDs"
+        }
+    ],
+    "paths": {
+        "/ddd/v1/{ddd}": {
+            "get": {
+                "tags": ["DDD"],
+                "summary": "Retorna estado e lista de cidades por DDD",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "ddd",
+                        "description": "DDD significa Discagem Direta à Distância. É um sistema de ligação telefônica automática entre diferentes áreas urbanas nacionais. O DDD é um código constituído por 2 dígitos que identificam as principais cidades do país e devem ser adicionados ao nº de telefone, juntamente com o código da operadora.\n",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DDDInfo"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "DDD não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "name": "ddd_error",
+                                    "message": "DDD não encontrado",
+                                    "type": "DDD_NOT_FOUND"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Todos os serviços de DDD retornaram erro.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "name": "ddd_error",
+                                    "message": "Todos os serviços de DDD retornaram erro.",
+                                    "type": "service_error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "DDDInfo": {
+                "title": "DDD Info",
+                "required": ["state", "cities"],
+                "type": "object",
+                "properties": {
+                    "state": {
+                        "type": "string"
+                    },
+                    "cities": {
+                        "type": "array",
+                        "items": "string"
+                    },
+                    "nome": {
+                        "type": "string"
+                    },
+                    "regiao": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/Region"
+                    }
+                },
+                "example": {
+                    "state": "SP",
+                    "cities": [
+                        "EMBU",
+                        "VÁRZEA PAULISTA",
+                        "VARGEM GRANDE PAULISTA",
+                        "VARGEM",
+                        "TUIUTI",
+                        "TABOÃO DA SERRA",
+                        "SUZANO",
+                        "SÃO ROQUE",
+                        "SÃO PAULO"
+                    ]
+                }
+            }
+        }
+    }
+}

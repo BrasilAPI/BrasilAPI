@@ -1,0 +1,260 @@
+{
+    "tags": [
+        {
+            "name": "FIPE",
+            "description": "Informações sobre Preço Médio de Veículos fornecido pela FIPE (Fundação Instituto de Pesquisas Econômicas)"
+        }
+    ],
+    "paths": {
+        "/fipe/marcas/v1/{tipoVeiculo}": {
+            "get": {
+                "tags": ["FIPE"],
+                "summary": "Lista as marcas de veículos referente ao tipo de veículo",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "tipoVeiculo",
+                        "description": "Os tipos suportados são `caminhoes`, `carros` e `motos`. Quando o tipo não é específicado são buscada as marcas de todos os tipos de veículos\n",
+                        "in": "path",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "string"
+                        }
+                    },
+                    {
+                        "name": "tabela_referencia",
+                        "description": "Código da tabela fipe de referência. Por padrão é utilizado o código da tabela fipe atual.\n",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/MarcaFIPE"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Tabela de referência inválida",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "message": "Tabela de referência inválida",
+                                    "type": "bad_request",
+                                    "name": "BadRequestError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/fipe/preco/v1/{codigoFipe}": {
+            "get": {
+                "tags": ["FIPE"],
+                "summary": "Consulta o preço do veículo segundo a tabela fipe.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "codigoFipe",
+                        "description": "Código fipe do veículo.\n",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "string"
+                        }
+                    },
+                    {
+                        "name": "tabela_referencia",
+                        "description": "Código da tabela fipe de referência. Por padrão é utilizado o código da tabela fipe atual.\n",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/VeiculoFIPE"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requisição inválida",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "examples": {
+                                    "Código Fipe Inválido": {
+                                        "value": {
+                                            "message": "Código fipe inválido",
+                                            "type": "bad_request",
+                                            "name": "BadRequestError"
+                                        }
+                                    },
+                                    "Tabela FIPE Inválida": {
+                                        "value": {
+                                            "message": "Tabela FIPE Inválida",
+                                            "type": "bad_request",
+                                            "name": "BadRequestError"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/fipe/tabelas/v1": {
+            "get": {
+                "tags": ["FIPE"],
+                "summary": "Lista as tabelas de referência existentes.",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/TabelaFIPE"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "TabelaFIPE": {
+                "title": "Tabelas de referência FIPE",
+                "required": ["codigo", "mes"],
+                "type": "object",
+                "properties": {
+                    "codigo": {
+                        "type": "integer"
+                    },
+                    "mes": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "codigo": 271,
+                    "mes": "junho/2021 "
+                }
+            },
+            "MarcaFIPE": {
+                "title": "Marcas FIPE",
+                "required": ["nome", "valor"],
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string"
+                    },
+                    "valor": {
+                        "type": "integer"
+                    }
+                },
+                "example": {
+                    "nome": "AGRALE",
+                    "valor": "102"
+                }
+            },
+            "VeiculoFIPE": {
+                "title": "Veículo FIPE",
+                "required": [
+                    "valor",
+                    "marca",
+                    "modelo",
+                    "anoModelo",
+                    "combustivel",
+                    "codigoFipe",
+                    "mesReferencia",
+                    "tipoVeiculo",
+                    "siglaCombustivel",
+                    "dataConsulta"
+                ],
+                "type": "object",
+                "properties": {
+                    "valor": {
+                        "type": "string"
+                    },
+                    "marca": {
+                        "type": "string"
+                    },
+                    "modelo": {
+                        "type": "string"
+                    },
+                    "anoModelo": {
+                        "type": "integer"
+                    },
+                    "combustivel": {
+                        "type": "string"
+                    },
+                    "codigoFipe": {
+                        "type": "string"
+                    },
+                    "mesReferencia": {
+                        "type": "string"
+                    },
+                    "tipoVeiculo": {
+                        "type": "integer"
+                    },
+                    "siglaCombustivel": {
+                        "type": "string"
+                    },
+                    "dataConsulta": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "valor": "R$ 6.022,00",
+                    "marca": "Fiat",
+                    "modelo": "Palio EX 1.0 mpi 2p",
+                    "anoModelo": 1998,
+                    "combustivel": "Álcool",
+                    "codigoFipe": "001004-9",
+                    "mesReferencia": "junho de 2021 ",
+                    "tipoVeiculo": 1,
+                    "siglaCombustivel": "Á",
+                    "dataConsulta": "segunda-feira, 7 de junho de 2021 23:05"
+                }
+            }
+        }
+    }
+}

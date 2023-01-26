@@ -1,0 +1,287 @@
+{
+    "tags": [
+        {
+            "name": "CEP",
+            "description": "Informações referentes a CEPs"
+        },
+        {
+            "name": "CEP V2",
+            "description": "A geolocalização dos CEPs estão suscetíveis a erros, pois as coordenadas são provindas do OpenStreetMap. Caso encontre algum erro você poderá corrigir no próprio OpenStreetMap que será refletido no CEP V2."
+        }
+    ],
+
+    "paths": {
+        "/cep/v1/{cep}": {
+            "get": {
+                "tags": ["CEP"],
+                "summary": "Busca por CEP com múltiplos providers de fallback.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "cep",
+                        "description": "O CEP (Código de Endereçamento Postal) é um sistema de códigos que visa racionalizar o processo de encaminhamento e entrega de correspondências através da divisão do país em regiões postais. ... Atualmente, o CEP é composto por oito dígitos, cinco de um lado e três de outro. Cada algarismo do CEP possui um significado.\n",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Address"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Todos os serviços de CEP retornaram erro.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CepError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/cep/v2/{cep}": {
+            "get": {
+                "tags": ["CEP V2"],
+                "summary": "Versão 2 do serviço de busca por CEP com múltiplos providers de fallback.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "cep",
+                        "description": "O CEP (Código de Endereçamento Postal) é um sistema de códigos que visa racionalizar o processo de encaminhamento e entrega de correspondências através da divisão do país em regiões postais. ... Atualmente, o CEP é composto por oito dígitos, cinco de um lado e três de outro. Cada algarismo do CEP possui um significado.\n",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AddressV2"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Todos os serviços de CEP retornaram erro.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CepError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Coordinates": {
+                "title": "Coordinates",
+                "required": ["longitude", "latitude"],
+                "type": "object",
+                "properties": {
+                    "longitude": {
+                        "type": "string"
+                    },
+                    "latitude": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "longitude": "-49.0629788",
+                    "latitude": "-26.9244749"
+                }
+            },
+            "Location": {
+                "title": "Location",
+                "required": ["type", "coordinates"],
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "coordinates": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Coordinates"
+                        }
+                    }
+                },
+                "example": {
+                    "type": "Point",
+                    "coordinates": {
+                        "longitude": "-49.0629788",
+                        "latitude": "-26.9244749"
+                    }
+                }
+            },
+            "AddressV2": {
+                "title": "Address",
+                "required": [
+                    "cep",
+                    "state",
+                    "city",
+                    "neighborhood",
+                    "street",
+                    "service",
+                    "location"
+                ],
+                "type": "object",
+                "properties": {
+                    "cep": {
+                        "type": "string"
+                    },
+                    "state": {
+                        "type": "string"
+                    },
+                    "city": {
+                        "type": "string"
+                    },
+                    "neighborhood": {
+                        "type": "string"
+                    },
+                    "street": {
+                        "type": "string"
+                    },
+                    "service": {
+                        "type": "string"
+                    },
+                    "location": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Location"
+                        }
+                    }
+                },
+                "example": {
+                    "cep": "89010025",
+                    "state": "SC",
+                    "city": "Blumenau",
+                    "neighborhood": "Centro",
+                    "street": "Rua Doutor Luiz de Freitas Melro",
+                    "service": "viacep",
+                    "location": {
+                        "type": "Point",
+                        "coordinates": {
+                            "longitude": "-49.0629788",
+                            "latitude": "-26.9244749"
+                        }
+                    }
+                }
+            },
+            "Address": {
+                "title": "Address",
+                "required": ["cep", "state", "city", "neighborhood", "street", "service"],
+                "type": "object",
+                "properties": {
+                    "cep": {
+                        "type": "string"
+                    },
+                    "state": {
+                        "type": "string"
+                    },
+                    "city": {
+                        "type": "string"
+                    },
+                    "neighborhood": {
+                        "type": "string"
+                    },
+                    "street": {
+                        "type": "string"
+                    },
+                    "service": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "cep": "89010025",
+                    "state": "SC",
+                    "city": "Blumenau",
+                    "neighborhood": "Centro",
+                    "street": "Rua Doutor Luiz de Freitas Melro",
+                    "service": "viacep"
+                }
+            },
+            "CepError": {
+                "title": "CepError.",
+                "required": ["name", "message", "type", "errors"],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "errors": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Error"
+                        },
+                        "description": ""
+                    }
+                },
+                "example": {
+                    "name": "CepPromiseError",
+                    "message": "Todos os serviços de CEP retornaram erro.",
+                    "type": "service_error",
+                    "errors": [
+                        {
+                            "name": "ServiceError",
+                            "message": "CEP INVÁLIDO",
+                            "service": "correios"
+                        },
+                        {
+                            "name": "ServiceError",
+                            "message": "CEP não encontrado na base do ViaCEP.",
+                            "service": "viacep"
+                        }
+                    ]
+                }
+            },
+            "Error": {
+                "title": "Error",
+                "required": ["name", "message", "service"],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "service": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "name": "ServiceError",
+                    "message": "CEP INVÁLIDO",
+                    "service": "correios"
+                }
+            }
+        }
+    }
+}

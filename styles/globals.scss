@@ -1,0 +1,55 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --white: #FFFDFD;
+
+  --gray-200: #E5E5E5;
+
+  --blue-50: #F6F9FF;
+  --blue-600: #61719A;
+  --blue-700: #1E2D51;
+  --blue-800: #1A2E46;
+  --blue-900: #02133D;
+
+  --blue-400: #40D1B6;
+
+  --green-600: #129B07;
+}
+
+@media (min-width: 1080px) {
+  html {
+    font-size: 93.75%;
+  }
+}
+
+@media (min-width: 720px) {
+  html {
+    font-size: 87.5%;
+  }
+}
+
+body {
+  background: var(--white);
+}
+
+body, input, textarea, button {
+  font: 400 1rem Inter, sans-serif;
+  color: var(--blue-800);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  color: var(--blue-800);
+}
+
+h2 {
+  font-size: 2.25rem;
+}
+
+button {
+  cursor: pointer;
+}
