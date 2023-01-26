@@ -4,7 +4,6 @@ import { FIPE_URL, VEHICLE_TYPE } from './constants';
 import { getLatestReferenceTable } from './referenceTable';
 
 async function listAutomakers({ vehicleType, referenceTable }) {
-  referenceTable = referenceTable || await getLatestReferenceTable();
   const params = new URLSearchParams();
   params.append('codigoTabelaReferencia', referenceTable);
   params.append('codigoTipoVeiculo', vehicleType);
@@ -21,18 +20,16 @@ async function listAutomakers({ vehicleType, referenceTable }) {
 
   return mapAndSortAutomakers(data);
 }
+
 const mapAndSortAutomakers = (data) => data
   .map((item) => ({ nome: item.Label, valor: item.Value }))
   .sort((a, b) => parseInt(a.valor, 10) - parseInt(b.valor, 10));
 
-const getAutomakers = async (vehicleType, referenceTable) => {
-  return listAutomakers({
-    vehicleType,
-    referenceTable,
-  });
-};
+const getAutomakers = async (vehicleType, referenceTable = await getLatestReferenceTable()) => listAutomakers({
+  vehicleType,
+  referenceTable,
+});
 
-export const listCarAutomakers = (referenceTable) => getAutomakers(VEHICLE_TYPE.CAR, referenceTable);
-export const listMotorcycleAutomakers = (referenceTable) => getAutomakers(VEHICLE_TYPE.MOTORCYCLE, referenceTable);
-export const listTruckAutomakers = (referenceTable) => getAutomakers(VEHICLE_TYPE.TRUCK, referenceTable);
-
+export const listCarAutomakers = () => getAutomakers(VEHICLE_TYPE.CAR);
+export const listMotorcycleAutomakers = () => getAutomakers(VEHICLE_TYPE.MOTORCYCLE);
+export const listTruckAutomakers = () => getAutomakers(VEHICLE_TYPE.TRUCK);
