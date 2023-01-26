@@ -362,14 +362,16 @@ describe('/fipe/preco/v1 (E2E)', () => {
     }
   });
 
-  test('Utilizando um veículo inválido com a tabela de referência inválida', async () => {
+  test('Utilizando um veículo inválido com a tabela de referência 267', async () => {
     expect.assertions(2);
     const fipeCode = 'AAAAAA-6';
     const requestUrl = `${global.SERVER_URL}/api/fipe/preco/v1/${fipeCode}`;
-    const referenceTable = 'AAAA';
+    const referenceTable = 267;
     try {
       await axios.get(requestUrl, {
-        params: { tabela_referencia: referenceTable },
+        params: {
+          tabela_referencia: referenceTable,
+        },
       });
     } catch (error) {
       const { response } = error;
@@ -377,7 +379,7 @@ describe('/fipe/preco/v1 (E2E)', () => {
       expect(response.status).toBe(400);
       expect(response.data).toEqual({
         name: 'BadRequestError',
-        message: 'Tabela de referência inválida',
+        message: 'Código fipe inválido',
         type: 'bad_request',
       });
     }
