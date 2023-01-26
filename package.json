@@ -25,6 +25,7 @@
     "redoc": "2.0.0-rc.53",
     "sass": "1.32.12",
     "selic": "1.0.0",
+    "sinesp-api": "^2.0.2",
     "styled-components": "5.3.0",
     "wikijs": "6.3.3"
   },
