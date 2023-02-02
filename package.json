@@ -2,11 +2,12 @@
   "name": "brasilapi",
   "version": "1.0.0",
   "description": "Vamos transformar o Brasil em uma API?",
-  "engines" : {
-    "npm" : ">=8",
-    "node" : ">=16 <17"
+  "engines": {
+    "npm": ">=8",
+    "node": ">=16 <17"
   },
   "dependencies": {
+    "adm-zip": "^0.5.10",
     "apollo-server-micro": "2.24.0",
     "axios": "0.21.1",
     "bluebird": "3.7.2",
