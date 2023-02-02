@@ -1,0 +1,103 @@
+{
+  "tags": [
+    {
+      "name": "Corretoras",
+      "description": "Informações referentes a Corretoras ativas listadas na CVM"
+    }
+  ],
+
+  "paths": {
+    "/cvm/corretoras/v1": {
+      "get": {
+        "tags": ["Corretoras"],
+        "summary": "Retorna as corretoras nos arquivos da CVM.",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Corretora"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cvm/corretoras/v1/{cnpj}": {
+      "get": {
+        "tags": ["Corretoras"],
+        "summary": "Busca por corretoras nos arquivos da CVM.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "cnpj",
+            "description": "O CNPJ (Código de Endereçamento Postal) é um sistema de códigos que visa racionalizar o processo de encaminhamento e entrega de correspondências através da divisão do país em regiões postais. ... Atualmente, o CEP é composto por oito dígitos, cinco de um lado e três de outro. Cada algarismo do CEP possui um significado.\n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Corretora"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Não foi encontrado este CNPJ na listagem da CVM.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "name": "NotFoundError",
+                  "message": "CNPJ não encontrado",
+                  "type": "CNPJ_NOT_FOUND"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Corretora": {
+        "title": "Corretora",
+        "required": ["cnpj", "socialName", "commercialName"],
+        "type": "object",
+        "properties": {
+          "cnpj": {
+            "type": "string"
+          },
+          "socialName": {
+            "type": "string"
+          },
+          "commercialName": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "cnpj": "02332886000104",
+          "socialName": "XP INVESTIMENTOS CCTVM S.A.",
+          "commercialName": "XP INVESTIMENTOS"
+        }
+      }
+    }
+  }
+}
