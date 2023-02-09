@@ -1,8 +1,3 @@
-const carnavalDaysByYear = {
-  2020: '2020-02-25',
-  2010: '2010-02-16',
-};
-
 const pascoaDaysByYear = {
   2020: '2020-04-12',
   2019: '2019-04-21',
@@ -15,16 +10,9 @@ const goodFridayDaysByYear = {
   2010: '2010-04-02',
 };
 
-const corpusChristiDaysByYear = {
-  2020: '2020-06-11',
-  2010: '2010-06-03',
-};
-
 const easterHolidaysName = [
-  'Carnaval',
   'Páscoa',
   'Sexta-feira Santa',
-  'Corpus Christi',
 ];
 const fixedHolidaysName = [
   'Confraternização mundial',
@@ -40,11 +28,6 @@ const fixedHolidaysName = [
 const getEasterHolidays = (year, holidaysName = easterHolidaysName) =>
   [
     {
-      date: carnavalDaysByYear[year],
-      name: 'Carnaval',
-      type: 'national',
-    },
-    {
       date: pascoaDaysByYear[year],
       name: 'Páscoa',
       type: 'national',
@@ -52,11 +35,6 @@ const getEasterHolidays = (year, holidaysName = easterHolidaysName) =>
     {
       date: goodFridayDaysByYear[year],
       name: 'Sexta-feira Santa',
-      type: 'national',
-    },
-    {
-      date: corpusChristiDaysByYear[year],
-      name: 'Corpus Christi',
       type: 'national',
     },
   ].filter(({ name }) => holidaysName.includes(name));
