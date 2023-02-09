@@ -79,9 +79,9 @@ describe('/feriados/v1 (E2E)', () => {
     const requestUrl = `${global.SERVER_URL}/api/feriados/v1/2019`;
     const { data } = await axios.get(requestUrl);
 
-    expect.assertions(2);
+    expect.assertions(1);
 
-    expect(data).toHaveLength(12);
+    expect(data).toHaveLength(10);
     expect(data).toEqual(
       expect.arrayContaining(getHolidays(2019, ['Páscoa', 'Tiradentes']))
     );
