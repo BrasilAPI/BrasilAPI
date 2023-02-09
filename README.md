@@ -74,6 +74,9 @@ Abaixo segue uma lista de integrações com a BrasilApi fornecidas pela comunida
 **Java**
   * **[BrasilAPI-Java](https://github.com/SavioAndres/BrasilAPI-Java)** Criado por [@SavioAndres](https://github.com/SavioAndres)
 
+**Delphi**
+  * **[BrasilAPI-Delphi](https://github.com/gabrielbaltazar/brasilapi4D)** Criado por [@GabrielBaltazar](https://github.com/gabrielbaltazar)
+
 ## Autores
 
 | [<img src="https://github.com/filipedeschamps.png?size=115" width=115><br><sub>@filipedeschamps</sub>](https://github.com/filipedeschamps) | [<img src="https://github.com/lucianopf.png?size=115" width=115><br><sub>@lucianopf</sub>](https://github.com/lucianopf) |
