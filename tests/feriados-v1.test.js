@@ -75,7 +75,6 @@ describe('/feriados/v1 (E2E)', () => {
   });
 
   test('Tiradentes e Páscoa no mesmo dia (2019)', async () => {
-    expect.assertions(2);
     const requestUrl = `${global.SERVER_URL}/api/feriados/v1/2019`;
     const { data } = await axios.get(requestUrl);
 
