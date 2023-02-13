@@ -4,7 +4,7 @@ import app from '@/app';
 import BadRequestError from '@/errors/BadRequestError';
 import NotFoundError from '@/errors/NotFoundError';
 
-const providers = ['correios', 'viacep', 'widenet'];
+const providers = ['correios', 'viacep', 'widenet', 'correios-alt'];
 
 async function Cep(request, response) {
   try {

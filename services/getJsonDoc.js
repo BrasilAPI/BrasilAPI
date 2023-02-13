@@ -28,11 +28,16 @@ export function getJsonDoc() {
 
   spec.tags = tags;
 
-  spec.tags.sort((a, b) =>
-    a.name.toLowerCase() === 'brasil api'
-      ? -1
-      : a.name.localeCompare(b.name, 'pt-br')
-  );
+  spec.tags.sort((a, b) => {
+    if (a.name.toLowerCase() === 'termos de uso') {
+      return -1;
+    }
+    if (b.name.toLowerCase() === 'termos de uso') {
+      return 1;
+    }
+
+    return a.name.localeCompare(b.name, 'pt-br');
+  });
 
   return spec;
 }

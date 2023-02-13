@@ -80,6 +80,45 @@ export default function Index() {
             />
           </a>
         </section>
+        <section className={styles.terms} id="termos-de-uso">
+          <h2>Termos de uso</h2>
+          <p>
+            O BrasilAPI é uma iniciativa feita de brasileiros para brasileiros,
+            por favor,
+            <b> não abuse deste serviço</b>
+            .
+            <br />
+            Estamos em beta e ainda elaborando os Termos de Uso, mas por
+            enquanto por favor
+            <b>
+              {' '}
+              não utilize formas automatizadas para fazer
+              <i> crawling </i>
+              ou
+              <i> full scan </i>
+            </b>
+            dos dados da API.
+          </p>
+
+          <div className={styles.termsList}>
+            <h3>Nunca faça</h3>
+            <ul>
+              <li>
+                Requisições em loop, por exemplo ceps de 00000000 99999999
+              </li>
+            </ul>
+          </div>
+          <p>
+            Um exemplo prático disto foi quando dos maiores provedores de
+            telefonia do Brasil estava revalidando, todos os ceps (de 00000000
+            até 99999999 ) e estourando em 5 vezes o limite atual da nossa conta
+            no servidor. O volume de consulta dever ter a natureza de uma pessoa
+            real requisitando um determinado dado. E para consultas com um alto
+            volume automatizado, iremos mais para frente fornecer alguma
+            solução, como por exemplo, conseguir fazer o download de toda a base
+            de ceps em uma única request.
+          </p>
+        </section>
       </main>
     </>
   );

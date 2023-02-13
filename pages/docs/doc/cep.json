@@ -6,7 +6,7 @@
         },
         {
             "name": "CEP V2",
-            "description": "Informações referentes a CEPs - Versão 2"
+            "description": "A geolocalização dos CEPs estão suscetíveis a erros, pois as coordenadas são provindas do OpenStreetMap. Caso encontre algum erro você poderá corrigir no próprio OpenStreetMap que será refletido no CEP V2."
         }
     ],
 
