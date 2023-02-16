@@ -8,8 +8,9 @@ const buildDate = () => {
   return formatDate(now, 'YYYYMMDD');
 };
 
-const getParticipants = async () => {
-  const csvPix = await axios.get(`${API_URL}${buildDate()}.csv`);
+export const getParticipants = async () => {
+  const url = `${API_URL}${buildDate()}.csv`;
+  const csvPix = await axios.get(url);
   return csvPix.data;
 };
 
@@ -20,7 +21,7 @@ const getParticipants = async () => {
  * @returns Lista de objetos com todos os dados dos participantes
  */
 
-const formatCsvFile = (file) => {
+export const formatCsvFile = (file) => {
   const LINE_BREAK = '\n';
   const lines = file.split(LINE_BREAK);
 
@@ -40,14 +41,4 @@ const formatCsvFile = (file) => {
       };
     })
     .filter(Boolean);
-};
-
-/**
- *
- * @returns Lista de objetos com todos os dados dos participantes
- */
-export const participants = async () => {
-  const data = await getParticipants();
-
-  return formatCsvFile(data);
 };

@@ -1,20 +1,25 @@
 import app from '@/app';
 import InternalError from '@/errors/InternalError';
-import { participants } from '@/services/pix/participants';
+import { getParticipants, formatCsvFile } from '@/services/pix/participants';
 
 const action = async (request, response) => {
-  try {
-    const data = await participants();
+  let pixParticipantsList = '';
 
-    response.status(200);
-    response.json(data);
+  try {
+    pixParticipantsList = await getParticipants();
   } catch (error) {
+    console.log(error.toJSON());
     throw new InternalError({
       status: 500,
-      message: 'Erro ao obter as informações do BCB',
+      message: `Erro ao obter as informações do BCB`,
       name: 'PIX_LIST_ERROR',
     });
   }
+
+  const parsedData = formatCsvFile(pixParticipantsList);
+
+  response.status(200);
+  response.json(parsedData);
 };
 
 export default app({ cache: 21600 }).get(action);
