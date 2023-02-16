@@ -18,9 +18,9 @@ function getIntermediatorsFromZip(data) {
   const intermediatorsEntry = zipEntries.find((entry) =>
     entry.entryName.match(/cad_intermed.csv/i)
   );
-   if (!intermediatorsEntry){
-       throw new Error('File not found')
-   }
+  if (!intermediatorsEntry) {
+    throw new Error('File not found');
+  }
   const intermediatorFile = zip.readAsText(intermediatorsEntry, 'latin1');
   const lines = intermediatorFile.split(LINE_BREAK);
   lines.shift();
@@ -48,12 +48,15 @@ function getIntermediatorsFromZip(data) {
         };
       }
     )
-    .filter((item) => item.status === 'EM FUNCIONAMENTO NORMAL' && item.type === 'CORRETORAS')
+    .filter(
+      (item) =>
+        item.status === 'EM FUNCIONAMENTO NORMAL' && item.type === 'CORRETORAS'
+    )
     .map((corretora) => ({
-        cnpj: corretora.cnpj,
-        nome_social: corretora.socialName,
-        nome_comercial: corretora.commercialName,
-    });
+      cnpj: corretora.cnpj,
+      nome_social: corretora.socialName,
+      nome_comercial: corretora.commercialName,
+    }));
   return mappedLines;
 }
 

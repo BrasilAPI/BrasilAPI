@@ -1,4 +1,6 @@
 import app from '@/app';
+
+import NotFoundError from '@/errors/NotFoundError';
 import { getExchangesData } from '../../../../../services/cvm/corretoras';
 
 const action = async (request, response) => {
@@ -11,7 +13,10 @@ const action = async (request, response) => {
   );
 
   if (!exchangeData) {
-    throw new NotFoundError({ message: 'CNPJ não encontrado', type: 'CNPJ_NOT_FOUND' });
+    throw new NotFoundError({
+      message: 'CNPJ não encontrado',
+      type: 'CNPJ_NOT_FOUND',
+    });
   }
 
   response.status(200).json(exchangeData);

@@ -3,8 +3,8 @@ const axios = require('axios');
 const validTestTableArray = expect.arrayContaining([
   expect.objectContaining({
     cnpj: expect.any(String),
-    socialName: expect.any(String),
-    commercialName: expect.any(String),
+    nome_social: expect.any(String),
+    nome_comercial: expect.any(String),
   }),
 ]);
 
@@ -17,13 +17,12 @@ describe('corretoras v1 (E2E)', () => {
       expect(response.status).toBe(200);
       expect(response.data).toEqual({
         cnpj: '02332886000104',
-        socialName: 'XP INVESTIMENTOS CCTVM S.A.',
-        commercialName: 'XP INVESTIMENTOS',
+        nome_social: 'XP INVESTIMENTOS CCTVM S.A.',
+        nome_comercial: 'XP INVESTIMENTOS',
       });
     });
 
     test('Utilizando um CNPJ inexistente: 1111111', async () => {
-      expect.assertions(2);
       const requestUrl = `${global.SERVER_URL}/api/cvm/corretoras/v1/1111111`;
 
       try {
