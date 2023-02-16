@@ -1,27 +1,11 @@
 import axios from 'axios';
+import { formatDate, getNow } from '../date';
 
 const API_URL = `https://www.bcb.gov.br/content/estabilidadefinanceira/spi/participantes-spi-`;
 
-/**
- * Insere um 0 em meses <= 9 e em dias <= 9
- *
- * @param {string} value
- * @returns
- */
-const leadingZero = (value) => {
-  if (value > 9) return value;
-
-  return `0${value}`;
-};
-
 const buildDate = () => {
-  const now = new Date();
-
-  const year = now.getFullYear();
-  const month = leadingZero(now.getMonth() + 1);
-  const day = leadingZero(now.getDate());
-
-  return `${year}${month}${day}`;
+  const now = getNow();
+  return formatDate(now, 'YYYYMMDD');
 };
 
 const getParticipants = async () => {
