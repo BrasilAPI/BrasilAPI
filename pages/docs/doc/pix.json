@@ -1,0 +1,111 @@
+{
+  "tags": [
+    {
+      "name": "PIX",
+      "description": "Informações referentes ao PIX"
+    }
+  ],
+  "paths": {
+    "/pix/v1/participants": {
+      "get": {
+        "tags": ["PIX"],
+        "summary": "Retorna informações de todos os participantes do PIX no dia atual",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PIX_PARTICIPANTES"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Mensagem de erro"
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "Tipo do erro"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Nome do erro"
+                    }
+                  },
+                  "example": {
+                    "message": "Erro ao obter as informações do BCB",
+                    "type": "internal",
+                    "name": "PIX_LIST_ERROR"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PIX_PARTICIPANTES": {
+        "title": "Pix Participantes",
+        "required": [
+          "ispb",
+          "nome",
+          "nomeReduzido",
+          "modalidadeParticipacao",
+          "tipoParticipacao",
+          "inicioOperacao"
+        ],
+        "type": "object",
+        "properties": {
+          "ispb": {
+            "type": "string",
+            "description": "ISPB"
+          },
+          "nome": {
+            "type": "string",
+            "description": "Nome do participante"
+          },
+          "nomeReduzido": {
+            "type": "string",
+            "description": "Nome reduzido do participante"
+          },
+          "modalidadeParticipacao": {
+            "type": "string",
+            "description": "Modalidade de Participação"
+          },
+          "tipoParticipacao": {
+            "type": "string",
+            "description": "Tipo de participante"
+          },
+          "inicioOperacao": {
+            "type": "string",
+            "description": "Date de inicio da operação"
+          }
+        },
+        "example": {
+          "ispb": "360305",
+          "nome": "CAIXA ECONOMICA FEDERAL",
+          "nomeReduzido": "CAIXA ECONOMICA FEDERAL",
+          "modalidadeParticipacao": "PDCT",
+          "tipoParticipacao": "DRCT",
+          "inicioOperacao": "2020-11-03T09:30:00.000Z"
+        }
+      }
+    }
+  }
+}
