@@ -79,23 +79,23 @@
     "schemas": {
       "Corretora": {
         "title": "Corretora",
-        "required": ["cnpj", "socialName", "commercialName"],
+        "required": ["cnpj", "nome_social", "nome_comercial"],
         "type": "object",
         "properties": {
           "cnpj": {
             "type": "string"
           },
-          "socialName": {
+          "nome_social": {
             "type": "string"
           },
-          "commercialName": {
+          "nome_comercial": {
             "type": "string"
           }
         },
         "example": {
           "cnpj": "02332886000104",
-          "socialName": "XP INVESTIMENTOS CCTVM S.A.",
-          "commercialName": "XP INVESTIMENTOS"
+          "nome_social": "XP INVESTIMENTOS CCTVM S.A.",
+          "nome_comercial": "XP INVESTIMENTOS"
         }
       }
     }

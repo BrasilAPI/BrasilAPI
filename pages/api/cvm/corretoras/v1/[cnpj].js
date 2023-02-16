@@ -17,17 +17,12 @@ const action = async (request, response) => {
   response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
 
   if (!exchangeData) {
-    response.status(404);
-    response.json({
-      message: 'CNPJ não encontrado',
-      type: 'CNPJ_NOT_FOUND',
-    });
+    throw new NotFoundError({ message: 'CNPJ não encontrado', type: 'CNPJ_NOT_FOUND' });
 
     return;
   }
 
-  response.status(200);
-  response.json(exchangeData);
+  response.status(200).json(exchangeData);
 };
 
 export default cors(action);

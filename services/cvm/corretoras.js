@@ -15,9 +15,12 @@ function getIntermediatorsFromZip(data) {
   const zip = new AdmZip(data);
   const zipEntries = zip.getEntries();
 
-  const intermediatorsEntry = zipEntries.filter((entry) =>
+  const intermediatorsEntry = zipEntries.find((entry) =>
     entry.entryName.match(/cad_intermed.csv/i)
-  )[0];
+  );
+   if (!intermediatorsEntry){
+       throw new Error('File not found')
+   }
   const intermediatorFile = zip.readAsText(intermediatorsEntry, 'latin1');
   const lines = intermediatorFile.split(LINE_BREAK);
   lines.shift();
@@ -39,27 +42,17 @@ function getIntermediatorsFromZip(data) {
         return {
           cnpj: cnpj.replace(/\D/gim, ''),
           type,
-          socialName: socialName && socialName.trim(),
-          commercialName: commercialName && commercialName.trim(),
+          socialName: socialName ? socialName.trim() : '',
+          commercialName: commercialName ? commercialName.trim() : '',
           status,
         };
       }
     )
-    .filter((item) => {
-      if (
-        item.status === 'EM FUNCIONAMENTO NORMAL' &&
-        item.type === 'CORRETORAS'
-      ) {
-        return true;
-      }
-      return false;
-    })
-    .map((corretora) => {
-      return {
+    .filter((item) => item.status === 'EM FUNCIONAMENTO NORMAL' && item.type === 'CORRETORAS')
+    .map((corretora) => ({
         cnpj: corretora.cnpj,
-        socialName: corretora.socialName,
-        commercialName: corretora.commercialName,
-      };
+        nome_social: corretora.socialName,
+        nome_comercial: corretora.commercialName,
     });
   return mappedLines;
 }
