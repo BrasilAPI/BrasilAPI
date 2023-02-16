@@ -3,13 +3,12 @@ import { formatDate, getNow } from '../date';
 
 const API_URL = `https://www.bcb.gov.br/content/estabilidadefinanceira/spi/participantes-spi-`;
 
-const buildDate = () => {
-  const now = getNow();
-  return formatDate(now, 'YYYYMMDD');
-};
+const buildDate = (now = getNow()) => formatDate(now, 'YYYYMMDD');
 
-export const getParticipants = async () => {
-  const url = `${API_URL}${buildDate()}.csv`;
+export const getParticipants = async (fromToday = true) => {
+  const date = fromToday ? buildDate() : buildDate(getNow().subtract(1, 'day'));
+
+  const url = `${API_URL}${date}.csv`;
   const csvPix = await axios.get(url);
   return csvPix.data;
 };
