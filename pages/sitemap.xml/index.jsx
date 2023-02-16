@@ -22,6 +22,7 @@ const getDocs = () => {
     'IBGE',
     'NCM',
     'ISBN',
+    'CPTEC',
   ];
 };
 
