@@ -5,7 +5,7 @@ const LINE_BREAK = '\r\n';
 
 async function requestCvmFile() {
   const fileUrl =
-    'http://dados.cvm.gov.br/dados/INTERMED/CAD/DADOS/cad_intermed.zip';
+    'https://dados.cvm.gov.br/dados/INTERMED/CAD/DADOS/cad_intermed.zip';
   return axios.get(fileUrl, {
     responseType: 'arraybuffer',
   });

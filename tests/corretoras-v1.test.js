@@ -62,8 +62,9 @@ describe('corretoras v1 (E2E)', () => {
 
         expect(response.status).toBe(404);
         expect(response.data).toMatchObject({
-          message: 'CNPJ não encontrado',
-          type: 'CNPJ_NOT_FOUND',
+          message: 'Nenhuma corretora localizada',
+          type: 'exchange_error',
+          name: 'EXCHANGE_NOT_FOUND',
         });
       }
     });
