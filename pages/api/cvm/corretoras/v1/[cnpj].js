@@ -1,9 +1,5 @@
-import microCors from 'micro-cors';
+import app from '@/app';
 import { getExchangesData } from '../../../../../services/cvm/corretoras';
-
-const CACHE_CONTROL_HEADER_VALUE =
-  'max-age=0, s-maxage=86400, stale-while-revalidate, public';
-const cors = microCors();
 
 const action = async (request, response) => {
   const exchangeCode = request.query.cnpj.replace(/\D/gim, '');
@@ -14,15 +10,11 @@ const action = async (request, response) => {
     ({ cnpj }) => cnpj === exchangeCode
   );
 
-  response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
-
   if (!exchangeData) {
     throw new NotFoundError({ message: 'CNPJ não encontrado', type: 'CNPJ_NOT_FOUND' });
-
-    return;
   }
 
   response.status(200).json(exchangeData);
 };
 
-export default cors(action);
+export default app({ cache: 86400 }).get(action);
