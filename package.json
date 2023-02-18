@@ -2,9 +2,9 @@
   "name": "brasilapi",
   "version": "1.0.0",
   "description": "Vamos transformar o Brasil em uma API?",
-  "engines" : {
-    "npm" : ">=8",
-    "node" : ">=16 <17"
+  "engines": {
+    "npm": ">=8",
+    "node": ">=16 <17"
   },
   "dependencies": {
     "apollo-server-micro": "2.24.0",
@@ -12,6 +12,7 @@
     "bluebird": "3.7.2",
     "cep-promise": "4.3.0",
     "cors": "2.8.5",
+    "fast-xml-parser": "4.0.11",
     "graphql": "15.5.0",
     "lodash": "4.17.21",
     "micro-cors": "0.1.1",
@@ -19,10 +20,11 @@
     "next": "10.2.0",
     "next-connect": "0.9.1",
     "next-sitemap": "1.6.168",
+    "piscina": "3.2.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-icons": "4.2.0",
-    "redoc": "2.0.0-rc.53",
+    "redoc": "2.0.0-rc.56",
     "sass": "1.32.12",
     "selic": "1.0.0",
     "styled-components": "5.3.0",
