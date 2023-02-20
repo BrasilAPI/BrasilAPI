@@ -9,7 +9,7 @@
     "/pix/v1/participants": {
       "get": {
         "tags": ["PIX"],
-        "summary": "Retorna informações de todos os participantes do PIX no dia atual",
+        "summary": "Retorna informações de todos os participantes do PIX no dia atual ou anterior",
         "description": "",
         "responses": {
           "200": {
