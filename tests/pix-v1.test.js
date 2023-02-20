@@ -15,9 +15,9 @@ describe('api/pix/v1/participants (E2E)', () => {
       expect.objectContaining({
         ispb: expect.any(String),
         nome: expect.any(String),
-        nomeReduzido: expect.any(String),
-        modalidadeParticipacao: expect.any(String),
-        inicioOperacao: expect.any(String),
+        nome_reduzido: expect.any(String),
+        modalidade_participacao: expect.any(String),
+        inicio_operacao: expect.any(String),
       }),
     ]);
   });

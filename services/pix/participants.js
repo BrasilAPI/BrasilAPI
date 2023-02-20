@@ -33,10 +33,10 @@ export const formatCsvFile = (file) => {
       return {
         ispb: data[0],
         nome: data[1],
-        nomeReduzido: data[2],
-        modalidadeParticipacao: data[3],
-        tipoParticipacao: data[4],
-        inicioOperacao: data[5],
+        nome_reduzido: data[2],
+        modalidade_participacao: data[3],
+        tipo_participacao: data[4],
+        inicio_operacao: data[5],
       };
     })
     .filter(Boolean);

@@ -65,10 +65,10 @@
         "required": [
           "ispb",
           "nome",
-          "nomeReduzido",
-          "modalidadeParticipacao",
-          "tipoParticipacao",
-          "inicioOperacao"
+          "nome_reduzido",
+          "modalidade_participacao",
+          "tipo_participacao",
+          "inicio_operacao"
         ],
         "type": "object",
         "properties": {
@@ -80,19 +80,19 @@
             "type": "string",
             "description": "Nome do participante"
           },
-          "nomeReduzido": {
+          "nome_reduzido": {
             "type": "string",
             "description": "Nome reduzido do participante"
           },
-          "modalidadeParticipacao": {
+          "modalidade_participacao": {
             "type": "string",
             "description": "Modalidade de Participação"
           },
-          "tipoParticipacao": {
+          "tipo_participacao": {
             "type": "string",
             "description": "Tipo de participante"
           },
-          "inicioOperacao": {
+          "inicio_operacao": {
             "type": "string",
             "description": "Date de inicio da operação"
           }
@@ -100,10 +100,10 @@
         "example": {
           "ispb": "360305",
           "nome": "CAIXA ECONOMICA FEDERAL",
-          "nomeReduzido": "CAIXA ECONOMICA FEDERAL",
-          "modalidadeParticipacao": "PDCT",
-          "tipoParticipacao": "DRCT",
-          "inicioOperacao": "2020-11-03T09:30:00.000Z"
+          "nome_reduzido": "CAIXA ECONOMICA FEDERAL",
+          "modalidade_participacao": "PDCT",
+          "tipo_participacao": "DRCT",
+          "inicio_operacao": "2020-11-03T09:30:00.000Z"
         }
       }
     }
