@@ -9,3 +9,7 @@ export const getNow = () => dayjs();
 
 export const formatDate = (date = dayjs(), format = 'DD/MM/YYYY') =>
   date.format(format);
+
+export const parseToDate = (value, format = '') => {
+  return dayjs(value, format).toDate();
+};
