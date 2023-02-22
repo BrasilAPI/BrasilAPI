@@ -5,6 +5,8 @@ const timezone = require('dayjs/plugin/timezone');
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
+dayjs.tz.setDefault('America/Sao_Paulo');
+
 export const getNow = () => dayjs();
 
 export const formatDate = (date = dayjs(), format = 'DD/MM/YYYY') =>

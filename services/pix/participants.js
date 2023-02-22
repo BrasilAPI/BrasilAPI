@@ -44,7 +44,7 @@ export const formatCsvFile = (file) => {
 
   if (isEqual(headers, expectedHeaders)) {
     throw new BaseError({
-      status: 400,
+      status: 500,
       message: 'Dados e/ou cabeçalho do arquivo estão diferentes/atualizados',
     });
   }
