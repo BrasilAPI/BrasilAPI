@@ -77,6 +77,9 @@ Abaixo segue uma lista de integrações com a BrasilApi fornecidas pela comunida
 **Delphi**
   * **[BrasilAPI-Delphi](https://github.com/gabrielbaltazar/brasilapi4D)** Criado por [@GabrielBaltazar](https://github.com/gabrielbaltazar)
 
+**PHP**
+  * **[brasilapi-php](https://github.com/Corviz/brasilapi-php)** Criado por [@carloscarucce](https://github.com/carloscarucce)
+
 ## Autores
 
 | [<img src="https://github.com/filipedeschamps.png?size=115" width=115><br><sub>@filipedeschamps</sub>](https://github.com/filipedeschamps) | [<img src="https://github.com/lucianopf.png?size=115" width=115><br><sub>@lucianopf</sub>](https://github.com/lucianopf) |
