@@ -9,7 +9,7 @@ const buildDate = (now = getNow()) => formatDate(now, 'YYYYMMDD');
 const isEqual = (a, b) =>
   a.length === b.length && a.every((v, i) => v === b[i]);
 
-export const getParticipants = async (fromToday = true) => {
+export const getPixParticipants = async (fromToday = true) => {
   const date = fromToday ? buildDate() : buildDate(getNow().subtract(1, 'day'));
 
   const url = `${API_URL}${date}.csv`;

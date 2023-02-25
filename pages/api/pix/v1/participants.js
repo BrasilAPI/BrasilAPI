@@ -1,16 +1,16 @@
 import app from '@/app';
 import BaseError from '@/errors/BaseError';
 import InternalError from '@/errors/InternalError';
-import { getParticipants, formatCsvFile } from '@/services/pix/participants';
+import { getPixParticipants, formatCsvFile } from '@/services/pix/participants';
 
-const obtainList = async (actual = true) => {
+const obtainPixParticipantList = async (actual = true) => {
   try {
-    const response = await getParticipants();
+    const response = await getPixParticipants();
 
     return response;
   } catch (error) {
     if (actual && error.response.status === 404) {
-      return getParticipants(false);
+      return getPixParticipants(false);
     }
 
     throw new InternalError({
@@ -24,7 +24,7 @@ const obtainList = async (actual = true) => {
 
 const action = async (request, response) => {
   try {
-    const pixParticipantsList = await obtainList();
+    const pixParticipantsList = await obtainPixParticipantList();
 
     const parsedData = formatCsvFile(pixParticipantsList);
 
