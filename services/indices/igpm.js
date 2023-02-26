@@ -1,86 +1,54 @@
-import InternalError from '@/errors/InternalError';
-import axios from 'axios';
-import Joi from 'joi';
 import { igpmSchema } from './schemas';
-
-const urls = {
-  simple: `https://api.bcb.gov.br/dados/serie/bcdata.sgs.189/dados`,
-  lastRecords: `https://api.bcb.gov.br/dados/serie/bcdata.sgs.189/dados/ultimos`,
-};
-
-const defaultParams = {
-  formato: 'json',
-};
-
-const fetchData = async (url, params, schema) => {
-  try {
-    const response = await axios.get(url, {
-      params,
-    });
-
-    return schema.validateAsync(response.data, { abortEarly: true });
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      throw new InternalError({
-        message: 'Erro ao obter as informações do BCB - SGS',
-      });
-    }
-
-    if (Joi.isError(error)) {
-      throw new InternalError({
-        message: 'Dados inválidos/incompletos no BCB',
-      });
-    }
-
-    throw new InternalError({
-      message: 'Erro ao obter as informações do BCB - SGS',
-    });
-  }
-};
+import { buildUrl, fetchData } from './helpers';
+import { toISOString } from '../date';
 
 /**
- *
+ * Busca todos os indices desde o inicio da disponibilização
+ * @param {Number} code Código BCB https://www3.bcb.gov.br/sgspub/localizarseries/localizarSeries.do?method=prepararTelaLocalizarSeries
+ * @returns
  */
-export const getIgpm = async () => {
-  const data = await fetchData(urls.simple, defaultParams, igpmSchema);
+export const getIgpm = async (code) => {
+  const data = await fetchData(buildUrl.simple(code), {}, igpmSchema);
 
   return data.map((igpmIndex) => ({
     value: igpmIndex.valor,
-    date: igpmIndex.data,
+    date: toISOString(igpmIndex.data, 'DD/MM/YYYY'),
   }));
 };
 
 /**
  * Busca todos os registro dentro de um periodo
+ * @param {Number} code Código BCB https://www3.bcb.gov.br/sgspub/localizarseries/localizarSeries.do?method=prepararTelaLocalizarSeries
  * @param {Date} initialDate Data inicial do intervalo
  * @param {Date} endDate Data final do intervalo
  */
-export const getIgpmByPeriod = async (initialDate, endDate) => {
+export const getIgpmByPeriod = async (code, initialDate, endDate) => {
   const data = await fetchData(
-    urls.simple,
-    { ...defaultParams, dataInicial: initialDate, dataFinal: endDate },
+    buildUrl.simple(code),
+    { dataInicial: initialDate, dataFinal: endDate },
     igpmSchema
   );
 
   return data.map((igpmIndex) => ({
     value: igpmIndex.valor,
-    date: igpmIndex.data,
+    date: toISOString(igpmIndex.data, 'DD/MM/YYYY'),
   }));
 };
 
 /**
  * Busca os ultimos registros de acordo com o número passado.
+ * @param {Number} code Código BCB https://www3.bcb.gov.br/sgspub/localizarseries/localizarSeries.do?method=prepararTelaLocalizarSeries
  * @param {Number} numberOfRecords Quantidade de registros a serem obtidos
  */
-export const getIgpmByLastNRecords = async (numberOfRecords = 12) => {
+export const getIgpmByLastNRecords = async (code, numberOfRecords = 12) => {
   const data = await fetchData(
-    `${urls.lastRecords}/${numberOfRecords}`,
-    defaultParams,
+    buildUrl.lastRecords(code, numberOfRecords),
+    {},
     igpmSchema
   );
 
   return data.map((igpmIndex) => ({
     value: igpmIndex.valor,
-    date: igpmIndex.data,
+    date: toISOString(igpmIndex.data, 'DD/MM/YYYY'),
   }));
 };

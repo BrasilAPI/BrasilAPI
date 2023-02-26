@@ -1,6 +1,7 @@
 import app from '@/app';
 import BadRequestError from '@/errors/BadRequestError';
 import { getIgpmByLastNRecords } from '@/services/indices/igpm';
+import { codes } from '../../../codes';
 
 const action = async (request, response) => {
   const { limit } = request.query;
@@ -17,7 +18,7 @@ const action = async (request, response) => {
     });
   }
 
-  const igpmList = await getIgpmByLastNRecords(limit);
+  const igpmList = await getIgpmByLastNRecords(codes.igpm, limit);
 
   response.status(200);
   return response.json(igpmList);

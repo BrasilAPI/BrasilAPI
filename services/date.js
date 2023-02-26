@@ -29,3 +29,7 @@ export const isBefore = (initialDate, dateToCompare) => {
 export const isAfter = (initialDate, dateToCompare) => {
   return dayjs(initialDate).isAfter(dateToCompare);
 };
+
+export const toISOString = (date, fromFormat = '') => {
+  return dayjs(date, fromFormat).toISOString();
+};

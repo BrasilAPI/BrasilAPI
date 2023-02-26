@@ -2,6 +2,7 @@ import app from '@/app';
 import BadRequestError from '@/errors/BadRequestError';
 import { isAfter, isBefore, isValidDate, parseToDate } from '@/services/date';
 import { getIgpmByPeriod } from '@/services/indices/igpm';
+import { codes } from '../../../codes';
 
 const action = async (request, response) => {
   // eslint-disable-next-line camelcase
@@ -22,7 +23,7 @@ const action = async (request, response) => {
     });
   }
 
-  const igpmList = await getIgpmByPeriod(initial_date, final_date);
+  const igpmList = await getIgpmByPeriod(codes.igpm, initial_date, final_date);
 
   response.status(200);
   return response.json(igpmList);
