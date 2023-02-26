@@ -14,12 +14,16 @@ const action = async (request, response) => {
   if (!isValidDate(initialDate) || !isValidDate(finalDate)) {
     throw new BadRequestError({
       message: 'Intervalo de datas inválido, informe um intervalo correto',
+      type: 'INTERNAL',
+      name: 'IGPM_LIST_ERROR',
     });
   }
 
   if (isBefore(finalDate, initialDate) || isAfter(initialDate, finalDate)) {
     throw new BadRequestError({
       message: 'Intervalo de datas inválido, informe um intervalo correto',
+      type: 'INTERNAL',
+      name: 'IGPM_LIST_ERROR',
     });
   }
 

@@ -27,17 +27,23 @@ export const fetchData = async (url, params = {}, schema) => {
     if (axios.isAxiosError(error)) {
       throw new InternalError({
         message: 'Erro ao obter as informações do BCB - SGS',
+        type: 'INTERNAL',
+        name: 'IGPM_LIST_ERROR',
       });
     }
 
     if (Joi.isError(error)) {
       throw new InternalError({
         message: 'Dados inválidos/incompletos no BCB',
+        type: 'INTERNAL',
+        name: 'IGPM_LIST_ERROR',
       });
     }
 
     throw new InternalError({
       message: 'Erro ao obter as informações do BCB - SGS',
+      type: 'INTERNAL',
+      name: 'IGPM_LIST_ERROR',
     });
   }
 };
