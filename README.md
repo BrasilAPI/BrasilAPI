@@ -65,6 +65,9 @@ Abaixo segue uma lista de integrações com a BrasilApi fornecidas pela comunida
 **.Net**
   * **[BrasilAPI-DotNet](https://github.com/farukaf/BrasilAPI-DotNet)** criado por [@farukaf](https://github.com/farukaf)
 
+**PHP**
+  * **[brasilapi-php](https://github.com/andreoneres/brasilapi-php)** criado por [@andreoneres](https://github.com/andreoneres)
+
 **Python**
   * **[brasilapy](https://github.com/lipe14-ops/brasilapy)** Criado por [@lipe14-ops](https://github.com/lipe14-ops)
 
