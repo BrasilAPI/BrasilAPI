@@ -15,6 +15,7 @@ const getDocs = () => {
     'CEP',
     'CEP-V2',
     'CNPJ',
+    'CVM',
     'DDD',
     'Feriados-Nacionais',
     'FIPE',
