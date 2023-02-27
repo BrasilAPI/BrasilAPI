@@ -1,0 +1,161 @@
+{
+  "tags": [
+    {
+      "name": "Corretoras",
+      "description": "Informações referentes a Corretoras ativas listadas na CVM"
+    }
+  ],
+
+  "paths": {
+    "/cvm/corretoras/v1": {
+      "get": {
+        "tags": ["Corretoras"],
+        "summary": "Retorna as corretoras nos arquivos da CVM.",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Corretora"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cvm/corretoras/v1/{cnpj}": {
+      "get": {
+        "tags": ["Corretoras"],
+        "summary": "Busca por corretoras nos arquivos da CVM.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "cnpj",
+            "description": "O Cadastro Nacional da Pessoa Jurídica é um número único que identifica uma pessoa jurídica e outros tipos de arranjo jurídico sem personalidade jurídica junto à Receita Federal.\n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Corretora"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Não foi encontrado este CNPJ na listagem da CVM.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "name": "NotFoundError",
+                  "message": "CNPJ não encontrado",
+                  "type": "CNPJ_NOT_FOUND"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Corretora": {
+        "title": "Corretora",
+        "required": ["cnpj", "nome_social", "nome_comercial", "bairro", "cep", "codigo_cvm", "complemento", "data_inicio_situacao", "data_patrimonio_liquido", "data_registro", "email", "logradouro", "municipio", "pais", "telefone", "uf", "valor_patrimonio_liquido"],
+        "type": "object",
+        "properties": {
+          "cnpj": {
+            "type": "string"
+          },
+          "nome_social": {
+            "type": "string"
+          },
+          "nome_comercial": {
+            "type": "string"
+          }, 
+          "bairro": {
+            "type": "string"
+          },
+          "cep": {
+            "type": "string"
+          },
+          "codigo_cvm": {
+            "type": "string"
+          },
+          "complemento": {
+            "type": "string"
+          },
+          "data_inicio_situacao": {
+            "type": "string"
+          },
+          "data_patrimonio_liquido": {
+            "type": "string"
+          },
+          "data_registro": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "logradouro": {
+            "type": "string"
+          },
+          "municipio": {
+            "type": "string"
+          },
+          "pais": {
+            "type": "string"
+          },
+          "telefone": {
+            "type": "string"
+          },
+          "uf": {
+            "type": "string"
+          },
+          "valor_patrimonio_liquido": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "bairro" : "LEBLON",
+          "cep" : "22440032",
+          "cnpj" : "02332886000104",
+          "codigo_cvm" : "3247",
+          "complemento" : "SALA 201",
+          "data_inicio_situacao" : "1998-02-10",
+          "data_patrimonio_liquido" : "2021-12-31",
+          "data_registro" : "1997-12-05",
+          "email" : "juridico.regulatorio@xpi.com.br",
+          "logradouro" : "AVENIDA ATAULFO DE PAIVA 153",
+          "municipio" : "RIO DE JANEIRO",
+          "nome_social" : "XP INVESTIMENTOS CCTVM S.A.",
+          "nome_comercial" : "XP INVESTIMENTOS",
+          "pais" : "",
+          "status" : "EM FUNCIONAMENTO NORMAL",
+          "telefone" : "30272237",
+          "type" : "CORRETORAS",
+          "uf" : "RJ",
+          "valor_patrimonio_liquido" : "5514593491.29"
+        }
+      }
+    }
+  }
+}
