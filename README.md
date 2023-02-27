@@ -67,6 +67,7 @@ Abaixo segue uma lista de integrações com a BrasilApi fornecidas pela comunida
 
 **PHP**
   * **[brasilapi-php](https://github.com/andreoneres/brasilapi-php)** criado por [@andreoneres](https://github.com/andreoneres)
+  * **[brasilapi-php](https://github.com/Corviz/brasilapi-php)** Criado por [@carloscarucce](https://github.com/carloscarucce)
 
 **Python**
   * **[brasilapy](https://github.com/lipe14-ops/brasilapy)** Criado por [@lipe14-ops](https://github.com/lipe14-ops)
@@ -79,9 +80,7 @@ Abaixo segue uma lista de integrações com a BrasilApi fornecidas pela comunida
 
 **Delphi**
   * **[BrasilAPI-Delphi](https://github.com/gabrielbaltazar/brasilapi4D)** Criado por [@GabrielBaltazar](https://github.com/gabrielbaltazar)
-
-**PHP**
-  * **[brasilapi-php](https://github.com/Corviz/brasilapi-php)** Criado por [@carloscarucce](https://github.com/carloscarucce)
+  
 
 ## Autores
 
