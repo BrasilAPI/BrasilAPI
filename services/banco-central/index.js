@@ -18,7 +18,7 @@ const formatCsvFile = (file) => {
   lines.shift();
 
   return lines
-    .map((line) => line.split(',')) // Gera um array por coluna
+    .map((line) => line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/g)) // Usa regex em vez de split(',') para corrigir problema de bancos com  "," no nome #476
     .filter(([ispb]) => ispb) // Filtra apenas linhas válidas
     .map(
       ([
@@ -34,7 +34,7 @@ const formatCsvFile = (file) => {
           ispb,
           name: name && name.trim(),
           code: Number(code),
-          fullName: fullName && fullName.trim(),
+          fullName: fullName && fullName.trim().replace(/\\"|"/g, ''), // Remove aspas
         };
       }
     );
