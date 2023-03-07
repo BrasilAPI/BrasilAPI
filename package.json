@@ -22,6 +22,7 @@
     "next": "10.2.0",
     "next-connect": "0.9.1",
     "next-sitemap": "1.6.168",
+    "papaparse": "^5.4.0",
     "piscina": "3.2.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
