@@ -112,7 +112,7 @@ export default function Index() {
             Um exemplo prático disto foi quando dos maiores provedores de
             telefonia do Brasil estava revalidando, todos os ceps (de 00000000
             até 99999999 ) e estourando em 5 vezes o limite atual da nossa conta
-            no servidor. O volume de consulta dever ter a natureza de uma pessoa
+            no servidor. O volume de consulta deve ter a natureza de uma pessoa
             real requisitando um determinado dado. E para consultas com um alto
             volume automatizado, iremos mais para frente fornecer alguma
             solução, como por exemplo, conseguir fazer o download de toda a base
