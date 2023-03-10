@@ -1,27 +1,46 @@
 import app from '@/app';
 import BadRequestError from '@/errors/BadRequestError';
+import InternalError from '@/errors/InternalError';
+import BaseError from '@/errors/BaseError';
 import { getIgpmByLastNRecords } from '@/services/indices/igpm';
-import { codes } from '../../../codes';
+import { bcbSgsCodes } from '../../../codes';
 
 const action = async (request, response) => {
-  const { limit } = request.query;
+  try {
+    const { limit } = request.query;
 
-  if (!limit) {
-    throw new BadRequestError({
-      message: 'Limite inválido, informe um número maior ou igual a 1',
+    if (Number.isNaN(limit) || !Number.isFinite(limit)) {
+      throw new BadRequestError({
+        message: 'Limite inválido, informe um número maior ou igual a 1',
+      });
+    }
+
+    if (!limit) {
+      throw new BadRequestError({
+        message: 'Limite inválido, informe um número maior ou igual a 1',
+      });
+    }
+
+    if (limit <= 0) {
+      throw new BadRequestError({
+        message: 'Limite inválido, informe um número maior ou igual a 1',
+      });
+    }
+
+    const igpmList = await getIgpmByLastNRecords(bcbSgsCodes.igpm, limit);
+
+    response.status(200);
+    return response.json(igpmList);
+  } catch (error) {
+    if (error instanceof BaseError) {
+      throw error;
+    }
+
+    throw new InternalError({
+      status: 500,
+      type: 'INTERNAL',
     });
   }
-
-  if (limit <= 0) {
-    throw new BadRequestError({
-      message: 'Limite inválido, informe um número maior ou igual a 1',
-    });
-  }
-
-  const igpmList = await getIgpmByLastNRecords(codes.igpm, limit);
-
-  response.status(200);
-  return response.json(igpmList);
 };
 
 export default app().get(action);

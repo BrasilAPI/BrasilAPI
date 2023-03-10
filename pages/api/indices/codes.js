@@ -1,3 +1,3 @@
-export const codes = {
+export const bcbSgsCodes = {
   igpm: 189,
 };

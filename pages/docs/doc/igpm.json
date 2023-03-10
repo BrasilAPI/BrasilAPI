@@ -43,12 +43,12 @@
       "get": {
         "tags": ["INDICES"],
         "summary": "IGPM - Últimos indices",
-        "description": "Retorna todos os ultimos últimos valores do IGP-M de acordo com a quantidade informada",
+        "description": "Retorna todos os ultimos valores do IGP-M de acordo com a quantidade de meses informada",
         "parameters": [
           {
             "name": "limit",
             "in": "query",
-            "description": "Quantidade de registros a serem obtidos",
+            "description": "Quantidade de meses a serem obtidos dados",
             "required": true,
             "schema": {
               "type": "integer",
@@ -100,7 +100,7 @@
       "get": {
         "tags": ["INDICES"],
         "summary": "IGPM - Lista de indices por Intervalo",
-        "description": "Retorna todos os valores de IGP-M desde sua criação",
+        "description": "Retorna todos os valores de IGP-M de acordo com o intervalo de datas informado",
         "parameters": [
           {
             "name": "initial_date",
@@ -180,7 +180,8 @@
             "description": "Data/Hora de criação indice"
           },
           "value": {
-            "type": "string",
+            "type": "number",
+            "multipleOf": "0.01",
             "description": "Valor do indice"
           }
         },

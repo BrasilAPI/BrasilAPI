@@ -90,8 +90,8 @@ describe('/indices/igpm/v1 (E2E)', () => {
     test('should return a list of records', async () => {
       const response = await axios.get(`${API_URL}/intervalo`, {
         params: {
-          initial_date: '20/01/2003',
-          final_date: '20/01/2005',
+          initial_date: '20-01-2003',
+          final_date: '20-01-2005',
         },
       });
 
@@ -111,7 +111,7 @@ describe('/indices/igpm/v1 (E2E)', () => {
         await axios.get(`${API_URL}/intervalo`, {
           params: {
             initial_date: null,
-            final_date: '20/01/2005',
+            final_date: '20-01-2005',
           },
         });
       } catch (error) {
@@ -127,25 +127,8 @@ describe('/indices/igpm/v1 (E2E)', () => {
       try {
         await axios.get(`${API_URL}/intervalo`, {
           params: {
-            initial_date: '20/01/2005',
+            initial_date: '20-01-2005',
             final_date: null,
-          },
-        });
-      } catch (error) {
-        const { response } = error;
-        expect(response.status).toBe(400);
-        expect(response.data.message).toEqual(
-          'Intervalo de datas inválido, informe um intervalo correto'
-        );
-      }
-    });
-
-    test('should return error when final_date is before initial_date', async () => {
-      try {
-        await axios.get(`${API_URL}/intervalo`, {
-          params: {
-            initial_date: '20/01/2005',
-            final_date: '19/01/2005',
           },
         });
       } catch (error) {
@@ -178,8 +161,8 @@ describe('/indices/igpm/v1 (E2E)', () => {
       try {
         await axios.get(`${API_URL}/intervalo`, {
           params: {
-            initial_date: '22/01/2005',
-            final_date: '19/01/2005',
+            initial_date: '22-01-2005',
+            final_date: '19-01-2005',
           },
         });
       } catch (error) {

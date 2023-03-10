@@ -3,6 +3,17 @@ import { buildUrl, fetchData } from './helpers';
 import { toISOString } from '../date';
 
 /**
+ * Formata e realiza a conversão do valor IGPM para ponto flutuante
+ * @param {String} value Valor do IGPM em formato string
+ * @returns Number
+ */
+const normalizeIgpmValue = (value) => {
+  const valueInFloatString = value.replace(',', '.');
+
+  return parseFloat(valueInFloatString);
+};
+
+/**
  * Busca todos os indices desde o inicio da disponibilização
  * @param {Number} code Código BCB https://www3.bcb.gov.br/sgspub/localizarseries/localizarSeries.do?method=prepararTelaLocalizarSeries
  * @returns
@@ -11,7 +22,7 @@ export const getIgpm = async (code) => {
   const data = await fetchData(buildUrl.simple(code), {}, igpmSchema);
 
   return data.map((igpmIndex) => ({
-    value: igpmIndex.valor,
+    value: normalizeIgpmValue(igpmIndex.valor),
     date: toISOString(igpmIndex.data, 'DD/MM/YYYY'),
   }));
 };
@@ -30,7 +41,7 @@ export const getIgpmByPeriod = async (code, initialDate, endDate) => {
   );
 
   return data.map((igpmIndex) => ({
-    value: igpmIndex.valor,
+    value: normalizeIgpmValue(igpmIndex.valor),
     date: toISOString(igpmIndex.data, 'DD/MM/YYYY'),
   }));
 };
@@ -48,7 +59,7 @@ export const getIgpmByLastNRecords = async (code, numberOfRecords = 12) => {
   );
 
   return data.map((igpmIndex) => ({
-    value: igpmIndex.valor,
+    value: normalizeIgpmValue(igpmIndex.valor),
     date: toISOString(igpmIndex.data, 'DD/MM/YYYY'),
   }));
 };
