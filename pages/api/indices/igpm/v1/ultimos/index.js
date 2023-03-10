@@ -9,21 +9,16 @@ const action = async (request, response) => {
   try {
     const { limit } = request.query;
 
-    if (Number.isNaN(limit) || !Number.isFinite(limit)) {
+    const monthLimit = +limit;
+
+    if (!Number.isSafeInteger(monthLimit) || !Number.isFinite(monthLimit)) {
       throw new BadRequestError({
         message: 'Limite inválido, informe um número maior ou igual a 1',
         type: 'bad_request',
       });
     }
 
-    if (!limit) {
-      throw new BadRequestError({
-        message: 'Limite inválido, informe um número maior ou igual a 1',
-        type: 'bad_request',
-      });
-    }
-
-    if (limit <= 0) {
+    if (monthLimit <= 0) {
       throw new BadRequestError({
         message: 'Limite inválido, informe um número maior ou igual a 1',
         type: 'bad_request',

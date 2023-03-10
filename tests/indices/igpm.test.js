@@ -11,7 +11,7 @@ describe('/indices/igpm/v1 (E2E)', () => {
       expect(response.data).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
-            value: expect.any(String),
+            value: expect.any(Number),
             date: expect.any(String),
           }),
         ])
@@ -32,7 +32,7 @@ describe('/indices/igpm/v1 (E2E)', () => {
       expect(response.data).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
-            value: expect.any(String),
+            value: expect.any(Number),
             date: expect.any(String),
           }),
         ])
@@ -84,6 +84,38 @@ describe('/indices/igpm/v1 (E2E)', () => {
         );
       }
     });
+
+    test('should return error when limit is not a valid number', async () => {
+      try {
+        await axios.get(`${API_URL}/ultimos`, {
+          params: {
+            limit: null,
+          },
+        });
+      } catch (error) {
+        const { response } = error;
+        expect(response.status).toBe(400);
+        expect(response.data.message).toEqual(
+          'Limite inválido, informe um número maior ou igual a 1'
+        );
+      }
+    });
+
+    test('should return error when limit is infinity', async () => {
+      try {
+        await axios.get(`${API_URL}/ultimos`, {
+          params: {
+            limit: Infinity,
+          },
+        });
+      } catch (error) {
+        const { response } = error;
+        expect(response.status).toBe(400);
+        expect(response.data.message).toEqual(
+          'Limite inválido, informe um número maior ou igual a 1'
+        );
+      }
+    });
   });
 
   describe('/intervalo - Intervalo de tempo', () => {
@@ -99,7 +131,7 @@ describe('/indices/igpm/v1 (E2E)', () => {
       expect(response.data).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
-            value: expect.any(String),
+            value: expect.any(Number),
             date: expect.any(String),
           }),
         ])
