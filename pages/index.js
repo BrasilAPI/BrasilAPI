@@ -109,7 +109,14 @@ export default function Index() {
             </ul>
           </div>
           <p>
-          Um exemplo prático disso foi quando um dos maiores provedores de telefonia do Brasil estava validando todos os CEPs (de 00000000 até 99999999) e ultrapassando em cinco vezes o limite atual da nossa conta no servidor. O volume de consulta deve ter a natureza de uma pessoa real requisitando um determinado dado. Para consultas com um alto volume automatizado, forneceremos alguma solução posteriormente, como, por exemplo, a possibilidade de fazer o download de toda a base de CEPs em uma única solicitação.
+            Um exemplo prático disso foi quando um dos maiores provedores de
+            telefonia do Brasil estava validando novamente todos os CEPs (de
+            00000000 até 99999999) e ultrapassando em cinco vezes o limite atual
+            da nossa conta no servidor. O volume de consultas deve ter a
+            natureza de uma pessoa real requisitando um determinado dado. Para
+            consultas com um alto volume automatizado forneceremos
+            posteriormente alguma solução, como, por exemplo, permitir o
+            download de toda a base de CEPs em uma única requisição.
           </p>
         </section>
       </main>
