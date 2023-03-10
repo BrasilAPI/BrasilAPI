@@ -12,18 +12,21 @@ const action = async (request, response) => {
     if (Number.isNaN(limit) || !Number.isFinite(limit)) {
       throw new BadRequestError({
         message: 'Limite inválido, informe um número maior ou igual a 1',
+        type: 'bad_request',
       });
     }
 
     if (!limit) {
       throw new BadRequestError({
         message: 'Limite inválido, informe um número maior ou igual a 1',
+        type: 'bad_request',
       });
     }
 
     if (limit <= 0) {
       throw new BadRequestError({
         message: 'Limite inválido, informe um número maior ou igual a 1',
+        type: 'bad_request',
       });
     }
 
@@ -39,6 +42,7 @@ const action = async (request, response) => {
     throw new InternalError({
       status: 500,
       type: 'INTERNAL',
+      message: 'Erro ao obter os dados do BCB',
     });
   }
 };

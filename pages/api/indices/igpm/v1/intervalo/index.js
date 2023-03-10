@@ -48,6 +48,7 @@ const action = async (request, response) => {
     throw new InternalError({
       status: 500,
       type: 'INTERNAL',
+      message: 'Erro ao obter os dados do BCB',
     });
   }
 };
