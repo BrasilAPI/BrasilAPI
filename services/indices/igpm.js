@@ -19,7 +19,7 @@ const normalizeIgpmValue = (value) => {
  * @returns
  */
 export const getIgpm = async (code) => {
-  const data = await fetchData(buildUrl.simple(code), {}, igpmSchema);
+  const data = await fetchData(buildUrl.simple(code), igpmSchema);
 
   return data.map((igpmIndex) => ({
     value: normalizeIgpmValue(igpmIndex.valor),
@@ -34,11 +34,10 @@ export const getIgpm = async (code) => {
  * @param {Date} endDate Data final do intervalo
  */
 export const getIgpmByPeriod = async (code, initialDate, endDate) => {
-  const data = await fetchData(
-    buildUrl.simple(code),
-    { dataInicial: initialDate, dataFinal: endDate },
-    igpmSchema
-  );
+  const data = await fetchData(buildUrl.simple(code), igpmSchema, {
+    dataInicial: initialDate,
+    dataFinal: endDate,
+  });
 
   return data.map((igpmIndex) => ({
     value: normalizeIgpmValue(igpmIndex.valor),
@@ -54,7 +53,6 @@ export const getIgpmByPeriod = async (code, initialDate, endDate) => {
 export const getIgpmByLastNRecords = async (code, numberOfRecords = 12) => {
   const data = await fetchData(
     buildUrl.lastRecords(code, numberOfRecords),
-    {},
     igpmSchema
   );
 

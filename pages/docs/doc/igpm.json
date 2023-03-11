@@ -2,7 +2,7 @@
   "tags": [
     {
       "name": "INDICES",
-      "description": "Informações referentes aos indices \nIGP-M"
+      "description": "Informações referentes aos indices financeiros brasileiros \nIGP-M"
     }
   ],
   "paths": {
@@ -87,8 +87,28 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "title": "IGPM - Limit Bad Request Error",
+                  "required": ["message", "type", "name"],
                   "type": "object",
-                  "$ref": "#/components/schemas/IGPM_INTERNAL_ERROR"
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Mensagem do erro"
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "Tipo do erro"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Nome do erro"
+                    }
+                  },
+                  "example": {
+                    "message": "Limite inválido, informe um número maior ou igual a 1",
+                    "type": "bad_request",
+                    "name": "IGPM_LIST_ERROR"
+                  }
                 }
               }
             }
@@ -108,9 +128,9 @@
             "description": "Data inicial do intervalo",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "date"
             },
-            "example": "20/02/2005"
+            "example": "2005-02-10"
           },
           {
             "name": "final_date",
@@ -118,9 +138,9 @@
             "description": "Data final do intervalo",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "date"
             },
-            "example": "20/02/2005"
+            "example": "2005-03-10"
           }
         ],
         "responses": {
@@ -154,10 +174,25 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "$ref": "#/components/schemas/IGPM_INTERNAL_ERROR",
+                  "title": "IGPM Range Error",
+                  "required": ["message", "type", "name"],
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Mensagem do erro"
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "Tipo do erro"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Nome do erro"
+                    }
+                  },
                   "example": {
                     "message": "Intervalo de datas inválido, informe um intervalo correto",
-                    "type": "INTERNAL",
+                    "type": "range_error",
                     "name": "IGPM_LIST_ERROR"
                   }
                 }

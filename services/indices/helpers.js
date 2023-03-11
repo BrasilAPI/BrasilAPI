@@ -13,7 +13,7 @@ const defaultParams = {
   formato: 'json',
 };
 
-export const fetchData = async (url, params = {}, schema) => {
+export const fetchData = async (url, schema, params = {}) => {
   try {
     const response = await axios.get(url, {
       params: {

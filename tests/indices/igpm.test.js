@@ -3,6 +3,11 @@ const axios = require('axios');
 describe('/indices/igpm/v1 (E2E)', () => {
   const API_URL = `${global.SERVER_URL}/api/indices/igpm/v1`;
 
+  const dates = {
+    before: '2005-02-10',
+    after: '2005-03-10',
+  };
+
   describe('/ - Simples', () => {
     test('should return a list of records', async () => {
       const response = await axios.get(API_URL);
@@ -122,8 +127,8 @@ describe('/indices/igpm/v1 (E2E)', () => {
     test('should return a list of records', async () => {
       const response = await axios.get(`${API_URL}/intervalo`, {
         params: {
-          initial_date: '20-01-2003',
-          final_date: '20-01-2005',
+          initial_date: dates.before,
+          final_date: dates.after,
         },
       });
 
@@ -143,7 +148,7 @@ describe('/indices/igpm/v1 (E2E)', () => {
         await axios.get(`${API_URL}/intervalo`, {
           params: {
             initial_date: null,
-            final_date: '20-01-2005',
+            final_date: dates.after,
           },
         });
       } catch (error) {
@@ -159,7 +164,7 @@ describe('/indices/igpm/v1 (E2E)', () => {
       try {
         await axios.get(`${API_URL}/intervalo`, {
           params: {
-            initial_date: '20-01-2005',
+            initial_date: dates.before,
             final_date: null,
           },
         });
@@ -176,25 +181,8 @@ describe('/indices/igpm/v1 (E2E)', () => {
       try {
         await axios.get(`${API_URL}/intervalo`, {
           params: {
-            initial_date: '20/01/2005',
-            final_date: '19/01/2005',
-          },
-        });
-      } catch (error) {
-        const { response } = error;
-        expect(response.status).toBe(400);
-        expect(response.data.message).toEqual(
-          'Intervalo de datas inválido, informe um intervalo correto'
-        );
-      }
-    });
-
-    test('should return error when initial_date is after final_date', async () => {
-      try {
-        await axios.get(`${API_URL}/intervalo`, {
-          params: {
-            initial_date: '22-01-2005',
-            final_date: '19-01-2005',
+            initial_date: dates.after,
+            final_date: dates.before,
           },
         });
       } catch (error) {

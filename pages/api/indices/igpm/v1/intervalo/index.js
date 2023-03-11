@@ -13,8 +13,8 @@ const action = async (request, response) => {
       final_date: finalDateInterval,
     } = request.query;
 
-    const initialDate = parseToDate(initialDateInterval, 'DD-MM-YYYY');
-    const finalDate = parseToDate(finalDateInterval, 'DD-MM-YYYY');
+    const initialDate = parseToDate(initialDateInterval, 'YYYY-MM-DD');
+    const finalDate = parseToDate(finalDateInterval, 'YYYY-MM-DD');
 
     if (!isValidDate(initialDate) || !isValidDate(finalDate)) {
       throw new BadRequestError({
