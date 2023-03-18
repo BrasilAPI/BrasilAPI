@@ -15,6 +15,20 @@ describe('banks v1 (E2E)', () => {
       });
     });
 
+    test('Utilizando um bank code válido (com vírgula no nome): 402', async () => {
+      const requestUrl = `${global.SERVER_URL}/api/banks/v1/402`;
+      const response = await axios.get(requestUrl);
+
+      expect(response.status).toBe(200);
+      expect(response.data).toEqual({
+        ispb: '36947229',
+        name: 'COBUCCIO S.A. SCFI',
+        code: 402,
+        fullName:
+          'COBUCCIO S/A - SOCIEDADE DE CRÉDITO, FINANCIAMENTO E INVESTIMENTOS',
+      });
+    });
+
     test('Utilizando um código inexistente: 1111111', async () => {
       expect.assertions(2);
       const requestUrl = `${global.SERVER_URL}/api/banks/v1/1111111`;

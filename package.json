@@ -7,11 +7,13 @@
     "node": ">=16 <17"
   },
   "dependencies": {
+    "adm-zip": "0.5.10",
     "apollo-server-micro": "2.24.0",
     "axios": "0.21.4",
     "bluebird": "3.7.2",
-    "cep-promise": "4.3.0",
+    "cep-promise": "4.4.0",
     "cors": "2.8.5",
+    "dayjs": "1.11.7",
     "fast-xml-parser": "4.0.11",
     "graphql": "15.8.0",
     "lodash": "4.17.21",
@@ -20,6 +22,7 @@
     "next": "11.1.4",
     "next-connect": "0.13.0",
     "next-sitemap": "1.6.168",
+    "papaparse": "5.4.0",
     "piscina": "3.2.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
