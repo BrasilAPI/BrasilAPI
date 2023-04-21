@@ -6,7 +6,7 @@ import { getDadosDespesa } from '@/services/dados-abertos-br/senado-orcamento';
 async function getDadosDespesas(request, response) {
   try {
     const result = await getDadosDespesa();
-    return response.status(result.status).json(result.data);
+    return response.status(result.status).json(result.data.despesas);
   } catch (error) {
     if (error.response.status === 400) {
       throw new BadRequestError({ message: error.response.data.message });
