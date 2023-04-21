@@ -63,4 +63,25 @@ describe('/cep/v2 (E2E)', () => {
       });
     }
   });
+
+  test('Deve retornar as coordenadas -22.883892 e -43.3061123', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/cep/v2/20751120`;
+    const response = await axios.get(requestUrl);
+
+    expect(response.data).toEqual({
+      cep: '20751120',
+      state: 'RJ',
+      city: 'Rio de Janeiro',
+      neighborhood: 'Piedade',
+      street: 'Rua Marcolino',
+      service: expect.any(String),
+      location: {
+        type: 'Point',
+        coordinates: {
+          longitude: '-43.3061123',
+          latitude: '-22.883892',
+        },
+      },
+    });
+  });
 });
