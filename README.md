@@ -41,7 +41,7 @@ Caso você esteja lendo esta versão de README, você está pegando o projeto nu
 Veja mais detalhes sobre **Como contribuir** no arquivo [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Termos de Uso
-O BrasilAPI é uma iniciativa feita de brasileiros para brasileiros, por favor, não abuse deste serviço. Estamos em beta e ainda elaborando os Termos de Uso, mas por enquanto por favor não utilize formas automatizadas para fazer "crawling" dos dados da API. Um exemplo prático disto é um dos maiores provedores de telefonia do Brasil estar revalidando, neste exato momento, todos os Ceps (de `00000000` até `99999999`) e estourando em 5 vezes o limite atual da nossa conta no servidor. O volume de consulta dever ter a natureza de uma pessoa real requisitando um determinado dado. E para consultas com um alto volume automatizado, iremos mais para frente fornecer alguma solução, como por exemplo, conseguir fazer o download de toda a base de Ceps em uma única request.
+O BrasilAPI é uma iniciativa feita de brasileiros para brasileiros, por favor, não abuse deste serviço. Estamos em beta e ainda elaborando os Termos de Uso, mas por enquanto por favor não utilize formas automatizadas para fazer "crawling" dos dados da API. Um exemplo prático disso foi quando um dos maiores provedores de telefonia do Brasil estava validando novamente todos os CEPs (de 00000000 até 99999999) e ultrapassando em cinco vezes o limite atual da nossa conta no servidor. O volume de consultas deve ter a natureza de uma pessoa real requisitando um determinado dado. Para consultas com um alto volume automatizado forneceremos posteriormente alguma solução, como, por exemplo, permitir o download de toda a base de CEPs em uma única requisição.
 
 ## Pessoas que já contribuiram
 
@@ -65,6 +65,10 @@ Abaixo segue uma lista de integrações com a BrasilApi fornecidas pela comunida
 **.Net**
   * **[BrasilAPI-DotNet](https://github.com/farukaf/BrasilAPI-DotNet)** criado por [@farukaf](https://github.com/farukaf)
 
+**PHP**
+  * **[brasilapi-php](https://github.com/andreoneres/brasilapi-php)** criado por [@andreoneres](https://github.com/andreoneres)
+  * **[brasilapi-php](https://github.com/Corviz/brasilapi-php)** Criado por [@carloscarucce](https://github.com/carloscarucce)
+
 **Python**
   * **[brasilapy](https://github.com/lipe14-ops/brasilapy)** Criado por [@lipe14-ops](https://github.com/lipe14-ops)
 
@@ -76,6 +80,11 @@ Abaixo segue uma lista de integrações com a BrasilApi fornecidas pela comunida
 
 **Delphi**
   * **[BrasilAPI-Delphi](https://github.com/gabrielbaltazar/brasilapi4D)** Criado por [@GabrielBaltazar](https://github.com/gabrielbaltazar)
+
+**V**
+  * **[BrasilAPI-V](https://github.com/ldedev/brasilapi-v)** Criado por [@ldedev(André)](https://github.com/ldedev)
+
+
 
 ## Autores
 
