@@ -5,7 +5,7 @@ import { getDadosQuantitativoPessoal } from '@/services/dados-abertos-br/senado-
 async function getDadosSenadoQuantitativoPessoal(request, response) {
   try {
     const result = await getDadosQuantitativoPessoal();
-    return response.status(result.status).json(result.data);
+    return response.status(200).json(result.data);
   } catch (error) {
     throw new InternalError({ message: error.response.data.message });
   }
