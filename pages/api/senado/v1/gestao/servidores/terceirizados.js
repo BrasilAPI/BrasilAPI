@@ -5,7 +5,7 @@ import { getDadosServidoresTerceirizados } from '@/services/dados-abertos-br/sen
 async function getDadosTerceirizados(request, response) {
   try {
     const result = await getDadosServidoresTerceirizados();
-    return response.status(result.status).json(result.data);
+    return response.status(200).json(result.data);
   } catch (error) {
     throw new InternalError({ message: error.response.data.message });
   }

@@ -5,7 +5,7 @@ import { getDadosServidoresDisponibilizados } from '@/services/dados-abertos-br/
 async function getDadosDisponibilizados(request, response) {
   try {
     const result = await getDadosServidoresDisponibilizados();
-    return response.status(result.status).json(result.data);
+    return response.status(200).json(result.data);
   } catch (error) {
     throw new InternalError({ message: error.response.data.message });
   }
