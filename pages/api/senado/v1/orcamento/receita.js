@@ -1,6 +1,5 @@
 import app from '@/app';
-import BadRequestError from '@/errors/BadRequestError';
-import NotFoundError from '@/errors/NotFoundError';
+import InternalError from '@/errors/InternalError';
 import { getDadosReceita } from '@/services/dados-abertos-br/senado-orcamento';
 
 async function getDadosReceitas(request, response) {
@@ -8,13 +7,7 @@ async function getDadosReceitas(request, response) {
     const result = await getDadosReceita();
     return response.status(result.status).json(result.data);
   } catch (error) {
-    if (error.response.status === 400) {
-      throw new BadRequestError({ message: error.response.data.message });
-    }
-    if (error.response.status === 404) {
-      throw new NotFoundError({ message: error.response.data.message });
-    }
-    throw error;
+    throw new InternalError({ message: error.response.data.message });
   }
 }
 
