@@ -6,7 +6,7 @@ import { getDadosServidoresInativos } from '@/services/dados-abertos-br/senado-g
 async function getDadosGestaoInativos(request, response) {
   try {
     const result = await getDadosServidoresInativos();
-    return response.status(result.status).json(result.data);
+    return response.status(200).json(result.data);
   } catch (error) {
     if (error.response.status === 400) {
       throw new BadRequestError({ message: error.response.data.message });
