@@ -5,7 +5,7 @@ import { getDadosServidoresEstagiarios } from '@/services/dados-abertos-br/senad
 async function getDadosEstagiarios(request, response) {
   try {
     const result = await getDadosServidoresEstagiarios();
-    return response.status(result.status).json(result.data);
+    return response.status(200).json(result.data);
   } catch (error) {
     throw new InternalError({ message: error.response.data.message });
   }
