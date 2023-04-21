@@ -80,7 +80,11 @@ Abaixo segue uma lista de integrações com a BrasilApi fornecidas pela comunida
 
 **Delphi**
   * **[BrasilAPI-Delphi](https://github.com/gabrielbaltazar/brasilapi4D)** Criado por [@GabrielBaltazar](https://github.com/gabrielbaltazar)
-  
+
+**V**
+  * **[BrasilAPI-V](https://github.com/ldedev/brasilapi-v)** Criado por [@ldedev(André)](https://github.com/ldedev)
+
+
 
 ## Autores
 
