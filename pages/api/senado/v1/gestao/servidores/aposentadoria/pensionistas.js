@@ -5,7 +5,7 @@ import { getDadosServidoresPensionistas } from '@/services/dados-abertos-br/sena
 async function getDadosGestaoPensionistas(request, response) {
   try {
     const result = await getDadosServidoresPensionistas();
-    return response.status(result.status).json(result.data);
+    return response.status(200).json(result.data);
   } catch (error) {
     throw new InternalError({ message: error.response.data.message });
   }

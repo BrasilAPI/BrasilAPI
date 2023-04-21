@@ -5,7 +5,7 @@ import { getDadosServidoresAtivos } from '@/services/dados-abertos-br/senado-ges
 async function getDadosAtivos(request, response) {
   try {
     const result = await getDadosServidoresAtivos();
-    return response.status(result.status).json(result.data);
+    return response.status(200).json(result.data);
   } catch (error) {
     throw new InternalError({ message: error.response.data.message });
   }
