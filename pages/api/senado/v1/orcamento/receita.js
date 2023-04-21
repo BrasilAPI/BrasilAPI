@@ -5,7 +5,7 @@ import { getDadosReceita } from '@/services/dados-abertos-br/senado-orcamento';
 async function getDadosReceitas(request, response) {
   try {
     const result = await getDadosReceita();
-    return response.status(200).json(result.data);
+    return response.status(200).json(result.data.receitas);
   } catch (error) {
     throw new InternalError({ message: error.response.data.message });
   }
