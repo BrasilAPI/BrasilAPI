@@ -1,14 +1,13 @@
 module.exports = {
-  future: {
-    webpack5: true,
-  },
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
+  webpack5: false,
+  webpack(config) {
+    if (config.resolve.fallback) {
       /* eslint-disable no-param-reassign */
       config.resolve.fallback.fs = false;
       /* eslint-enable no-param-reassign */
     }
-    /* 
+
+    /*
     This rule fix error during building
     with yaml/browser used by fast-xml-parser
     */

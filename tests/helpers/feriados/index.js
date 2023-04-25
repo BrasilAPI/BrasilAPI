@@ -108,8 +108,8 @@ const getFixedHolidays = (year, holidaysName = fixedHolidaysName) =>
 const getHolidays = (
   year,
   holidaysName = [...easterHolidaysName, ...fixedHolidaysName]
-) => {
-  return [
+) =>
+  [
     ...getEasterHolidays(year, holidaysName),
     ...getFixedHolidays(year, holidaysName),
   ].sort((a, b) => {
@@ -121,7 +121,6 @@ const getHolidays = (
     }
     return 0;
   });
-};
 
 module.exports = {
   getEasterHolidays,

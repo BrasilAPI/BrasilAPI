@@ -9,9 +9,7 @@ const cors = Cors({
 const apolloServer = new ApolloServer({
   schema,
   introspection: true,
-  context: ({ req, res }) => {
-    return { req, res };
-  },
+  context: ({ req, res }) => ({ req, res }),
 });
 
 const handler = apolloServer.createHandler({ path: '/api/graphql/v1' });
