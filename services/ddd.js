@@ -19,10 +19,12 @@ export const getDddsData = async () => {
 
   return lines
     .map((line) => line.split(';'))
-    .map(([ibgeCode, state, city, ddd]) => ({
-      ibgeCode,
-      state,
-      city,
-      ddd,
-    }));
+    .map(([ibgeCode, state, city, ddd]) => {
+      return {
+        ibgeCode,
+        state,
+        city,
+        ddd,
+      };
+    });
 };
