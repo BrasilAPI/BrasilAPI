@@ -110,13 +110,13 @@ export async function getFipePrice(
   });
 
   return Promise.all(
-    models.map((model) =>
-      getPrice({
+    models.map((model) => {
+      return getPrice({
         referenceTable: referenceTableCode,
         vehicleType,
         model,
         fipeCode,
-      })
-    )
+      });
+    })
   );
 }

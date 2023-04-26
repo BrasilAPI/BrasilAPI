@@ -14,12 +14,13 @@ const corsDefaultConfiguration = {
 
 const cacheDefaultConfiguration = 86400;
 
-const onNoMatch = (request, response) =>
-  response.status(404).json({
+const onNoMatch = (request, response) => {
+  return response.status(404).json({
     message: 'Page not found.',
     type: 'not_found',
     name: 'NotFoundError',
   });
+};
 
 export default (options = {}) => {
   const corsOptions = options.cors || {};
