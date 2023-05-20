@@ -12,7 +12,7 @@ const action = async (request, response) => {
     if (!request.query.uf) {
       throw new BadRequestError({
         message: 'UF não enviada.',
-        type: 'ibpt_ncm_error',
+        type: 'IBPT_NCM_BAD_REQUEST',
         name: 'IBPT_NCM_BAD_REQUEST',
       });
     }
@@ -22,7 +22,7 @@ const action = async (request, response) => {
     if (!SIGLAS_UF.includes(uf)) {
       throw new NotFoundError({
         message: 'UF não encontrada.',
-        type: 'ibpt_ncm_error',
+        type: 'IBPT_NCM_NOT_FOUND',
         name: 'IBPT_NCM_NOT_FOUND',
       });
     }
@@ -32,7 +32,7 @@ const action = async (request, response) => {
     if (!codigo) {
       throw new BadRequestError({
         message: 'Codigo não enviado.',
-        type: 'ibpt_ncm_error',
+        type: 'IBPT_NCM_BAD_REQUEST',
         name: 'IBPT_NCM_BAD_REQUEST',
       });
     }
@@ -40,7 +40,7 @@ const action = async (request, response) => {
     if (codigo.length !== 8) {
       throw new BadRequestError({
         message: 'Codigo do NCM deve ter 8 digitos.',
-        type: 'ibpt_ncm_error',
+        type: 'IBPT_NCM_BAD_REQUEST',
         name: 'IBPT_NCM_BAD_REQUEST',
       });
     }
@@ -54,7 +54,7 @@ const action = async (request, response) => {
     if (!retorno) {
       throw new NotFoundError({
         message: 'NCM não encontrado.',
-        type: 'ibpt_ncm_error',
+        type: 'IBPT_NCM_NOT_FOUND',
         name: 'IBPT_NCM_NOT_FOUND',
       });
     }
@@ -67,7 +67,7 @@ const action = async (request, response) => {
 
     throw new InternalError({
       message: 'Erro ao buscar alíquotas ncm.',
-      type: 'ibpt_ncm_error',
+      type: 'IBPT_NCM_INTERNAL',
       name: 'IBPT_NCM_INTERNAL',
     });
   }

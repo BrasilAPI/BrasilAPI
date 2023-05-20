@@ -12,7 +12,7 @@ const action = async (request, response) => {
     if (!request.query.uf) {
       throw new BadRequestError({
         message: 'UF não enviada.',
-        type: 'ibpt_nbs_error',
+        type: 'IBPT_NBS_BAD_REQUEST',
         name: 'IBPT_NBS_BAD_REQUEST',
       });
     }
@@ -22,7 +22,7 @@ const action = async (request, response) => {
     if (!SIGLAS_UF.includes(uf)) {
       throw new NotFoundError({
         message: 'UF não encontrada.',
-        type: 'ibpt_nbs_error',
+        type: 'IBPT_NBS_NOT_FOUND',
         name: 'IBPT_NBS_NOT_FOUND',
       });
     }
@@ -37,7 +37,7 @@ const action = async (request, response) => {
 
     throw new InternalError({
       message: 'Erro ao buscar alíquotas nbs.',
-      type: 'ibpt_nbs_error',
+      type: 'IBPT_NBS_INTERNAL',
       name: 'IBPT_NBS_INTERNAL',
     });
   }
