@@ -27,6 +27,7 @@ const getDocs = () => {
     'CAMBIO',
     'TICKERS',
     'CPF',
+    'IBPT',
   ];
 };
 

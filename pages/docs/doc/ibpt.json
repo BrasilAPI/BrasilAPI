@@ -1,0 +1,505 @@
+{
+  "tags": [
+    {
+      "name": "IBPT",
+      "description": "Informações sobre as alíquotas aplicadas ao NCM, NBS e LC 116 por estado"
+    }
+  ],
+  "paths": {
+    "/ibpt/ncm/v1/{siglaUF}": {
+      "get": {
+        "tags": ["IBPT"],
+        "summary": "Retorna as alíquotas de todos os NCMs do estado",
+        "description": "",
+        "parameters": [
+          {
+            "name": "siglaUF",
+            "description": "Sigla da unidade federativa, por exemplo SP, RJ, SC, etc.\n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successo",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "codigo": "00000000",
+                    "ex": "",
+                    "tipo": "0",
+                    "descricao": "PRODUTO NAO ESPECIFICADO NA LISTA DE NCM",
+                    "nacionalfederal": 7.85,
+                    "importadosfederal": 9.85,
+                    "estadual": 18,
+                    "municipal": 0,
+                    "vigenciainicio": "2023-04-20",
+                    "vigenciafim": "2023-05-31",
+                    "chave": "66E459",
+                    "versao": "23.1.E",
+                    "fonte": "IBPT/empresometro.com.br"
+                  },
+                  {
+                    "codigo": "01012100",
+                    "ex": "",
+                    "tipo": "0",
+                    "descricao": "Cavalos reprodutores,de raca pura",
+                    "nacionalfederal": 13.45,
+                    "importadosfederal": 15.45,
+                    "estadual": 18,
+                    "municipal": 0,
+                    "vigenciainicio": "2023-04-20",
+                    "vigenciafim": "2023-05-31",
+                    "chave": "66E459",
+                    "versao": "23.1.E",
+                    "fonte": "IBPT/empresometro.com.br"
+                  }
+                ]
+              }
+            }
+          },
+          "404": {
+            "description": "UF inválida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "message": "UF não encontrada.",
+                  "type": "IBPT_NCM_NOT_FOUND"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ibpt/ncm/v1/{siglaUF}/{codigoNCM}?ex=01": {
+      "get": {
+        "tags": ["IBPT"],
+        "summary": "Retorna as alíquotas do NCM específico",
+        "description": "",
+        "parameters": [
+          {
+            "name": "siglaUF",
+            "description": "Sigla da unidade federativa, por exemplo SP, RJ, SC, etc.\n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          },
+          {
+            "name": "codigoNCM",
+            "description": "Código do NCM, por exemplo 00000000, 01012100, etc.\n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          },
+          {
+            "name": "ex",
+            "description": "Exceção aplicada ao código do NCM, por exemplo 01, 02, etc.\n",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successo",
+            "content": {
+              "application/json": {
+                "example": {
+                  "codigo": "00000000",
+                  "ex": "",
+                  "tipo": "0",
+                  "descricao": "PRODUTO NAO ESPECIFICADO NA LISTA DE NCM",
+                  "nacionalfederal": 7.85,
+                  "importadosfederal": 9.85,
+                  "estadual": 18,
+                  "municipal": 0,
+                  "vigenciainicio": "2023-04-20",
+                  "vigenciafim": "2023-05-31",
+                  "chave": "66E459",
+                  "versao": "23.1.E",
+                  "fonte": "IBPT/empresometro.com.br"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "NCM inválido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "message": "Código do NCM deve ter 8 digitos.",
+                  "type": "IBPT_NCM_BAD_REQUEST"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "NCM inexistente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "message": "NCM não encontrado.",
+                  "type": "IBPT_NCM_NOT_FOUND"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ibpt/nbs/v1/{siglaUF}": {
+      "get": {
+        "tags": ["IBPT"],
+        "summary": "Retorna as alíquotas de todos os NBSs do estado",
+        "description": "",
+        "parameters": [
+          {
+            "name": "siglaUF",
+            "description": "Sigla da unidade federativa, por exemplo SP, RJ, SC, etc.\n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successo",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "codigo": "101011000",
+                    "ex": "",
+                    "tipo": "1",
+                    "descricao": "Servicos de construcao de edificacoes residenciais de um e dois pavimentos",
+                    "nacionalfederal": 13.45,
+                    "importadosfederal": 15.45,
+                    "estadual": 0,
+                    "municipal": 4.33,
+                    "vigenciainicio": "2023-04-20",
+                    "vigenciafim": "2023-05-31",
+                    "chave": "66E459",
+                    "versao": "23.1.E",
+                    "fonte": "IBPT/empresometro.com.br"
+                  },
+                  {
+                    "codigo": "101012000",
+                    "ex": "",
+                    "tipo": "1",
+                    "descricao": "Servicos de construcao de edificacoes residenciais com mais de dois pavimentos",
+                    "nacionalfederal": 13.45,
+                    "importadosfederal": 15.45,
+                    "estadual": 0,
+                    "municipal": 4.33,
+                    "vigenciainicio": "2023-04-20",
+                    "vigenciafim": "2023-05-31",
+                    "chave": "66E459",
+                    "versao": "23.1.E",
+                    "fonte": "IBPT/empresometro.com.br"
+                  }
+                ]
+              }
+            }
+          },
+          "404": {
+            "description": "UF inválida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "message": "UF não encontrada.",
+                  "type": "IBPT_NBS_NOT_FOUND"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ibpt/nbs/v1/{siglaUF}/{codigoNBS}?ex=01": {
+      "get": {
+        "tags": ["IBPT"],
+        "summary": "Retorna as alíquotas do NBS específico",
+        "description": "",
+        "parameters": [
+          {
+            "name": "siglaUF",
+            "description": "Sigla da unidade federativa, por exemplo SP, RJ, SC, etc.\n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          },
+          {
+            "name": "codigoNBS",
+            "description": "Código do NBS, por exemplo 101011000, 101012000, etc.\n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          },
+          {
+            "name": "ex",
+            "description": "Exceção aplicada ao código do NBS, por exemplo 01, 02, etc.\n",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successo",
+            "content": {
+              "application/json": {
+                "example": {
+                  "codigo": "101011000",
+                  "ex": "",
+                  "tipo": "1",
+                  "descricao": "Servicos de construcao de edificacoes residenciais de um e dois pavimentos",
+                  "nacionalfederal": 13.45,
+                  "importadosfederal": 15.45,
+                  "estadual": 0,
+                  "municipal": 4.33,
+                  "vigenciainicio": "2023-04-20",
+                  "vigenciafim": "2023-05-31",
+                  "chave": "66E459",
+                  "versao": "23.1.E",
+                  "fonte": "IBPT/empresometro.com.br"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "NBS inválido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "message": "Código do NBS deve ter 9 digitos.",
+                  "type": "IBPT_NBS_BAD_REQUEST"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "NBS inexistente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "message": "NBS não encontrado.",
+                  "type": "IBPT_NBS_NOT_FOUND"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ibpt/lc116/v1/{siglaUF}": {
+      "get": {
+        "tags": ["IBPT"],
+        "summary": "Retorna as alíquotas de todos os LCs 116 do estado",
+        "description": "",
+        "parameters": [
+          {
+            "name": "siglaUF",
+            "description": "Sigla da unidade federativa, por exemplo SP, RJ, SC, etc.\n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successo",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "codigo": "0101",
+                    "ex": "",
+                    "tipo": "2",
+                    "descricao": "Analise e desenvolvimento de sistemas.",
+                    "nacionalfederal": 13.45,
+                    "importadosfederal": 15.45,
+                    "estadual": 0,
+                    "municipal": 3.9,
+                    "vigenciainicio": "2023-04-20",
+                    "vigenciafim": "2023-05-31",
+                    "chave": "66E459",
+                    "versao": "23.1.E",
+                    "fonte": "IBPT/empresometro.com.br"
+                  },
+                  {
+                    "codigo": "0102",
+                    "ex": "",
+                    "tipo": "2",
+                    "descricao": "Programacao.",
+                    "nacionalfederal": 13.45,
+                    "importadosfederal": 15.45,
+                    "estadual": 0,
+                    "municipal": 3.9,
+                    "vigenciainicio": "2023-04-20",
+                    "vigenciafim": "2023-05-31",
+                    "chave": "66E459",
+                    "versao": "23.1.E",
+                    "fonte": "IBPT/empresometro.com.br"
+                  }
+                ]
+              }
+            }
+          },
+          "404": {
+            "description": "UF inválida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "message": "UF não encontrada.",
+                  "type": "IBPT_LC116_NOT_FOUND"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ibpt/lc116/v1/{siglaUF}/{codigoLC116}?ex=01": {
+      "get": {
+        "tags": ["IBPT"],
+        "summary": "Retorna as alíquotas do LC 116 específico",
+        "description": "",
+        "parameters": [
+          {
+            "name": "siglaUF",
+            "description": "Sigla da unidade federativa, por exemplo SP, RJ, SC, etc.\n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          },
+          {
+            "name": "codigoLC116",
+            "description": "Código do LC 116, por exemplo 0101, 0102, etc.\n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          },
+          {
+            "name": "ex",
+            "description": "Exceção aplicada ao código do LC 116, por exemplo 01, 02, etc.\n",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successo",
+            "content": {
+              "application/json": {
+                "example": {
+                  "codigo": "0101",
+                  "ex": "",
+                  "tipo": "2",
+                  "descricao": "Analise e desenvolvimento de sistemas.",
+                  "nacionalfederal": 13.45,
+                  "importadosfederal": 15.45,
+                  "estadual": 0,
+                  "municipal": 3.9,
+                  "vigenciainicio": "2023-04-20",
+                  "vigenciafim": "2023-05-31",
+                  "chave": "66E459",
+                  "versao": "23.1.E",
+                  "fonte": "IBPT/empresometro.com.br"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "LC 116 inválido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "message": "Código do LC 116 deve ter 4 digitos.",
+                  "type": "IBPT_LC116_BAD_REQUEST"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "LC 116 inexistente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "message": "LC 116 não encontrado.",
+                  "type": "IBPT_LC116_NOT_FOUND"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -13,7 +13,6 @@ const action = async (request, response) => {
       throw new BadRequestError({
         message: 'UF não enviada.',
         type: 'IBPT_NBS_BAD_REQUEST',
-        name: 'IBPT_NBS_BAD_REQUEST',
       });
     }
 
@@ -23,7 +22,6 @@ const action = async (request, response) => {
       throw new NotFoundError({
         message: 'UF não encontrada.',
         type: 'IBPT_NBS_NOT_FOUND',
-        name: 'IBPT_NBS_NOT_FOUND',
       });
     }
 
@@ -31,17 +29,15 @@ const action = async (request, response) => {
 
     if (!codigo) {
       throw new BadRequestError({
-        message: 'Codigo não enviado.',
+        message: 'Código não enviado.',
         type: 'IBPT_NBS_BAD_REQUEST',
-        name: 'IBPT_NBS_BAD_REQUEST',
       });
     }
 
     if (codigo.length !== 9) {
       throw new BadRequestError({
-        message: 'Codigo do NBS deve ter 9 digitos.',
+        message: 'Código do NBS deve ter 9 digitos.',
         type: 'IBPT_NBS_BAD_REQUEST',
-        name: 'IBPT_NBS_BAD_REQUEST',
       });
     }
 
@@ -55,7 +51,6 @@ const action = async (request, response) => {
       throw new NotFoundError({
         message: 'NBS não encontrado.',
         type: 'IBPT_NBS_NOT_FOUND',
-        name: 'IBPT_NBS_NOT_FOUND',
       });
     }
 
@@ -68,7 +63,6 @@ const action = async (request, response) => {
     throw new InternalError({
       message: 'Erro ao buscar alíquotas nbs.',
       type: 'IBPT_NBS_INTERNAL',
-      name: 'IBPT_NBS_INTERNAL',
     });
   }
 };
