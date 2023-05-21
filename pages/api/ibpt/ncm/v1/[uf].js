@@ -13,7 +13,6 @@ const action = async (request, response) => {
       throw new BadRequestError({
         message: 'UF não enviada.',
         type: 'IBPT_NCM_BAD_REQUEST',
-        name: 'IBPT_NCM_BAD_REQUEST',
       });
     }
 
@@ -23,7 +22,6 @@ const action = async (request, response) => {
       throw new NotFoundError({
         message: 'UF não encontrada.',
         type: 'IBPT_NCM_NOT_FOUND',
-        name: 'IBPT_NCM_NOT_FOUND',
       });
     }
 
@@ -38,7 +36,6 @@ const action = async (request, response) => {
     throw new InternalError({
       message: 'Erro ao buscar alíquotas ncm.',
       type: 'IBPT_NCM_INTERNAL',
-      name: 'IBPT_NCM_INTERNAL',
     });
   }
 };
