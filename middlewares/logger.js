@@ -1,7 +1,7 @@
-import { extractFromRequest } from '@/lib/parseRequest';
+import { extractIPFromRequest } from '@/lib/parseRequest';
 
 export default function logger(request, response, next) {
-  const clientIp = extractFromRequest(request);
+  const clientIp = extractIPFromRequest(request);
 
   const userAgent = request.headers['user-agent'];
 
