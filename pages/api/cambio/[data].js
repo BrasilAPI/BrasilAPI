@@ -1,8 +1,7 @@
 import app from '@/app';
 import BadRequestError from '@/errors/BadRequestError';
-import { getCambio } from '@/services/cambio/getCambio';
 
-const action = async (request, response) => {
+const Action = async (request, response) => {
   const { data } = request.query;
 
   try {
@@ -22,18 +21,19 @@ const action = async (request, response) => {
   }
 
   try {
-    const consultaData = `${data.substring(3, 5)}-${data.substring(
-      0,
-      2
-    )}-${data.substring(6, 10)}`;
+    // const consultaData = `${data.substring(3, 5)}-${data.substring(
+    //   0,
+    //   2
+    // )}-${data.substring(6, 10)}`;
 
-    const resp = await getCambio(consultaData);
-    return response
-      .status(200)
-      .json({ cotacao: resp.data.value[0].cotacaoCompra });
+    // const resp = await getCambio(consultaData);
+    // return response
+    //   .status(200)
+    //   .json({ cotacao: resp.data.value[0].cotacaoCompra });
+    return response.status(200).json({ teste: 'teste' });
   } catch (error) {
     throw new BadRequestError({ message: 'Problema ao realizar a requisição' });
   }
 };
 
-export default app(21600).get(action);
+export default app(21600).get(Action);
