@@ -1,0 +1,86 @@
+{
+  "tags": [
+    {
+      "name": "Cambio",
+      "description": "Informações referentes ao Cambio"
+    }
+  ],
+  "paths": {
+    "/cambio/{moeda}/{data}": {
+      "get": {
+        "tags": ["Cambio"],
+        "summary": "Busca pelo câmbio do Real com outra moeda, em uma data específica",
+        "description": "",
+        "parameters": [
+          {
+            "name": "moeda",
+            "description": "A moeda alvo desejada (AUD, CAD, CHF, DKK, EUR, GBP, JPY, SEK, USD)",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "data",
+            "description": "A data desejada, o formato deve ser: DD-MM-AAAA. Os dados só estão disponíveis a partir de 28-11-1984.",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CambioRetorno"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "API de Câmbio retorna Erro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "name": "NotFoundError",
+                  "message": "Requisição inválida",
+                  "type": "BAD_REQUEST"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CambioRetorno": {
+        "title": "CambioRetorno",
+        "required": ["moeda", "data"],
+        "type": "object",
+        "properties": {
+          "moeda": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "moeda": "USD",
+          "data": "20/06/2023",
+          "cotacao": 4.793
+        }
+      }
+    }
+  }
+}
