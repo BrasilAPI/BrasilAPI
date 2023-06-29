@@ -23,7 +23,7 @@
           },
           {
             "name": "data",
-            "description": "A data desejada, o formato deve ser: DD-MM-AAAA. Os dados só estão disponíveis a partir de 28-11-1984.",
+            "description": "A data desejada, o formato deve ser: AAAA-MM-DD. Os dados só estão disponíveis a partir de 28-11-1984.",
             "in": "path",
             "required": true,
             "schema": {
