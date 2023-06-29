@@ -1,23 +1,25 @@
 import app from '@/app';
 import BadRequestError from '@/errors/BadRequestError';
 import { getCambio } from '@/services/cambio/getCambio';
+import dayjs from 'dayjs';
 
 const Action = async (request, response) => {
   const { data, moeda } = request.query;
 
   try {
-    const hoje = new Date();
-    const inicio = new Date(1984, 10, 28);
-    const newData = new Date(
-      data.substring(6, 10),
-      parseInt(data.substring(3, 5), 10) - 1,
-      data.substring(0, 2)
-    );
+    const hoje = dayjs();
+    const inicio = dayjs('1984-10-28');
+    const newData = dayjs()
+      .set('year', data.substring(6, 10))
+      .set('month', parseInt(data.substring(3, 5), 10) - 1)
+      .set('date', data.substring(0, 2));
 
-    if (newData.getDay() === 0 || newData.getDay() === 6) {
-      return response
-        .status(400)
-        .json({ message: 'Não existem cotações para os finais de semanas' });
+    if (newData.get('day') === 0 || newData.get('day') === 6) {
+      throw new BadRequestError({
+        message: 'Não existem cotações para os finais de semanas',
+        type: 'weekend_error',
+        name: 'NO_WEEKEND_PRICE',
+      });
     }
 
     if (data.length !== 10) {
