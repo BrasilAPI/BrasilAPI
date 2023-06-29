@@ -14,7 +14,7 @@
         "parameters": [
           {
             "name": "moeda",
-            "description": "A moeda alvo desejada (AUD, CAD, CHF, DKK, EUR, GBP, JPY, SEK, USD)",
+            "description": "A moeda alvo desejada (AUD, CAD, CHF, DKK, EUR, GBP, JPY, SEK, USD). Para maiores informações, consulte o link: https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/aplicacao#!/recursos/Moedas",
             "in": "path",
             "required": true,
             "schema": {
@@ -76,9 +76,13 @@
           }
         },
         "example": {
-          "moeda": "USD",
-          "data": "20/06/2023",
-          "cotacao": 4.793
+          "price": {
+            "isoCode": "BRL",
+            "symbol": "R$",
+            "value": 4.7903
+          },
+          "currency": "USD",
+          "date": "2023-06-27"
         }
       }
     }
