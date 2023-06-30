@@ -402,7 +402,21 @@
     "schemas": {
       "ListaNCM": {
         "title": "ListaNCM",
-        "required": ["codigo"],
+        "required": [
+          "codigo",
+          "ex",
+          "tipo",
+          "descricao",
+          "nacional_federal",
+          "importados_federal",
+          "estadual",
+          "municipal",
+          "vigencia_inicio",
+          "vigencia_fim",
+          "chave",
+          "versao",
+          "fonte"
+        ],
         "type": "object",
         "properties": {
           "codigo": {
@@ -493,7 +507,21 @@
       },
       "ObjetoNCM": {
         "title": "ObjetoNCM",
-        "required": ["codigo"],
+        "required": [
+          "codigo",
+          "ex",
+          "tipo",
+          "descricao",
+          "nacional_federal",
+          "importados_federal",
+          "estadual",
+          "municipal",
+          "vigencia_inicio",
+          "vigencia_fim",
+          "chave",
+          "versao",
+          "fonte"
+        ],
         "type": "object",
         "properties": {
           "codigo": {
@@ -568,7 +596,21 @@
 
       "ListaNBS": {
         "title": "ListaNBS",
-        "required": ["codigo"],
+        "required": [
+          "codigo",
+          "ex",
+          "tipo",
+          "descricao",
+          "nacional_federal",
+          "importados_federal",
+          "estadual",
+          "municipal",
+          "vigencia_inicio",
+          "vigencia_fim",
+          "chave",
+          "versao",
+          "fonte"
+        ],
         "type": "object",
         "properties": {
           "codigo": {
@@ -659,7 +701,21 @@
       },
       "ObjetoNBS": {
         "title": "ObjetoNBS",
-        "required": ["codigo"],
+        "required": [
+          "codigo",
+          "ex",
+          "tipo",
+          "descricao",
+          "nacional_federal",
+          "importados_federal",
+          "estadual",
+          "municipal",
+          "vigencia_inicio",
+          "vigencia_fim",
+          "chave",
+          "versao",
+          "fonte"
+        ],
         "type": "object",
         "properties": {
           "codigo": {
@@ -734,7 +790,21 @@
 
       "ListaLC116": {
         "title": "ListaLC116",
-        "required": ["codigo"],
+        "required": [
+          "codigo",
+          "ex",
+          "tipo",
+          "descricao",
+          "nacional_federal",
+          "importados_federal",
+          "estadual",
+          "municipal",
+          "vigencia_inicio",
+          "vigencia_fim",
+          "chave",
+          "versao",
+          "fonte"
+        ],
         "type": "object",
         "properties": {
           "codigo": {
@@ -825,7 +895,21 @@
       },
       "ObjetoLC116": {
         "title": "ObjetoLC116",
-        "required": ["codigo"],
+        "required": [
+          "codigo",
+          "ex",
+          "tipo",
+          "descricao",
+          "nacional_federal",
+          "importados_federal",
+          "estadual",
+          "municipal",
+          "vigencia_inicio",
+          "vigencia_fim",
+          "chave",
+          "versao",
+          "fonte"
+        ],
         "type": "object",
         "properties": {
           "codigo": {
