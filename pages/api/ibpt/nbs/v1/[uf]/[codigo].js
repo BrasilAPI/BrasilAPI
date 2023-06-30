@@ -5,7 +5,11 @@ import BaseError from '@/errors/BaseError';
 import InternalError from '@/errors/InternalError';
 import NotFoundError from '@/errors/NotFoundError';
 
-import { getNbsIbpt, SIGLAS_UF } from '../../../../../../services/ibpt';
+import {
+  getNbsIbpt,
+  SIGLAS_UF,
+  validateOnlyNumber,
+} from '../../../../../../services/ibpt';
 
 const action = async (request, response) => {
   try {
@@ -37,6 +41,13 @@ const action = async (request, response) => {
     if (codigo.length !== 9) {
       throw new BadRequestError({
         message: 'Código do NBS deve ter 9 digitos.',
+        type: 'IBPT_NBS_BAD_REQUEST',
+      });
+    }
+
+    if (validateOnlyNumber(codigo)) {
+      throw new BadRequestError({
+        message: 'Código do NBS deve ser um valor numérico.',
         type: 'IBPT_NBS_BAD_REQUEST',
       });
     }

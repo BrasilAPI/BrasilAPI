@@ -16,7 +16,7 @@ const fetchListFromRepositorie = async (url) => {
 export const getNcmIbpt = (options) => {
   const { uf } = options;
 
-  const url = `${baseURLNcm}/json/TabelaIBPTax${uf}.json`;
+  const url = `${baseURLNcm}/TabelaIBPTax${uf}.json`;
 
   return fetchListFromRepositorie(url);
 };
@@ -24,7 +24,7 @@ export const getNcmIbpt = (options) => {
 export const getNbsIbpt = (options) => {
   const { uf } = options;
 
-  const url = `${baseURLNbs}/json/TabelaIBPTax${uf}.json`;
+  const url = `${baseURLNbs}/TabelaIBPTax${uf}.json`;
 
   return fetchListFromRepositorie(url);
 };
@@ -32,7 +32,13 @@ export const getNbsIbpt = (options) => {
 export const getLc116Ibpt = (options) => {
   const { uf } = options;
 
-  const url = `${baseURLLc116}/json/TabelaIBPTax${uf}.json`;
+  const url = `${baseURLLc116}/TabelaIBPTax${uf}.json`;
+
+  return fetchListFromRepositorie(url);
+};
+
+export const getVersao = () => {
+  const url = `${baseURL}/versao.json`;
 
   return fetchListFromRepositorie(url);
 };
@@ -66,3 +72,9 @@ export const SIGLAS_UF = [
   'SE',
   'TO',
 ];
+
+export const validateOnlyNumber = (code) => {
+  const valid = /[^0-9.]/;
+
+  return valid.test(code);
+};

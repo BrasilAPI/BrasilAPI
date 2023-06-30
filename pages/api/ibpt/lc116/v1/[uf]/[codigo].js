@@ -5,7 +5,11 @@ import BaseError from '@/errors/BaseError';
 import InternalError from '@/errors/InternalError';
 import NotFoundError from '@/errors/NotFoundError';
 
-import { getLc116Ibpt, SIGLAS_UF } from '../../../../../../services/ibpt';
+import {
+  getLc116Ibpt,
+  SIGLAS_UF,
+  validateOnlyNumber,
+} from '../../../../../../services/ibpt';
 
 const action = async (request, response) => {
   try {
@@ -37,6 +41,13 @@ const action = async (request, response) => {
     if (codigo.length !== 4) {
       throw new BadRequestError({
         message: 'Código do LC 116 deve ter 4 digitos.',
+        type: 'IBPT_LC116_BAD_REQUEST',
+      });
+    }
+
+    if (validateOnlyNumber(codigo)) {
+      throw new BadRequestError({
+        message: 'Código do LC 116 deve ser um valor numérico.',
         type: 'IBPT_LC116_BAD_REQUEST',
       });
     }
