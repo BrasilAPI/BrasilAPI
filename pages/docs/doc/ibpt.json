@@ -6,6 +6,25 @@
     }
   ],
   "paths": {
+    "/ibpt/versao/v1": {
+      "get": {
+        "tags": ["IBPT"],
+        "summary": "Retorna a versão atual da Tabela do IBPT",
+        "description": "Essa rota pode ser utilizada para consultar qual a versão atual dos dados, ajudando na automatização de scripts de atualização.",
+        "responses": {
+          "200": {
+            "description": "Successo",
+            "content": {
+              "application/json": {
+                "example": {
+                  "versao": "23.1.E"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/ibpt/ncm/v1/{siglaUF}": {
       "get": {
         "tags": ["IBPT"],
@@ -28,38 +47,9 @@
             "description": "Successo",
             "content": {
               "application/json": {
-                "example": [
-                  {
-                    "codigo": "00000000",
-                    "ex": "",
-                    "tipo": "0",
-                    "descricao": "PRODUTO NAO ESPECIFICADO NA LISTA DE NCM",
-                    "nacional_federal": 7.85,
-                    "importados_federal": 9.85,
-                    "estadual": 18,
-                    "municipal": 0,
-                    "vigencia_inicio": "2023-04-20",
-                    "vigencia_fim": "2023-05-31",
-                    "chave": "66E459",
-                    "versao": "23.1.E",
-                    "fonte": "IBPT/empresometro.com.br"
-                  },
-                  {
-                    "codigo": "01012100",
-                    "ex": "",
-                    "tipo": "0",
-                    "descricao": "Cavalos reprodutores,de raca pura",
-                    "nacional_federal": 13.45,
-                    "importados_federal": 15.45,
-                    "estadual": 18,
-                    "municipal": 0,
-                    "vigencia_inicio": "2023-04-20",
-                    "vigencia_fim": "2023-05-31",
-                    "chave": "66E459",
-                    "versao": "23.1.E",
-                    "fonte": "IBPT/empresometro.com.br"
-                  }
-                ]
+                "schema": {
+                  "$ref": "#/components/schemas/ListaNCM"
+                }
               }
             }
           },
@@ -122,20 +112,8 @@
             "description": "Successo",
             "content": {
               "application/json": {
-                "example": {
-                  "codigo": "00000000",
-                  "ex": "",
-                  "tipo": "0",
-                  "descricao": "PRODUTO NAO ESPECIFICADO NA LISTA DE NCM",
-                  "nacional_federal": 7.85,
-                  "importados_federal": 9.85,
-                  "estadual": 18,
-                  "municipal": 0,
-                  "vigencia_inicio": "2023-04-20",
-                  "vigencia_fim": "2023-05-31",
-                  "chave": "66E459",
-                  "versao": "23.1.E",
-                  "fonte": "IBPT/empresometro.com.br"
+                "schema": {
+                  "$ref": "#/components/schemas/ObjetoNCM"
                 }
               }
             }
@@ -193,38 +171,9 @@
             "description": "Successo",
             "content": {
               "application/json": {
-                "example": [
-                  {
-                    "codigo": "101011000",
-                    "ex": "",
-                    "tipo": "1",
-                    "descricao": "Servicos de construcao de edificacoes residenciais de um e dois pavimentos",
-                    "nacional_federal": 13.45,
-                    "importados_federal": 15.45,
-                    "estadual": 0,
-                    "municipal": 4.33,
-                    "vigencia_inicio": "2023-04-20",
-                    "vigencia_fim": "2023-05-31",
-                    "chave": "66E459",
-                    "versao": "23.1.E",
-                    "fonte": "IBPT/empresometro.com.br"
-                  },
-                  {
-                    "codigo": "101012000",
-                    "ex": "",
-                    "tipo": "1",
-                    "descricao": "Servicos de construcao de edificacoes residenciais com mais de dois pavimentos",
-                    "nacional_federal": 13.45,
-                    "importados_federal": 15.45,
-                    "estadual": 0,
-                    "municipal": 4.33,
-                    "vigencia_inicio": "2023-04-20",
-                    "vigencia_fim": "2023-05-31",
-                    "chave": "66E459",
-                    "versao": "23.1.E",
-                    "fonte": "IBPT/empresometro.com.br"
-                  }
-                ]
+                "schema": {
+                  "$ref": "#/components/schemas/ListaNBS"
+                }
               }
             }
           },
@@ -287,20 +236,8 @@
             "description": "Successo",
             "content": {
               "application/json": {
-                "example": {
-                  "codigo": "101011000",
-                  "ex": "",
-                  "tipo": "1",
-                  "descricao": "Servicos de construcao de edificacoes residenciais de um e dois pavimentos",
-                  "nacional_federal": 13.45,
-                  "importados_federal": 15.45,
-                  "estadual": 0,
-                  "municipal": 4.33,
-                  "vigencia_inicio": "2023-04-20",
-                  "vigencia_fim": "2023-05-31",
-                  "chave": "66E459",
-                  "versao": "23.1.E",
-                  "fonte": "IBPT/empresometro.com.br"
+                "schema": {
+                  "$ref": "#/components/schemas/ObjetoNBS"
                 }
               }
             }
@@ -358,38 +295,9 @@
             "description": "Successo",
             "content": {
               "application/json": {
-                "example": [
-                  {
-                    "codigo": "0101",
-                    "ex": "",
-                    "tipo": "2",
-                    "descricao": "Analise e desenvolvimento de sistemas.",
-                    "nacional_federal": 13.45,
-                    "importados_federal": 15.45,
-                    "estadual": 0,
-                    "municipal": 3.9,
-                    "vigencia_inicio": "2023-04-20",
-                    "vigencia_fim": "2023-05-31",
-                    "chave": "66E459",
-                    "versao": "23.1.E",
-                    "fonte": "IBPT/empresometro.com.br"
-                  },
-                  {
-                    "codigo": "0102",
-                    "ex": "",
-                    "tipo": "2",
-                    "descricao": "Programacao.",
-                    "nacional_federal": 13.45,
-                    "importados_federal": 15.45,
-                    "estadual": 0,
-                    "municipal": 3.9,
-                    "vigencia_inicio": "2023-04-20",
-                    "vigencia_fim": "2023-05-31",
-                    "chave": "66E459",
-                    "versao": "23.1.E",
-                    "fonte": "IBPT/empresometro.com.br"
-                  }
-                ]
+                "schema": {
+                  "$ref": "#/components/schemas/ListaLC116"
+                }
               }
             }
           },
@@ -452,20 +360,8 @@
             "description": "Successo",
             "content": {
               "application/json": {
-                "example": {
-                  "codigo": "0101",
-                  "ex": "",
-                  "tipo": "2",
-                  "descricao": "Analise e desenvolvimento de sistemas.",
-                  "nacional_federal": 13.45,
-                  "importados_federal": 15.45,
-                  "estadual": 0,
-                  "municipal": 3.9,
-                  "vigencia_inicio": "2023-04-20",
-                  "vigencia_fim": "2023-05-31",
-                  "chave": "66E459",
-                  "versao": "23.1.E",
-                  "fonte": "IBPT/empresometro.com.br"
+                "schema": {
+                  "$ref": "#/components/schemas/ObjetoLC116"
                 }
               }
             }
@@ -498,6 +394,507 @@
               }
             }
           }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ListaNCM": {
+        "title": "ListaNCM",
+        "required": ["codigo"],
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "string",
+            "description": "Código do NCM."
+          },
+          "ex": {
+            "type": "string",
+            "description": "Exceção para o código do NCM."
+          },
+          "tipo": {
+            "type": "string",
+            "description": "Tipo do código, 0 = NCM."
+          },
+          "descricao": {
+            "type": "string",
+            "description": "Descrição do NCM."
+          },
+          "nacional_federal": {
+            "type": "float",
+            "description": "Valor nacional (em porcentagem '%') da alíquota incidente no NCM."
+          },
+          "importados_federal": {
+            "type": "float",
+            "description": "Valor importado (em porcentagem '%') da alíquota incidente no NCM."
+          },
+          "estadual": {
+            "type": "float",
+            "description": "Valor estadual (em porcentagem '%') da alíquota incidente no NCM."
+          },
+          "municipal": {
+            "type": "float",
+            "description": "Valor municipal (em porcentagem '%') da alíquota incidente no NCM."
+          },
+          "vigencia_inicio": {
+            "type": "string",
+            "description": "Data inicio da vigência dessa alíquota."
+          },
+          "vigencia_fim": {
+            "type": "string",
+            "description": "Data final da vigência dessa alíquota."
+          },
+          "chave": {
+            "type": "string",
+            "description": "Chave da alíquota."
+          },
+          "versao": {
+            "type": "string",
+            "description": "Versão da tabela IBPT."
+          },
+          "fonte": {
+            "type": "string",
+            "description": "Fonte de onde foi retirado os dados da alíquota."
+          }
+        },
+        "example": [
+          {
+            "codigo": "00000000",
+            "ex": "",
+            "tipo": "0",
+            "descricao": "PRODUTO NAO ESPECIFICADO NA LISTA DE NCM",
+            "nacional_federal": 7.85,
+            "importados_federal": 9.85,
+            "estadual": 18,
+            "municipal": 0,
+            "vigencia_inicio": "2023-04-20",
+            "vigencia_fim": "2023-05-31",
+            "chave": "66E459",
+            "versao": "23.1.E",
+            "fonte": "IBPT/empresometro.com.br"
+          },
+          {
+            "codigo": "01012100",
+            "ex": "",
+            "tipo": "0",
+            "descricao": "Cavalos reprodutores,de raca pura",
+            "nacional_federal": 13.45,
+            "importados_federal": 15.45,
+            "estadual": 18,
+            "municipal": 0,
+            "vigencia_inicio": "2023-04-20",
+            "vigencia_fim": "2023-05-31",
+            "chave": "66E459",
+            "versao": "23.1.E",
+            "fonte": "IBPT/empresometro.com.br"
+          }
+        ]
+      },
+      "ObjetoNCM": {
+        "title": "ObjetoNCM",
+        "required": ["codigo"],
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "string",
+            "description": "Código do NCM."
+          },
+          "ex": {
+            "type": "string",
+            "description": "Exceção para o código do NCM."
+          },
+          "tipo": {
+            "type": "string",
+            "description": "Tipo do código, 0 = NCM."
+          },
+          "descricao": {
+            "type": "string",
+            "description": "Descrição do NCM."
+          },
+          "nacional_federal": {
+            "type": "float",
+            "description": "Valor nacional (em porcentagem '%') da alíquota incidente no NCM."
+          },
+          "importados_federal": {
+            "type": "float",
+            "description": "Valor importado (em porcentagem '%') da alíquota incidente no NCM."
+          },
+          "estadual": {
+            "type": "float",
+            "description": "Valor estadual (em porcentagem '%') da alíquota incidente no NCM."
+          },
+          "municipal": {
+            "type": "float",
+            "description": "Valor municipal (em porcentagem '%') da alíquota incidente no NCM."
+          },
+          "vigencia_inicio": {
+            "type": "string",
+            "description": "Data inicio da vigência dessa alíquota."
+          },
+          "vigencia_fim": {
+            "type": "string",
+            "description": "Data final da vigência dessa alíquota."
+          },
+          "chave": {
+            "type": "string",
+            "description": "Chave da alíquota."
+          },
+          "versao": {
+            "type": "string",
+            "description": "Versão da tabela IBPT."
+          },
+          "fonte": {
+            "type": "string",
+            "description": "Fonte de onde foi retirado os dados da alíquota."
+          }
+        },
+        "example": {
+          "codigo": "00000000",
+          "ex": "",
+          "tipo": "0",
+          "descricao": "PRODUTO NAO ESPECIFICADO NA LISTA DE NCM",
+          "nacional_federal": 7.85,
+          "importados_federal": 9.85,
+          "estadual": 18,
+          "municipal": 0,
+          "vigencia_inicio": "2023-04-20",
+          "vigencia_fim": "2023-05-31",
+          "chave": "66E459",
+          "versao": "23.1.E",
+          "fonte": "IBPT/empresometro.com.br"
+        }
+      },
+
+      "ListaNBS": {
+        "title": "ListaNBS",
+        "required": ["codigo"],
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "string",
+            "description": "Código do NBS."
+          },
+          "ex": {
+            "type": "string",
+            "description": "Exceção para o código do NBS."
+          },
+          "tipo": {
+            "type": "string",
+            "description": "Tipo do código, 1 = NBS."
+          },
+          "descricao": {
+            "type": "string",
+            "description": "Descrição do NBS."
+          },
+          "nacional_federal": {
+            "type": "float",
+            "description": "Valor nacional (em porcentagem '%') da alíquota incidente no NBS."
+          },
+          "importados_federal": {
+            "type": "float",
+            "description": "Valor importado (em porcentagem '%') da alíquota incidente no NBS."
+          },
+          "estadual": {
+            "type": "float",
+            "description": "Valor estadual (em porcentagem '%') da alíquota incidente no NBS."
+          },
+          "municipal": {
+            "type": "float",
+            "description": "Valor municipal (em porcentagem '%') da alíquota incidente no NBS."
+          },
+          "vigencia_inicio": {
+            "type": "string",
+            "description": "Data inicio da vigência dessa alíquota."
+          },
+          "vigencia_fim": {
+            "type": "string",
+            "description": "Data final da vigência dessa alíquota."
+          },
+          "chave": {
+            "type": "string",
+            "description": "Chave da alíquota."
+          },
+          "versao": {
+            "type": "string",
+            "description": "Versão da tabela IBPT."
+          },
+          "fonte": {
+            "type": "string",
+            "description": "Fonte de onde foi retirado os dados da alíquota."
+          }
+        },
+        "example": [
+          {
+            "codigo": "101011000",
+            "ex": "",
+            "tipo": "1",
+            "descricao": "Servicos de construcao de edificacoes residenciais de um e dois pavimentos",
+            "nacional_federal": 13.45,
+            "importados_federal": 15.45,
+            "estadual": 0,
+            "municipal": 4.33,
+            "vigencia_inicio": "2023-04-20",
+            "vigencia_fim": "2023-05-31",
+            "chave": "66E459",
+            "versao": "23.1.E",
+            "fonte": "IBPT/empresometro.com.br"
+          },
+          {
+            "codigo": "101012000",
+            "ex": "",
+            "tipo": "1",
+            "descricao": "Servicos de construcao de edificacoes residenciais com mais de dois pavimentos",
+            "nacional_federal": 13.45,
+            "importados_federal": 15.45,
+            "estadual": 0,
+            "municipal": 4.33,
+            "vigencia_inicio": "2023-04-20",
+            "vigencia_fim": "2023-05-31",
+            "chave": "66E459",
+            "versao": "23.1.E",
+            "fonte": "IBPT/empresometro.com.br"
+          }
+        ]
+      },
+      "ObjetoNBS": {
+        "title": "ObjetoNBS",
+        "required": ["codigo"],
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "string",
+            "description": "Código do NBS."
+          },
+          "ex": {
+            "type": "string",
+            "description": "Exceção para o código do NBS."
+          },
+          "tipo": {
+            "type": "string",
+            "description": "Tipo do código, 1 = NBS."
+          },
+          "descricao": {
+            "type": "string",
+            "description": "Descrição do NBS."
+          },
+          "nacional_federal": {
+            "type": "float",
+            "description": "Valor nacional (em porcentagem '%') da alíquota incidente no NBS."
+          },
+          "importados_federal": {
+            "type": "float",
+            "description": "Valor importado (em porcentagem '%') da alíquota incidente no NBS."
+          },
+          "estadual": {
+            "type": "float",
+            "description": "Valor estadual (em porcentagem '%') da alíquota incidente no NBS."
+          },
+          "municipal": {
+            "type": "float",
+            "description": "Valor municipal (em porcentagem '%') da alíquota incidente no NBS."
+          },
+          "vigencia_inicio": {
+            "type": "string",
+            "description": "Data inicio da vigência dessa alíquota."
+          },
+          "vigencia_fim": {
+            "type": "string",
+            "description": "Data final da vigência dessa alíquota."
+          },
+          "chave": {
+            "type": "string",
+            "description": "Chave da alíquota."
+          },
+          "versao": {
+            "type": "string",
+            "description": "Versão da tabela IBPT."
+          },
+          "fonte": {
+            "type": "string",
+            "description": "Fonte de onde foi retirado os dados da alíquota."
+          }
+        },
+        "example": {
+          "codigo": "101011000",
+          "ex": "",
+          "tipo": "1",
+          "descricao": "Servicos de construcao de edificacoes residenciais de um e dois pavimentos",
+          "nacional_federal": 13.45,
+          "importados_federal": 15.45,
+          "estadual": 0,
+          "municipal": 4.33,
+          "vigencia_inicio": "2023-04-20",
+          "vigencia_fim": "2023-05-31",
+          "chave": "66E459",
+          "versao": "23.1.E",
+          "fonte": "IBPT/empresometro.com.br"
+        }
+      },
+
+      "ListaLC116": {
+        "title": "ListaLC116",
+        "required": ["codigo"],
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "string",
+            "description": "Código do LC 116."
+          },
+          "ex": {
+            "type": "string",
+            "description": "Exceção para o código do LC 116."
+          },
+          "tipo": {
+            "type": "string",
+            "description": "Tipo do código, 2 = LC 116."
+          },
+          "descricao": {
+            "type": "string",
+            "description": "Descrição do LC 116."
+          },
+          "nacional_federal": {
+            "type": "float",
+            "description": "Valor nacional (em porcentagem '%') da alíquota incidente no LC 116."
+          },
+          "importados_federal": {
+            "type": "float",
+            "description": "Valor importado (em porcentagem '%') da alíquota incidente no LC 116."
+          },
+          "estadual": {
+            "type": "float",
+            "description": "Valor estadual (em porcentagem '%') da alíquota incidente no LC 116."
+          },
+          "municipal": {
+            "type": "float",
+            "description": "Valor municipal (em porcentagem '%') da alíquota incidente no LC 116."
+          },
+          "vigencia_inicio": {
+            "type": "string",
+            "description": "Data inicio da vigência dessa alíquota."
+          },
+          "vigencia_fim": {
+            "type": "string",
+            "description": "Data final da vigência dessa alíquota."
+          },
+          "chave": {
+            "type": "string",
+            "description": "Chave da alíquota."
+          },
+          "versao": {
+            "type": "string",
+            "description": "Versão da tabela IBPT."
+          },
+          "fonte": {
+            "type": "string",
+            "description": "Fonte de onde foi retirado os dados da alíquota."
+          }
+        },
+        "example": [
+          {
+            "codigo": "0101",
+            "ex": "",
+            "tipo": "2",
+            "descricao": "Analise e desenvolvimento de sistemas.",
+            "nacional_federal": 13.45,
+            "importados_federal": 15.45,
+            "estadual": 0,
+            "municipal": 3.9,
+            "vigencia_inicio": "2023-04-20",
+            "vigencia_fim": "2023-05-31",
+            "chave": "66E459",
+            "versao": "23.1.E",
+            "fonte": "IBPT/empresometro.com.br"
+          },
+          {
+            "codigo": "0102",
+            "ex": "",
+            "tipo": "2",
+            "descricao": "Programacao.",
+            "nacional_federal": 13.45,
+            "importados_federal": 15.45,
+            "estadual": 0,
+            "municipal": 3.9,
+            "vigencia_inicio": "2023-04-20",
+            "vigencia_fim": "2023-05-31",
+            "chave": "66E459",
+            "versao": "23.1.E",
+            "fonte": "IBPT/empresometro.com.br"
+          }
+        ]
+      },
+      "ObjetoLC116": {
+        "title": "ObjetoLC116",
+        "required": ["codigo"],
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "string",
+            "description": "Código do LC 116."
+          },
+          "ex": {
+            "type": "string",
+            "description": "Exceção para o código do LC 116."
+          },
+          "tipo": {
+            "type": "string",
+            "description": "Tipo do código, 2 = LC 116."
+          },
+          "descricao": {
+            "type": "string",
+            "description": "Descrição do LC 116."
+          },
+          "nacional_federal": {
+            "type": "float",
+            "description": "Valor nacional (em porcentagem '%') da alíquota incidente no LC 116."
+          },
+          "importados_federal": {
+            "type": "float",
+            "description": "Valor importado (em porcentagem '%') da alíquota incidente no LC 116."
+          },
+          "estadual": {
+            "type": "float",
+            "description": "Valor estadual (em porcentagem '%') da alíquota incidente no LC 116."
+          },
+          "municipal": {
+            "type": "float",
+            "description": "Valor municipal (em porcentagem '%') da alíquota incidente no LC 116."
+          },
+          "vigencia_inicio": {
+            "type": "string",
+            "description": "Data inicio da vigência dessa alíquota."
+          },
+          "vigencia_fim": {
+            "type": "string",
+            "description": "Data final da vigência dessa alíquota."
+          },
+          "chave": {
+            "type": "string",
+            "description": "Chave da alíquota."
+          },
+          "versao": {
+            "type": "string",
+            "description": "Versão da tabela IBPT."
+          },
+          "fonte": {
+            "type": "string",
+            "description": "Fonte de onde foi retirado os dados da alíquota."
+          }
+        },
+        "example": {
+          "codigo": "0101",
+          "ex": "",
+          "tipo": "2",
+          "descricao": "Analise e desenvolvimento de sistemas.",
+          "nacional_federal": 13.45,
+          "importados_federal": 15.45,
+          "estadual": 0,
+          "municipal": 3.9,
+          "vigencia_inicio": "2023-04-20",
+          "vigencia_fim": "2023-05-31",
+          "chave": "66E459",
+          "versao": "23.1.E",
+          "fonte": "IBPT/empresometro.com.br"
         }
       }
     }
