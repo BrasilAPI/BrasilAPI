@@ -3,7 +3,6 @@ import app from '@/app';
 import BadRequestError from '@/errors/BadRequestError';
 import BaseError from '@/errors/BaseError';
 import InternalError from '@/errors/InternalError';
-import NotFoundError from '@/errors/NotFoundError';
 
 import { getLc116Ibpt, SIGLAS_UF } from '../../../../../services/ibpt';
 
@@ -19,9 +18,9 @@ const action = async (request, response) => {
     const uf = request.query.uf.toUpperCase();
 
     if (!SIGLAS_UF.includes(uf)) {
-      throw new NotFoundError({
+      throw new BadRequestError({
         message: 'UF não encontrada.',
-        type: 'IBPT_LC116_NOT_FOUND',
+        type: 'IBPT_LC116_BAD_REQUEST',
       });
     }
 
@@ -40,4 +39,4 @@ const action = async (request, response) => {
   }
 };
 
-export default app({ cache: 7200 }).get(action);
+export default app({ cache: 86400 }).get(action);
