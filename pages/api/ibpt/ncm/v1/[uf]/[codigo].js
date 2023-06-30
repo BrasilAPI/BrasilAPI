@@ -5,7 +5,11 @@ import BaseError from '@/errors/BaseError';
 import InternalError from '@/errors/InternalError';
 import NotFoundError from '@/errors/NotFoundError';
 
-import { getNcmIbpt, SIGLAS_UF } from '../../../../../../services/ibpt';
+import {
+  getNcmIbpt,
+  SIGLAS_UF,
+  validateOnlyNumber,
+} from '../../../../../../services/ibpt';
 
 const action = async (request, response) => {
   try {
@@ -37,6 +41,13 @@ const action = async (request, response) => {
     if (codigo.length !== 8) {
       throw new BadRequestError({
         message: 'Código do NCM deve ter 8 digitos.',
+        type: 'IBPT_NCM_BAD_REQUEST',
+      });
+    }
+
+    if (validateOnlyNumber(codigo)) {
+      throw new BadRequestError({
+        message: 'Código do NCM deve ser um valor numérico.',
         type: 'IBPT_NCM_BAD_REQUEST',
       });
     }
