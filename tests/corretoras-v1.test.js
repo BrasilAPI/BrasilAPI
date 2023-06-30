@@ -43,7 +43,7 @@ describe('corretoras v1 (E2E)', () => {
         municipio: 'RIO DE JANEIRO',
         nome_social: 'XP INVESTIMENTOS CCTVM S.A.',
         nome_comercial: 'XP INVESTIMENTOS',
-        pais: 'BRASIL',
+        pais: '',
         status: 'EM FUNCIONAMENTO NORMAL',
         telefone: '30272237',
         type: 'CORRETORAS',
