@@ -146,7 +146,7 @@ describe('api/isbn/v1 (E2E)', () => {
           amount: 109,
         }),
         cover_url:
-          'https://s3-sa-east-1.amazonaws.com/fl.mercadoeditorial.org/uploads/book/first_cover/9786555140576.jpg',
+          'https://fl-storage.bookinfometadados.com.br/uploads/book/first_cover/9786555140576.jpg',
         provider: 'mercado-editorial',
       })
     );
