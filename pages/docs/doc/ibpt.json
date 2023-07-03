@@ -404,7 +404,6 @@
         "title": "ListaNCM",
         "required": [
           "codigo",
-          "ex",
           "tipo",
           "descricao",
           "nacional_federal",
@@ -425,7 +424,7 @@
           },
           "ex": {
             "type": "string",
-            "description": "Exceção para o código do NCM."
+            "description": "Indica a exceção para um código do NCM. Um mesmo NCM pode ter alíquotas incidentes diferentes para cada valor de exceção."
           },
           "tipo": {
             "type": "string",
@@ -509,7 +508,6 @@
         "title": "ObjetoNCM",
         "required": [
           "codigo",
-          "ex",
           "tipo",
           "descricao",
           "nacional_federal",
@@ -530,7 +528,7 @@
           },
           "ex": {
             "type": "string",
-            "description": "Exceção para o código do NCM."
+            "description": "Indica a exceção para um código do NCM. Um mesmo NCM pode ter alíquotas incidentes diferentes para cada valor de exceção."
           },
           "tipo": {
             "type": "string",
@@ -598,7 +596,6 @@
         "title": "ListaNBS",
         "required": [
           "codigo",
-          "ex",
           "tipo",
           "descricao",
           "nacional_federal",
@@ -619,7 +616,7 @@
           },
           "ex": {
             "type": "string",
-            "description": "Exceção para o código do NBS."
+            "description": "Indica a exceção para um código do NBS. Um mesmo NBS pode ter alíquotas incidentes diferentes para cada valor de exceção."
           },
           "tipo": {
             "type": "string",
@@ -703,7 +700,6 @@
         "title": "ObjetoNBS",
         "required": [
           "codigo",
-          "ex",
           "tipo",
           "descricao",
           "nacional_federal",
@@ -724,7 +720,7 @@
           },
           "ex": {
             "type": "string",
-            "description": "Exceção para o código do NBS."
+            "description": "Indica a exceção para um código do NBS. Um mesmo NBS pode ter alíquotas incidentes diferentes para cada valor de exceção."
           },
           "tipo": {
             "type": "string",
@@ -792,7 +788,6 @@
         "title": "ListaLC116",
         "required": [
           "codigo",
-          "ex",
           "tipo",
           "descricao",
           "nacional_federal",
@@ -813,7 +808,7 @@
           },
           "ex": {
             "type": "string",
-            "description": "Exceção para o código do LC 116."
+            "description": "Indica a exceção para um código do LC 116. Um mesmo LC 116 pode ter alíquotas incidentes diferentes para cada valor de exceção."
           },
           "tipo": {
             "type": "string",
@@ -897,7 +892,6 @@
         "title": "ObjetoLC116",
         "required": [
           "codigo",
-          "ex",
           "tipo",
           "descricao",
           "nacional_federal",
@@ -918,7 +912,7 @@
           },
           "ex": {
             "type": "string",
-            "description": "Exceção para o código do LC 116."
+            "description": "Indica a exceção para um código do LC 116. Um mesmo LC 116 pode ter alíquotas incidentes diferentes para cada valor de exceção."
           },
           "tipo": {
             "type": "string",
