@@ -73,7 +73,7 @@ export const SIGLAS_UF = [
   'TO',
 ];
 
-export const validateOnlyNumber = (code) => {
+export const validateNotOnlyNumber = (code) => {
   const valid = /[^0-9.]/;
 
   return valid.test(code);

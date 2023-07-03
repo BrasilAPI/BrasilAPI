@@ -8,7 +8,7 @@ import NotFoundError from '@/errors/NotFoundError';
 import {
   getNbsIbpt,
   SIGLAS_UF,
-  validateOnlyNumber,
+  validateNotOnlyNumber,
 } from '../../../../../../services/ibpt';
 
 const action = async (request, response) => {
@@ -45,7 +45,7 @@ const action = async (request, response) => {
       });
     }
 
-    if (validateOnlyNumber(codigo)) {
+    if (validateNotOnlyNumber(codigo)) {
       throw new BadRequestError({
         message: 'Código do NBS deve ser um valor numérico.',
         type: 'IBPT_NBS_BAD_REQUEST',

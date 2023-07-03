@@ -8,7 +8,7 @@ import NotFoundError from '@/errors/NotFoundError';
 import {
   getLc116Ibpt,
   SIGLAS_UF,
-  validateOnlyNumber,
+  validateNotOnlyNumber,
 } from '../../../../../../services/ibpt';
 
 const action = async (request, response) => {
@@ -45,7 +45,7 @@ const action = async (request, response) => {
       });
     }
 
-    if (validateOnlyNumber(codigo)) {
+    if (validateNotOnlyNumber(codigo)) {
       throw new BadRequestError({
         message: 'Código do LC 116 deve ser um valor numérico.',
         type: 'IBPT_LC116_BAD_REQUEST',
