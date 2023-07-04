@@ -3,7 +3,7 @@ const axios = require('axios');
 describe('Cambio v1 (E2E)', () => {
   describe('GET /cambio/:moeda/:data', () => {
     test('Utilizando moeda e data válida: USD e 27-06-2023', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cambio/USD/2023-06-27`;
+      const requestUrl = `${global.SERVER_URL}/api/cambio/v1/USD/2023-06-27`;
       const response = await axios.get(requestUrl);
 
       expect(response.status).toBe(200);
@@ -15,7 +15,7 @@ describe('Cambio v1 (E2E)', () => {
     });
 
     test('Utilizando moeda inexistente e data válida: ZZZ e 2023-06-27', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cambio/ZZZ/2023-06-27`;
+      const requestUrl = `${global.SERVER_URL}/api/cambio/v1/ZZZ/2023-06-27`;
 
       try {
         await axios.get(requestUrl);
@@ -33,7 +33,7 @@ describe('Cambio v1 (E2E)', () => {
     });
 
     test('Utilizando moeda válida e data com formato inapropriado: USD e 27-06-2023', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cambio/USD/27-06-2023`;
+      const requestUrl = `${global.SERVER_URL}/api/cambio/v1/USD/27-06-2023`;
 
       try {
         await axios.get(requestUrl);
@@ -50,7 +50,7 @@ describe('Cambio v1 (E2E)', () => {
     });
 
     test('Utilizando moeda válida e utilizando um dia não útil (fim de semana): USD e 2023-06-27', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cambio/USD/2023-06-27`;
+      const requestUrl = `${global.SERVER_URL}/api/cambio/v1/USD/2023-06-27`;
 
       try {
         await axios.get(requestUrl);
@@ -67,7 +67,7 @@ describe('Cambio v1 (E2E)', () => {
     });
 
     test('Tentando utilizar uma data futura ao dia da consulta: USD e 2050-06-27', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cambio/USD/2050-06-27`;
+      const requestUrl = `${global.SERVER_URL}/api/cambio/v1/USD/2050-06-27`;
 
       try {
         await axios.get(requestUrl);
@@ -84,7 +84,7 @@ describe('Cambio v1 (E2E)', () => {
     });
 
     test('Datas anteriores ao início da base de dados (1984-11-28): USD e 1984-05-28', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cambio/USD/1984-05-28`;
+      const requestUrl = `${global.SERVER_URL}/api/cambio/v1/USD/1984-05-28`;
 
       try {
         await axios.get(requestUrl);

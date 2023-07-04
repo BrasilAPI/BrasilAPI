@@ -4,40 +4,24 @@ import { getCambio } from '@/services/cambio/getCambio';
 import dayjs from 'dayjs';
 import { formatDate } from '@/services/date';
 import { getMoedas } from '@/services/cambio/getMoedas';
+import BaseError from '@/errors/BaseError';
+import InternalError from '@/errors/InternalError';
 
 const DATA_PATTERN = /^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/;
 
 const Action = async (request, response) => {
   const { data, moeda } = request.query;
-  const { infoMoedas, statusMoedas } = await getMoedas();
 
   try {
-    const moedas = [];
     const hoje = dayjs();
     const inicio = dayjs('1984-10-28');
-    const newData = dayjs()
-      .set('year', data.substring(0, 4))
-      .set('month', parseInt(data.substring(5, 7), 10) - 1)
-      .set('date', data.substring(8, 10));
+    const newData = dayjs(data);
 
-    if (statusMoedas === 200) {
-      infoMoedas.value.map((currency) => {
-        moedas.push(currency.simbolo);
-        return true;
-      });
-    } else {
+    if (!newData.isValid()) {
       throw new BadRequestError({
-        message: 'Serviço indisponível',
-        type: 'service_error',
-        name: 'SERVICE_NOT_AVALIABLE',
-      });
-    }
-
-    if (!moedas.includes(moeda)) {
-      throw new BadRequestError({
-        message: `Tipo de moeda inválida, os tipos disponíveis são: ${moedas}`,
-        type: 'currency_error',
-        name: 'INVALID_CURRENCY_VALUE',
+        message: 'Formato de data inválida, utilize: AAAA-MM-DD',
+        type: 'format_error',
+        name: 'DATE_FORMAT_INCORRECT_PATTERN',
       });
     }
 
@@ -46,14 +30,6 @@ const Action = async (request, response) => {
         message: 'Não existem cotações para os finais de semanas',
         type: 'weekend_error',
         name: 'NO_WEEKEND_PRICE',
-      });
-    }
-
-    if (data.length !== 10) {
-      throw new BadRequestError({
-        message: 'Formato de data inválida, utilize: AAAA-MM-DD',
-        type: 'format_error',
-        name: 'DATE_FORMAT_INCORRECT',
       });
     }
 
@@ -81,18 +57,21 @@ const Action = async (request, response) => {
       });
     }
 
+    const { infoMoedas } = await getMoedas();
+    const moedas = infoMoedas.value.map((currency) => currency.simbolo);
+
+    if (!moedas.includes(moeda)) {
+      throw new BadRequestError({
+        message: `Tipo de moeda inválida, os tipos disponíveis são: ${moedas}`,
+        type: 'currency_error',
+        name: 'INVALID_CURRENCY_VALUE',
+      });
+    }
+
     const consultaData = formatDate(newData, 'MM-DD-YYYY');
     const dataRetorno = formatDate(newData, 'YYYY-MM-DD');
 
-    const { info, status } = await getCambio(consultaData, moeda);
-
-    if (status !== 200) {
-      throw new BadRequestError({
-        message: 'Requisição inválida',
-        type: 'invalid_request',
-        name: 'INVALID_REQUEST',
-      });
-    }
+    const { info } = await getCambio(consultaData, moeda);
 
     const tamanhoArray = info.value.length;
 
@@ -106,10 +85,14 @@ const Action = async (request, response) => {
       date: dataRetorno,
     });
   } catch (error) {
-    throw new BadRequestError({
-      message: error.message,
-      type: error.type,
-      name: error.name,
+    if (error instanceof BaseError) {
+      throw error;
+    }
+
+    throw new InternalError({
+      message: 'Erro ao buscar cambio',
+      type: 'cambio_error',
+      name: 'CAMBIO_ERROR',
     });
   }
 };
