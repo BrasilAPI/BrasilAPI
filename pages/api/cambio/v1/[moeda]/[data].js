@@ -7,8 +7,6 @@ import { getMoedas } from '@/services/cambio/getMoedas';
 import BaseError from '@/errors/BaseError';
 import InternalError from '@/errors/InternalError';
 
-const DATA_PATTERN = /^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/;
-
 const Action = async (request, response) => {
   const { data, moeda } = request.query;
 
@@ -30,14 +28,6 @@ const Action = async (request, response) => {
         message: 'Não existem cotações para os finais de semanas',
         type: 'weekend_error',
         name: 'NO_WEEKEND_PRICE',
-      });
-    }
-
-    if (!data.match(DATA_PATTERN)) {
-      throw new BadRequestError({
-        message: 'Formato de data inválida, utilize: AAAA-MM-DD',
-        type: 'format_error',
-        name: 'DATE_FORMAT_INCORRECT_PATTERN',
       });
     }
 
