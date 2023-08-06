@@ -36,9 +36,9 @@ describe('corretoras v1 (E2E)', () => {
         codigo_cvm: '3247',
         complemento: 'SALA 201',
         data_inicio_situacao: '1998-02-10',
-        data_patrimonio_liquido: '2021-12-31',
+        data_patrimonio_liquido: '2022-12-31',
         data_registro: '1997-12-05',
-        email: 'juridico.regulatorio@xpi.com.br',
+        email: 'oficioregulatorio@xpi.com.br',
         logradouro: 'AVENIDA ATAULFO DE PAIVA 153',
         municipio: 'RIO DE JANEIRO',
         nome_social: 'XP INVESTIMENTOS CCTVM S.A.',
@@ -48,7 +48,7 @@ describe('corretoras v1 (E2E)', () => {
         telefone: '30272237',
         type: 'CORRETORAS',
         uf: 'RJ',
-        valor_patrimonio_liquido: '5514593491.29',
+        valor_patrimonio_liquido: '8288904369.58',
       });
     });
 
