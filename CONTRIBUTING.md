@@ -26,8 +26,8 @@ Para saber mais, acesse esses links:
 - [Regras do @commitlint/config-conventional](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional).
 
 ## Documentação dos Endpoints
-Se possível, além do endpoint crie também a documentação para o mesmo, utilizamos uma implementação básica da [OpenAPI 3.0](https://swagger.io/docs/specification/about/) em **json**. 
-A fim de facilitar o a contribuição e evitar conflitos, modularizamos a documentação dos endpoints, assim temos arquivos mais objetivos e enxutos.
+Se possível, além do endpoint crie também a documentação para o mesmo, utilizamos uma implementação básica da [OpenAPI 3.0](https://swagger.io/docs/specification/about/) em **json**.
+A fim de facilitar a contribuição e evitar conflitos, modularizamos a documentação dos endpoints, assim temos arquivos mais objetivos e enxutos.
 ### Como criar a documentação
 1- Acesse o diretório [`docs/doc`](pages/docs/doc);
 2- Crie um arquivo json com o nome do módulo que está criando e utilize a estrutura básica da OpenAPI, recomendamos as seguintes seções:
@@ -66,7 +66,7 @@ Consiste em realizar o *fork* do repositório raiz, cloná-lo, realizar a altera
 ### Realizando PRs para o repositório raiz
 
 - Faça um *fork* desse repositório no Github
-- Faça um clone do respositório *fork* criado: `git clone https://github.com/seuusuario/BrasilAPI.git`
+- Faça um clone do repositório *fork* criado: `git clone https://github.com/seuusuario/BrasilAPI.git`
 - Crie uma *branch* para *commitar* a sua *feature* ou correção: `git checkout -b my-branch`
 - Faça o *commit* das mudanças: `git commit -m 'feat: My new feature'`
 - Faça o *push* da sua *branch* para o seu *fork*: `git push origin my-branch`
