@@ -26,7 +26,7 @@
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=BrasilAPI_BrasilAPI&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=BrasilAPI_BrasilAPI)
 
 ## Motivo
-Acesso programático de informações é algo fundamental na comunicação entre sistemas mas, para nossa surpresa, uma informação tão útil e pública quanto um CEP não consegue ser acessada diretamente por um navegador por conta da API dos Correios não possuir CORS habilitado.
+Acesso programático de informações é algo fundamental na comunicação entre sistemas, mas, para nossa surpresa, uma informação tão útil e pública quanto um CEP não consegue ser acessada diretamente por um navegador por conta da API dos Correios não possuir CORS habilitado.
 
 Dado a isso, este projeto experimental tem como objetivo centralizar e disponibilizar endpoints modernos com baixíssima latência utilizando tecnologias como [Vercel Smart CDN](https://vercel.com/smart-cdn/?utm_source=brasilapi) responsável por fazer o cache das informações em atualmente 23 regiões distribuídas ao longo do mundo (incluindo Brasil). Então não importa o quão devagar for a fonte dos dados, nós queremos disponibilizá-la da forma mais rápida e moderna possível.
 
@@ -43,7 +43,7 @@ Veja mais detalhes sobre **Como contribuir** no arquivo [CONTRIBUTING.md](CONTRI
 ## Termos de Uso
 O BrasilAPI é uma iniciativa feita de brasileiros para brasileiros, por favor, não abuse deste serviço. Estamos em beta e ainda elaborando os Termos de Uso, mas por enquanto por favor não utilize formas automatizadas para fazer "crawling" dos dados da API. Um exemplo prático disso foi quando um dos maiores provedores de telefonia do Brasil estava validando novamente todos os CEPs (de 00000000 até 99999999) e ultrapassando em cinco vezes o limite atual da nossa conta no servidor. O volume de consultas deve ter a natureza de uma pessoa real requisitando um determinado dado. Para consultas com um alto volume automatizado forneceremos posteriormente alguma solução, como, por exemplo, permitir o download de toda a base de CEPs em uma única requisição.
 
-## Pessoas que já contribuiram
+## Pessoas que já contribuíram
 
 <a href="https://github.com/brasilapi/brasilapi/graphs/contributors"><img src="https://contrib.rocks/image?repo=brasilapi/brasilapi" /></a>
 
@@ -52,7 +52,7 @@ Abaixo segue uma lista de integrações com a BrasilApi fornecidas pela comunida
 
 **Go**
   * **[brasilapi-go](https://github.com/isaqueveras/brasilapi-go)** criado por [@isaqueveras](https://github.com/isaqueveras)
-
+  * **[brasilapi-go](https://github.com/Philipelima/brasilapi-go)** criado por [@philipelima](https://github.com/philipelima)
 
 **JS**
   * **[brasil-api-promisse](https://github.com/guhcostan/brasil-api-promisse)** criado por [@guhcostan](https://github.com/guhcostan)
@@ -60,7 +60,7 @@ Abaixo segue uma lista de integrações com a BrasilApi fornecidas pela comunida
 
 **Flutter**
   * **[brazilian_banks](https://github.com/credifit-br/brazilian_banks)** criado por [@credifit-br](https://github.com/credifit-br)
-
+  * **[br_api_dart](https://github.com/PedroHAVeloso/br_api_dart)** criado por [@pedrohaveloso](https://github.com/PedroHAVeloso)
 
 **.Net**
   * **[BrasilAPI-DotNet](https://github.com/farukaf/BrasilAPI-DotNet)** criado por [@farukaf](https://github.com/farukaf)
