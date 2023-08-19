@@ -68,7 +68,7 @@
                         "type": "integer",
                         "format": "int32"
                     },
-                    "descricao_matriz_filial": {
+                    "descricao_identificador_matriz_filial": {
                         "type": "string"
                     },
                     "razao_social": {
@@ -249,7 +249,7 @@
                 "example": {
                     "cnpj": "19131243000197",
                     "identificador_matriz_filial": 1,
-                    "descricao_matriz_filial": "Matriz",
+                    "descricao_identificador_matriz_filial": "Matriz",
                     "razao_social": "OPEN KNOWLEDGE BRASIL",
                     "nome_fantasia": "REDE PELO CONHECIMENTO LIVRE",
                     "situacao_cadastral": 2,
