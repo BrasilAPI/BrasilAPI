@@ -92,7 +92,7 @@
                         "type": "integer",
                         "format": "int32"
                     },
-                    "nome_cidade_exterior": {
+                    "nome_cidade_no_exterior": {
                         "type": "string",
                         "format": "nullable"
                     },
@@ -256,7 +256,7 @@
                     "descricao_situacao_cadastral": "Ativa",
                     "data_situacao_cadastral": "2013-10-03",
                     "motivo_situacao_cadastral": 0,
-                    "nome_cidade_exterior": null,
+                    "nome_cidade_no_exterior": null,
                     "codigo_natureza_juridica": 3999,
                     "data_inicio_atividade": "2013-10-03",
                     "cnae_fiscal": 9430800,
