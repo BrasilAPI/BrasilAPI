@@ -8,7 +8,9 @@
     "paths": {
         "/registrobr/v1/{domain}": {
             "get": {
-                "tags": ["REGISTRO BR"],
+                "tags": [
+                    "REGISTRO BR"
+                ],
                 "summary": "Avalia o status de um dominio .br",
                 "description": "",
                 "parameters": [
@@ -52,7 +54,7 @@
             "REGISTROBR": {
                 "title": "Avaliação de domínio .br",
                 "type": "object",
-                "required":[
+                "required": [
                     "status_code",
                     "status",
                     "fqdn"
@@ -69,6 +71,10 @@
                     "fqdn": {
                         "type": "string",
                         "description": "Domínio pesquisado"
+                    },
+                    "fqdnace": {
+                        "type": "string",
+                        "description": "fqdnace"
                     },
                     "suggestions": {
                         "type": "array",
@@ -95,6 +101,7 @@
                     "status_code": 2,
                     "status": "REGISTERED",
                     "fqdn": "brasilapi.com.br",
+                    "fqdnace": "",
                     "hosts": [
                         "bob.ns.cloudflare.com",
                         "lily.ns.cloudflare.com"
@@ -133,7 +140,7 @@
             "REGISTROBR_BAD_REQUEST": {
                 "title": "Erro ao avaliar o domínio",
                 "type": "object",
-                "required":[
+                "required": [
                     "message",
                     "type",
                     "name"
