@@ -56,6 +56,13 @@ describe('ibpt v1 (E2E)', () => {
       expect(response.data).toEqual(validTestArray);
     });
 
+    test('Utilizando uma UF válida: PR', async () => {
+      const requestUrl = `${global.SERVER_URL}/api/ibpt/ncm/v1/PR`;
+      const response = await axios.get(requestUrl);
+      expect(response.status).toBe(200);
+      expect(response.data).toEqual(validTestArray);
+    });
+
     test('Utilizando uma UF inexistente: SPP', async () => {
       const requestUrl = `${global.SERVER_URL}/api/ibpt/ncm/v1/SPP`;
       try {
@@ -151,6 +158,13 @@ describe('ibpt v1 (E2E)', () => {
       expect(response.data).toEqual(validTestArray);
     });
 
+    test('Utilizando uma UF válida: PR', async () => {
+      const requestUrl = `${global.SERVER_URL}/api/ibpt/nbs/v1/PR`;
+      const response = await axios.get(requestUrl);
+      expect(response.status).toBe(200);
+      expect(response.data).toEqual(validTestArray);
+    });
+
     test('Utilizando uma UF inexistente: SPP', async () => {
       const requestUrl = `${global.SERVER_URL}/api/ibpt/nbs/v1/SPP`;
       try {
@@ -234,6 +248,13 @@ describe('ibpt v1 (E2E)', () => {
   describe('GET /ibpt/lc116/v1/:uf', () => {
     test('Utilizando uma UF válida: SP', async () => {
       const requestUrl = `${global.SERVER_URL}/api/ibpt/lc116/v1/SP`;
+      const response = await axios.get(requestUrl);
+      expect(response.status).toBe(200);
+      expect(response.data).toEqual(validTestArray);
+    });
+
+    test('Utilizando uma UF válida: PR', async () => {
+      const requestUrl = `${global.SERVER_URL}/api/ibpt/lc116/v1/PR`;
       const response = await axios.get(requestUrl);
       expect(response.status).toBe(200);
       expect(response.data).toEqual(validTestArray);
