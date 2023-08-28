@@ -1,0 +1,980 @@
+{
+  "tags": [
+    {
+      "name": "IBPT",
+      "description": "Informações sobre as alíquotas aplicadas ao NCM, NBS e LC 116 por estado"
+    }
+  ],
+  "paths": {
+    "/ibpt/versao/v1": {
+      "get": {
+        "tags": ["IBPT"],
+        "summary": "Retorna a versão atual da Tabela do IBPT",
+        "description": "Essa rota pode ser utilizada para consultar qual a versão atual dos dados, ajudando na automatização de scripts de atualização.",
+        "responses": {
+          "200": {
+            "description": "Successo",
+            "content": {
+              "application/json": {
+                "example": {
+                  "versao": "23.1.E"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ibpt/ncm/v1/{siglaUF}": {
+      "get": {
+        "tags": ["IBPT"],
+        "summary": "Retorna as alíquotas de todos os NCMs do estado",
+        "description": "",
+        "parameters": [
+          {
+            "name": "siglaUF",
+            "description": "Sigla da unidade federativa, por exemplo SP, RJ, SC, etc.\n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successo",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListaNCM"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "UF inválida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "message": "UF não encontrada.",
+                  "type": "IBPT_NCM_BAD_REQUEST"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ibpt/ncm/v1/{siglaUF}/{codigoNCM}?ex=01": {
+      "get": {
+        "tags": ["IBPT"],
+        "summary": "Retorna as alíquotas do NCM específico",
+        "description": "",
+        "parameters": [
+          {
+            "name": "siglaUF",
+            "description": "Sigla da unidade federativa, por exemplo SP, RJ, SC, etc.\n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          },
+          {
+            "name": "codigoNCM",
+            "description": "Código do NCM, por exemplo 00000000, 01012100, etc.\n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          },
+          {
+            "name": "ex",
+            "description": "Exceção aplicada ao código do NCM, por exemplo 01, 02, etc.\n",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successo",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjetoNCM"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "NCM inválido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "message": "Código do NCM deve ter 8 digitos.",
+                  "type": "IBPT_NCM_BAD_REQUEST"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "NCM inexistente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "message": "NCM não encontrado.",
+                  "type": "IBPT_NCM_NOT_FOUND"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ibpt/nbs/v1/{siglaUF}": {
+      "get": {
+        "tags": ["IBPT"],
+        "summary": "Retorna as alíquotas de todos os NBSs do estado",
+        "description": "",
+        "parameters": [
+          {
+            "name": "siglaUF",
+            "description": "Sigla da unidade federativa, por exemplo SP, RJ, SC, etc.\n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successo",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListaNBS"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "UF inválida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "message": "UF não encontrada.",
+                  "type": "IBPT_NBS_BAD_REQUEST"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ibpt/nbs/v1/{siglaUF}/{codigoNBS}?ex=01": {
+      "get": {
+        "tags": ["IBPT"],
+        "summary": "Retorna as alíquotas do NBS específico",
+        "description": "",
+        "parameters": [
+          {
+            "name": "siglaUF",
+            "description": "Sigla da unidade federativa, por exemplo SP, RJ, SC, etc.\n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          },
+          {
+            "name": "codigoNBS",
+            "description": "Código do NBS, por exemplo 101011000, 101012000, etc.\n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          },
+          {
+            "name": "ex",
+            "description": "Exceção aplicada ao código do NBS, por exemplo 01, 02, etc.\n",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successo",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjetoNBS"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "NBS inválido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "message": "Código do NBS deve ter 9 digitos.",
+                  "type": "IBPT_NBS_BAD_REQUEST"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "NBS inexistente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "message": "NBS não encontrado.",
+                  "type": "IBPT_NBS_NOT_FOUND"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ibpt/lc116/v1/{siglaUF}": {
+      "get": {
+        "tags": ["IBPT"],
+        "summary": "Retorna as alíquotas de todos os LCs 116 do estado",
+        "description": "",
+        "parameters": [
+          {
+            "name": "siglaUF",
+            "description": "Sigla da unidade federativa, por exemplo SP, RJ, SC, etc.\n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successo",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListaLC116"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "UF inválida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "message": "UF não encontrada.",
+                  "type": "IBPT_LC116_BAD_REQUEST"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ibpt/lc116/v1/{siglaUF}/{codigoLC116}?ex=01": {
+      "get": {
+        "tags": ["IBPT"],
+        "summary": "Retorna as alíquotas do LC 116 específico",
+        "description": "",
+        "parameters": [
+          {
+            "name": "siglaUF",
+            "description": "Sigla da unidade federativa, por exemplo SP, RJ, SC, etc.\n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          },
+          {
+            "name": "codigoLC116",
+            "description": "Código do LC 116, por exemplo 0101, 0102, etc.\n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          },
+          {
+            "name": "ex",
+            "description": "Exceção aplicada ao código do LC 116, por exemplo 01, 02, etc.\n",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successo",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ObjetoLC116"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "LC 116 inválido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "message": "Código do LC 116 deve ter 4 digitos.",
+                  "type": "IBPT_LC116_BAD_REQUEST"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "LC 116 inexistente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "message": "LC 116 não encontrado.",
+                  "type": "IBPT_LC116_NOT_FOUND"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ListaNCM": {
+        "title": "ListaNCM",
+        "required": [
+          "codigo",
+          "tipo",
+          "descricao",
+          "nacional_federal",
+          "importados_federal",
+          "estadual",
+          "municipal",
+          "vigencia_inicio",
+          "vigencia_fim",
+          "chave",
+          "versao",
+          "fonte"
+        ],
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "string",
+            "description": "Código do NCM."
+          },
+          "ex": {
+            "type": "string",
+            "description": "Indica a exceção para um código do NCM. Um mesmo NCM pode ter alíquotas incidentes diferentes para cada valor de exceção."
+          },
+          "tipo": {
+            "type": "string",
+            "description": "Tipo do código, 0 = NCM."
+          },
+          "descricao": {
+            "type": "string",
+            "description": "Descrição do NCM."
+          },
+          "nacional_federal": {
+            "type": "float",
+            "description": "Valor nacional (em porcentagem '%') da alíquota incidente no NCM."
+          },
+          "importados_federal": {
+            "type": "float",
+            "description": "Valor importado (em porcentagem '%') da alíquota incidente no NCM."
+          },
+          "estadual": {
+            "type": "float",
+            "description": "Valor estadual (em porcentagem '%') da alíquota incidente no NCM."
+          },
+          "municipal": {
+            "type": "float",
+            "description": "Valor municipal (em porcentagem '%') da alíquota incidente no NCM."
+          },
+          "vigencia_inicio": {
+            "type": "string",
+            "description": "Data inicio da vigência dessa alíquota."
+          },
+          "vigencia_fim": {
+            "type": "string",
+            "description": "Data final da vigência dessa alíquota."
+          },
+          "chave": {
+            "type": "string",
+            "description": "Chave da alíquota."
+          },
+          "versao": {
+            "type": "string",
+            "description": "Versão da tabela IBPT."
+          },
+          "fonte": {
+            "type": "string",
+            "description": "Fonte de onde foi retirado os dados da alíquota."
+          }
+        },
+        "example": [
+          {
+            "codigo": "00000000",
+            "ex": "",
+            "tipo": "0",
+            "descricao": "PRODUTO NAO ESPECIFICADO NA LISTA DE NCM",
+            "nacional_federal": 7.85,
+            "importados_federal": 9.85,
+            "estadual": 18,
+            "municipal": 0,
+            "vigencia_inicio": "2023-04-20",
+            "vigencia_fim": "2023-05-31",
+            "chave": "66E459",
+            "versao": "23.1.E",
+            "fonte": "IBPT/empresometro.com.br"
+          },
+          {
+            "codigo": "01012100",
+            "ex": "",
+            "tipo": "0",
+            "descricao": "Cavalos reprodutores,de raca pura",
+            "nacional_federal": 13.45,
+            "importados_federal": 15.45,
+            "estadual": 18,
+            "municipal": 0,
+            "vigencia_inicio": "2023-04-20",
+            "vigencia_fim": "2023-05-31",
+            "chave": "66E459",
+            "versao": "23.1.E",
+            "fonte": "IBPT/empresometro.com.br"
+          }
+        ]
+      },
+      "ObjetoNCM": {
+        "title": "ObjetoNCM",
+        "required": [
+          "codigo",
+          "tipo",
+          "descricao",
+          "nacional_federal",
+          "importados_federal",
+          "estadual",
+          "municipal",
+          "vigencia_inicio",
+          "vigencia_fim",
+          "chave",
+          "versao",
+          "fonte"
+        ],
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "string",
+            "description": "Código do NCM."
+          },
+          "ex": {
+            "type": "string",
+            "description": "Indica a exceção para um código do NCM. Um mesmo NCM pode ter alíquotas incidentes diferentes para cada valor de exceção."
+          },
+          "tipo": {
+            "type": "string",
+            "description": "Tipo do código, 0 = NCM."
+          },
+          "descricao": {
+            "type": "string",
+            "description": "Descrição do NCM."
+          },
+          "nacional_federal": {
+            "type": "float",
+            "description": "Valor nacional (em porcentagem '%') da alíquota incidente no NCM."
+          },
+          "importados_federal": {
+            "type": "float",
+            "description": "Valor importado (em porcentagem '%') da alíquota incidente no NCM."
+          },
+          "estadual": {
+            "type": "float",
+            "description": "Valor estadual (em porcentagem '%') da alíquota incidente no NCM."
+          },
+          "municipal": {
+            "type": "float",
+            "description": "Valor municipal (em porcentagem '%') da alíquota incidente no NCM."
+          },
+          "vigencia_inicio": {
+            "type": "string",
+            "description": "Data inicio da vigência dessa alíquota."
+          },
+          "vigencia_fim": {
+            "type": "string",
+            "description": "Data final da vigência dessa alíquota."
+          },
+          "chave": {
+            "type": "string",
+            "description": "Chave da alíquota."
+          },
+          "versao": {
+            "type": "string",
+            "description": "Versão da tabela IBPT."
+          },
+          "fonte": {
+            "type": "string",
+            "description": "Fonte de onde foi retirado os dados da alíquota."
+          }
+        },
+        "example": {
+          "codigo": "00000000",
+          "ex": "",
+          "tipo": "0",
+          "descricao": "PRODUTO NAO ESPECIFICADO NA LISTA DE NCM",
+          "nacional_federal": 7.85,
+          "importados_federal": 9.85,
+          "estadual": 18,
+          "municipal": 0,
+          "vigencia_inicio": "2023-04-20",
+          "vigencia_fim": "2023-05-31",
+          "chave": "66E459",
+          "versao": "23.1.E",
+          "fonte": "IBPT/empresometro.com.br"
+        }
+      },
+
+      "ListaNBS": {
+        "title": "ListaNBS",
+        "required": [
+          "codigo",
+          "tipo",
+          "descricao",
+          "nacional_federal",
+          "importados_federal",
+          "estadual",
+          "municipal",
+          "vigencia_inicio",
+          "vigencia_fim",
+          "chave",
+          "versao",
+          "fonte"
+        ],
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "string",
+            "description": "Código do NBS."
+          },
+          "ex": {
+            "type": "string",
+            "description": "Indica a exceção para um código do NBS. Um mesmo NBS pode ter alíquotas incidentes diferentes para cada valor de exceção."
+          },
+          "tipo": {
+            "type": "string",
+            "description": "Tipo do código, 1 = NBS."
+          },
+          "descricao": {
+            "type": "string",
+            "description": "Descrição do NBS."
+          },
+          "nacional_federal": {
+            "type": "float",
+            "description": "Valor nacional (em porcentagem '%') da alíquota incidente no NBS."
+          },
+          "importados_federal": {
+            "type": "float",
+            "description": "Valor importado (em porcentagem '%') da alíquota incidente no NBS."
+          },
+          "estadual": {
+            "type": "float",
+            "description": "Valor estadual (em porcentagem '%') da alíquota incidente no NBS."
+          },
+          "municipal": {
+            "type": "float",
+            "description": "Valor municipal (em porcentagem '%') da alíquota incidente no NBS."
+          },
+          "vigencia_inicio": {
+            "type": "string",
+            "description": "Data inicio da vigência dessa alíquota."
+          },
+          "vigencia_fim": {
+            "type": "string",
+            "description": "Data final da vigência dessa alíquota."
+          },
+          "chave": {
+            "type": "string",
+            "description": "Chave da alíquota."
+          },
+          "versao": {
+            "type": "string",
+            "description": "Versão da tabela IBPT."
+          },
+          "fonte": {
+            "type": "string",
+            "description": "Fonte de onde foi retirado os dados da alíquota."
+          }
+        },
+        "example": [
+          {
+            "codigo": "101011000",
+            "ex": "",
+            "tipo": "1",
+            "descricao": "Servicos de construcao de edificacoes residenciais de um e dois pavimentos",
+            "nacional_federal": 13.45,
+            "importados_federal": 15.45,
+            "estadual": 0,
+            "municipal": 4.33,
+            "vigencia_inicio": "2023-04-20",
+            "vigencia_fim": "2023-05-31",
+            "chave": "66E459",
+            "versao": "23.1.E",
+            "fonte": "IBPT/empresometro.com.br"
+          },
+          {
+            "codigo": "101012000",
+            "ex": "",
+            "tipo": "1",
+            "descricao": "Servicos de construcao de edificacoes residenciais com mais de dois pavimentos",
+            "nacional_federal": 13.45,
+            "importados_federal": 15.45,
+            "estadual": 0,
+            "municipal": 4.33,
+            "vigencia_inicio": "2023-04-20",
+            "vigencia_fim": "2023-05-31",
+            "chave": "66E459",
+            "versao": "23.1.E",
+            "fonte": "IBPT/empresometro.com.br"
+          }
+        ]
+      },
+      "ObjetoNBS": {
+        "title": "ObjetoNBS",
+        "required": [
+          "codigo",
+          "tipo",
+          "descricao",
+          "nacional_federal",
+          "importados_federal",
+          "estadual",
+          "municipal",
+          "vigencia_inicio",
+          "vigencia_fim",
+          "chave",
+          "versao",
+          "fonte"
+        ],
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "string",
+            "description": "Código do NBS."
+          },
+          "ex": {
+            "type": "string",
+            "description": "Indica a exceção para um código do NBS. Um mesmo NBS pode ter alíquotas incidentes diferentes para cada valor de exceção."
+          },
+          "tipo": {
+            "type": "string",
+            "description": "Tipo do código, 1 = NBS."
+          },
+          "descricao": {
+            "type": "string",
+            "description": "Descrição do NBS."
+          },
+          "nacional_federal": {
+            "type": "float",
+            "description": "Valor nacional (em porcentagem '%') da alíquota incidente no NBS."
+          },
+          "importados_federal": {
+            "type": "float",
+            "description": "Valor importado (em porcentagem '%') da alíquota incidente no NBS."
+          },
+          "estadual": {
+            "type": "float",
+            "description": "Valor estadual (em porcentagem '%') da alíquota incidente no NBS."
+          },
+          "municipal": {
+            "type": "float",
+            "description": "Valor municipal (em porcentagem '%') da alíquota incidente no NBS."
+          },
+          "vigencia_inicio": {
+            "type": "string",
+            "description": "Data inicio da vigência dessa alíquota."
+          },
+          "vigencia_fim": {
+            "type": "string",
+            "description": "Data final da vigência dessa alíquota."
+          },
+          "chave": {
+            "type": "string",
+            "description": "Chave da alíquota."
+          },
+          "versao": {
+            "type": "string",
+            "description": "Versão da tabela IBPT."
+          },
+          "fonte": {
+            "type": "string",
+            "description": "Fonte de onde foi retirado os dados da alíquota."
+          }
+        },
+        "example": {
+          "codigo": "101011000",
+          "ex": "",
+          "tipo": "1",
+          "descricao": "Servicos de construcao de edificacoes residenciais de um e dois pavimentos",
+          "nacional_federal": 13.45,
+          "importados_federal": 15.45,
+          "estadual": 0,
+          "municipal": 4.33,
+          "vigencia_inicio": "2023-04-20",
+          "vigencia_fim": "2023-05-31",
+          "chave": "66E459",
+          "versao": "23.1.E",
+          "fonte": "IBPT/empresometro.com.br"
+        }
+      },
+
+      "ListaLC116": {
+        "title": "ListaLC116",
+        "required": [
+          "codigo",
+          "tipo",
+          "descricao",
+          "nacional_federal",
+          "importados_federal",
+          "estadual",
+          "municipal",
+          "vigencia_inicio",
+          "vigencia_fim",
+          "chave",
+          "versao",
+          "fonte"
+        ],
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "string",
+            "description": "Código do LC 116."
+          },
+          "ex": {
+            "type": "string",
+            "description": "Indica a exceção para um código do LC 116. Um mesmo LC 116 pode ter alíquotas incidentes diferentes para cada valor de exceção."
+          },
+          "tipo": {
+            "type": "string",
+            "description": "Tipo do código, 2 = LC 116."
+          },
+          "descricao": {
+            "type": "string",
+            "description": "Descrição do LC 116."
+          },
+          "nacional_federal": {
+            "type": "float",
+            "description": "Valor nacional (em porcentagem '%') da alíquota incidente no LC 116."
+          },
+          "importados_federal": {
+            "type": "float",
+            "description": "Valor importado (em porcentagem '%') da alíquota incidente no LC 116."
+          },
+          "estadual": {
+            "type": "float",
+            "description": "Valor estadual (em porcentagem '%') da alíquota incidente no LC 116."
+          },
+          "municipal": {
+            "type": "float",
+            "description": "Valor municipal (em porcentagem '%') da alíquota incidente no LC 116."
+          },
+          "vigencia_inicio": {
+            "type": "string",
+            "description": "Data inicio da vigência dessa alíquota."
+          },
+          "vigencia_fim": {
+            "type": "string",
+            "description": "Data final da vigência dessa alíquota."
+          },
+          "chave": {
+            "type": "string",
+            "description": "Chave da alíquota."
+          },
+          "versao": {
+            "type": "string",
+            "description": "Versão da tabela IBPT."
+          },
+          "fonte": {
+            "type": "string",
+            "description": "Fonte de onde foi retirado os dados da alíquota."
+          }
+        },
+        "example": [
+          {
+            "codigo": "0101",
+            "ex": "",
+            "tipo": "2",
+            "descricao": "Analise e desenvolvimento de sistemas.",
+            "nacional_federal": 13.45,
+            "importados_federal": 15.45,
+            "estadual": 0,
+            "municipal": 3.9,
+            "vigencia_inicio": "2023-04-20",
+            "vigencia_fim": "2023-05-31",
+            "chave": "66E459",
+            "versao": "23.1.E",
+            "fonte": "IBPT/empresometro.com.br"
+          },
+          {
+            "codigo": "0102",
+            "ex": "",
+            "tipo": "2",
+            "descricao": "Programacao.",
+            "nacional_federal": 13.45,
+            "importados_federal": 15.45,
+            "estadual": 0,
+            "municipal": 3.9,
+            "vigencia_inicio": "2023-04-20",
+            "vigencia_fim": "2023-05-31",
+            "chave": "66E459",
+            "versao": "23.1.E",
+            "fonte": "IBPT/empresometro.com.br"
+          }
+        ]
+      },
+      "ObjetoLC116": {
+        "title": "ObjetoLC116",
+        "required": [
+          "codigo",
+          "tipo",
+          "descricao",
+          "nacional_federal",
+          "importados_federal",
+          "estadual",
+          "municipal",
+          "vigencia_inicio",
+          "vigencia_fim",
+          "chave",
+          "versao",
+          "fonte"
+        ],
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "string",
+            "description": "Código do LC 116."
+          },
+          "ex": {
+            "type": "string",
+            "description": "Indica a exceção para um código do LC 116. Um mesmo LC 116 pode ter alíquotas incidentes diferentes para cada valor de exceção."
+          },
+          "tipo": {
+            "type": "string",
+            "description": "Tipo do código, 2 = LC 116."
+          },
+          "descricao": {
+            "type": "string",
+            "description": "Descrição do LC 116."
+          },
+          "nacional_federal": {
+            "type": "float",
+            "description": "Valor nacional (em porcentagem '%') da alíquota incidente no LC 116."
+          },
+          "importados_federal": {
+            "type": "float",
+            "description": "Valor importado (em porcentagem '%') da alíquota incidente no LC 116."
+          },
+          "estadual": {
+            "type": "float",
+            "description": "Valor estadual (em porcentagem '%') da alíquota incidente no LC 116."
+          },
+          "municipal": {
+            "type": "float",
+            "description": "Valor municipal (em porcentagem '%') da alíquota incidente no LC 116."
+          },
+          "vigencia_inicio": {
+            "type": "string",
+            "description": "Data inicio da vigência dessa alíquota."
+          },
+          "vigencia_fim": {
+            "type": "string",
+            "description": "Data final da vigência dessa alíquota."
+          },
+          "chave": {
+            "type": "string",
+            "description": "Chave da alíquota."
+          },
+          "versao": {
+            "type": "string",
+            "description": "Versão da tabela IBPT."
+          },
+          "fonte": {
+            "type": "string",
+            "description": "Fonte de onde foi retirado os dados da alíquota."
+          }
+        },
+        "example": {
+          "codigo": "0101",
+          "ex": "",
+          "tipo": "2",
+          "descricao": "Analise e desenvolvimento de sistemas.",
+          "nacional_federal": 13.45,
+          "importados_federal": 15.45,
+          "estadual": 0,
+          "municipal": 3.9,
+          "vigencia_inicio": "2023-04-20",
+          "vigencia_fim": "2023-05-31",
+          "chave": "66E459",
+          "versao": "23.1.E",
+          "fonte": "IBPT/empresometro.com.br"
+        }
+      }
+    }
+  }
+}
