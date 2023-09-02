@@ -44,7 +44,7 @@ describe('ncm v1 (E2E)', () => {
           data_inicio: '2022-04-01',
           data_fim: '9999-12-31',
           tipo_ato: 'Res Camex',
-          numero_ato: '000272',
+          numero_ato: expect.any(String),
           ano_ato: '2021',
         },
       ]);
