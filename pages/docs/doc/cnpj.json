@@ -8,7 +8,9 @@
     "paths": {
         "/cnpj/v1/{cnpj}": {
             "get": {
-                "tags": ["CNPJ"],
+                "tags": [
+                    "CNPJ"
+                ],
                 "summary": "Busca por CNPJ na API Minha Receita.",
                 "description": "",
                 "parameters": [
@@ -64,11 +66,15 @@
                     "cnpj": {
                         "type": "string"
                     },
+                    "email": {
+                        "type": "string",
+                        "format": "nullable"
+                    },
                     "identificador_matriz_filial": {
                         "type": "integer",
                         "format": "int32"
                     },
-                    "descricao_matriz_filial": {
+                    "descricao_identificador_matriz_filial": {
                         "type": "string"
                     },
                     "razao_social": {
@@ -92,13 +98,21 @@
                         "type": "integer",
                         "format": "int32"
                     },
-                    "nome_cidade_exterior": {
+                    "descricao_motivo_situacao_cadastral": {
+                        "type": "string",
+                        "format": "nullable"
+                    },
+                    "nome_cidade_no_exterior": {
                         "type": "string",
                         "format": "nullable"
                     },
                     "codigo_natureza_juridica": {
                         "type": "integer",
                         "format": "int32"
+                    },
+                    "natureza_juridica": {
+                        "type": "string",
+                        "format": "nullable"
                     },
                     "data_inicio_atividade": {
                         "type": "string",
@@ -111,7 +125,7 @@
                     "cnae_fiscal_descricao": {
                         "type": "string"
                     },
-                    "descricao_tipo_logradouro": {
+                    "descricao_tipo_de_logradouro": {
                         "type": "string"
                     },
                     "logradouro": {
@@ -120,6 +134,10 @@
                     "numero": {
                         "type": "string"
                     },
+                    "codigo_pais": {
+                        "type": "integer",
+                        "format": "nullable"
+                    },
                     "complemento": {
                         "type": "string"
                     },
@@ -127,13 +145,17 @@
                         "type": "string"
                     },
                     "cep": {
-                        "type": "integer",
-                        "format": "int32"
+                        "type": "string",
+                        "format": "nullable"
                     },
                     "uf": {
                         "type": "string"
                     },
                     "codigo_municipio": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "codigo_municipio_ibge": {
                         "type": "integer",
                         "format": "int32"
                     },
@@ -160,6 +182,9 @@
                         "format": "int32"
                     },
                     "porte": {
+                        "type": "string"
+                    },
+                    "codigo_porte": {
                         "type": "integer",
                         "format": "int32"
                     },
@@ -177,8 +202,20 @@
                         "type": "string",
                         "format": "nullable"
                     },
+                    "ente_federativo_responsavel": {
+                        "type": "string",
+                        "format": "nullable"
+                    },
                     "opcao_pelo_mei": {
                         "type": "boolean"
+                    },
+                    "data_opcao_pelo_mei": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "data_exclusao_do_mei": {
+                        "type": "string",
+                        "format": "date"
                     },
                     "situacao_especial": {
                         "type": "string",
@@ -208,27 +245,38 @@
                         "items": {
                             "type": "object",
                             "properties": {
-                                "identificador_de_socio": {
-                                    "type": "integer",
-                                    "format": "int32"
+                                "pais": {
+                                    "type": "string",
+                                    "format": "nullable"
                                 },
                                 "nome_socio": {
                                     "type": "string"
                                 },
+                                "codigo_pais": {
+                                    "type": "integer",
+                                    "format": "nullable"
+                                },
+                                "faixa_etaria": {
+                                    "type": "string",
+                                    "format": "nullable"
+                                },
                                 "cnpj_cpf_do_socio": {
                                     "type": "string"
                                 },
-                                "codigo_qualificacao_socio": {
-                                    "type": "integer",
-                                    "format": "int32"
+                                "qualificacao_socio": {
+                                    "type": "string"
                                 },
-                                "percentual_capital_social": {
+                                "codigo_faixa_etaria": {
                                     "type": "integer",
                                     "format": "int32"
                                 },
                                 "data_entrada_sociedade": {
                                     "type": "string",
                                     "format": "date"
+                                },
+                                "identificador_de_socio": {
+                                    "type": "integer",
+                                    "format": "int32"
                                 },
                                 "cpf_representante_legal": {
                                     "type": "string",
@@ -238,9 +286,17 @@
                                     "type": "string",
                                     "format": "nullable"
                                 },
-                                "codigo_qualificacao_representante_legal": {
+                                "codigo_qualificacao_socio": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                },
+                                "qualificacao_representante_legal": {
                                     "type": "string",
                                     "format": "nullable"
+                                },
+                                "codigo_qualificacao_representante_legal": {
+                                    "type": "integer",
+                                    "format": "int32"
                                 }
                             }
                         }
@@ -248,39 +304,48 @@
                 },
                 "example": {
                     "cnpj": "19131243000197",
+                    "email": "email@acme.com",
                     "identificador_matriz_filial": 1,
-                    "descricao_matriz_filial": "Matriz",
+                    "descricao_identificador_matriz_filial": "Matriz",
                     "razao_social": "OPEN KNOWLEDGE BRASIL",
                     "nome_fantasia": "REDE PELO CONHECIMENTO LIVRE",
                     "situacao_cadastral": 2,
                     "descricao_situacao_cadastral": "Ativa",
                     "data_situacao_cadastral": "2013-10-03",
                     "motivo_situacao_cadastral": 0,
-                    "nome_cidade_exterior": null,
+                    "descricao_motivo_situacao_cadastral": "SEM MOTIVO",
+                    "nome_cidade_no_exterior": null,
                     "codigo_natureza_juridica": 3999,
+                    "natureza_juridica": "Sociedade Empresária Limitada",
                     "data_inicio_atividade": "2013-10-03",
                     "cnae_fiscal": 9430800,
                     "cnae_fiscal_descricao": "Atividades de associações de defesa de direitos sociais",
-                    "descricao_tipo_logradouro": "ALAMEDA",
+                    "descricao_tipo_de_logradouro": "ALAMEDA",
                     "logradouro": "FRANCA",
                     "numero": "144",
+                    "codigo_pais": null,
                     "complemento": "APT   34",
                     "bairro": "JARDIM PAULISTA",
                     "cep": 1422000,
                     "uf": "SP",
                     "codigo_municipio": 7107,
+                    "codigo_municipio_ibge": 2927408,
                     "municipio": "SAO PAULO",
                     "ddd_telefone_1": "11  23851939",
                     "ddd_telefone_2": null,
                     "ddd_fax": null,
                     "qualificacao_do_responsavel": 10,
                     "capital_social": 0,
-                    "porte": 5,
+                    "porte": "DEMAIS",
+                    "codigo_porte": 5,
                     "descricao_porte": "Demais",
                     "opcao_pelo_simples": false,
                     "data_opcao_pelo_simples": null,
                     "data_exclusao_do_simples": null,
+                    "ente_federativo_responsavel": "",
                     "opcao_pelo_mei": false,
+                    "data_opcao_pelo_mei": "2022-12-17",
+                    "data_exclusao_do_mei": "2022-12-17",
                     "situacao_especial": null,
                     "data_situacao_especial": null,
                     "cnaes_secundarios": [
@@ -307,15 +372,20 @@
                     ],
                     "qsa": [
                         {
+                            "pais": null,
+                            "nome_socio": "NELSON LINS DOS SANTOS",
+                            "codigo_pais": null,
+                            "faixa_etaria": "Entre 31 a 40 anos",
+                            "cnpj_cpf_do_socio": "***3161674**",
+                            "qualificacao_socio": "Sócio",
+                            "codigo_faixa_etaria": 4,
+                            "data_entrada_sociedade": "2012-11-14",
                             "identificador_de_socio": 2,
-                            "nome_socio": "NATALIA PASSOS MAZOTTE CORTEZ",
-                            "cnpj_cpf_do_socio": "***059967**",
-                            "codigo_qualificacao_socio": 10,
-                            "percentual_capital_social": 0,
-                            "data_entrada_sociedade": "2019-02-14",
-                            "cpf_representante_legal": null,
-                            "nome_representante_legal": null,
-                            "codigo_qualificacao_representante_legal": null
+                            "cpf_representante_legal": "***000000**",
+                            "nome_representante_legal": "",
+                            "codigo_qualificacao_socio": 22,
+                            "qualificacao_representante_legal": "Não informada",
+                            "codigo_qualificacao_representante_legal": 0
                         }
                     ]
                 }
