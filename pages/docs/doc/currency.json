@@ -1,0 +1,179 @@
+{
+  "tags": [
+    {
+      "name": "Currency",
+      "description": "Informações sobre moedas"
+    }
+  ],
+  "paths": {
+    "/currency/v1": {
+      "get": {
+        "tags": [
+          "Currency"
+        ],
+        "summary": "Retorna a lista de moedas",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Currency"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/currency/v1/exchange": {
+      "get": {
+        "tags": [
+          "Currency"
+        ],
+        "summary": "Busca cotação entre duas moedas",
+        "description": "",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Código da moeda base para comparação"
+          },
+          {
+            "in": "query",
+            "name": "to",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Código da moeda para comparação"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrencyExchange"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Paramêtro inválido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "message": "Parameter to is required",
+                  "type": "bad_request",
+                  "name": "BadRequestError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cotação não encontrada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "message": "Cannot found any exchange between INVALID_CURRENCY and USD",
+                  "type": "not_found",
+                  "name": "NotFoundError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Currency": {
+        "title": "Currency",
+        "required": [
+          "code",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "code": "BRL",
+          "name": "Real Brasileiro"
+        }
+      },
+      "CurrencyExchange": {
+        "title": "Currency Exchange",
+        "required": [
+          "priceToSell",
+          "priceToBuy",
+          "variation",
+          "variationPercentage",
+          "maxPrice",
+          "minPrice",
+          "avgPrice"
+        ],
+        "type": "object",
+        "properties": {
+          "priceToSell": {
+            "type": "number",
+            "format": "double"
+          },
+          "priceToBuy": {
+            "type": "number",
+            "format": "double"
+          },
+          "variation": {
+            "type": "number",
+            "format": "double"
+          },
+          "variationPercentage": {
+            "type": "number",
+            "format": "double"
+          },
+          "maxPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "minPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "avgPrice": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "example": {
+          "priceToSell": 4.9877,
+          "priceToBuy": 4.9852,
+          "variation": 0.0193,
+          "variationPercentage": 0.39,
+          "maxPrice": 4.9945,
+          "minPrice": 4.954,
+          "avgPrice": 4.97425
+        }
+      }
+    }
+  }
+}
