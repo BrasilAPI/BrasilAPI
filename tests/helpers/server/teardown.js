@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 module.exports = async () => {
   console.log('\n[Start] Global teardown');
   await global.LOCAL_SERVER.stop();

@@ -1,6 +1,7 @@
 import BaseError from '@/errors/BaseError';
 
 export default function errorHandler(error, request, response) {
+  // eslint-disable-next-line no-console
   console.log({
     url: request.url,
     ...error,

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const createServer = require('./index');
 
 module.exports = async () => {
