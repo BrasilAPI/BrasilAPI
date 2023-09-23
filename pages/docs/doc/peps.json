@@ -6,11 +6,11 @@
       }
   ],
   "paths": {
-      "/peps/v1?cpf=": {
+      "/peps/v1?cpf={cpf}": {
           "get": {
               "tags": ["PEPs"],
               "summary": "Retorna informações de todas as pessoas expostas politicamente",
-              "description": "A pesquisa precisa de parametros inseridos na URL. Ex: /peps/v1?cpf=12345678900&Nível_Função='CAS-1'. E ela mescla todos os resultados. Ex: o código retornará quem tem o cpf 12345678900 e quem tem o  Nível_Função='CAS-1'.",
+              "description": "A pesquisa precisa de parametros inseridos na URL. Ex: /peps/v1?cpf=12345678900&Nível_Função='CAS-1'. E ela mescla todos os resultados. Ex: o código retornará quem tem o cpf 12345678900 e quem tem o  Nível_Função='CAS-1'. O resultado do updated_at é a data dos dados referente a Julho de 2023.",
               "responses": {
                   "200": {
                       "description": "Success",
@@ -18,59 +18,54 @@
                           "application/json": {
                               "schema": {
                                   "type": "object",
-                                  "items": {
-                                      "$ref": "#/components/schemas/Bank"
-                                  }
-                              }
-                          }
-                      }
-                  }
-              }
-          }
-      },
-      "/banks/v1/{code}": {
-          "get": {
-              "tags": ["BANKS"],
-              "summary": "Busca as informações de um banco a partir de um código",
-              "description": "",
-              "responses": {
-                  "200": {
-                      "description": "Success",
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "$ref": "#/components/schemas/Pep"
+                                  "$ref": "#/components/schemas/PEP"
+
                               }
                           }
                       }
                   },
-                  "404": {
-                      "description": "O código do banco não foi encontrado",
-                      "content": {
-                          "application/json": {
-                              "schema": {
-                                  "$ref": "#/components/schemas/ErrorMessage"
-                              },
-                              "example": {
-                                  "message": "Código bancário não encontrado",
-                                  "type": "BANK_CODE_NOT_FOUND"
-                              }
-                          }
-                      }
-                  }
+                  "500": {
+                    "description": "Error",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                  "properties": {
+                                    "message": {
+                                      "type": "string",
+                                      "description": "Mensagem de erro"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "description": "Tipo do erro"
+                                    },
+                                    "name": {
+                                      "type": "string",
+                                      "description": "Nome do erro"
+                                    }
+                                  },
+                                  "example": {
+                                    "message": "Nenhum resultado encontrado",
+                                    "type": "not_found",
+                                    "name": "PEP_NOT_EXISTS"
+                                  }
+                            }
+                        }
+                    }
+                }
               }
           }
       }
   },
   "components": {
       "schemas": {
-          "Pep": {
+          "PEP": {
               "title": "Pep",
-              "required": [],
               "type": "object",
               "properties": {
                   "CPF": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "O meio do CPF da pessoa exposta politicamente. Ex: 123.456 ou 123456"
                   },
                   "Nome_PEP": {
                       "type": "string"
@@ -95,17 +90,20 @@
                   }
               },
               "example": {
-                  "data": [{
-                    "CPF": "***.531.324-**",
-                    "Nome_PEP": "(CUMULATIVAMENTE) MARCELO ANT\uFFFDNIO CARREIRA CAVALCANTI DE ALB",
-                    "Sigla_Função": "CAS-1",
-                    "Descrição_Função": "DIR. SUPERINTENDENTE",
-                    "Nível_Função": "",
-                    "Nome_Cargo": "SUDEMA",
-                    "Data_Início_Exercício": "21/12/2019",
-                    "Data_Fim_Exercício": "N\u00E3o informada",
-                    "Data_Fim_Carência": "N\u00E3o informada"
-                  }]
+                  "data": [
+                    {
+                      "CPF": "***.708.767-**",
+                      "Nome_PEP": "AARAO DE MOURA BRITO NETO",
+                      "Sigla_Função": "PREFEI",
+                      "Descrição_Função": "PREFEITO",
+                      "Nível_Função": "",
+                      "Nome_Cargo": "MUN. DE MANGARATIBA-RJ",
+                      "Data_Início_Exercício": "01/01/2017",
+                      "Data_Fim_Exercício": "31/12/2020",
+                      "Data_Fim_Carência": "31/12/2025"
+                    }
+                ],
+                "updated_at": "1688180400"
               }
           }
       }
