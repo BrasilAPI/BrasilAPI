@@ -17,10 +17,10 @@ const action = (request, response) => {
   });
 
   if (keys.length === 0) {
-    return response.status(404).json({
-      message: 'Nenhum resultado encontrado',
-      type: 'not_found',
-      name: 'PEP_NOT_EXISTS',
+    return response.status(400).json({
+      message: 'Nenhuma chave de pesquisa digitada',
+      type: 'key_not_found',
+      name: 'KEY_NOT_FOUND',
     });
   }
 
@@ -66,6 +66,14 @@ const action = (request, response) => {
     }
     return false;
   });
+
+  if (result.length === 0) {
+    return response.status(404).json({
+      message: 'Nenhum resultado encontrado',
+      type: 'not_found',
+      name: 'PEP_NOT_EXISTS',
+    });
+  }
 
   response.status(200);
   return response.json({

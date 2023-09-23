@@ -24,8 +24,8 @@
                           }
                       }
                   },
-                  "500": {
-                    "description": "Error",
+                  "404": {
+                    "description": "Nenhum resultado encontrado",
                     "content": {
                         "application/json": {
                             "schema": {
@@ -52,7 +52,36 @@
                             }
                         }
                     }
-                }
+                  },
+                  "400": {
+                    "description": "Parâmetro inválido",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                  "properties": {
+                                    "message": {
+                                      "type": "string",
+                                      "description": "Mensagem de erro"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "description": "Tipo do erro"
+                                    },
+                                    "name": {
+                                      "type": "string",
+                                      "description": "Nome do erro"
+                                    }
+                                  },
+                                  "example": {
+                                    "message": "Nenhuma chave de pesquisa digitada",
+                                    "type": "key_not_found",
+                                    "name": "KEY_NOT_FOUND"
+                                  }
+                            }
+                        }
+                    }
+                  }
               }
           }
       }
