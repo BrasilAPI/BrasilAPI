@@ -16,9 +16,20 @@ const action = (request, response) => {
     });
   });
 
+  if (keys.length === 0) {
+    return response.status(404).json({
+      message: 'Nenhum resultado encontrado',
+      type: 'not_found',
+      name: 'PEP_NOT_EXISTS',
+    });
+  }
+
   //  Filter the data based on the keys found
   jsonData.filter((item) => {
-    return keys.forEach((key) => {
+    //  The data has to match all the search params
+    const matches = [];
+
+    keys.forEach((key) => {
       // Find the search params in the data
       const searchParams = Object.keys(request.query);
       searchParams.forEach((param) => {
@@ -41,20 +52,25 @@ const action = (request, response) => {
                 .trim()
             )
         ) {
-          //  Remove duplicated data
-          if (result.includes(item)) return false;
-          // Add the data to the result
-          return result.push(item);
+          matches.push(key);
         }
-        return false;
       });
     });
+
+    // Check if all the keys are present in the data
+    if (keys.every((key) => matches.includes(key))) {
+      //  Remove duplicated data
+      if (result.includes(item)) return false;
+      // Add the data to the result
+      return result.push(item);
+    }
+    return false;
   });
 
   response.status(200);
   return response.json({
     data: result,
-    'Data de atualização dos dados': 'Julho de 2023',
+    updated_at: '1688180400',
   });
 };
 
