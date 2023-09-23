@@ -1,0 +1,113 @@
+{
+  "tags": [
+      {
+          "name": "PEPs",
+          "description": "Informações sobre as pessoas expostas politicamente"
+      }
+  ],
+  "paths": {
+      "/peps/v1?cpf=": {
+          "get": {
+              "tags": ["PEPs"],
+              "summary": "Retorna informações de todas as pessoas expostas politicamente",
+              "description": "A pesquisa precisa de parametros inseridos na URL. Ex: /peps/v1?cpf=12345678900&Nível_Função='CAS-1'. E ela mescla todos os resultados. Ex: o código retornará quem tem o cpf 12345678900 e quem tem o  Nível_Função='CAS-1'.",
+              "responses": {
+                  "200": {
+                      "description": "Success",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "object",
+                                  "items": {
+                                      "$ref": "#/components/schemas/Bank"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      },
+      "/banks/v1/{code}": {
+          "get": {
+              "tags": ["BANKS"],
+              "summary": "Busca as informações de um banco a partir de um código",
+              "description": "",
+              "responses": {
+                  "200": {
+                      "description": "Success",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/Pep"
+                              }
+                          }
+                      }
+                  },
+                  "404": {
+                      "description": "O código do banco não foi encontrado",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/ErrorMessage"
+                              },
+                              "example": {
+                                  "message": "Código bancário não encontrado",
+                                  "type": "BANK_CODE_NOT_FOUND"
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      }
+  },
+  "components": {
+      "schemas": {
+          "Pep": {
+              "title": "Pep",
+              "required": [],
+              "type": "object",
+              "properties": {
+                  "CPF": {
+                      "type": "string"
+                  },
+                  "Nome_PEP": {
+                      "type": "string"
+                  },
+                  "Sigla_Função": {
+                      "type": "string"
+                  },
+                  "Descrição_Função": {
+                      "type": "string"
+                  },
+                  "Nível_Função": {
+                    "type": "string"
+                  },
+                  "Data_Início_Exercício": {
+                    "type": "string"
+                  },
+                  "Data_Fim_Exercício": {
+                    "type": "string"
+                  },
+                  "Data_Fim_Carência": {
+                    "type": "string"
+                  }
+              },
+              "example": {
+                  "data": [{
+                    "CPF": "***.531.324-**",
+                    "Nome_PEP": "(CUMULATIVAMENTE) MARCELO ANT\uFFFDNIO CARREIRA CAVALCANTI DE ALB",
+                    "Sigla_Função": "CAS-1",
+                    "Descrição_Função": "DIR. SUPERINTENDENTE",
+                    "Nível_Função": "",
+                    "Nome_Cargo": "SUDEMA",
+                    "Data_Início_Exercício": "21/12/2019",
+                    "Data_Fim_Exercício": "N\u00E3o informada",
+                    "Data_Fim_Carência": "N\u00E3o informada"
+                  }]
+              }
+          }
+      }
+  }
+}
