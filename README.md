@@ -56,7 +56,7 @@ Abaixo segue uma lista de integrações com a BrasilApi fornecidas pela comunida
 
 **JS**
   * **[brasil-api-promisse](https://github.com/guhcostan/brasil-api-promisse)** criado por [@guhcostan](https://github.com/guhcostan)
-
+  * **[brasilapi-js](https://github.com/WillianAgostini/brasilapi-js)** criado por [@WillianAgostini](https://github.com/WillianAgostini)
 
 **Flutter**
   * **[brazilian_banks](https://github.com/credifit-br/brazilian_banks)** criado por [@credifit-br](https://github.com/credifit-br)
