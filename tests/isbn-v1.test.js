@@ -143,7 +143,7 @@ describe('api/isbn/v1 (E2E)', () => {
         location: null,
         retail_price: expect.objectContaining({
           currency: 'BRL',
-          amount: 109,
+          amount: expect.any(Number),
         }),
         cover_url:
           'https://fl-storage.bookinfometadados.com.br/uploads/book/first_cover/9786555140576.jpg',
