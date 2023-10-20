@@ -14,7 +14,7 @@ const formatCity = (city) => {
 
 /**
  * Get all Brazilian cities on CPTEC database
- * @returns {Array}
+ * @returns {Promise<Array>}
  */
 export const getAllCitiesData = async () => {
   const citiesData = await axios.get(`${CPTEC_URL}/listaCidades`, {
@@ -31,7 +31,7 @@ export const getAllCitiesData = async () => {
 /**
  * Search Brazilian cities by name
  * @param {string} name
- * @returns {Array}
+ * @returns {Promise<Array>}
  */
 export const getCityData = async (name) => {
   const citiesData = await axios.get(`${CPTEC_URL}/listaCidades?city=${name}`, {
