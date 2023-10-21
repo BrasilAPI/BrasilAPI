@@ -15,6 +15,19 @@ describe('cities v1 (E2E)', () => {
       });
     });
 
+    test('Utilizando um nome de cidade com retorno único: Belo Horizonte', async () => {
+      const requestUrl = `${global.SERVER_URL}/api/cptec/v1/cidade/Belo Horizonte`;
+      const response = await axios.get(requestUrl);
+
+      expect(response.status).toBe(200);
+      expect(Array.isArray(response.data)).toBe(true);
+      expect(response.data[0]).toEqual({
+        id: 222,
+        nome: 'Belo Horizonte',
+        estado: 'MG',
+      });
+    });
+
     test('Utilizando um nome de cidade inexistente: chiforímpola', async () => {
       const requestUrl = `${global.SERVER_URL}/api/cptec/v1/cidade/chiforímpola`;
 
