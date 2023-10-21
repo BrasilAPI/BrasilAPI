@@ -23,7 +23,10 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
-    'import/prefer-default-export': 'off'
+    'import/prefer-default-export': 'off',
+    'no-else-return': {
+      allowElseIf: true,
+    },
   },
   settings: {
     'import/resolver': {

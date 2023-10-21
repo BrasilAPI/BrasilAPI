@@ -22,8 +22,9 @@ export const getAllCitiesData = async () => {
     responseEncoding: 'binary',
   });
 
-  if (parser.parse(citiesData.data).cidades.cidade) {
-    return parser.parse(citiesData.data).cidades.cidade.map(formatCity);
+  const parsed = parser.parse(citiesData.data);
+  if (parsed.cidades.cidade) {
+    return parsed.cidades.cidade.map(formatCity);
   }
   return [];
 };
@@ -39,8 +40,14 @@ export const getCityData = async (name) => {
     responseEncoding: 'binary',
   });
 
-  if (parser.parse(citiesData.data).cidades.cidade) {
-    return parser.parse(citiesData.data).cidades.cidade.map(formatCity);
+  const parsed = parser.parse(citiesData.data);
+
+  if (parsed.cidades.cidade) {
+    if (parsed.cidades.cidade instanceof Array) {
+      return parsed.cidades.cidade.map(formatCity);
+    } else if (parsed.cidades.cidade instanceof Object) {
+      return [formatCity(parsed.cidades.cidade)];
+    }
   }
   return [];
 };
