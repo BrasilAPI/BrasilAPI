@@ -2,15 +2,15 @@ const axios = require('axios');
 
 describe('cities v1 (E2E)', () => {
   describe('GET /cptec/v1/cidade/:name', () => {
-    test('Utilizando um nome de cidade existente: Guarujá', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cptec/v1/cidade/Guarujá`;
+    test('Utilizando um nome de cidade existente: São Sebastião', async () => {
+      const requestUrl = `${global.SERVER_URL}/api/cptec/v1/cidade/São Sebastião`;
       const response = await axios.get(requestUrl);
 
       expect(response.status).toBe(200);
       expect(Array.isArray(response.data)).toBe(true);
-      expect(response.data[0]).toEqual({
-        id: 2245,
-        nome: 'Guarujá',
+      expect(response.data[1]).toEqual({
+        id: 5051,
+        nome: 'São Sebastião',
         estado: 'SP',
       });
     });
