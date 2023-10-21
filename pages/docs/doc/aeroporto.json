@@ -1,0 +1,80 @@
+{
+    "tags": [
+        {
+            "name": "AEROPORTOS",
+            "description": "Informações referentes aos Aeroportos do Brasil"
+        }
+    ],
+    
+    "paths": {
+        "/aeroportos/v1/": {
+            "get": {
+                "tags": ["AEROPORTOS"],
+                "summary": "Retorna informações de todos os aeroportos/aerodromos do Brasil",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type:": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Aeroportos"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Todos os serviços busca de aeroportos retornaram erro.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }        
+    },
+    "components": {
+        "schemas": {
+            "Aeroportos": {
+                "title": "Aeroportos",
+                "required": ["CodigoOACI", "NomeAeroporto", "Cidade", "Estado","LatGeoPoint","LonGeoPoint"],
+                "type": "object",
+                "properties": {
+                    "CodigoOACI": {
+                        "type": "string"
+                    },
+                    "NomeAeroporto": {
+                        "type": "string"
+                    },
+                    "Cidade": {
+                        "type": "string"
+                    },
+                    "Estado": {
+                        "type": "string"
+                    },
+                    "LatGeoPoint": {
+                        "type": "string"
+                    },
+                    "LonGeoPoint": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "CodigoOACI": "SBCB",
+                    "NomeAeroporto": "Cabo Frio",
+                    "Cidade": "CABO FRIO",
+                    "Estado": "Rio de Janeiro",
+                    "LatGeoPoint": "-22.920833",
+                    "LonGeoPoint": "-42.071389"
+                }
+            }
+        }
+    }
+}
