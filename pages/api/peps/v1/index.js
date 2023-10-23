@@ -2,18 +2,14 @@ import app from '@/app';
 import jsonData from '@/services/peps/202307_PEP.json';
 
 const action = (request, response) => {
-  const keys = [];
   const result = [];
 
   //  Find keys that match the search params to filter the data
-  Object.keys(jsonData[0]).filter((key) => {
+  const keys = Object.keys(jsonData[0]).filter((key) => {
     const searchParams = Object.keys(request.query);
-    return searchParams.forEach((param) => {
-      if (key.toLowerCase() === param.toLowerCase()) {
-        return keys.push(key);
-      }
-      return false;
-    });
+    return searchParams.some((param) =>
+      key.toLowerCase().includes(param.toLowerCase())
+    );
   });
 
   if (keys.length === 0) {
