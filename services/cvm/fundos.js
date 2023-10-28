@@ -96,7 +96,7 @@ export const getFunds = async (size = 100, page = 1) => {
 
   if (Number(size) > 200) {
     throw new BadRequestError({
-      message: 'Tamanho máximo da página é de 200 registros',
+      message: 'Tamanho máximo é de 200 registros por página',
     });
   }
 
@@ -104,7 +104,7 @@ export const getFunds = async (size = 100, page = 1) => {
 
   if (isNaN(offset) || isNaN(pageSize))
     throw new BadRequestError({
-      message: 'Página e tamanho devem ser números inteiros',
+      message: 'Formato inválido de página e tamanho',
     });
 
   const fundData = await fetchCvmData();
