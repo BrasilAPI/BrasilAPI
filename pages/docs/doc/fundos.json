@@ -19,8 +19,7 @@
             "in": "query",
             "required": false,
             "schema": {
-              "type": "number",
-              "format": "date"
+              "type": "number"
             }
           },
           {
@@ -29,8 +28,7 @@
             "in": "query",
             "required": false,
             "schema": {
-              "type": "number",
-              "format": "date"
+              "type": "number"
             }
           }
         ],
@@ -116,23 +114,23 @@
           "data": [
             {
               "cnpj": "00.000.684/0001-21",
-              "denominacaoSocial": "DEUTSCHE BANK FDO APLIC QUOTAS FDO INV FINANCEIRO - MAX",
-              "codigoCvm": "19",
-              "tipoFundo": "FACFIF",
+              "denominacao_social": "DEUTSCHE BANK FDO APLIC QUOTAS FDO INV FINANCEIRO - MAX",
+              "codigo_cvm": "19",
+              "tipo_fundo": "FACFIF",
               "situacao": "CANCELADA"
             },
             {
               "cnpj": "00.000.731/0001-37",
-              "denominacaoSocial": "ITAMARITI CASH FUNDO APLICACAO QUOTAS FDOS INVESTIMENTO",
-              "codigoCvm": "40681",
-              "tipoFundo": "FACFIF",
+              "denominacao_social": "ITAMARITI CASH FUNDO APLICACAO QUOTAS FDOS INVESTIMENTO",
+              "codigo_cvm": "40681",
+              "tipo_fundo": "FACFIF",
               "situacao": "CANCELADA"
             },
             {
               "cnpj": "00.000.732/0001-81",
-              "denominacaoSocial": "FUNDO APLIC. QUOTAS DE F.I. SANTANDER CURTO PRAZO",
-              "codigoCvm": "27",
-              "tipoFundo": "FACFIF",
+              "denominacao_social": "FUNDO APLIC. QUOTAS DE F.I. SANTANDER CURTO PRAZO",
+              "codigo_cvm": "27",
+              "tipo_fundo": "FACFIF",
               "situacao": "CANCELADA"
             }
           ],
@@ -144,9 +142,9 @@
         "title": "Lista de fundos de investimento",
         "required": [
           "cnpj",
-          "denominacaoSocial",
-          "codigoCvm",
-          "tipoFundo",
+          "denominacao_social",
+          "codigo_cvm",
+          "tipo_fundo",
           "situacao"
         ],
         "type": "object",
@@ -154,13 +152,13 @@
           "cnpj": {
             "type": "string"
           },
-          "denominacaoSocial": {
+          "denominacao_social": {
             "type": "string"
           },
-          "codigoCvm": {
+          "codigo_cvm": {
             "type": "string"
           },
-          "tipoFundo": {
+          "tipo_fundo": {
             "type": "string"
           },
           "situacao": {
@@ -171,23 +169,23 @@
           "data": [
             {
               "cnpj": "00.000.684/0001-21",
-              "denominacaoSocial": "DEUTSCHE BANK FDO APLIC QUOTAS FDO INV FINANCEIRO - MAX",
-              "codigoCvm": "19",
-              "tipoFundo": "FACFIF",
+              "denominacao_social": "DEUTSCHE BANK FDO APLIC QUOTAS FDO INV FINANCEIRO - MAX",
+              "codigo_cvm": "19",
+              "tipo_fundo": "FACFIF",
               "situacao": "CANCELADA"
             },
             {
               "cnpj": "00.000.731/0001-37",
-              "denominacaoSocial": "ITAMARITI CASH FUNDO APLICACAO QUOTAS FDOS INVESTIMENTO",
-              "codigoCvm": "40681",
-              "tipoFundo": "FACFIF",
+              "denominacao_social": "ITAMARITI CASH FUNDO APLICACAO QUOTAS FDOS INVESTIMENTO",
+              "codigo_cvm": "40681",
+              "tipo_fundo": "FACFIF",
               "situacao": "CANCELADA"
             },
             {
               "cnpj": "00.000.732/0001-81",
-              "denominacaoSocial": "FUNDO APLIC. QUOTAS DE F.I. SANTANDER CURTO PRAZO",
-              "codigoCvm": "27",
-              "tipoFundo": "FACFIF",
+              "denominacao_social": "FUNDO APLIC. QUOTAS DE F.I. SANTANDER CURTO PRAZO",
+              "codigo_cvm": "27",
+              "tipo_fundo": "FACFIF",
               "situacao": "CANCELADA"
             }
           ],
@@ -199,134 +197,146 @@
       "FundDetails": {
         "title": "Detalhes de um fundo de investimento",
         "required": [
-          "tipoFundo",
+          "tipo_fundo",
           "cnpj",
-          "denominacaoSocial",
-          "dataRegistro",
-          "dataConstituicao",
-          "codigoCvm",
-          "dataCancelamento",
+          "denominacao_social",
+          "data_registro",
+          "data_constituicao",
+          "codigo_cvm",
+          "data_cancelamento",
           "situacao",
-          "dataInicioSituacao",
-          "dataInicioAtividade",
-          "dataInicioExercicio",
-          "dataFimExercicio",
+          "data_inicio_situacao",
+          "data_inicio_atividade",
+          "data_inicio_exercicio",
+          "data_fim_exercicio",
           "classe",
-          "dataInicioClasse",
+          "data_inicio_classe",
           "rentabilidade",
           "condominio",
           "cotas",
-          "fundoExclusivo",
-          "tributacaoLongoPrazo",
-          "publicoAlvo",
-          "entidadeInvestimento",
-          "taxaPerformance",
-          "informacaoTaxaPerformance",
-          "taxaAdministracao",
-          "informacaoTaxaAdministracao",
-          "valorPatrimonioLiquido",
-          "dataPatrimonioLiquido",
+          "fundo_exclusivo",
+          "tributacao_longo_prazo",
+          "publico_alvo",
+          "entidade_investimento",
+          "taxa_performance",
+          "informacao_taxa_performance",
+          "taxa_administracao",
+          "informacao_taxa_administracao",
+          "valor_patrimonio_liquido",
+          "data_patrimonio_liquido",
           "diretor",
-          "cnpjAdministrador",
+          "cnpj_administrador",
           "administrador",
-          "tipoPessoaGestor",
-          "cpfCnpjGestor",
+          "tipo_pessoa_gestor",
+          "cpf_cnpj_gestor",
           "gestor",
-          "cnpjAuditor",
+          "cnpj_auditor",
           "auditor",
-          "cnpjCustodiante",
+          "cnpj_custodiante",
           "custodiante",
-          "cnpjControlador",
+          "cnpj_controlador",
           "controlador",
-          "investimentoExterno",
-          "classeAnbima"
+          "investimento_externo",
+          "classe_anbima"
         ],
         "type": "object",
         "properties": {
-          "tipoFundo": { "type": "string" },
-          "cnpj": { "type": "string" },
-          "denominacaoSocial": { "type": "string" },
-          "dataRegistro": { "type": "string", "format": "date" },
-          "dataConstituicao": { "type": "string", "format": "date" },
-          "codigoCvm": { "type": "string" },
-          "dataCancelamento": { "type": "string", "format": "date" },
-          "situacao": { "type": "string" },
-          "dataInicioSituacao": { "type": "string", "format": "date" },
-          "dataInicioAtividade": { "type": "string", "format": "date" },
-          "dataInicioExercicio": { "type": "string", "format": "date" },
-          "dataFimExercicio": { "type": "string", "format": "date" },
-          "classe": { "type": "string" },
-          "dataInicioClasse": { "type": "string", "format": "date" },
-          "rentabilidade": { "type": "string" },
-          "condominio": { "type": "string" },
-          "cotas": { "type": "string" },
-          "fundoExclusivo": { "type": "string" },
-          "tributacaoLongoPrazo": { "type": "string" },
-          "publicoAlvo": { "type": "string" },
-          "entidadeInvestimento": { "type": "string" },
-          "taxaPerformance": { "type": "string" },
-          "informacaoTaxaPerformance": { "type": "string" },
-          "taxaAdministracao": { "type": "string" },
-          "informacaoTaxaAdministracao": { "type": "string" },
-          "valorPatrimonioLiquido": { "type": "string" },
-          "dataPatrimonioLiquido": { "type": "string", "format": "date" },
-          "diretor": { "type": "string" },
-          "cnpjAdministrador": { "type": "string" },
-          "administrador": { "type": "string" },
-          "tipoPessoaGestor": { "type": "string" },
-          "cpfCnpjGestor": { "type": "string" },
-          "gestor": { "type": "string" },
-          "cnpjAuditor": { "type": "string" },
-          "auditor": { "type": "string" },
-          "cnpjCustodiante": { "type": "string" },
-          "custodiante": { "type": "string" },
-          "cnpjControlador": { "type": "string" },
-          "controlador": { "type": "string" },
-          "investimentoExterno": { "type": "string" },
-          "classeAnbima": { "type": "string" }
+          "tipo_fundo": { "type": ["string", "null"] },
+          "cnpj": { "type": ["string", "null"] },
+          "denominacao_social": { "type": ["string", "null"] },
+          "data_registro": { "type": ["string", "null"] },
+          "data_constituicao": { "type": ["string", "null"] },
+          "codigo_cvm": { "type": ["string", "null"] },
+          "data_cancelamento": { "type": ["string", "null"] },
+          "situacao": { "type": ["string", "null"] },
+          "data_inicio_situacao": {
+            "type": ["string", "null"]
+          },
+          "data_inicio_atividade": {
+            "type": ["string", "null"]
+          },
+          "data_inicio_exercicio": {
+            "type": ["string", "null"]
+          },
+          "data_fim_exercicio": {
+            "type": ["string", "null"]
+          },
+          "classe": { "type": ["string", "null"] },
+          "data_inicio_classe": {
+            "type": ["string", "null"]
+          },
+          "rentabilidade": { "type": ["string", "null"] },
+          "condominio": { "type": ["string", "null"] },
+          "cotas": { "type": ["string", "null"] },
+          "fundo_exclusivo": { "type": ["string", "null"] },
+          "tributacao_longo_prazo": { "type": ["string", "null"] },
+          "publico_alvo": { "type": ["string", "null"] },
+          "entidade_investimento": { "type": ["string", "null"] },
+          "taxa_performance": { "type": ["string", "null"] },
+          "informacao_taxa_performance": { "type": ["string", "null"] },
+          "taxa_administracao": { "type": ["string", "null"] },
+          "informacao_taxa_administracao": { "type": ["string", "null"] },
+          "valor_patrimonio_liquido": { "type": ["string", "null"] },
+          "data_patrimonio_liquido": {
+            "type": ["string", "null"]
+          },
+          "diretor": { "type": ["string", "null"] },
+          "cnpj_administrador": { "type": ["string", "null"] },
+          "administrador": { "type": ["string", "null"] },
+          "tipo_pessoa_gestor": { "type": ["string", "null"] },
+          "cpf_cnpj_gestor": { "type": ["string", "null"] },
+          "gestor": { "type": ["string", "null"] },
+          "cnpj_auditor": { "type": ["string", "null"] },
+          "auditor": { "type": ["string", "null"] },
+          "cnpj_custodiante": { "type": ["string", "null"] },
+          "custodiante": { "type": ["string", "null"] },
+          "cnpj_controlador": { "type": ["string", "null"] },
+          "controlador": { "type": ["string", "null"] },
+          "investimento_externo": { "type": ["string", "null"] },
+          "classe_anbima": { "type": ["string", "null"] }
         },
         "example": {
-          "tipoFundo": "FACFIF",
+          "tipo_fundo": "FACFIF",
           "cnpj": "00.000.732/0001-81",
-          "denominacaoSocial": "FUNDO APLIC. QUOTAS DE F.I. SANTANDER CURTO PRAZO",
-          "dataRegistro": "2003-04-30",
-          "dataConstituicao": "1994-05-24",
-          "codigoCvm": "27",
-          "dataCancelamento": "1999-09-03",
+          "denominacao_social": "FUNDO APLIC. QUOTAS DE F.I. SANTANDER CURTO PRAZO",
+          "data_registro": "2003-04-30",
+          "data_constituicao": "1994-05-24",
+          "codigo_cvm": "27",
+          "data_cancelamento": "1999-09-03",
           "situacao": "CANCELADA",
-          "dataInicioSituacao": "1999-09-03",
-          "dataInicioAtividade": null,
-          "dataInicioExercicio": null,
-          "dataFimExercicio": null,
+          "data_inicio_situacao": "1999-09-03",
+          "data_inicio_atividade": null,
+          "data_inicio_exercicio": null,
+          "data_fim_exercicio": null,
           "classe": null,
-          "dataInicioClasse": null,
+          "data_inicio_classe": null,
           "rentabilidade": null,
           "condominio": null,
           "cotas": null,
-          "fundoExclusivo": null,
-          "tributacaoLongoPrazo": null,
-          "publicoAlvo": null,
-          "entidadeInvestimento": null,
-          "taxaPerformance": null,
-          "informacaoTaxaPerformance": null,
-          "taxaAdministracao": null,
-          "informacaoTaxaAdministracao": null,
-          "valorPatrimonioLiquido": null,
-          "dataPatrimonioLiquido": null,
+          "fundo_exclusivo": null,
+          "tributacao_longo_prazo": null,
+          "publico_alvo": null,
+          "entidade_investimento": null,
+          "taxa_performance": null,
+          "informacao_taxa_performance": null,
+          "taxa_administracao": null,
+          "informacao_taxa_administracao": null,
+          "valor_patrimonio_liquido": null,
+          "data_patrimonio_liquido": null,
           "diretor": null,
-          "cnpjAdministrador": null,
+          "cnpj_administrador": null,
           "administrador": null,
-          "tipoPessoaGestor": null,
-          "cpfCnpjGestor": null,
+          "tipo_pessoa_gestor": null,
+          "cpf_cnpj_gestor": null,
           "gestor": null,
-          "cnpjAuditor": null,
+          "cnpj_auditor": null,
           "auditor": null,
-          "cnpjCustodiante": null,
+          "cnpj_custodiante": null,
           "custodiante": null,
-          "cnpjControlador": null,
+          "cnpj_controlador": null,
           "controlador": null,
-          "investimentoExterno": null,
-          "classeAnbima": null
+          "investimento_externo": null,
+          "classe_anbima": null
         }
       }
     }
