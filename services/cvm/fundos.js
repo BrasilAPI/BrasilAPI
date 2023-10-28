@@ -93,9 +93,16 @@ const parseCvmData = (data, opts = {}) => {
 
 export const getFunds = async (size = 100, page = 1) => {
   const offset = Number(page);
-  const pageSize = Number(size) > 200 ? 200 : Number(size);
 
-  if (isNaN(offset) || isNaN(size))
+  if (Number(size) > 200) {
+    throw new BadRequestError({
+      message: 'Tamanho máximo da página é de 200 registros',
+    });
+  }
+
+  const pageSize = Number(size);
+
+  if (isNaN(offset) || isNaN(pageSize))
     throw new BadRequestError({
       message: 'Página e tamanho devem ser números inteiros',
     });
