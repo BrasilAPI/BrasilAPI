@@ -96,7 +96,7 @@ export const getFunds = async (size = 100, page = 1) => {
 
   if (Number(size) > 200) {
     throw new BadRequestError({
-      message: 'Tamanho máximo é de 200 registros por página',
+      message: 'Tamanho máximo de 200 registros por página',
     });
   }
 
