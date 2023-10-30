@@ -12,7 +12,7 @@
     "axios": "0.21.1",
     "bluebird": "3.7.2",
     "cep-promise": "4.4.0",
-    "core-js": "^3.33.1",
+    "core-js": "3.33.1",
     "cors": "2.8.5",
     "dayjs": "1.11.7",
     "fast-xml-parser": "4.0.11",
