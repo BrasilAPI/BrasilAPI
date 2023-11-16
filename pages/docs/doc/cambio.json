@@ -1,0 +1,155 @@
+{
+    "tags": [
+        {
+            "name": "CAMBIO",
+            "description": "Informações sobre cotações diárias e Taxas de Câmbio"
+        }
+    ],
+    "paths": {
+        "/cambio/v1/moedas": {
+            "get": {
+                "tags": ["CAMBIO"],
+                "summary": "Retorna a lista de moedas que podem ser usadas como parâmetros para este conjunto de dados.",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Moedas"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/cambio/v1/cotacao?dataCotacao={dataCotacao}": {
+            "get": {
+                "tags": ["CAMBIO"],
+                "summary": "Retorna a Cotação de Compra e a Cotação de Venda da moeda Dólar contra a unidade monetária corrente para a data informada.",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Cotacao"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "cambio/v1/boletim?moeda={moeda}&dataCotacao={dataCotacao}": {
+            "get": {
+                "tags": ["CAMBIO"],
+                "summary": "Retorna os boletins diários com a Paridade de Compra e a Paridade de Venda, a Cotação de Compra e a Cotação de Venda para a data da moeda consultada. São cinco boletins para cada data, um de abertura, três intermediários e um de fechamento.",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Boletim"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Moedas": {
+                "title": "Moedas",
+                "required": ["simbolo", "nomeFormatado", "tipoMoeda"],
+                "type": "object",
+                "properties": {
+                    "simbolo": {
+                        "type": "string"
+                    },
+                    "nomeFormatado": {
+                        "type": "string"
+                    },
+                    "tipoMoeda": {
+                        "type": "string"
+                    }
+                },
+                "example":         {
+                    "simbolo": "USD",
+                    "nomeFormatado": "Dólar dos Estados Unidos",
+                    "tipoMoeda": "A"
+                }
+            },
+            "Cotacao": {
+                "title": "Cotacao",
+                "required": ["cotacaoCompra", "cotacaoVenda", "dataHoraCotacao"],
+                "type": "object",
+                "properties": {
+                    "cotacaoCompra": {
+                        "type": "number"
+                    },
+                    "cotacaoVenda": {
+                        "type": "number"
+                    },
+                    "dataHoraCotacao": {
+                        "type": "string"
+                    }
+                },
+                "example":         {
+                    "cotacaoCompra": 4.8676,
+                    "cotacaoVenda": 4.8682,
+                    "dataHoraCotacao": "2023-11-14 13:04:30.632"
+                }
+            },
+            "Boletim": {
+                "title": "Boletim",
+                "required": ["paridadeCompra", "paridadeVenda", "dataHoraCotacao", "cotacaoCompra", "cotacaoVenda", "dataHoraCotacao", "tipoBoletim"],
+                "type": "object",
+                "properties": {
+                    "paridadeCompra": {
+                        "type": "number"
+                    },
+                    "paridadeVenda": {
+                        "type": "number"
+                    },
+                    "cotacaoCompra": {
+                        "type": "number"
+                    },
+                    "cotacaoVenda": {
+                        "type": "number"
+                    },
+                    "dataHoraCotacao": {
+                        "type": "string"
+                    },
+                    "tipoBoletim": {
+                        "type": "string"
+                    }
+                },
+                "example":         {
+                    "paridadeCompra": 1,
+                    "paridadeVenda": 1,
+                    "cotacaoCompra": 4.8901,
+                    "cotacaoVenda": 4.8907,
+                    "dataHoraCotacao": "2023-11-14 10:11:28.215",
+                    "tipoBoletim": "Abertura"
+                }
+            }
+        }
+    }
+}
