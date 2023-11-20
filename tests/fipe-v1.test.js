@@ -362,7 +362,7 @@ describe('/fipe/preco/v1 (E2E)', () => {
     }
   });
 
-  test('Utilizando um veículo inválido com a tabela de referência inválida', async () => {
+  test('Utilizando um veículo inválido com a tabela de referência inválida.', async () => {
     expect.assertions(2);
     const fipeCode = 'AAAAAA-6';
     const requestUrl = `${global.SERVER_URL}/api/fipe/preco/v1/${fipeCode}`;
