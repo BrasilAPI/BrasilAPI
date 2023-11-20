@@ -1,8 +1,9 @@
 import microCors from 'micro-cors';
 import cepPromise from 'cep-promise';
-
+import { getDddsData } from '@/services/ddd';
 import fetchGeocoordinateFromBrazilLocation from '../../../../lib/fetchGeocoordinateFromBrazilLocation';
-
+import BaseError from '@/errors/BaseError';
+import InternalError from '@/errors/InternalError';
 const providers = ['correios', 'viacep', 'widenet', 'correios-alt'];
 
 const CACHE_CONTROL_HEADER_VALUE =
@@ -11,6 +12,27 @@ const cors = microCors();
 
 async function getCepFromCepPromise(requestedCep) {
   return cepPromise(requestedCep, { providers });
+}
+
+async function cityDdd(nameCity) {
+  try {
+    const allDddData = await getDddsData();
+
+    const dddData = allDddData.filter(
+      ({ city }) => city === nameCity.toUpperCase()
+    );
+
+    return dddData[0].ddd;
+  } catch (error) {
+    if (error instanceof BaseError) {
+      return next(error);
+    }
+
+    throw new InternalError({
+      message: 'Todos os serviços de DDD retornaram erro.',
+      type: 'service_error',
+    });
+  }
 }
 
 async function Cep(request, response) {
@@ -25,7 +47,11 @@ async function Cep(request, response) {
     );
 
     response.status(200);
-    response.json({ ...cepFromCepPromise, location });
+    response.json({
+      ...cepFromCepPromise,
+      ddd: await cityDdd(cepFromCepPromise.city),
+      location,
+    });
   } catch (error) {
     if (error.name === 'CepPromiseError') {
       switch (error.type) {
@@ -47,5 +73,7 @@ async function Cep(request, response) {
     response.json(error);
   }
 }
+
+
 
 export default cors(Cep);
