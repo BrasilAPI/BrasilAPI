@@ -1,2 +1,7 @@
-export { default as StatusResolvers } from './resolvers';
-export { default as StatusTypedefs } from './typeDefs';
+import resolvers from './resolvers';
+import typedefs from './typeDefs';
+
+export default {
+  resolvers,
+  typedefs,
+};

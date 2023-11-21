@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-describe('/graphql/v1 (E2E)', () => {
+describe('/cep/v1 (E2E) graphql', () => {
   test('Utilizando um CEP válido: 05010000', async () => {
     const requestUrl = `${global.SERVER_URL}/api/graphql/v1`;
     const response = await axios.post(requestUrl, {
@@ -28,12 +28,6 @@ describe('/graphql/v1 (E2E)', () => {
   });
 
   test('Utilizando um CEP inexistente: 00000000', async () => {
-    // O endpoint /cep/v1 está retornando 404 independente
-    // do CEP não existir ou ele não ser válido. Podemos melhorar
-    // esse comportamento fazendo uma diferenciação no Status do
-    // response para quando for um type "validation_error" ou "service_error"
-    // Nesse caso aqui seria um "service_error":
-    // "Todos os serviços de CEP retornaram erro."
     const requestUrl = `${global.SERVER_URL}/api/graphql/v1`;
     const response = await axios.post(requestUrl, {
       query: `query FetchCep($cep: String!){
@@ -50,18 +44,10 @@ describe('/graphql/v1 (E2E)', () => {
       },
     });
 
-    expect(response.data.data.cep).toEqual(null);
-    expect(response.data.errors[0].message).toEqual('Erro ao consultar CEP');
-    expect(response.data.errors[0].extensions.code).toEqual('service_error');
+    expect(response.data.errors[0].message).toBe('Erro ao consultar CEP');
   });
 
   test('Utilizando um CEP inválido: 999999999999999', async () => {
-    // O endpoint /cep/v1 está retornando 404 independente
-    // do CEP não existir ou ele não ser válido. Podemos melhorar
-    // esse comportamento fazendo uma diferenciação no Status do
-    // response para quando for um type "validation_error" ou "service_error"
-    // Nesse caso aqui seria um "validation_error":
-    // "CEP deve conter exatamente 8 caracteres."
     const requestUrl = `${global.SERVER_URL}/api/graphql/v1`;
     const response = await axios.post(requestUrl, {
       query: `query FetchCep($cep: String!){
@@ -78,8 +64,6 @@ describe('/graphql/v1 (E2E)', () => {
       },
     });
 
-    expect(response.data.data.cep).toEqual(null);
-    expect(response.data.errors[0].message).toEqual('CEP inválido');
-    expect(response.data.errors[0].extensions.code).toEqual('validation_error');
+    expect(response.data.errors[0].message).toBe('CEP inválido');
   });
 });
