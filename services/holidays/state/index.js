@@ -3,12 +3,6 @@ import getStatewideHolidays from './statewideHolidays';
 import { sortByDate } from '..';
 
 export default function getStateHolidays(uf, year) {
-  console.log({
-    holidays: getStatewideHolidays(year).map(
-      (e) => e.uf
-      // (holiday) => holiday.uf === uf.toUpperCase()
-    ),
-  });
   const { holidays } = getStatewideHolidays(year).find(
     (holiday) => holiday.uf === uf.toUpperCase()
   );
