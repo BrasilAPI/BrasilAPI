@@ -3,6 +3,14 @@ import getStatewideHolidays from './statewideHolidays';
 import { sortByDate } from '..';
 
 export default function getStateHolidays(uf, year) {
+  if (year < 1900 || year > 2199) {
+    throw new NotFoundError({
+      name: 'NotFoundError',
+      message: 'Ano fora do intervalo suportado entre 1900 e 2199.',
+      type: 'feriados_range_error',
+    });
+  }
+
   const { holidays } = getStatewideHolidays(year).find(
     (holiday) => holiday.uf === uf.toUpperCase()
   );
