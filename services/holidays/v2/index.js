@@ -5,7 +5,7 @@ import axios from 'axios';
  * @returns {Array}
  */
 export async function getHolidaysByCity(state, city, year) {
-  const url = `https://raw.githubusercontent.com/joaopbini/feriados-brasil/master/dados/feriados/municipal/json/${year}.json`;
+  const url = `https://raw.githubusercontent.com/LuisLourenco1/feriados-brasil/master/dados/feriados/municipal/json/${year}.json`;
   const result = await axios({
     url,
     method: 'get',
@@ -30,7 +30,7 @@ export async function getHolidaysByCity(state, city, year) {
  * @returns {Array}
  */
 export async function getHolidaysByState(state, year) {
-  const url = `https://raw.githubusercontent.com/joaopbini/feriados-brasil/master/dados/feriados/estadual/json/${year}.json`;
+  const url = `https://raw.githubusercontent.com/LuisLourenco1/feriados-brasil/master/dados/feriados/estadual/json/${year}.json`;
   const result = await axios({
     url,
     method: 'get',
@@ -52,7 +52,7 @@ export async function getHolidaysByState(state, year) {
  * @returns {Array}
  */
 export async function getNationalHolidays(year) {
-  const url = `https://raw.githubusercontent.com/joaopbini/feriados-brasil/master/dados/feriados/nacional/json/${year}.json`;
+  const url = `https://raw.githubusercontent.com/LuisLourenco1/feriados-brasil/master/dados/feriados/nacional/json/${year}.json`;
   const result = await axios({
     url,
     method: 'get',

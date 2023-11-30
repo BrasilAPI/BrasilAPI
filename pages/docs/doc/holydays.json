@@ -67,6 +67,222 @@
                     }
                 }
             }
+        },
+        "/feriados/v2/?year={year}": {
+            "get": {
+                "tags": ["Feriados Nacionais"],
+                "summary": "Lista os feriados nacionais de determinado ano.",
+                "description": "Resgata os feriados baseados no arquivo .csv disponível em https://raw.githubusercontent.com/LuisLourenco1/feriados-brasil/master/dados/feriados/nacional/json/${currentYear}.json",
+                "parameters": [
+                    {
+                        "name": "year",
+                        "description": "Ano para calcular os feriados.\n",
+                        "in": "path",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Holiday"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Ano fora do intervalo suportado.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "type": "feriados_range_error",
+                                    "message": "Ano fora do intervalo suportado entre 2010 e 2025."
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro inesperado.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "type": "feriados_error",
+                                    "message": "Erro ao calcular feriados."
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/feriados/v2/{state}?year={year}": {
+            "get": {
+                "tags": ["Feriados Estaduais"],
+                "summary": "Lista os feriados estaduais de determinado ano.",
+                "description": "Resgata os feriados estaduais baseados no arquivo .csv disponível em https://raw.githubusercontent.com/LuisLourenco1/feriados-brasil/master/dados/feriados/estadual/json/${currentYear}.json",
+                "parameters": [
+                    {
+                        "name": "state",
+                        "description": "Estado a ser utilizado na busca\n",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "utf-8"
+                        }
+                    },
+                    {
+                        "name": "year",
+                        "description": "Ano para calcular os feriados.\n",
+                        "in": "path",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Holiday"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Ano fora do intervalo suportado.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "type": "feriados_range_error",
+                                    "message": "Ano fora do intervalo suportado entre 2010 e 2025."
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro inesperado.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "type": "feriados_error",
+                                    "message": "Erro ao calcular feriados."
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/feriados/v2/{state}/{city}?year={year}": {
+            "get": {
+                "tags": ["Feriados Nacionais"],
+                "summary": "Lista os feriados nacionais de determinado ano.",
+                "description": "Resgata os feriados baseados no arquivo .csv disponível em https://raw.githubusercontent.com/LuisLourenco1/feriados-brasil/master/dados/feriados/municipal/json/${currentYear}.json",
+                "parameters": [
+                    {
+                        "name": "city",
+                        "description": "Cidade a ser utilizada na busca\n",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "utf-8"
+                        }
+                    },
+                    {
+                        "name": "state",
+                        "description": "Estado a ser utilizado na busca\n",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "utf-8"
+                        }
+                    },
+                    {
+                        "name": "year",
+                        "description": "Ano para calcular os feriados.\n",
+                        "in": "path",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Holiday"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Ano fora do intervalo suportado.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "type": "feriados_range_error",
+                                    "message": "Ano fora do intervalo suportado entre 2010 e 2025."
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro inesperado.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "type": "feriados_error",
+                                    "message": "Erro ao calcular feriados."
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -74,26 +290,34 @@
             "Holiday": {
                 "title": "Holiday",
                 "type": "object",
-                "required": ["date", "type", "name"],
+                "required": ["data", "tipo", "nome"],
                 "properties": {
-                    "date": {
+                    "data": {
                         "type": "string"
                     },
-                    "type": {
+                    "tipo": {
                         "type": "string"
                     },
-                    "name": {
-                        "type": "string",
-                        "format": "int32"
+                    "nome": {
+                        "type": "string"
                     },
-                    "fullName": {
+                    "descricao": {
+                        "type": "string"
+                    },
+                    "uf": {
+                        "type": "string"
+                    },
+                    "municipio": {
                         "type": "string"
                     }
                 },
                 "example": {
-                    "date": "2021-01-01",
-                    "name": "Confraternização mundial",
-                    "type": "national"
+                    "data": "15/06/2023",
+                    "nome": "Aniversário da Cidade",
+                    "tipo": "MUNICIPAL",
+                    "descricao":"Aniversário da Cidade de Três Lagoas",
+                    "uf":"MS",
+                    "municipio":"Três Lagoas"
                 }
             }
         }
