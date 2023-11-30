@@ -12,6 +12,7 @@
     "axios": "0.21.1",
     "bluebird": "3.7.2",
     "cep-promise": "4.4.0",
+    "cheerio": "^1.0.0-rc.12",
     "core-js": "3.33.1",
     "cors": "2.8.5",
     "dayjs": "1.11.7",
@@ -38,7 +39,7 @@
   "devDependencies": {
     "commitizen": "4.2.4",
     "cz-conventional-changelog": "3.3.0",
-    "eslint": "8.47.0",
+    "eslint": "^6.8.0",
     "eslint-config-airbnb": "18.1.0",
     "eslint-config-prettier": "6.10.1",
     "eslint-import-resolver-alias": "1.1.2",
