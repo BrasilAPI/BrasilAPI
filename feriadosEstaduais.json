@@ -169,6 +169,71 @@
         "date": "2023-10-19",
         "name": "Dia do Piauí"
       }
-    ]
-  }
+    ],
+    "SP": [
+      {
+        "date": "2023-07-09",
+        "name": "Revolução Constitucionalista de 1932"
+      },
+      {
+        "date": "2023-11-20",
+        "name": "Dia da Consciência Negra"
+      }
+    ],
+    "MG": [
+      {
+        "date": "2023-04-21",
+        "name": "Data Magna de Minas Gerais"
+      }
+    ],
+    "RS": [
+      {
+        "date": "2023-09-20",
+        "name": "Revolução Farroupilha (Dia do Gaúcho)"
+      }
+    ],
+    "BA": [
+      {
+        "date": "2023-07-02",
+        "name": "Independência do Estado da Bahia"
+      }
+    ],
+    "PE": [
+      {
+        "date": "2023-03-06",
+        "name": "Data Magna do Estado de Pernambuco"
+      },
+      {
+        "date": "2023-06-24",
+        "name": "Dia de São João"
+      }
+    ],
+    "PA": [
+      {
+        "date": "2023-08-15",
+        "name": "Adesão do Grão-Pará à independência do Brasil"
+      }
+    ],
+    "SC": [
+      {
+        "date": "Domingo subsequente ao dia 11 de agosto",
+        "name": "Dia do Estado de Santa Catarina"
+    }
+],
+    "RJ": [
+    {
+      "date": "2023-04-23",
+      "name": "Dia de São Jorge"
+    },
+    {
+      "date": "terceira segunda feira de outubro",
+      "name": "Dia do Comércio"
+    },
+    {
+      "date": "2023-11-20",
+      "name": "Dia da Consciência Negra"
+    }
+  ]
+ 
+}
   
