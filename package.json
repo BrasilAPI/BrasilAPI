@@ -14,6 +14,7 @@
     "cep-promise": "4.4.0",
     "core-js": "3.33.1",
     "cors": "2.8.5",
+    "csvtojson": "^2.0.10",
     "dayjs": "1.11.7",
     "fast-xml-parser": "4.0.11",
     "graphql": "15.5.0",
@@ -38,7 +39,7 @@
   "devDependencies": {
     "commitizen": "4.2.4",
     "cz-conventional-changelog": "3.3.0",
-    "eslint": "8.47.0",
+    "eslint": "^6.8.0",
     "eslint-config-airbnb": "18.1.0",
     "eslint-config-prettier": "6.10.1",
     "eslint-import-resolver-alias": "1.1.2",
