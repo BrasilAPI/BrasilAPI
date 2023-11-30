@@ -1,6 +1,5 @@
 const https = require('https');
 const axios = require('axios');
-import { parse } from 'node-html-parser';
 
 let cacheAgent;
 
@@ -14,17 +13,28 @@ function getAgent() {
 
 export async function getTeamsBySeries(series) {
   const agent = getAgent();
+  let url;
+
+  // As URLs são referentes a arquivos JSON armazenados no drive, gerados frequentemente a partir de um script de scraping no site
+  // https://ge.globo.com/futebol/brasileirao-serie-{serie}/, utilizando Python
   try {
-    const response = await axios.get(`https://ge.globo.com/futebol/brasileirao-serie-${series}/`).then(res => res.data);
+    switch (series) {
+      case 'a':
+        url = 'https://drive.google.com/uc?export=download&id=1Xx325sVS3YJ3qV_UdQumAT6nXPlCpigP';
+        break;
+      case 'b':
+        url = 'https://drive.google.com/uc?export=download&id=1WZLEFg9QavI1l0HshZ7PmM_wc-TIKzVx';
+        break;
 
-    console.log(response);
+      default:
+        url = 'https://drive.google.com/uc?export=download&id=1Xx325sVS3YJ3qV_UdQumAT6nXPlCpigP';
+        break;
+    }
 
-    const teams = [];
-    root.querySelectorAll(".classificacao__pontos-corridos .tabela__equipes tbody tr .classificacao__equipes--nome").forEach(element => {
-      teams.push(element.text.trim());
-    });
+    const response = await axios.get(url);
+    const data = response.data;
 
-    return response;
+    return data;
   } catch (error) {
     console.error('Erro ao obter times: ', error);
     throw error;

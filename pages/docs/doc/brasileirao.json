@@ -1,0 +1,66 @@
+{
+    "tags": [
+        {
+            "name": "TIMES",
+            "description": "Informação dos times da seleção no Brasileirão"
+        }
+    ],
+
+    "paths": {
+        "/times/v1/{serie}" : {
+            "get" : {
+                "tags" : ["TIMES"],
+                "summary" : "Retorna os times no Brasileirão",
+                "description" :"Informação dos times da seleção na série especificada",
+                "parameters": [
+                    {
+                        "name": "série",
+                        "description": "Série que você deseja visualizar os times\n",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses" : {
+                    "200": {
+                        "description" : "Success",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" : "array",
+                                    "items" : {
+                                        "$ref" : "#/components/schemas/Time"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+
+    "components" : {
+        "schemas" : {
+            "Time" : {
+                "title" : "Time",
+                "required" : ["name", "score"],
+                "type" : "object",
+                "properties" : {
+                    "name" : {
+                        "type" : "string"
+                    },
+                    "score" : {
+                        "type" : "string"
+                    }
+                } , 
+                "example" : {
+                    "name" : "Palmeiras",
+                    "score" : "66"
+                }
+            }
+        }
+    }
+}
