@@ -73,6 +73,9 @@ Abaixo segue uma lista de integrações com a BrasilApi fornecidas pela comunida
 **Python**
   * **[brasilapy](https://github.com/lipe14-ops/brasilapy)** Criado por [@lipe14-ops](https://github.com/lipe14-ops)
 
+**Ruby**
+  * **[brasilapi-rb](https://github.com/dayvidemerson/brasilapi-rb)** Criado por [@dayvidemerson](https://github.com/dayvidemerson)
+
 **Rust**
   * **[brasilapi-rs](https://github.com/pedrinfx/brasilapi-rs)** Criado por [@pedrinfx](https://github.com/pedrinfx)
 
