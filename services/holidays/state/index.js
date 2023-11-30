@@ -1,6 +1,7 @@
 import NotFoundError from '@/errors/NotFoundError';
 import getStatewideHolidays from './statewideHolidays';
 import { sortByDate } from '..';
+import BadRequestError from '@/errors/BadRequestError';
 
 export default function getStateHolidays(uf, year) {
   if (year < 1900 || year > 2199) {
@@ -16,7 +17,7 @@ export default function getStateHolidays(uf, year) {
   );
 
   if (!holidays) {
-    throw new NotFoundError({
+    throw new BadRequestError({
       name: 'NotFoundError',
       message: `Uf inexistente`,
       type: 'state_does_not_exist_error',
