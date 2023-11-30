@@ -1,0 +1,87 @@
+{
+    "tags": [
+        {
+            "name": "Currency Conversion",
+            "description": "Abstração e normalização de dados para conversão de moedas. A função 'currencyRate' é projetada para obter taxas de câmbio entre diferentes moedas."
+        }
+    ],
+    "paths": {
+        "/currency/v1/convert": {
+            "get": {
+                "tags": ["Currency Conversion"],
+                "summary": "Converter Moeda",
+                "description": "Converte um valor de uma moeda base para uma moeda alvo. Usa web scraping para obter a taxa de câmbio atualizada.",
+                "operationId": "convertCurrency(/currency/v1/convert)",
+                "parameters": [
+                    {
+                        "name": "baseCurrency",
+                        "in": "query",
+                        "description": "Código da moeda base para conversão (ex: USD, EUR)",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "targetCurrency",
+                        "in": "query",
+                        "description": "Código da moeda alvo para conversão (ex: BRL, JPY)",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Conversão bem-sucedida",
+                        "content": {
+                            "application/json; charset=utf-8": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "convertedValue": {
+                                            "type": "number",
+                                            "description": "Valor convertido na moeda alvo"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Parâmetros Inválidos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "errorMessage": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro Interno",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "errorMessage": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        }
+    }
+}
