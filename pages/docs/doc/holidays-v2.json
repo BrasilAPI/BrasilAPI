@@ -1,0 +1,115 @@
+{
+    "tags": [
+        {
+            "name": "Feriados por Município",
+            "description": "Informações sobre feriados por município"
+        }        
+    ],
+    "paths": {
+        "/feriados/v2?cidade={cidade}&estado={estado}&ano={ano}": {
+            "get": {
+                "tags": ["Feriados por Município"],
+                "summary": "Lista feriados e suas respectivas datas para o município, estado e ano especificados.",
+                "description": "Com base nos parâmetros citados acima, a função retorna todos os feriados nacionais e/ou estaduais e/ou municipais e facultativos da localização.",
+                "parameters": [
+                    {
+                        "name": "cidade",
+                        "description": "Cidade desejada para a busca de feriados.\n",
+                        "in": "path",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "estado",
+                        "description": "Estado desejado para a busca de feriados.\n",
+                        "in": "path",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "ano",
+                        "description": "Ano desejado para a busca de feriados.\n",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Holiday-v2"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Ano fora do intervalo suportado.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "type": "feriados_range_error",
+                                    "message": "Ano fora do intervalo suportado entre 2000 e 2030."
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro inesperado.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "type": "feriados_error",
+                                    "message": "Erro ao calcular feriados."
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    ,
+    "components": {
+        "schemas": {
+            "Holiday-v2": {
+                "title": "Holiday-v2",
+                "type": "object",
+                "required": ["date", "type", "name"],
+                "properties": {
+                    "date": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "date": "2021-12-25",
+                    "name": "Natal",
+                    "type": "Feriado Nacional"
+                }
+            }
+        }
+    }
+}
