@@ -1,0 +1,84 @@
+{
+    "tags": [
+        {
+            "name": "UNIVERSITY",
+            "description": "Operações relacionadas a informações de universidades"
+        }
+    ],
+    "paths": {
+        "/University/v1": {
+            "get": {
+                "tags": ["UNIVERSITY"],
+                "summary": "Obter informações sobre universidade.",
+                "description": "As universidades brasileiras são fundamentais para a propagação e avanço da tecnologia e do conhecimento na sociedade.\n",
+                "parameters": [
+                    {
+                        "name": "university",
+                        "description": "ID único da universidade.",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "format": "university"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/University"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Nenhuma universidade foi encontrada.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "error": "NotFoundError",
+                                    "message": "Universidade não encontrada."
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Universidade": {
+                "title": "Universidade",
+                "type": "array",
+                "properties": {
+                    "CODIGO_DA_IES": {
+                        "type": "string"
+                    },
+                    "NOME_DA_IES": {
+                        "type": "string"
+                    },
+                    "SIGLA": {
+                        "type": "string"
+                    },
+                    "CATEGORIA_DA_IES": {
+                        "type": "string"
+                    },
+                    "UF": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "CODIGO_DA_IES": 7,
+                    "NOME_DA_IES": "UNIVERSIDADE FEREDERAL DE SÃO CARLOS",
+                    "SIGLA": "UFSCAR",
+                    "CATEGORIA_DA_IES": "Pública",
+                    "UF": "SP"
+                }
+            }
+        }
+    }
+}
