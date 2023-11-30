@@ -115,7 +115,7 @@ export function getNationalHolidays(year) {
   }));
 }
 
-function sortByDate(holidays) {
+export function sortByDate(holidays) {
   return holidays.sort((a, b) => {
     if (a.date > b.date) {
       return 1;
