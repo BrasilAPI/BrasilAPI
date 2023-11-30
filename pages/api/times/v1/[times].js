@@ -7,6 +7,8 @@ const action = async (request, response) => {
   try {
     const teams = await getTeamsBySeries(request.query.times);
 
+    console.log(teams)
+
     response.status(200).json(teams);
   } catch (error) {
     if(error instanceof BaseError){
