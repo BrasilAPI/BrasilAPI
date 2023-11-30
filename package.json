@@ -7,6 +7,7 @@
     "node": ">=16 <17"
   },
   "dependencies": {
+    "@djpfs/react-vlibras": "^2.0.2",
     "adm-zip": "0.5.10",
     "apollo-server-micro": "2.24.0",
     "axios": "0.21.1",
