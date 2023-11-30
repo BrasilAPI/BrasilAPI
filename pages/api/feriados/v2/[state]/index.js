@@ -5,9 +5,15 @@ import { getHolidaysByState } from '@/services/holidays/v2';
 
 async function holidaysByState(request, response) {
   try {
-    const state = request.query.state
-    const result = await getHolidaysByState(state)
-    return response.json(result)
+    let { year } = request.query;
+
+    if (year === undefined) {
+      year = new Date().getFullYear();
+    }
+
+    const { state } = request.query;
+    const result = await getHolidaysByState(state, year);
+    return response.json(result);
   } catch (error) {
     if (error.response.status === 400) {
       throw new BadRequestError({ message: error.response.data.message });

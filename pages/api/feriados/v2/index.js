@@ -5,8 +5,14 @@ import { getNationalHolidays } from '@/services/holidays/v2';
 
 async function nationalHolidays(request, response) {
   try {
-    const result = await getNationalHolidays()
-    return response.json(result)
+    let { year } = request.query;
+
+    if (year === undefined) {
+      year = new Date().getFullYear();
+    }
+
+    const result = await getNationalHolidays(year);
+    return response.json(result);
   } catch (error) {
     if (error.response.status === 400) {
       throw new BadRequestError({ message: error.response.data.message });
