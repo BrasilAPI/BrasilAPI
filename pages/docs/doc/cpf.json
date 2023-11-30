@@ -1,0 +1,86 @@
+{
+    "tags": [
+        {
+            "name": "CPF",
+            "description": "Informações referentes a CPFs"
+        }
+    ],
+    
+    "paths": {
+        "/cpf/v1/{cpf}": {
+            "get": {
+                "tags": ["CPF"],
+                "summary": "Verifica o CPF e caso válido retorna sua região",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "CPF",
+                        "description": "O CPF (Cadastro de Pessoas Físicas) é um sistema de códigos de registro de contribuintes mantido pela Receita Federal que representa unicamente uma pessoa física no Brasil.\n",
+                        "in": "path",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CPFInfo"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "CPF em um padrão inválido",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "name": "BadRequestError",
+                                    "message": "CPF 10723555072 inválido.",
+                                    "type": "bad_request"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }        
+    },
+    "components": {
+        "schemas": {
+            "CPFInfo": {
+                "title": "CPF",
+                "required": ["cpf", "isValid", "rf", "ufs"],
+                "type": "object",
+                "properties": {
+                    "cpf": {
+                        "type": "string"
+                    },
+                    "isValid": {
+                        "type": "boolean"
+                    },
+                    "rf": {
+                        "type": "integer"
+                    },
+                    "ufs": {
+                        "type": "object"
+                    }
+                },
+                "example": {
+                    "cpf": "10723555079",
+                    "isValid": true,
+                    "rf": 0,
+                    "ufs": ["RS"]
+                }
+            }
+        }
+    }
+}
