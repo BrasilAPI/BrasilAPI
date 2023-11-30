@@ -1,6 +1,5 @@
 import app from '@/app';
 import { getUfByCode } from '@/services/ibge/gov';
-import NotFoundError from '@/errors/NotFoundError';
 import getStateHolidays from '@/services/holidays/state';
 import BadRequestError from '@/errors/BadRequestError';
 
