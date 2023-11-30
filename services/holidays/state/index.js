@@ -18,8 +18,8 @@ export default function getStateHolidays(uf, year) {
   if (!holidays) {
     throw new NotFoundError({
       name: 'NotFoundError',
-      message: `Não há registro de feriados para o estado ${uf.toUpperCase()}`,
-      type: 'not_found_state_holidays_error',
+      message: `Uf inexistente`,
+      type: 'state_does_not_exist_error',
     });
   }
 
