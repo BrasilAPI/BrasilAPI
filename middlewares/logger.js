@@ -7,13 +7,15 @@ export default function logger(request, response, next) {
 
   const { origin, referer } = request.headers;
 
-  console.log({
+  const logMessage = JSON.stringify({
     url: request.url,
     clientIp,
     userAgent,
     origin,
     referer,
   });
+
+  console.log(logMessage);
 
   return next();
 }
