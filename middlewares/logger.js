@@ -5,10 +5,14 @@ export default function logger(request, response, next) {
 
   const userAgent = request.headers['user-agent'];
 
+  const { origin, referer } = request.headers;
+
   console.log({
     url: request.url,
     clientIp,
     userAgent,
+    origin,
+    referer,
   });
 
   return next();
