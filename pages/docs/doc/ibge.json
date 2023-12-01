@@ -227,7 +227,72 @@
                     }
                 }
             }
-        }
+        },
+        "/ibge/bairros/v1": {
+          "get": {
+              "tags": ["IBGE"],
+              "summary": "Retorna os bairros de uma cidade específica",
+              "description": "Esta rota retorna uma lista de bairros para uma cidade e estado especificados na query. O formato da query deve ser cidade e estado separados por vírgula, com a cidade tendo seus espaços substituídos por hífens.",
+              "parameters": [
+                  {
+                      "name": "municipio",
+                      "description": "Nome da cidade e estado, separados por vírgula e com hífens no lugar de espaços na cidade, por exemplo: 'São-José-dos-Campos,SP'.",
+                      "in": "query",
+                      "required": true,
+                      "schema": {
+                          "type": "string",
+                          "format": "string"
+                      }
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "Sucesso",
+                      "content": {
+                          "application/json": {
+                              "example": {
+                                  "bairros": [
+                                      "Centro",
+                                      "Jardim Paulista",
+                                      "Vila Ema"
+                                  ]
+                              }
+                          }
+                      }
+                  },
+                  "400": {
+                      "description": "Formato inválido de cidade e estado",
+                      "content": {
+                          "application/json": {
+                              "example": {
+                                  "mensagem": "Formato inválido de cidade e estado."
+                              }
+                          }
+                      }
+                  },
+                  "404": {
+                      "description": "Cidade ou estado não encontrado",
+                      "content": {
+                          "application/json": {
+                              "example": {
+                                  "mensagem": "Cidade ou estado não encontrado."
+                              }
+                          }
+                      }
+                  },
+                  "500": {
+                      "description": "Erro interno do servidor",
+                      "content": {
+                          "application/json": {
+                              "example": {
+                                  "mensagem": "Erro ao buscar bairros."
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      }
     },
     "components": {
         "schemas": {
