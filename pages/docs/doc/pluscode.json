@@ -1,0 +1,102 @@
+{
+  "tags": [
+      {
+          "name": "PLUSCODE",
+          "description": "Informações referentes a pluscodes"
+      }
+  ],
+  
+  "paths": {
+      "/pluscode/{pluscode}": {
+          "get": {
+              "tags": ["PLUSCODE"],
+              "summary": "Obtenção de localização a partir do pluscode.",
+              "description": "",
+              "parameters": [
+                  {
+                      "name": "pluscode",
+                      "description": "Pluscode é uma representação de coordenadas geográficas (latitude e longitude) em formato alfanumérico, sendo uma string formada de caracteres, letras e números.\n",
+                      "in": "path",
+                      "required": true,
+                      "schema": {
+                          "type": "string",
+                          "format": "string"
+                      }
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "Success",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/Address"
+                              }
+                          }
+                      }
+                  },
+                  "400": {
+                      "description": "Todos os serviços de CEP retornaram erro.",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "$ref": "#/components/schemas/location"
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      }        
+  },
+  "components": {
+      "schemas": {
+          "location": {
+              "title": "location",
+              "required": ["latitude", "longitude"],
+              "type": "object",
+              "properties": {
+                  "latitude": {
+                      "type": "number"
+                  },
+                  "longitude": {
+                      "type": "number"
+                  }
+              },
+              "example": {
+                  "latitude": -21.97968750000001,
+                  "longitude": -47.880437499999985
+              }
+          },
+          "address": {
+            "title": "location",
+            "required": ["road", "suburb", "city", "country", "state"],
+            "type": "object",
+            "properties": {
+                "road": {
+                    "type": "string"
+                },
+                "suburb": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "string"
+                }
+            },
+            "example": {
+                "road": "Rua dos Bem-te-vis",
+                "suburb": "Monjolinho",
+                "city": "São Carlos",
+                "country": "Brasil",
+                "state": "São Paulo"
+            }
+        }    
+      }
+  }
+}
