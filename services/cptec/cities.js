@@ -45,8 +45,7 @@ export const getCityData = async (name) => {
   if (parsed.cidades.cidade) {
     if (parsed.cidades.cidade instanceof Array) {
       return parsed.cidades.cidade.map(formatCity);
-    }
-    if (parsed.cidades.cidade instanceof Object) {
+    } else if (parsed.cidades.cidade instanceof Object) {
       return [formatCity(parsed.cidades.cidade)];
     }
   }
