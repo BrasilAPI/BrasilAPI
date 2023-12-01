@@ -1,13 +1,12 @@
-import microCors from 'micro-cors';
 import cepPromise from 'cep-promise';
 
+import app from '@/app';
 import fetchGeocoordinateFromBrazilLocation from '../../../../lib/fetchGeocoordinateFromBrazilLocation';
 
 const providers = ['correios', 'viacep', 'widenet', 'correios-alt'];
 
 const CACHE_CONTROL_HEADER_VALUE =
   'max-age=0, s-maxage=86400, stale-while-revalidate, public';
-const cors = microCors();
 
 async function getCepFromCepPromise(requestedCep) {
   return cepPromise(requestedCep, { providers });
@@ -48,4 +47,4 @@ async function Cep(request, response) {
   }
 }
 
-export default cors(Cep);
+export default app({ cache: 172800 }).get(Cep);
