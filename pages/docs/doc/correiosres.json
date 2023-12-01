@@ -1,0 +1,116 @@
+{
+    "tags": [
+        {
+            "name": "Correios Área de Risco",
+            "description": "Este endpoint avalia um CEP fornecido para identificar se está em uma área de risco, onde os Correios não realizam entregas."
+        }
+    ],
+    
+    "paths": {
+        "/correiosres/v1": {
+            "get": {
+                "tags": ["Correios Área de Risco"],
+                "summary": "Risco de Entrega por CEP",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "cepOrigem",
+                        "description": "Código de Endereçamento Postal (CEP) do local de partida do objeto. O CEP é composto por oito dígitos. \n",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": 78735679
+                        }
+                    },
+                    {
+                        "name": "cepDestino",
+                        "description": "Código de Endereçamento Postal (CEP) do local de destino do objeto. O CEP é composto por oito dígitos.\n",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": 33115090
+                        }
+                    },
+                    {
+                        "name": "servico",
+                        "description": "Especifique o serviço de entrega dos Correios para consulta. Opções disponíveis: <br> <ul><li>PAC</li><li>PAC_GRANDES_FORMATOS</li><li>PAC_PAGAMENTO_NA_ENTREGA</li><li>REMESSA_EXPRESSA_TALAO_CARTAO</li><li>SEDEX</li><li>SEDEX_PAGAMENTO_NA_ENTREGA</li></ul>",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "PAC"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/cepInfo"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Detectado erro em um dos CEPs informados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/cepError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }        
+    },
+    "components": {
+        "schemas": {
+            "cepInfo": {
+                "title": "Informação do CEP",
+                "required": ["response", "isDeliverable"],
+                "type": "object",
+                "properties": {
+                    "response": {
+                        "type": "string"
+                    },
+                    "isDeliverable": {
+                        "type": "bool"
+                    }
+                },
+                "example": {
+                    "response": "CEP em zona restrita",
+                    "isDeliverable": false
+                }
+            },
+            "cepError": {
+                "title": "Informação do CEP",
+                "required": ["message", "type", "name"],
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "response": "CEP de destino inválido",
+                    "type": "cep_error",
+                    "name": "CEP_NOT_FOUND"
+                }
+            }
+        }
+    }
+}

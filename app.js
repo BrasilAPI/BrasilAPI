@@ -1,6 +1,7 @@
 import nc from 'next-connect';
 
 import cors from 'cors';
+
 import onError from './middlewares/errorHandler';
 import cache from './middlewares/cache';
 import logger from './middlewares/logger';
