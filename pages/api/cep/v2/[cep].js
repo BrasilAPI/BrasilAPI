@@ -24,8 +24,11 @@ async function Cep(request, response) {
     );
 
     if (!cepFromCepPromise.street) {
-      cepFromCepPromise.neighborhood = null;
       cepFromCepPromise.street = null;
+    }
+    
+    if (!cepFromCepPromise.neighborhood) {
+      cepFromCepPromise.neighborhood = null;
     }
 
     response.status(200);
