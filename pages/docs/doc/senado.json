@@ -1,0 +1,1214 @@
+{
+    "tags": [
+        {
+            "name": "Senado",
+            "description": "Dados abertos do Senado Nacional"
+        }
+    ],
+    "paths": {
+        "/senado/v1/servidores/servidores": {
+          "get": {
+            "tags": ["SENADO"],
+            "summary": "Retorna informações sobre todos os servidores",
+            "description": "Retorna informações sobre todos os servidores do Senado Nacional, podendo ser filtrados por vínculo, situação, lotação e cargo",
+            "responses": {
+              "200": {
+                "description": "Success",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                        "type": "array",
+                         "content": {
+                              "sequencial": 0,
+                              "nome": "string",
+                              "vinculo": "EXERCICIO_PROVISORIO",
+                              "situacao": "APOSENTADO",
+                              "cargo": {
+                                "nome": "string"
+                              },
+                              "padrao": "string",
+                              "especialidade": "string",
+                              "funcao": {
+                                "codigo": 0,
+                                "nome": "string"
+                              },
+                              "lotacao": {
+                                "sigla": "string",
+                                "nome": "string"
+                              },
+                              "categoria": {
+                                "codigo": "string",
+                                "nome": "string"
+                              },
+                              "cedido": {
+                                "tipo_cessao": "string",
+                                "orgao_origem": "string",
+                                "orgao_destino": "string"
+                              },
+                              "ano_admissao": 0
+                            }
+                    }
+                  }
+                }
+              },
+              "400": {
+                "description": "Error",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "description": "Mensagem de erro"
+                        },
+                        "type": {
+                          "type": "string",
+                          "description": "Tipo do erro"
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "Nome do erro"
+                        }
+                      },
+                      "example": {
+                        "message": "Parâmetros inválidos",
+                        "type": "internal"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "/senado/v1/servidores/previsao-aposentadoria": {
+            "get": {
+              "tags": ["SENADO"],
+              "summary": "Quantitativo previsto de aposentadorias",
+              "description": "Retornará quantitativo previsto de aposentadorias, por cargo, ano e mês",
+              "responses": {
+                "200": {
+                  "description": "Success",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                          "type": "array",
+                           "content": {
+                            {
+                                "cargo": {
+                                    "nome": "string"
+                                },
+                                "categoria": {
+                                    "codigo": "string",
+                                    "nome": "string LEGISLATIVO"
+                                },
+                                "quantidade": 0,
+                                "mes_ano": "MM/YYYY"
+                            }
+                              }
+                      }
+                    }
+                  }
+                },
+                "400": {
+                  "description": "Error",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "message": {
+                            "type": "string",
+                            "description": "Mensagem de erro"
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "Tipo do erro"
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Nome do erro"
+                          }
+                        },
+                        "example": {
+                          "message": "Bad request",
+                          "type": "internal"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+        },
+        "/senado/v1/servidores/lotacoes": {
+            "get": {
+              "tags": ["SENADO"],
+              "summary": "Retornará lista de lotações",
+              "description": "Retornará lista de lotações",
+              "responses": {
+                "200": {
+                  "description": "Success",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                          "type": "array",
+                           "content": {
+                            {
+                            
+                                "sigla": "string",
+                                "nome": "string"
+                                
+                            }
+                              }
+                      }
+                    }
+                  }
+                },
+                "400": {
+                  "description": "Error",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "message": {
+                            "type": "string",
+                            "description": "Mensagem de erro"
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "Tipo do erro"
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Nome do erro"
+                          }
+                        },
+                        "example": {
+                          "message": "Bad Request",
+                          "type": "internal",
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "/senado/v1/servidores/inativos": {
+            "get": {
+              "tags": ["SENADO"],
+              "summary": "Retornará lista de servidores inativos.",
+              "description": "Retornará lista de servidores inativos.",
+              "responses": {
+                "200": {
+                  "description": "Success",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                          "type": "array",
+                           "content": {
+                            {
+                                "sequencial": 0,
+                                "nome": "string",
+                                "vinculo": "EXERCICIO_PROVISORIO",
+                                "situacao": "APOSENTADO",
+                                "cargo": {
+                                  "nome": "string"
+                                },
+                                "padrao": "string",
+                                "especialidade": "string",
+                                "funcao": {
+                                  "codigo": 0,
+                                  "nome": "string"
+                                },
+                                "lotacao": {
+                                  "sigla": "string",
+                                  "nome": "string"
+                                },
+                                "categoria": {
+                                  "codigo": "string",
+                                  "nome": "string"
+                                },
+                                "cedido": {
+                                  "tipo_cessao": "string",
+                                  "orgao_origem": "string",
+                                  "orgao_destino": "string"
+                                },
+                                "ano_admissao": 0
+                              }
+                              }
+                      }
+                    }
+                  }
+                },
+                "400": {
+                  "description": "Error",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "message": {
+                            "type": "string",
+                            "description": "Mensagem de erro"
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "Tipo do erro"
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Nome do erro"
+                          }
+                        },
+                        "example": {
+                          "message": "Bad Request",
+                          "type": "internal",
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "/senado/v1/servidores/estagiarios": {
+            "get": {
+              "tags": ["SENADO"],
+              "summary": "Retornará lista de estagiários.",
+              "description": "Retornará lista de estagiários.",
+              "responses": {
+                "200": {
+                  "description": "Success",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                          "type": "array",
+                           "content": {
+                            {
+                                "nome": "string",
+                                "curso": "string",
+                                "lotacao": {
+                                  "sigla": "string",
+                                  "nome": "string"
+                                }
+                              }
+                            }
+                      }
+                    }
+                  }
+                },
+                "400": {
+                  "description": "Error",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "message": {
+                            "type": "string",
+                            "description": "Mensagem de erro"
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "Tipo do erro"
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Nome do erro"
+                          }
+                        },
+                        "example": {
+                          "message": "Bad Request",
+                          "type": "internal",
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "/senado/v1/servidores/efetivos": {
+            "get": {
+              "tags": ["SENADO"],
+              "summary": "Retornará lista de servidores efetivos.",
+              "description": "Retornará lista de servidores efetivos.",
+              "responses": {
+                "200": {
+                  "description": "Success",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                          "type": "array",
+                           "content": {
+                            {
+                                "sequencial": 0,
+                                "nome": "string",
+                                "vinculo": "EXERCICIO_PROVISORIO",
+                                "situacao": "APOSENTADO",
+                                "cargo": {
+                                  "nome": "string"
+                                },
+                                "padrao": "string",
+                                "especialidade": "string",
+                                "funcao": {
+                                  "codigo": 0,
+                                  "nome": "string"
+                                },
+                                "lotacao": {
+                                  "sigla": "string",
+                                  "nome": "string"
+                                },
+                                "categoria": {
+                                  "codigo": "string",
+                                  "nome": "string"
+                                },
+                                "cedido": {
+                                  "tipo_cessao": "string",
+                                  "orgao_origem": "string",
+                                  "orgao_destino": "string"
+                                },
+                                "ano_admissao": 0
+                              }
+                              }
+                      }
+                    }
+                  }
+                },
+                "400": {
+                  "description": "Error",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "message": {
+                            "type": "string",
+                            "description": "Mensagem de erro"
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "Tipo do erro"
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Nome do erro"
+                          }
+                        },
+                        "example": {
+                          "message": "Bad Request",
+                          "type": "internal",
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "/senado/v1/servidores/comissionados": {
+            "get": {
+              "tags": ["SENADO"],
+              "summary": "Retornará lista de servidores comissionados.",
+              "description": "Retornará lista de servidores comissionados.",
+              "responses": {
+                "200": {
+                  "description": "Success",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                          "type": "array",
+                           "content": {
+                            {
+                                "sequencial": 0,
+                                "nome": "string",
+                                "vinculo": "EXERCICIO_PROVISORIO",
+                                "situacao": "APOSENTADO",
+                                "cargo": {
+                                  "nome": "string"
+                                },
+                                "padrao": "string",
+                                "especialidade": "string",
+                                "funcao": {
+                                  "codigo": 0,
+                                  "nome": "string"
+                                },
+                                "lotacao": {
+                                  "sigla": "string",
+                                  "nome": "string"
+                                },
+                                "categoria": {
+                                  "codigo": "string",
+                                  "nome": "string"
+                                },
+                                "cedido": {
+                                  "tipo_cessao": "string",
+                                  "orgao_origem": "string",
+                                  "orgao_destino": "string"
+                                },
+                                "ano_admissao": 0
+                              }
+                              }
+                      }
+                    }
+                  }
+                },
+                "400": {
+                  "description": "Error",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "message": {
+                            "type": "string",
+                            "description": "Mensagem de erro"
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "Tipo do erro"
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Nome do erro"
+                          }
+                        },
+                        "example": {
+                          "message": "Bad Request",
+                          "type": "internal",
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "/senado/v1/servidores/ativos": {
+            "get": {
+              "tags": ["SENADO"],
+              "summary": "Retornará lista de servidores ativos.",
+              "description": "Retornará lista de servidores ativos.",
+              "responses": {
+                "200": {
+                  "description": "Success",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                          "type": "array",
+                           "content": {
+                            {
+                                "sequencial": 0,
+                                "nome": "string",
+                                "vinculo": "EXERCICIO_PROVISORIO",
+                                "situacao": "APOSENTADO",
+                                "cargo": {
+                                  "nome": "string"
+                                },
+                                "padrao": "string",
+                                "especialidade": "string",
+                                "funcao": {
+                                  "codigo": 0,
+                                  "nome": "string"
+                                },
+                                "lotacao": {
+                                  "sigla": "string",
+                                  "nome": "string"
+                                },
+                                "categoria": {
+                                  "codigo": "string",
+                                  "nome": "string"
+                                },
+                                "cedido": {
+                                  "tipo_cessao": "string",
+                                  "orgao_origem": "string",
+                                  "orgao_destino": "string"
+                                },
+                                "ano_admissao": 0
+                              }
+                              }
+                      }
+                    }
+                  }
+                },
+                "400": {
+                  "description": "Error",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "message": {
+                            "type": "string",
+                            "description": "Mensagem de erro"
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "Tipo do erro"
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Nome do erro"
+                          }
+                        },
+                        "example": {
+                          "message": "Bad Request",
+                          "type": "internal",
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "/senado/v1/servidores/cargos": {
+            "get": {
+              "tags": ["SENADO"],
+              "summary": "Retornará lista de cargos.",
+              "description": "Retornará lista de cargos.",
+              "responses": {
+                "200": {
+                  "description": "Success",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                          "type": "array",
+                           "content": {
+                            {
+                                "nome": "string"
+                              }
+                              }
+                      }
+                    }
+                  }
+                },
+                "400": {
+                  "description": "Error",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "message": {
+                            "type": "string",
+                            "description": "Mensagem de erro"
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "Tipo do erro"
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Nome do erro"
+                          }
+                        },
+                        "example": {
+                          "message": "Bad Request",
+                          "type": "internal",
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "/senado/v1/servidores/remuneracoes/{ano}/{mes}": {
+            "get": {
+              "tags": ["SENADO"],
+              "summary": "Retornará remuneração dos pensionistas, para o ano e mês especificado.",
+              "description": "Retornará remuneração dos pensionistas, para o ano e mês especificado.",
+              "responses": {
+                "200": {
+                  "description": "Success",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                          "type": "array",
+                           "content": {
+                            {
+                                "sequencial": 0,
+                                "ano": 0,
+                                "mes": 0,
+                                "nome": "string",
+                                "previdencia": "string",
+                                "tipo_folha": "string",
+                                "remuneracao_basica": "string",
+                                "vantagens_pessoais": "string",
+                                "funcao_comissionada": "string",
+                                "gratificacao_natalina": "string",
+                                "reversao_teto_constitucional": "string",
+                                "imposto_renda": "string",
+                                "remuneracao_liquida": "string",
+                                "vantagens_indenizatorias": "string"
+                              }
+                              }
+                      }
+                    }
+                  }
+                },
+                "400": {
+                  "description": "Error",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "message": {
+                            "type": "string",
+                            "description": "Mensagem de erro"
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "Tipo do erro"
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Nome do erro"
+                          }
+                        },
+                        "example": {
+                          "message": "Ano e mês obrigatórios",
+                          "type": "internal",
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "/senado/v1/servidores/quantitativos/pessoal": {
+            "get": {
+              "tags": ["SENADO"],
+              "summary": "Lista os quantitativos físicos de servidores efetivos, ativos, aposentados e pensionistas.",
+              "description": "Lista os quantitativos físicos de servidores efetivos, ativos, aposentados e pensionistas.",
+              "responses": {
+                "200": {
+                  "description": "Success",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                          "type": "array",
+                           "content": {
+                            {
+                                "classe": "string",
+                                "estaveis": 0,
+                                "subtotal": 0,
+                                "vagos": 0,
+                                "aposentados": 0,
+                                "grupo": "string",
+                                "plano_carreira": "string",
+                                "nivel_escolaridade": "string",
+                                "padrao_nivel_referencia": "string",
+                                "nao_estaveis": 0,
+                                "total_ativo": 0,
+                                "instituidores_pensao": 0,
+                                "total_inativo": 0,
+                                "beneficiarios_pensao": 0
+                              }
+                              }
+                      }
+                    }
+                  }
+                },
+                "400": {
+                  "description": "Error",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "message": {
+                            "type": "string",
+                            "description": "Mensagem de erro"
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "Tipo do erro"
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Nome do erro"
+                          }
+                        },
+                        "example": {
+                          "message": "Bad Request",
+                          "type": "internal",
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },"/senado/v1/quantitativos/cargos-funcoes": {
+            "get": {
+              "tags": ["SENADO"],
+              "summary": "Lista os quantitativos de cargos em comissão e funções de confiança do Senado Federal.",
+              "description": "Lista os quantitativos de cargos em comissão e funções de confiança do Senado Federal.",
+              "responses": {
+                "200": {
+                  "description": "Success",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                          "type": "array",
+                           "content": {
+                            {
+                                "nivel": "string",
+                                "tabVenc": "string",
+                                "subtotal": 0,
+                                "vago": 0,
+                                "total": 0,
+                                "com_opcao": 0,
+                                "sem_opcao": 0,
+                                "sem_vinculo": 0
+                              }
+                              }
+                      }
+                    }
+                  }
+                },
+                "400": {
+                  "description": "Error",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "message": {
+                            "type": "string",
+                            "description": "Mensagem de erro"
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "Tipo do erro"
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Nome do erro"
+                          }
+                        },
+                        "example": {
+                          "message": "Bad Request",
+                          "type": "internal",
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },"/senado/v1/servidores/pensionistas": {
+            "get": {
+              "tags": ["SENADO"],
+              "summary": "Retornará lista de todos os pensionistas.",
+              "description": "Retornará lista de todos os pensionistas.",
+              "responses": {
+                "200": {
+                  "description": "Success",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                          "type": "array",
+                           "content": {
+                            {
+                                "sequencial": 0,
+                                "nome": "string",
+                                "vinculo": "string",
+                                "fundamento": "string",
+                                "categoria": {
+                                  "codigo": "string",
+                                  "nome": "string"
+                                },
+                                "cargo": {
+                                  "nome": "string"
+                                },
+                                "funcao": {
+                                  "codigo": 0,
+                                  "nome": "string"
+                                },
+                                "nome_instituidor": "string",
+                                "ano_exercicio": 0,
+                                "data_obito": "string",
+                                "data_inicio_pensao": "string"
+                              }
+                              }
+                      }
+                    }
+                  }
+                },
+                "400": {
+                  "description": "Error",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "message": {
+                            "type": "string",
+                            "description": "Mensagem de erro"
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "Tipo do erro"
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Nome do erro"
+                          }
+                        },
+                        "example": {
+                          "message": "Bad Request",
+                          "type": "internal",
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "/senado/v1/servidores/pensionistas/{ano}/{mes}": {
+            "get": {
+              "tags": ["SENADO"],
+              "summary": "Retornará remuneração dos pensionistas, para o ano e mês especificado.",
+              "description": "Retornará remuneração dos pensionistas, para o ano e mês especificado.",
+              "responses": {
+                "200": {
+                  "description": "Success",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                          "type": "array",
+                           "content": {
+                            {
+                                "sequencial": 0,
+                                "ano": 0,
+                                "mes": 0,
+                                "nome": "string",
+                                "previdencia": "string",
+                                "tipo_folha": "string",
+                                "remuneracao_basica": "string",
+                                "vantagens_pessoais": "string",
+                                "funcao_comissionada": "string",
+                                "gratificacao_natalina": "string",
+                                "reversao_teto_constitucional": "string",
+                                "imposto_renda": "string",
+                                "remuneracao_liquida": "string",
+                                "vantagens_indenizatorias": "string"
+                              }
+                              }
+                      }
+                    }
+                  }
+                },
+                "400": {
+                  "description": "Error",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "message": {
+                            "type": "string",
+                            "description": "Mensagem de erro"
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "Tipo do erro"
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Nome do erro"
+                          }
+                        },
+                        "example": {
+                          "message": "Bad Request",
+                          "type": "internal",
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "/senado/v1/servidores/horas-extra/{ano}/{mes}": {
+            "get": {
+              "tags": ["SENADO"],
+              "summary": "Retornará lista das horas extras pagas no ano e mês especificados.",
+              "description": "Retornará lista das horas extras pagas no ano e mês especificados.",
+              "responses": {
+                "200": {
+                  "description": "Success",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                          "type": "array",
+                           "content": {
+                            {
+                                {
+                                    "sequencial": 0,
+                                    "nome": "string",
+                                    "valorTotal": "string",
+                                    "mes_ano_prestacao": "string",
+                                    "mes_ano_pagamento": "string",
+                                    "horas_extras": [
+                                      {
+                                        "dia": "string",
+                                        "quantidade": "string",
+                                        "setor_prestacao": {
+                                          "sigla": "string",
+                                          "nome": "string"
+                                        }
+                                      }
+                                    ]
+                                  }
+                              }
+                              }
+                      }
+                    }
+                  }
+                },
+                "400": {
+                  "description": "Error",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "message": {
+                            "type": "string",
+                            "description": "Mensagem de erro"
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "Tipo do erro"
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Nome do erro"
+                          }
+                        },
+                        "example": {
+                          "message": "Bad Request",
+                          "type": "internal",
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+      },
+      "components": {
+        "schemas": {
+          "SERVIDOR": {
+            "title": "Dados Servidor",
+            "required": [
+                {
+                    "sequencial": "Id do servidor",
+                    "nome": "Nome do servidor",
+                    "vinculo": "Vínculo com o senado",
+                    "situacao": "Situação atual",
+                    "cargo": {
+                      "nome": "Cargo"
+                    },
+                    "padrao": "Padrão",
+                    "especialidade": "Especialidade",
+                    "funcao": {
+                      "codigo": "Código da função",
+                      "nome": "Nome da função"
+                    },
+                    "lotacao": {
+                      "sigla": "Sigla da lotação",
+                      "nome": "Nome da lotação"
+                    },
+                    "categoria": {
+                      "codigo": "Código da categoria do servidor",
+                      "nome": "Nome da categoria do servidor"
+                    },
+                    "cedido": {
+                      "tipo_cessao": "Tipo de cessão",
+                      "orgao_origem": "Orgão de origem",
+                      "orgao_destino": "Orgão de destino"
+                    },
+                    "ano_admissao": "Ano de adminissão"
+                  }
+                
+            ],
+            "type": "object",
+            "properties": {
+                {
+                    "sequencial": 0,
+                    "nome": "string",
+                    "vinculo": "EXERCICIO_PROVISORIO",
+                    "situacao": "APOSENTADO",
+                    "cargo": {
+                      "nome": "string"
+                    },
+                    "padrao": "string",
+                    "especialidade": "string",
+                    "funcao": {
+                      "codigo": 0,
+                      "nome": "string"
+                    },
+                    "lotacao": {
+                      "sigla": "string",
+                      "nome": "string"
+                    },
+                    "categoria": {
+                      "codigo": "string",
+                      "nome": "string"
+                    },
+                    "cedido": {
+                      "tipo_cessao": "string",
+                      "orgao_origem": "string",
+                      "orgao_destino": "string"
+                    },
+                    "ano_admissao": 0
+                  }
+            }
+          },
+          "Previsão-Aposentadoria"{
+            "title": "Previsão do quantitativo de aposentadoria",
+            "required": [
+                {
+                    "cargo": {
+                        "nome": "Nome do Cargo"
+                    },
+                    "categoria": {
+                        "codigo": "Código da categoria do servidor",
+                        "nome": "Nome da categoria do servidor"
+                      },
+                    "quantidade": "Quantitativo de aposentadoria",
+                    "mes_ano": "Mês e ano do quantitativo"
+                }
+            ],
+            "type": "object",
+            "propreties":{
+                {
+                    "cargo": {
+                        "nome": "string"
+                    },
+                    "categoria": {
+                        "codigo": "string",
+                        "nome": "string LEGISLATIVO"
+                    },
+                    "quantidade": 0,
+                    "mes_ano": "MM/YYYY"
+                }
+            }
+        },
+        "Lotação"{
+            "title": "Lotação",
+            "required": [
+                {
+                    "sigla": "Sigla da lotação",
+                    "nome": "NOme da lotação"
+                  
+                }
+            ],
+            "type": "object",
+            "propreties":{
+                {
+                    "sigla": "string",
+                    "nome": "string"
+                }
+            }
+        },
+        "Estagiário"{
+            "title": "Dados estagiário",
+            "required": [
+                {
+                    "nome": "Nome do estagiário",
+                    "curso": "Curso do estagiário",
+                    "lotacao": {
+                        "sigla": "Sigla da lotação",
+                        "nome": "NOme da lotação"
+                    }
+                  
+                }
+            ],
+            "type": "object",
+            "propreties":{
+                {
+                    "nome": "string",
+                    "curso": "string",
+                    "lotacao": {
+                    "sigla": "string",
+                        "nome": "string"
+                    }
+                }
+            }
+        },
+        "Cargos"{
+            "title": "Cargo",
+            "required": [
+                {
+                    "nome": "Nome do cargo",
+                  
+                }
+            ],
+            "type": "object",
+            "propreties":{
+                {
+                    "nome": "string",
+                }
+            }
+        },
+        "Remunerações"{
+            "title": "Cargo",
+            "required": [
+                {
+                    {
+                        "sequencial": "Sequencial da remuneração",
+                        "ano": "Ano da remuneração",
+                        "mes": "Mês da remuneração",
+                        "nome": "Nome da remuneração",
+                        "previdencia": "Previdência",
+                        "tipo_folha": "Tipo folha",
+                        "remuneracao_basica": "Remuneração básica",
+                        "vantagens_pessoais": "Vantagens pessoais",
+                        "funcao_comissionada": "Função comissionada",
+                        "gratificacao_natalina": "Gratificação natalina",
+                        "reversao_teto_constitucional": "Reversão teto constitucional",
+                        "imposto_renda": "Imposto de renda",
+                        "remuneracao_liquida": "Remuneração líquida",
+                        "vantagens_indenizatorias": "Vantagens indenizatorias"
+                      }
+                  
+                }
+            ],
+            "type": "object",
+            "propreties":{
+                {
+                    {
+                        "sequencial": 0,
+                        "ano": 0,
+                        "mes": 0,
+                        "nome": "string",
+                        "previdencia": "string",
+                        "tipo_folha": "string",
+                        "remuneracao_basica": "string",
+                        "vantagens_pessoais": "string",
+                        "funcao_comissionada": "string",
+                        "gratificacao_natalina": "string",
+                        "reversao_teto_constitucional": "string",
+                        "imposto_renda": "string",
+                        "remuneracao_liquida": "string",
+                        "vantagens_indenizatorias": "string"
+                      }
+                }
+            }
+        }
+      }
+}
