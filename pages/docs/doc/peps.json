@@ -1,0 +1,140 @@
+{
+  "tags": [
+      {
+          "name": "PEPs",
+          "description": "Informações sobre as pessoas expostas politicamente"
+      }
+  ],
+  "paths": {
+      "/peps/v1?cpf={cpf}": {
+          "get": {
+              "tags": ["PEPs"],
+              "summary": "Retorna informações de todas as pessoas expostas politicamente",
+              "description": "A pesquisa precisa de parametros inseridos na URL. Ex: /peps/v1?cpf=12345678900&Nível_Função='CAS-1'. E ela mescla todos os resultados. Ex: o código retornará quem tem o cpf 12345678900 e quem tem o  Nível_Função='CAS-1'. O resultado do updated_at é a data dos dados referente a Julho de 2023.",
+              "responses": {
+                  "200": {
+                      "description": "Success",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "object",
+                                  "$ref": "#/components/schemas/PEP"
+
+                              }
+                          }
+                      }
+                  },
+                  "404": {
+                    "description": "Nenhum resultado encontrado",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                  "properties": {
+                                    "message": {
+                                      "type": "string",
+                                      "description": "Mensagem de erro"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "description": "Tipo do erro"
+                                    },
+                                    "name": {
+                                      "type": "string",
+                                      "description": "Nome do erro"
+                                    }
+                                  },
+                                  "example": {
+                                    "message": "Nenhum resultado encontrado",
+                                    "type": "not_found",
+                                    "name": "PEP_NOT_EXISTS"
+                                  }
+                            }
+                        }
+                    }
+                  },
+                  "400": {
+                    "description": "Parâmetro inválido",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                  "properties": {
+                                    "message": {
+                                      "type": "string",
+                                      "description": "Mensagem de erro"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "description": "Tipo do erro"
+                                    },
+                                    "name": {
+                                      "type": "string",
+                                      "description": "Nome do erro"
+                                    }
+                                  },
+                                  "example": {
+                                    "message": "Nenhuma chave de pesquisa digitada",
+                                    "type": "key_not_found",
+                                    "name": "KEY_NOT_FOUND"
+                                  }
+                            }
+                        }
+                    }
+                  }
+              }
+          }
+      }
+  },
+  "components": {
+      "schemas": {
+          "PEP": {
+              "title": "Pep",
+              "type": "object",
+              "properties": {
+                  "CPF": {
+                      "type": "string",
+                      "description": "O meio do CPF da pessoa exposta politicamente. Ex: 123.456 ou 123456"
+                  },
+                  "Nome_PEP": {
+                      "type": "string"
+                  },
+                  "Sigla_Função": {
+                      "type": "string"
+                  },
+                  "Descrição_Função": {
+                      "type": "string"
+                  },
+                  "Nível_Função": {
+                    "type": "string"
+                  },
+                  "Data_Início_Exercício": {
+                    "type": "string"
+                  },
+                  "Data_Fim_Exercício": {
+                    "type": "string"
+                  },
+                  "Data_Fim_Carência": {
+                    "type": "string"
+                  }
+              },
+              "example": {
+                  "data": [
+                    {
+                      "CPF": "***.708.767-**",
+                      "Nome_PEP": "AARAO DE MOURA BRITO NETO",
+                      "Sigla_Função": "PREFEI",
+                      "Descrição_Função": "PREFEITO",
+                      "Nível_Função": "",
+                      "Nome_Cargo": "MUN. DE MANGARATIBA-RJ",
+                      "Data_Início_Exercício": "01/01/2017",
+                      "Data_Fim_Exercício": "31/12/2020",
+                      "Data_Fim_Carência": "31/12/2025"
+                    }
+                ],
+                "updated_at": "1688180400"
+              }
+          }
+      }
+  }
+}
