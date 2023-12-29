@@ -6,6 +6,58 @@
         }
     ],
     "paths": {
+        "/ddd/v1": {
+            "get": {
+                "tags": ["DDD"],
+                "summary": "Retorna estado e lista de DDD",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DDDAll"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "DDD não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "name": "ddd_error",
+                                    "message": "DDDs não encontrado",
+                                    "type": "DDD_NOT_FOUND"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Todos os serviços de DDD retornaram erro.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "name": "ddd_error",
+                                    "message": "Todos os serviços de DDD retornaram erro.",
+                                    "type": "service_error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/ddd/v1/{ddd}": {
             "get": {
                 "tags": ["DDD"],
@@ -66,6 +118,133 @@
                     }
                 }
             }
+        },
+        "/ddd/uf/v1/{uf}": {
+            "get": {
+                "tags": ["DDD"],
+                "summary": "Retorna lista de DDD contendo as cidades",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "uf",
+                        "description": "UF representa a sigla dos estados brasileiros.\n",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DDDInfo"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "DDD não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "name": "ddd_error",
+                                    "message": "DDD não encontrado",
+                                    "type": "DDD_NOT_FOUND"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Todos os serviços de DDD retornaram erro.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "name": "ddd_error",
+                                    "message": "Todos os serviços de DDD retornaram erro.",
+                                    "type": "service_error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ddd/v2/{ddd}": {
+            "get": {
+                "tags": ["DDD"],
+                "summary": "Retorna lista de estados e lista de cidades por DDD",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "ddd",
+                        "description": "DDD significa Discagem Direta à Distância. É um sistema de ligação telefônica automática entre diferentes áreas urbanas nacionais. O DDD é um código constituído por 2 dígitos que identificam as principais cidades do país e devem ser adicionados ao nº de telefone, juntamente com o código da operadora.\n",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DDDInfo"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "DDD não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "name": "ddd_error",
+                                    "message": "DDD não encontrado",
+                                    "type": "DDD_NOT_FOUND"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Todos os serviços de DDD retornaram erro.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "name": "ddd_error",
+                                    "message": "Todos os serviços de DDD retornaram erro.",
+                                    "type": "service_error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -81,6 +260,9 @@
                     "cities": {
                         "type": "array",
                         "items": "string"
+                    },
+                    "ddd": {
+                        "type": "string"
                     },
                     "nome": {
                         "type": "string"
@@ -102,6 +284,34 @@
                         "SUZANO",
                         "SÃO ROQUE",
                         "SÃO PAULO"
+                    ]
+                }
+            },
+            "DDDAll": {
+                "title": "DDD Info",
+                "required": ["state", "ddds"],
+                "type": "object",
+                "properties": {
+                    "state": {
+                        "type": "string"
+                    },
+                    "ddds": {
+                        "type": "array",
+                        "items": "string"
+                    }
+                },
+                "example": {
+                    "state": "SP",
+                    "ddds": [
+                        "19",
+                        "18",
+                        "14",
+                        "11",
+                        "16",
+                        "17",
+                        "15",
+                        "12",
+                        "13"
                     ]
                 }
             }
