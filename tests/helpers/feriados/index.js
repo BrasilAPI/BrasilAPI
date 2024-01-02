@@ -34,6 +34,7 @@ const fixedHolidaysName = [
   'Nossa Senhora Aparecida',
   'Finados',
   'Proclamação da República',
+  'Consciência negra',
   'Natal',
 ];
 
@@ -96,6 +97,11 @@ const getFixedHolidays = (year, holidaysName = fixedHolidaysName) =>
     {
       date: `${year}-11-15`,
       name: 'Proclamação da República',
+      type: 'national',
+    },
+    {
+      date: `${year}-11-20`,
+      name: 'Consciência Negra',
       type: 'national',
     },
     {
