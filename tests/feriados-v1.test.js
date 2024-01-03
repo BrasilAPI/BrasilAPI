@@ -81,7 +81,7 @@ describe('/feriados/v1 (E2E)', () => {
 
     expect.assertions(2);
 
-    expect(data).toHaveLength(12);
+    expect(data).toHaveLength(13);
     expect(data).toEqual(
       expect.arrayContaining(getHolidays(2019, ['Páscoa', 'Tiradentes']))
     );

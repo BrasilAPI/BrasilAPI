@@ -34,7 +34,7 @@ const fixedHolidaysName = [
   'Nossa Senhora Aparecida',
   'Finados',
   'Proclamação da República',
-  'Consciência negra',
+  'Consciência Negra',
   'Natal',
 ];
 
