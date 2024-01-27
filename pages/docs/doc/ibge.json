@@ -227,6 +227,65 @@
                     }
                 }
             }
+        },
+        "/ibge/regioes/v1": {
+          "get": {
+              "tags": ["IBGE"],
+              "summary": "Retorna as informações das regiões do Brasil",
+              "description": "",
+              "responses": {
+                  "200": {
+                      "description": "Success",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "array",
+                                  "items": {
+                                      "$ref": "#/components/schemas/Region"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+        },
+        "/ibge/regioes/v1/{region}": {
+          "get": {
+              "tags": ["IBGE"],
+              "summary": "Busca as informações de uma região à partir da sigla ou código",
+              "description": "",
+              "responses": {
+                  "200": {
+                      "description": "Success",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "array",
+                                  "items": {
+                                      "$ref": "#/components/schemas/State"
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "404": {
+                    "description": "O código / sigla da região não foi encontrado",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ErrorMessage"
+                            },
+                            "example": {
+                                "name": "NotFoundError",
+                                "message": "Região não encontrada.",
+                                "type": "not_found"
+                            }
+                        }
+                    }
+                  }
+              }
+          }
         }
     },
     "components": {
