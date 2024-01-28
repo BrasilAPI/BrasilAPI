@@ -22,3 +22,6 @@ export const getRegions = () => axios.get(URL_REGION);
 
 export const getUfsByRegion = (regionCode) =>
   axios.get(`${URL_REGION}/${regionCode}/estados`);
+
+export const getRegionByCode = (regionCode) =>
+  axios.get(`${URL_REGION}/${regionCode}`);
