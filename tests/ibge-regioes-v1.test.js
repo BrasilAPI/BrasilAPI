@@ -7,16 +7,25 @@ describe('/ibge/regioes/v1 (E2E)', () => {
 
     expect(response.status).toBe(200);
     expect(response.data).toEqual(
+      expect.objectContaining({
+        id: expect.any(Number),
+        sigla: expect.any(String),
+        nome: expect.any(String),
+      })
+    );
+  });
+
+  test('Buscando todas as regiões', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/ibge/regioes/v1`;
+    const response = await axios.get(requestUrl);
+
+    expect(response.status).toBe(200);
+    expect(response.data).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
           id: expect.any(Number),
           sigla: expect.any(String),
           nome: expect.any(String),
-          regiao: expect.objectContaining({
-            id: expect.any(Number),
-            sigla: expect.any(String),
-            nome: expect.any(String),
-          }),
         }),
       ])
     );
@@ -39,18 +48,11 @@ describe('/ibge/regioes/v1 (E2E)', () => {
 
     expect(response.status).toBe(200);
     expect(response.data).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          id: expect.any(Number),
-          sigla: expect.any(String),
-          nome: expect.any(String),
-          regiao: expect.objectContaining({
-            id: expect.any(Number),
-            sigla: expect.any(String),
-            nome: expect.any(String),
-          }),
-        }),
-      ])
+      expect.objectContaining({
+        id: expect.any(Number),
+        sigla: expect.any(String),
+        nome: expect.any(String),
+      })
     );
   });
 
