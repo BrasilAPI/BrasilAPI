@@ -5,9 +5,9 @@ const validOutputSchema = expect.objectContaining({
   descricao: expect.any(String),
   data_inicio: expect.any(String),
   data_fim: expect.any(String),
-  tipo_ato: expect.any(String),
-  numero_ato: expect.any(String),
-  ano_ato: expect.any(String),
+  tipo_ato_ini: expect.any(String),
+  numero_ato_ini: expect.any(String),
+  ano_ato_ini: expect.any(String),
 });
 
 describe('ncm v1 (E2E)', () => {
@@ -21,7 +21,7 @@ describe('ncm v1 (E2E)', () => {
       expect(response.data.codigo).toBe('3305.10.00');
       expect(response.data.descricao).toContain('Xampus');
       expect(response.data.data_inicio).toBe('2022-04-01');
-      expect(response.data.ano_ato).toBe('2021');
+      expect(response.data.ano_ato_ini).toBe('2021');
     });
 
     test('Utilizando um código inexistente: 00', async () => {
@@ -53,7 +53,7 @@ describe('ncm v1 (E2E)', () => {
       expect(firstRow.codigo).toBe('3305.10.00');
       expect(firstRow.descricao).toContain('Xampus');
       expect(firstRow.data_inicio).toBe('2022-04-01');
-      expect(firstRow.ano_ato).toBe('2021');
+      expect(firstRow.ano_ato_ini).toBe('2021');
     });
 
     test('Utilizando uma descrição inexistente: localhost', async () => {
@@ -80,7 +80,7 @@ describe('ncm v1 (E2E)', () => {
       expect(firstRow.codigo).toBe('3304.10.00');
       expect(firstRow.descricao).toContain('maquiagem para os lábios');
       expect(firstRow.data_inicio).toBe('2022-04-01');
-      expect(firstRow.ano_ato).toBe('2021');
+      expect(firstRow.ano_ato_ini).toBe('2021');
     });
 
     test('Utilizando um código inexistente: 00', async () => {
