@@ -6,7 +6,11 @@ jobs:
   e2e-tests:
     name: Rodar testes E2E
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [ '20', '21' ]
 
+    name: Node ${{ matrix.node }} sample
     steps:
       - name: Puxar o código do commit
         uses: actions/checkout@v2
@@ -14,7 +18,7 @@ jobs:
       - name: Instalar o Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: '16.x'
+          node-version: ${{ matrix.node }}
 
       - name: Cacheando dependencias
         id: cache_dependencies

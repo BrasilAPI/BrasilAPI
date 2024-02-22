@@ -4,7 +4,7 @@
   "description": "Vamos transformar o Brasil em uma API?",
   "engines": {
     "npm": ">=8",
-    "node": ">=16 <17"
+    "node": ">=20 <22"
   },
   "dependencies": {
     "adm-zip": "0.5.10",
