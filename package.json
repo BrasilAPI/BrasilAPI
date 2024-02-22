@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Vamos transformar o Brasil em uma API?",
   "engines": {
-    "npm": ">=8",
+    "npm": ">=10",
     "node": ">=20 <22"
   },
   "dependencies": {
