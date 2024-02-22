@@ -5,7 +5,7 @@ module.exports = {
     node: true,
     jest: true,
   },
-  extends: ['airbnb', 'plugin:prettier/recommended'],
+  extends: ['airbnb', 'plugin:prettier/recommended', 'next/core-web-vitals'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
