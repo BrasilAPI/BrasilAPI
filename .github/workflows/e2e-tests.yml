@@ -4,13 +4,11 @@ on: [pull_request]
 
 jobs:
   e2e-tests:
-    name: Rodar testes E2E
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node: [ '20', '21' ]
-
-    name: Node ${{ matrix.node }} sample
+    name: Testes E2E com node ${{ matrix.node }}
     steps:
       - name: Puxar o código do commit
         uses: actions/checkout@v2
