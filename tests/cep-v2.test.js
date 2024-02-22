@@ -1,6 +1,13 @@
 const axios = require('axios');
 
 describe('/cep/v2 (E2E)', () => {
+  test('Verifica CORS', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/cep/v2/05010000`;
+    const response = await axios.get(requestUrl);
+
+    expect(response.headers['access-control-allow-origin']).toBe('*');
+  });
+
   test('Utilizando um CEP válido: 05010000', async () => {
     const requestUrl = `${global.SERVER_URL}/api/cep/v2/05010000`;
     const response = await axios.get(requestUrl);
