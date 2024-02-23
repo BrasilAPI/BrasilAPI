@@ -87,4 +87,22 @@ describe('weather prediction v1 (E2E)', () => {
       }
     });
   });
+  describe('Route WITH lat long', () => {
+    test('GET /api/cptec/v1/clima/previsao/semana/:lat/:long', async () => {
+      const requestUrl = `${global.SERVER_URL}/api/cptec/v1/clima/previsao/semana/-22.90/-47.06`;
+      const response = await axios.get(requestUrl);
+
+      expect(response.status).toBe(200);
+      expect(Array.isArray(response.data)).toBe(false);
+
+      expect(Array.isArray(response.data.clima)).toBe(true);
+      expect(response.data.clima.length).toBeGreaterThan(2);
+      expect(response.data.clima.length).toBeLessThanOrEqual(7);
+
+      expect(response.data).toMatchObject({
+        cidade: 'Campinas',
+        estado: 'SP',
+      });
+    });
+  });
 });

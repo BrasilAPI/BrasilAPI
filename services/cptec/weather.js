@@ -100,6 +100,32 @@ export const getCurrentAirportWeather = async (icaoCode) => {
 };
 
 /**
+ * Get weather predicion for the next 7 days with location based
+ * @param {float} lat
+ * @param {float} long
+ * @returns {object}
+ */
+export const getPredictionWeatherByLocation = async (lat, long) => {
+  const url = `${CPTEC_URL}/cidade/7dias/${lat}/${long}/previsaoLatLon.xml`;
+
+  const weatherPredictions = await axios.get(url, {
+    responseType: 'application/xml',
+    responseEncoding: 'binary',
+  });
+
+  const parsed = parser.parse(weatherPredictions.data);
+
+  if (parsed.cidade) {
+    const jsonData = formatPrediction(parsed);
+    if (jsonData.cidade === 'null') {
+      return null;
+    }
+    return jsonData;
+  }
+  return [];
+};
+
+/**
  * Get weather predicion for the next {days} with a limit of 14 days
  * @param {int} cityCode
  * @param {int} days

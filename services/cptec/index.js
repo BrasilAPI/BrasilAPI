@@ -3,6 +3,7 @@ import {
   getCurrentCapitalWeatherData,
   getCurrentAirportWeather,
   getPredictionWeather,
+  getPredictionWeatherByLocation,
 } from './weather';
 import { getSwellData } from './swell';
 
@@ -12,5 +13,6 @@ export {
   getCurrentCapitalWeatherData,
   getCurrentAirportWeather,
   getPredictionWeather,
+  getPredictionWeatherByLocation,
   getSwellData,
 };
