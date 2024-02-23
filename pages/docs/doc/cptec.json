@@ -268,7 +268,7 @@
                         "schema": {
                             "type": "float",
                             "format": "float32",
-                            "example": -22.90
+                            "example": -21.166666                            
                         }
                     },
                     {
@@ -280,7 +280,7 @@
                         "schema": {
                             "type": "float",
                             "format": "float32",
-                            "example": -47.06
+                            "example": -50.184665928                            
                         }
                     }
                 ],
