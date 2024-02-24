@@ -84,4 +84,25 @@ describe('/cep/v2 (E2E)', () => {
       },
     });
   });
+
+  test('Uma cidade com CEP único, exemplo: 87360000, deve retornar as coordenadas -24.1851885 e -53.0250623', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/cep/v2/87360000`;
+    const response = await axios.get(requestUrl);
+
+    expect(response.data).toEqual({
+      cep: '87360000',
+      state: 'PR',
+      city: 'Goioerê',
+      neighborhood: null,
+      street: null,
+      service: expect.any(String),
+      location: {
+        type: 'Point',
+        coordinates: {
+          longitude: '-53.0250623',
+          latitude: '-24.1851885',
+        },
+      },
+    });
+  });
 });

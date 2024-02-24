@@ -7,11 +7,28 @@ function parseObject(obj) {
     return newDate.toISOString().slice(0, 10);
   };
 
-  const newObj = Object.fromEntries(
+  const convertKeysToLowerCase = Object.fromEntries(
     Object.entries(obj).map(([k, v]) => [k.toLowerCase(), v])
   );
-  newObj.data_fim = formatDate(newObj.data_fim);
-  newObj.data_inicio = formatDate(newObj.data_inicio);
+
+  const {
+    tipo_ato_ini: tipoAtoIni,
+    numero_ato_ini: numeroAtoIni,
+    ano_ato_ini: anoAtoIni,
+    data_inicio: dataInicio,
+    data_fim: dataFim,
+    ...rest
+  } = convertKeysToLowerCase;
+
+  const newObj = {
+    ...rest,
+    data_inicio: formatDate(dataInicio),
+    data_fim: formatDate(dataFim),
+    tipo_ato: tipoAtoIni,
+    numero_ato: numeroAtoIni,
+    ano_ato: anoAtoIni,
+  };
+
   return newObj;
 }
 

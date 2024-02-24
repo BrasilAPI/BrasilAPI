@@ -111,7 +111,7 @@
                     "cnae_fiscal_descricao": {
                         "type": "string"
                     },
-                    "descricao_tipo_logradouro": {
+                    "descricao_tipo_de_logradouro": {
                         "type": "string"
                     },
                     "logradouro": {
@@ -261,7 +261,7 @@
                     "data_inicio_atividade": "2013-10-03",
                     "cnae_fiscal": 9430800,
                     "cnae_fiscal_descricao": "Atividades de associações de defesa de direitos sociais",
-                    "descricao_tipo_logradouro": "ALAMEDA",
+                    "descricao_tipo_de_logradouro": "ALAMEDA",
                     "logradouro": "FRANCA",
                     "numero": "144",
                     "complemento": "APT   34",

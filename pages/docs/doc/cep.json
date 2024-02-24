@@ -158,10 +158,12 @@
                         "type": "string"
                     },
                     "neighborhood": {
-                        "type": "string"
+                        "type": "string",
+                        "nullable": true
                     },
                     "street": {
-                        "type": "string"
+                        "type": "string",
+                        "nullable": true
                     },
                     "service": {
                         "type": "string"
