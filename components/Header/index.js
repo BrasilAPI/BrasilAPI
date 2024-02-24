@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import Link from 'next/link';
+
 import { FaGithub } from 'react-icons/fa';
 
 import styles from './styles.module.scss';
@@ -20,9 +22,9 @@ export function Header() {
           <a href="#termos-de-uso" className={styles.link}>
             Termos de uso
           </a>
-          <a href="/docs" className={styles.button}>
+          <Link href="/docs" className={styles.button}>
             Documentação
-          </a>
+          </Link>
         </div>
       </div>
     </header>

@@ -9,6 +9,13 @@ const validOutputSchema = expect.objectContaining({
 
 describe('banks v1 (E2E)', () => {
   describe('GET /banks/v1/:code', () => {
+    test('Verifica CORS', async () => {
+      const requestUrl = `${global.SERVER_URL}/api/banks/v1/260`;
+      const response = await axios.get(requestUrl);
+
+      expect(response.headers['access-control-allow-origin']).toBe('*');
+    });
+
     test('Utilizando um bank code válido: 260', async () => {
       const requestUrl = `${global.SERVER_URL}/api/banks/v1/260`;
       const response = await axios.get(requestUrl);

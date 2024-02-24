@@ -3,6 +3,12 @@ const axios = require('axios');
 const requestUrl = `${global.SERVER_URL}/api/cnpj/v1`;
 
 describe('api/cnpj/v1 (E2E)', () => {
+  test('Verifica CORS', async () => {
+    const response = await axios.get(`${requestUrl}/19131243000197`);
+
+    expect(response.headers['access-control-allow-origin']).toBe('*');
+  });
+
   test('Utilizando um CNPJ válido existente: 19131243000197', async () => {
     const response = await axios.get(`${requestUrl}/19131243000197`);
     const { data, status } = response;
