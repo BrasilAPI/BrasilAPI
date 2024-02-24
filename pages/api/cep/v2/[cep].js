@@ -23,6 +23,14 @@ async function Cep(request, response) {
       cepFromCepPromise
     );
 
+    if (!cepFromCepPromise.street) {
+      cepFromCepPromise.street = null;
+    }
+
+    if (!cepFromCepPromise.neighborhood) {
+      cepFromCepPromise.neighborhood = null;
+    }
+
     response.status(200);
     response.json({ ...cepFromCepPromise, location });
   } catch (error) {
