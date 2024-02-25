@@ -34,6 +34,7 @@ const fixedHolidaysName = [
   'Nossa Senhora Aparecida',
   'Finados',
   'Proclamação da República',
+  'Dia da consciência negra',
   'Natal',
 ];
 
@@ -61,8 +62,8 @@ const getEasterHolidays = (year, holidaysName = easterHolidaysName) =>
     },
   ].filter(({ name }) => holidaysName.includes(name));
 
-const getFixedHolidays = (year, holidaysName = fixedHolidaysName) =>
-  [
+const getFixedHolidays = (year, holidaysName = fixedHolidaysName) => {
+  const holidays = [
     {
       date: `${year}-01-01`,
       name: 'Confraternização mundial',
@@ -103,7 +104,18 @@ const getFixedHolidays = (year, holidaysName = fixedHolidaysName) =>
       name: 'Natal',
       type: 'national',
     },
-  ].filter(({ name }) => holidaysName.includes(name));
+  ];
+
+  if (year >= 2024) {
+    holidays.splice(holidays.length - 1, 0, {
+      date: `${year}-11-20`,
+      name: 'Dia da consciência negra',
+      type: 'national',
+    });
+  }
+
+  return holidays.filter(({ name }) => holidaysName.includes(name));
+};
 
 const getHolidays = (
   year,
