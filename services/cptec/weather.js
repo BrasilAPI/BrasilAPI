@@ -115,14 +115,15 @@ export const getPredictionWeatherByLocation = async (lat, long) => {
 
   const parsed = parser.parse(weatherPredictions.data);
 
-  if (parsed.cidade) {
-    const jsonData = formatPrediction(parsed);
-    if (jsonData.cidade === 'null') {
-      return null;
-    }
-    return jsonData;
+  if (!parsed.cidade) {
+    return null;
   }
-  return [];
+  
+  const jsonData = formatPrediction(parsed);
+  if (jsonData.cidade === 'null') {
+    return null;
+  }
+  return jsonData;
 };
 
 /**
