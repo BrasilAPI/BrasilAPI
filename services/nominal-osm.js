@@ -36,7 +36,8 @@ async function fetchGeocoordinateFromBrazilLocation({
     if (street.includes('-')) {
       const streetSplit = street.split('-');
       if (streetSplit && streetSplit[0]) {
-        streetUse = streetSplit[0];
+        const [streetRes] = streetSplit;
+        streetUse = streetRes;
       }
     } else {
       streetUse = street;
@@ -73,7 +74,7 @@ async function fetchGeocoordinateFromBrazilLocation({
 
     const { data } = response;
 
-    const jsonDataWithPostCodes = data.filter(item => item.address.postcode);
+    const jsonDataWithPostCodes = data.filter((item) => item.address.postcode);
     if (!jsonDataWithPostCodes[0]) {
       // get first address
       const firstLocation = data[0];
@@ -106,7 +107,7 @@ async function fetchGeocoordinateFromBrazilLocation({
     const { lat: latitude, lon: longitude } = location;
     return { type: 'Point', coordinates: { longitude, latitude } };
   } catch (err) {
-    emptyLocation();
+    return emptyLocation();
   }
 }
 
