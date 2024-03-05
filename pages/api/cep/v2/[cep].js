@@ -1,7 +1,7 @@
 import cepPromise from 'cep-promise';
 
 import app from '@/app';
-import fetchGeocoordinateFromBrazilLocation from '../../../../lib/fetchGeocoordinateFromBrazilLocation';
+import fetchGeocoordinateFromBrazilLocation from '@/services/nominal-osm';
 
 const providers = ['correios', 'viacep', 'widenet', 'correios-alt'];
 
