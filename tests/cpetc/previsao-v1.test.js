@@ -128,13 +128,14 @@ describe('weather prediction v1 (E2E)', () => {
       } catch (error) {
         const { response } = error;
 
-        expect(response.status).toBe(500);
+        expect(response.status).toBe(404);
 
         expect(response.data).toMatchObject({
-          name: 'CITY_WEATHER_PREDICTIONS_ERROR',
-          type: 'weather_error',
+          message: 'Cidade não localizada',
+          type: 'city_error',
+          name: 'CITY_NOT_FOUND',
         });
-      }
+       }
     });
 
     test('GET with invalid long', async () => {

@@ -49,10 +49,10 @@ const action = async (request, response) => {
       throw err;
     }
 
-    throw new InternalError({
-      message: 'Erro ao buscar previsões para a cidade',
-      type: 'weather_error',
-      name: 'CITY_WEATHER_PREDICTIONS_ERROR',
+    throw new NotFoundError({
+      message: 'Cidade não localizada',
+      type: 'city_error',
+      name: 'CITY_NOT_FOUND',
     });
   }
 };
