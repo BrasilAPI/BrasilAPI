@@ -9,13 +9,14 @@ import InternalError from '@/errors/InternalError';
 import BaseError from '@/errors/BaseError';
 
 import { getCities } from '@/services/dados-abertos-br/cities';
+import { rejectWhenEmptyArray } from '@/services/util/rejectWhenEmptyArray';
 
 const getData = async (uf, providers = null) => {
   const promises = [];
   if (!providers) {
-    promises.push(getContiesByUf(uf));
-    promises.push(getCities(uf));
-    promises.push(getStateCities(uf));
+    promises.push(rejectWhenEmptyArray(getContiesByUf(uf)));
+    promises.push(rejectWhenEmptyArray(getCities(uf)));
+    promises.push(rejectWhenEmptyArray(getStateCities(uf)));
   } else {
     if (providers.includes('wikipedia')) {
       promises.push(getStateCities(uf));
