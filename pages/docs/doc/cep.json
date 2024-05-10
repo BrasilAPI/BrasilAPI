@@ -15,7 +15,7 @@
             "get": {
                 "tags": ["CEP"],
                 "summary": "Busca por CEP com múltiplos providers de fallback.",
-                "description": "",
+                "description": "A busca utiliza como fonte principal o OpenCep, caso não encontre o CEP é buscado em diversos outros providers de CEP.",
                 "parameters": [
                     {
                         "name": "cep",
