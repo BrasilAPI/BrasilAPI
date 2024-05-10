@@ -1,7 +1,9 @@
-import removeSpecialChars from '@/services/util/removeSpecialChars';
-import { getCityData } from '@/services/cptec';
-import NotFoundError from '@/errors/NotFoundError';
 import app from '@/app';
+import { getCityData } from '@/services/cptec';
+
+import removeSpecialChars from '@/util/removeSpecialChars';
+
+import NotFoundError from '@/errors/NotFoundError';
 import BaseError from '@/errors/BaseError';
 import InternalError from '@/errors/InternalError';
 import BadRequestError from '@/errors/BadRequestError';
