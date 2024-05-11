@@ -30,6 +30,12 @@ async function fetchOpenCep(cep) {
   };
 }
 
+async function updateOpenCep(cep) {
+  await axios.get(`https://update.opencep.com/${cep}`, {
+    timeout: DEFAULT_TIMEOUT,
+  });
+}
+
 class CepPromiseError extends Error {
   constructor({ message, type, errors } = {}) {
     super();
@@ -62,5 +68,10 @@ export async function fetchCep(cep) {
       providers,
     });
 
-  return fetchOpenCep(cleanCep).catch(fetchCepPromise);
+  return fetchOpenCep(cleanCep)
+    .then((data) => {
+      updateOpenCep(cleanCep).catch(() => {});
+      return data;
+    })
+    .catch(fetchCepPromise);
 }
