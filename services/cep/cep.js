@@ -69,9 +69,9 @@ export async function fetchCep(cep) {
     });
 
   return fetchOpenCep(cleanCep)
-    .then((data) => {
-      updateOpenCep(cleanCep).catch(() => {});
+    .catch(() => fetchCepPromise().then(async (data) => {
+      await updateOpenCep(cleanCep).catch(() => { });
       return data;
     })
-    .catch(fetchCepPromise);
+    );
 }
