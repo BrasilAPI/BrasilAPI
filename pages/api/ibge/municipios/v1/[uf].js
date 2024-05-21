@@ -3,29 +3,29 @@ import { Promise } from 'bluebird';
 import app from '@/app';
 import { getStateCities, CODIGOS_ESTADOS } from '@/services/ibge/wikipedia';
 import { getContiesByUf } from '@/services/ibge/gov';
+import { getCities } from '@/services/dados-abertos-br/cities';
+
+import { rejectWhenEmptyArray } from '@/util/rejectWhenEmptyArray';
 
 import NotFoundError from '@/errors/NotFoundError';
 import InternalError from '@/errors/InternalError';
 import BaseError from '@/errors/BaseError';
 
-import { getCities } from '@/services/dados-abertos-br/cities';
-
-const getData = async (uf, providers = null) => {
+const getData = async (uf, argsProviders = null) => {
+  const providers =
+    !argsProviders || argsProviders.length === 0
+      ? ['dados-abertos-br', 'gov']
+      : argsProviders;
   const promises = [];
-  if (!providers) {
-    promises.push(getContiesByUf(uf));
-    promises.push(getCities(uf));
-    promises.push(getStateCities(uf));
-  } else {
-    if (providers.includes('wikipedia')) {
-      promises.push(getStateCities(uf));
-    }
-    if (providers.includes('dados-abertos-br')) {
-      promises.push(getCities(uf));
-    }
-    if (providers.includes('gov')) {
-      promises.push(getContiesByUf(uf));
-    }
+
+  if (providers.includes('wikipedia')) {
+    promises.push(getStateCities(uf).then(rejectWhenEmptyArray));
+  }
+  if (providers.includes('dados-abertos-br')) {
+    promises.push(getCities(uf).then(rejectWhenEmptyArray));
+  }
+  if (providers.includes('gov')) {
+    promises.push(getContiesByUf(uf).then(rejectWhenEmptyArray));
   }
 
   const data = await Promise.any(promises);
