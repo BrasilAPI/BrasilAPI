@@ -66,18 +66,6 @@ export function getEasterHolidays(year) {
     name: 'Sexta-feira Santa',
     type: 'national',
   });
-  movingDate.setDate(movingDate.getDate() - 45);
-  holidays.push({
-    date: formatDate(movingDate),
-    name: 'Carnaval',
-    type: 'national',
-  });
-  movingDate.setDate(movingDate.getDate() + 107);
-  holidays.push({
-    date: formatDate(movingDate),
-    name: 'Corpus Christi',
-    type: 'national',
-  });
   return holidays;
 }
 
