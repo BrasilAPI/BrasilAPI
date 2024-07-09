@@ -1,0 +1,83 @@
+{
+    "tags": [
+        {
+            "name": "Solar Incidence",
+            "description": "Informações referentes à incidência solar"
+        }
+    ],
+    "paths": {
+        "/solar_incidence/v1/{location}": {
+            "get": {
+                "tags": ["Solar Incidence"],
+                "summary": "Busca por incidência solar para um local específico.",
+                "description": "Consulta a incidência solar para um estado, cidade, município ou CEP.",
+                "parameters": [
+                    {
+                        "name": "location",
+                        "description": "A localização para a qual a incidência solar será consultada. Pode ser um estado, cidade, município ou CEP.",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SolarIncidence"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Todos os serviços de incidência solar retornaram erro.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "SolarIncidence": {
+                "title": "Solar Incidence",
+                "required": ["location", "incidence"],
+                "type": "object",
+                "properties": {
+                    "location": {
+                        "type": "string"
+                    },
+                    "incidence": {
+                        "type": "number"
+                    }
+                },
+                "example": {
+                    "location": "São Paulo",
+                    "incidence": 5.75
+                }
+            },
+            "ErrorMessage": {
+                "title": "Error Message",
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "message": "Could not fetch data"
+                }
+            }
+        }
+    }
+}
