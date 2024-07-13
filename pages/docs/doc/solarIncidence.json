@@ -33,7 +33,7 @@
                             }
                         }
                     },
-                    "404": {
+                    "500": {
                         "description": "Todos os serviços de incidência solar retornaram erro.",
                         "content": {
                             "application/json": {
@@ -51,19 +51,40 @@
         "schemas": {
             "SolarIncidence": {
                 "title": "Solar Incidence",
-                "required": ["location", "incidence"],
+                "required": ["sunrise", "sunset", "solar_noon", "day_length"],
                 "type": "object",
                 "properties": {
-                    "location": {
+                    "sunrise": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "sunset": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "solar_noon": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "day_length": {
                         "type": "string"
                     },
-                    "incidence": {
-                        "type": "number"
+                    "civil_twilight_begin": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "civil_twilight_end": {
+                        "type": "string",
+                        "format": "date-time"
                     }
                 },
                 "example": {
-                    "location": "São Paulo",
-                    "incidence": 5.75
+                    "sunrise": "2023-07-13T09:21:00+00:00",
+                    "sunset": "2023-07-13T20:18:00+00:00",
+                    "solar_noon": "2023-07-13T14:49:00+00:00",
+                    "day_length": "10:57:00",
+                    "civil_twilight_begin": "2023-07-13T08:58:00+00:00",
+                    "civil_twilight_end": "2023-07-13T20:41:00+00:00"
                 }
             },
             "ErrorMessage": {
