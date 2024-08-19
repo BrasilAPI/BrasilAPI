@@ -3,14 +3,35 @@ import app from '@/app';
 import BaseError from '@/errors/BaseError';
 import InternalError from '@/errors/InternalError';
 import NotFoundError from '@/errors/NotFoundError';
+import BadRequestError from '@/errors/BadRequestError';
 
 import { getDddsData } from '@/services/ddd';
 
-//TODO
-
 async function citiesOfDdd(request, response, next) {
   try {
-    const requestedDdd = request.query.ddd;
+    // MODIFICADO
+
+    let requestedDdd = request.query.ddd.toString();
+
+    const lengthDdd = requestedDdd.length;
+
+    if (lengthDdd === 0 || lengthDdd > 3) {
+      throw new NotFoundError({
+        message: 'DDD não encontrado',
+        type: 'ddd_error',
+        name: 'DDD_NOT_FOUND',
+      });
+    }
+
+    if (lengthDdd === 3 && requestedDdd[0] === '0') {
+      requestedDdd = requestedDdd.substring(1);
+    } else if (lengthDdd !== 2) {
+      throw new BadRequestError({
+        message: 'DDD inválido',
+        type: 'ddd_error',
+        name: 'DDD_INVALID',
+      });
+    }
 
     const allDddData = await getDddsData();
 

@@ -68,13 +68,22 @@ const validResponse = {
   ],
 };
 
-const invalidResponse = {
+// MODIFICADO
+
+const invalidResponseNotFound = {
   type: 'ddd_error',
   message: 'DDD não encontrado',
   name: 'DDD_NOT_FOUND',
 };
 
+const invalidResponseInvalid = {
+  type: 'ddd_error',
+  message: 'DDD inválido',
+  name: 'DDD_INVALID',
+};
+
 module.exports = {
   validResponse,
-  invalidResponse,
+  invalidResponseNotFound,
+  invalidResponseInvalid,
 };
