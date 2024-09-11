@@ -68,8 +68,6 @@ const validResponse = {
   ],
 };
 
-// MODIFICADO
-
 const invalidResponseNotFound = {
   type: 'ddd_error',
   message: 'DDD não encontrado',

@@ -34,9 +34,6 @@
               }
             }
           },
-
-          // MODIFICADO
-
           "400 ": {
             "description": "Tamanho do DDD inválido",
             "content": {

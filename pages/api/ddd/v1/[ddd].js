@@ -9,8 +9,6 @@ import { getDddsData } from '@/services/ddd';
 
 async function citiesOfDdd(request, response, next) {
   try {
-    // MODIFICADO
-
     let requestedDdd = request.query.ddd.toString();
 
     const lengthDdd = requestedDdd.length;
