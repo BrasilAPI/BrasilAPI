@@ -1,3 +1,5 @@
+// pages/api/fipe/marcas/v1/[...vehicleType].js
+
 import app from '@/app';
 import BadRequestError from '@/errors/BadRequestError';
 
@@ -5,6 +7,7 @@ import {
   listTruckAutomakers,
   listCarAutomakers,
   listMotorcycleAutomakers,
+  listModels,
 } from '@/services/fipe/automakers';
 import { listReferenceTables } from '@/services/fipe/referenceTable';
 
@@ -16,7 +19,10 @@ const VEHICLE_TYPES = {
 
 async function FipeAutomakers(request, response) {
   const referenceTableCode = request.query.tabela_referencia;
-  const { vehicleType } = request.query;
+  const data = request.query.vehicleType;
+
+  const vehicleType = data[0];
+  const brand = data[1];
 
   const referenceTable = referenceTableCode
     ? parseInt(referenceTableCode, 10)
@@ -41,6 +47,19 @@ async function FipeAutomakers(request, response) {
   const listAutomakers = VEHICLE_TYPES[vehicleType];
 
   const automakers = await listAutomakers({ referenceTable });
+
+  if (brand) {
+    const brandInfo = automakers.find((automaker) => automaker.nome === brand);
+
+    if (!brandInfo) {
+      throw new BadRequestError({ message: 'Marca inválida' });
+    }
+
+    const models = await listModels(brandInfo.valor);
+
+    return response.status(200).json(models);
+  }
+
   return response.status(200).json(automakers);
 }
 

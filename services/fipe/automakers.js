@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { FIPE_URL, VEHICLE_TYPE } from './constants';
+import { FIPE_URL, VEHICLE_TYPE, MODELS_URL } from './constants';
 import { getLatestReferenceTable } from './referenceTable';
 
 async function listAutomakers({ vehicleType, referenceTable }) {
@@ -57,4 +57,12 @@ export async function listTruckAutomakers(
     vehicleType: VEHICLE_TYPE.TRUCK,
     referenceTable: referenceTableCode,
   });
+}
+
+// services/fipe/automakers.js
+
+export async function listModels(automakerId) {
+  const data = await axios.get(`${MODELS_URL}${automakerId}/modelos`);
+
+  return data.data.modelos;
 }
