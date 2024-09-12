@@ -14,6 +14,13 @@ const validTestAutomakersArray = expect.arrayContaining([
   }),
 ]);
 
+const validTestBrandsArray = expect.arrayContaining([
+  expect.objectContaining({
+    codigo: expect.any(Number),
+    nome: expect.any(String),
+  }),
+]);
+
 const validTestVehicleArray = expect.arrayContaining([
   expect.objectContaining({
     valor: expect.any(String),
@@ -126,6 +133,44 @@ describe('/fipe/marcas/v1/carros (E2E)', () => {
       expect(response.data).toEqual({
         name: 'BadRequestError',
         message: 'Tabela de referência inválida',
+        type: 'bad_request',
+      });
+    }
+  });
+
+  test('Utilizando uma marca de carro válida', async () => {
+    expect.assertions(2);
+    const brand = 'Audi';
+    const requestUrl = `${global.SERVER_URL}/api/fipe/marcas/v1/carros/${brand}`;
+
+    const response = await axios.get(requestUrl, {
+      params: {
+        vehicleType: brand,
+      },
+    });
+
+    expect(response.status).toBe(200);
+    expect(response.data).toEqual(validTestBrandsArray);
+  });
+
+  test('Utilizando uma marca de carro inválida', async () => {
+    expect.assertions(2);
+    const brand = 'AAAA';
+    const requestUrl = `${global.SERVER_URL}/api/fipe/marcas/v1/carros/${brand}`;
+
+    try {
+      await axios.get(requestUrl, {
+        params: {
+          vehicleType: brand,
+        },
+      });
+    } catch (error) {
+      const { response } = error;
+
+      expect(response.status).toBe(400);
+      expect(response.data).toEqual({
+        name: 'BadRequestError',
+        message: 'Marca inválida',
         type: 'bad_request',
       });
     }

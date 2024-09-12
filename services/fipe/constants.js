@@ -4,4 +4,8 @@ export const VEHICLE_TYPE = {
   TRUCK: 3,
 };
 
+// services/fipe/constants.js
+
 export const FIPE_URL = 'https://veiculos.fipe.org.br/api';
+
+export const MODELS_URL = `https://parallelum.com.br/fipe/api/v1/carros/marcas/`;
