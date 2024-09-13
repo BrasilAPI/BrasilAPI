@@ -5,6 +5,18 @@ import { XMLParser } from 'fast-xml-parser';
 
 const URL = 'https://dadosabertos.camara.leg.br/api/v2/partidos';
 
+function transformarURL(url) {
+  const baseUrlCâmara = 'https://dadosabertos.camara.leg.br/api/v2/partidos/';
+  const baseUrlBrasilAPI = 'https://brasilapi.com.br/api/partidos/';
+
+  if (url.startsWith(baseUrlCâmara)) {
+    const partidoId = url.replace(baseUrlCâmara, '');
+    return baseUrlBrasilAPI + partidoId;
+  } else {
+    return 'URL não corresponde ao formato esperado.';
+  }
+}
+
 export const getParties = async () => {
   try {
     const { data } = await axios.get(URL, {
@@ -20,7 +32,8 @@ export const getParties = async () => {
       !jsonData ||
       !jsonData.xml ||
       !jsonData.xml.dados ||
-      !jsonData.xml.dados.partido_
+      !jsonData.xml.dados.partido_ ||
+      !Array.isArray(jsonData.xml.dados.partido_)
     ) {
       console.error(
         'Estrutura inesperada de dados ou dados ausentes:',
@@ -33,7 +46,7 @@ export const getParties = async () => {
       id: partido.id,
       sigla: partido.sigla,
       nome: partido.nome,
-      uri: partido.uri,
+      uri: transformarURL(partido.uri),
     }));
 
     return partidos;
@@ -60,36 +73,11 @@ export const getParty = async (id) => {
       return null;
     }
 
-    const partido = jsonData.xml.dados;
+    const { uri, ...partido } = jsonData.xml.dados;
 
     const partidoData = {
-      id: partido.id,
-      sigla: partido.sigla,
-      nome: partido.nome,
-      uri: partido.uri,
-      status: {
-        data: partido.status?.data,
-        idLegislatura: partido.status?.idLegislatura,
-        situacao: partido.status?.situacao,
-        totalPosse: partido.status?.totalPosse,
-        totalMembros: partido.status?.totalMembros,
-        uriMembros: partido.status?.uriMembros,
-        lider: partido.status?.lider
-          ? {
-              uri: partido.status.lider.uri,
-              nome: partido.status.lider.nome,
-              siglaPartido: partido.status.lider.siglaPartido,
-              uriPartido: partido.status.lider.uriPartido,
-              uf: partido.status.lider.uf,
-              idLegislatura: partido.status.lider.idLegislatura,
-              urlFoto: partido.status.lider.urlFoto,
-            }
-          : null,
-      },
-      numeroEleitoral: partido.numeroEleitoral || null,
-      urlLogo: partido.urlLogo || null,
-      urlWebSite: partido.urlWebSite || null,
-      urlFacebook: partido.urlFacebook || null,
+      ...partido,
+      uri: transformarURL(uri),
     };
 
     return partidoData;

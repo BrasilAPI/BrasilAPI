@@ -10,6 +10,9 @@ const action = async (request, response) => {
       console.error('Nenhum dado encontrado');
       response.status(404).json({ message: 'Nenhum dado encontrado' });
     }
+
+    response.status(200);
+    response.json(allBanksData);
   } catch (error) {
     console.error('Erro ao obter partidos:', error);
     response.status(500).json({ message: 'Erro interno no servidor' });
