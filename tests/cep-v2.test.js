@@ -29,6 +29,27 @@ describe('/cep/v2 (E2E)', () => {
     });
   });
 
+  test('Verifica fonte da informação: 05010000', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/cep/v2/05010000`;
+    const response = await axios.get(requestUrl);
+
+    expect(response.data).toEqual({
+      cep: '05010000',
+      state: 'SP',
+      city: 'São Paulo',
+      neighborhood: 'Perdizes',
+      street: 'Rua Caiubi',
+      service: 'open-cep',
+      location: {
+        type: 'Point',
+        coordinates: {
+          longitude: expect.any(String),
+          latitude: expect.any(String),
+        },
+      },
+    });
+  });
+
   test('Utilizando um CEP inexistente: 00000000', async () => {
     expect.assertions(2);
     const requestUrl = `${global.SERVER_URL}/api/cep/v2/00000000`;

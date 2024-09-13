@@ -1,5 +1,6 @@
+import getCsvAsJson from '@/util/getCsvAsJson';
+
 import banksList from './banksList.json';
-import getCsvAsJson from '../util/getCsvAsJson';
 
 const formatCsvFile = (file) => {
   // Remove o cabeçalho
