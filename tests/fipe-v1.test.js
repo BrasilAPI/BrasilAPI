@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { testCorsForRoute } = require('./helpers/cors');
 
 const validTestTableArray = expect.arrayContaining([
   expect.objectContaining({
@@ -76,3 +77,7 @@ describe('/fipe/preco/v1 (E2E)', () => {
     });
   });
 });
+
+testCorsForRoute('/api/fipe/tabelas/v1');
+testCorsForRoute('/api/fipe/marcas/v1');
+testCorsForRoute('/api/fipe/preco/v1/015088-6');

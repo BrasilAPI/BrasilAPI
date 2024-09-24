@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { testCorsForRoute } = require('./helpers/cors');
 
 describe('/cep/v2 (E2E)', () => {
   test('Verifica CORS', async () => {
@@ -134,3 +135,5 @@ describe('/cep/v2 (E2E)', () => {
     });
   });
 });
+
+testCorsForRoute('/api/cep/v2/14096180');

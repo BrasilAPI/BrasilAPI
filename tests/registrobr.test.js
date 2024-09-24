@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { testCorsForRoute } = require('./helpers/cors');
 
 const URL = `${global.SERVER_URL}/api/registrobr/v1`;
 
@@ -24,3 +25,5 @@ describe('api/registrobr/v1 (E2E)', () => {
     }
   });
 });
+
+testCorsForRoute('/api/registrobr/v1/q1w2e3r4t5y6u7i9p0-e3w2q1.ong.br');
