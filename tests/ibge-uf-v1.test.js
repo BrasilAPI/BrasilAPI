@@ -103,5 +103,5 @@ describe('/ibge/uf/v1 (E2E)', () => {
 });
 
 testCorsForRoute('/api/ibge/uf/v1');
-testCorsForRoute('}/api/ibge/uf/v1/22');
+testCorsForRoute('/api/ibge/uf/v1/22');
 testCorsForRoute('/api/ibge/uf/v1/PI');
