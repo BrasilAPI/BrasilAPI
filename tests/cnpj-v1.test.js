@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { testCorsForRoute } = require('./helpers/cors');
 
 const requestUrl = `${global.SERVER_URL}/api/cnpj/v1`;
 
@@ -49,3 +50,5 @@ describe('api/cnpj/v1 (E2E)', () => {
     }
   });
 });
+
+testCorsForRoute('/api/cnpj/v1/19131243000197');

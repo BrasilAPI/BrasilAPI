@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { testCorsForRoute } = require('./helpers/cors');
 
 const validOutputSchema = expect.objectContaining({
   bairro: expect.any(String),
@@ -74,3 +75,6 @@ describe('corretoras v1 (E2E)', () => {
     expect(response.data).toEqual(validTestTableArray);
   });
 });
+
+testCorsForRoute('/api/cvm/corretoras/v1');
+testCorsForRoute('/api/cvm/corretoras/v1/02332886000104');
