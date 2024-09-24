@@ -23,7 +23,7 @@
     "micro-cors": "0.1.1",
     "mobx": "6.7.0",
     "next": "12.3.4",
-    "next-connect": "0.13.0",
+    "next-connect": "0.9.1",
     "next-sitemap": "1.6.168",
     "papaparse": "5.4.0",
     "piscina": "3.2.0",
