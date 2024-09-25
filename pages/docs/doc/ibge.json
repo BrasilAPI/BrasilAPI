@@ -6,7 +6,7 @@
         }
     ],
     "paths": {
-        "/ibge/municipios/v1/{siglaUF}?providers=dados-abertos-br,gov,wikipedia": {
+        "/ibge/municipios/v1/{siglaUF}": {
             "get": {
               "tags": [
                 "IBGE"
