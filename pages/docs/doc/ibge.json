@@ -12,7 +12,8 @@
                 "IBGE"
               ],
               "summary": "Retorna os municípios da unidade federativa",
-              "description": "",
+              "description": "Retorna uma lista de municípios pertencentes à unidade federativa. Cada município contém o nome e o código IBGE correspondente.",
+              "example": "[...]/ibge/municipios/v1/rj?providers=wikipedia",
               "parameters": [
                 {
                   "name": "siglaUF",
