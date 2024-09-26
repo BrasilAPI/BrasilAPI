@@ -5,6 +5,7 @@ const {
   invalidResponseInvalid,
   invalidResponseNotFound,
 } = require('./helpers/ddd');
+const { testCorsForRoute } = require('./helpers/cors');
 
 const requestUrl = `${global.SERVER_URL}/api/ddd/v1`;
 
@@ -61,3 +62,5 @@ describe('api/ddd/v1 (E2E)', () => {
     }
   });
 });
+
+testCorsForRoute('/api/ddd/v1/11');

@@ -6,6 +6,7 @@ const {
   getFixedHolidays,
   getHolidays,
 } = require('./helpers/feriados');
+const { testCorsForRoute } = require('./helpers/cors');
 
 describe('/feriados/v1 (E2E)', () => {
   test('Feriados fixos com ano válido entre 1900 e 2199', async () => {
@@ -113,3 +114,5 @@ describe('/feriados/v1 (E2E)', () => {
     );
   });
 });
+
+testCorsForRoute('/api/feriados/v1/2020');
