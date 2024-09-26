@@ -76,7 +76,7 @@ const invalidResponseNotFound = {
 
 const invalidResponseInvalid = {
   type: 'ddd_error',
-  message: 'DDD inválido',
+  message: 'DDD deve conter apenas 2 dígitos',
   name: 'DDD_INVALID',
 };
 
