@@ -9,23 +9,13 @@ import { getDddsData } from '@/services/ddd';
 
 async function citiesOfDdd(request, response, next) {
   try {
-    let requestedDdd = request.query.ddd.toString();
+    const requestedDdd = Number(request.query.ddd.toString()).toString();
 
     const lengthDdd = requestedDdd.length;
 
-    if (lengthDdd === 0 || lengthDdd > 3) {
-      throw new NotFoundError({
-        message: 'DDD não encontrado',
-        type: 'ddd_error',
-        name: 'DDD_NOT_FOUND',
-      });
-    }
-
-    if (lengthDdd === 3 && requestedDdd[0] === '0') {
-      requestedDdd = requestedDdd.substring(1);
-    } else if (lengthDdd !== 2) {
+    if (lengthDdd !== 2) {
       throw new BadRequestError({
-        message: 'DDD inválido',
+        message: 'DDD deve conter apenas 2 dígitos',
         type: 'ddd_error',
         name: 'DDD_INVALID',
       });
