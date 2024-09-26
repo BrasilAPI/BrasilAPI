@@ -43,7 +43,7 @@
                 },
                 "example": {
                   "name": "ddd_error",
-                  "message": "DDD inválido",
+                  "message": "DDD deve conter apenas 2 dígitos",
                   "type": "DDD_INVALID"
                 }
               }
