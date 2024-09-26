@@ -8,8 +8,6 @@ const {
 
 const requestUrl = `${global.SERVER_URL}/api/ddd/v1`;
 
-// MODIFICADO
-
 describe('api/ddd/v1 (E2E)', () => {
   test('Utilizando um DDD válido: 11', async () => {
     const response = await axios.get(`${requestUrl}/11`);
