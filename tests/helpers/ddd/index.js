@@ -68,12 +68,6 @@ const validResponse = {
   ],
 };
 
-const invalidResponseNotFound = {
-  type: 'ddd_error',
-  message: 'DDD não encontrado',
-  name: 'DDD_NOT_FOUND',
-};
-
 const invalidResponseInvalid = {
   type: 'ddd_error',
   message: 'DDD deve conter apenas 2 dígitos',
@@ -82,6 +76,5 @@ const invalidResponseInvalid = {
 
 module.exports = {
   validResponse,
-  invalidResponseNotFound,
   invalidResponseInvalid,
 };

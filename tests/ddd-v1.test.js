@@ -1,10 +1,6 @@
 const axios = require('axios');
 
-const {
-  validResponse,
-  invalidResponseInvalid,
-  invalidResponseNotFound,
-} = require('./helpers/ddd');
+const { validResponse, invalidResponseInvalid } = require('./helpers/ddd');
 const { testCorsForRoute } = require('./helpers/cors');
 
 const requestUrl = `${global.SERVER_URL}/api/ddd/v1`;
@@ -57,8 +53,8 @@ describe('api/ddd/v1 (E2E)', () => {
       const { response } = error;
       const { data, status } = response;
 
-      expect(status).toEqual(404);
-      expect(data).toEqual(invalidResponseNotFound);
+      expect(status).toEqual(400);
+      expect(data).toEqual(invalidResponseInvalid);
     }
   });
 });
