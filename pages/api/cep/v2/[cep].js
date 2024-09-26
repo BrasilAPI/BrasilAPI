@@ -1,16 +1,9 @@
-import cepPromise from 'cep-promise';
-
 import app from '@/app';
+import { fetchCep } from '@/services/cep/cep';
 import fetchGeocoordinateFromBrazilLocation from '../../../../lib/fetchGeocoordinateFromBrazilLocation';
-
-const providers = ['correios', 'viacep', 'widenet', 'correios-alt'];
 
 const CACHE_CONTROL_HEADER_VALUE =
   'max-age=0, s-maxage=86400, stale-while-revalidate, public';
-
-async function getCepFromCepPromise(requestedCep) {
-  return cepPromise(requestedCep, { providers });
-}
 
 async function Cep(request, response) {
   const requestedCep = request.query.cep;
@@ -18,10 +11,18 @@ async function Cep(request, response) {
   response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
 
   try {
-    const cepFromCepPromise = await getCepFromCepPromise(requestedCep);
+    const cepFromCepPromise = await fetchCep(requestedCep);
     const location = await fetchGeocoordinateFromBrazilLocation(
       cepFromCepPromise
     );
+
+    if (!cepFromCepPromise.street) {
+      cepFromCepPromise.street = null;
+    }
+
+    if (!cepFromCepPromise.neighborhood) {
+      cepFromCepPromise.neighborhood = null;
+    }
 
     response.status(200);
     response.json({ ...cepFromCepPromise, location });
@@ -40,6 +41,8 @@ async function Cep(request, response) {
 
       response.json(error);
       return;
+    } else if (error.type === 'bad_request') {
+      throw error;
     }
 
     response.status(500);

@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { testCorsForRoute } = require('./helpers/cors');
 
 const requestUrl = `${global.SERVER_URL}/api/taxas/v1`;
 
@@ -55,3 +56,6 @@ describe('api/taxas/v1 (E2E)', () => {
     }
   });
 });
+
+testCorsForRoute('/api/taxas/v1');
+testCorsForRoute('/api/taxas/v1/cdi');

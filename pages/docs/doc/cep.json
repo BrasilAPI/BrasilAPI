@@ -6,16 +6,17 @@
         },
         {
             "name": "CEP V2",
-            "description": "A geolocalização dos CEPs estão suscetíveis a erros, pois as coordenadas são provindas do OpenStreetMap. Caso encontre algum erro você poderá corrigir no próprio OpenStreetMap que será refletido no CEP V2."
+            "description": "A geolocalização dos CEPs estão <b>suscetíveis a erros</b>, pois as coordenadas são provindas do OpenStreetMap. Caso encontre algum erro você poderá corrigir no próprio OpenStreetMap que será refletido no CEP V2."
         }
     ],
-
     "paths": {
         "/cep/v1/{cep}": {
             "get": {
-                "tags": ["CEP"],
+                "tags": [
+                    "CEP"
+                ],
                 "summary": "Busca por CEP com múltiplos providers de fallback.",
-                "description": "",
+                "description": "A busca utiliza como fonte principal o OpenCep, caso não encontre o CEP é buscado em diversos outros providers de CEP.",
                 "parameters": [
                     {
                         "name": "cep",
@@ -54,7 +55,9 @@
         },
         "/cep/v2/{cep}": {
             "get": {
-                "tags": ["CEP V2"],
+                "tags": [
+                    "CEP V2"
+                ],
                 "summary": "Versão 2 do serviço de busca por CEP com múltiplos providers de fallback.",
                 "description": "",
                 "parameters": [
@@ -98,14 +101,19 @@
         "schemas": {
             "Coordinates": {
                 "title": "Coordinates",
-                "required": ["longitude", "latitude"],
+                "required": [
+                    "longitude",
+                    "latitude"
+                ],
                 "type": "object",
                 "properties": {
                     "longitude": {
-                        "type": "string"
+                        "type": "string",
+                        "format": "nullable"
                     },
                     "latitude": {
-                        "type": "string"
+                        "type": "string",
+                        "format": "nullable"
                     }
                 },
                 "example": {
@@ -115,16 +123,21 @@
             },
             "Location": {
                 "title": "Location",
-                "required": ["type", "coordinates"],
+                "required": [
+                    "type",
+                    "coordinates"
+                ],
                 "type": "object",
                 "properties": {
                     "type": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": [
+                            "Point"
+                        ]
                     },
                     "coordinates": {
-                        "schema": {
-                            "$ref": "#/components/schemas/Coordinates"
-                        }
+                        "type": "object",
+                        "$ref": "#/components/schemas/Coordinates"
                     }
                 },
                 "example": {
@@ -158,18 +171,19 @@
                         "type": "string"
                     },
                     "neighborhood": {
-                        "type": "string"
+                        "type": "string",
+                        "nullable": true
                     },
                     "street": {
-                        "type": "string"
+                        "type": "string",
+                        "nullable": true
                     },
                     "service": {
                         "type": "string"
                     },
                     "location": {
-                        "schema": {
-                            "$ref": "#/components/schemas/Location"
-                        }
+                        "type": "object",
+                        "$ref": "#/components/schemas/Location"
                     }
                 },
                 "example": {
@@ -190,7 +204,14 @@
             },
             "Address": {
                 "title": "Address",
-                "required": ["cep", "state", "city", "neighborhood", "street", "service"],
+                "required": [
+                    "cep",
+                    "state",
+                    "city",
+                    "neighborhood",
+                    "street",
+                    "service"
+                ],
                 "type": "object",
                 "properties": {
                     "cep": {
@@ -223,7 +244,12 @@
             },
             "CepError": {
                 "title": "CepError.",
-                "required": ["name", "message", "type", "errors"],
+                "required": [
+                    "name",
+                    "message",
+                    "type",
+                    "errors"
+                ],
                 "type": "object",
                 "properties": {
                     "name": {
@@ -263,7 +289,11 @@
             },
             "Error": {
                 "title": "Error",
-                "required": ["name", "message", "service"],
+                "required": [
+                    "name",
+                    "message",
+                    "service"
+                ],
                 "type": "object",
                 "properties": {
                     "name": {

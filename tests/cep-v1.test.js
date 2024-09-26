@@ -1,6 +1,14 @@
 const axios = require('axios');
+const { testCorsForRoute } = require('./helpers/cors');
 
 describe('/cep/v1 (E2E)', () => {
+  test('Verifica CORS', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/cep/v1/05010000`;
+    const response = await axios.get(requestUrl);
+
+    expect(response.headers['access-control-allow-origin']).toBe('*');
+  });
+
   test('Utilizando um CEP válido: 05010000', async () => {
     const requestUrl = `${global.SERVER_URL}/api/cep/v1/05010000`;
     const response = await axios.get(requestUrl);
@@ -12,6 +20,20 @@ describe('/cep/v1 (E2E)', () => {
       neighborhood: 'Perdizes',
       street: 'Rua Caiubi',
       service: expect.any(String),
+    });
+  });
+
+  test('Verifica fonte da informação: 05010000', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/cep/v1/05010000`;
+    const response = await axios.get(requestUrl);
+
+    expect(response.data).toEqual({
+      cep: '05010000',
+      state: 'SP',
+      city: 'São Paulo',
+      neighborhood: 'Perdizes',
+      street: 'Rua Caiubi',
+      service: 'open-cep',
     });
   });
 
@@ -57,3 +79,5 @@ describe('/cep/v1 (E2E)', () => {
     }
   });
 });
+
+testCorsForRoute('/api/cep/v1/05010000');
