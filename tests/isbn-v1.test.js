@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { testCorsForRoute } = require('./helpers/cors');
 
 const requestUrl = `${global.SERVER_URL}/api/isbn/v1`;
 
@@ -223,3 +224,5 @@ describe('api/isbn/v1 (E2E)', () => {
     );
   });
 });
+
+testCorsForRoute('/api/isbn/v1/9788545702870');
