@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { testCorsForRoute } = require('./helpers/cors');
 
 const validTestArray = expect.arrayContaining([
   expect.objectContaining({
@@ -69,3 +70,5 @@ describe.skip('/ibge/municipios/v1 (E2E)', () => {
     }
   });
 });
+
+testCorsForRoute('/api/ibge/municipios/v1/SC');
