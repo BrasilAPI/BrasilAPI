@@ -4,7 +4,7 @@ import { getParties } from '@/services/partidos/get';
 
 const action = async (request, response) => {
   try {
-    const allBanksData = await getParties();
+    const allParties = await getParties();
 
     if (!allBanksData || allBanksData.length === 0) {
       console.error('Nenhum dado encontrado');
