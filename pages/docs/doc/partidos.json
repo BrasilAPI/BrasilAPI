@@ -1,4 +1,10 @@
 {
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API de Partidos",
+    "version": "1.0.0",
+    "description": "API para acessar informações sobre partidos brasileiros."
+  },
   "tags": [
     {
       "name": "Partidos",
@@ -6,7 +12,7 @@
     }
   ],
   "paths": {
-    "/partidos": {
+    "/partidos/v1": {
       "get": {
         "tags": [
           "Partidos"
@@ -19,9 +25,30 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ALL_PARTIDOS"
+                  "type": "object",
+                  "properties": {
+                    "partidos": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ALL_PARTIDOS"
+                      }
+                    },
+                    "links": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "rel": {
+                            "type": "string",
+                            "description": "Relação da URL"
+                          },
+                          "href": {
+                            "type": "string",
+                            "description": "URL da próxima página"
+                          }
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -59,23 +86,30 @@
         }
       }
     },
-    "/partidos/{id}": {
+    "/partidos/v1/{id}": {
       "get": {
         "tags": [
           "Partidos"
         ],
         "summary": "Retorna os dados de um partido brasileiro",
         "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/DATA_PARTIDO"
-                  }
+                  "$ref": "#/components/schemas/DATA_PARTIDO"
                 }
               }
             }
@@ -127,7 +161,7 @@
         "properties": {
           "id": {
             "type": "number",
-            "description": "Identiicação do partido"
+            "description": "Identificação do partido"
           },
           "sigla": {
             "type": "string",
@@ -146,7 +180,7 @@
           "id": 36844,
           "sigla": "PT",
           "nome": "Partido dos Trabalhadores",
-          "uri": "https://brasilapi.com.br/api/partidos/36844"
+          "uri": "https://brasilapi.com.br/api/partidos/v1/36844"
         }
       },
       "DATA_PARTIDO": {
@@ -155,125 +189,143 @@
           "id",
           "sigla",
           "nome",
+          "status",
+          "numeroEleitoral",
+          "urlLogo",
           "uri"
         ],
         "type": "object",
         "properties": {
+          "id": {
+            "type": "number",
+            "description": "Identificação do partido"
+          },
+          "sigla": {
+            "type": "string",
+            "description": "Nome resumido do partido"
+          },
+          "nome": {
+            "type": "string",
+            "description": "Nome do partido"
+          },
           "status": {
-            "id": {
-              "type": "number",
-              "description": "Identiicação do partido"
-            },
-            "sigla": {
-              "type": "string",
-              "description": "Nome resumido do partido"
-            },
-            "nome": {
-              "type": "string",
-              "description": "Nome do partido"
-            },
-            "uri": {
-              "type": "string",
-              "description": "URI para acesso aos dados do partido"
-            },
-            "data": {
-              "type": "string",
-              "description": "URI para acesso aos dados do partido"
-            },
-            "idLegislatura": {
-              "type": "number",
-              "description": "URI para acesso aos dados do partido"
-            },
-            "situacao": {
-              "type": "string",
-              "description": "URI para acesso aos dados do partido"
-            },
-            "totalPosse": {
-              "type": "number",
-              "description": "URI para acesso aos dados do partido"
-            },
-            "totalMembros": {
-              "type": "number",
-              "description": "URI para acesso aos dados do partido"
-            },
-            "uriMembros": {
-              "type": "string",
-              "description": "URI para acesso aos dados do partido"
-            },
-            "lider": {
-              "uri": {
+            "type": "object",
+            "properties": {
+              "data": {
                 "type": "string",
-                "description": "URI para acesso aos dados do partido"
-              },
-              "nome": {
-                "type": "string",
-                "description": "URI para acesso aos dados do partido"
-              },
-              "siglaPartido": {
-                "type": "string",
-                "description": "URI para acesso aos dados do partido"
-              },
-              "uriPartido": {
-                "type": "string",
-                "description": "URI para acesso aos dados do partido"
-              },
-              "uf": {
-                "type": "string",
-                "description": "URI para acesso aos dados do partido"
+                "description": "Data de atualização"
               },
               "idLegislatura": {
-                "type": "number",
-                "description": "URI para acesso aos dados do partido"
-              },
-              "urlFoto": {
                 "type": "string",
-                "description": "URI para acesso aos dados do partido"
+                "description": "Identificação da legislatura"
+              },
+              "situacao": {
+                "type": "string",
+                "description": "Situação atual do partido"
+              },
+              "totalPosse": {
+                "type": "string",
+                "description": "Total de membros que tomaram posse"
+              },
+              "totalMembros": {
+                "type": "string",
+                "description": "Total de membros do partido"
+              },
+              "uriMembros": {
+                "type": "string",
+                "description": "URI para acessar os membros do partido"
+              },
+              "lider": {
+                "type": "object",
+                "properties": {
+                  "uri": {
+                    "type": "string",
+                    "description": "URI do líder do partido"
+                  },
+                  "nome": {
+                    "type": "string",
+                    "description": "Nome do líder do partido"
+                  },
+                  "siglaPartido": {
+                    "type": "string",
+                    "description": "Sigla do partido do líder"
+                  },
+                  "uriPartido": {
+                    "type": "string",
+                    "description": "URI do partido do líder"
+                  },
+                  "uf": {
+                    "type": "string",
+                    "description": "Estado do líder"
+                  },
+                  "idLegislatura": {
+                    "type": "number",
+                    "description": "Identificação da legislatura do líder"
+                  },
+                  "urlFoto": {
+                    "type": "string",
+                    "description": "URL da foto do líder"
+                  }
+                }
               }
             }
           },
           "numeroEleitoral": {
-            "type": "string",
-            "description": "URI para acesso aos dados do partido"
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Número eleitoral do partido"
           },
           "urlLogo": {
             "type": "string",
-            "description": "URI para acesso aos dados do partido"
+            "description": "URL do logo do partido"
           },
           "urlWebSite": {
-            "type": "string",
-            "description": "URI para acesso aos dados do partido"
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "URL do website do partido"
           },
           "urlFacebook": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "URL do Facebook do partido"
+          },
+          "uri": {
             "type": "string",
             "description": "URI para acesso aos dados do partido"
           }
         },
         "example": {
-          "id": 37901,
-          "sigla": "NOVO",
-          "nome": "Partido Novo",
+          "id": 36834,
+          "sigla": "PSD",
+          "nome": "Partido Social Democrático",
           "status": {
-            "data": "2023-02-01T14:52",
-            "idLegislatura": 57,
+            "data": "2024-07-04T09:07",
+            "idLegislatura": "57",
             "situacao": "Ativo",
-            "totalPosse": 3,
-            "totalMembros": 4,
-            "uriMembros": "https://dadosabertos.camara.leg.br/api/v2/deputados?idLegislatura=57&siglaPartido=NOVO",
+            "totalPosse": "42",
+            "totalMembros": "45",
+            "uriMembros": "https://dadosabertos.camara.leg.br/api/v2/deputados?idLegislatura=57&siglaPartido=PSD",
             "lider": {
-              "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/204528",
-              "nome": "Adriana Ventura",
-              "siglaPartido": "NOVO",
-              "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/37901",
-              "uf": "SP",
+              "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/160553",
+              "nome": "Antonio Brito",
+              "siglaPartido": "PSD",
+              "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+              "uf": "BA",
               "idLegislatura": 57,
-              "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/204528.jpg"
+              "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/160553.jpg"
             }
           },
-          "numeroEleitoral": "",
-          "urlLogo": "https://www.camara.leg.br/internet/Deputado/img/partidos/NOVO.gif",
-          "urlWebSite": "",
-          "urlFacebook": "",
-          "uri": "https://brasilapi.com.br/api/partidos/37901"
+          "numeroEleitoral": null,
+          "urlLogo": "https://www.camara.leg.br/internet/Deputado/img/partidos/PSD.gif",
+          "urlWebSite": null,
+          "urlFacebook": null,
+          "uri": "https://brasilapi.com.br/api/partidos/v1/36834"
         }
       }
     }

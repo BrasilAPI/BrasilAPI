@@ -1,88 +1,73 @@
-/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-console */
 import axios from 'axios';
-import { XMLParser } from 'fast-xml-parser';
 
-const URL = 'https://dadosabertos.camara.leg.br/api/v2/partidos';
+const BASE_URL = 'https://dadosabertos.camara.leg.br/api/v2/partidos';
+const BASE_URL_BRASILAPI = 'https://brasilapi.com.br/api/partidos/v1';
 
 function transformarURL(url) {
   const baseUrlCâmara = 'https://dadosabertos.camara.leg.br/api/v2/partidos/';
-  const baseUrlBrasilAPI = 'https://brasilapi.com.br/api/partidos/';
 
   if (url.startsWith(baseUrlCâmara)) {
     const partidoId = url.replace(baseUrlCâmara, '');
-    return baseUrlBrasilAPI + partidoId;
-  } else {
-    return 'URL não corresponde ao formato esperado.';
+    return `${BASE_URL_BRASILAPI}/${partidoId}`;
   }
+
+  const urlObj = new URL(url);
+  if (urlObj.pathname === '/api/v2/partidos') {
+    const searchParams = urlObj.search;
+    return `${BASE_URL_BRASILAPI}${searchParams}`;
+  }
+
+  return url;
 }
 
-export const getParties = async () => {
-  try {
-    const { data } = await axios.get(URL, {
-      headers: {
-        Accept: 'application/xml',
-      },
-    });
+export const getParties = async (page = 1, itemsPerPage = 15) => {
+  const url = `${BASE_URL}?ordem=ASC&ordenarPor=sigla&pagina=${page}&itens=${itemsPerPage}`;
 
-    const parser = new XMLParser();
-    const jsonData = parser.parse(data);
+  const { data } = await axios.get(url, {
+    headers: {
+      Accept: 'application/json',
+    },
+  });
 
-    if (
-      !jsonData ||
-      !jsonData.xml ||
-      !jsonData.xml.dados ||
-      !jsonData.xml.dados.partido_ ||
-      !Array.isArray(jsonData.xml.dados.partido_)
-    ) {
-      console.error(
-        'Estrutura inesperada de dados ou dados ausentes:',
-        jsonData
-      );
-      return [];
-    }
-
-    const partidos = jsonData.xml.dados.partido_.map((partido) => ({
-      id: partido.id,
-      sigla: partido.sigla,
-      nome: partido.nome,
-      uri: transformarURL(partido.uri),
-    }));
-
-    return partidos;
-  } catch (error) {
-    console.error('Erro ao buscar dados da API:', error);
-    return [];
+  if (!data || !data.dados || !Array.isArray(data.dados)) {
+    console.error('Estrutura inesperada de dados ou dados ausentes:', data);
+    return { partidos: [], links: {} };
   }
+
+  const partidos = data.dados.map((partido) => ({
+    ...partido,
+    uri: transformarURL(partido.uri),
+  }));
+
+  const links = data.links.map((link) => {
+    return {
+      ...link,
+      href: transformarURL(link.href),
+    };
+  });
+
+  return { partidos, links };
 };
 
 export const getParty = async (id) => {
-  try {
-    const { data } = await axios.get(`${URL}/${id}`, {
-      headers: {
-        Accept: 'application/xml',
-      },
-    });
-    const parser = new XMLParser();
-    const jsonData = parser.parse(data);
-    if (!jsonData || !jsonData.xml || !jsonData.xml.dados) {
-      console.error(
-        'Estrutura inesperada de dados ou dados ausentes:',
-        jsonData
-      );
-      return null;
-    }
+  const { data } = await axios.get(`${BASE_URL}/${id}`, {
+    headers: {
+      Accept: 'application/json',
+    },
+  });
 
-    const { uri, ...partido } = jsonData.xml.dados;
-
-    const partidoData = {
-      ...partido,
-      uri: transformarURL(uri),
-    };
-
-    return partidoData;
-  } catch (error) {
-    console.error('Erro ao buscar partido da API:', error);
+  if (!data || !data.dados) {
+    console.error('Estrutura inesperada de dados ou dados ausentes:', data);
     return null;
   }
+
+  const { uri, ...partido } = data.dados;
+
+  const partidoData = {
+    ...partido,
+    uri: transformarURL(uri),
+  };
+
+  return partidoData;
 };
