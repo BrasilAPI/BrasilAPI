@@ -6,10 +6,6 @@ const action = async (request, response) => {
   try {
     const allParties = await getParties();
 
-    if (!allBanksData || allBanksData.length === 0) {
-      console.error('Nenhum dado encontrado');
-      response.status(404).json({ message: 'Nenhum dado encontrado' });
-    }
 
     response.status(200);
     response.json(allBanksData);
