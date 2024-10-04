@@ -6,7 +6,7 @@ module.exports = {
       /* eslint-enable no-param-reassign */
     }
 
-    /* 
+    /*
     This rule fix error during building
     with yaml/browser used by fast-xml-parser
     */

@@ -1,0 +1,333 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API de Partidos",
+    "version": "1.0.0",
+    "description": "API para acessar informações sobre partidos brasileiros."
+  },
+  "tags": [
+    {
+      "name": "Partidos",
+      "description": "Informações referentes aos Partidos"
+    }
+  ],
+  "paths": {
+    "/partidos/v1": {
+      "get": {
+        "tags": [
+          "Partidos"
+        ],
+        "summary": "Retorna a listagem de todos os partidos brasileiros",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "partidos": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ALL_PARTIDOS"
+                      }
+                    },
+                    "links": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "rel": {
+                            "type": "string",
+                            "description": "Relação da URL"
+                          },
+                          "href": {
+                            "type": "string",
+                            "description": "URL da próxima página"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Mensagem de erro"
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "Tipo do erro"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Nome do erro"
+                    }
+                  },
+                  "example": {
+                    "message": "Erro ao obter as informações do BCB",
+                    "type": "internal",
+                    "name": "PIX_LIST_ERROR"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/partidos/v1/{id}": {
+      "get": {
+        "tags": [
+          "Partidos"
+        ],
+        "summary": "Retorna os dados de um partido brasileiro",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DATA_PARTIDO"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Mensagem de erro"
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "Tipo do erro"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Nome do erro"
+                    }
+                  },
+                  "example": {
+                    "message": "Erro ao obter as informações do BCB",
+                    "type": "internal",
+                    "name": "PIX_LIST_ERROR"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ALL_PARTIDOS": {
+        "title": "Listagem dos Partidos",
+        "required": [
+          "id",
+          "sigla",
+          "nome",
+          "uri"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "Identificação do partido"
+          },
+          "sigla": {
+            "type": "string",
+            "description": "Nome resumido do partido"
+          },
+          "nome": {
+            "type": "string",
+            "description": "Nome do partido"
+          },
+          "uri": {
+            "type": "string",
+            "description": "URI para acesso aos dados do partido"
+          }
+        },
+        "example": {
+          "id": 36844,
+          "sigla": "PT",
+          "nome": "Partido dos Trabalhadores",
+          "uri": "https://brasilapi.com.br/api/partidos/v1/36844"
+        }
+      },
+      "DATA_PARTIDO": {
+        "title": "Dados de Partido",
+        "required": [
+          "id",
+          "sigla",
+          "nome",
+          "status",
+          "numeroEleitoral",
+          "urlLogo",
+          "uri"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "Identificação do partido"
+          },
+          "sigla": {
+            "type": "string",
+            "description": "Nome resumido do partido"
+          },
+          "nome": {
+            "type": "string",
+            "description": "Nome do partido"
+          },
+          "status": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "string",
+                "description": "Data de atualização"
+              },
+              "idLegislatura": {
+                "type": "string",
+                "description": "Identificação da legislatura"
+              },
+              "situacao": {
+                "type": "string",
+                "description": "Situação atual do partido"
+              },
+              "totalPosse": {
+                "type": "string",
+                "description": "Total de membros que tomaram posse"
+              },
+              "totalMembros": {
+                "type": "string",
+                "description": "Total de membros do partido"
+              },
+              "uriMembros": {
+                "type": "string",
+                "description": "URI para acessar os membros do partido"
+              },
+              "lider": {
+                "type": "object",
+                "properties": {
+                  "uri": {
+                    "type": "string",
+                    "description": "URI do líder do partido"
+                  },
+                  "nome": {
+                    "type": "string",
+                    "description": "Nome do líder do partido"
+                  },
+                  "siglaPartido": {
+                    "type": "string",
+                    "description": "Sigla do partido do líder"
+                  },
+                  "uriPartido": {
+                    "type": "string",
+                    "description": "URI do partido do líder"
+                  },
+                  "uf": {
+                    "type": "string",
+                    "description": "Estado do líder"
+                  },
+                  "idLegislatura": {
+                    "type": "number",
+                    "description": "Identificação da legislatura do líder"
+                  },
+                  "urlFoto": {
+                    "type": "string",
+                    "description": "URL da foto do líder"
+                  }
+                }
+              }
+            }
+          },
+          "numeroEleitoral": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Número eleitoral do partido"
+          },
+          "urlLogo": {
+            "type": "string",
+            "description": "URL do logo do partido"
+          },
+          "urlWebSite": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "URL do website do partido"
+          },
+          "urlFacebook": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "URL do Facebook do partido"
+          },
+          "uri": {
+            "type": "string",
+            "description": "URI para acesso aos dados do partido"
+          }
+        },
+        "example": {
+          "id": 36834,
+          "sigla": "PSD",
+          "nome": "Partido Social Democrático",
+          "status": {
+            "data": "2024-07-04T09:07",
+            "idLegislatura": "57",
+            "situacao": "Ativo",
+            "totalPosse": "42",
+            "totalMembros": "45",
+            "uriMembros": "https://dadosabertos.camara.leg.br/api/v2/deputados?idLegislatura=57&siglaPartido=PSD",
+            "lider": {
+              "uri": "https://dadosabertos.camara.leg.br/api/v2/deputados/160553",
+              "nome": "Antonio Brito",
+              "siglaPartido": "PSD",
+              "uriPartido": "https://dadosabertos.camara.leg.br/api/v2/partidos/36834",
+              "uf": "BA",
+              "idLegislatura": 57,
+              "urlFoto": "https://www.camara.leg.br/internet/deputado/bandep/160553.jpg"
+            }
+          },
+          "numeroEleitoral": null,
+          "urlLogo": "https://www.camara.leg.br/internet/Deputado/img/partidos/PSD.gif",
+          "urlWebSite": null,
+          "urlFacebook": null,
+          "uri": "https://brasilapi.com.br/api/partidos/v1/36834"
+        }
+      }
+    }
+  }
+}
