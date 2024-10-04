@@ -80,7 +80,9 @@
                     },
                     "cities": {
                         "type": "array",
-                        "items": "string"
+                        "items": {
+                            "type": "string"
+                        }
                     },
                     "nome": {
                         "type": "string"
