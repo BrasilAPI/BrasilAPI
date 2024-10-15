@@ -88,7 +88,7 @@ describe('/feriados/v1 (E2E)', () => {
     );
   });
 
-  test('Feriado da consciência negra não deve existir em ano anterior a 2024', async () => {
+  test('Feriado da Consciência Negra não deve existir em ano anterior a 2024', async () => {
     expect.assertions(2);
 
     const requestUrl = `${global.SERVER_URL}/api/feriados/v1/2023`;
@@ -97,12 +97,12 @@ describe('/feriados/v1 (E2E)', () => {
     expect(data).toHaveLength(12);
     expect(data).toEqual(
       expect.not.arrayContaining(
-        getHolidays(2024, ['Dia da consciência negra'])
+        getHolidays(2024, ['Dia da Consciência Negra'])
       )
     );
   });
 
-  test('Feriado da consciência negra deve existir a partir de 2024', async () => {
+  test('Feriado da Consciência Negra deve existir a partir de 2024', async () => {
     expect.assertions(2);
 
     const requestUrl = `${global.SERVER_URL}/api/feriados/v1/2024`;
@@ -110,7 +110,7 @@ describe('/feriados/v1 (E2E)', () => {
 
     expect(data).toHaveLength(13);
     expect(data).toEqual(
-      expect.arrayContaining(getHolidays(2024, ['Dia da consciência negra']))
+      expect.arrayContaining(getHolidays(2024, ['Dia da Consciência Negra']))
     );
   });
 });
