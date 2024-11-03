@@ -30,6 +30,12 @@ const validTestVehicleArray = expect.arrayContaining([
   }),
 ]);
 
+const validTestVehiclesArray = expect.arrayContaining([
+  expect.objectContaining({
+    modelo: expect.any(String),
+  }),
+]);
+
 describe('/fipe/tabelas/v1 (E2E)', () => {
   test('Listando as tabelas de referências', async () => {
     const requestUrl = `${global.SERVER_URL}/api/fipe/tabelas/v1`;
@@ -78,6 +84,16 @@ describe('/fipe/preco/v1 (E2E)', () => {
   });
 });
 
+describe('/fipe/veiculos/v1 (E2E)', () => {
+  test('Listando os modelos de veiculos com tipo de veiculo e marca', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/fipe/veiculos/v1/carros?codigoMarca=21`;
+    const response = await axios.get(requestUrl);
+    expect(response.status).toBe(200);
+    expect(response.data).toEqual(validTestVehiclesArray);
+  });
+});
+
 testCorsForRoute('/api/fipe/tabelas/v1');
 testCorsForRoute('/api/fipe/marcas/v1');
 testCorsForRoute('/api/fipe/preco/v1/015088-6');
+testCorsForRoute('/api/fipe/veiculos/v1/carros?codigoMarca=21');
