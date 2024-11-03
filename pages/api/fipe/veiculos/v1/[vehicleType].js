@@ -6,7 +6,6 @@ import {
   listMotorcycleByMaker,
   listTruckByMaker,
 } from '@/services/fipe/vehiclesByMakers';
-import { getLatestReferenceTable } from '@/services/fipe/referenceTable';
 
 const VEHICLE_TYPES = {
   caminhoes: listTruckByMaker,
