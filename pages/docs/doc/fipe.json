@@ -157,6 +157,65 @@
                     }
                 }
             }
+        },
+        "/fipe/veiculos/v1/{tipoVeiculo}": {
+            "get": {
+                "tags": ["FIPE"],
+                "summary": "Lista os veículos de acordo com a marca e o tipo de veículo",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "tipoVeiculo",
+                        "description": "Os tipos suportados são `caminhoes`, `carros` e `motos`.\n",
+                        "in": "path",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "string"
+                        }
+                    },
+                    {
+                        "name": "codigoMarca",
+                        "description": "Código da marca do veiculo.\n",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/VeiculoMarcaFIPE"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Tipo de veículo inválido",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "message": "Tipo de veículo inválido",
+                                    "type": "bad_request",
+                                    "name": "BadRequestError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -253,6 +312,19 @@
                     "tipoVeiculo": 1,
                     "siglaCombustivel": "Á",
                     "dataConsulta": "segunda-feira, 7 de junho de 2021 23:05"
+                }
+            },
+            "VeiculoMarcaFIPE": {
+                "title": "Veiculos FIPE",
+                "required": ["modelo"],
+                "type": "object",
+                "properties": {
+                    "modelo": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "modelo": "Palio EX 1.0 mpi 2p"
                 }
             }
         }
