@@ -85,8 +85,17 @@ describe('/fipe/preco/v1 (E2E)', () => {
 });
 
 describe('/fipe/veiculos/v1 (E2E)', () => {
-  test('Listando os modelos de veiculos com tipo de veiculo e marca', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/fipe/veiculos/v1/carros?codigoMarca=21`;
+  test('Listando os modelos de veiculos com tipo de veiculo, marca e tabela de referência', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/fipe/veiculos/v1/carros/21?tabela_referencia=315`;
+    const response = await axios.get(requestUrl);
+    expect(response.status).toBe(200);
+    expect(response.data).toEqual(validTestVehiclesArray);
+  });
+});
+
+describe('/fipe/veiculos/v1 (E2E)', () => {
+  test('Listando os modelos de veiculos com tipo de veiculo e marca, sem tabela de referência', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/fipe/veiculos/v1/carros/21`;
     const response = await axios.get(requestUrl);
     expect(response.status).toBe(200);
     expect(response.data).toEqual(validTestVehiclesArray);
@@ -96,4 +105,4 @@ describe('/fipe/veiculos/v1 (E2E)', () => {
 testCorsForRoute('/api/fipe/tabelas/v1');
 testCorsForRoute('/api/fipe/marcas/v1');
 testCorsForRoute('/api/fipe/preco/v1/015088-6');
-testCorsForRoute('/api/fipe/veiculos/v1/carros?codigoMarca=21');
+testCorsForRoute('/api/fipe/veiculos/v1/carros/21');
