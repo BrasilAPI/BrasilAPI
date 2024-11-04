@@ -19,25 +19,29 @@ const VEHICLE_TYPES = {
 
 async function FipeVehicles(request, response) {
   const { vehicleType, makerCode } = request.query;
-  const referenceTableCode = request.query.tabela_referencia ? request.query.tabela_referencia : await getLatestReferenceTable();
+  const referenceTableCode = request.query.tabela_referencia
+    ? request.query.tabela_referencia
+    : await getLatestReferenceTable();
 
-  const referenceTable = referenceTableCode ? parseInt(referenceTableCode, 10) : undefined;
+  const referenceTable = referenceTableCode
+    ? parseInt(referenceTableCode, 10)
+    : undefined;
 
-  if(referenceTableCode){
+  if (referenceTableCode) {
     const referenceTables = await listReferenceTables();
 
     const hasReferenceTable = !!referenceTables.find(
       (table) => table.codigo === referenceTable
     );
 
-    if(!hasReferenceTable){
+    if (!hasReferenceTable) {
       throw new BadRequestError({ message: 'Tabela de referência inválida' });
     }
-  }else{
+  } else {
     throw new BadRequestError({ message: 'Tabela de referência inválida' });
   }
 
-  if(!Object.keys(VEHICLE_TYPES).includes(vehicleType))
+  if (!Object.keys(VEHICLE_TYPES).includes(vehicleType))
     throw new BadRequestError({ message: 'Tipo de veículo inválido' });
 
   const listVehicles = VEHICLE_TYPES[vehicleType];
