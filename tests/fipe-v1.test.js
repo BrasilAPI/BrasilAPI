@@ -91,9 +91,7 @@ describe('/fipe/veiculos/v1 (E2E)', () => {
     expect(response.status).toBe(200);
     expect(response.data).toEqual(validTestVehiclesArray);
   });
-});
 
-describe('/fipe/veiculos/v1 (E2E)', () => {
   test('Listando os modelos de veiculos com tipo de veiculo e marca, sem tabela de referência', async () => {
     const requestUrl = `${global.SERVER_URL}/api/fipe/veiculos/v1/carros/21`;
     const response = await axios.get(requestUrl);
