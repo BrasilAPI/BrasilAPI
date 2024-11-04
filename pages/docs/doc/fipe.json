@@ -158,7 +158,7 @@
                 }
             }
         },
-        "/fipe/veiculos/v1/{tipoVeiculo}": {
+        "/fipe/veiculos/v1/{tipoVeiculo}/{codigoMarca}": {
             "get": {
                 "tags": ["FIPE"],
                 "summary": "Lista os veículos de acordo com a marca e o tipo de veículo",
@@ -168,7 +168,7 @@
                         "name": "tipoVeiculo",
                         "description": "Os tipos suportados são `caminhoes`, `carros` e `motos`.\n",
                         "in": "path",
-                        "required": false,
+                        "required": true,
                         "schema": {
                             "type": "string",
                             "format": "string"
@@ -176,7 +176,17 @@
                     },
                     {
                         "name": "codigoMarca",
-                        "description": "Código da marca do veiculo.\n",
+                        "description": "Código da marca do veiculo. Para consultar as marcas acesse a rota `/fipe/marcas/v1/`",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "tabela_referencia",
+                        "description": "Código da tabela fipe de referência. Por padrão é utilizado o código da tabela fipe atual.\n",
                         "in": "query",
                         "required": false,
                         "schema": {
@@ -200,14 +210,14 @@
                         }
                     },
                     "400": {
-                        "description": "Tipo de veículo inválido",
+                        "description": "Requisição inválida",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/ErrorMessage"
                                 },
                                 "example": {
-                                    "message": "Tipo de veículo inválido",
+                                    "message": "Requisição inválida",
                                     "type": "bad_request",
                                     "name": "BadRequestError"
                                 }

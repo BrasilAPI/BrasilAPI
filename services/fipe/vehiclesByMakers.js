@@ -1,9 +1,8 @@
 import axios from 'axios';
 
 import { FIPE_URL, VEHICLE_TYPE } from './constants';
-import { getLatestReferenceTable } from './referenceTable';
 
-async function listByMaker({ vehicleType, referenceTable, makerCode }) {
+async function listByMaker({ vehicleType, referenceTable, makerCode }){
   const params = new URLSearchParams();
   params.append('codigoTabelaReferencia', referenceTable);
   params.append('codigoTipoVeiculo', vehicleType);
@@ -22,9 +21,7 @@ async function listByMaker({ vehicleType, referenceTable, makerCode }) {
   return data.Modelos.map((item) => ({ modelo: item.Label }));
 }
 
-export async function listCarByMaker(makerCode) {
-  const referenceTableCode = await getLatestReferenceTable();
-
+export async function listCarByMaker(makerCode, referenceTableCode){
   return listByMaker({
     vehicleType: VEHICLE_TYPE.CAR,
     referenceTable: referenceTableCode,
@@ -32,9 +29,7 @@ export async function listCarByMaker(makerCode) {
   });
 }
 
-export async function listMotorcycleByMaker(makerCode) {
-  const referenceTableCode = await getLatestReferenceTable();
-
+export async function listMotorcycleByMaker(makerCode, referenceTableCode){
   return listByMaker({
     vehicleType: VEHICLE_TYPE.MOTORCYCLE,
     referenceTable: referenceTableCode,
@@ -42,9 +37,7 @@ export async function listMotorcycleByMaker(makerCode) {
   });
 }
 
-export async function listTruckByMaker(makerCode) {
-  const referenceTableCode = await getLatestReferenceTable();
-
+export async function listTruckByMaker(makerCode, referenceTableCode){
   return listByMaker({
     vehicleType: VEHICLE_TYPE.TRUCK,
     referenceTable: referenceTableCode,
