@@ -1,0 +1,5 @@
+FROM node:14.15-alpine
+
+RUN apk add --no-cache git curl docker
+RUN npm -g install npm
+
