@@ -27,14 +27,14 @@ const easterHolidaysName = [
   'Corpus Christi',
 ];
 const fixedHolidaysName = [
-  'Confraternização mundial',
+  'Confraternização Mundial',
   'Tiradentes',
-  'Dia do trabalho',
+  'Dia do Trabalho',
   'Independência do Brasil',
   'Nossa Senhora Aparecida',
   'Finados',
   'Proclamação da República',
-  'Dia da consciência negra',
+  'Dia da Consciência Negra',
   'Natal',
 ];
 
@@ -66,7 +66,7 @@ const getFixedHolidays = (year, holidaysName = fixedHolidaysName) => {
   const holidays = [
     {
       date: `${year}-01-01`,
-      name: 'Confraternização mundial',
+      name: 'Confraternização Mundial',
       type: 'national',
     },
     {
@@ -76,7 +76,7 @@ const getFixedHolidays = (year, holidaysName = fixedHolidaysName) => {
     },
     {
       date: `${year}-05-01`,
-      name: 'Dia do trabalho',
+      name: 'Dia do Trabalho',
       type: 'national',
     },
     {
@@ -109,7 +109,7 @@ const getFixedHolidays = (year, holidaysName = fixedHolidaysName) => {
   if (year >= 2024) {
     holidays.splice(holidays.length - 1, 0, {
       date: `${year}-11-20`,
-      name: 'Dia da consciência negra',
+      name: 'Dia da Consciência Negra',
       type: 'national',
     });
   }
