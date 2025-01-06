@@ -105,7 +105,7 @@ export default function Index() {
             <h3>Nunca faça</h3>
             <ul>
               <li>
-                Requisições em loop, por exemplo ceps de 00000000 99999999
+                Requisições em loop, por exemplo ceps de 00000000 até 99999999
               </li>
             </ul>
           </div>
