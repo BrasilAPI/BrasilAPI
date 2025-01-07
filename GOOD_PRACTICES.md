@@ -27,7 +27,7 @@ Neste guia utilizaremos o termo **deve** para padrões que são indispensáveis 
 ## Formatos de retorno
 - O retorno do endpoint deve ser em formato **json** válido com charset **utf-8**.
 - As propriedades retornadas devem utilizar o padrão *snake_case*.
-- As propriedades retornadas que possuirem representação no idioma inglês deverão ser retornadasem inglês.
+- As propriedades retornadas que possuirem representação no idioma inglês deverão ser retornadas em inglês.
 - As propriedades retornadas que não tenham representação no idioma inglês, por exemplo, CPF, CNPJ ou qualquer termo específico do português do Brasil, devem ser retornadas com o termo correspondente, também no padrão *snake_case*.
 - Cada endpoint deve ter em seu retorno dados consistentes e normalizados conforme os padrões descritos abaixo:
 
