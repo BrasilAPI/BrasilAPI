@@ -39,7 +39,7 @@
                     {
                         "name": "code",
                         "in": "path",
-                        "description": "O código do estado<br />**Pode ser obtido <a href=\"#tag/BANKS/paths/~1banks~1v1/get\">nesse</a> endpoint**",
+                        "description": "O código do banco<br />**Pode ser obtido <a href=\"#tag/BANKS/paths/~1banks~1v1/get\">nesse</a> endpoint**",
                         "required": true,
                         "schema": {
                             "type": "integer"
