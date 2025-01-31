@@ -1,0 +1,196 @@
+{
+    "tags": [
+        {
+            "name": "CPF",
+            "description": "Informações sobre pessoas físicas a partir do <abbr title=\"Cadastro de Pessoas Físicas\">CPF</abbr>, um registro único mantido pela Receita Federal do Brasil."
+        }
+    ],
+    "paths": {
+        "/cpf/v1/{cpf}": {
+            "get": {
+                "tags": ["CPF"],
+                "summary": "Informações sobre a pessoa física a partir do CPF",
+                "description": "Retorna informações detalhadas sobre uma pessoa física, como nome, data de nascimento, sexo, nome da mãe, entre outros.",
+                "parameters": [
+                    {
+                        "name": "cpf",
+                        "description": "O CPF deve conter 11 dígitos, sem pontuação ou espaços.",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "05734716901"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CPFInfo"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "CPF inválido",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "name": "BadRequestError",
+                                    "message": "CPF inválido",
+                                    "type": "bad_request"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "CPF não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "name": "NotFoundError",
+                                    "message": "CPF não encontrado",
+                                    "type": "not_found"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro interno ao buscar CPF",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "name": "InternalError",
+                                    "message": "Erro interno ao buscar CPF",
+                                    "type": "internal"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CPFInfo": {
+                "title": "CPF Info",
+                "required": ["cpf", "nome", "nascimento"],
+                "type": "object",
+                "properties": {
+                    "cpf": {
+                        "type": "string",
+                        "description": "Número do CPF"
+                    },
+                    "nome": {
+                        "type": "string",
+                        "description": "Nome completo da pessoa física"
+                    },
+                    "sexo": {
+                        "type": "string",
+                        "enum": ["Masculino", "Feminino", "Indefinido"],
+                        "description": "Sexo da pessoa física"
+                    },
+                    "nascimento": {
+                        "type": "string",
+                        "format": "date",
+                        "description": "Data de nascimento no formato dd/MM/yyyy"
+                    },
+                    "nome_mae": {
+                        "type": "string",
+                        "description": "Nome da mãe da pessoa física"
+                    },
+                    "nome_pai": {
+                        "type": "string",
+                        "description": "Nome do pai da pessoa física"
+                    },
+                    "rg": {
+                        "type": "string",
+                        "description": "Número do Registro Geral (RG)"
+                    },
+                    "situacao_cadastral": {
+                        "type": "integer",
+                        "description": "Código da situação cadastral"
+                    },
+                    "data_situacao_cadastral": {
+                        "type": "string",
+                        "format": "date",
+                        "description": "Data da situação cadastral no formato dd/MM/yyyy"
+                    },
+                    "cbo": {
+                        "type": "string",
+                        "description": "Código Brasileiro de Ocupações (CBO) e descrição"
+                    },
+                    "titulo_eleitor": {
+                        "type": "string",
+                        "description": "Número do título de eleitor"
+                    },
+                    "uf_emissao": {
+                        "type": "string",
+                        "description": "Unidade Federativa (UF) de emissão do documento"
+                    },
+                    "renda": {
+                        "type": "string",
+                        "description": "Renda declarada"
+                    },
+                    "faixa_renda": {
+                        "type": "string",
+                        "description": "Faixa de renda"
+                    }
+                },
+                "example": {
+                    "cpf": "05734716901",
+                    "nome": "ELMANE DE ALMEIDA PEREIRA",
+                    "sexo": "Indefinido",
+                    "nascimento": "27/12/1980",
+                    "nome_mae": "MATILDE DE ALMEIDA",
+                    "nome_pai": "ELENIZIO ALVES PEREIRA",
+                    "rg": "67106310",
+                    "situacao_cadastral": 2,
+                    "data_situacao_cadastral": "30/08/2019",
+                    "cbo": "142415 - Gerente de almoxarifado",
+                    "titulo_eleitor": "77866190639",
+                    "uf_emissao": "RJ",
+                    "renda": "220,99",
+                    "faixa_renda": 1
+                }
+            },
+            "ErrorMessage": {
+                "title": "Error Message",
+                "required": ["name", "message", "type"],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "Nome do erro"
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "Mensagem de erro"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "Tipo de erro"
+                    }
+                },
+                "example": {
+                    "name": "NotFoundError",
+                    "message": "CPF não encontrado",
+                    "type": "not_found"
+                }
+            }
+        }
+    }
+}
