@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { testCorsForRoute } = require('./helpers/cors');
 
 const requestUrl = `${global.SERVER_URL}/api/pix/v1/participants`;
 
@@ -22,3 +23,5 @@ describe('api/pix/v1/participants (E2E)', () => {
     ]);
   });
 });
+
+testCorsForRoute('/api/pix/v1/participants');

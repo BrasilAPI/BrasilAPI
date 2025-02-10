@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { XMLParser } from 'fast-xml-parser';
+
+import normalizeBrazilianDate from '@/util/normalizeBrazilianDate';
 import { CPTEC_URL, WIND_SWELL_DIRECTIONS } from './constants';
-import normalizeBrazilianDate from '../util/normalizeBrazilianDate';
 
 const parser = new XMLParser();
 

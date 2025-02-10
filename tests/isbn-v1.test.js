@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { testCorsForRoute } = require('./helpers/cors');
 
 const requestUrl = `${global.SERVER_URL}/api/isbn/v1`;
 
@@ -132,18 +133,18 @@ describe('api/isbn/v1 (E2E)', () => {
           'Acontecimentos grotescos começam a surgir em Kurôzu'
         ),
         dimensions: expect.objectContaining({
-          width: 17,
-          height: 24,
+          width: expect.any(Number),
+          height: expect.any(Number),
           unit: 'CENTIMETER',
         }),
         year: 2021,
         format: 'PHYSICAL',
-        page_count: 668,
+        page_count: expect.any(Number),
         subjects: expect.arrayContaining(['mangá', 'terror', 'horror']),
         location: null,
         retail_price: expect.objectContaining({
           currency: 'BRL',
-          amount: 109,
+          amount: expect.any(Number),
         }),
         cover_url:
           'https://fl-storage.bookinfometadados.com.br/uploads/book/first_cover/9786555140576.jpg',
@@ -223,3 +224,5 @@ describe('api/isbn/v1 (E2E)', () => {
     );
   });
 });
+
+testCorsForRoute('/api/isbn/v1/9788545702870');

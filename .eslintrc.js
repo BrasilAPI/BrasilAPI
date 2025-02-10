@@ -5,7 +5,7 @@ module.exports = {
     node: true,
     jest: true,
   },
-  extends: ['airbnb', 'plugin:prettier/recommended'],
+  extends: ['airbnb', 'plugin:prettier/recommended', 'next/core-web-vitals'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -14,7 +14,7 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 2018,
+    ecmaVersion: 2020,
     sourceType: 'module',
   },
   plugins: ['react'],
@@ -23,14 +23,15 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
-    'import/prefer-default-export': 'off'
+    'import/prefer-default-export': 'off',
+    'no-else-return': 'off',
   },
   settings: {
     'import/resolver': {
       alias: {
         extensions: ['.js'],
-        map: [ ['@', '.'] ]
-      }
-    }
-  }
+        map: [['@', '.']],
+      },
+    },
+  },
 };

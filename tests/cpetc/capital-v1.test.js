@@ -1,6 +1,7 @@
 const axios = require('axios');
 
-describe('weather capital v1 (E2E)', () => {
+// O endpoint da CPTEC não está funcionando
+describe.skip('weather capital v1 (E2E)', () => {
   test('GET /api/cptec/v1/clima/capital', async () => {
     const requestUrl = `${global.SERVER_URL}/api/cptec/v1/clima/capital`;
     const response = await axios.get(requestUrl);

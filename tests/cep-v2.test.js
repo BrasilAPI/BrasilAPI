@@ -1,6 +1,14 @@
 const axios = require('axios');
+const { testCorsForRoute } = require('./helpers/cors');
 
 describe('/cep/v2 (E2E)', () => {
+  test('Verifica CORS', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/cep/v2/05010000`;
+    const response = await axios.get(requestUrl);
+
+    expect(response.headers['access-control-allow-origin']).toBe('*');
+  });
+
   test('Utilizando um CEP válido: 05010000', async () => {
     const requestUrl = `${global.SERVER_URL}/api/cep/v2/05010000`;
     const response = await axios.get(requestUrl);
@@ -12,6 +20,27 @@ describe('/cep/v2 (E2E)', () => {
       neighborhood: 'Perdizes',
       street: 'Rua Caiubi',
       service: expect.any(String),
+      location: {
+        type: 'Point',
+        coordinates: {
+          longitude: expect.any(String),
+          latitude: expect.any(String),
+        },
+      },
+    });
+  });
+
+  test('Verifica fonte da informação: 05010000', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/cep/v2/05010000`;
+    const response = await axios.get(requestUrl);
+
+    expect(response.data).toEqual({
+      cep: '05010000',
+      state: 'SP',
+      city: 'São Paulo',
+      neighborhood: 'Perdizes',
+      street: 'Rua Caiubi',
+      service: 'open-cep',
       location: {
         type: 'Point',
         coordinates: {
@@ -84,4 +113,27 @@ describe('/cep/v2 (E2E)', () => {
       },
     });
   });
+
+  test('Uma cidade com CEP único, exemplo: 87360000, deve retornar as coordenadas -24.1851885 e -53.0250623', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/cep/v2/87360000`;
+    const response = await axios.get(requestUrl);
+
+    expect(response.data).toEqual({
+      cep: '87360000',
+      state: 'PR',
+      city: 'Goioerê',
+      neighborhood: null,
+      street: null,
+      service: expect.any(String),
+      location: {
+        type: 'Point',
+        coordinates: {
+          longitude: '-53.0250623',
+          latitude: '-24.1851885',
+        },
+      },
+    });
+  });
 });
+
+testCorsForRoute('/api/cep/v2/14096180');
