@@ -24,7 +24,7 @@ async function Cpf(req, res) {
 
     const data = await response.json();
 
-    if (!data || data.error) {
+    if (!data || data.error || response.status === 404) {
       return res.status(404).json({ error: 'CPF não encontrado' });
     }
 
@@ -79,7 +79,7 @@ async function Cpf(req, res) {
 
     res.status(200).json(formattedData);
   } catch (error) {
-    res.status(500).json({ error: 'Erro interno ao buscar CPF' });
+    res.status(500).json({ error: 'Erro interno ao buscar CPF' }); // Log the error for debugging
   }
 }
 
