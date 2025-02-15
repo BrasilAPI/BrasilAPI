@@ -23,5 +23,5 @@ export const parseToDate = (value, format = '') => {
 export const isValidDate = (date) => dayjs(date).isValid();
 
 export const isWeekend = (date) => {
-  return dayjs(date).get('day') in WEEKEND;
+  return WEEKEND.includes(dayjs(date).get('day'));
 };
