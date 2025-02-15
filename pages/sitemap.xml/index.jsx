@@ -24,7 +24,7 @@ const getDocs = () => {
     'ISBN',
     'CPTEC',
     'PIX',
-    'CAMBIO'
+    'CAMBIO',
   ];
 };
 
