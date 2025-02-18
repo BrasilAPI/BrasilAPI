@@ -36,7 +36,7 @@
           "CAMBIO"
         ],
         "summary": "Busca pelo câmbio do Real com outra moeda, em uma data específica",
-        "description": "",
+        "description": "Consulta o câmbio da moeda desejada em relação ao Real, em uma data específica. **OBS: Para finais de semana e feriados, a data retornada será o último dia útil disponível.**",
         "parameters": [
           {
             "name": "moeda",
@@ -127,7 +127,9 @@
             "type": "string"
           },
           "data": {
-            "type": "string"
+            "type": "string",
+            "format": "date",
+            "description": "Data da cotação, no formato YYYY-MM-DD. **OBS: Para finais de semana e feriados, a data retornada será o último dia útil disponível.**"
           }
         },
         "example": {

@@ -5,12 +5,14 @@ import {
   formatDate,
   getNow,
   isValidDate,
-  isWeekend,
   parseToDate,
+  subBusinessDays,
 } from '@/services/date';
 import { getCurrency } from '@/services/cambio/moedas';
 import BaseError from '@/errors/BaseError';
 import InternalError from '@/errors/InternalError';
+
+const MAX_DATES = 7;
 
 const Action = async (request, response) => {
   const { data, moeda: coin } = request.query;
@@ -18,7 +20,7 @@ const Action = async (request, response) => {
   try {
     const today = getNow().toDate();
     const minDate = parseToDate('1984-11-28', 'YYYY-MM-DD');
-    const date = parseToDate(data, 'YYYY-MM-DD');
+    let date = parseToDate(data, 'YYYY-MM-DD');
 
     if (!isValidDate(date)) {
       throw new BadRequestError({
@@ -53,14 +55,6 @@ const Action = async (request, response) => {
       });
     }
 
-    if (isWeekend(date)) {
-      throw new BadRequestError({
-        message: 'Não existem cotações para os finais de semanas',
-        type: 'weekend_error',
-        name: 'NO_WEEKEND_PRICE',
-      });
-    }
-
     const coins = await getCurrency();
 
     if (!coins.has(coin)) {
@@ -73,12 +67,27 @@ const Action = async (request, response) => {
       });
     }
 
-    const output = await getCurrencyExchange(date, coin);
+    let output = [];
+    let count = 0;
+    const initialDate = date;
+    do {
+      date = subBusinessDays(initialDate, count);
+      output = await getCurrencyExchange(date, coin);
+      count += 1;
+    } while (output.length === 0 && count < MAX_DATES);
+
+    if (output.length === 0) {
+      throw new BadRequestError({
+        message: 'Não foi possível encontrar cotação para a data informada',
+        type: 'no_data_error',
+        name: 'NO_DATA_FOUND',
+      });
+    }
 
     return response.status(200).json({
       cotacoes: output,
       moeda: coin,
-      data,
+      data: formatDate(date, 'YYYY-MM-DD'),
     });
   } catch (error) {
     if (error instanceof BaseError) {

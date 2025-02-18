@@ -25,3 +25,18 @@ export const isValidDate = (date) => dayjs(date).isValid();
 export const isWeekend = (date) => {
   return WEEKEND.includes(dayjs(date).get('day'));
 };
+
+export const subBusinessDays = (date, days) => {
+  const newDate = dayjs(date);
+  let count = 0;
+
+  if (isWeekend(date)) {
+    if (newDate.get('day') === SATURDAY) {
+      count = 1;
+    } else {
+      count = 2;
+    }
+  }
+
+  return newDate.subtract(count + days, 'day').toDate();
+};

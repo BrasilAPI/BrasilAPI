@@ -99,21 +99,14 @@ describe('Cambio v1 (E2E)', () => {
       }
     });
 
-    test('Utilizando moeda válida e utilizando um dia não útil (fim de semana): USD e 2023-06-27', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cambio/v1/cotacao/USD/2023-06-27`;
+    test('Utilizando moeda válida e utilizando um dia não útil (fim de semana): USD e 2025-02-16', async () => {
+      const requestUrl = `${global.SERVER_URL}/api/cambio/v1/cotacao/USD/2025-02-16`;
 
-      try {
-        await axios.get(requestUrl);
-      } catch (error) {
-        const { response } = error;
-
-        expect(response.status).toBe(400);
-        expect(response.data).toMatchObject({
-          message: 'Não existem cotações para os finais de semanas',
-          type: 'weekend_error',
-          name: 'NO_WEEKEND_PRICE',
-        });
-      }
+      const response = await axios.get(requestUrl);
+      expect(response.status).toBe(200);
+      expect(response.data.data).toBe('2025-02-14');
+      expect(response.data.moeda).toBe('USD');
+      expect(Array.isArray(response.data.cotacoes)).toBe(true);
     });
 
     test('Tentando utilizar uma data futura ao dia da consulta: USD', async () => {
