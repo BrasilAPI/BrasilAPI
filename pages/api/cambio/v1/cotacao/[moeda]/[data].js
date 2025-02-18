@@ -14,6 +14,25 @@ import InternalError from '@/errors/InternalError';
 
 const MAX_DATES = 7;
 
+const getCurrencyExchangeByDate = async (initialDate, coin, count = 0) => {
+  let output = { values: [], date: initialDate };
+
+  if (count >= MAX_DATES) {
+    return output;
+  }
+
+  const date = subBusinessDays(initialDate, count);
+  const values = await getCurrencyExchange(date, coin);
+
+  if (values.length === 0) {
+    output = getCurrencyExchangeByDate(initialDate, count + 1);
+  } else {
+    output = { values, date };
+  }
+
+  return output;
+};
+
 const Action = async (request, response) => {
   const { data, moeda: coin } = request.query;
 
@@ -67,14 +86,9 @@ const Action = async (request, response) => {
       });
     }
 
-    let output = [];
-    let count = 0;
-    const initialDate = date;
-    do {
-      date = subBusinessDays(initialDate, count);
-      output = await getCurrencyExchange(date, coin);
-      count += 1;
-    } while (output.length === 0 && count < MAX_DATES);
+    const output = await getCurrencyExchangeByDate(date, coin);
+    const cotacoes = output.values;
+    date = output.date;
 
     if (output.length === 0) {
       throw new BadRequestError({
@@ -85,7 +99,7 @@ const Action = async (request, response) => {
     }
 
     return response.status(200).json({
-      cotacoes: output,
+      cotacoes,
       moeda: coin,
       data: formatDate(date, 'YYYY-MM-DD'),
     });
