@@ -1,0 +1,104 @@
+{
+    "tags": [
+        {
+            "name": "Solar Incidence",
+            "description": "Informações referentes à incidência solar"
+        }
+    ],
+    "paths": {
+        "/solar_incidence/v1/{location}": {
+            "get": {
+                "tags": ["Solar Incidence"],
+                "summary": "Busca por incidência solar para um local específico.",
+                "description": "Consulta a incidência solar para um estado, cidade, município ou CEP.",
+                "parameters": [
+                    {
+                        "name": "location",
+                        "description": "A localização para a qual a incidência solar será consultada. Pode ser um estado, cidade, município ou CEP.",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SolarIncidence"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Todos os serviços de incidência solar retornaram erro.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "SolarIncidence": {
+                "title": "Solar Incidence",
+                "required": ["sunrise", "sunset", "solar_noon", "day_length"],
+                "type": "object",
+                "properties": {
+                    "sunrise": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "sunset": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "solar_noon": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "day_length": {
+                        "type": "string"
+                    },
+                    "civil_twilight_begin": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "civil_twilight_end": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "example": {
+                    "sunrise": "2023-07-13T09:21:00+00:00",
+                    "sunset": "2023-07-13T20:18:00+00:00",
+                    "solar_noon": "2023-07-13T14:49:00+00:00",
+                    "day_length": "10:57:00",
+                    "civil_twilight_begin": "2023-07-13T08:58:00+00:00",
+                    "civil_twilight_end": "2023-07-13T20:41:00+00:00"
+                }
+            },
+            "ErrorMessage": {
+                "title": "Error Message",
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "message": "Could not fetch data"
+                }
+            }
+        }
+    }
+}
