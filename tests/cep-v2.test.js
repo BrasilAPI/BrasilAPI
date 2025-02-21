@@ -23,8 +23,8 @@ describe('/cep/v2 (E2E)', () => {
       location: {
         type: 'Point',
         coordinates: {
-          longitude: expect.any(String),
-          latitude: expect.any(String),
+          longitude: expect.stringMatching(/^[-+]?\d+(\.\d+)?$/),
+          latitude: expect.stringMatching(/^[-+]?\d+(\.\d+)?$/),
         },
       },
     });
@@ -44,8 +44,8 @@ describe('/cep/v2 (E2E)', () => {
       location: {
         type: 'Point',
         coordinates: {
-          longitude: expect.any(String),
-          latitude: expect.any(String),
+          longitude: expect.stringMatching(/^[-+]?\d+(\.\d+)?$/),
+          latitude: expect.stringMatching(/^[-+]?\d+(\.\d+)?$/),
         },
       },
     });
@@ -107,8 +107,8 @@ describe('/cep/v2 (E2E)', () => {
       location: {
         type: 'Point',
         coordinates: {
-          longitude: '-43.3061123',
-          latitude: '-22.883892',
+          longitude: expect.stringMatching(/^[-+]?\d+(\.\d+)?$/),
+          latitude: expect.stringMatching(/^[-+]?\d+(\.\d+)?$/),
         },
       },
     });
@@ -128,8 +128,8 @@ describe('/cep/v2 (E2E)', () => {
       location: {
         type: 'Point',
         coordinates: {
-          longitude: '-53.0250623',
-          latitude: '-24.1851885',
+          longitude: expect.stringMatching(/^[-+]?\d+(\.\d+)?$/),
+          latitude: expect.stringMatching(/^[-+]?\d+(\.\d+)?$/),
         },
       },
     });

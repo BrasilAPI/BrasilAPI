@@ -11,6 +11,12 @@ const formatDate = (date, format = 'DD/MM/YYYY') => dayjs(date).format(format);
 
 describe('Cambio v1 (E2E)', () => {
   describe('GET /cambio/v1/cotacao/:moeda/:data', () => {
+    test('Verifica CORS', async () => {
+      const requestUrl = `${global.SERVER_URL}/api/cambio/v1/cotacao/USD/2023-06-27`;
+      const response = await axios.get(requestUrl);
+
+      expect(response.headers['access-control-allow-origin']).toBe('*');
+    });
     test('Utilizando moeda e data válida: USD e 2023-06-27', async () => {
       const requestUrl = `${global.SERVER_URL}/api/cambio/v1/cotacao/USD/2023-06-27`;
       const response = await axios.get(requestUrl);
@@ -163,8 +169,15 @@ describe('Cambio v1 (E2E)', () => {
         });
       }
     });
+  });
+  describe('GET /cambio/v1/moedas', () => {
+    test('Verifica CORS', async () => {
+      const requestUrl = `${global.SERVER_URL}/api/cambio/v1/moedas`;
+      const response = await axios.get(requestUrl);
 
-    test('GET /cambio/v1/moedas', async () => {
+      expect(response.headers['access-control-allow-origin']).toBe('*');
+    });
+    test('Lista moedas', async () => {
       const requestUrl = `${global.SERVER_URL}/api/cambio/v1/moedas`;
       const response = await axios.get(requestUrl);
 

@@ -12,6 +12,7 @@ module.exports = {
     'pages/api/**/**/*.js',
     '!tests/**/**.test.js',
   ],
+  setupFilesAfterEnv: ['./testSetup.js'],
   globalSetup: './tests/helpers/server/setup',
   globalTeardown: './tests/helpers/server/teardown',
   testEnvironment: 'node',
