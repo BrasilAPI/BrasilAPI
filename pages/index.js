@@ -15,7 +15,7 @@ export default function Index() {
         <link rel="canonical" href="https://brasilapi.com.br/" />
         <meta
           name="keywords"
-          content="Brasil API, cep, ddd, bancos, cnpj, receita federal, ibge, feriados, tabela fipe, municípios, ncm, isbn, pix, cvm"
+          content="Brasil API, cep, ddd, bancos, cnpj, receita federal, ibge, feriados, tabela fipe, municípios, ncm, isbn, pix, cvm, cotação dólar, câmbio"
         />
         <meta
           name="description"
@@ -105,7 +105,7 @@ export default function Index() {
             <h3>Nunca faça</h3>
             <ul>
               <li>
-                Requisições em loop, por exemplo ceps de 00000000 99999999
+                Requisições em loop, por exemplo ceps de 00000000 até 99999999
               </li>
             </ul>
           </div>
