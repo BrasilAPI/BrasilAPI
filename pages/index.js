@@ -15,7 +15,7 @@ export default function Index() {
         <link rel="canonical" href="https://brasilapi.com.br/" />
         <meta
           name="keywords"
-          content="Brasil API, cep, ddd, bancos, cnpj, receita federal, ibge, feriados, tabela fipe, municípios, ncm, isbn, pix, cvm"
+          content="Brasil API, cep, ddd, bancos, cnpj, receita federal, ibge, feriados, tabela fipe, municípios, ncm, isbn, pix, cvm, cotação dólar, câmbio"
         />
         <meta
           name="description"

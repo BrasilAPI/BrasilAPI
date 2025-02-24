@@ -2,9 +2,10 @@ import BaseError from '@/errors/BaseError';
 import axios from 'axios';
 import { formatDate, getNow, parseToDate } from '../date';
 
-const API_URL = `https://www.bcb.gov.br/content/estabilidadefinanceira/spi/participantes-spi-`;
+const API_URL =
+  'https://www.bcb.gov.br/content/estabilidadefinanceira/spi/participantes-spi-';
 
-const buildDate = (now = getNow()) => formatDate(now, 'YYYYMMDD');
+const buildDate = (now = getNow()) => formatDate(now.toDate(), 'YYYYMMDD');
 
 const isEqual = (a, b) =>
   a.length === b.length && a.every((v, i) => v === b[i]);
