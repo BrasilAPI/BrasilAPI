@@ -1,4 +1,4 @@
-import nc from 'next-connect';
+import { createRouter } from 'next-connect';
 
 import cors from 'cors';
 import onError from './middlewares/errorHandler';
@@ -14,6 +14,7 @@ const corsDefaultConfiguration = {
 };
 
 const cacheDefaultConfiguration = 86400;
+const nc = createRouter();
 
 const onNoMatch = (request, response) => {
   return response.status(404).json({
@@ -35,12 +36,18 @@ export default (options = {}) => {
     cache: cacheOptions,
   };
 
-  return nc({
-    onError,
-    onNoMatch,
-  })
+  const baseRouter = nc
     .use(cors(configurations.cors))
     .use(firewall)
     .use(logger)
     .use(cache(configurations.cache));
+  const httpMethods = {
+    get: (handler) =>
+      baseRouter.get(handler).handler({
+        onError,
+        onNoMatch,
+      }),
+  };
+
+  return httpMethods;
 };
