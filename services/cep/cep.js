@@ -68,10 +68,10 @@ export async function fetchCep(cep) {
       providers,
     });
 
-  return fetchOpenCep(cleanCep)
-    .catch(() => fetchCepPromise().then(async (data) => {
-      await updateOpenCep(cleanCep).catch(() => { });
+  return fetchOpenCep(cleanCep).catch(() =>
+    fetchCepPromise().then(async (data) => {
+      await updateOpenCep(cleanCep).catch(() => {});
       return data;
     })
-    );
+  );
 }
