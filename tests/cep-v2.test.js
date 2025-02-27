@@ -107,6 +107,9 @@ describe('/cep/v2 (E2E)', () => {
       location: {
         type: 'Point',
         coordinates: {
+          longitude: '-43.3057737',
+          latitude: '-22.88376645',
+
           longitude: expect.stringMatching(/^[-+]?\d+(\.\d+)?$/),
           latitude: expect.stringMatching(/^[-+]?\d+(\.\d+)?$/),
         },
