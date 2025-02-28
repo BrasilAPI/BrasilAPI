@@ -92,6 +92,16 @@
                                 }
                             }
                         }
+                    },
+                    "504": {
+                        "description": "Todos os serviços de CEP retornaram erro.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CepError"
+                                }
+                            }
+                        }
                     }
                 }
             }
