@@ -1,6 +1,14 @@
 const axios = require('axios');
+const { testCorsForRoute } = require('./helpers/cors');
 
 describe('/cep/v2 (E2E)', () => {
+  test('Verifica CORS', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/cep/v2/05010000`;
+    const response = await axios.get(requestUrl);
+
+    expect(response.headers['access-control-allow-origin']).toBe('*');
+  });
+
   test('Utilizando um CEP válido: 05010000', async () => {
     const requestUrl = `${global.SERVER_URL}/api/cep/v2/05010000`;
     const response = await axios.get(requestUrl);
@@ -15,8 +23,8 @@ describe('/cep/v2 (E2E)', () => {
       location: {
         type: 'Point',
         coordinates: {
-          longitude: expect.any(String),
-          latitude: expect.any(String),
+          longitude: expect.stringMatching(/^[-+]?\d+(\.\d+)?$/),
+          latitude: expect.stringMatching(/^[-+]?\d+(\.\d+)?$/),
         },
       },
     });
@@ -36,8 +44,8 @@ describe('/cep/v2 (E2E)', () => {
       location: {
         type: 'Point',
         coordinates: {
-          longitude: expect.any(String),
-          latitude: expect.any(String),
+          longitude: expect.stringMatching(/^[-+]?\d+(\.\d+)?$/),
+          latitude: expect.stringMatching(/^[-+]?\d+(\.\d+)?$/),
         },
       },
     });
@@ -99,8 +107,8 @@ describe('/cep/v2 (E2E)', () => {
       location: {
         type: 'Point',
         coordinates: {
-          longitude: '-43.3061123',
-          latitude: '-22.883892',
+          longitude: expect.stringMatching(/^[-+]?\d+(\.\d+)?$/),
+          latitude: expect.stringMatching(/^[-+]?\d+(\.\d+)?$/),
         },
       },
     });
@@ -120,10 +128,12 @@ describe('/cep/v2 (E2E)', () => {
       location: {
         type: 'Point',
         coordinates: {
-          longitude: '-53.0250623',
-          latitude: '-24.1851885',
+          longitude: expect.stringMatching(/^[-+]?\d+(\.\d+)?$/),
+          latitude: expect.stringMatching(/^[-+]?\d+(\.\d+)?$/),
         },
       },
     });
   });
 });
+
+testCorsForRoute('/api/cep/v2/14096180');

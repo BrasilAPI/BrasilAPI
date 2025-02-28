@@ -1,6 +1,7 @@
 const axios = require('axios');
 
-const { validResponse, invalidResponse } = require('./helpers/ddd');
+const { validResponse, invalidResponseInvalid } = require('./helpers/ddd');
+const { testCorsForRoute } = require('./helpers/cors');
 
 const requestUrl = `${global.SERVER_URL}/api/ddd/v1`;
 
@@ -13,6 +14,38 @@ describe('api/ddd/v1 (E2E)', () => {
     expect(data).toEqual(validResponse);
   });
 
+  test('Utilizando um DDD válido: 011', async () => {
+    const response = await axios.get(`${requestUrl}/011`);
+    const { data, status } = response;
+
+    expect(status).toEqual(200);
+    expect(data).toEqual(validResponse);
+  });
+
+  test('Utilizando um DDD inválido: 111', async () => {
+    try {
+      await axios.get(`${requestUrl}/111`);
+    } catch (error) {
+      const { response } = error;
+      const { data, status } = response;
+
+      expect(status).toEqual(400);
+      expect(data).toEqual(invalidResponseInvalid);
+    }
+  });
+
+  test('Utilizando um DDD inválido: 1', async () => {
+    try {
+      await axios.get(`${requestUrl}/1`);
+    } catch (error) {
+      const { response } = error;
+      const { data, status } = response;
+
+      expect(status).toEqual(400);
+      expect(data).toEqual(invalidResponseInvalid);
+    }
+  });
+
   test('Utilizando um DDD inexistente: 01', async () => {
     try {
       await axios.get(`${requestUrl}/01`);
@@ -20,8 +53,10 @@ describe('api/ddd/v1 (E2E)', () => {
       const { response } = error;
       const { data, status } = response;
 
-      expect(status).toEqual(404);
-      expect(data).toEqual(invalidResponse);
+      expect(status).toEqual(400);
+      expect(data).toEqual(invalidResponseInvalid);
     }
   });
 });
+
+testCorsForRoute('/api/ddd/v1/11');

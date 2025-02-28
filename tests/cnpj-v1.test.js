@@ -1,8 +1,15 @@
 const axios = require('axios');
+const { testCorsForRoute } = require('./helpers/cors');
 
 const requestUrl = `${global.SERVER_URL}/api/cnpj/v1`;
 
 describe('api/cnpj/v1 (E2E)', () => {
+  test('Verifica CORS', async () => {
+    const response = await axios.get(`${requestUrl}/19131243000197`);
+
+    expect(response.headers['access-control-allow-origin']).toBe('*');
+  });
+
   test('Utilizando um CNPJ válido existente: 19131243000197', async () => {
     const response = await axios.get(`${requestUrl}/19131243000197`);
     const { data, status } = response;
@@ -43,3 +50,5 @@ describe('api/cnpj/v1 (E2E)', () => {
     }
   });
 });
+
+testCorsForRoute('/api/cnpj/v1/19131243000197');

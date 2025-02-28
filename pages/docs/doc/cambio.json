@@ -1,0 +1,243 @@
+{
+  "tags": [
+    {
+      "name": "CAMBIO",
+      "description": "Informações referentes ao Cambio"
+    }
+  ],
+  "paths": {
+    "/cambio/v1/moedas": {
+      "get": {
+        "tags": [
+          "CAMBIO"
+        ],
+        "summary": "Retorna a lista de moedas que podem ser usadas como parâmetros para este conjunto de dados.",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Moedas"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cambio/v1/cotacao/{moeda}/{data}": {
+      "get": {
+        "tags": [
+          "CAMBIO"
+        ],
+        "summary": "Busca pelo câmbio do Real com outra moeda, em uma data específica",
+        "description": "Consulta o câmbio da moeda desejada em relação ao Real, em uma data específica. **OBS: Para finais de semana e feriados, a data retornada será o último dia útil disponível.**",
+        "parameters": [
+          {
+            "name": "moeda",
+            "description": "A moeda alvo desejada (AUD, CAD, CHF, DKK, EUR, GBP, JPY, SEK, USD). Para maiores informações, consulte: /cambio/v1/moedas",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "data",
+            "description": "A data desejada, o formato deve ser: YYYY-MM-DD. Os dados só estão disponíveis a partir de 28/11/1984.",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CambioRetorno"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "API de Câmbio retorna Erro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "name": "NotFoundError",
+                  "message": "Requisição inválida",
+                  "type": "BAD_REQUEST"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Moedas": {
+        "title": "Moedas",
+        "required": [
+          "simbolo",
+          "nome",
+          "tipo_moeda"
+        ],
+        "type": "object",
+        "properties": {
+          "simbolo": {
+            "type": "string"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "tipo_moeda": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "simbolo": "USD",
+          "nome": "Dólar dos Estados Unidos",
+          "tipo_moeda": "A"
+        }
+      },
+      "CambioRetorno": {
+        "title": "Cotação Cambio",
+        "required": [
+          "cotacoes",
+          "moeda",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "moeda": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string",
+            "format": "date",
+            "description": "Data da cotação, no formato YYYY-MM-DD. **OBS: Para finais de semana e feriados, a data retornada será o último dia útil disponível.**"
+          },
+          "cotacoes": {
+            "type": "array",
+            "description": "Lista de cotações da moeda em relação ao Real",
+            "items": {
+              "$ref": "#/components/schemas/Cotacao"
+            }
+          }
+        },
+        "example": {
+          "cotacoes": [
+            {
+              "paridade_compra": 1,
+              "paridade_venda": 1,
+              "cotacao_compra": 5.7702,
+              "cotacao_venda": 5.7708,
+              "data_hora_cotacao": "2025-02-13 10:04:26.424",
+              "tipo_boletim": "ABERTURA"
+            },
+            {
+              "paridade_compra": 1,
+              "paridade_venda": 1,
+              "cotacao_compra": 5.7977,
+              "cotacao_venda": 5.7983,
+              "data_hora_cotacao": "2025-02-13 11:06:24.909",
+              "tipo_boletim": "INTERMEDIÁRIO"
+            },
+            {
+              "paridade_compra": 1,
+              "paridade_venda": 1,
+              "cotacao_compra": 5.7826,
+              "cotacao_venda": 5.7832,
+              "data_hora_cotacao": "2025-02-13 12:08:26.215",
+              "tipo_boletim": "INTERMEDIÁRIO"
+            },
+            {
+              "paridade_compra": 1,
+              "paridade_venda": 1,
+              "cotacao_compra": 5.7624,
+              "cotacao_venda": 5.763,
+              "data_hora_cotacao": "2025-02-13 13:03:25.722",
+              "tipo_boletim": "INTERMEDIÁRIO"
+            },
+            {
+              "paridade_compra": 1,
+              "paridade_venda": 1,
+              "cotacao_compra": 5.7782,
+              "cotacao_venda": 5.7788,
+              "data_hora_cotacao": "2025-02-13 13:03:25.728",
+              "tipo_boletim": "FECHAMENTO PTAX"
+            }
+          ],
+          "moeda": "USD",
+          "data": "2025-02-13"
+        }
+      },
+      "Cotacao": {
+        "title": "Cotacao",
+        "required": [
+          "paridade_compra",
+          "paridade_venda",
+          "cotacao_compra",
+          "cotacao_venda",
+          "data_hora_cotacao",
+          "tipo_boletim"
+        ],
+        "type": "object",
+        "properties": {
+          "paridade_compra": {
+            "type": "number",
+            "description": "Valor da paridade de compra da moeda em relação ao Real"
+          },
+          "paridade_venda": {
+            "type": "number",
+            "description": "Valor da paridade de venda da moeda em relação ao Real"
+          },
+          "cotacao_compra": {
+            "type": "number",
+            "description": "Valor da cotação de compra da moeda em relação ao Real"
+          },
+          "cotacao_venda": {
+            "type": "number",
+            "description": "Valor da cotação de venda da moeda em relação ao Real"
+          },
+          "data_hora_cotacao": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Data e hora da cotação, no formato YYYY-MM-DD HH:mm:ss.SSS"
+          },
+          "tipo_boletim": {
+            "type": "string",
+            "description": "Tipo de boletim da cotação",
+            "enum": [
+              "ABERTURA",
+              "INTERMEDIÁRIO",
+              "FECHAMENTO PTAX"
+            ]
+          }
+        },
+        "example": {
+          "paridade_compra": 1,
+          "paridade_venda": 1,
+          "cotacao_compra": 5.7702,
+          "cotacao_venda": 5.7708,
+          "data_hora_cotacao": "2025-02-13 10:04:26.424",
+          "tipo_boletim": "ABERTURA"
+        }
+      }
+    }
+  }
+}
