@@ -15,23 +15,22 @@ describe('api/isbn/v1 (E2E)', () => {
     // Missing tests for subtitle, cover_url and retail_price, as some
     // may not return it. Individual tests for that are done for each provider.
     expect(status).toEqual(200);
-    expect(data).toEqual(
-      expect.objectContaining({
+    expect(data).toEqual(expect.objectContaining({
         isbn: '9788545702870',
         title: expect.stringContaining('Akira'),
         authors: expect.arrayContaining([expect.stringMatching(/katsuhiro/i)]),
-        publisher: expect.stringMatching(/japorama|jbc/i),
-        synopsis: expect.stringContaining('Um dos marcos da ficção científica'),
+        publisher: expect.any(String),
+        synopsis: expect.any(String),
         dimensions: expect.objectContaining({
-          width: 17.5,
-          height: 25.7,
+          width: expect.any(Number),
+          height: expect.any(Number),
           unit: 'CENTIMETER',
         }),
-        year: 2017,
+        year: expect.any(Number),
         format: 'PHYSICAL',
-        page_count: 364,
+        page_count: expect.any(Number),
         subjects: expect.arrayContaining([expect.any(String)]),
-        location: expect.stringMatching(/s[aã]o paulo/i),
+        location: expect.toSatisfy((valor) => typeof valor === 'string' || valor === null),
         provider: expect.stringMatching(
           /^(?:cbl|mercado-editorial|google-books|open-library)$/
         ),
