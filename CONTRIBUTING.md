@@ -2,6 +2,8 @@
 
 Qualquer ajuda que agregue valor ao projeto, seja na edição do código-fonte ou nas documentações, e consequentemente a vida das pessoas é muito bem-vindo, por isso decidimos torna-lo opensource.
 
+**Antes de iniciar o desenvolvimento recomendamos a leitura do nosso [Guia de Boas Práticas](GOOD_PRACTICES.md)**
+
 ## Iniciando
 
 Certifique-se de estar na pasta raiz do projeto para executar:
@@ -82,9 +84,9 @@ Consiste em realizar o *fork* do repositório raiz, cloná-lo, realizar a altera
 `git fetch reporaiz`
 - Vá para sua branch:
 `git checkout my-branch`
-- Atualize sua branch com as alterações da master do repositório raiz
-`git pull --rebase reporaiz master`
-- Atualize o sua *branch* remota
+- Atualize sua branch com as alterações da main do repositório raiz
+`git pull --rebase reporaiz main`
+- Atualize a sua *branch* remota
 `git push origin mybranch`
 - Caso ocorra algum conflito ao fazer o `push`, você pode utilizar o comando
 `git push origin --force-with-lease`.
