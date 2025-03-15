@@ -1,4 +1,5 @@
-const axios = require('axios');
+import axios from 'axios';
+import { describe, expect, test } from 'vitest';
 
 const validOutputSchema = expect.objectContaining({
   ispb: expect.any(String),

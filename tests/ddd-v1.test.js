@@ -1,11 +1,16 @@
-const axios = require('axios');
+import axios from 'axios';
+import { beforeAll, describe, expect, test } from 'vitest';
 
-const { validResponse, invalidResponseInvalid } = require('./helpers/ddd');
-const { testCorsForRoute } = require('./helpers/cors');
-
-const requestUrl = `${global.SERVER_URL}/api/ddd/v1`;
+import { testCorsForRoute } from './helpers/cors';
+import { validResponse, invalidResponseInvalid } from './helpers/ddd';
 
 describe('api/ddd/v1 (E2E)', () => {
+  let requestUrl = '';
+
+  beforeAll(async () => {
+    requestUrl = `${global.SERVER_URL}/api/ddd/v1`;
+  });
+
   test('Utilizando um DDD válido: 11', async () => {
     const response = await axios.get(`${requestUrl}/11`);
     const { data, status } = response;

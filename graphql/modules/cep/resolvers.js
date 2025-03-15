@@ -20,7 +20,7 @@ import cep from 'cep-promise';
 const CACHE_CONTROL_HEADER_VALUE =
   'max-age=0, s-maxage=86400, stale-while-revalidate, public';
 
-export default {
+const resolvers = {
   Query: {
     cep: async (_parent, _args, _context) => {
       if (_args.cep.length !== 8) {
@@ -36,3 +36,5 @@ export default {
     },
   },
 };
+
+export default resolvers;

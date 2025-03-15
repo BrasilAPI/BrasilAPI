@@ -1,6 +1,7 @@
 import BaseError from '@/errors/BaseError';
 
 export default function errorHandler(error, request, response) {
+  /* eslint-disable no-console */
   console.log({
     url: request.url,
     ...error,
