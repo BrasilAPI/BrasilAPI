@@ -22,7 +22,4 @@ export default defineConfig({
       exclude: ['tests/**/**.test.js'],
     },
   },
-  // define: {
-  //   SERVER_URL: 'http://localhost:3000',
-  // },
 });
