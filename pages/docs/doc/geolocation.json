@@ -1,0 +1,125 @@
+{
+  "tags": [
+    {
+      "name": "Geolocalização",
+      "description": "Informações relacionadas à geolocalização"
+    }
+  ],
+  "paths": {
+    "/geolocation/v1": {
+      "get": {
+        "tags": [
+          "Geolocalização"
+        ],
+        "summary": "Retorna cidade e país pela latitude e longitude",
+        "description": "",
+        "parameters": [
+          {
+            "name": "latitude",
+            "description": "Latitude geográfica. Um número decimal que representa a coordenada norte-sul.",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "longitude",
+            "description": "Longitude geográfica. Um número decimal que representa a coordenada leste-oeste.",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeolocationInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Geolocalização inválida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "name": "BadRequestError",
+                  "message": "Geolocalização inválida",
+                  "type": "bad_request"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro ao buscar informações sobre a geolocalização",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "name": "InternalError",
+                  "message": "Erro ao buscar informações sobre a geolocalização",
+                  "type": "internal"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "GeolocationInfo": {
+        "title": "Geolocation Info",
+        "required": [
+          "city",
+          "country"
+        ],
+        "type": "object",
+        "properties": {
+          "city": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "city": "São Paulo",
+          "country": "Brasil"
+        }
+      },
+      "ErrorMessage": {
+        "title": "Error Message",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "name": "InternalError",
+          "message": "Erro ao buscar informações sobre a geolocalização",
+          "type": "internal"
+        }
+      }
+    }
+  }
+}
