@@ -1,5 +1,7 @@
-const axios = require('axios');
-const { testCorsForRoute } = require('./helpers/cors');
+import axios from 'axios';
+import { describe, expect, test } from 'vitest';
+
+import { testCorsForRoute } from './helpers/cors';
 
 describe('/cep/v1 (E2E)', () => {
   test('Verifica CORS', async () => {

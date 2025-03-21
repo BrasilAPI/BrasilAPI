@@ -1,7 +1,8 @@
-const axios = require('axios');
+import axios from 'axios';
+import { describe, expect, test } from 'vitest';
 
 describe('weather airport v1 (E2E)', () => {
-  test('GET /api/cptec/v1/clima/aeroporto/:icaoCode (Código inexistente) ', async () => {
+  test('GET /api/cptec/v1/clima/aeroporto/:icaoCode (Código inexistente)', async () => {
     const requestUrl = `${global.SERVER_URL}/api/cptec/v1/clima/aeroporto/AAAA`;
 
     try {

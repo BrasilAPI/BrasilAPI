@@ -1,4 +1,5 @@
-const axios = require('axios');
+import axios from 'axios';
+import { describe, expect, test } from 'vitest';
 
 // O endpoint da CPTEC não está funcionando
 describe.skip('weather capital v1 (E2E)', () => {

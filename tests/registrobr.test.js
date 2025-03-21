@@ -1,9 +1,15 @@
-const axios = require('axios');
-const { testCorsForRoute } = require('./helpers/cors');
+import axios from 'axios';
+import { describe, test, expect, beforeAll } from 'vitest';
 
-const URL = `${global.SERVER_URL}/api/registrobr/v1`;
+import { testCorsForRoute } from './helpers/cors';
 
 describe('api/registrobr/v1 (E2E)', () => {
+  let URL = '';
+
+  beforeAll(async () => {
+    URL = `${global.SERVER_URL}/api/registrobr/v1`;
+  });
+
   test('Pesquisando um dominio registrado', async () => {
     const response = await axios.get(`${URL}/google`);
     expect(response.status).toBe(200);

@@ -1,8 +1,8 @@
-const axios = require('axios');
-
-const dayjs = require('dayjs');
-const utc = require('dayjs/plugin/utc');
-const timezone = require('dayjs/plugin/timezone');
+import axios from 'axios';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+import { describe, expect, test } from 'vitest';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
