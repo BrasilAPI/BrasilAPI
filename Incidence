@@ -1,0 +1,12 @@
+import { getSolarIncidence } from '../../../src/services/solarIncidenceService';
+
+export default async (req, res) => {
+  const { location } = req.query;
+  const data = await getSolarIncidence(location);
+
+  if (data.error) {
+    res.status(404).json({ message: data.error });
+  } else {
+    res.status(200).json(data);
+  }
+};
