@@ -1,9 +1,15 @@
-const axios = require('axios');
-const { testCorsForRoute } = require('./helpers/cors');
+import axios from 'axios';
+import { describe, test, expect, beforeAll } from 'vitest';
 
-const requestUrl = `${global.SERVER_URL}/api/isbn/v1`;
+import { testCorsForRoute } from './helpers/cors';
 
 describe('api/isbn/v1 (E2E)', () => {
+  let requestUrl = '';
+
+  beforeAll(async () => {
+    requestUrl = `${global.SERVER_URL}/api/isbn/v1`;
+  });
+
   test('Utilizando um ISBN válido existente: 9788545702870', async () => {
     const response = await axios.get(`${requestUrl}/9788545702870`);
     const { data, status } = response;
@@ -15,7 +21,8 @@ describe('api/isbn/v1 (E2E)', () => {
     // Missing tests for subtitle, cover_url and retail_price, as some
     // may not return it. Individual tests for that are done for each provider.
     expect(status).toEqual(200);
-    expect(data).toEqual(expect.objectContaining({
+    expect(data).toEqual(
+      expect.objectContaining({
         isbn: '9788545702870',
         title: expect.stringContaining('Akira'),
         authors: expect.arrayContaining([expect.stringMatching(/katsuhiro/i)]),
@@ -30,7 +37,9 @@ describe('api/isbn/v1 (E2E)', () => {
         format: 'PHYSICAL',
         page_count: expect.any(Number),
         subjects: expect.arrayContaining([expect.any(String)]),
-        location: expect.toSatisfy((valor) => typeof valor === 'string' || valor === null),
+        location: expect.toSatisfy(
+          (valor) => typeof valor === 'string' || valor === null
+        ),
         provider: expect.stringMatching(
           /^(?:cbl|mercado-editorial|google-books|open-library)$/
         ),

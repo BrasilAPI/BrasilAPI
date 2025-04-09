@@ -1,8 +1,13 @@
-const axios = require('axios');
+import axios from 'axios';
+import { describe, expect, it, beforeEach } from 'vitest';
 
-const testCorsForRoute = (route) => {
+export const testCorsForRoute = (route) => {
   describe(`CORS Middleware for ${route}`, () => {
-    const url = `${global.SERVER_URL}${route}`;
+    let url = '';
+
+    beforeEach(() => {
+      url = `${global.SERVER_URL}${route}`;
+    });
 
     it('deve permitir solicitações da origem permitida', async () => {
       const response = await axios.get(url, {
@@ -56,5 +61,3 @@ const testCorsForRoute = (route) => {
     });
   });
 };
-
-module.exports = { testCorsForRoute };

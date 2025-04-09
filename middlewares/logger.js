@@ -15,6 +15,7 @@ export default function logger(request, response, next) {
     referer,
   });
 
+  /* eslint-disable no-console */
   console.log(logMessage);
 
   return next();

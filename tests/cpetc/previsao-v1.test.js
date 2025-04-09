@@ -1,8 +1,9 @@
-const axios = require('axios');
+import axios from 'axios';
+import { describe, expect, test } from 'vitest';
 
 describe('weather prediction v1 (E2E)', () => {
   describe('Route WITHOUT number of days for prediction', () => {
-    test('GET /api/cptec/v1/clima/previsao/:cityCode (Invalid City Code) ', async () => {
+    test('GET /api/cptec/v1/clima/previsao/:cityCode (Invalid City Code)', async () => {
       const requestUrl = `${global.SERVER_URL}/api/cptec/v1/clima/previsao/9999`;
 
       try {
@@ -52,7 +53,7 @@ describe('weather prediction v1 (E2E)', () => {
       });
     });
 
-    test('GET /api/cptec/v1/clima/previsao/:cityCode/:days (Invalid number of days) ', async () => {
+    test('GET /api/cptec/v1/clima/previsao/:cityCode/:days (Invalid number of days)', async () => {
       const requestUrl1 = `${global.SERVER_URL}/api/cptec/v1/clima/previsao/999/15`;
       const requestUrl2 = `${global.SERVER_URL}/api/cptec/v1/clima/previsao/999/0`;
 

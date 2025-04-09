@@ -1,5 +1,7 @@
-const axios = require('axios');
-const { testCorsForRoute } = require('./helpers/cors');
+import axios from 'axios';
+import { describe, test, expect } from 'vitest';
+
+import { testCorsForRoute } from './helpers/cors';
 
 describe('/ibge/uf/v1 (E2E)', () => {
   test('Utilizando um Codigo válido: 22', async () => {

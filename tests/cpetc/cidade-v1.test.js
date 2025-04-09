@@ -1,4 +1,5 @@
-const axios = require('axios');
+import axios from 'axios';
+import { describe, test, expect } from 'vitest';
 
 describe('cities v1 (E2E)', () => {
   describe('GET /cptec/v1/cidade/:name', () => {

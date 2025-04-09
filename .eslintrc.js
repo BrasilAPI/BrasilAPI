@@ -3,9 +3,13 @@ module.exports = {
     browser: true,
     es6: true,
     node: true,
-    jest: true,
   },
-  extends: ['airbnb', 'plugin:prettier/recommended', 'next/core-web-vitals'],
+  extends: [
+    'airbnb',
+    'plugin:prettier/recommended',
+    'next/core-web-vitals',
+    'plugin:@vitest/legacy-recommended',
+  ],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',

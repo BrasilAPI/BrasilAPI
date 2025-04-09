@@ -15,10 +15,12 @@
 //    servisse fotos dos usuários, por exemplo. Além disso teríamos problemas com
 //    stale/out-of-date cache caso alterássemos a implementação da API.
 
-export default (time) => (request, response, next) => {
+const cache = (time) => (request, response, next) => {
   const CACHE_CONTROL_HEADER_VALUE = `max-age=0, s-maxage=${time}, stale-while-revalidate, public`;
 
   response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
 
   next();
 };
+
+export default cache;

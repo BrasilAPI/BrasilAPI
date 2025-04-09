@@ -1,12 +1,13 @@
-const axios = require('axios');
-const crypto = require('crypto');
+import axios from 'axios';
+import crypto from 'node:crypto';
+import { describe, expect, test } from 'vitest';
 
-const {
+import { testCorsForRoute } from './helpers/cors';
+import {
   getEasterHolidays,
   getFixedHolidays,
   getHolidays,
-} = require('./helpers/feriados');
-const { testCorsForRoute } = require('./helpers/cors');
+} from './helpers/feriados';
 
 describe('/feriados/v1 (E2E)', () => {
   test('Feriados fixos com ano válido entre 1900 e 2199', async () => {

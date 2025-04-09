@@ -1,4 +1,4 @@
-export default {
+const resolvers = {
   Query: {
     status: () => {
       return {
@@ -13,3 +13,5 @@ export default {
     },
   },
 };
+
+export default resolvers;

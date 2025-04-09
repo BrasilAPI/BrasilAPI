@@ -1,5 +1,7 @@
-const axios = require('axios');
-const { testCorsForRoute } = require('./helpers/cors');
+import axios from 'axios';
+import { describe, test, expect } from 'vitest';
+
+import { testCorsForRoute } from './helpers/cors';
 
 const validTestArray = expect.arrayContaining([
   expect.objectContaining({
@@ -10,10 +12,6 @@ const validTestArray = expect.arrayContaining([
 
 // TODO: This test is intermitent at Github Actions provider
 describe.skip('/ibge/municipios/v1 (E2E)', () => {
-  beforeEach(() => {
-    jest.setTimeout(10000);
-  });
-
   test('Utilizando uma sigla válida: SC', async () => {
     const requestUrl = `${global.SERVER_URL}/api/ibge/municipios/v1/SC`;
     const response = await axios.get(requestUrl);
@@ -30,7 +28,7 @@ describe.skip('/ibge/municipios/v1 (E2E)', () => {
     expect(response.data).toEqual(validTestArray);
   });
 
-  test('Utilizando provider gov: ', async () => {
+  test('Utilizando provider gov:', async () => {
     const requestUrl = `${global.SERVER_URL}/api/ibge/municipios/v1/RS?providers=gov`;
     const response = await axios.get(requestUrl);
 
@@ -38,7 +36,7 @@ describe.skip('/ibge/municipios/v1 (E2E)', () => {
     expect(response.data).toEqual(validTestArray);
   });
 
-  test('Utilizando provider dados-abertos-br: ', async () => {
+  test('Utilizando provider dados-abertos-br:', async () => {
     const requestUrl = `${global.SERVER_URL}/api/ibge/municipios/v1/RS?providers=dados-abertos-br`;
     const response = await axios.get(requestUrl);
 
@@ -46,7 +44,7 @@ describe.skip('/ibge/municipios/v1 (E2E)', () => {
     expect(response.data).toEqual(validTestArray);
   });
 
-  test('Utilizando provider wikipedia: ', async () => {
+  test('Utilizando provider wikipedia:', async () => {
     const requestUrl = `${global.SERVER_URL}/api/ibge/municipios/v1/RS?providers=wikipedia`;
     const response = await axios.get(requestUrl);
 

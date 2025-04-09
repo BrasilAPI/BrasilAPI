@@ -63,6 +63,9 @@ Abaixo segue uma lista de integrações com a BrasilApi fornecidas pela comunida
   * **[brazilian_banks](https://github.com/credifit-br/brazilian_banks)** criado por [@credifit-br](https://github.com/credifit-br)
   * **[br_api_dart](https://github.com/PedroHAVeloso/br_api_dart)** criado por [@pedrohaveloso](https://github.com/PedroHAVeloso)
 
+**Swift**
+  * **[BrasilAPI-Swift](https://github.com/LucasJorgeHubert/BrasilAPI-Swift.git)** criado por [@LucasJorgeHubert](https://github.com/LucasJorgeHubert)
+
 **.Net**
   * **[BrasilAPI-DotNet](https://github.com/farukaf/BrasilAPI-DotNet)** criado por [@farukaf](https://github.com/farukaf)
 

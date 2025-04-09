@@ -1,8 +1,9 @@
-const axios = require('axios');
+import axios from 'axios';
+import { describe, expect, test } from 'vitest';
 
 describe('ondas prediction v1 (E2E)', () => {
   describe('Route WITHOUT number of days for ondas', () => {
-    test('GET /api/cptec/v1/ondas/:cityCode (Invalid City Code) ', async () => {
+    test('GET /api/cptec/v1/ondas/:cityCode (Invalid City Code)', async () => {
       const requestUrl = `${global.SERVER_URL}/api/cptec/v1/ondas/9999`;
 
       try {
@@ -52,7 +53,7 @@ describe('ondas prediction v1 (E2E)', () => {
       });
     });
 
-    test('GET /api/cptec/v1/ondas/:cityCode/days (Invalid number of days) ', async () => {
+    test('GET /api/cptec/v1/ondas/:cityCode/days (Invalid number of days)', async () => {
       const requestUrl1 = `${global.SERVER_URL}/api/cptec/v1/ondas/241/7`;
       const requestUrl2 = `${global.SERVER_URL}/api/cptec/v1/ondas/241/0`;
 

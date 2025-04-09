@@ -1,5 +1,7 @@
-const axios = require('axios');
-const { testCorsForRoute } = require('./helpers/cors');
+import axios from 'axios';
+import { describe, expect, test } from 'vitest';
+
+import { testCorsForRoute } from './helpers/cors';
 
 const validOutputSchema = expect.objectContaining({
   codigo: expect.any(String),
