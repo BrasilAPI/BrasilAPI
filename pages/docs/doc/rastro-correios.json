@@ -1,0 +1,172 @@
+{
+  "tags": [
+    {
+      "name": "RASTRO CORREIOS",
+      "description": "Informações referentes ao rastreamento de encomendas"
+    }
+  ],
+  "paths": {
+    "/rastro-correios/v1/{codigoRastreio}": {
+      "get": {
+        "tags": ["RASTRO CORREIOS"],
+        "summary": "Rastreie objetos dos Correios do Brasil de forma simples, rápida e sem autenticação.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "codigoRastreio",
+            "description": "O Código de Rastreamento dos Correios é uma sequência única de caracteres que permite identificar e acompanhar o trajeto de um objeto postal durante o processo de envio e entrega pelos Correios.\n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/codigoRastreio"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Código de rastreamento inválido.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "name": "TrackingError",
+                  "message": "Código de rastreamento inválido",
+                  "type": "validation_error",
+                  "errors": [
+                    {
+                      "message": "O código de rastreamento informado é inválido",
+                      "service": "tracking_validation"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Código de rastreamento não encontrado.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "name": "TrackingError",
+                  "message": "Código de rastreamento não encontrado",
+                  "type": "not_found_error",
+                  "errors": [
+                    {
+                      "message": "O código de rastreamento informado não foi encontrado",
+                      "note": "Caso o envio tenha sido recente, os dados de rastreio podem ainda não estar disponíveis. Verifique se o código está correto e tente novamente em alguns instantes.",
+                      "service": "tracking_not_found"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "codigoRastreio": {
+        "title": "Rastreamento info",
+        "type": "object",
+        "properties": {
+          "codigo_rastreamento": {
+            "type": "string",
+            "format": "string"
+          },
+          "tipo_envio": {
+            "type": "string",
+            "format": "string"
+          },
+          "historico": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "porperties": {
+                "description": {
+                  "type": "string",
+                  "format": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "format": "string"
+                },
+                "message": {
+                  "type": "string",
+                  "format": "string"
+                },
+                "origin": {
+                  "type": "string",
+                  "format": "string"
+                },
+                "date": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "time": {
+                  "type": "string",
+                  "format": "time"
+                }
+              }
+            }
+          }
+        },
+        "example": {
+          "codigo_rastreamento": "QS535054341BR",
+          "tipo_envio": "ENCOMENDA PAC",
+          "historico": [
+            {
+              "description": "Objeto entregue ao destinatário",
+              "status": "delivered",
+              "origin": "Agência Dos Correios FORTALEZA, CE",
+              "date": "25/02/25",
+              "time": "10:02"
+            },
+            {
+              "description": "Objeto saiu para entrega ao destinatário",
+              "status": "delivery_route",
+              "message": "É preciso ter alguém no endereço para receber o carteiro",
+              "origin": "Agência Dos Correios FORTALEZA, CE",
+              "date": "25/02/25",
+              "time": "09:34"
+            },
+            {
+              "description": "Objeto em transferência - por favor aguarde",
+              "status": "in_transit",
+              "origin": "Unidade de Tratamento FORTALEZA, CE",
+              "destination": "Agência Dos Correios FORTALEZA, CE",
+              "date": "18/03/2025",
+              "time": "13:43:20"
+            },
+            {
+              "description": "Objeto em transferência - por favor aguarde",
+              "status": "in_transit",
+              "origin": "Agência Dos Correios SAO PAULO, SP",
+              "destination": "Unidade Tratamento SAO PAULO, SP",
+              "date": "21/02/25",
+              "time": "16:25"
+            },
+            {
+              "description": "Objeto postado",
+              "status": "posted",
+              "origin": "Agência Dos Correios São Paulo, SP",
+              "date": "21/02/25",
+              "time": "11:06"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
