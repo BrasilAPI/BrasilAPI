@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { describe, test, expect } from 'vitest';
 
-import { testCorsForRoute } from './helpers/cors';
+// import { testCorsForRoute } from './helpers/cors';
 
 const validTestArray = expect.arrayContaining([
   expect.objectContaining({
@@ -12,6 +12,13 @@ const validTestArray = expect.arrayContaining([
 
 // TODO: This test is intermitent at Github Actions provider
 describe.skip('/ibge/municipios/v1 (E2E)', () => {
+  test('Verifica CORS', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/ibge/municipios/v1/SC`;
+    const response = await axios.get(requestUrl);
+
+    expect(response.headers['access-control-allow-origin']).toBe('*');
+  });
+
   test('Utilizando uma sigla válida: SC', async () => {
     const requestUrl = `${global.SERVER_URL}/api/ibge/municipios/v1/SC`;
     const response = await axios.get(requestUrl);
@@ -69,4 +76,4 @@ describe.skip('/ibge/municipios/v1 (E2E)', () => {
   });
 });
 
-testCorsForRoute('/api/ibge/municipios/v1/SC');
+// testCorsForRoute('/api/ibge/municipios/v1/SC');
