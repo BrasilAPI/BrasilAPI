@@ -1,0 +1,578 @@
+{
+  "tags": [
+    {
+      "name": "CNPJ",
+      "description": "Busca dados de empresas por CNPJ"
+    }
+  ],
+  "paths": {
+    "/cnpj/v1/{cnpj}": {
+      "get": {
+        "tags": [
+          "CNPJ"
+        ],
+        "summary": "Busca por CNPJ na API Minha Receita.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "cnpj",
+            "description": "O Cadastro Nacional da Pessoa Jurídica é um número único que identifica uma pessoa jurídica e outros tipos de arranjo jurídico sem personalidade jurídica junto à Receita Federal.\n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CNPJ"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "CNPJ não encontrado na API Minha Receita.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "name": "CnpjPromiseError",
+                  "message": "Erro retornado pela API Minha Receita.",
+                  "type": "service_error",
+                  "errors": [
+                    {
+                      "message": "CNPJ 00.000.000/0001-91 não encontrado."
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CNPJ": {
+        "title": "CNPJ info",
+        "type": "object",
+        "properties": {
+          "uf": {
+            "type": "string",
+            "description": "Sigla da unidade da federação em que se encontra o estabelecimento. Quando o estabelecimento estiver localizado no exterior, o campo será preenchido com 'EX'."
+          },
+          "cep": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Código de endereçamento postal referente ao logradouro no qual o estabelecimento esta localizado"
+          },
+          "qsa": {
+            "type": "array",
+            "description": "Quadro de sócios e administradores",
+            "items": {
+              "type": "object",
+              "properties": {
+                "pais": {
+                  "type": "string",
+                  "description": "Nome do país onde se localiza o sócio",
+                  "nullable": true
+                },
+                "nome_socio": {
+                  "type": "string",
+                  "description": "Nome do sócio pessoa física ou a razão social e/ou nome empresarial da pessoa jurídica e/ou nome do sócio/razão social do sócio estrangeiro"
+                },
+                "codigo_pais": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "Código do país onde se localiza o sócio",
+                  "nullable": true
+                },
+                "faixa_etaria": {
+                  "type": "string",
+                  "description": "Faixa etária do sócio"
+                },
+                "cnpj_cpf_do_socio": {
+                  "type": "string",
+                  "description": "CPF ou CNPJ do sócio (sócio estrangeiro não tem esta informação)"
+                },
+                "qualificacao_socio": {
+                  "type": "string",
+                  "description": "Qualificação do sócio"
+                },
+                "codigo_faixa_etaria": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "Código da faixa etária do sócio"
+                },
+                "data_entrada_sociedade": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "identificador_de_socio": {
+                  "type": "integer",
+                  "format": "int32",
+                  "enum": [
+                    1,
+                    2,
+                    3
+                  ],
+                  "description": "Identificador do sócio. Valores possíveis: 1 (PESSOA JURÍDICA), 2 (PESSOA FÍSICA), 3 (ESTRANGEIRO)."
+                },
+                "cpf_representante_legal": {
+                  "type": "string",
+                  "nullable": true
+                },
+                "nome_representante_legal": {
+                  "type": "string",
+                  "nullable": true
+                },
+                "codigo_qualificacao_socio": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "qualificacao_representante_legal": {
+                  "type": "string",
+                  "description": "Qualificação do representante legal"
+                },
+                "codigo_qualificacao_representante_legal": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "Código da qualificação do representante legal"
+                }
+              }
+            }
+          },
+          "cnpj": {
+            "type": "string",
+            "description": "Número Cadastro Nacional da Pessoa Jurídica"
+          },
+          "pais": {
+            "type": "string",
+            "description": "Nome do país onde se localiza o estabelecimento",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true,
+            "format": "email",
+            "description": "E-mail do contribuinte"
+          },
+          "porte": {
+            "type": "string",
+            "enum": [
+              "NÃO INFORMADO",
+              "MICRO EMPRESA",
+              "EMPRESA DE PEQUENO PORTE",
+              "DEMAIS"
+            ],
+            "nullable": true,
+            "description": "Descrição do porte da empresa"
+          },
+          "bairro": {
+            "type": "string",
+            "description": "Bairro onde se localiza o estabelecimento"
+          },
+          "numero": {
+            "type": "string",
+            "description": "Número onde se localiza o estabelecimento. Quando não houver preenchimento do número haverá 'S/N'"
+          },
+          "ddd_fax": {
+            "type": "string",
+            "nullable": true,
+            "pattern": "^[0-9]{2}[0-9]{8,9}$",
+            "description": "Contém o ddd e o número do fax"
+          },
+          "municipio": {
+            "type": "string",
+            "nullable": true,
+            "description": "Nome do município de jurisdição onde se encontra o estabelecimento"
+          },
+          "logradouro": {
+            "type": "string",
+            "description": "Nome do logradouro onde se localiza o estabelecimento"
+          },
+          "cnae_fiscal": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Código da Atividade Econômica PRINCIPAL do estabelecimento"
+          },
+          "codigo_pais": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Código do país onde se localiza o estabelecimento",
+            "nullable": true
+          },
+          "complemento": {
+            "type": "string",
+            "description": "Complemento do endereço de localização do estabelecimento"
+          },
+          "codigo_porte": {
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              0,
+              1,
+              3,
+              5
+            ],
+            "description": "Código do porte da empresa. Valores possíveis: 0 (NÃO INFORMADO), 1 (MICRO EMPRESA), 3 (EMPRESA DE PEQUENO PORTE), 5 (DEMAIS)."
+          },
+          "razao_social": {
+            "type": "string",
+            "description": "Nome empresarial da pessoa jurídica"
+          },
+          "nome_fantasia": {
+            "type": "string",
+            "description": "Corresponde ao nome fantasia"
+          },
+          "capital_social": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Capital social da empresa"
+          },
+          "ddd_telefone_1": {
+            "type": "string",
+            "pattern": "^[0-9]{2}[0-9]{8,9}$",
+            "description": "Contém o ddd e o número do telefone 1"
+          },
+          "ddd_telefone_2": {
+            "type": "string",
+            "nullable": true,
+            "pattern": "^[0-9]{2}[0-9]{8,9}$",
+            "description": "Contém o ddd e o número do telefone 2"
+          },
+          "opcao_pelo_mei": {
+            "type": "boolean",
+            "nullable": true,
+            "description": "Indicador da existência da opção pelo MEI. Valores possíveis: true (SIM), false (NÃO), null (OUTROS)."
+          },
+          "codigo_municipio": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true,
+            "description": "Código do município de jurisdição onde se encontra o estabelecimento"
+          },
+          "cnaes_secundarios": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "codigo": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "Código da Atividade Econômica SECUNDÁRIA do estabelecimento"
+                },
+                "descricao": {
+                  "type": "string",
+                  "description": "Descrição da Atividade Econômica SECUNDÁRIA do estabelecimento"
+                }
+              }
+            }
+          },
+          "natureza_juridica": {
+            "type": "string",
+            "description": "Natureza jurídica da empresa"
+          },
+          "regime_tributario": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "type": "object",
+              "properties": {
+                "ano": {
+                  "type": "integer",
+                  "format": "int32",
+                  "nullable": true,
+                  "description": "Ano de referência do regime tributário"
+                },
+                "cnpj_da_scp": {
+                  "type": "string",
+                  "nullable": true,
+                  "description": "CNPJ da SCP"
+                },
+                "forma_de_tributacao": {
+                  "type": "string",
+                  "description": "Forma de tributação da empresa"
+                },
+                "quantidade_de_escrituracoes": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "Quantidade de escrituração da empresa"
+                }
+              }
+            }
+          },
+          "situacao_especial": {
+            "type": "string",
+            "nullable": true,
+            "description": "Situação especial"
+          },
+          "opcao_pelo_simples": {
+            "type": "boolean",
+            "nullable": true,
+            "description": "Indicador da existência da opção pelo Simples. Valores possíveis: true (SIM), false (NÃO), null (OUTROS)."
+          },
+          "situacao_cadastral": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Identifica a situação cadastral da empresa. Valores possíveis: 1 (NULA), 2 (ATIVA), 3 (SUSPENSA), 4 (INAPTA), 8 (BAIXADA).",
+            "enum": [
+              1,
+              2,
+              3,
+              4,
+              8
+            ]
+          },
+          "data_opcao_pelo_mei": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "description": "Data de opção pelo MEI"
+          },
+          "data_exclusao_do_mei": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "description": "Data de exclusão do MEI"
+          },
+          "cnae_fiscal_descricao": {
+            "type": "string",
+            "description": "Descrição da Atividade Econômica PRINCIPAL do estabelecimento"
+          },
+          "codigo_municipio_ibge": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Código do IBGE do município de jurisdição onde se encontra o estabelecimento"
+          },
+          "data_inicio_atividade": {
+            "type": "string",
+            "format": "date",
+            "description": "Data de início das atividades"
+          },
+          "data_situacao_especial": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "description": "Data em que a empresa entrou em situação especial"
+          },
+          "data_opcao_pelo_simples": {
+            "type": "string",
+            "format": "date",
+            "description": "Data da opção pelo Simples",
+            "nullable": true
+          },
+          "data_situacao_cadastral": {
+            "type": "string",
+            "format": "date",
+            "description": "Data da situação cadastral"
+          },
+          "nome_cidade_exterior": {
+            "type": "string",
+            "nullable": true,
+            "description": "Nome da cidade no exterior"
+          },
+          "codigo_natureza_juridica": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Código da natureza jurídica"
+          },
+          "data_exclusao_do_simples": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "description": "Data da exclusão do Simples"
+          },
+          "motivo_situacao_cadastral": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Código do motivo da situação cadastral."
+          },
+          "ente_federativo_responsavel": {
+            "type": "string",
+            "description": "O ente federativo responsável é preenchido para os casos de órgãos e entidades do grupo de natureza jurídica 1XXX. Para as demais naturezas, este atributo fica em branco."
+          },
+          "identificador_matriz_filial": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Identifica se o CNPJ pertence a uma matriz ou filial. Valores possíveis: 1 (MATRIZ), 2 (FILIAL).",
+            "enum": [
+              1,
+              2
+            ]
+          },
+          "qualificacao_do_responsavel": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Código de qualificação da pessoa física responsável pela empresa"
+          },
+          "descricao_situacao_cadastral": {
+            "type": "string",
+            "description": "Descrição textual da situação cadastral da empresa. Valores possíveis: 'NULA', 'ATIVA', 'SUSPENSA', 'INAPTA', 'BAIXADA'.",
+            "enum": [
+              "NULA",
+              "ATIVA",
+              "SUSPENSA",
+              "INAPTA",
+              "BAIXADA"
+            ]
+          },
+          "descricao_tipo_de_logradouro": {
+            "type": "string",
+            "description": "Descrição do tipo de logradouro"
+          },
+          "descricao_motivo_situacao_cadastral": {
+            "type": "string",
+            "description": "Descrição do motivo da situação cadastral"
+          },
+          "descricao_matriz_filial": {
+            "type": "string",
+            "description": "Descrição textual do identificador de matriz ou filial. Valores possíveis: 'MATRIZ' ou 'FILIAL'.",
+            "enum": [
+              "MATRIZ",
+              "FILIAL"
+            ]
+          }
+        },
+        "example": {
+          "uf": "SP",
+          "cep": "01311902",
+          "qsa": [
+            {
+              "pais": null,
+              "nome_socio": "HAYDEE SVAB",
+              "codigo_pais": null,
+              "faixa_etaria": "Entre 41 a 50 anos",
+              "cnpj_cpf_do_socio": "***112108**",
+              "qualificacao_socio": "Presidente",
+              "codigo_faixa_etaria": 5,
+              "data_entrada_sociedade": "2024-02-27",
+              "identificador_de_socio": 2,
+              "cpf_representante_legal": "***000000**",
+              "nome_representante_legal": "",
+              "codigo_qualificacao_socio": 16,
+              "qualificacao_representante_legal": "Não informada",
+              "codigo_qualificacao_representante_legal": 0
+            }
+          ],
+          "cnpj": "19131243000197",
+          "pais": null,
+          "email": null,
+          "porte": "DEMAIS",
+          "bairro": "BELA VISTA",
+          "numero": "37",
+          "ddd_fax": "",
+          "municipio": "SAO PAULO",
+          "logradouro": "PAULISTA 37",
+          "cnae_fiscal": 9430800,
+          "codigo_pais": null,
+          "complemento": "ANDAR 4",
+          "codigo_porte": 5,
+          "razao_social": "OPEN KNOWLEDGE BRASIL",
+          "nome_fantasia": "REDE PELO CONHECIMENTO LIVRE",
+          "capital_social": 0,
+          "ddd_telefone_1": "1123851939",
+          "ddd_telefone_2": "",
+          "opcao_pelo_mei": null,
+          "descricao_porte": "",
+          "codigo_municipio": 7107,
+          "cnaes_secundarios": [
+            {
+              "codigo": 9493600,
+              "descricao": "Atividades de organizações associativas ligadas à cultura e à arte"
+            },
+            {
+              "codigo": 9499500,
+              "descricao": "Atividades associativas não especificadas anteriormente"
+            },
+            {
+              "codigo": 8599699,
+              "descricao": "Outras atividades de ensino não especificadas anteriormente"
+            },
+            {
+              "codigo": 8230001,
+              "descricao": "Serviços de organização de feiras, congressos, exposições e festas"
+            },
+            {
+              "codigo": 6204000,
+              "descricao": "Consultoria em tecnologia da informação"
+            }
+          ],
+          "natureza_juridica": "Associação Privada",
+          "regime_tributario": [
+            {
+              "ano": 2017,
+              "cnpj_da_scp": null,
+              "forma_de_tributacao": "ISENTA DO IRPJ",
+              "quantidade_de_escrituracoes": 1
+            },
+            {
+              "ano": 2018,
+              "cnpj_da_scp": null,
+              "forma_de_tributacao": "ISENTA DO IRPJ",
+              "quantidade_de_escrituracoes": 1
+            },
+            {
+              "ano": 2019,
+              "cnpj_da_scp": null,
+              "forma_de_tributacao": "ISENTA DO IRPJ",
+              "quantidade_de_escrituracoes": 1
+            },
+            {
+              "ano": 2020,
+              "cnpj_da_scp": null,
+              "forma_de_tributacao": "ISENTA DO IRPJ",
+              "quantidade_de_escrituracoes": 1
+            },
+            {
+              "ano": 2021,
+              "cnpj_da_scp": null,
+              "forma_de_tributacao": "ISENTA DO IRPJ",
+              "quantidade_de_escrituracoes": 1
+            },
+            {
+              "ano": 2022,
+              "cnpj_da_scp": null,
+              "forma_de_tributacao": "ISENTA DO IRPJ",
+              "quantidade_de_escrituracoes": 1
+            },
+            {
+              "ano": 2023,
+              "cnpj_da_scp": null,
+              "forma_de_tributacao": "ISENTA DO IRPJ",
+              "quantidade_de_escrituracoes": 1
+            }
+          ],
+          "situacao_especial": "",
+          "opcao_pelo_simples": null,
+          "situacao_cadastral": 2,
+          "data_opcao_pelo_mei": null,
+          "data_exclusao_do_mei": null,
+          "cnae_fiscal_descricao": "Atividades de associações de defesa de direitos sociais",
+          "codigo_municipio_ibge": 3550308,
+          "data_inicio_atividade": "2013-10-03",
+          "data_situacao_especial": null,
+          "data_opcao_pelo_simples": null,
+          "data_situacao_cadastral": "2013-10-03",
+          "nome_cidade_no_exterior": "",
+          "codigo_natureza_juridica": 3999,
+          "data_exclusao_do_simples": null,
+          "motivo_situacao_cadastral": 0,
+          "ente_federativo_responsavel": "",
+          "identificador_matriz_filial": 1,
+          "qualificacao_do_responsavel": 16,
+          "descricao_situacao_cadastral": "ATIVA",
+          "descricao_tipo_de_logradouro": "AVENIDA",
+          "descricao_motivo_situacao_cadastral": "SEM MOTIVO",
+          "descricao_identificador_matriz_filial": "MATRIZ"
+        }
+      }
+    }
+  }
+}

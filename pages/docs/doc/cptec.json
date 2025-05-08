@@ -1,0 +1,701 @@
+{
+    "tags": [
+        {
+            "name": "CPTEC",
+            "description": "Abstração e normalização de dados provenientes da CPTEC. Fonte oficial: CPTEC/INPE"
+        }
+    ],
+    "paths": {
+        "/cptec/v1/cidade": {
+            "get": {
+                "tags": ["CPTEC"],
+                "summary": "Listar localidades",
+                "description": "Retorna listagem com todas as cidades junto a seus respectivos códigos presentes nos serviços da CPTEC.\nO Código destas cidades será utilizado para os serviços de meteorologia e a ondas (previsão oceânica) fornecido pelo centro.\nLeve em consideração que o WebService do CPTEC as vezes é instável, então se não encontrar uma determinada cidade na listagem completa, tente buscando por parte de seu nome no endpoint de busca.",
+                "operationId": "listcities(/cptec/v1/cidade)",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+
+                        "content": {
+                            "application/json; charset=utf-8": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/City"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/cptec/v1/cidade/{cityName}": {
+            "get": {
+                "tags": ["CPTEC"],
+                "summary": "Buscar localidades",
+                "description": "Retorna listagem com todas as cidades correspondentes ao termo pesquisado junto a seus respectivos códigos presentes nos serviços da CPTEC.\nO Código destas cidades será utilizado para os serviços de meteorologia e a ondas (previsão oceânica) fornecido pelo centro.",
+                "operationId": "searchcities(/cptec/v1/cidade/:cityName)",
+                "parameters": [
+                    {
+                        "name": "cityName",
+                        "in": "path",
+                        "description": "Nome ou parte do nome da cidade a ser buscada",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string",
+                            "example": "Chiforímpola"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json; charset=utf-8": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/City"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "message": "Nenhuma cidade não localizada",
+                                    "type": "NO_CITY_NOT_FOUND"
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/cptec/v1/clima/capital": {
+            "get": {
+                "tags": ["CPTEC"],
+                "summary": "Condições atuais nas capitais",
+                "description": "Retorna condições meteorológicas atuais nas capitais do país, com base nas estações de solo de seu aeroporto.",
+                "operationId": "Condiçõesatuaisnascapitais(/cptec/v1/clima/capital)",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json; charset=utf-8": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Currentcondicao"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/cptec/v1/clima/aeroporto/{icaoCode}": {
+            "get": {
+                "tags": ["CPTEC"],
+                "summary": "Condições atuais no aeroporto (/cptec/v1/clima/aeroporto/:icaoCode)",
+                "description": "Retorna condições meteorológicas atuais no aeroporto solicitado. Este endpoint utiliza o código ICAO (4 dígitos) do aeroporto.",
+                "operationId": "airportcurrentcondicao(/cptec/v1/clima/aeroporto/:icaoCode)",
+                "parameters": [
+                    {
+                        "name": "icaoCode",
+                        "in": "path",
+                        "description": "Código ICAO (4 dígitos) do aeroporto desejado",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string",
+                            "example": "SBGR"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json; charset=utf-8": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Currentcondicao"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "message": "Condições meteorológicas ou aeroporto não localizados",
+                                    "type": "AIRPORT_condicaoS_NOT_FOUND"
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/cptec/v1/clima/previsao/{cityCode}": {
+            "get": {
+                "tags": ["CPTEC"],
+                "summary": "Previsão meteorológica para uma cidade",
+                "description": "Retorna Pervisão meteorológica para 1 dia na cidade informada.",
+                "operationId": "climapredictionwithoutdays(/cptec/v1/clima/previsao/:cityCode)",
+                "parameters": [
+                    {
+                        "name": "cityCode",
+                        "in": "path",
+                        "description": "Código da cidade fornecido pelo endpoint /cidade",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "example": 999
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json; charset=utf-8": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ClimaPrediction"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "message": "Cidade não localizada",
+                                    "type": "CITY_NOT_FOUND"
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/cptec/v1/clima/previsao/{cityCode}/{days}": {
+            "get": {
+                "tags": ["CPTEC"],
+                "summary": "Previsão meteorológica para, até, 6 dias",
+                "description": "Retorna a previsão meteorológica para a cidade informada para um período de 1 até 6 dias.\nDevido a inconsistências encontradas nos retornos da CPTEC nossa API só consegue retornar com precisão o período máximo de 6 dias.",
+                "operationId": "upto14daysprediction(/cptec/v1/clima/previsao/:cityCode/:days)",
+                "parameters": [
+                    {
+                        "name": "cityCode",
+                        "in": "path",
+                        "description": "Código da cidade fornecido pelo endpoint /cidade",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "example": 999
+                        }
+                    },
+                    {
+                        "name": "days",
+                        "in": "path",
+                        "description": "Quantidade de dias desejado para a previsão",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "example": 5
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json; charset=utf-8": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ClimaPrediction"
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/cptec/v1/ondas/{cityCode}": {
+            "get": {
+                "tags": ["CPTEC"],
+                "summary": "Previsão oceânica",
+                "description": "Retorna a previsão oceânica para a cidade informada para 1 dia",
+                "operationId": "ondaspredictionwithoutdays(/cptec/v1/ondas/:cityCode)",
+                "parameters": [
+                    {
+                        "name": "cityCode",
+                        "in": "path",
+                        "description": "Código da cidade fornecido pelo endpoint /cidade",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "example": 241
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json; charset=utf-8": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OndasPrediction"
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/cptec/v1/ondas/{cityCode}/{days}": {
+            "get": {
+                "tags": ["CPTEC"],
+                "summary": "Previsão oceânica para, até, 6 dias",
+                "description": "Retorna a previsão oceânica para a cidade informada para um período de, até, 6 dias.",
+                "operationId": "ondaspredictionupto6days(/cptec/v1/ondas/:cityCode/:days)",
+                "parameters": [
+                    {
+                        "name": "cityCode",
+                        "in": "path",
+                        "description": "Código da cidade fornecido pelo endpoint /cidade",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "example": 241
+                        }
+                    },
+                    {
+                        "name": "days",
+                        "in": "path",
+                        "description": "Quantidade de dias desejada para a previsão",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "example": 2
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json; charset=utf-8": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OndasPrediction"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "message": "Quantidade de dias inválida (mínimo 1 dia e máximo 6 dias)",
+                                    "type": "INVALID_NUMBER_OF_DAYS"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "message": "Cidade não localizada",
+                                    "type": "CITY_NOT_FOUND"
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "City": {
+                "title": "City",
+                "required": ["nome", "estado", "id"],
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string"
+                    },
+                    "estado": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "integer"
+                    }
+                },
+                "example": {
+                    "nome": "São Benedito",
+                    "estado": "CE",
+                    "id": 4750
+                }
+            },
+            "Currentcondicao": {
+                "title": "Currentcondicao",
+                "required": [
+                    "codigo_icao",
+                    "atualizado_em",
+                    "pressao_atmosferica",
+                    "visibilidade",
+                    "vento",
+                    "direcao_vento",
+                    "umidade",
+                    "codigo_clima",
+                    "desc_clima",
+                    "temp"
+                ],
+                "type": "object",
+                "properties": {
+                    "codigo_icao": {
+                        "type": "string",
+                        "description": "Código ICAO do aeroporto"
+                    },
+                    "atualizado_em": {
+                        "type": "string",
+                        "description": "Data de última atualização em formato ISO."
+                    },
+                    "pressao_atmosferica": {
+                        "type": "integer",
+                        "description": "Pressão atmosférica medida na estação meteorológica do aeroporto expressa em hPa (Hectopascal). "
+                    },
+                    "visibilidade": {
+                        "type": "string",
+                        "description": "Condição atual de visibilidade em metros."
+                    },
+                    "vento": {
+                        "type": "integer",
+                        "description": "Intensidade do vendo em km/h."
+                    },
+                    "direcao_vento": {
+                        "type": "integer",
+                        "description": "Direção do vento em graus (de 0° a 360°"
+                    },
+                    "umidade": {
+                        "type": "integer",
+                        "description": "Umidade relativa do ar em porcentagem."
+                    },
+                    "condicao": {
+                        "type": "string",
+                        "description": "Código da condição meteorológica"
+                    },
+                    "condicao_desc": {
+                        "type": "string",
+                        "description": "Texto descritivo para a condição meteorológica."
+                    },
+                    "temp": {
+                        "type": "float",
+                        "description": "Temperatura (em graus celsius)"
+                    }
+                },
+                "example": {
+                    "codigo_icao": "SBAR",
+                    "atualizado_em": "2021-01-27T15:00:00.974Z",
+                    "pressao_atmosferica": "1014",
+                    "visibilidade": "9000",
+                    "vento": 29,
+                    "direcao_vento": 90,
+                    "umidade": 74,
+                    "condicao": "ps",
+                    "condicao_Desc": "Predomínio de Sol",
+                    "temp": 28
+                }
+            },
+            "ClimaPrediction": {
+                "title": "ClimaPrediction",
+                "required": ["cidade", "estado", "atualizado_em", "clima"],
+                "type": "object",
+                "properties": {
+                    "cidade": {
+                        "type": "string"
+                    },
+                    "estado": {
+                        "type": "string"
+                    },
+                    "atualizado_em": {
+                        "type": "string"
+                    },
+                    "clima": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Clima"
+                        },
+                        "description": "Lista com condições climáticas dia a dia"
+                    }
+                },
+                "example": {
+                    "cidade": "Brejo Alegre",
+                    "estado": "SP",
+                    "atualizado_em": "2020-12-27",
+                    "clima": [
+                        {
+                            "data": "2020-12-27",
+                            "condicao": "pc",
+                            "min": 20,
+                            "max": 30,
+                            "indice_uv": 13.0,
+                            "condicao_desc": "Pancadas de Chuva"
+                        },
+                        {
+                            "data": "2020-12-28",
+                            "condicao": "pc",
+                            "min": 22,
+                            "max": 29,
+                            "indice_uv": 13.0,
+                            "condicao_desc": "Pancadas de Chuva"
+                        }
+                    ]
+                }
+            },
+            "Clima": {
+                "title": "Clima",
+                "required": [
+                    "data",
+                    "condicao",
+                    "min",
+                    "max",
+                    "indice_uv",
+                    "condicao_desc"
+                ],
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "string",
+                        "description": "Data em formato ISO"
+                    },
+                    "condicao": {
+                        "type": "string",
+                        "description": "Código da condição meteorológica"
+                    },
+                    "min": {
+                        "type": "integer",
+                        "description": "Temperatura mínima (em graus celsius) prevista."
+                    },
+                    "max": {
+                        "type": "integer",
+                        "description": "Temperatura máxima (em graus celsius) prevista."
+                    },
+                    "indice_uv": {
+                        "type": "float",
+                        "description": "O IUV representa o valor máximo diário da radiação ultravioleta, isto é, no período referente ao meio-dia solar, o horário de máxima intensidade de radiação solar."
+                    },
+                    "condicao_desc": {
+                        "type": "string",
+                        "description": "Texto descritivo para a condição meteorológica."
+                    }
+                },
+                "example": {
+                    "data": "2020-12-27",
+                    "condicao": "pc",
+                    "min": 20,
+                    "max": 30,
+                    "indice_uv": 13.0,
+                    "condicao_desc": "Pancadas de Chuva"
+                }
+            },
+            "OndasPrediction": {
+                "title": "OndasPrediction",
+                "required": ["cidade", "estado", "atualizado_em", "ondas"],
+                "type": "object",
+                "properties": {
+                    "cidade": {
+                        "type": "string"
+                    },
+                    "estado": {
+                        "type": "string"
+                    },
+                    "atualizado_em": {
+                        "type": "string",
+                        "description": "Data no formato ISO"
+                    },
+                    "ondas": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ondasdata"
+                        },
+                        "description": ""
+                    }
+                },
+                "example": {
+                    "cidade": "Rio de Janeiro",
+                    "estado": "RJ",
+                    "atualizado_em": "2020-12-27",
+                    "ondas": [
+                        {
+                            "data": "27-12-2020",
+                            "dados_ondas": [
+                                {
+                                    "vento": 5.2,
+                                    "direcao_vento": "E",
+                                    "direcao_vento_desc": "Leste",
+                                    "altura_onda": 0.8,
+                                    "direcao_onda": "ESE",
+                                    "direcao_onda_desc": "Lés-sudeste",
+                                    "agitacao": "Fraco",
+                                    "hora": "00h Z"
+                                },
+                                {
+                                    "vento": 4.8,
+                                    "direcao_vento": "E",
+                                    "direcao_vento_desc": "Leste",
+                                    "altura_onda": 0.5,
+                                    "direcao_onda": "ESE",
+                                    "direcao_onda_desc": "Lés-sudeste",
+                                    "agitacao": "Fraco",
+                                    "hora": "03h Z"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "ondasdata": {
+                "title": "ondasdata",
+                "required": ["data", "ondas_data"],
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "string"
+                    },
+                    "ondas_data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ondas"
+                        },
+                        "description": ""
+                    }
+                },
+                "example": {
+                    "data": "2020-12-07",
+                    "ondas_data": [
+                        {
+                            "vento": 5.2,
+                            "direcao_vento": "E",
+                            "direcao_vento_desc": "Leste",
+                            "altura_onda": 0.8,
+                            "direcao_onda": "ESE",
+                            "direcao_onda_desc": "Lés-sudeste",
+                            "agitacao": "Fraco",
+                            "hora": "00h Z"
+                        },
+                        {
+                            "vento": 4.8,
+                            "direcao_vento": "E",
+                            "direcao_vento_desc": "Leste",
+                            "altura_onda": 0.5,
+                            "direcao_onda": "ESE",
+                            "direcao_onda_desc": "Lés-sudeste",
+                            "agitacao": "Fraco",
+                            "hora": "03h Z"
+                        }
+                    ]
+                }
+            },
+            "ondas": {
+                "title": "ondas",
+                "required": [
+                    "vento",
+                    "direcao_vento",
+                    "direcao_vento_desc",
+                    "altura_onda",
+                    "direcao_onda",
+                    "direcao_onda_desc",
+                    "agitacao",
+                    "hora"
+                ],
+                "type": "object",
+                "properties": {
+                    "vento": {
+                        "type": "float",
+                        "description": "Velocidade do vento em km/h."
+                    },
+                    "direcao_vento": {
+                        "type": "string",
+                        "description": "Sigla do ponto cardeal, colateral ou subcolateral que indica a direção do vento."
+                    },
+                    "altura_onda": {
+                        "type": "float",
+                        "description": "Altura em metros das ondas no município ou localidade litorâneo(a) selecionado(a) no determinado período do dia, representada por um número decimal."
+                    },
+                    "direcao_onda": {
+                        "type": "string",
+                        "description": "Sigla do ponto cardeal, colateral ou subcolateral que indica a direção das ondas."
+                    },
+                    "agitacao": {
+                        "type": "string",
+                        "description": "Texto que indica a agitação do mar."
+                    },
+                    "hora": {
+                        "type": "string",
+                        "description": "Hora do dia para a condição prevista"
+                    }
+                },
+                "example": {
+                    "vento": 5.2,
+                    "direcao_vento": "E",
+                    "direcao_vento_desc": "Leste",
+                    "altura_onda": 0.8,
+                    "direcao_onda": "ESE",
+                    "direcao_onda_desc": "Lés-sudeste",
+                    "agitacao": "Fraco",
+                    "hora": "00h Z"
+                }
+            }            
+        }
+    }
+}

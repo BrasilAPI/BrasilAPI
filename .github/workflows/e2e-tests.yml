@@ -9,21 +9,31 @@ jobs:
 
     steps:
       - name: Puxar o código do commit
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Instalar o Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
-          node-version: '12.x'
+          node-version: '20.x'
+
+      - name: Cacheando dependencias
+        id: cache_dependencies
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-dependencies-${{ hashFiles('./package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: Instalar as dependências do npm
-        run: npm install
+        if: steps.cache_dependencies.outputs.cache-hit != 'true'
+        run: npm ci
 
       - name: Rodar testes
         run: npm test
 
       - name: Archive code coverage results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: code-coverage-report
           path: reports/coverage/lcov.info

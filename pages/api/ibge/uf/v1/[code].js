@@ -1,19 +1,13 @@
 import app from '@/app';
-import { getUfByCode } from '@/services/ibge';
-import NotFoundError from '@/errors/not-found';
+import { getUfByCode } from '@/services/ibge/gov';
+import NotFoundError from '@/errors/NotFoundError';
 
 const action = async (request, response) => {
   const { code } = request.query;
   const { data, status } = await getUfByCode(code);
 
   if (Array.isArray(data) && !data.length) {
-    response.status(404);
-
-    throw new NotFoundError({
-      name: 'NotFoundError',
-      message: 'UF não encontrado.',
-      type: 'not_found',
-    });
+    throw new NotFoundError({ message: 'UF não encontrada.' });
   }
 
   response.status(status);

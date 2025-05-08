@@ -1,11 +1,22 @@
-export default function logger(request, response, next) {
-  const clientIp =
-    request.headers['x-forwarded-for'] || request.connection.remoteAddress;
+import { extractIPFromRequest } from '@/lib/parseRequest';
 
-  console.log({
+export default function logger(request, response, next) {
+  const clientIp = extractIPFromRequest(request);
+
+  const userAgent = request.headers['user-agent'];
+
+  const { origin, referer } = request.headers;
+
+  const logMessage = JSON.stringify({
     url: request.url,
     clientIp,
+    userAgent,
+    origin,
+    referer,
   });
+
+  /* eslint-disable no-console */
+  console.log(logMessage);
 
   return next();
 }

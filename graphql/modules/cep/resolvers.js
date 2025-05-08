@@ -20,7 +20,7 @@ import cep from 'cep-promise';
 const CACHE_CONTROL_HEADER_VALUE =
   'max-age=0, s-maxage=86400, stale-while-revalidate, public';
 
-export default {
+const resolvers = {
   Query: {
     cep: async (_parent, _args, _context) => {
       if (_args.cep.length !== 8) {
@@ -29,11 +29,12 @@ export default {
 
       try {
         _context.res.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
-        const cepResult = await cep(_args.cep);
-        return cepResult;
+        return await cep(_args.cep);
       } catch (err) {
         throw new ApolloError('Erro ao consultar CEP', err.type, err.errors);
       }
     },
   },
 };
+
+export default resolvers;

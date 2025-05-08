@@ -1,7 +1,4 @@
 import axios from 'axios';
 
-export const getCnpjData = async (cnpj) => {
-  const url = 'https://minhareceita.org/';
-  const response = await axios({ url, method: 'post', data: `cnpj=${cnpj}` });
-  return response;
-};
+export const getCnpjData = (cnpj) =>
+  axios.get(`https://minhareceita.org/${cnpj}`);

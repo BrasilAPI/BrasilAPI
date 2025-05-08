@@ -1,22 +1,31 @@
 import app from '@/app';
 
-import BaseError from '@/errors/base';
-import InternalError from '@/errors/internal';
-import NotFoundError from '@/errors/not-found';
+import BaseError from '@/errors/BaseError';
+import InternalError from '@/errors/InternalError';
+import NotFoundError from '@/errors/NotFoundError';
+import BadRequestError from '@/errors/BadRequestError';
 
 import { getDddsData } from '@/services/ddd';
 
 async function citiesOfDdd(request, response, next) {
   try {
-    const requestedDdd = request.query.ddd;
+    const requestedDdd = Number(request.query.ddd.toString()).toString();
+
+    const lengthDdd = requestedDdd.length;
+
+    if (lengthDdd !== 2) {
+      throw new BadRequestError({
+        message: 'DDD deve conter apenas 2 dígitos',
+        type: 'ddd_error',
+        name: 'DDD_INVALID',
+      });
+    }
 
     const allDddData = await getDddsData();
 
     const dddData = allDddData.filter(({ ddd }) => ddd === requestedDdd);
 
     if (dddData.length === 0) {
-      response.status(404);
-
       throw new NotFoundError({
         message: 'DDD não encontrado',
         type: 'ddd_error',

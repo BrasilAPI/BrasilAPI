@@ -1,5 +1,13 @@
-const axios = require('axios');
-const crypto = require('crypto');
+import axios from 'axios';
+import crypto from 'node:crypto';
+import { describe, expect, test } from 'vitest';
+
+import { testCorsForRoute } from './helpers/cors';
+import {
+  getEasterHolidays,
+  getFixedHolidays,
+  getHolidays,
+} from './helpers/feriados';
 
 describe('/feriados/v1 (E2E)', () => {
   test('Feriados fixos com ano válido entre 1900 e 2199', async () => {
@@ -8,166 +16,29 @@ describe('/feriados/v1 (E2E)', () => {
     const { data } = await axios.get(requestUrl);
 
     expect.assertions(1);
-    expect(data).toEqual(
-      expect.arrayContaining([
-        {
-          date: `${year}-01-01`,
-          name: 'Confraternização mundial',
-          type: 'national',
-        },
-        {
-          date: `${year}-04-21`,
-          name: 'Tiradentes',
-          type: 'national',
-        },
-        {
-          date: `${year}-05-01`,
-          name: 'Dia do trabalho',
-          type: 'national',
-        },
-        {
-          date: `${year}-09-07`,
-          name: 'Independência do Brasil',
-          type: 'national',
-        },
-        {
-          date: `${year}-10-12`,
-          name: 'Nossa Senhora Aparecida',
-          type: 'national',
-        },
-        {
-          date: `${year}-11-02`,
-          name: 'Finados',
-          type: 'national',
-        },
-        {
-          date: `${year}-11-15`,
-          name: 'Proclamação da República',
-          type: 'national',
-        },
-        {
-          date: `${year}-12-25`,
-          name: 'Natal',
-          type: 'national',
-        },
-      ])
-    );
+    expect(data).toEqual(expect.arrayContaining(getFixedHolidays(year)));
   });
 
-  test('Feriados móveis de 2010', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/feriados/v1/2010`;
-    const { data } = await axios.get(requestUrl);
+  test('Feriados móveis dos anos 2010, 2020', async () => {
+    const years = [2010, 2020];
 
-    expect.assertions(1);
-    expect(data).toEqual(
-      expect.arrayContaining([
-        {
-          date: `2010-02-16`,
-          name: 'Carnaval',
-          type: 'national',
-        },
-        {
-          date: `2010-04-04`,
-          name: 'Páscoa',
-          type: 'national',
-        },
-        {
-          date: `2010-06-03`,
-          name: 'Corpus Christi',
-          type: 'national',
-        },
-      ])
-    );
-  });
+    expect.assertions(years.length);
 
-  test('Feriados móveis de 2020', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/feriados/v1/2020`;
-    const { data } = await axios.get(requestUrl);
+    await Promise.all(
+      years.map(async (year) => {
+        const requestUrl = `${global.SERVER_URL}/api/feriados/v1/${year}`;
+        const { data } = await axios.get(requestUrl);
 
-    expect.assertions(1);
-    expect(data).toEqual(
-      expect.arrayContaining([
-        {
-          date: `2020-02-25`,
-          name: 'Carnaval',
-          type: 'national',
-        },
-        {
-          date: `2020-04-12`,
-          name: 'Páscoa',
-          type: 'national',
-        },
-        {
-          date: `2020-06-11`,
-          name: 'Corpus Christi',
-          type: 'national',
-        },
-      ])
+        expect(data).toEqual(expect.arrayContaining(getEasterHolidays(year)));
+      })
     );
   });
 
   test('Feriados em ordem', async () => {
     const requestUrl = `${global.SERVER_URL}/api/feriados/v1/2020`;
     const { data } = await axios.get(requestUrl);
-
     expect.assertions(1);
-    expect(data).toEqual([
-      {
-        date: `2020-01-01`,
-        name: 'Confraternização mundial',
-        type: 'national',
-      },
-      {
-        date: `2020-02-25`,
-        name: 'Carnaval',
-        type: 'national',
-      },
-      {
-        date: `2020-04-12`,
-        name: 'Páscoa',
-        type: 'national',
-      },
-      {
-        date: `2020-04-21`,
-        name: 'Tiradentes',
-        type: 'national',
-      },
-      {
-        date: `2020-05-01`,
-        name: 'Dia do trabalho',
-        type: 'national',
-      },
-      {
-        date: `2020-06-11`,
-        name: 'Corpus Christi',
-        type: 'national',
-      },
-      {
-        date: `2020-09-07`,
-        name: 'Independência do Brasil',
-        type: 'national',
-      },
-      {
-        date: `2020-10-12`,
-        name: 'Nossa Senhora Aparecida',
-        type: 'national',
-      },
-      {
-        date: `2020-11-02`,
-        name: 'Finados',
-        type: 'national',
-      },
-      {
-        date: `2020-11-15`,
-        name: 'Proclamação da República',
-        type: 'national',
-      },
-      {
-        date: `2020-12-25`,
-        name: 'Natal',
-        type: 'national',
-      },
-    ]);
+    expect(data).toEqual(getHolidays(2020));
   });
 
   test('Utilizando um ano fora do intervalo suportado: 3000', async () => {
@@ -211,20 +82,38 @@ describe('/feriados/v1 (E2E)', () => {
     const { data } = await axios.get(requestUrl);
 
     expect.assertions(2);
-    expect(data).toHaveLength(11);
+
+    expect(data).toHaveLength(12);
     expect(data).toEqual(
-      expect.arrayContaining([
-        {
-          date: `2019-04-21`,
-          name: 'Páscoa',
-          type: 'national',
-        },
-        {
-          date: `2019-04-21`,
-          name: 'Tiradentes',
-          type: 'national',
-        },
-      ])
+      expect.arrayContaining(getHolidays(2019, ['Páscoa', 'Tiradentes']))
+    );
+  });
+
+  test('Feriado da consciência negra não deve existir em ano anterior a 2024', async () => {
+    expect.assertions(2);
+
+    const requestUrl = `${global.SERVER_URL}/api/feriados/v1/2023`;
+    const { data } = await axios.get(requestUrl);
+
+    expect(data).toHaveLength(12);
+    expect(data).toEqual(
+      expect.not.arrayContaining(
+        getHolidays(2024, ['Dia da consciência negra'])
+      )
+    );
+  });
+
+  test('Feriado da consciência negra deve existir a partir de 2024', async () => {
+    expect.assertions(2);
+
+    const requestUrl = `${global.SERVER_URL}/api/feriados/v1/2024`;
+    const { data } = await axios.get(requestUrl);
+
+    expect(data).toHaveLength(13);
+    expect(data).toEqual(
+      expect.arrayContaining(getHolidays(2024, ['Dia da consciência negra']))
     );
   });
 });
+
+testCorsForRoute('/api/feriados/v1/2020');

@@ -108,4 +108,11 @@ dist
 # IDE
 .vscode/
 
+# Vercel
+.vercel
+
+# IntelliJ IDEA
 .idea
+
+### asdf ###
+/.tool-versions

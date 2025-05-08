@@ -1,4 +1,4 @@
-import NotFoundError from '@/errors/not-found';
+import NotFoundError from '@/errors/NotFoundError';
 
 /**
  * Tabela da lua cheia de Páscoa, valida entre 1900 e 2199, inclusive.
@@ -61,7 +61,11 @@ export function getEasterHolidays(year) {
     type: 'national',
   });
   movingDate.setDate(movingDate.getDate() - 2);
-  // Sexta feira Santa / Paixão de Cristo não é feriado nacional
+  holidays.push({
+    date: formatDate(movingDate),
+    name: 'Sexta-feira Santa',
+    type: 'national',
+  });
   movingDate.setDate(movingDate.getDate() - 45);
   holidays.push({
     date: formatDate(movingDate),
@@ -104,6 +108,14 @@ export function getNationalHolidays(year) {
     ['11-15', 'Proclamação da República'],
     ['12-25', 'Natal'],
   ];
+
+  if (year >= 2024) {
+    fixedHolidays.splice(fixedHolidays.length - 1, 0, [
+      '11-20',
+      'Dia da consciência negra',
+    ]);
+  }
+
   return fixedHolidays.map(([date, name]) => ({
     date: `${year}-${date}`,
     name,

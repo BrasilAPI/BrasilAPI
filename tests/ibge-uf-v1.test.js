@@ -1,4 +1,7 @@
-const axios = require('axios');
+import axios from 'axios';
+import { describe, test, expect } from 'vitest';
+
+import { testCorsForRoute } from './helpers/cors';
 
 describe('/ibge/uf/v1 (E2E)', () => {
   test('Utilizando um Codigo válido: 22', async () => {
@@ -94,9 +97,13 @@ describe('/ibge/uf/v1 (E2E)', () => {
       expect(response.status).toBe(404);
       expect(response.data).toMatchObject({
         name: 'NotFoundError',
-        message: 'UF não encontrado.',
+        message: 'UF não encontrada.',
         type: 'not_found',
       });
     }
   });
 });
+
+testCorsForRoute('/api/ibge/uf/v1');
+testCorsForRoute('/api/ibge/uf/v1/22');
+testCorsForRoute('/api/ibge/uf/v1/PI');
