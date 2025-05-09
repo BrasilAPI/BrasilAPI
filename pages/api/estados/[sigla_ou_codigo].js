@@ -9,7 +9,7 @@ async function getPopulationFallback() {
 }
 
 async function fetchPopulation(url) {
-  return await axios.get(url);
+  return axios.get(url);
 }
 
 export default async function handler(req, res) {
@@ -52,8 +52,8 @@ export default async function handler(req, res) {
     const metadados = metadadosResponse.data[0];
 
     const estadoDetalhado = {
-      sigla,
-      nome,
+      sigla: estado.sigla,
+      nome: estado.nome,
       regiao: estado.regiao ? estado.regiao.nome : 'Não disponível.',
       ibge_codigo: estado.id,
       populacao,
