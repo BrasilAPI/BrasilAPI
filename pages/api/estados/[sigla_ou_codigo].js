@@ -9,11 +9,7 @@ async function getPopulationFallback() {
 }
 
 async function fetchPopulation(url) {
-  try {
-    return await axios.get(url);
-  } catch (error) {
-    throw error;
-  }
+  return await axios.get(url);
 }
 
 export default async function handler(req, res) {
@@ -38,13 +34,17 @@ export default async function handler(req, res) {
 
     let populacao;
     try {
-      const populacaoResponse = await fetchPopulation(`https://servicodados.ibge.gov.br/api/v2/censos/2020/estados/${idEstado}`);
+      const populacaoResponse = await fetchPopulation(
+        `https://servicodados.ibge.gov.br/api/v2/censos/2020/estados/${idEstado}`
+      );
       populacao = populacaoResponse.data.populacao || 'Não disponível.';
     } catch (err) {
       populacao = await getPopulationFallback();
     }
 
-    const metadadosResponse = await axios.get(`https://servicodados.ibge.gov.br/api/v4/malhas/estados/${idEstado}/metadados`);
+    const metadadosResponse = await axios.get(
+      `https://servicodados.ibge.gov.br/api/v4/malhas/estados/${idEstado}/metadados`
+    );
     if (metadadosResponse.status !== 200) {
       throw new Error('Erro ao buscar metadados do estado.');
     }
@@ -52,11 +52,11 @@ export default async function handler(req, res) {
     const metadados = metadadosResponse.data[0];
 
     const estadoDetalhado = {
-      sigla: estado.sigla,
-      nome: estado.nome,
+      sigla,
+      nome,
       regiao: estado.regiao ? estado.regiao.nome : 'Não disponível.',
       ibge_codigo: estado.id,
-      populacao: populacao,
+      populacao,
       area: metadados.area.dimensao || 'Não disponível.',
     };
 
