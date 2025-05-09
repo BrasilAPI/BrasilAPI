@@ -5,28 +5,31 @@ import BaseError from '@/errors/BaseError';
 import axios from 'axios';
 
 export default async function handler(req, res) {
-  const { sigla_ou_codigo } = req.query;
+  const { siglaOuCodigo } = req.query;
 
   try {
-    if (!sigla_ou_codigo || !CODIGOS_ESTADOS[sigla_ou_codigo.toUpperCase()]) {
+    if (!siglaOuCodigo || !CODIGOS_ESTADOS[siglaOuCodigo.toUpperCase()]) {
       throw new NotFoundError({
         message: 'Estado inválido ou não encontrado.',
         name: 'EstadoNotFoundException',
       });
     }
 
-    const response = await getUfByCode(sigla_ou_codigo.toUpperCase());
+    const response = await getUfByCode(siglaOuCodigo.toUpperCase());
 
     if (response.status !== 200) {
-      throw new Error("Erro na requisição à API do IBGE");
+      throw new Error('Erro na requisição à API do IBGE');
     }
 
     const estado = response.data;
     const idEstado = estado.id;
 
-    const metadadosResponse = await axios.get(`https://servicodados.ibge.gov.br/api/v4/malhas/estados/${idEstado}/metadados`);
+    const metadadosResponse = await axios.get(
+      `https://servicodados.ibge.gov.br/api/v4/malhas/estados/${idEstado}/metadados`
+    );
+
     if (metadadosResponse.status !== 200) {
-      throw new Error("Erro ao buscar metadados do estado");
+      throw new Error('Erro ao buscar metadados do estado');
     }
 
     const metadados = metadadosResponse.data[0];
@@ -34,9 +37,9 @@ export default async function handler(req, res) {
     const estadoDetalhado = {
       sigla: estado.sigla,
       nome: estado.nome,
-      regiao: estado.regiao ? estado.regiao.nome : "Não disponível",
+      regiao: estado.regiao ? estado.regiao.nome : 'Não disponível',
       ibge_codigo: estado.id,
-      area: metadados.area.dimensao || "Não disponível",
+      area: metadados.area.dimensao || 'Não disponível',
     };
 
     return res.status(200).json(estadoDetalhado);
