@@ -48,7 +48,6 @@ export default async function handler(req, res) {
     if (err instanceof BaseError) {
       return res.status(404).json({ error: err.message });
     }
-
     return res.status(500).json({ error: 'Erro ao buscar estado.' });
   }
 }
