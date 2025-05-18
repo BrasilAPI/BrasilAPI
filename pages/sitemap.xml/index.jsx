@@ -25,6 +25,7 @@ const getDocs = () => {
     'CPTEC',
     'PIX',
     'CAMBIO',
+    'TICKERS',
   ];
 };
 
