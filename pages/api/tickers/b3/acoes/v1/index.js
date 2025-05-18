@@ -1,8 +1,8 @@
 import app from '@/app';
-import { listTickers } from '@/services/tickers/listTickers';
+import { listStockTickers } from '@/services/tickers/listTickers';
 
 async function action(request, response) {
-  const tickers = await listTickers();
+  const tickers = await listStockTickers();
   response.status(200);
   response.json(tickers);
 }

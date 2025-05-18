@@ -6,7 +6,7 @@ const URL =
 
 const PAGE_SIZE = 120;
 
-const rawTickerSchema = z.object({
+const rawStockTickerSchema = z.object({
   codeCVM: z.string(),
   issuingCompany: z.string(),
   companyName: z.string(),
@@ -29,10 +29,10 @@ const rawResponseSchema = z.object({
     totalPages: z.number(),
     totalRecords: z.number(),
   }),
-  results: z.array(rawTickerSchema),
+  results: z.array(rawStockTickerSchema),
 });
 
-const tickerSchema = z.object({
+const stockTickerSchema = z.object({
   code_CVM: z.string(),
   issuing_company: z.string(),
   company_name: z.string(),
@@ -48,7 +48,7 @@ const tickerSchema = z.object({
   market: z.string(),
 });
 
-async function fetchTickers({ pageNumber, pageSize, language = 'pt-br' }) {
+async function fetchStockTickers({ pageNumber, pageSize, language = 'pt-br' }) {
   const paramsB64 = Buffer.from(
     JSON.stringify({ language, pageNumber, pageSize })
   ).toString('base64');
@@ -57,7 +57,7 @@ async function fetchTickers({ pageNumber, pageSize, language = 'pt-br' }) {
 
   const parsedResponse = rawResponseSchema.parse(data);
   const tickers = parsedResponse.results.map((ticker) => {
-    return tickerSchema.parse({
+    return stockTickerSchema.parse({
       code_CVM: ticker.codeCVM,
       issuing_company: ticker.issuingCompany,
       company_name: ticker.companyName,
@@ -79,8 +79,8 @@ async function fetchTickers({ pageNumber, pageSize, language = 'pt-br' }) {
   };
 }
 
-export async function listTickers() {
-  const { tickers, page } = await fetchTickers({
+export async function listStockTickers() {
+  const { tickers, page } = await fetchStockTickers({
     pageNumber: 1,
     pageSize: PAGE_SIZE,
   });
@@ -88,7 +88,7 @@ export async function listTickers() {
   const totalPages = Math.ceil(page.totalRecords / PAGE_SIZE);
   const promises = [];
   for (let i = 2; i <= totalPages; i += 1) {
-    promises.push(fetchTickers({ pageNumber: i, pageSize: PAGE_SIZE }));
+    promises.push(fetchStockTickers({ pageNumber: i, pageSize: PAGE_SIZE }));
   }
 
   const results = await Promise.all(promises);
