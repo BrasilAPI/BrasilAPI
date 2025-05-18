@@ -19,9 +19,9 @@ const validOutputSchema = expect.objectContaining({
 });
 
 describe('b3 v1 (E2E)', () => {
-  describe('GET /tickers/b3/v1/', () => {
+  describe('GET /tickers/b3/acoes/v1/', () => {
     test('Lista todos os tickers', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/tickers/b3/v1`;
+      const requestUrl = `${global.SERVER_URL}/api/tickers/b3/acoes/v1`;
       const response = await axios.get(requestUrl);
 
       expect(response.status).toBe(200);
@@ -32,4 +32,4 @@ describe('b3 v1 (E2E)', () => {
   });
 });
 
-testCorsForRoute('/api/tickers/b3/v1');
+testCorsForRoute('/api/tickers/b3/acoes/v1');

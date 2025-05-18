@@ -6,7 +6,7 @@
     }
   ],
   "paths": {
-    "/tickers/b3/v1": {
+    "/tickers/b3/acoes/v1": {
       "get": {
         "summary": "Retorna a lista de tickers das empresas listadas na B3",
         "description": "Endpoint para obter a lista completa de tickers de empresas listadas na B3 (Brasil, Bolsa, Balcão)",
