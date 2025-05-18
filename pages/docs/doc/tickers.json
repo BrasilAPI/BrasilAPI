@@ -32,6 +32,48 @@
           }
         }
       }
+    },
+    "/tickers/b3/fundos/v1/{typeFund}": {
+      "get": {
+        "summary": "Retorna a lista de tickers de fundos de investimento listados na B3",
+        "description": "Endpoint para obter a lista completa de tickers de fundos de investimento listados na B3 de acordo com o tipo especificado",
+        "tags": [
+          "TICKERS"
+        ],
+        "parameters": [
+          {
+            "name": "typeFund",
+            "in": "path",
+            "required": true,
+            "description": "Tipo de fundo de investimento",
+            "schema": {
+              "type": "string",
+              "enum": ["FII", "SETORIAL", "FIAGRO-FII", "FIAGRO-FIDC", "FIAGRO-FIP", "FIP", "FIA"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de tickers de fundos retornada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TickerInvestmentFund"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Tipo de fundo inválido ou não especificado"
+          },
+          "500": {
+            "description": "Erro ao obter os dados dos tickers"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -93,6 +135,34 @@
           "segment_eng": "Banks",
           "type": "1",
           "market": "NM"
+        }
+      },
+      "TickerInvestmentFund": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "type_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "acronym": {
+            "type": "string"
+          },
+          "fund_name": {
+            "type": "string"
+          },
+          "trading_name": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "id": 1234,
+          "type_name": "FII",
+          "acronym": "HGLG11",
+          "fund_name": "CSHG LOGÍSTICA FUNDO DE INVESTIMENTO IMOBILIÁRIO",
+          "trading_name": "CSHG LOGÍSTICA"
         }
       }
     }

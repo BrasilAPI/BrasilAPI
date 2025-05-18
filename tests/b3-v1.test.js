@@ -2,7 +2,7 @@ import axios from 'axios';
 import { describe, expect, test } from 'vitest';
 import { testCorsForRoute } from './helpers/cors';
 
-const validOutputSchema = expect.objectContaining({
+const validStockOutputSchema = expect.objectContaining({
   code_CVM: expect.any(String),
   issuing_company: expect.any(String),
   company_name: expect.any(String),
@@ -18,6 +18,14 @@ const validOutputSchema = expect.objectContaining({
   market: expect.any(String),
 });
 
+const validFundOutputSchema = expect.objectContaining({
+  id: expect.any(Number),
+  type_name: expect.toBeOneOf([expect.any(String), null]),
+  acronym: expect.any(String),
+  fund_name: expect.any(String),
+  trading_name: expect.any(String),
+});
+
 describe('b3 v1 (E2E)', () => {
   describe('GET /tickers/b3/acoes/v1/', () => {
     test('Lista todos os tickers', async () => {
@@ -26,10 +34,89 @@ describe('b3 v1 (E2E)', () => {
 
       expect(response.status).toBe(200);
       expect(response.data).toEqual(
-        expect.arrayContaining([validOutputSchema])
+        expect.arrayContaining([validStockOutputSchema])
+      );
+    });
+  });
+
+  describe('GET /tickers/b3/fundos/v1/', () => {
+    test('Lista tickers de fundos tipo FII', async () => {
+      const requestUrl = `${global.SERVER_URL}/api/tickers/b3/fundos/v1/FII`;
+      const response = await axios.get(requestUrl);
+
+      expect(response.status).toBe(200);
+      expect(response.data).toEqual(
+        expect.arrayContaining([validFundOutputSchema])
+      );
+    });
+
+    test('Lista tickers de fundos tipo SETORIAL', async () => {
+      const requestUrl = `${global.SERVER_URL}/api/tickers/b3/fundos/v1/SETORIAL`;
+      const response = await axios.get(requestUrl);
+
+      expect(response.status).toBe(200);
+      expect(response.data).toEqual(
+        expect.arrayContaining([validFundOutputSchema])
+      );
+    });
+
+    test('Lista tickers de fundos tipo FIAGRO-FII', async () => {
+      const requestUrl = `${global.SERVER_URL}/api/tickers/b3/fundos/v1/FIAGRO-FII`;
+      const response = await axios.get(requestUrl);
+
+      expect(response.status).toBe(200);
+      expect(response.data).toEqual(
+        expect.arrayContaining([validFundOutputSchema])
+      );
+    });
+
+    test('Lista tickers de fundos tipo FIAGRO-FIDC', async () => {
+      const requestUrl = `${global.SERVER_URL}/api/tickers/b3/fundos/v1/FIAGRO-FIDC`;
+      const response = await axios.get(requestUrl);
+
+      expect(response.status).toBe(200);
+      expect(response.data).toEqual(
+        expect.arrayContaining([validFundOutputSchema])
+      );
+    });
+
+    test('Lista tickers de fundos tipo FIAGRO-FIP', async () => {
+      const requestUrl = `${global.SERVER_URL}/api/tickers/b3/fundos/v1/FIAGRO-FIP`;
+      const response = await axios.get(requestUrl);
+
+      expect(response.status).toBe(200);
+      expect(response.data).toEqual(
+        expect.arrayContaining([validFundOutputSchema])
+      );
+    });
+
+    test('Lista tickers de fundos tipo FIP', async () => {
+      const requestUrl = `${global.SERVER_URL}/api/tickers/b3/fundos/v1/FIP`;
+      const response = await axios.get(requestUrl);
+
+      expect(response.status).toBe(200);
+      expect(response.data).toEqual(
+        expect.arrayContaining([validFundOutputSchema])
+      );
+    });
+
+    test('Lista tickers de fundos tipo FIA', async () => {
+      const requestUrl = `${global.SERVER_URL}/api/tickers/b3/fundos/v1/FIA`;
+      const response = await axios.get(requestUrl);
+
+      expect(response.status).toBe(200);
+      expect(response.data).toEqual(
+        expect.arrayContaining([validFundOutputSchema])
       );
     });
   });
 });
 
 testCorsForRoute('/api/tickers/b3/acoes/v1');
+testCorsForRoute('/api/tickers/b3/fundos/v1/FII');
+testCorsForRoute('/api/tickers/b3/fundos/v1/SETORIAL');
+testCorsForRoute('/api/tickers/b3/fundos/v1/FIAGRO-FII');
+testCorsForRoute('/api/tickers/b3/fundos/v1/FIAGRO-FIDC');
+testCorsForRoute('/api/tickers/b3/fundos/v1/FIAGRO-FIP');
+testCorsForRoute('/api/tickers/b3/fundos/v1/FIP');
+testCorsForRoute('/api/tickers/b3/fundos/v1/FIA');
