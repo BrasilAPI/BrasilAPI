@@ -25,7 +25,7 @@ const diasUteisHandler = (request, response) => {
 
     // para caso tenha mais de um ano entre as datas
     const anos = [];
-    for (let ano = inicio.getFullYear(); ano <= fim.getFullYear(); ano = ano + 1) {
+    for (let ano = inicio.getFullYear(); ano <= fim.getFullYear(); ano += 1) {
       anos.push(ano);
     }
 
