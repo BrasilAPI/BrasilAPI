@@ -8,9 +8,7 @@
   "paths": {
     "/diasuteis/v1/{diasuteis}": {
       "get": {
-        "tags": [
-          "Dias Úteis"
-        ],
+        "tags": ["Dias Úteis"],
         "summary": "Busca todos os dias úteis entre duas datas",
         "description": "Retorna todos os dias úteis entre `dataInicial` e `dataFinal`, considerando ou não os feriados nacionais.",
         "parameters": [
@@ -83,11 +81,7 @@
           }
         },
         "example": {
-          "diasUteis": [
-            "2025-01-02",
-            "2025-01-03",
-            "2025-01-06"
-          ]
+          "diasUteis": ["2025-01-02", "2025-01-03", "2025-01-06"]
         }
       },
       "ErrorMessage": {
