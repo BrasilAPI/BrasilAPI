@@ -1,39 +1,28 @@
 import NotFoundError from '@/errors/NotFoundError';
 
 /**
- * Tabela da lua cheia de Páscoa, valida entre 1900 e 2199, inclusive.
- * Contendo mês (indexado em 0) e dia.
- */
-function getPascalFullMoonDates() {
-  return [
-    [3, 14],
-    [3, 3],
-    [2, 23],
-    [3, 11],
-    [2, 31],
-    [3, 18],
-    [3, 8],
-    [2, 28],
-    [3, 16],
-    [3, 5],
-    [2, 25],
-    [3, 13],
-    [3, 2],
-    [2, 22],
-    [3, 10],
-    [2, 30],
-    [3, 17],
-    [3, 7],
-    [2, 27],
-  ];
-}
-
-/**
  * @param Date date
  * @return string
  */
 function formatDate(date) {
   return date.toISOString().substr(0, 10);
+}
+
+/**
+ * Cálculo da data do feriado de Páscoa
+ */
+function getEasterDay(year) {
+  /* facilita obter o quociente e o resto da divisão */
+  const div_mod = (dividend, divisor) => [Math.floor(dividend / divisor), dividend % divisor];
+  
+  const a = year % 19;
+  const [b, c] = div_mod(year, 100);
+  const h = (19 * a + b - Math.floor(b / 4) - Math.floor((b - (b + 8) / 25 + 1) / 3) + 15) % 30;
+  const [i, k] = div_mod(c, 4);
+  const l = (32 + 2 * (b % 4) + 2 * i - h - k) % 7;
+  const m = Math.floor((a + 11 * h + 22 * l) / 451);
+  const [month, day] = div_mod(h + l - 7 * m + 114, 31);
+  return new Date(year, month-1, day+1);
 }
 
 /**
@@ -49,35 +38,39 @@ export function getEasterHolidays(year) {
       type: 'feriados_range_error',
     });
   }
-
-  const pascalFullMoonMonthDay = getPascalFullMoonDates();
-  const [refMonth, refDay] = pascalFullMoonMonthDay[year % 19];
-  const movingDate = new Date(year, refMonth, refDay);
+  
   const holidays = [];
-  movingDate.setDate(movingDate.getDate() + 7 - movingDate.getDay());
+  
+  const easterDate = getEasterDay(year);
   holidays.push({
-    date: formatDate(movingDate),
+    date: formatDate(easterDate),
     name: 'Páscoa',
     type: 'national',
   });
+  
+  const movingDate = new Date(+easterDate);
+
   movingDate.setDate(movingDate.getDate() - 2);
   holidays.push({
     date: formatDate(movingDate),
     name: 'Sexta-feira Santa',
     type: 'national',
   });
+  
   movingDate.setDate(movingDate.getDate() - 45);
   holidays.push({
     date: formatDate(movingDate),
     name: 'Carnaval',
     type: 'national',
   });
+  
   movingDate.setDate(movingDate.getDate() + 107);
   holidays.push({
     date: formatDate(movingDate),
     name: 'Corpus Christi',
     type: 'national',
   });
+  
   return holidays;
 }
 
@@ -99,9 +92,9 @@ export function getEasterHolidays(year) {
  */
 export function getNationalHolidays(year) {
   const fixedHolidays = [
-    ['01-01', 'Confraternização mundial'],
+    ['01-01', 'Confraternização Mundial'],
     ['04-21', 'Tiradentes'],
-    ['05-01', 'Dia do trabalho'],
+    ['05-01', 'Dia do Trabalho'],
     ['09-07', 'Independência do Brasil'],
     ['10-12', 'Nossa Senhora Aparecida'],
     ['11-02', 'Finados'],
@@ -110,10 +103,9 @@ export function getNationalHolidays(year) {
   ];
 
   if (year >= 2024) {
-    fixedHolidays.splice(fixedHolidays.length - 1, 0, [
-      '11-20',
-      'Dia da consciência negra',
-    ]);
+    fixedHolidays.splice(fixedHolidays.length - 1, 0, 
+      ['11-20', 'Dia da Consciência Negra']
+    );
   }
 
   return fixedHolidays.map(([date, name]) => ({
