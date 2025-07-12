@@ -109,11 +109,11 @@
                 "properties": {
                     "longitude": {
                         "type": "string",
-                        "format": "nullable"
+                        "nullable": true
                     },
                     "latitude": {
                         "type": "string",
-                        "format": "nullable"
+                        "nullable": true
                     }
                 },
                 "example": {
