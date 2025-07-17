@@ -15,10 +15,18 @@ function isValidCep(cep) {
   return cleanCep.length === CEP_LENGTH;
 }
 
+function extractIbgeInfo(ibge) {
+  const city = String(ibge || '');
+  const state = city.slice(0, 2) || null;
+  return { city, state };
+}
+
 async function fetchOpenCep(cep) {
   const { data } = await axios.get(`https://opencep.com/v1/${cep}`, {
     timeout: DEFAULT_TIMEOUT,
   });
+
+  const { city, state } = extractIbgeInfo(data.ibge);
 
   return {
     cep: onlyDigits(data.cep),
@@ -27,6 +35,10 @@ async function fetchOpenCep(cep) {
     neighborhood: data.bairro,
     street: data.logradouro,
     service: 'open-cep',
+    ibge: {
+      city,
+      state,
+    },
   };
 }
 
