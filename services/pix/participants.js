@@ -36,6 +36,7 @@ export const formatCsvFile = (file) => {
 
   const expectedHeaders = [
     'participantes',
+    'cnpj',
     'nomeParticipante',
     'nomeReduzidoParticipante',
     'modalidadeParticipacaoPix',
@@ -57,11 +58,12 @@ export const formatCsvFile = (file) => {
       .map((data) => {
         return {
           ispb: data[0],
-          nome: data[1],
-          nome_reduzido: data[2],
-          modalidade_participacao: data[3],
-          tipo_participacao: data[4],
-          inicio_operacao: parseToDate(data[5]),
+          cnpj: data[1],
+          nome: data[2],
+          nome_reduzido: data[3],
+          modalidade_participacao: data[4],
+          tipo_participacao: data[5],
+          inicio_operacao: parseToDate(data[6]),
         };
       })
       .filter(Boolean);
