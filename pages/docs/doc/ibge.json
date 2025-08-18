@@ -227,6 +227,99 @@
                     }
                 }
             }
+        },
+        "/ibge/regioes/v1": {
+          "get": {
+              "tags": ["IBGE"],
+              "summary": "Retorna informações de todas as regiões do Brasil",
+              "description": "",
+              "responses": {
+                  "200": {
+                      "description": "Success",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "array",
+                                  "items": {
+                                      "$ref": "#/components/schemas/Region"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+        },
+        "/ibge/uf/v1/regiao/{regionCode}": {
+          "get": {
+              "tags": ["IBGE"],
+              "summary": "Busca os estados de uma região à partir da sigla ou código",
+              "description": "",
+              "responses": {
+                  "200": {
+                      "description": "Success",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "array",
+                                  "items": {
+                                      "$ref": "#/components/schemas/State"
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "404": {
+                    "description": "O código / sigla da região não foi encontrado",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ErrorMessage"
+                            },
+                            "example": {
+                                "name": "NotFoundError",
+                                "message": "Região não encontrada.",
+                                "type": "not_found"
+                            }
+                        }
+                    }
+                  }
+              }
+          }
+        },
+        "/ibge/regioes/v1/{regionCode}": {
+          "get": {
+              "tags": ["IBGE"],
+              "summary": "Busca as informações de uma região em específico",
+              "description": "",
+              "responses": {
+                  "200": {
+                      "description": "Success",
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                "$ref": "#/components/schemas/Region"
+                              }
+                          }
+                      }
+                  },
+                  "404": {
+                    "description": "O código / sigla da região não foi encontrado",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ErrorMessage"
+                            },
+                            "example": {
+                                "name": "NotFoundError",
+                                "message": "Região não encontrada.",
+                                "type": "not_found"
+                            }
+                        }
+                    }
+                  }
+              }
+          }
         }
     },
     "components": {
