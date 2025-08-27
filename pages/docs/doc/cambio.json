@@ -105,7 +105,8 @@
   "components": {
     "schemas": {
       "Moedas": {
-        "title": "Moedas",
+        "title": "Currency Information",
+        "description": "Informações sobre uma moeda disponível para consulta de câmbio",
         "required": [
           "simbolo",
           "nome",
@@ -114,13 +115,16 @@
         "type": "object",
         "properties": {
           "simbolo": {
-            "type": "string"
+            "type": "string",
+            "description": "Código da moeda (ISO 4217) - exemplo: USD, EUR, BRL"
           },
           "nome": {
-            "type": "string"
+            "type": "string",
+            "description": "Nome completo da moeda"
           },
           "tipo_moeda": {
-            "type": "string"
+            "type": "string",
+            "description": "Tipo de moeda para classificação (A, B, etc.)"
           }
         },
         "example": {

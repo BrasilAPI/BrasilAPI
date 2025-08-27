@@ -2,7 +2,7 @@
     "tags": [
         {
             "name": "Feriados Nacionais",
-            "description": "Informações sobre feriados nacionais"
+            "description": "Consulta de feriados nacionais brasileiros. Calcula automaticamente feriados móveis (como Páscoa, Carnaval) e inclui todos os feriados fixos estabelecidos pela legislação federal."
         }        
     ],
     "paths": {

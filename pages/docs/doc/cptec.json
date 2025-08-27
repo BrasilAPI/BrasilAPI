@@ -2,7 +2,7 @@
     "tags": [
         {
             "name": "CPTEC",
-            "description": "Abstração e normalização de dados provenientes da CPTEC. Fonte oficial: CPTEC/INPE"
+            "description": "Dados meteorológicos e oceanográficos do Centro de Previsão de Tempo e Estudos Climáticos (CPTEC/INPE). Inclui previsões do tempo, condições atuais, informações sobre cidades e previsões oceânicas."
         }
     ],
     "paths": {
@@ -370,18 +370,22 @@
     "components": {
         "schemas": {
             "City": {
-                "title": "City",
+                "title": "Cidade CPTEC",
+                "description": "Informações de uma cidade disponível nos serviços do CPTEC",
                 "required": ["nome", "estado", "id"],
                 "type": "object",
                 "properties": {
                     "nome": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Nome da cidade"
                     },
                     "estado": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Sigla do estado (UF)"
                     },
                     "id": {
-                        "type": "integer"
+                        "type": "integer",
+                        "description": "Código único da cidade no sistema CPTEC"
                     }
                 },
                 "example": {

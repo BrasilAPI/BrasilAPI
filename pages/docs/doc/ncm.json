@@ -2,7 +2,7 @@
     "tags": [
         {
             "name": "NCM",
-            "description": "Informações referentes a NCMs"
+            "description": "Nomenclatura Comum do Mercosul (NCM) - Sistema de classificação de produtos para fins de tributação e controle de comércio exterior. Inclui consulta, busca e listagem completa de códigos NCM."
         }
     ],
     "paths": {

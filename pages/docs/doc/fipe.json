@@ -2,7 +2,7 @@
     "tags": [
         {
             "name": "FIPE",
-            "description": "Informações sobre Preço Médio de Veículos fornecido pela FIPE (Fundação Instituto de Pesquisas Econômicas)"
+            "description": "Tabela FIPE de preços de veículos. Consulta valores de carros, motos e caminhões usados segundo a Fundação Instituto de Pesquisas Econômicas. Inclui dados históricos e atuais."
         }
     ],
     "paths": {
@@ -267,7 +267,8 @@
                 }
             },
             "VeiculoFIPE": {
-                "title": "Veículo FIPE",
+                "title": "Informações Detalhadas do Veículo FIPE",
+                "description": "Dados completos de um veículo conforme a tabela FIPE, incluindo preço e especificações",
                 "required": [
                     "valor",
                     "marca",
@@ -283,34 +284,44 @@
                 "type": "object",
                 "properties": {
                     "valor": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Preço do veículo formatado em reais (ex: R$ 6.022,00)"
                     },
                     "marca": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Nome da marca do veículo"
                     },
                     "modelo": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Nome do modelo específico do veículo"
                     },
                     "anoModelo": {
-                        "type": "integer"
+                        "type": "integer",
+                        "description": "Ano de fabricação do modelo"
                     },
                     "combustivel": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Tipo de combustível (Gasolina, Álcool, Flex, Diesel, etc.)"
                     },
                     "codigoFipe": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Código FIPE único do veículo (formato: XXXXXX-X)"
                     },
                     "mesReferencia": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Mês e ano de referência da tabela FIPE utilizada"
                     },
                     "tipoVeiculo": {
-                        "type": "integer"
+                        "type": "integer",
+                        "description": "Código do tipo de veículo (1=carro, 2=moto, 3=caminhão)"
                     },
                     "siglaCombustivel": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Sigla do tipo de combustível (G, Á, F, D, etc.)"
                     },
                     "dataConsulta": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Data e hora da consulta realizada"
                     }
                 },
                 "example": {

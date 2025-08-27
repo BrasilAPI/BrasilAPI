@@ -2,7 +2,7 @@
   "tags": [
     {
       "name": "DDD",
-      "description": "Informações relacionadas a DDDs"
+      "description": "Consulta de códigos DDD (Discagem Direta à Distância) brasileiros. Permite buscar informações sobre estados e cidades associadas a cada código de área telefônica."
     }
   ],
   "paths": {
