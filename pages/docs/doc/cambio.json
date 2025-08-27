@@ -11,8 +11,8 @@
         "tags": [
           "CAMBIO"
         ],
-        "summary": "Retorna a lista de moedas que podem ser usadas como parâmetros para este conjunto de dados.",
-        "description": "",
+        "summary": "Lista todas as moedas disponíveis para consulta de câmbio.",
+        "description": "Retorna a lista completa de moedas que podem ser utilizadas como parâmetros nos endpoints de consulta de câmbio, incluindo informações sobre símbolo, nome e tipo de cada moeda.",
         "responses": {
           "200": {
             "description": "Success",
@@ -23,6 +23,21 @@
                   "items": {
                     "$ref": "#/components/schemas/Moedas"
                   }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno ao buscar moedas.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "name": "InternalError",
+                  "message": "Erro ao buscar moedas.",
+                  "type": "moedas_error"
                 }
               }
             }

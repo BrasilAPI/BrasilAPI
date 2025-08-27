@@ -73,7 +73,8 @@
                                     "$ref": "#/components/schemas/ErrorMessage"
                                 },
                                 "example": {
-                                    "message": "Nenhuma cidade não localizada",
+                                    "name": "NotFoundError",
+                                    "message": "Nenhuma cidade localizada",
                                     "type": "NO_CITY_NOT_FOUND"
                                 }
                             }
@@ -146,8 +147,9 @@
                                     "$ref": "#/components/schemas/ErrorMessage"
                                 },
                                 "example": {
+                                    "name": "NotFoundError",
                                     "message": "Condições meteorológicas ou aeroporto não localizados",
-                                    "type": "AIRPORT_condicaoS_NOT_FOUND"
+                                    "type": "AIRPORT_CONDITIONS_NOT_FOUND"
                                 }
                             }
                         }
@@ -338,6 +340,7 @@
                                     "$ref": "#/components/schemas/ErrorMessage"
                                 },
                                 "example": {
+                                    "name": "BadRequestError",
                                     "message": "Quantidade de dias inválida (mínimo 1 dia e máximo 6 dias)",
                                     "type": "INVALID_NUMBER_OF_DAYS"
                                 }
@@ -352,6 +355,7 @@
                                     "$ref": "#/components/schemas/ErrorMessage"
                                 },
                                 "example": {
+                                    "name": "NotFoundError",
                                     "message": "Cidade não localizada",
                                     "type": "CITY_NOT_FOUND"
                                 }

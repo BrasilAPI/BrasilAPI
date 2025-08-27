@@ -10,31 +10,33 @@
             "get": {
                 "tags": ["ISBN"],
                 "summary": "Informações sobre o livro a partir do ISBN",
-                "description": "",
+                "description": "Busca informações detalhadas de um livro utilizando seu código ISBN. Suporta múltiplos provedores de dados e formatos ISBN-10 e ISBN-13.",
                 "parameters": [
                     {
                         "name": "isbn",
-                        "description": "O código informado pode conter traços (<code>-</code>) e ambos os formatos são aceitos, sendo eles o obsoleto de 10 dígitos e o atual de 13 dígitos.",
+                        "description": "O código ISBN do livro. Aceita tanto o formato de 10 dígitos (obsoleto) quanto o de 13 dígitos (atual). Pode conter ou não traços de formatação.",
                         "in": "path",
                         "required": true,
                         "schema": {
                             "type": "string",
+                            "pattern": "^[0-9]{10}([0-9]{3})?$|^[0-9-]{13,17}$",
                             "example": "9788545702870"
                         }
                     },
                     {
                         "name": "providers",
-                        "description": "Lista de provedores separados por vírgula. Se não especificado, será realizado uma busca em todos os provedores e o que retornar as informações mais rapidamente será o escolhido.",
+                        "description": "Lista de provedores separados por vírgula para busca do ISBN. Se não especificado, será realizada busca em todos os provedores disponíveis, retornando o resultado mais rápido.",
                         "in": "query",
                         "required": false,
-                        "style": "pipeDelimited",
+                        "style": "form",
+                        "explode": false,
                         "schema": {
                             "type": "array",
                             "items": {
                                 "type": "string",
                                 "enum": ["cbl", "mercado-editorial", "open-library", "google-books"]
                             },
-                            "format": "string"
+                            "example": ["cbl", "google-books"]
                         }
                     }
                 ],

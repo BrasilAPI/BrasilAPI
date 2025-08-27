@@ -10,7 +10,7 @@
             "get": {
                 "tags": ["NCM"],
                 "summary": "Retorna informações de todos os NCMs",
-                "description": "",
+                "description": "Lista completa de todos os códigos NCM (Nomenclatura Comum do Mercosul) cadastrados. Inclui código, descrição e informações de vigência de cada NCM.",
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -31,8 +31,8 @@
         "/ncm/v1?search={code}": {
             "get": {
                 "tags": ["NCM"],
-                "summary": "Pesquisa por NCMs a partir  de um código ou descrição.",
-                "description": "",
+                "summary": "Pesquisa por NCMs a partir de um código ou descrição.",
+                "description": "Permite buscar códigos NCM utilizando código parcial ou palavras-chave na descrição. Útil para encontrar NCMs relacionados a um produto específico.",
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -54,7 +54,19 @@
             "get": {
                 "tags": ["NCM"],
                 "summary": "Busca as informações de um NCM a partir de um código",
-                "description": "",
+                "description": "Retorna informações detalhadas de um código NCM específico, incluindo descrição, dados de vigência e informações do ato legal que o criou.",
+                "parameters": [
+                    {
+                        "name": "code",
+                        "description": "Código NCM a ser consultado. Pode conter ou não pontos de formatação (ex: 3305.10.00 ou 33051000).",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "33051000"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -74,6 +86,7 @@
                                     "$ref": "#/components/schemas/ErrorMessage"
                                 },
                                 "example": {
+                                    "name": "NotFoundError",
                                     "message": "Código NCM não encontrado",
                                     "type": "NCM_CODE_NOT_FOUND"
                                 }
@@ -88,29 +101,38 @@
         "schemas": {
             "NCM": {
                 "title": "NCM",
-                "required": ["codigo", "descricao", "data_inicio", "data_fim", "tipo_ato", "numero_ato", "ano"],
+                "required": ["codigo", "descricao", "data_inicio", "data_fim", "tipo_ato", "numero_ato", "ano_ato"],
                 "type": "object",
                 "properties": {
                     "codigo": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Código NCM formatado com pontos"
                     },
                     "descricao": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Descrição do produto ou categoria"
                     },
                     "data_inicio": {
-                        "type": "string"
+                        "type": "string",
+                        "format": "date",
+                        "description": "Data de início da vigência do código NCM"
                     },
                     "data_fim": {
-                        "type": "string"
+                        "type": "string",
+                        "format": "date",
+                        "description": "Data de fim da vigência do código NCM"
                     },
                     "tipo_ato": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Tipo do ato legal que criou o código NCM"
                     },
                     "numero_ato": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Número do ato legal"
                     },
-                    "ano": {
-                        "type": "string"
+                    "ano_ato": {
+                        "type": "string",
+                        "description": "Ano do ato legal"
                     }
                 },
                 "example": {

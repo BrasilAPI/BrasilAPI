@@ -68,27 +68,29 @@
         "/fipe/preco/v1/{codigoFipe}": {
             "get": {
                 "tags": ["FIPE"],
-                "summary": "Consulta o preço do veículo segundo a tabela fipe.",
-                "description": "",
+                "summary": "Consulta o preço do veículo segundo a tabela FIPE.",
+                "description": "Retorna informações detalhadas sobre o preço de um veículo específico de acordo com a tabela FIPE, incluindo valor, marca, modelo e outras informações relevantes.",
                 "parameters": [
                     {
                         "name": "codigoFipe",
-                        "description": "Código fipe do veículo.\n",
+                        "description": "Código FIPE do veículo que identifica unicamente um modelo específico na tabela FIPE. Exemplo: 001004-9 para Fiat Palio EX 1.0.",
                         "in": "path",
                         "required": true,
                         "schema": {
                             "type": "string",
-                            "format": "string"
+                            "pattern": "^[0-9]{6}-[0-9]$",
+                            "example": "001004-9"
                         }
                     },
                     {
                         "name": "tabela_referencia",
-                        "description": "Código da tabela fipe de referência. Por padrão é utilizado o código da tabela fipe atual.\n",
+                        "description": "Código da tabela FIPE de referência para consulta. Se não especificado, utiliza a tabela mais atual disponível.",
                         "in": "query",
                         "required": false,
                         "schema": {
                             "type": "integer",
-                            "format": "int64"
+                            "format": "int64",
+                            "example": 295
                         }
                     }
                 ],
@@ -116,16 +118,16 @@
                                 "examples": {
                                     "Código Fipe Inválido": {
                                         "value": {
+                                            "name": "BadRequestError",
                                             "message": "Código fipe inválido",
-                                            "type": "bad_request",
-                                            "name": "BadRequestError"
+                                            "type": "bad_request"
                                         }
                                     },
                                     "Tabela FIPE Inválida": {
                                         "value": {
-                                            "message": "Tabela FIPE Inválida",
-                                            "type": "bad_request",
-                                            "name": "BadRequestError"
+                                            "name": "BadRequestError",
+                                            "message": "Tabela de referência inválida",
+                                            "type": "bad_request"
                                         }
                                     }
                                 }
