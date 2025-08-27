@@ -1,11 +1,14 @@
 import app from '@/app';
+import BadRequestError from '@/errors/BadRequestError';
+import NotFoundError from '@/errors/NotFoundError';
+import InternalError from '@/errors/InternalError';
 import { fetchCep } from '@/services/cep/cep';
 import fetchGeocoordinateFromBrazilLocation from '../../../../lib/fetchGeocoordinateFromBrazilLocation';
 
 const CACHE_CONTROL_HEADER_VALUE =
   'max-age=0, s-maxage=86400, stale-while-revalidate, public';
 
-async function Cep(request, response) {
+async function getCepWithLocation(request, response) {
   const requestedCep = request.query.cep;
 
   response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
@@ -24,30 +27,23 @@ async function Cep(request, response) {
       cepFromCepPromise.neighborhood = null;
     }
 
-    response.status(200);
-    response.json({ ...cepFromCepPromise, location });
+    return response.status(200).json({ ...cepFromCepPromise, location });
   } catch (error) {
     if (error.name === 'CepPromiseError') {
       switch (error.type) {
         case 'validation_error':
-          response.status(400);
-          break;
+          throw new BadRequestError({ message: error.message });
         case 'service_error':
-          response.status(404);
-          break;
+          throw new NotFoundError({ message: error.message });
         default:
           break;
       }
-
-      response.json(error);
-      return;
     } else if (error.type === 'bad_request') {
       throw error;
     }
 
-    response.status(500);
-    response.json(error);
+    throw new InternalError({ message: 'Erro interno no serviço de CEP' });
   }
 }
 
-export default app({ cache: 172800 }).get(Cep);
+export default app({ cache: 172800 }).get(getCepWithLocation);

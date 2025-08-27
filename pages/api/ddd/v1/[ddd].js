@@ -1,13 +1,11 @@
 import app from '@/app';
-
 import BaseError from '@/errors/BaseError';
 import InternalError from '@/errors/InternalError';
 import NotFoundError from '@/errors/NotFoundError';
 import BadRequestError from '@/errors/BadRequestError';
-
 import { getDddsData } from '@/services/ddd';
 
-async function citiesOfDdd(request, response, next) {
+async function getCitiesByDdd(request, response) {
   try {
     const requestedDdd = Number(request.query.ddd.toString()).toString();
 
@@ -42,11 +40,10 @@ async function citiesOfDdd(request, response, next) {
       cities,
     };
 
-    response.status(200);
-    return response.json(dddResult);
+    return response.status(200).json(dddResult);
   } catch (error) {
     if (error instanceof BaseError) {
-      return next(error);
+      throw error;
     }
 
     throw new InternalError({
@@ -56,4 +53,4 @@ async function citiesOfDdd(request, response, next) {
   }
 }
 
-export default app().get(citiesOfDdd);
+export default app().get(getCitiesByDdd);
