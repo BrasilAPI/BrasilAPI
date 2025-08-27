@@ -9,7 +9,7 @@ const searchByCode = (input, search) => {
   return input.replace(/\D/g, '').startsWith(search.replace(/[,.]/, ''));
 };
 
-const action = async (request, response) => {
+async function getAllNcmData(request, response) {
   let ncmData = await getNcmData();
 
   if (request.query.search) {
@@ -22,18 +22,13 @@ const action = async (request, response) => {
       );
     });
 
-    if (!ncmData) {
-      response.status(404);
-      response.json({
-        message: 'Código NCM não encontrado',
-        type: 'NCM_CODE_NOT_FOUND',
-      });
-      return;
+    // For search queries, return empty array if no results (preserving original behavior)
+    if (!ncmData || ncmData.length === 0) {
+      return response.status(200).json([]);
     }
   }
 
-  response.status(200);
-  response.json(ncmData);
-};
+  return response.status(200).json(ncmData);
+}
 
-export default app().get(action);
+export default app().get(getAllNcmData);
