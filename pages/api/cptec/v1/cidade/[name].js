@@ -28,7 +28,7 @@ async function getCityByName(request, response) {
       });
     }
 
-    return response.status(200).json(cityData);
+    response.json(cityData);
   } catch (err) {
     if (err instanceof BaseError) {
       throw err;
