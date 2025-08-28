@@ -1,7 +1,4 @@
 import app from '@/app';
-import BadRequestError from '@/errors/BadRequestError';
-import NotFoundError from '@/errors/NotFoundError';
-import InternalError from '@/errors/InternalError';
 import { fetchCep } from '@/services/cep/cep';
 import fetchGeocoordinateFromBrazilLocation from '../../../../lib/fetchGeocoordinateFromBrazilLocation';
 
@@ -27,22 +24,29 @@ async function getCepWithLocation(request, response) {
       cepFromCepPromise.neighborhood = null;
     }
 
-    return response.status(200).json({ ...cepFromCepPromise, location });
+    response.status(200);
+    response.json({ ...cepFromCepPromise, location });
   } catch (error) {
     if (error.name === 'CepPromiseError') {
       switch (error.type) {
         case 'validation_error':
-          throw new BadRequestError({ message: error.message });
+          response.status(400);
+          break;
         case 'service_error':
-          throw new NotFoundError({ message: error.message });
+          response.status(404);
+          break;
         default:
           break;
       }
+
+      response.json(error);
+      return;
     } else if (error.type === 'bad_request') {
       throw error;
     }
 
-    throw new InternalError({ message: 'Erro interno no serviço de CEP' });
+    response.status(500);
+    response.json(error);
   }
 }
 
