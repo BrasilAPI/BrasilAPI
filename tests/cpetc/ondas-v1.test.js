@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { describe, expect, test } from 'vitest';
 
-describe('ondas prediction v1 (E2E)', () => {
+// TODO: This test is intermittent due to external CPTEC service availability in CI environments
+describe.skip('ondas prediction v1 (E2E)', () => {
   describe('Route WITHOUT number of days for ondas', () => {
     test('GET /api/cptec/v1/ondas/:cityCode (Invalid City Code)', async () => {
       const requestUrl = `${global.SERVER_URL}/api/cptec/v1/ondas/9999`;
