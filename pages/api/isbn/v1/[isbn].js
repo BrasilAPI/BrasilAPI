@@ -41,7 +41,7 @@ async function searchIsbn(isbn, providers = null) {
   return data;
 }
 
-async function action(request, response) {
+async function getBookByIsbn(request, response) {
   try {
     const requestedIsbn = request.query.isbn.replace(/-/g, '');
     const providers = request.query.providers
@@ -75,4 +75,4 @@ async function action(request, response) {
   }
 }
 
-export default app().get(action);
+export default app().get(getBookByIsbn);

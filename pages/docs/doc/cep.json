@@ -58,17 +58,18 @@
                 "tags": [
                     "CEP V2"
                 ],
-                "summary": "Versão 2 do serviço de busca por CEP com múltiplos providers de fallback.",
-                "description": "",
+                "summary": "Busca por CEP com múltiplos providers e geolocalização.",
+                "description": "Versão 2 do serviço de busca por CEP que inclui informações de geolocalização (latitude e longitude) além dos dados básicos de endereço. Utiliza múltiplos provedores com sistema de fallback para garantir maior disponibilidade.",
                 "parameters": [
                     {
                         "name": "cep",
-                        "description": "O CEP (Código de Endereçamento Postal) é um sistema de códigos que visa racionalizar o processo de encaminhamento e entrega de correspondências através da divisão do país em regiões postais. ... Atualmente, o CEP é composto por oito dígitos, cinco de um lado e três de outro. Cada algarismo do CEP possui um significado.\n",
+                        "description": "CEP a ser consultado. Deve conter exatamente 8 dígitos, com ou sem formatação (hífen). Exemplo: 01310-930 ou 01310930.",
                         "in": "path",
                         "required": true,
                         "schema": {
-                            "type": "integer",
-                            "format": "int64"
+                            "type": "string",
+                            "pattern": "^[0-9]{8}$|^[0-9]{5}-[0-9]{3}$",
+                            "example": "01310930"
                         }
                     }
                 ],
@@ -83,12 +84,47 @@
                             }
                         }
                     },
-                    "404": {
-                        "description": "Todos os serviços de CEP retornaram erro.",
+                    "400": {
+                        "description": "CEP inválido ou mal formatado.",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/CepError"
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "name": "BadRequestError",
+                                    "message": "CEP deve conter exatamente 8 dígitos",
+                                    "type": "validation_error"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "CEP não encontrado em nenhum provedor.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "name": "NotFoundError",
+                                    "message": "CEP NAO ENCONTRADO",
+                                    "type": "service_error"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro interno no serviço de CEP.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "name": "InternalError",
+                                    "message": "Erro interno no serviço de CEP",
+                                    "type": "internal_error"
                                 }
                             }
                         }
@@ -149,41 +185,44 @@
                 }
             },
             "AddressV2": {
-                "title": "Address",
+                "title": "Address V2 with Geolocation",
+                "description": "Endereço completo com informações de geolocalização incluídas",
                 "required": [
                     "cep",
                     "state",
                     "city",
                     "neighborhood",
                     "street",
-                    "service",
                     "location"
                 ],
                 "type": "object",
                 "properties": {
                     "cep": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Código de Endereçamento Postal"
                     },
                     "state": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Sigla do estado (UF)"
                     },
                     "city": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Nome da cidade"
                     },
                     "neighborhood": {
                         "type": "string",
-                        "nullable": true
+                        "nullable": true,
+                        "description": "Nome do bairro (pode ser nulo)"
                     },
                     "street": {
                         "type": "string",
-                        "nullable": true
-                    },
-                    "service": {
-                        "type": "string"
+                        "nullable": true,
+                        "description": "Nome da rua/logradouro (pode ser nulo)"
                     },
                     "location": {
                         "type": "object",
-                        "$ref": "#/components/schemas/Location"
+                        "$ref": "#/components/schemas/Location",
+                        "description": "Coordenadas geográficas do endereço"
                     }
                 },
                 "example": {
@@ -192,7 +231,6 @@
                     "city": "Blumenau",
                     "neighborhood": "Centro",
                     "street": "Rua Doutor Luiz de Freitas Melro",
-                    "service": "viacep",
                     "location": {
                         "type": "Point",
                         "coordinates": {

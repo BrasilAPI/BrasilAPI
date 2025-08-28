@@ -2,7 +2,7 @@
   "tags": [
     {
       "name": "CNPJ",
-      "description": "Busca dados de empresas por CNPJ"
+      "description": "Consulta de informações empresariais através do CNPJ. Retorna dados cadastrais completos, situação fiscal, sócios, atividades econômicas e outras informações da Receita Federal."
     }
   ],
   "paths": {
@@ -12,16 +12,17 @@
           "CNPJ"
         ],
         "summary": "Busca por CNPJ na API Minha Receita.",
-        "description": "",
+        "description": "Retorna informações completas de uma empresa a partir do CNPJ, incluindo dados cadastrais, situação, sócios e atividades econômicas.",
         "parameters": [
           {
             "name": "cnpj",
-            "description": "O Cadastro Nacional da Pessoa Jurídica é um número único que identifica uma pessoa jurídica e outros tipos de arranjo jurídico sem personalidade jurídica junto à Receita Federal.\n",
+            "description": "O Cadastro Nacional da Pessoa Jurídica é um número único que identifica uma pessoa jurídica junto à Receita Federal. Deve conter 14 dígitos, com ou sem formatação (pontos, barras e hífen).",
             "in": "path",
             "required": true,
             "schema": {
               "type": "string",
-              "format": "string"
+              "pattern": "^[0-9]{14}$|^[0-9]{2}\\.[0-9]{3}\\.[0-9]{3}/[0-9]{4}-[0-9]{2}$",
+              "example": "19131243000197"
             }
           }
         ],
@@ -36,19 +37,32 @@
               }
             }
           },
+          "400": {
+            "description": "CNPJ inválido ou mal formatado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "name": "BadRequestError",
+                  "message": "CNPJ deve conter exatamente 11 dígitos.",
+                  "type": "bad_request"
+                }
+              }
+            }
+          },
           "404": {
             "description": "CNPJ não encontrado na API Minha Receita.",
             "content": {
               "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
                 "example": {
-                  "name": "CnpjPromiseError",
-                  "message": "Erro retornado pela API Minha Receita.",
-                  "type": "service_error",
-                  "errors": [
-                    {
-                      "message": "CNPJ 00.000.000/0001-91 não encontrado."
-                    }
-                  ]
+                  "name": "NotFoundError",
+                  "message": "CNPJ 00.000.000/0001-91 não encontrado.",
+                  "type": "not_found"
                 }
               }
             }

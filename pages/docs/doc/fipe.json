@@ -2,7 +2,7 @@
     "tags": [
         {
             "name": "FIPE",
-            "description": "Informações sobre Preço Médio de Veículos fornecido pela FIPE (Fundação Instituto de Pesquisas Econômicas)"
+            "description": "Tabela FIPE de preços de veículos. Consulta valores de carros, motos e caminhões usados segundo a Fundação Instituto de Pesquisas Econômicas. Inclui dados históricos e atuais."
         }
     ],
     "paths": {
@@ -68,27 +68,29 @@
         "/fipe/preco/v1/{codigoFipe}": {
             "get": {
                 "tags": ["FIPE"],
-                "summary": "Consulta o preço do veículo segundo a tabela fipe.",
-                "description": "",
+                "summary": "Consulta o preço do veículo segundo a tabela FIPE.",
+                "description": "Retorna informações detalhadas sobre o preço de um veículo específico de acordo com a tabela FIPE, incluindo valor, marca, modelo e outras informações relevantes.",
                 "parameters": [
                     {
                         "name": "codigoFipe",
-                        "description": "Código fipe do veículo.\n",
+                        "description": "Código FIPE do veículo que identifica unicamente um modelo específico na tabela FIPE. Exemplo: 001004-9 para Fiat Palio EX 1.0.",
                         "in": "path",
                         "required": true,
                         "schema": {
                             "type": "string",
-                            "format": "string"
+                            "pattern": "^[0-9]{6}-[0-9]$",
+                            "example": "001004-9"
                         }
                     },
                     {
                         "name": "tabela_referencia",
-                        "description": "Código da tabela fipe de referência. Por padrão é utilizado o código da tabela fipe atual.\n",
+                        "description": "Código da tabela FIPE de referência para consulta. Se não especificado, utiliza a tabela mais atual disponível.",
                         "in": "query",
                         "required": false,
                         "schema": {
                             "type": "integer",
-                            "format": "int64"
+                            "format": "int64",
+                            "example": 295
                         }
                     }
                 ],
@@ -116,16 +118,16 @@
                                 "examples": {
                                     "Código Fipe Inválido": {
                                         "value": {
+                                            "name": "BadRequestError",
                                             "message": "Código fipe inválido",
-                                            "type": "bad_request",
-                                            "name": "BadRequestError"
+                                            "type": "bad_request"
                                         }
                                     },
                                     "Tabela FIPE Inválida": {
                                         "value": {
-                                            "message": "Tabela FIPE Inválida",
-                                            "type": "bad_request",
-                                            "name": "BadRequestError"
+                                            "name": "BadRequestError",
+                                            "message": "Tabela de referência inválida",
+                                            "type": "bad_request"
                                         }
                                     }
                                 }
@@ -265,7 +267,8 @@
                 }
             },
             "VeiculoFIPE": {
-                "title": "Veículo FIPE",
+                "title": "Informações Detalhadas do Veículo FIPE",
+                "description": "Dados completos de um veículo conforme a tabela FIPE, incluindo preço e especificações",
                 "required": [
                     "valor",
                     "marca",
@@ -281,34 +284,44 @@
                 "type": "object",
                 "properties": {
                     "valor": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Preço do veículo formatado em reais (ex: R$ 6.022,00)"
                     },
                     "marca": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Nome da marca do veículo"
                     },
                     "modelo": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Nome do modelo específico do veículo"
                     },
                     "anoModelo": {
-                        "type": "integer"
+                        "type": "integer",
+                        "description": "Ano de fabricação do modelo"
                     },
                     "combustivel": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Tipo de combustível (Gasolina, Álcool, Flex, Diesel, etc.)"
                     },
                     "codigoFipe": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Código FIPE único do veículo (formato: XXXXXX-X)"
                     },
                     "mesReferencia": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Mês e ano de referência da tabela FIPE utilizada"
                     },
                     "tipoVeiculo": {
-                        "type": "integer"
+                        "type": "integer",
+                        "description": "Código do tipo de veículo (1=carro, 2=moto, 3=caminhão)"
                     },
                     "siglaCombustivel": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Sigla do tipo de combustível (G, Á, F, D, etc.)"
                     },
                     "dataConsulta": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Data e hora da consulta realizada"
                     }
                 },
                 "example": {
