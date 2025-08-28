@@ -60,4 +60,4 @@ async function Cep(request, response) {
   }
 }
 
-export default app({ cache: 172800 }).get(Cep);
+export default app({ cache: 2592000 }).get(Cep);
