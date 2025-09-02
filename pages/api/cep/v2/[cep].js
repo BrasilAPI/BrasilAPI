@@ -5,7 +5,7 @@ import fetchGeocoordinateFromBrazilLocation from '../../../../lib/fetchGeocoordi
 const CACHE_CONTROL_HEADER_VALUE =
   'max-age=0, s-maxage=86400, stale-while-revalidate, public';
 
-async function Cep(request, response) {
+async function getCepWithLocation(request, response) {
   const requestedCep = request.query.cep;
 
   response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
@@ -50,4 +50,4 @@ async function Cep(request, response) {
   }
 }
 
-export default app({ cache: 172800 }).get(Cep);
+export default app({ cache: 172800 }).get(getCepWithLocation);
