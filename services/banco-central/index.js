@@ -6,7 +6,9 @@ const formatCsvFile = (file) => {
   // Remove o cabeçalho
   file.shift();
 
-  return file.map(
+  return file
+    .filter(([ispb, name, code]) => ispb && code)
+    .map(
     ([
       ispb, // ISPB
       name, // Nome_Reduzido
