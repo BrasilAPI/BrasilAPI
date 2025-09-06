@@ -24,7 +24,7 @@ export const getUfEstimatePopulationByCode = async (uf) => {
   const ESTIMATED_POPULATION_VARIABLE_ID = 9324;
   const LATEST_PERIOD = -1;
 
-  const { data } = await axios
+  let { data } = await axios
     .get(`${URL_AGGREGATES}/${ESTIMATED_POPULATION_AGGREGATE_ID}/periodos/${LATEST_PERIOD}/variaveis?localidades=N3[${ufCode}]`);
   
   // let data = [{"id":"9324","variavel":"População residente estimada","unidade":"Pessoas","resultados":[{"classificacoes":[],"series":[{"localidade":{"id":"35","nivel":{"id":"N3","nome":"Unidade da Federação"},"nome":"São Paulo"},"serie":{"2025":"46081801"}}]}]}]
