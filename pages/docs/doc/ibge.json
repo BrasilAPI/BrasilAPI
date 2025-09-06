@@ -242,7 +242,8 @@
           "sigla",
           "nome",
           "regiao",
-          "populacao"
+          "populacao_estimada",
+          "periodo"
         ],
         "type": "object",
         "properties": {
@@ -277,7 +278,7 @@
             "sigla": "SE",
             "nome": "Sudeste"
           },
-          "populacao_estimada": "400000",
+          "populacao_estimada": 4000000,
           "periodo": "2025"
         }
       },
