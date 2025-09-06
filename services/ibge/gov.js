@@ -38,7 +38,7 @@ export const getUfEstimatePopulationByCode = async (uf) => {
   const key = Object.keys(result)[0]
 
   return {
-    "populacao_estimada": result[key],
+    "populacao_estimada": parseInt(result[key]),
     "periodo": key
   }
 }
