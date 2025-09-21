@@ -6,7 +6,7 @@ import NotFoundError from '@/errors/NotFoundError';
 import { getSwellData } from '@/services/cptec';
 import { MAX_SWELL_DAYS, MIN_DAYS } from '@/services/cptec/constants';
 
-const action = async (request, response) => {
+async function getSwellPredictions(request, response) {
   const { days, cityCode } = request.query;
 
   if (!Number.isFinite(Number(days))) {
@@ -57,6 +57,6 @@ const action = async (request, response) => {
       name: 'SWELL_PREDICTIONS_ERROR',
     });
   }
-};
+}
 
-export default app().get(action);
+export default app().get(getSwellPredictions);

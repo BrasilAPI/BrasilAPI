@@ -10,31 +10,33 @@
             "get": {
                 "tags": ["ISBN"],
                 "summary": "Informações sobre o livro a partir do ISBN",
-                "description": "",
+                "description": "Busca informações detalhadas de um livro utilizando seu código ISBN. Suporta múltiplos provedores de dados e formatos ISBN-10 e ISBN-13.",
                 "parameters": [
                     {
                         "name": "isbn",
-                        "description": "O código informado pode conter traços (<code>-</code>) e ambos os formatos são aceitos, sendo eles o obsoleto de 10 dígitos e o atual de 13 dígitos.",
+                        "description": "O código ISBN do livro. Aceita tanto o formato de 10 dígitos (obsoleto) quanto o de 13 dígitos (atual). Pode conter ou não traços de formatação.",
                         "in": "path",
                         "required": true,
                         "schema": {
                             "type": "string",
+                            "pattern": "^[0-9]{10}([0-9]{3})?$|^[0-9-]{13,17}$",
                             "example": "9788545702870"
                         }
                     },
                     {
                         "name": "providers",
-                        "description": "Lista de provedores separados por vírgula. Se não especificado, será realizado uma busca em todos os provedores e o que retornar as informações mais rapidamente será o escolhido.",
+                        "description": "Lista de provedores separados por vírgula para busca do ISBN. Se não especificado, será realizada busca em todos os provedores disponíveis, retornando o resultado mais rápido.",
                         "in": "query",
                         "required": false,
-                        "style": "pipeDelimited",
+                        "style": "form",
+                        "explode": false,
                         "schema": {
                             "type": "array",
                             "items": {
                                 "type": "string",
                                 "enum": ["cbl", "mercado-editorial", "open-library", "google-books"]
                             },
-                            "format": "string"
+                            "example": ["cbl", "google-books"]
                         }
                     }
                 ],
@@ -141,65 +143,86 @@
                 }
             },
             "ISBNInfo": {
-                "title": "ISBN Info",
+                "title": "Informações Detalhadas do Livro",
+                "description": "Dados completos de um livro obtidos através do ISBN, incluindo informações bibliográficas e comerciais",
                 "required": ["isbn", "title", "provider"],
                 "type": "object",
                 "properties": {
                     "isbn": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Código ISBN do livro (10 ou 13 dígitos)"
                     },
                     "title": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Título principal do livro"
                     },
                     "subtitle": {
-                      "type": "string"
+                      "type": "string",
+                      "nullable": true,
+                      "description": "Subtítulo do livro (se disponível)"
                     },
                     "authors": {
                         "type": "array",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "description": "Lista de autores, tradutores e colaboradores"
                     },
                     "publisher": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Nome da editora responsável pela publicação"
                     },
                     "synopsis": {
-                        "type": "string"
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Sinopse ou resumo do conteúdo do livro"
                     },
                     "dimensions": {
                         "type": "object",
-                        "$ref": "#/components/schemas/Dimensions"
+                        "$ref": "#/components/schemas/Dimensions",
+                        "description": "Dimensões físicas do livro (largura x altura)"
                     },
                     "year": {
-                        "type": "integer"
+                        "type": "integer",
+                        "description": "Ano de publicação"
                     },
                     "format": {
                         "type": "string",
-                        "enum": ["PHYSICAL", "DIGITAL"]
+                        "enum": ["PHYSICAL", "DIGITAL"],
+                        "description": "Formato de publicação do livro"
                     },
                     "page_count": {
-                        "type": "integer"
+                        "type": "integer",
+                        "nullable": true,
+                        "description": "Número total de páginas"
                     },
                     "subjects": {
                         "type": "array",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "description": "Assuntos e categorias do livro"
                     },
                     "location": {
-                        "type": "string"
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Local de publicação (cidade, estado)"
                     },
                     "retail_price": {
                         "type": "object",
-                        "$ref": "#/components/schemas/Price"
+                        "$ref": "#/components/schemas/Price",
+                        "description": "Preço de varejo sugerido (se disponível)"
                     },
                     "cover_url": {
                         "type": "string",
-                        "format": "uri"
+                        "format": "uri",
+                        "nullable": true,
+                        "description": "URL da imagem da capa do livro"
                     },
                     "provider": {
                         "type": "string",
-                        "enum": ["cbl", "mercado-editorial", "open-library", "google-books"]
+                        "enum": ["cbl", "mercado-editorial", "open-library", "google-books"],
+                        "description": "Provedor que forneceu as informações do livro"
                     }
                 },
                 "example": {
