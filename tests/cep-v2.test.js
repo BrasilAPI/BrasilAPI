@@ -22,6 +22,7 @@ describe('/cep/v2 (E2E)', () => {
       neighborhood: 'Perdizes',
       street: 'Rua Caiubi',
       service: expect.any(String),
+      timezoneName: 'America/Sao_Paulo',
       location: {
         type: 'Point',
         coordinates: {
@@ -43,6 +44,7 @@ describe('/cep/v2 (E2E)', () => {
       neighborhood: 'Perdizes',
       street: 'Rua Caiubi',
       service: 'open-cep',
+      timezoneName: 'America/Sao_Paulo',
       location: {
         type: 'Point',
         coordinates: {
@@ -106,6 +108,7 @@ describe('/cep/v2 (E2E)', () => {
       neighborhood: 'Piedade',
       street: 'Rua Marcolino',
       service: expect.any(String),
+      timezoneName: 'America/Sao_Paulo',
       location: {
         type: 'Point',
         coordinates: {
@@ -127,6 +130,7 @@ describe('/cep/v2 (E2E)', () => {
       neighborhood: null,
       street: null,
       service: expect.any(String),
+      timezoneName: 'America/Sao_Paulo',
       location: {
         type: 'Point',
         coordinates: {

@@ -34,6 +34,7 @@
     "sass": "1.56.1",
     "selic": "1.1.0",
     "styled-components": "5.3.6",
+    "tz-lookup": "^6.1.25",
     "vite": "6.2.2",
     "wikijs": "6.4.0"
   },

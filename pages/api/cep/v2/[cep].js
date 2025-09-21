@@ -1,6 +1,7 @@
 import app from '@/app';
 import { fetchCep } from '@/services/cep/cep';
 import fetchGeocoordinateFromBrazilLocation from '../../../../lib/fetchGeocoordinateFromBrazilLocation';
+import fetchTimezoneNameFromBrazilLocation from '../../../../lib/fetchTimezoneNameFromBrazilLocation';
 
 const CACHE_CONTROL_HEADER_VALUE =
   'max-age=0, s-maxage=86400, stale-while-revalidate, public';
@@ -16,6 +17,11 @@ async function getCepWithLocation(request, response) {
       cepFromCepPromise
     );
 
+    const timezoneName = await fetchTimezoneNameFromBrazilLocation({
+      ...location,
+      ...cepFromCepPromise,
+    });
+
     if (!cepFromCepPromise.street) {
       cepFromCepPromise.street = null;
     }
@@ -25,7 +31,7 @@ async function getCepWithLocation(request, response) {
     }
 
     response.status(200);
-    response.json({ ...cepFromCepPromise, location });
+    response.json({ ...cepFromCepPromise, timezoneName, location });
   } catch (error) {
     if (error.name === 'CepPromiseError') {
       switch (error.type) {
