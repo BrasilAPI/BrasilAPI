@@ -129,6 +129,43 @@ describeIf(shouldSkipTests)('/ibge/uf/v1 (E2E)', () => {
       });
     }
   });
+
+  test('Buscando estados por uma região válida: S', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/ibge/uf/v1/regiao/S`;
+    const response = await axios.get(requestUrl);
+
+    expect(response.status).toBe(200);
+    expect(response.data).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          id: expect.any(Number),
+          sigla: expect.any(String),
+          nome: expect.any(String),
+          regiao: expect.objectContaining({
+            id: expect.any(Number),
+            sigla: expect.any(String),
+            nome: expect.any(String),
+          }),
+        }),
+      ])
+    );
+  });
+
+  test('Buscando estados por uma região inválida: 99', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/ibge/uf/v1/regiao/99`;
+
+    try {
+      await axios.get(requestUrl);
+    } catch (error) {
+      const { response } = error;
+      expect(response.status).toBe(404);
+      expect(response.data).toMatchObject({
+        name: 'NotFoundError',
+        message: 'Região não encontrada.',
+        type: 'not_found',
+      });
+    }
+  });
 });
 
 // CORS tests - only run when IBGE service is healthy
