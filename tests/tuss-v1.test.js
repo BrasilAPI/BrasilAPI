@@ -105,7 +105,7 @@ describe('api/tuss/v1/search (E2E)', () => {
     expect(Array.isArray(data.items)).toBe(true);
     expect(data.items.length).toBeGreaterThan(0);
     const projectionOk = data.items.every((item) => {
-      const keys = Object.keys(item).sort();
+      const keys = Object.keys(item).sort((a, b) => a.localeCompare(b));
       return keys.length === 2 && keys[0] === 'name' && keys[1] === 'tuss';
     });
     expect(projectionOk).toBe(true);
