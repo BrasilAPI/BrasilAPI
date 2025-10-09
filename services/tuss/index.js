@@ -10,7 +10,7 @@ function normalize(str) {
 }
 
 function sanitizeCode(str) {
-  return String(str || '').replace(/\D+/g, '');
+  return String(str || '').replaceAll(/\D+/g, '');
 }
 
 export function searchTuss({ name, tuss }) {

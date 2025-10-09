@@ -1,3 +1,4 @@
+/* eslint-env es2020 */
 import axios from 'axios';
 import { beforeAll, describe, expect, test } from 'vitest';
 
@@ -7,7 +8,7 @@ describe('api/tuss/v1 (E2E)', () => {
   let baseUrl = '';
 
   beforeAll(async () => {
-    baseUrl = `${global.SERVER_URL}/api/tuss/v1`;
+    baseUrl = `${globalThis.SERVER_URL}/api/tuss/v1`;
   });
 
   test('Lista completa sem filtros', async () => {
@@ -26,7 +27,10 @@ describe('api/tuss/v1 (E2E)', () => {
     expect(data.items.length).toBeGreaterThan(0);
     const first = data.items[0];
     expect(first).toEqual(
-      expect.objectContaining({ tuss: expect.any(String), name: expect.any(String) })
+      expect.objectContaining({
+        tuss: expect.any(String),
+        name: expect.any(String),
+      })
     );
     // Sem paginação, total deve ser igual ao tamanho de items
     expect(data.total).toEqual(data.items.length);
@@ -38,9 +42,10 @@ describe('api/tuss/v1 (E2E)', () => {
     expect(status).toEqual(200);
     expect(Array.isArray(data.items)).toBe(true);
     expect(data.items.length).toBeGreaterThan(0);
-    data.items.forEach((item) => {
-      expect(item.name.toLowerCase()).toContain('consulta');
-    });
+    const allMatch = data.items.every((item) =>
+      item.name.toLowerCase().includes('consulta')
+    );
+    expect(allMatch).toBe(true);
   });
 
   test('Detalhe por código válido: 10101012', async () => {
@@ -48,7 +53,10 @@ describe('api/tuss/v1 (E2E)', () => {
     const { data, status } = response;
     expect(status).toEqual(200);
     expect(data).toEqual(
-      expect.objectContaining({ tuss: '10101012', name: expect.stringContaining('Consulta') })
+      expect.objectContaining({
+        tuss: '10101012',
+        name: expect.stringContaining('Consulta'),
+      })
     );
   });
 
@@ -70,7 +78,7 @@ describe('api/tuss/v1 (E2E)', () => {
 describe('api/tuss/v1/search (E2E)', () => {
   let searchUrl = '';
   beforeAll(async () => {
-    searchUrl = `${global.SERVER_URL}/api/tuss/v1/search`;
+    searchUrl = `${globalThis.SERVER_URL}/api/tuss/v1/search`;
   });
 
   test('Busca avançada por tokens (q) encontra código conhecido', async () => {
@@ -89,14 +97,18 @@ describe('api/tuss/v1/search (E2E)', () => {
   });
 
   test('Project de campos retorna apenas tuss e name', async () => {
-    const response = await axios.get(`${searchUrl}?q=Consulta&fields=tuss,name&limit=5`);
+    const response = await axios.get(
+      `${searchUrl}?q=Consulta&fields=tuss,name&limit=5`
+    );
     const { data, status } = response;
     expect(status).toEqual(200);
     expect(Array.isArray(data.items)).toBe(true);
     expect(data.items.length).toBeGreaterThan(0);
-    data.items.forEach((item) => {
-      expect(Object.keys(item).sort()).toEqual(['name', 'tuss']);
+    const projectionOk = data.items.every((item) => {
+      const keys = Object.keys(item).sort();
+      return keys.length === 2 && keys[0] === 'name' && keys[1] === 'tuss';
     });
+    expect(projectionOk).toBe(true);
   });
 
   test('Paginação com limit e offset', async () => {
@@ -117,7 +129,7 @@ describe('api/tuss/v1/search (E2E)', () => {
 describe('api/tuss/v1/autocomplete (E2E)', () => {
   let autoUrl = '';
   beforeAll(async () => {
-    autoUrl = `${global.SERVER_URL}/api/tuss/v1/autocomplete`;
+    autoUrl = `${globalThis.SERVER_URL}/api/tuss/v1/autocomplete`;
   });
 
   test('Autocomplete prefixa por código', async () => {
@@ -127,7 +139,10 @@ describe('api/tuss/v1/autocomplete (E2E)', () => {
     expect(Array.isArray(data)).toBe(true);
     expect(data.length).toBeGreaterThan(0);
     expect(data[0]).toEqual(
-      expect.objectContaining({ tuss: expect.stringMatching(/^1010/), name: expect.any(String) })
+      expect.objectContaining({
+        tuss: expect.stringMatching(/^1010/),
+        name: expect.any(String),
+      })
     );
   });
 

@@ -1,6 +1,32 @@
 import app from '@/app';
 import { getTussTerms, searchTuss } from '@/services/tuss';
 
+function parseLimit(limit) {
+  if (typeof limit !== 'string') return undefined;
+  const n = Number.parseInt(limit, 10);
+  if (Number.isNaN(n) || n <= 0) return undefined;
+  return n;
+}
+
+function parseOffset(offset) {
+  if (typeof offset !== 'string') return 0;
+  const n = Number.parseInt(offset, 10);
+  if (Number.isNaN(n) || n < 0) return 0;
+  return n;
+}
+
+function paginate(items, limitNum, offsetNum) {
+  if (typeof limitNum === 'number') {
+    const start = offsetNum;
+    const end = offsetNum + limitNum;
+    return items.slice(start, end);
+  }
+  if (offsetNum > 0) {
+    return items.slice(offsetNum);
+  }
+  return items;
+}
+
 async function TussSearch(request, response) {
   const { name, tuss, limit, offset } = request.query;
 
@@ -15,33 +41,12 @@ async function TussSearch(request, response) {
     data = getTussTerms();
   }
 
-  let limitNum;
-  let offsetNum = 0;
-
-  if (typeof limit === 'string') {
-    const parsed = parseInt(limit, 10);
-    if (!Number.isNaN(parsed) && parsed > 0) {
-      limitNum = parsed;
-    }
-  }
-
-  if (typeof offset === 'string') {
-    const parsed = parseInt(offset, 10);
-    if (!Number.isNaN(parsed) && parsed >= 0) {
-      offsetNum = parsed;
-    }
-  }
+  const limitNum = parseLimit(limit);
+  const offsetNum = parseOffset(offset);
 
   const total = Array.isArray(data) ? data.length : 0;
 
-  let items = data;
-  if (typeof limitNum === 'number') {
-    const start = offsetNum;
-    const end = offsetNum + limitNum;
-    items = items.slice(start, end);
-  } else if (offsetNum > 0) {
-    items = items.slice(offsetNum);
-  }
+  const items = paginate(data, limitNum, offsetNum);
 
   const payload = {
     total,

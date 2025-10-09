@@ -7,7 +7,7 @@ async function TussAutocomplete(request, response) {
   // default small limit, cap at 20 for autocomplete
   let limitNum = 10;
   if (typeof limit === 'string') {
-    const parsed = parseInt(limit, 10);
+    const parsed = Number.parseInt(limit, 10);
     if (!Number.isNaN(parsed) && parsed > 0) {
       limitNum = Math.min(parsed, 20);
     }

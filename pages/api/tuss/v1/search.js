@@ -5,7 +5,7 @@ function project(item, fields) {
   if (!Array.isArray(fields) || fields.length === 0) return item;
   return fields.reduce(
     (acc, key) =>
-      item[key] !== undefined ? { ...acc, [key]: item[key] } : acc,
+      item[key] === undefined ? acc : { ...acc, [key]: item[key] },
     {}
   );
 }
@@ -33,13 +33,13 @@ async function TussSearchAdvanced(request, response) {
   let limitNum;
   let offsetNum = 0;
   if (typeof limit === 'string') {
-    const parsed = parseInt(limit, 10);
+    const parsed = Number.parseInt(limit, 10);
     if (!Number.isNaN(parsed) && parsed > 0) {
       limitNum = parsed;
     }
   }
   if (typeof offset === 'string') {
-    const parsed = parseInt(offset, 10);
+    const parsed = Number.parseInt(offset, 10);
     if (!Number.isNaN(parsed) && parsed >= 0) {
       offsetNum = parsed;
     }
