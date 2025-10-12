@@ -105,9 +105,6 @@ dist
 
 .now
 
-# IDE
-.vscode/
-
 # Vercel
 .vercel
 
