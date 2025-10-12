@@ -1,0 +1,147 @@
+{
+    "tags": [
+        {
+            "name": "LOTERIA",
+            "description": "Resultados e dados das loterias"
+        }
+    ],
+    "paths": {
+        "/loterias/v1": {
+            "get": {
+                "tags": [
+                    "LOTERIA"
+                ],
+                "summary": "Retorna os últimos resultados das loterias",
+                "description": "Fornece informações detalhadas sobre os últimos resultados das loterias, incluindo números sorteados, prêmios e mais.",
+                "responses": {
+                    "200": {
+                        "description": "Operação bem-sucedida",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResultadoLoteria"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resultado não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ResultadoLoteria": {
+                "title": "ResultadoLoteria",
+                "type": "object",
+                "properties": {
+                    "acumulado": {
+                        "type": "boolean"
+                    },
+                    "dataApuracao": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "dataProximoConcurso": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "dezenasSorteadasOrdemSorteio": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "listaDezenas": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "valorArrecadado": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "valorEstimadoProximoConcurso": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "listaRateioPremio": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/RateioPremio"
+                        }
+                    }
+                   
+                },
+                "example": {
+                    "acumulado": true,
+                    "dataApuracao": "29/11/2023",
+                    "dezenasSorteadasOrdemSorteio": [
+                        "29", "89", "85", "46", "93", "54", "25", "07", "17", "87"
+                    ],
+                    "listaDezenas": [
+                        "07", "17", "25", "29", "30", "35", "40", "41", "43", "46"
+                    ],
+                    "valorArrecadado": 4690338.0,
+                    "valorEstimadoProximoConcurso": 5000000.0
+                }
+                
+            },
+            "RateioPremio": {
+                "title": "RateioPremio",
+                "type": "object",
+                "properties": {
+                    "descricaoFaixa": {
+                        "type": "string"
+                    },
+                    "faixa": {
+                        "type": "integer"
+                    },
+                    "numeroDeGanhadores": {
+                        "type": "integer"
+                    },
+                    "valorPremio": {
+                        "type": "number",
+                        "format": "float"
+                    }
+                },
+                "example": {
+                    "descricaoFaixa": "20 acertos",
+                    "faixa": 1,
+                    "numeroDeGanhadores": 0,
+                    "valorPremio": 0.0
+                }
+            },
+            "ErrorMessage": {
+                "title": "ErrorMessage",
+                "required": [
+                    "name",
+                    "message"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "name": "NotFoundError",
+                    "message": "Resultado não encontrado"
+                }
+            }
+        }
+    }
+}
