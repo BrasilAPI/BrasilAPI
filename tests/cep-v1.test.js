@@ -1,9 +1,96 @@
 import axios from 'axios';
 import { describe, expect, test } from 'vitest';
-
 import { testCorsForRoute } from './helpers/cors';
 
 describe('/cep/v1 (E2E)', () => {
+  test('Bloqueio por user-agent e IP', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/cep/v1/05010000`;
+
+    await expect(
+      axios.get(requestUrl, {
+        headers: {
+          'x-forwarded-for': '127.0.0.1',
+          'user-agent': 'Go-http-client/2.0',
+        },
+      })
+    ).rejects.toMatchObject({
+      response: {
+        status: 429,
+        data: expect.stringContaining('please stop abusing our public API'),
+      },
+    });
+  });
+
+  test('possui blockedIp mas não blocked user-agent', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/cep/v1/05010000`;
+
+    const response = await axios.get(requestUrl, {
+      headers: {
+        'x-forwarded-for': '127.0.0.1',
+      },
+    });
+
+    expect(response.status).toBe(200);
+    expect(response.data).toEqual({
+      cep: '05010000',
+      state: 'SP',
+      city: 'São Paulo',
+      neighborhood: 'Perdizes',
+      street: 'Rua Caiubi',
+      service: expect.any(String),
+    });
+  });
+
+  test('possui blocked user-agent mas não blocked IP', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/cep/v1/05010000`;
+
+    const response = await axios.get(requestUrl, {
+      headers: {
+        'user-agent': 'Go-http-client/2.0',
+      },
+    });
+    expect(response.status).toBe(200);
+    expect(response.data).toEqual({
+      cep: '05010000',
+      state: 'SP',
+      city: 'São Paulo',
+      neighborhood: 'Perdizes',
+      street: 'Rua Caiubi',
+      service: expect.any(String),
+    });
+  });
+
+  test('Bloqueio por user-agent e pathToBlock', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/cep/v1/52010000`;
+
+    await expect(
+      axios.get(requestUrl, {
+        headers: { 'user-agent': 'Go-http-client/2.0' },
+      })
+    ).rejects.toMatchObject({
+      response: {
+        status: 429,
+        data: expect.stringContaining('please stop abusing our public API'),
+      },
+    });
+  });
+
+  test('não possui blocked user agent mas tem pathToBlock', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/cep/v1/52010000`;
+
+    const response = await axios.get(requestUrl);
+
+    expect(response.status).toBe(200);
+    expect(response.data).toEqual({
+      cep: '52010000',
+      city: 'Recife',
+      neighborhood: 'Paissandu',
+      service: 'open-cep',
+      state: 'PE',
+      street: 'Rua do Paissandú',
+    });
+  });
+
   test('Verifica CORS', async () => {
     const requestUrl = `${global.SERVER_URL}/api/cep/v1/05010000`;
     const response = await axios.get(requestUrl);
