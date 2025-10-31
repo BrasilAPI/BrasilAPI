@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@djpfs/react-vlibras": "2.0.2",
+    "@rollup/rollup-win32-x64-msvc": "^4.52.3",
     "adm-zip": "0.5.10",
     "apollo-server-micro": "2.24.0",
     "axios": "1.8.3",
@@ -56,6 +57,7 @@
     "eslint-plugin-react-hooks": "4.6.0",
     "github-contributors-list": "1.2.5",
     "husky": "8.0.0",
+    "jest": "^30.2.0",
     "kill-port": "1.6.1",
     "lint-staged": "13.0.4",
     "prettier": "2.8.0",
