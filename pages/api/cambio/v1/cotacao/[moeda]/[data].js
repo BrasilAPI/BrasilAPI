@@ -37,6 +37,14 @@ const Action = async (request, response) => {
   const { data, moeda: coin } = request.query;
 
   try {
+    if (isNaN(new Date(data.toString()).getTime())) {
+      throw new BadRequestError({
+        message: 'Data inválida',
+        type: 'format_error',
+        name: 'INVALID_DATE_VALUE',
+      });
+    }
+
     const today = getNow().toDate();
     const minDate = parseToDate('1984-11-28', 'YYYY-MM-DD');
     let date = parseToDate(data, 'YYYY-MM-DD');
