@@ -38,6 +38,7 @@
     "wikijs": "6.4.0"
   },
   "devDependencies": {
+    "@rollup/rollup-win32-x64-msvc": "^4.22.4",
     "@vitest/coverage-istanbul": "3.0.8",
     "@vitest/eslint-plugin": "1.1.37",
     "async-retry": "1.3.3",
