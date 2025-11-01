@@ -92,3 +92,5 @@ export default async function searchInMercadoEditorial(isbn) {
     provider: 'mercado-editorial',
   };
 }
+
+export { parsePrice, parseDimensions };

@@ -1,8 +1,18 @@
 /// <reference types="vitest" />
 import { defineConfig } from 'vite';
+import path from 'node:path';
+
+const ROOT = path.resolve(new URL('.', import.meta.url).pathname, '.'); // raiz do repo
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@/': `${ROOT}/`, // ajuste para 'src' se o alias apontar pra src
+      // '@/': path.resolve(ROOT, 'src') + '/',
+    },
+  },
   test: {
+    environment: 'node',
     setupFiles: ['./tests/helpers/server/setup.js'],
     globals: false,
     fileParallelism: false,
