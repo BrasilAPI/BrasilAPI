@@ -39,6 +39,21 @@
                             }
                         }
                     },
+                    "400": {
+                        "description": "Ano não informado.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "name": "BadRequestError",
+                                    "message": "Por favor informe um ano.",
+                                    "type": "validation_error"
+                                }
+                            }
+                        }
+                    },
                     "404": {
                         "description": "Ano fora do intervalo suportado.",
                         "content": {
