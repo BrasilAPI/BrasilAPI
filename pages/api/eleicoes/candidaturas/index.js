@@ -1,10 +1,10 @@
-import { listarCandidaturasMunicipio } from '@/services/eleicoes/candidaturas';
+import { listCandidatureByMunicipality } from '@/services/eleicoes/candidaturas';
 
-export default async function Candidaturas(request, response) {
+export default async function Candidature(request, response) {
   const { election, year, municipality, position } = request.query;
 
   try {
-    const candidaturas = await listarCandidaturasMunicipio(
+    const candidaturas = await listCandidatureByMunicipality(
       election,
       year,
       municipality,
@@ -13,10 +13,10 @@ export default async function Candidaturas(request, response) {
 
     return response.status(200).json(candidaturas);
   } catch (error) {
-    if (error.name === 'CandidaturasPromiseError') {
+    if (error.name === 'CandidaturesPromiseError') {
       return response.status(500).json({
         message: 'Erro ao buscar candidaturas.',
-        type: 'candidaturas_error',
+        type: 'candidatures_error',
         name: error.name,
       });
     }

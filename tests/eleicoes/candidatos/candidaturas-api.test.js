@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 
-import Candidaturas from '@/pages/api/eleicoes/candidaturas/index';
-import BuscarCandidato from '@/pages/api/eleicoes/candidaturas/[candidato]';
+import Candidature from '@/pages/api/eleicoes/candidaturas/index';
+import SearchCandidate from '@/pages/api/eleicoes/candidaturas/[candidato]';
+import { ERRORMESSAGES } from '@/services/eleicoes/constants';
 
 vi.mock('axios', () => ({
   default: {
@@ -45,7 +46,7 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
       send: vi.fn().mockReturnThis(),
     };
 
-    await Candidaturas(req, res);
+    await Candidature(req, res);
 
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith(mockResponse);
@@ -70,8 +71,8 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
       send: vi.fn().mockReturnThis(),
     };
 
-    await expect(Candidaturas(req, res)).rejects.toThrow(
-      'Parâmetros obrigatórios inválidos'
+    await expect(Candidature(req, res)).rejects.toThrow(
+      ERRORMESSAGES.INVALID_PARAMETERS
     );
   });
 
@@ -93,8 +94,8 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
       send: vi.fn().mockReturnThis(),
     };
 
-    await expect(Candidaturas(req, res)).rejects.toThrow(
-      'Parâmetros obrigatórios inválidos'
+    await expect(Candidature(req, res)).rejects.toThrow(
+      ERRORMESSAGES.INVALID_PARAMETERS
     );
   });
 
@@ -116,8 +117,8 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
       send: vi.fn().mockReturnThis(),
     };
 
-    await expect(Candidaturas(req, res)).rejects.toThrow(
-      'Parâmetros obrigatórios inválidos'
+    await expect(Candidature(req, res)).rejects.toThrow(
+      ERRORMESSAGES.INVALID_PARAMETERS
     );
   });
 
@@ -138,8 +139,8 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
       send: vi.fn().mockReturnThis(),
     };
 
-    await expect(Candidaturas(req, res)).rejects.toThrow(
-      'Parâmetros obrigatórios inválidos'
+    await expect(Candidature(req, res)).rejects.toThrow(
+      ERRORMESSAGES.INVALID_PARAMETERS
     );
   });
 
@@ -161,8 +162,8 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
       send: vi.fn().mockReturnThis(),
     };
 
-    await expect(Candidaturas(req, res)).rejects.toThrow(
-      'Ano precisa ter 4 dígitos'
+    await expect(Candidature(req, res)).rejects.toThrow(
+      ERRORMESSAGES.INVALID_YEAR
     );
   });
 
@@ -183,8 +184,8 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
       send: vi.fn().mockReturnThis(),
     };
 
-    await expect(Candidaturas(req, res)).rejects.toThrow(
-      'Código do município inválido'
+    await expect(Candidature(req, res)).rejects.toThrow(
+      ERRORMESSAGES.INVALID_MUNICIPALITY
     );
   });
 
@@ -205,7 +206,9 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
       send: vi.fn().mockReturnThis(),
     };
 
-    await expect(Candidaturas(req, res)).rejects.toThrow('Cargo inválido');
+    await expect(Candidature(req, res)).rejects.toThrow(
+      ERRORMESSAGES.INVALID_POSITION
+    );
   });
 
   it('deve responder 200 com os dados do candidato buscado (invocação in-process)', async () => {
@@ -271,7 +274,7 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
       send: vi.fn().mockReturnThis(),
     };
 
-    await BuscarCandidato(req, res);
+    await SearchCandidate(req, res);
 
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith(mockResponse);
@@ -296,8 +299,8 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
       send: vi.fn().mockReturnThis(),
     };
 
-    await expect(BuscarCandidato(req, res)).rejects.toThrow(
-      'Parâmetros obrigatórios inválidos'
+    await expect(SearchCandidate(req, res)).rejects.toThrow(
+      ERRORMESSAGES.INVALID_PARAMETERS
     );
   });
 
@@ -319,8 +322,8 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
       send: vi.fn().mockReturnThis(),
     };
 
-    await expect(BuscarCandidato(req, res)).rejects.toThrow(
-      'Parâmetros obrigatórios inválidos'
+    await expect(SearchCandidate(req, res)).rejects.toThrow(
+      ERRORMESSAGES.INVALID_PARAMETERS
     );
   });
 
@@ -342,8 +345,8 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
       send: vi.fn().mockReturnThis(),
     };
 
-    await expect(BuscarCandidato(req, res)).rejects.toThrow(
-      'Parâmetros obrigatórios inválidos'
+    await expect(SearchCandidate(req, res)).rejects.toThrow(
+      ERRORMESSAGES.INVALID_PARAMETERS
     );
   });
 
@@ -365,8 +368,8 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
       send: vi.fn().mockReturnThis(),
     };
 
-    await expect(BuscarCandidato(req, res)).rejects.toThrow(
-      'Parâmetros obrigatórios inválidos'
+    await expect(SearchCandidate(req, res)).rejects.toThrow(
+      ERRORMESSAGES.INVALID_PARAMETERS
     );
   });
 
@@ -388,8 +391,8 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
       send: vi.fn().mockReturnThis(),
     };
 
-    await expect(BuscarCandidato(req, res)).rejects.toThrow(
-      'Ano precisa ter 4 dígitos'
+    await expect(SearchCandidate(req, res)).rejects.toThrow(
+      ERRORMESSAGES.INVALID_YEAR
     );
   });
 
@@ -411,8 +414,8 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
       send: vi.fn().mockReturnThis(),
     };
 
-    await expect(BuscarCandidato(req, res)).rejects.toThrow(
-      'Ano precisa ter 4 dígitos'
+    await expect(SearchCandidate(req, res)).rejects.toThrow(
+      ERRORMESSAGES.INVALID_YEAR
     );
   });
 });

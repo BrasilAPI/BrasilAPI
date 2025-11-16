@@ -1,10 +1,10 @@
-import { buscarCandidato } from '@/services/eleicoes';
+import { searchCandidate } from '@/services/eleicoes';
 
-export default async function BuscarCandidato(request, response) {
+export default async function SearchCandidate(request, response) {
   const { eleicao, ano, municipio, candidato } = request.query;
 
   try {
-    const candidatoData = await buscarCandidato(
+    const candidatoData = await searchCandidate(
       eleicao,
       ano,
       municipio,
@@ -13,10 +13,10 @@ export default async function BuscarCandidato(request, response) {
 
     return response.status(200).json(candidatoData);
   } catch (error) {
-    if (error.name === 'CandidatoNotFoundError') {
+    if (error.name === 'CandidateNotFoundError') {
       return response.status(404).json({
         message: 'Candidato não encontrado.',
-        type: 'candidato_not_found',
+        type: 'candidate_not_found',
         name: error.name,
       });
     }

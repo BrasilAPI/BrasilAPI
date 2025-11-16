@@ -1,9 +1,10 @@
 import axios from 'axios';
 import {
-  listarCandidaturasMunicipio,
-  buscarCandidato,
+  listCandidatureByMunicipality,
+  searchCandidate,
 } from '@/services/eleicoes/candidaturas';
 import { describe, expect, it, vi } from 'vitest';
+import { ERRORMESSAGES } from '@/services/eleicoes/constants';
 
 vi.mock('axios', () => ({
   default: {
@@ -26,7 +27,7 @@ describe('Listagem de Candidaturas', () => {
 
     axios.get.mockResolvedValueOnce({ data: mockResponse });
 
-    const resultado = await listarCandidaturasMunicipio(
+    const resultado = await listCandidatureByMunicipality(
       '2030402020',
       2020,
       '35157',
@@ -39,50 +40,50 @@ describe('Listagem de Candidaturas', () => {
 
   it('deve lançar erro quando eleição está ausente em listarCandidaturasMunicipio', async () => {
     await expect(
-      listarCandidaturasMunicipio(null, 2020, '35157', '11')
-    ).rejects.toThrow('Parâmetros obrigatórios inválidos');
+      listCandidatureByMunicipality(null, 2020, '35157', '11')
+    ).rejects.toThrow(ERRORMESSAGES.INVALID_PARAMETERS);
   });
 
   it('deve lançar erro quando ano está ausente em listarCandidaturasMunicipio', async () => {
     await expect(
-      listarCandidaturasMunicipio('2030402020', null, '35157', '11')
-    ).rejects.toThrow('Parâmetros obrigatórios inválidos');
+      listCandidatureByMunicipality('2030402020', null, '35157', '11')
+    ).rejects.toThrow(ERRORMESSAGES.INVALID_PARAMETERS);
   });
 
   it('deve lançar erro quando município está ausente em listarCandidaturasMunicipio', async () => {
     await expect(
-      listarCandidaturasMunicipio('2030402020', 2020, null, '11')
-    ).rejects.toThrow('Parâmetros obrigatórios inválidos');
+      listCandidatureByMunicipality('2030402020', 2020, null, '11')
+    ).rejects.toThrow(ERRORMESSAGES.INVALID_PARAMETERS);
   });
 
   it('deve lançar erro quando posição está ausente em listarCandidaturasMunicipio', async () => {
     await expect(
-      listarCandidaturasMunicipio('2030402020', 2020, '35157', null)
-    ).rejects.toThrow('Parâmetros obrigatórios inválidos');
+      listCandidatureByMunicipality('2030402020', 2020, '35157', null)
+    ).rejects.toThrow(ERRORMESSAGES.INVALID_PARAMETERS);
   });
 
   it('deve lançar erro quando ano tem formato inválido em listarCandidaturasMunicipio', async () => {
     await expect(
-      listarCandidaturasMunicipio('2030402020', 'abc', '35157', '11')
-    ).rejects.toThrow('Ano precisa ter 4 dígitos');
+      listCandidatureByMunicipality('2030402020', 'abc', '35157', '11')
+    ).rejects.toThrow(ERRORMESSAGES.INVALID_YEAR);
   });
 
   it('deve lançar erro quando ano tem menos de 4 dígitos em listarCandidaturasMunicipio', async () => {
     await expect(
-      listarCandidaturasMunicipio('2030402020', 202, '35157', '11')
-    ).rejects.toThrow('Ano precisa ter 4 dígitos');
+      listCandidatureByMunicipality('2030402020', 202, '35157', '11')
+    ).rejects.toThrow(ERRORMESSAGES.INVALID_YEAR);
   });
 
   it('deve lançar erro quando município tem tipo inválido em listarCandidaturasMunicipio', async () => {
     await expect(
-      listarCandidaturasMunicipio('2030402020', 2020, {}, '11')
-    ).rejects.toThrow('Código do município inválido');
+      listCandidatureByMunicipality('2030402020', 2020, {}, '11')
+    ).rejects.toThrow(ERRORMESSAGES.INVALID_MUNICIPALITY);
   });
 
   it('deve lançar erro quando posição tem tipo inválido em listarCandidaturasMunicipio', async () => {
     await expect(
-      listarCandidaturasMunicipio('2030402020', 2020, '35157', {})
-    ).rejects.toThrow('Cargo inválido');
+      listCandidatureByMunicipality('2030402020', 2020, '35157', {})
+    ).rejects.toThrow(ERRORMESSAGES.INVALID_POSITION);
   });
 
   it('deve retornar o candidato buscado', async () => {
@@ -161,7 +162,7 @@ describe('Listagem de Candidaturas', () => {
       data: mockResponse,
     });
 
-    const resultado = await buscarCandidato(
+    const resultado = await searchCandidate(
       2030402020,
       2020,
       35157,
@@ -174,37 +175,37 @@ describe('Listagem de Candidaturas', () => {
   // Testes de erro para buscarCandidato
   it('deve lançar erro quando eleição está ausente em buscarCandidato', async () => {
     await expect(
-      buscarCandidato(null, 2020, 35157, 50000867342)
-    ).rejects.toThrow('Parâmetros obrigatórios inválidos');
+      searchCandidate(null, 2020, 35157, 50000867342)
+    ).rejects.toThrow(ERRORMESSAGES.INVALID_PARAMETERS);
   });
 
   it('deve lançar erro quando ano está ausente em buscarCandidato', async () => {
     await expect(
-      buscarCandidato(2030402020, null, 35157, 50000867342)
-    ).rejects.toThrow('Parâmetros obrigatórios inválidos');
+      searchCandidate(2030402020, null, 35157, 50000867342)
+    ).rejects.toThrow(ERRORMESSAGES.INVALID_PARAMETERS);
   });
 
   it('deve lançar erro quando município está ausente em buscarCandidato', async () => {
     await expect(
-      buscarCandidato(2030402020, 2020, null, 50000867342)
-    ).rejects.toThrow('Parâmetros obrigatórios inválidos');
+      searchCandidate(2030402020, 2020, null, 50000867342)
+    ).rejects.toThrow(ERRORMESSAGES.INVALID_PARAMETERS);
   });
 
   it('deve lançar erro quando candidato está ausente em buscarCandidato', async () => {
     await expect(
-      buscarCandidato(2030402020, 2020, 35157, null)
-    ).rejects.toThrow('Parâmetros obrigatórios inválidos');
+      searchCandidate(2030402020, 2020, 35157, null)
+    ).rejects.toThrow(ERRORMESSAGES.INVALID_PARAMETERS);
   });
 
   it('deve lançar erro quando ano tem formato inválido em buscarCandidato', async () => {
     await expect(
-      buscarCandidato(2030402020, 'abc', 35157, 50000867342)
-    ).rejects.toThrow('Ano precisa ter 4 dígitos');
+      searchCandidate(2030402020, 'abc', 35157, 50000867342)
+    ).rejects.toThrow(ERRORMESSAGES.INVALID_YEAR);
   });
 
   it('deve lançar erro quando ano tem menos de 4 dígitos em buscarCandidato', async () => {
     await expect(
-      buscarCandidato(2030402020, 202, 35157, 50000867342)
-    ).rejects.toThrow('Ano precisa ter 4 dígitos');
+      searchCandidate(2030402020, 202, 35157, 50000867342)
+    ).rejects.toThrow(ERRORMESSAGES.INVALID_YEAR);
   });
 });
