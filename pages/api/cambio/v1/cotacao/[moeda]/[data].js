@@ -7,6 +7,7 @@ import {
   isValidDate,
   parseToDate,
   subBusinessDays,
+  validateDateComponents,
 } from '@/services/date';
 import { getCurrency } from '@/services/cambio/moedas';
 import BaseError from '@/errors/BaseError';
@@ -39,6 +40,17 @@ const Action = async (request, response) => {
   try {
     const today = getNow().toDate();
     const minDate = parseToDate('1984-11-28', 'YYYY-MM-DD');
+
+    // Validar componentes da data ANTES de parsear
+    const validation = validateDateComponents(data);
+    if (!validation.isValid) {
+      throw new BadRequestError({
+        message: validation.error,
+        type: validation.errorType,
+        name: validation.errorName,
+      });
+    }
+
     let date = parseToDate(data, 'YYYY-MM-DD');
 
     if (!isValidDate(date)) {
