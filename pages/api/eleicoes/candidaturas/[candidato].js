@@ -1,13 +1,13 @@
 import { searchCandidate } from '@/services/eleicoes';
 
 export default async function SearchCandidate(request, response) {
-  const { eleicao, ano, municipio, candidato } = request.query;
+  const { election, year, municipality, candidato } = request.query;
 
   try {
     const candidatoData = await searchCandidate(
-      eleicao,
-      ano,
-      municipio,
+      election,
+      year,
+      municipality,
       candidato
     );
 
