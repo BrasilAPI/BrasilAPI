@@ -1,0 +1,377 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "API de Eleições - BrasilAPI",
+		"version": "1.0.0",
+		"description": "Documentação dos endpoints de eleições integrados à API DivulgaCandContas do TSE."
+	},
+	"servers": [
+		{
+			"url": "https://brasilapi.com.br"
+		}
+	],
+	"tags": [
+		{
+			"name": "Candidaturas"
+		},
+		{
+			"name": "Eleições"
+		}
+	],
+	"paths": {
+		"/api/eleicoes/candidaturas": {
+			"get": {
+				"tags": [
+					"Candidaturas"
+				],
+				"summary": "Lista candidaturas por município, cargo e eleição",
+				"parameters": [
+					{
+						"name": "election",
+						"in": "query",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "year",
+						"in": "query",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "municipality",
+						"in": "query",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "position",
+						"in": "query",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Lista de candidaturas encontradas",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/Candidatura"
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Parâmetros inválidos"
+					},
+					"500": {
+						"description": "Erro interno ao buscar candidaturas"
+					}
+				}
+			}
+		},
+		"/api/eleicoes/candidaturas/{candidato}": {
+			"get": {
+				"tags": [
+					"Candidaturas"
+				],
+				"summary": "Busca as informações completas de um candidato específico",
+				"parameters": [
+					{
+						"name": "candidato",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "election",
+						"in": "query",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "year",
+						"in": "query",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "municipality",
+						"in": "query",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Dados detalhados do candidato",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CandidatoDetalhado"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Candidato não encontrado"
+					},
+					"400": {
+						"description": "Parâmetros inválidos"
+					}
+				}
+			}
+		},
+		"/api/eleicoes/anos-eleitorais": {
+			"get": {
+				"tags": [
+					"Eleições"
+				],
+				"summary": "Lista todos os anos eleitorais disponíveis",
+				"responses": {
+					"200": {
+						"description": "Lista de anos eleitorais",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"type": "integer"
+									}
+								},
+								"example": [
+									2024,
+									2022,
+									2020,
+									2018,
+									2016
+								]
+							}
+						}
+					},
+					"500": {
+						"description": "Erro ao buscar anos eleitorais"
+					}
+				}
+			}
+		},
+		"/api/eleicoes/cargos-por-municipio": {
+			"get": {
+				"tags": [
+					"Eleições"
+				],
+				"summary": "Lista cargos disponíveis em determinado município",
+				"parameters": [
+					{
+						"name": "election",
+						"in": "query",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "municipality",
+						"in": "query",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Cargos encontrados",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CargosPorMunicipio"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Parâmetros inválidos"
+					},
+					"500": {
+						"description": "Erro interno"
+					}
+				}
+			}
+		},
+		"/api/eleicoes/ordinarias": {
+			"get": {
+				"tags": [
+					"Eleições"
+				],
+				"summary": "Lista todas as eleições ordinárias da base do TSE",
+				"responses": {
+					"200": {
+						"description": "Lista de eleições ordinárias",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/EleicoesOrdinarias"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Erro ao buscar eleições ordinárias"
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"Candidatura": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"nome": {
+						"type": "string"
+					},
+					"numero": {
+						"type": "string"
+					},
+					"partido": {
+						"type": "string"
+					},
+					"cargo": {
+						"type": "string"
+					},
+					"municipio": {
+						"type": "string"
+					}
+				}
+			},
+			"CandidatoDetalhado": {
+				"type": "object",
+				"properties": {
+					"nome": {
+						"type": "string"
+					},
+					"numero": {
+						"type": "string"
+					},
+					"cpf": {
+						"type": "string"
+					},
+					"dataNascimento": {
+						"type": "string"
+					},
+					"municipio": {
+						"type": "string"
+					},
+					"cargo": {
+						"type": "string"
+					},
+					"partido": {
+						"type": "object",
+						"properties": {
+							"sigla": {
+								"type": "string"
+							},
+							"nome": {
+								"type": "string"
+							}
+						}
+					},
+					"bens": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"descricao": {
+									"type": "string"
+								},
+								"valor": {
+									"type": "number"
+								}
+							}
+						}
+					}
+				}
+			},
+			"CargosPorMunicipio": {
+				"type": "object",
+				"properties": {
+					"unidadeEleitoral": {
+						"type": "object",
+						"properties": {
+							"nome": {
+								"type": "string"
+							},
+							"sigla": {
+								"type": "string"
+							},
+							"estado": {
+								"type": "string"
+							}
+						}
+					},
+					"cargos": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"codigo": {
+									"type": "integer"
+								},
+								"nome": {
+									"type": "string"
+								},
+								"contagem": {
+									"type": "integer"
+								}
+							}
+						}
+					}
+				}
+			},
+			"EleicoesOrdinarias": {
+				"type": "array",
+				"items": {
+					"type": "object",
+					"properties": {
+						"id": {
+							"type": "string"
+						},
+						"ano": {
+							"type": "integer"
+						},
+						"turno": {
+							"type": "integer"
+						},
+						"tipo": {
+							"type": "string"
+						}
+					}
+				}
+			}
+		}
+	}
+}
