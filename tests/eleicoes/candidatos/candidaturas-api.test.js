@@ -259,9 +259,9 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
 
     const req = {
       query: {
-        eleicao: '2030402020',
-        ano: '2020',
-        municipio: '35157',
+        election: '2030402020',
+        year: '2020',
+        municipality: '35157',
         candidato: '50000867342',
       },
       headers: {},
@@ -376,9 +376,9 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
   it('deve lançar erro quando ano tem formato inválido em BuscarCandidato', async () => {
     const req = {
       query: {
-        eleicao: '2030402020',
-        ano: 'abc',
-        municipio: '35157',
+        election: '2030402020',
+        year: 'abc',
+        municipality: '35157',
         candidato: '50000867342',
       },
       headers: {},
@@ -399,9 +399,9 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
   it('deve lançar erro quando ano tem menos de 4 dígitos em BuscarCandidato', async () => {
     const req = {
       query: {
-        eleicao: '2030402020',
-        ano: '202',
-        municipio: '35157',
+        election: '2030402020',
+        year: '202',
+        municipality: '35157',
         candidato: '50000867342',
       },
       headers: {},
