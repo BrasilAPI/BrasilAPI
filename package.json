@@ -68,6 +68,8 @@
     "preconcurrently": "kill-port 3000",
     "concurrently": "concurrently -s first -P -k -n next,vitest \"npm run dev\" \"vitest {@}\"",
     "test": "npm run concurrently -- --hide dev -- run",
+    "test:unit": "vitest --run",
+    "test:integration": "INTEGRATION=true npm test",
     "test:watch": "vitest watch",
     "test:watch:services": "npm run concurrently -- -- watch",
     "fix": "eslint . --ext .js --fix",
