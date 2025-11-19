@@ -60,7 +60,9 @@
     "jest": "^30.2.0",
     "kill-port": "1.6.1",
     "lint-staged": "13.0.4",
+    "next-test-api-route-handler": "^5.0.3",
     "prettier": "2.8.0",
+    "supertest": "^7.1.4",
     "vitest": "3.0.8"
   },
   "scripts": {
