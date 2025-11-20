@@ -114,6 +114,55 @@ describe('/feriados/v1 (E2E)', () => {
       expect.arrayContaining(getHolidays(2024, ['Dia da consciência negra']))
     );
   });
+
+  test('[CICLO 1] Ano Novo (01-01-2025) deve ter o campo weekday com valor "quarta-feira"', async () => {
+    expect.assertions(2);
+
+    const requestUrl = `${global.SERVER_URL}/api/feriados/v1/2025`;
+    const { data } = await axios.get(requestUrl);
+
+    const newYear = data.find((h) => h.date === '2025-01-01');
+    expect(newYear).toBeDefined();
+    expect(newYear.weekday).toBe('quarta-feira');
+  });
+
+  test('[CICLO 2] Páscoa (20-04-2025) deve ter o campo weekday com valor "domingo"', async () => {
+    expect.assertions(2);
+
+    const requestUrl = `${global.SERVER_URL}/api/feriados/v1/2025`;
+    const { data } = await axios.get(requestUrl);
+
+    const easter = data.find((h) => h.date === '2025-04-20');
+    expect(easter).toBeDefined();
+    expect(easter.weekday).toBe('domingo');
+  });
+
+  test('[CICLO 3] Todos os feriados devem ter o campo weekday com valor válido', async () => {
+    expect.assertions(2);
+
+    const requestUrl = `${global.SERVER_URL}/api/feriados/v1/2025`;
+    const { data } = await axios.get(requestUrl);
+
+    const validWeekdays = [
+      'domingo',
+      'segunda-feira',
+      'terça-feira',
+      'quarta-feira',
+      'quinta-feira',
+      'sexta-feira',
+      'sábado',
+    ];
+
+    // Verifica que todos os feriados têm o campo weekday
+    const allHaveWeekday = data.every((holiday) => holiday.weekday);
+    expect(allHaveWeekday).toBe(true);
+
+    // Verifica que todos os valores de weekday são válidos
+    const allWeekdaysValid = data.every((holiday) =>
+      validWeekdays.includes(holiday.weekday)
+    );
+    expect(allWeekdaysValid).toBe(true);
+  });
 });
 
 testCorsForRoute('/api/feriados/v1/2020');
