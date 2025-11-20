@@ -1,6 +1,26 @@
 import NotFoundError from '@/errors/NotFoundError';
 
 /**
+ * Converte uma data em string para o nome do dia da semana em português
+ * @param {string} dateString - Data no formato YYYY-MM-DD
+ * @returns {string} Nome do dia da semana
+ */
+export function getWeekdayName(dateString) {
+  const weekdays = [
+    'domingo',
+    'segunda-feira',
+    'terça-feira',
+    'quarta-feira',
+    'quinta-feira',
+    'sexta-feira',
+    'sábado',
+  ];
+
+  const date = new Date(dateString + 'T12:00:00');
+  return weekdays[date.getDay()];
+}
+
+/**
  * Tabela da lua cheia de Páscoa, valida entre 1900 e 2199, inclusive.
  * Contendo mês (indexado em 0) e dia.
  */
@@ -55,28 +75,36 @@ export function getEasterHolidays(year) {
   const movingDate = new Date(year, refMonth, refDay);
   const holidays = [];
   movingDate.setDate(movingDate.getDate() + 7 - movingDate.getDay());
+  const easterDate = formatDate(movingDate);
   holidays.push({
-    date: formatDate(movingDate),
+    date: easterDate,
     name: 'Páscoa',
     type: 'national',
+    weekday: getWeekdayName(easterDate),
   });
   movingDate.setDate(movingDate.getDate() - 2);
+  const goodFridayDate = formatDate(movingDate);
   holidays.push({
-    date: formatDate(movingDate),
+    date: goodFridayDate,
     name: 'Sexta-feira Santa',
     type: 'national',
+    weekday: getWeekdayName(goodFridayDate),
   });
   movingDate.setDate(movingDate.getDate() - 45);
+  const carnavalDate = formatDate(movingDate);
   holidays.push({
-    date: formatDate(movingDate),
+    date: carnavalDate,
     name: 'Carnaval',
     type: 'national',
+    weekday: getWeekdayName(carnavalDate),
   });
   movingDate.setDate(movingDate.getDate() + 107);
+  const corpusChristiDate = formatDate(movingDate);
   holidays.push({
-    date: formatDate(movingDate),
+    date: corpusChristiDate,
     name: 'Corpus Christi',
     type: 'national',
+    weekday: getWeekdayName(corpusChristiDate),
   });
   return holidays;
 }
@@ -116,11 +144,15 @@ export function getNationalHolidays(year) {
     ]);
   }
 
-  return fixedHolidays.map(([date, name]) => ({
-    date: `${year}-${date}`,
-    name,
-    type: 'national',
-  }));
+  return fixedHolidays.map(([date, name]) => {
+    const fullDate = `${year}-${date}`;
+    return {
+      date: fullDate,
+      name,
+      type: 'national',
+      weekday: getWeekdayName(fullDate),
+    };
+  });
 }
 
 function sortByDate(holidays) {
