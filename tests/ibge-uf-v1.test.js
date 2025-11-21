@@ -4,7 +4,7 @@ import { describe, test, expect, beforeAll } from 'vitest';
 import { testCorsForRoute } from './helpers/cors';
 
 // Smart service availability check - skip only when DNS/network issues are detected
-let shouldSkipTests = true; // Default to skip for safety
+let shouldSkipTests = false; // Default to skip for safety
 
 beforeAll(async () => {
   try {
@@ -45,6 +45,7 @@ describeIf(shouldSkipTests)('/ibge/uf/v1 (E2E)', () => {
         sigla: expect.any(String),
         nome: expect.any(String),
       }),
+      capital: expect.any(String),
     });
   });
 
@@ -75,6 +76,7 @@ describeIf(shouldSkipTests)('/ibge/uf/v1 (E2E)', () => {
             sigla: expect.any(String),
             nome: expect.any(String),
           }),
+          capital: expect.any(String),
         }),
       ])
     );
@@ -94,7 +96,9 @@ describeIf(shouldSkipTests)('/ibge/uf/v1 (E2E)', () => {
         sigla: expect.any(String),
         nome: expect.any(String),
       }),
+      capital: expect.any(String),
     });
+    expect(response.data.capital).toBe('Florianópolis');
   });
 
   test('Utilizando uma Sigla válida: PI', async () => {
@@ -111,7 +115,9 @@ describeIf(shouldSkipTests)('/ibge/uf/v1 (E2E)', () => {
         sigla: expect.any(String),
         nome: expect.any(String),
       }),
+      capital: expect.any(String),
     });
+    expect(response.data.capital).toBe('Teresina');
   });
 
   test('Utilizando um sigla inexistente ou inválida: SJ', async () => {
