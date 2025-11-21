@@ -2,6 +2,7 @@ import app from '@/app';
 import BadRequestError from '@/errors/BadRequestError';
 import NotFoundError from '@/errors/NotFoundError';
 import { fetchCep } from '@/services/cep/cep';
+import { normalizeServiceErrors } from '@/util/cep-error-handler';
 
 const tempBlockedIps = [];
 
@@ -51,6 +52,11 @@ async function Cep(request, response) {
     }
 
     if (error.type === 'service_error') {
+      // Normaliza mensagens técnicas dos providers (ex: "Cannot read
+      // properties of undefined") para mensagens padronizadas
+      if (error.errors) {
+        error.errors = normalizeServiceErrors(error.errors);
+      }
       throw new NotFoundError(error);
     }
 
