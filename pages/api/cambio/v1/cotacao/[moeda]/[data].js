@@ -44,7 +44,7 @@ const Action = async (request, response) => {
 
     if (!isValidDateStrict(data, 'YYYY-MM-DD')) {
       throw new BadRequestError({
-        message: 'Data inválida, utilize: YYYY-MM-DD',
+        message: 'Formato de data inválido, utilize: YYYY-MM-DD',
         type: 'format_error',
         name: 'INVALID_DATE_FORMAT',
       });
