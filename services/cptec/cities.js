@@ -1,15 +1,19 @@
 import axios from 'axios';
 import { XMLParser } from 'fast-xml-parser';
-import { CPTEC_URL } from './constants';
+import { CPTEC_URL, STATE_REGION_MAP } from './constants';
 
 const parser = new XMLParser();
 
 const formatCity = (city) => {
-  const newCity = city;
-  newCity.estado = city.uf;
-  delete newCity.uf;
+  const estado = city.uf;
+  const regiao = STATE_REGION_MAP[estado] ?? null;
+  const { uf, ...rest } = city;
 
-  return newCity;
+  return {
+    ...rest,
+    estado,
+    regiao,
+  };
 };
 
 /**
