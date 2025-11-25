@@ -2,6 +2,9 @@
 
 Este diário documenta nossas etapas de identificação e refatoração de code smells no projeto BrasilAPI.
 
+###observação sobre a etapa inicial de escolher os code smells:
+percebemos que existe muito mais de 10 ocorrências do tipo mais frequente que é style smells, e como devemos escolher apenas code smells que possuem um máximo de 10 ocorrências, não iremos trabalhar com style smells.
+
 ### Refatoração 1 – Método longo
 - **Arquivo:** 
 - **Dificuldades:** 
