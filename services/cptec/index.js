@@ -1,16 +1,7 @@
-import { getAllCitiesData, getCityData } from './cities';
-import {
+export { getAllCitiesData, getCityData } from './cities';
+export {
   getCurrentCapitalWeatherData,
   getCurrentAirportWeather,
   getPredictionWeather,
 } from './weather';
-import { getSwellData } from './swell';
-
-export {
-  getAllCitiesData,
-  getCityData,
-  getCurrentCapitalWeatherData,
-  getCurrentAirportWeather,
-  getPredictionWeather,
-  getSwellData,
-};
+export { getSwellData } from './swell';
