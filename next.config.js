@@ -1,4 +1,5 @@
 module.exports = {
+  turbopack: {},
   webpack(config) {
     if (config.resolve.fallback) {
       /* eslint-disable no-param-reassign */
