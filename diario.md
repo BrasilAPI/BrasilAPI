@@ -5,9 +5,9 @@ Esse diário documenta nossas etapas de identificação e refatoração de code 
 ### Refatoração 1 – Falta de validação de propriedades (smell-type: missing-props-validation)
 - **identificação:** analisando todos os code smells detectados através do sonarcloud.
 - **Arquivo:** pages/_app.js
-- **Dificuldades:** 
-- **Método de refatoração:** refatoração de comentário, improve readability
-- **Mudanças observadas:** 
+- **Dificuldades:** a principal dificuldade foi garantir que os tipos escolhidos em PropTypes fossem compatíveis com o comportamento do Next.js, já que Component precisa aceitar qualquer página que o framework forneça.
+- **Método de refatoração:** refatoração de comentário, improve readability, inclusão de PropTypes e definição de propTypes e defaultProps dentro do componente MyApp, atendendo as recomendações de maintainability do Sonarcloud.
+- **Mudanças observadas:** antes o arquivo não validava nenhuma das props, deixando o componente vulnerável a valores incorretos. Depois da refatoração, Component passou a exigir um elementType obrigatório e pageProps passou a ser tratado como objeto com valor padrão vazio, eliminando warnings e deixando o contrato de uso explícito.
 - **Evidências:** issue #3
 
 ### Refatoração 2 – Uso ineficiente de estrutura de dados (smell-type: inefficient-data-structure)
