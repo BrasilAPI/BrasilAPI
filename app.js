@@ -5,6 +5,8 @@ import onError from './middlewares/errorHandler';
 import cache from './middlewares/cache';
 import logger from './middlewares/logger';
 import firewall from './middlewares/firewall';
+import rateLimit from './middlewares/rateLimit';
+import sanitizer from './middlewares/sanitizer';
 
 const corsDefaultConfiguration = {
   origin: '*',
@@ -41,6 +43,8 @@ const app = (options = {}) => {
   })
     .use(cors(configurations.cors))
     .use(firewall)
+    .use(rateLimit)
+    .use(sanitizer)
     .use(logger)
     .use(cache(configurations.cache));
 };
