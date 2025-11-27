@@ -22,14 +22,14 @@ Esse diário documenta nossas etapas de identificação e refatoração de code 
 - **identificação:** analisando todos os code smells detectados através do sonarcloud.
 - **Arquivo:** services/fipe/automakers.js
 - **Dificuldades:** 
-- **Método de refatoração:** 
+- **Método de refatoração:** Replace default object parameter with primitive default (substituição de parâmetro de objeto padrão pelo valor padrão primitivo)
 - **Mudanças observadas:** 
 - **Evidências:** issue #5
 
 ### Refatoração 4 – Estilo de exportação ineficiente (smell-type: inefficient-export-style)
 - **identificação:** analisando todos os code smells detectados através do sonarcloud.
 - **Arquivo:** services/cptec/index.js
-- **Dificuldades:** 
-- **Método de refatoração:**
-- **Mudanças observadas:**
+- **Dificuldades:** A principal dificuldade foi evitar regressões ao remover as exportações redundantes para garantir que nenhum módulo perdesse dependências e que todos os nomes e caminhos continuassem corretos.
+- **Método de refatoração:** replace indirect export with direct export (remover o export único que agrupava várias funções), exportar explicitamente cada item no mesmo ponto onde é importado, melhorar a consistencia do código, adotar um único padrão de export no módulo para reduzir ambiguidade e custo cognitivo e remove redundant re-exports.
+- **Mudanças observadas:** antes o arquivo usava importações no topo e um único bloco de exportação reunindo tudo, criando duplicidade e dificultando ver de onde cada função vinha. Depois da refatoração, cada módulo passou a exportar diretamente suas funções na mesma linha do import, removendo redundâncias e deixando o arquivo mais claro, consistente e fácil de manter.
 - **Evidências:** issue #6
