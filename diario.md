@@ -21,9 +21,9 @@ Esse diário documenta nossas etapas de identificação e refatoração de code 
 ### Refatoração 3 – Parâmetro padrão inadequado (smell-type: improper-default-parameter)
 - **identificação:** analisando todos os code smells detectados através do sonarcloud.
 - **Arquivo:** services/fipe/automakers.js
-- **Dificuldades:** 
-- **Método de refatoração:** Replace default object parameter with primitive default (substituição de parâmetro de objeto padrão pelo valor padrão primitivo)
-- **Mudanças observadas:** 
+- **Dificuldades:** garantir que a mudança não quebrasse chamadas existentes que dependiam implicitamente da antiga assinatura, além de revisar a cadeia de chamadas para confirmar que nenhum módulo assumia a estrutura anterior do parâmetro.
+- **Método de refatoração:** Replace default object parameter with primitive default (substituição de parâmetro de objeto padrão pelo valor padrão primitivo) ;padronização da assinatura das funções
+- **Mudanças observadas:** simplificação da função, maior clareza para outros desenvolvedores e eliminação de ambiguidades sobre mutabilidade e compartilhamento de objetos padrão.
 - **Evidências:** issue #5
 
 ### Refatoração 4 – Estilo de exportação ineficiente (smell-type: inefficient-export-style)
