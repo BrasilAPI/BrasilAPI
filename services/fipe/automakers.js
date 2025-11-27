@@ -23,9 +23,7 @@ async function listAutomakers({ vehicleType, referenceTable }) {
     .sort((a, b) => parseInt(a.valor, 10) - parseInt(b.valor, 10));
 }
 
-export async function listCarAutomakers(
-  { referenceTable } = { referenceTable: undefined }
-) {
+export async function listCarAutomakers(referenceTable) {
   const referenceTableCode =
     referenceTable || (await getLatestReferenceTable());
 
@@ -35,9 +33,7 @@ export async function listCarAutomakers(
   });
 }
 
-export async function listMotorcycleAutomakers(
-  { referenceTable } = { referenceTable: undefined }
-) {
+export async function listMotorcycleAutomakers(referenceTable) {
   const referenceTableCode =
     referenceTable || (await getLatestReferenceTable());
 
@@ -47,9 +43,7 @@ export async function listMotorcycleAutomakers(
   });
 }
 
-export async function listTruckAutomakers(
-  { referenceTable } = { referenceTable: undefined }
-) {
+export async function listTruckAutomakers(referenceTable) {
   const referenceTableCode =
     referenceTable || (await getLatestReferenceTable());
 

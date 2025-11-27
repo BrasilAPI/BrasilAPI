@@ -3,11 +3,11 @@ import BadRequestError from '@/errors/BadRequestError';
 import NotFoundError from '@/errors/NotFoundError';
 import { fetchCep } from '@/services/cep/cep';
 
-const tempBlockedIps = [];
+const tempBlockedIps = new Set();
 
 const pathToBlock = '/api/cep/v1/52';
 
-const tempBlockedUserAgents = ['Go-http-client/2.0'];
+const tempBlockedUserAgents = new Set(['Go-http-client/2.0']);
 
 async function Cep(request, response) {
   const clientIp =
@@ -15,8 +15,8 @@ async function Cep(request, response) {
 
   if (
     clientIp &&
-    tempBlockedUserAgents.includes(request.headers['user-agent']) &&
-    tempBlockedIps.includes(clientIp)
+    tempBlockedUserAgents.has(request.headers['user-agent']) &&
+    tempBlockedIps.has(clientIp)
   ) {
     response.status(429);
     return response.send(
@@ -25,7 +25,7 @@ async function Cep(request, response) {
   }
 
   if (
-    tempBlockedUserAgents.includes(request.headers['user-agent']) &&
+    tempBlockedUserAgents.has(request.headers['user-agent']) &&
     request.url.includes(pathToBlock)
   ) {
     response.status(429);
