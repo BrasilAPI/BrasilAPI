@@ -53,42 +53,66 @@ function parsePrice(currency, price) {
  * @returns The book details if found.
  */
 export default async function searchInMercadoEditorial(isbn) {
-  const response = await axios.get(API_SEARCH_URL, {
-    params: { isbn },
-    headers: { Accept: 'application/json' },
-  });
+  try {
+    const response = await axios.get(API_SEARCH_URL, {
+      params: { isbn },
+      headers: { Accept: 'application/json' },
+      timeout: 5000,
+    });
 
-  if (!response.data.books || !response.data.books[0]) {
-    throw new NotFoundError({ message: 'ISBN não encontrado' });
+    if (!response.data.books || !response.data.books[0]) {
+      throw new NotFoundError({ message: 'ISBN não encontrado' });
+    }
+
+    const meBook = response.data.books[0];
+
+    return {
+      isbn: meBook.isbn,
+      title: meBook.titulo,
+      subtitle:
+        meBook.subtitulo && meBook.subtitulo.length > 0
+          ? meBook.subtitulo
+          : null,
+      authors: meBook.contribuicao.map(
+        (contributor) => `${contributor.nome} ${contributor.sobrenome}`
+      ),
+      publisher: meBook.editora.nome_fantasia,
+      synopsis: meBook.sinopse,
+      dimensions: parseDimensions(meBook.medidas),
+      year: meBook.ano_edicao ? parseInt(meBook.ano_edicao, 10) : null,
+      format: meBook.formato === 'BOOK' ? 'PHYSICAL' : 'DIGITAL',
+      page_count:
+        meBook.medidas && meBook.medidas.paginas
+          ? parseInt(meBook.medidas.paginas, 10)
+          : null,
+      subjects:
+        meBook.catalogacao && meBook.catalogacao.palavras_chave.split(','),
+      location: null,
+      retail_price: parsePrice(meBook.moeda, meBook.preco),
+      cover_url:
+        meBook.imagens &&
+        meBook.imagens.imagem_primeira_capa &&
+        meBook.imagens.imagem_primeira_capa.grande,
+      provider: 'mercado-editorial',
+    };
+  } catch (error) {
+    // Log the error for debugging
+    console.error('[mercado-editorial] Error fetching ISBN:', {
+      isbn,
+      error: error.message,
+      code: error.code,
+      status: error.response?.status,
+    });
+
+    // If it's already a NotFoundError, re-throw it
+    if (error instanceof NotFoundError) {
+      throw error;
+    }
+
+    // For network errors, timeouts, DNS issues, or API errors (like 500),
+    // convert them to NotFoundError so the system can try other providers
+    throw new NotFoundError({
+      message: 'ISBN não encontrado',
+    });
   }
-
-  const meBook = response.data.books[0];
-
-  return {
-    isbn: meBook.isbn,
-    title: meBook.titulo,
-    subtitle:
-      meBook.subtitulo && meBook.subtitulo.length > 0 ? meBook.subtitulo : null,
-    authors: meBook.contribuicao.map(
-      (contributor) => `${contributor.nome} ${contributor.sobrenome}`
-    ),
-    publisher: meBook.editora.nome_fantasia,
-    synopsis: meBook.sinopse,
-    dimensions: parseDimensions(meBook.medidas),
-    year: meBook.ano_edicao ? parseInt(meBook.ano_edicao, 10) : null,
-    format: meBook.formato === 'BOOK' ? 'PHYSICAL' : 'DIGITAL',
-    page_count:
-      meBook.medidas && meBook.medidas.paginas
-        ? parseInt(meBook.medidas.paginas, 10)
-        : null,
-    subjects:
-      meBook.catalogacao && meBook.catalogacao.palavras_chave.split(','),
-    location: null,
-    retail_price: parsePrice(meBook.moeda, meBook.preco),
-    cover_url:
-      meBook.imagens &&
-      meBook.imagens.imagem_primeira_capa &&
-      meBook.imagens.imagem_primeira_capa.grande,
-    provider: 'mercado-editorial',
-  };
 }
