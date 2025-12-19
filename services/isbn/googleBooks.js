@@ -63,12 +63,13 @@ export default async function searchInGoogleBooks(isbn) {
     const { volumeInfo } = gbBook;
 
     const coverUrl =
-      volumeInfo.imageLinks.extraLarge ||
-      volumeInfo.imageLinks.large ||
-      volumeInfo.imageLinks.medium ||
-      volumeInfo.imageLinks.small ||
-      volumeInfo.imageLinks.thumbnail ||
-      volumeInfo.imageLinks.smallThumbnail;
+      volumeInfo.imageLinks &&
+      (volumeInfo.imageLinks.extraLarge ||
+        volumeInfo.imageLinks.large ||
+        volumeInfo.imageLinks.medium ||
+        volumeInfo.imageLinks.small ||
+        volumeInfo.imageLinks.thumbnail ||
+        volumeInfo.imageLinks.smallThumbnail);
 
     return {
       isbn,
