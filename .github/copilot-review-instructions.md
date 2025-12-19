@@ -30,7 +30,7 @@ Você está revisando código do BrasilAPI, um projeto **crítico** e **open-sou
 
 4. **Expõem vulnerabilidades de segurança**:
    - Inputs não validados (CEP, CNPJ, etc.)
-   - Credenciais ou tokens hardcoded
+   - Credenciais ou tokens fixados no código
    - SQL injection ou XSS possível
    - Dados sensíveis em logs de erro
    - **AÇÃO**: Aponte o risco específico e sugira correção
@@ -158,7 +158,7 @@ Em `pages/api/cep/v1/[cep].js`, linha 15:
 **Risco:** Injeção de código malicioso
 
 **Correção necessária:**
-\`\`\`javascript
+```javascript
 const { cep } = req.query;
 
 // Validar formato
@@ -169,7 +169,7 @@ if (!/^\d{8}$/.test(cep)) {
     type: 'validation_error'
   });
 }
-\`\`\`
+```
 ```
 
 ### 5️⃣ Performance e Custos
@@ -187,7 +187,7 @@ if (!/^\d{8}$/.test(cep)) {
 
 O serviço `fetchAllCidades()` faz 5570 requisições à API do IBGE:
 - Isso aumentará custos da Vercel significativamente
-- Timeout provável em produção
+- Possível timeout em produção
 
 **Solução:**
 1. Adicionar cache com TTL de 24h:

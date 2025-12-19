@@ -105,23 +105,24 @@ graph TD
 | `CODE_REVIEW_GUIDELINES.md` | Revisores humanos | Durante review manual | Como revisar profundamente |
 | `PULL_REQUEST_TEMPLATE.md` | Contribuidor | Ao abrir PR | O que incluir no PR |
 
-## 🚀 Habilitando Revisão Automática do Copilot
+## 🚀 Utilizando as Instruções de Revisão
 
-### Opção 1: Via Interface do GitHub
-1. Vá em **Settings** → **Copilot** no repositório
-2. Ative **"Code review"**
-3. Configure para usar `.github/copilot-review-instructions.md`
+> **Nota**: As instruções de revisão automática estão preparadas para uso com GitHub Copilot e ferramentas similares de revisão assistida por IA. A disponibilidade e o método de ativação podem variar conforme o plano do GitHub e recursos da organização.
 
-### Opção 2: Via GitHub Actions (Recomendado)
-1. Certifique-se de ter GitHub Copilot habilitado na organização
-2. O Copilot automaticamente detectará `copilot-review-instructions.md`
-3. Em cada PR, ele executará revisão seguindo as instruções
+### Para Mantenedores
+O arquivo `copilot-review-instructions.md` serve como guia para:
+1. **Revisão manual**: Use como checklist ao revisar PRs
+2. **Revisão assistida**: GitHub Copilot pode referenciar estas instruções ao fornecer sugestões
+3. **Treinamento**: Base para treinar novos revisores
 
-### Opção 3: Manualmente
-Mantenedores podem solicitar revisão do Copilot comentando no PR:
+### Solicitando Revisão do Copilot
+Se disponível na sua organização, você pode solicitar análise do Copilot comentando no PR:
 ```
-@copilot review
+@copilot review this PR following .github/copilot-review-instructions.md
 ```
+
+### Configuração Futura
+À medida que o GitHub Copilot expande recursos de revisão automática, este repositório já estará preparado com instruções detalhadas. Acompanhe atualizações em [GitHub Copilot Enterprise](https://docs.github.com/en/copilot/github-copilot-enterprise) para novos recursos.
 
 ## 📖 Mantendo as Instruções
 
