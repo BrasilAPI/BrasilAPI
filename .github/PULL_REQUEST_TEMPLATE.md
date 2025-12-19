@@ -1,3 +1,8 @@
+<!-- 
+🤖 Este PR será revisado automaticamente pelo GitHub Copilot seguindo nossos padrões de qualidade.
+Para entender os critérios de revisão, consulte: .github/copilot-review-instructions.md
+-->
+
 ## 📋 Descrição
 
 <!-- Descreva de forma clara e objetiva as mudanças propostas neste PR -->
