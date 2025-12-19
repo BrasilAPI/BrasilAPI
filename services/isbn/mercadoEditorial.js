@@ -97,6 +97,7 @@ export default async function searchInMercadoEditorial(isbn) {
     };
   } catch (error) {
     // Log the error for debugging
+    // eslint-disable-next-line no-console
     console.error('[mercado-editorial] Error fetching ISBN:', {
       isbn,
       error: error.message,
