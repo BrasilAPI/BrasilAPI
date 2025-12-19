@@ -122,6 +122,7 @@ export default async function searchInCbl(isbn) {
     };
   } catch (error) {
     // Log the error for debugging
+    // eslint-disable-next-line no-console
     console.error('[cbl] Error fetching ISBN:', {
       isbn,
       error: error.message,

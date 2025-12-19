@@ -106,6 +106,7 @@ export default async function searchInOpenLibrary(isbn) {
     };
   } catch (error) {
     // Log the error for debugging
+    // eslint-disable-next-line no-console
     console.error('[open-library] Error fetching ISBN:', {
       isbn,
       error: error.message,
