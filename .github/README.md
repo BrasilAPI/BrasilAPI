@@ -127,11 +127,11 @@ graph TD
 #### 3. `copilot-review-instructions.md`
 - ⚙️ **Uso via comando ou configuração**
 - **Opção A - Uso manual por mantenedores**: Comente no PR:
-  ```
+  ```text
   @copilot review
   ```
   Ou mencione o arquivo específico:
-  ```
+  ```text
   @copilot review following .github/copilot-review-instructions.md
   ```
 - **Opção B - Configuração automática** (se disponível no plano):
@@ -168,7 +168,7 @@ graph TD
 
 ### Para Aproveitar Revisão Automática
 **Mantenedores devem**, em cada PR importante:
-```bash
+```text
 # Comentar no PR para pedir revisão do Copilot
 @copilot review
 ```
