@@ -5,6 +5,7 @@ import {
   formatDate,
   getNow,
   isValidDate,
+  isValidDateStrict,
   parseToDate,
   subBusinessDays,
 } from '@/services/date';
@@ -40,6 +41,14 @@ const Action = async (request, response) => {
     const today = getNow().toDate();
     const minDate = parseToDate('1984-11-28', 'YYYY-MM-DD');
     let date = parseToDate(data, 'YYYY-MM-DD');
+
+    if (!isValidDateStrict(data, 'YYYY-MM-DD')) {
+      throw new BadRequestError({
+        message: 'Formato de data inválido, utilize: YYYY-MM-DD',
+        type: 'format_error',
+        name: 'INVALID_DATE_FORMAT',
+      });
+    }
 
     if (!isValidDate(date)) {
       throw new BadRequestError({
