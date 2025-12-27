@@ -1,23 +1,28 @@
-import app from '@/app';
-import BaseError from '@/errors/BaseError';
-import InternalError from '@/errors/InternalError';
-import getHolidays from '@/services/holidays';
+export default async function handler(req, res) {
+  const { ano } = req.query;
 
-async function getHolidaysByYear(request, response) {
+  // Validação — ano precisa ser número com 4 dígitos
+  if (!/^\d{4}$/.test(ano)) {
+    return res
+      .status(400)
+      .json({ message: 'Ano inválido. Use um ano no formato YYYY.' });
+  }
+
   try {
-    const holidays = getHolidays(request.query.ano);
+    const response = await fetch(
+      `https://brasilapi.com.br/api/feriados/v1/${ano}`
+    );
 
-    return response.status(200).json(holidays);
-  } catch (error) {
-    if (error instanceof BaseError) {
-      throw error;
+    if (!response.ok) {
+      return res
+        .status(response.status)
+        .json({ message: 'Erro ao consultar BrasilAPI' });
     }
 
-    throw new InternalError({
-      message: 'Erro ao calcular feriados.',
-      type: 'feriados_error',
-    });
+    const data = await response.json();
+    return res.status(200).json(data);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Erro interno no servidor' });
   }
 }
-
-export default app().get(getHolidaysByYear);

@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-import NotFoundError from '@/errors/NotFoundError';
+import NotFoundError from '../../errors/NotFoundError';
+
 import { convertIsbn10ToIsbn13, convertIsbn13ToIsbn10 } from './tools';
 
 const API_BASE_URL =

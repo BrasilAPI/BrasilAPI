@@ -7,7 +7,7 @@ const formatCsvFile = (file) => {
   file.shift();
 
   return file
-    .filter(([ispb, name, code]) => ispb && code)
+    .filter(([ispb, code]) => ispb && code)
     .map(
       ([
         ispb, // ISPB
