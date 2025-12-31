@@ -61,6 +61,11 @@ describe('api/isbn/v1 (E2E)', () => {
       await axios.get(`${requestUrl}/9788549173447`);
     } catch (error) {
       const { response } = error;
+
+      if (!response) {
+        throw new Error(`Erro inesperado: ${error.message}`);
+      }
+
       const { data, status } = response;
 
       expect(status).toEqual(404);
@@ -77,6 +82,11 @@ describe('api/isbn/v1 (E2E)', () => {
       await axios.get(`${requestUrl}/9788491734444`);
     } catch (error) {
       const { response } = error;
+
+      if (!response) {
+        throw new Error(`Erro inesperado: ${error.message}`);
+      }
+
       const { data, status } = response;
 
       expect(status).toEqual(400);
