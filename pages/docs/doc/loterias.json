@@ -1,0 +1,454 @@
+{
+  "tags": [
+    {
+      "name": "Loterias",
+      "description": "Consulta de resultados das loterias da Caixa Econômica Federal. Permite buscar o último resultado ou resultados de concursos específicos das principais loterias brasileiras, incluindo Mega-Sena, Quina, Lotofácil, Lotomania, Timemania, Dupla Sena, Federal, Dia de Sorte e Super Sete. Inclui também rota específica para consultar a Mega da Virada (concurso especial sorteado em 31 de dezembro)."
+    }
+  ],
+  "paths": {
+    "/loterias/v1/{loteria}": {
+      "get": {
+        "tags": ["Loterias"],
+        "summary": "Retorna o último resultado de uma loteria",
+        "description": "Consulta o resultado mais recente de uma loteria específica. Retorna informações completas sobre o concurso, incluindo números sorteados, prêmios, ganhadores e valores acumulados.",
+        "parameters": [
+          {
+            "name": "loteria",
+            "description": "Tipo de loteria. Valores aceitos: megasena, quina, lotofacil, lotomania, timemania, duplasena, federal, diadesorte, supersete",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["megasena", "quina", "lotofacil", "lotomania", "timemania", "duplasena", "federal", "diadesorte", "supersete"]
+            },
+            "example": "megasena"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoteriaResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Tipo de loteria inválido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "name": "BadRequestError",
+                  "message": "Tipo de loteria inválido. Tipos disponíveis: megasena, quina, lotofacil, lotomania, timemania, duplasena, federal, diadesorte, supersete",
+                  "type": "loteria_error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resultado não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "name": "NotFoundError",
+                  "message": "Resultado não encontrado",
+                  "type": "loteria_error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro ao buscar resultado da loteria",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "name": "InternalError",
+                  "message": "Erro ao buscar resultado da loteria.",
+                  "type": "loteria_error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loterias/v1/megasena/virada": {
+      "get": {
+        "tags": ["Loterias"],
+        "summary": "Retorna a Mega da Virada do ano atual",
+        "description": "Consulta o resultado da Mega da Virada do ano atual. A Mega da Virada é o concurso especial da Mega-Sena sorteado em 31 de dezembro de cada ano.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoteriaResult"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Mega da Virada não encontrada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "name": "NotFoundError",
+                  "message": "Mega da Virada de 2025 não encontrada",
+                  "type": "loteria_error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro ao buscar Mega da Virada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "name": "InternalError",
+                  "message": "Erro ao buscar Mega da Virada.",
+                  "type": "loteria_error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loterias/v1/megasena/virada/{ano}": {
+      "get": {
+        "tags": ["Loterias"],
+        "summary": "Retorna a Mega da Virada de um ano específico",
+        "description": "Consulta o resultado da Mega da Virada de um ano específico. A Mega da Virada é o concurso especial da Mega-Sena sorteado em 31 de dezembro de cada ano.",
+        "parameters": [
+          {
+            "name": "ano",
+            "description": "Ano para buscar a Mega da Virada. Deve ser um ano válido a partir de 1996.",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 1996
+            },
+            "example": 2024
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoteriaResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Ano inválido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "name": "BadRequestError",
+                  "message": "Ano inválido. Informe um ano válido a partir de 1996.",
+                  "type": "loteria_error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Mega da Virada não encontrada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "name": "NotFoundError",
+                  "message": "Mega da Virada de 2024 não encontrada",
+                  "type": "loteria_error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro ao buscar Mega da Virada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "name": "InternalError",
+                  "message": "Erro ao buscar Mega da Virada.",
+                  "type": "loteria_error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loterias/v1/{loteria}/{concurso}": {
+      "get": {
+        "tags": ["Loterias"],
+        "summary": "Retorna o resultado de um concurso específico",
+        "description": "Consulta o resultado de um concurso específico de uma loteria. Permite buscar resultados históricos informando o número do concurso desejado.",
+        "parameters": [
+          {
+            "name": "loteria",
+            "description": "Tipo de loteria. Valores aceitos: megasena, quina, lotofacil, lotomania, timemania, duplasena, federal, diadesorte, supersete",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["megasena", "quina", "lotofacil", "lotomania", "timemania", "duplasena", "federal", "diadesorte", "supersete"]
+            },
+            "example": "megasena"
+          },
+          {
+            "name": "concurso",
+            "description": "Número do concurso. Deve ser um número inteiro positivo.",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 1
+            },
+            "example": 2950
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoteriaResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Parâmetros inválidos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "examples": {
+                  "invalidLoteria": {
+                    "summary": "Tipo de loteria inválido",
+                    "value": {
+                      "name": "BadRequestError",
+                      "message": "Tipo de loteria inválido. Tipos disponíveis: megasena, quina, lotofacil, lotomania, timemania, duplasena, federal, diadesorte, supersete",
+                      "type": "loteria_error"
+                    }
+                  },
+                  "invalidConcurso": {
+                    "summary": "Número de concurso inválido",
+                    "value": {
+                      "name": "BadRequestError",
+                      "message": "Número do concurso deve ser um número inteiro positivo",
+                      "type": "loteria_error"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Concurso não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "name": "NotFoundError",
+                  "message": "Concurso 2950 não encontrado para a loteria megasena",
+                  "type": "loteria_error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro ao buscar resultado da loteria",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "name": "InternalError",
+                  "message": "Erro ao buscar resultado da loteria.",
+                  "type": "loteria_error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "LoteriaResult": {
+        "title": "Loteria Result",
+        "type": "object",
+        "properties": {
+          "numero": {
+            "type": "integer",
+            "description": "Número do concurso"
+          },
+          "dataApuracao": {
+            "type": "string",
+            "description": "Data de apuração do concurso no formato DD/MM/YYYY"
+          },
+          "dataProximoConcurso": {
+            "type": "string",
+            "description": "Data do próximo concurso no formato DD/MM/YYYY"
+          },
+          "acumulado": {
+            "type": "boolean",
+            "description": "Indica se o prêmio acumulou (não houve ganhadores)"
+          },
+          "tipoJogo": {
+            "type": "string",
+            "description": "Tipo da loteria (ex: MEGA_SENA, QUINA)"
+          },
+          "listaDezenas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Lista de dezenas sorteadas (em ordem numérica)"
+          },
+          "dezenasSorteadasOrdemSorteio": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Lista de dezenas sorteadas na ordem do sorteio"
+          },
+          "listaRateioPremio": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RateioPremio"
+            },
+            "description": "Lista de rateios de prêmio por faixa de acertos"
+          },
+          "valorArrecadado": {
+            "type": "number",
+            "description": "Valor total arrecadado no concurso"
+          },
+          "valorAcumuladoProximoConcurso": {
+            "type": "number",
+            "description": "Valor acumulado para o próximo concurso"
+          },
+          "valorEstimadoProximoConcurso": {
+            "type": "number",
+            "description": "Valor estimado do prêmio do próximo concurso"
+          },
+          "numeroConcursoAnterior": {
+            "type": "integer",
+            "description": "Número do concurso anterior"
+          },
+          "numeroConcursoProximo": {
+            "type": "integer",
+            "description": "Número do próximo concurso"
+          },
+          "localSorteio": {
+            "type": "string",
+            "description": "Local onde foi realizado o sorteio"
+          },
+          "nomeMunicipioUFSorteio": {
+            "type": "string",
+            "description": "Município e UF onde foi realizado o sorteio"
+          }
+        },
+        "example": {
+          "numero": 2954,
+          "dataApuracao": "20/12/2025",
+          "dataProximoConcurso": "31/12/2025",
+          "acumulado": true,
+          "tipoJogo": "MEGA_SENA",
+          "listaDezenas": ["01", "09", "37", "39", "42", "44"],
+          "dezenasSorteadasOrdemSorteio": ["37", "01", "42", "44", "39", "09"],
+          "listaRateioPremio": [
+            {
+              "descricaoFaixa": "6 acertos",
+              "faixa": 1,
+              "numeroDeGanhadores": 0,
+              "valorPremio": 0
+            },
+            {
+              "descricaoFaixa": "5 acertos",
+              "faixa": 2,
+              "numeroDeGanhadores": 38,
+              "valorPremio": 69615.66
+            }
+          ],
+          "valorArrecadado": 66385644,
+          "valorAcumuladoProximoConcurso": 249261580.92,
+          "valorEstimadoProximoConcurso": 1000000000,
+          "numeroConcursoAnterior": 2953,
+          "numeroConcursoProximo": 2955,
+          "localSorteio": "ESPAÇO DA SORTE",
+          "nomeMunicipioUFSorteio": "SÃO PAULO,    SP"
+        }
+      },
+      "RateioPremio": {
+        "title": "Rateio Premio",
+        "type": "object",
+        "properties": {
+          "descricaoFaixa": {
+            "type": "string",
+            "description": "Descrição da faixa de acertos (ex: '6 acertos', '5 acertos')"
+          },
+          "faixa": {
+            "type": "integer",
+            "description": "Número da faixa (1 = maior prêmio)"
+          },
+          "numeroDeGanhadores": {
+            "type": "integer",
+            "description": "Número de ganhadores nesta faixa"
+          },
+          "valorPremio": {
+            "type": "number",
+            "description": "Valor do prêmio por ganhador nesta faixa"
+          }
+        },
+        "example": {
+          "descricaoFaixa": "6 acertos",
+          "faixa": 1,
+          "numeroDeGanhadores": 0,
+          "valorPremio": 0
+        }
+      }
+    }
+  }
+}
+
