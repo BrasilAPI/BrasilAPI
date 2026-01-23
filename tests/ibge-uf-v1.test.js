@@ -9,19 +9,31 @@ let shouldSkipTests = true; // Default to skip for safety
 beforeAll(async () => {
   try {
     // Quick health check for IBGE service
-    const response = await axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados', {
-      timeout: 2000, // Short timeout to fail fast on DNS issues
-    });
-    
+    const response = await axios.get(
+      'https://servicodados.ibge.gov.br/api/v1/localidades/estados',
+      {
+        timeout: 2000, // Short timeout to fail fast on DNS issues
+      }
+    );
+
     if (response.status === 200) {
       shouldSkipTests = false;
       console.log('✅ IBGE service is available - running tests');
     }
   } catch (error) {
-    if (error.code === 'ENOTFOUND' || error.code === 'ECONNREFUSED' || error.code === 'ECONNRESET') {
-      console.warn('⚠️  IBGE service unavailable (network/DNS issue) - skipping tests');
+    if (
+      error.code === 'ENOTFOUND' ||
+      error.code === 'ECONNREFUSED' ||
+      error.code === 'ECONNRESET'
+    ) {
+      console.warn(
+        '⚠️  IBGE service unavailable (network/DNS issue) - skipping tests'
+      );
     } else {
-      console.warn('⚠️  IBGE service health check failed - skipping tests:', error.message);
+      console.warn(
+        '⚠️  IBGE service health check failed - skipping tests:',
+        error.message
+      );
     }
     shouldSkipTests = true;
   }
