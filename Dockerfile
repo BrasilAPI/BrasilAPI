@@ -1,23 +1,23 @@
-# 1️⃣ Imagem base compatível com Node 20
+#Imagem node 20> <22
 FROM node:20-alpine
 
-# 2️⃣ Pasta de trabalho dentro do container
+#Pasta de trabalho dentro do container
 WORKDIR /app
 
-# 3️⃣ Copiar apenas os arquivos de dependência primeiro (cache de build)
+#arquivos dependencia
 COPY package*.json ./
 
-# 4️⃣ Instalar dependências
+#  Instalar dependencias
 RUN npm install
 
-# 5️⃣ Copiar o restante do código
+#  Copiar o restante do código
 COPY . .
 
-# 6️⃣ Gerar o build do Next.js
+#  Gerar o build do Next.js
 RUN npm run build
 
-# 7️⃣ Expõe a porta padrão da API
+#porta padrão da API
 EXPOSE 3000
 
-# 8️⃣ Comando para iniciar a API
+#Comando para iniciar a API
 CMD ["npm", "start"]
