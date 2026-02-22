@@ -1,0 +1,26 @@
+name: Auto PR
+
+on:
+  push:
+    branches:
+      - 'feature/**'
+
+permissions:
+  pull-requests: write
+  contents: read
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Create PR to Alpha
+        run: |
+          gh pr create \
+            --base alpha \
+            --head ${{ github.ref_name }} \
+            --title "${{ github.ref_name }}" \
+            --body "Auto-generated PR from branch ${{ github.ref_name }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
