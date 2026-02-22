@@ -3,7 +3,9 @@ name: Auto PR
 on:
   push:
     branches:
-      - 'feature/**'
+      - alpha
+      - beta
+      - prod
 
 jobs:
   create-pr:
@@ -17,7 +19,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           source_branch: ${{ github.ref_name }}
-          target_branch: alpha
-          title: ${{ github.ref_name }}
-          body: Auto PR from ${{ github.ref_name }}
-          reviewer: ${{ github.actor }}
+          target_branch: ${{ github.ref_name }}
+          title: "Deploy ${{ github.ref_name }}"
+          body: "Auto PR from ${{ github.ref_name }} branch"
