@@ -1,0 +1,137 @@
+version: '3.9'
+
+services:
+  # Ambiente de Desenvolvimento
+  app-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        ENVIRONMENT: development
+    container_name: brasilapi-dev
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - ENVIRONMENT=development
+    volumes:
+      - .:/app
+      - /app/node_modules
+    networks:
+      - brasilapi-network
+    command: npm run dev
+
+  # Ambiente Alpha (Staging)
+  app-alpha:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        ENVIRONMENT: alpha
+    container_name: brasilapi-alpha
+    ports:
+      - "3001:3000"
+    environment:
+      - NODE_ENV=production
+      - ENVIRONMENT=alpha
+    networks:
+      - brasilapi-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/api/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+
+  # Ambiente Beta
+  app-beta:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        ENVIRONMENT: beta
+    container_name: brasilapi-beta
+    ports:
+      - "3002:3000"
+    environment:
+      - NODE_ENV=production
+      - ENVIRONMENT=beta
+    networks:
+      - brasilapi-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/api/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+
+  # Ambiente Produção - Servidor 1
+  app-prod-1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        ENVIRONMENT: production
+    container_name: brasilapi-prod-1
+    ports:
+      - "3003:3000"
+    environment:
+      - NODE_ENV=production
+      - ENVIRONMENT=production
+      - SERVER_ID=prod-1
+    networks:
+      - brasilapi-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/api/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+
+  # Ambiente Produção - Servidor 2
+  app-prod-2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        ENVIRONMENT: production
+    container_name: brasilapi-prod-2
+    ports:
+      - "3004:3000"
+    environment:
+      - NODE_ENV=production
+      - ENVIRONMENT=production
+      - SERVER_ID=prod-2
+    networks:
+      - brasilapi-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/api/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+
+  # Nginx como Load Balancer (Produção)
+  nginx:
+    image: nginx:alpine
+    container_name: brasilapi-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    networks:
+      - brasilapi-network
+    depends_on:
+      - app-prod-1
+      - app-prod-2
+    restart: unless-stopped
+
+networks:
+  brasilapi-network:
+    driver: bridge
