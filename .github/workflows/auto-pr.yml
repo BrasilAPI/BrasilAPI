@@ -1,0 +1,24 @@
+name: Auto PR
+
+on:
+  push:
+    branches:
+      - alpha
+      - beta
+      - prod
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - uses: devops-infra/action-pull-request@v0.5.5
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          source_branch: ${{ github.ref_name }}
+          target_branch: alpha
+          title: "Deploy ${{ github.ref_name }}"
+          body: "Auto PR from ${{ github.ref_name }} branch"

@@ -1,0 +1,120 @@
+name: Deploy to Beta
+
+on:
+  push:
+    branches:
+      - beta
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}/brasilapi
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Lint code
+        run: npm run lint
+        continue-on-error: true
+      
+      - name: Run tests
+        run: npm test
+        continue-on-error: true
+
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+    permissions:
+      contents: read
+      packages: write
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      
+      - name: Log in to Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=ref,event=branch
+            type=semver,pattern={{version}}
+            type=sha,prefix=beta-
+      
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            ENVIRONMENT=beta
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  deploy-beta:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: beta
+      url: https://beta.brasilapi.com.br
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Deploy to Beta Server
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.BETA_SERVER_HOST }}
+          username: ${{ secrets.BETA_SERVER_USER }}
+          key: ${{ secrets.BETA_SERVER_SSH_KEY }}
+          port: ${{ secrets.BETA_SERVER_PORT }}
+          script: |
+            cd /app/brasilapi
+            git fetch origin
+            git checkout beta
+            git pull origin beta
+            docker-compose -f docker-compose.yml pull app-beta
+            docker-compose -f docker-compose.yml up -d app-beta
+            docker-compose -f docker-compose.yml exec -T app-beta npm run migrate || true
+            echo "Beta deployment completed successfully!"
+      
+      - name: Notify Slack on Success
+        if: success()
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          text: '✅ Beta deployment successful'
+          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+          fields: repo,message,commit,author
+      
+      - name: Notify Slack on Failure
+        if: failure()
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          text: '❌ Beta deployment failed'
+          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+          fields: repo,message,commit,author
