@@ -79,7 +79,7 @@
         "schemas": {
             "Bank": {
                 "title": "Bank",
-                "required": ["ispb", "name", "code", "fullName"],
+                "required": ["ispb", "name", "code", "fullName", "localizacao_sede"],
                 "type": "object",
                 "properties": {
                     "ispb": {
@@ -94,13 +94,17 @@
                     },
                     "fullName": {
                         "type": "string"
+                    },
+                    "localizacao_sede": {
+                        "type": "string"
                     }
                 },
                 "example": {
                     "ispb": "00000000",
                     "name": "BCO DO BRASIL S.A.",
                     "code": 1,
-                    "fullName": "Banco do Brasil S.A."
+                    "fullName": "Banco do Brasil S.A.",
+                    "localizacao_sede": "SBS Quadra 1, Bloco A, Edifício Sede I, Asa Sul, Brasília-DF"
                 }
             }
         }
