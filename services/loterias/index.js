@@ -185,6 +185,54 @@ function isNewYearDrawForYear(draw, targetYear) {
 }
 
 /**
+ * Determines how many draws to skip based on draw year
+ * @param {number} drawYear - Year of the draw
+ * @param {number} targetYear - Target year we're looking for
+ * @returns {Object} Object with drawsToSkip and attemptsToIncrement
+ */
+function calculateDrawStep(drawYear, targetYear) {
+  // Far ahead of target year - skip multiple draws
+  if (drawYear > targetYear + 1) {
+    return { drawsToSkip: 50, attemptsIncrement: 10 };
+  }
+  // Close to target year - search sequentially
+  return { drawsToSkip: 1, attemptsIncrement: 1 };
+}
+
+/**
+ * Processes a single draw and determines next action
+ * @param {Object} draw - Draw result or null
+ * @param {number} targetYear - Target year
+ * @returns {Object} Object with action and data for next iteration
+ */
+function processDrawResult(draw, targetYear) {
+  // No data available - move to next draw
+  if (!draw?.dataApuracao) {
+    return { action: 'next', drawsToSkip: 1, attemptsIncrement: 1 };
+  }
+
+  // Check if this is the New Year's draw we're looking for
+  if (isNewYearDrawForYear(draw, targetYear)) {
+    return { action: 'found', draw };
+  }
+
+  const dateParts = parseDateParts(draw.dataApuracao);
+
+  // Draw year is before target - stop searching
+  if (dateParts.year < targetYear) {
+    return { action: 'stop' };
+  }
+
+  // Determine how many draws to skip based on year difference
+  const { drawsToSkip, attemptsIncrement } = calculateDrawStep(
+    dateParts.year,
+    targetYear
+  );
+
+  return { action: 'next', drawsToSkip, attemptsIncrement };
+}
+
+/**
  * Searches backwards through draws to find New Year's draw
  * @param {number} targetYear - Target year
  * @param {number} startDraw - Starting draw number
@@ -198,32 +246,18 @@ async function findNewYearDrawBackwards(targetYear, startDraw) {
   while (attempts < MAX_ATTEMPTS && drawNumber > 0) {
     // eslint-disable-next-line no-await-in-loop
     const draw = await fetchDrawSilently(drawNumber);
+    const result = processDrawResult(draw, targetYear);
 
-    if (draw?.dataApuracao) {
-      const dateParts = parseDateParts(draw.dataApuracao);
-
-      // Found New Year's draw for target year
-      if (isNewYearDrawForYear(draw, targetYear)) {
-        return draw;
-      }
-
-      // Draw year is before target, won't find it
-      if (dateParts.year < targetYear) {
-        break;
-      }
-
-      // Skip multiple draws if we're far ahead
-      if (dateParts.year > targetYear + 1) {
-        drawNumber -= 50;
-        attempts += 10;
-      } else {
-        drawNumber -= 1;
-        attempts += 1;
-      }
-    } else {
-      drawNumber -= 1;
-      attempts += 1;
+    if (result.action === 'found') {
+      return result.draw;
     }
+
+    if (result.action === 'stop') {
+      break;
+    }
+
+    drawNumber -= result.drawsToSkip;
+    attempts += result.attemptsIncrement;
   }
 
   throw new NotFoundError({
