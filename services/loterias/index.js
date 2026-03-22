@@ -1,33 +1,23 @@
 import axios from 'axios';
 import NotFoundError from '@/errors/NotFoundError';
 import BadRequestError from '@/errors/BadRequestError';
+import InternalError from '@/errors/InternalError';
 
 const API_BASE_URL = 'https://servicebus2.caixa.gov.br/portaldeloterias/api';
 const DEFAULT_TIMEOUT = 10000;
 
-// Mapeamento de nomes de loterias para códigos da API da Caixa
-const LOTERIAS_MAP = {
-  megasena: 'megasena',
-  quina: 'quina',
-  lotofacil: 'lotofacil',
-  lotomania: 'lotomania',
-  timemania: 'timemania',
-  duplasena: 'duplasena',
-  federal: 'federal',
-  diadesorte: 'diadesorte',
-  supersete: 'supersete',
-};
-
-/**
- * Formata o resultado da API para o formato padrão
- * @param {Object} data - Dados da API
- * @returns {Object}
- */
-function formatResultado(data) {
-  // Retorna os dados da API mantendo a estrutura original
-  // A API da Caixa já retorna os dados em um formato adequado
-  return data;
-}
+// Loterias suportadas
+const LOTERIAS_VALIDAS = new Set([
+  'megasena',
+  'quina',
+  'lotofacil',
+  'lotomania',
+  'timemania',
+  'duplasena',
+  'federal',
+  'diadesorte',
+  'supersete',
+]);
 
 /**
  * Valida se o tipo de loteria é suportado
@@ -35,7 +25,7 @@ function formatResultado(data) {
  * @returns {boolean}
  */
 function isValidLoteria(loteria) {
-  return Object.keys(LOTERIAS_MAP).includes(loteria.toLowerCase());
+  return LOTERIAS_VALIDAS.has(loteria.toLowerCase());
 }
 
 /**
@@ -48,8 +38,8 @@ export async function getUltimoResultado(loteria) {
 
   if (!isValidLoteria(loteriaLower)) {
     throw new BadRequestError({
-      message: `Tipo de loteria inválido. Tipos disponíveis: ${Object.keys(
-        LOTERIAS_MAP
+      message: `Tipo de loteria inválido. Tipos disponíveis: ${Array.from(
+        LOTERIAS_VALIDAS
       ).join(', ')}`,
       type: 'loteria_error',
       name: 'INVALID_LOTERIA_TYPE',
@@ -57,12 +47,9 @@ export async function getUltimoResultado(loteria) {
   }
 
   try {
-    const response = await axios.get(
-      `${API_BASE_URL}/${LOTERIAS_MAP[loteriaLower]}`,
-      {
-        timeout: DEFAULT_TIMEOUT,
-      }
-    );
+    const response = await axios.get(`${API_BASE_URL}/${loteriaLower}`, {
+      timeout: DEFAULT_TIMEOUT,
+    });
 
     if (!response.data || !response.data.numero) {
       throw new NotFoundError({
@@ -72,7 +59,7 @@ export async function getUltimoResultado(loteria) {
       });
     }
 
-    return formatResultado(response.data);
+    return response.data;
   } catch (error) {
     if (error.response && error.response.status === 404) {
       throw new NotFoundError({
@@ -86,7 +73,10 @@ export async function getUltimoResultado(loteria) {
       throw error;
     }
 
-    throw new Error(`Erro ao buscar resultado: ${error.message}`);
+    throw new InternalError({
+      message: `Erro ao buscar resultado: ${error.message}`,
+      type: 'loteria_error',
+    });
   }
 }
 
@@ -101,8 +91,8 @@ export async function getResultadoPorConcurso(loteria, concurso) {
 
   if (!isValidLoteria(loteriaLower)) {
     throw new BadRequestError({
-      message: `Tipo de loteria inválido. Tipos disponíveis: ${Object.keys(
-        LOTERIAS_MAP
+      message: `Tipo de loteria inválido. Tipos disponíveis: ${Array.from(
+        LOTERIAS_VALIDAS
       ).join(', ')}`,
       type: 'loteria_error',
       name: 'INVALID_LOTERIA_TYPE',
@@ -125,7 +115,7 @@ export async function getResultadoPorConcurso(loteria, concurso) {
 
   try {
     const response = await axios.get(
-      `${API_BASE_URL}/${LOTERIAS_MAP[loteriaLower]}/${numeroConcurso}`,
+      `${API_BASE_URL}/${loteriaLower}/${numeroConcurso}`,
       {
         timeout: DEFAULT_TIMEOUT,
       }
@@ -139,7 +129,7 @@ export async function getResultadoPorConcurso(loteria, concurso) {
       });
     }
 
-    return formatResultado(response.data);
+    return response.data;
   } catch (error) {
     if (error.response && error.response.status === 404) {
       throw new NotFoundError({
@@ -153,7 +143,10 @@ export async function getResultadoPorConcurso(loteria, concurso) {
       throw error;
     }
 
-    throw new Error(`Erro ao buscar resultado: ${error.message}`);
+    throw new InternalError({
+      message: `Erro ao buscar resultado: ${error.message}`,
+      type: 'loteria_error',
+    });
   }
 }
 
@@ -255,6 +248,9 @@ export async function getMegaDaVirada(ano) {
       throw error;
     }
 
-    throw new Error(`Erro ao buscar Mega da Virada: ${error.message}`);
+    throw new InternalError({
+      message: `Erro ao buscar Mega da Virada: ${error.message}`,
+      type: 'loteria_error',
+    });
   }
 }

@@ -7,10 +7,7 @@ async function getMegaDaViradaByYear(request, response) {
   try {
     const { ano } = request.query;
 
-    // Se não informar o ano, busca o ano atual
-    const anoBuscado = ano || new Date().getFullYear();
-
-    const resultado = await getMegaDaVirada(anoBuscado);
+    const resultado = await getMegaDaVirada(ano);
 
     return response.status(200).json(resultado);
   } catch (error) {
