@@ -1,25 +1,25 @@
 import app from '@/app';
 import BaseError from '@/errors/BaseError';
 import InternalError from '@/errors/InternalError';
-import { getResultadoPorConcurso } from '@/services/loterias';
+import { getResultByDraw } from '@/services/loterias';
 
-async function getResultadoLoteriaPorConcurso(request, response) {
+async function getLotteryDrawResult(request, response) {
   try {
     const { loteria, concurso } = request.query;
 
-    const resultado = await getResultadoPorConcurso(loteria, concurso);
+    const result = await getResultByDraw(loteria, concurso);
 
-    return response.status(200).json(resultado);
+    return response.status(200).json(result);
   } catch (error) {
     if (error instanceof BaseError) {
       throw error;
     }
 
     throw new InternalError({
-      message: 'Erro ao buscar resultado da loteria.',
-      type: 'loteria_error',
+      message: 'Error fetching lottery result.',
+      type: 'lottery_error',
     });
   }
 }
 
-export default app().get(getResultadoLoteriaPorConcurso);
+export default app().get(getLotteryDrawResult);

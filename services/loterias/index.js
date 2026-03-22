@@ -6,8 +6,8 @@ import InternalError from '@/errors/InternalError';
 const API_BASE_URL = 'https://servicebus2.caixa.gov.br/portaldeloterias/api';
 const DEFAULT_TIMEOUT = 10000;
 
-// Loterias suportadas
-const LOTERIAS_VALIDAS = new Set([
+// Supported lotteries
+const VALID_LOTTERIES = new Set([
   'megasena',
   'quina',
   'lotofacil',
@@ -20,51 +20,51 @@ const LOTERIAS_VALIDAS = new Set([
 ]);
 
 /**
- * Valida se o tipo de loteria é suportado
- * @param {string} loteria - Nome da loteria
+ * Validates if the lottery type is supported
+ * @param {string} lottery - Lottery name
  * @returns {boolean}
  */
-function isValidLoteria(loteria) {
-  return LOTERIAS_VALIDAS.has(loteria.toLowerCase());
+function isValidLottery(lottery) {
+  return VALID_LOTTERIES.has(lottery.toLowerCase());
 }
 
 /**
- * Busca o último resultado de uma loteria
- * @param {string} loteria - Nome da loteria
+ * Fetches the latest result of a lottery
+ * @param {string} lottery - Lottery name
  * @returns {Promise<Object>}
  */
-export async function getUltimoResultado(loteria) {
-  const loteriaLower = loteria.toLowerCase();
+export async function getLastResult(lottery) {
+  const lotteryLower = lottery.toLowerCase();
 
-  if (!isValidLoteria(loteriaLower)) {
+  if (!isValidLottery(lotteryLower)) {
     throw new BadRequestError({
-      message: `Tipo de loteria inválido. Tipos disponíveis: ${Array.from(
-        LOTERIAS_VALIDAS
+      message: `Invalid lottery type. Available types: ${Array.from(
+        VALID_LOTTERIES
       ).join(', ')}`,
-      type: 'loteria_error',
-      name: 'INVALID_LOTERIA_TYPE',
+      type: 'lottery_error',
+      name: 'INVALID_LOTTERY_TYPE',
     });
   }
 
   try {
-    const response = await axios.get(`${API_BASE_URL}/${loteriaLower}`, {
+    const response = await axios.get(`${API_BASE_URL}/${lotteryLower}`, {
       timeout: DEFAULT_TIMEOUT,
     });
 
-    if (!response.data || !response.data.numero) {
+    if (!response.data?.numero) {
       throw new NotFoundError({
-        message: 'Resultado não encontrado',
-        type: 'loteria_error',
+        message: 'Result not found',
+        type: 'lottery_error',
         name: 'RESULT_NOT_FOUND',
       });
     }
 
     return response.data;
   } catch (error) {
-    if (error.response && error.response.status === 404) {
+    if (error.response?.status === 404) {
       throw new NotFoundError({
-        message: 'Resultado não encontrado',
-        type: 'loteria_error',
+        message: 'Result not found',
+        type: 'lottery_error',
         name: 'RESULT_NOT_FOUND',
       });
     }
@@ -74,68 +74,68 @@ export async function getUltimoResultado(loteria) {
     }
 
     throw new InternalError({
-      message: `Erro ao buscar resultado: ${error.message}`,
-      type: 'loteria_error',
+      message: `Error fetching result: ${error.message}`,
+      type: 'lottery_error',
     });
   }
 }
 
 /**
- * Busca resultado de um concurso específico
- * @param {string} loteria - Nome da loteria
- * @param {string|number} concurso - Número do concurso
+ * Fetches result for a specific draw
+ * @param {string} lottery - Lottery name
+ * @param {string|number} drawNumber - Draw number
  * @returns {Promise<Object>}
  */
-export async function getResultadoPorConcurso(loteria, concurso) {
-  const loteriaLower = loteria.toLowerCase();
+export async function getResultByDraw(lottery, drawNumber) {
+  const lotteryLower = lottery.toLowerCase();
 
-  if (!isValidLoteria(loteriaLower)) {
+  if (!isValidLottery(lotteryLower)) {
     throw new BadRequestError({
-      message: `Tipo de loteria inválido. Tipos disponíveis: ${Array.from(
-        LOTERIAS_VALIDAS
+      message: `Invalid lottery type. Available types: ${Array.from(
+        VALID_LOTTERIES
       ).join(', ')}`,
-      type: 'loteria_error',
-      name: 'INVALID_LOTERIA_TYPE',
+      type: 'lottery_error',
+      name: 'INVALID_LOTTERY_TYPE',
     });
   }
 
-  const numeroConcurso = Number(concurso);
+  const drawNum = Number(drawNumber);
 
   if (
-    !numeroConcurso ||
-    numeroConcurso <= 0 ||
-    !Number.isInteger(numeroConcurso)
+    !drawNum ||
+    drawNum <= 0 ||
+    !Number.isInteger(drawNum)
   ) {
     throw new BadRequestError({
-      message: 'Número do concurso deve ser um número inteiro positivo',
-      type: 'loteria_error',
-      name: 'INVALID_CONCURSO_NUMBER',
+      message: 'Draw number must be a positive integer',
+      type: 'lottery_error',
+      name: 'INVALID_DRAW_NUMBER',
     });
   }
 
   try {
     const response = await axios.get(
-      `${API_BASE_URL}/${loteriaLower}/${numeroConcurso}`,
+      `${API_BASE_URL}/${lotteryLower}/${drawNum}`,
       {
         timeout: DEFAULT_TIMEOUT,
       }
     );
 
-    if (!response.data || !response.data.numero) {
+    if (!response.data?.numero) {
       throw new NotFoundError({
-        message: `Concurso ${numeroConcurso} não encontrado para a loteria ${loteria}`,
-        type: 'loteria_error',
-        name: 'CONCURSO_NOT_FOUND',
+        message: `Draw ${drawNum} not found for lottery ${lottery}`,
+        type: 'lottery_error',
+        name: 'DRAW_NOT_FOUND',
       });
     }
 
     return response.data;
   } catch (error) {
-    if (error.response && error.response.status === 404) {
+    if (error.response?.status === 404) {
       throw new NotFoundError({
-        message: `Concurso ${numeroConcurso} não encontrado para a loteria ${loteria}`,
-        type: 'loteria_error',
-        name: 'CONCURSO_NOT_FOUND',
+        message: `Draw ${drawNum} not found for lottery ${lottery}`,
+        type: 'lottery_error',
+        name: 'DRAW_NOT_FOUND',
       });
     }
 
@@ -144,113 +144,137 @@ export async function getResultadoPorConcurso(loteria, concurso) {
     }
 
     throw new InternalError({
-      message: `Erro ao buscar resultado: ${error.message}`,
-      type: 'loteria_error',
+      message: `Error fetching result: ${error.message}`,
+      type: 'lottery_error',
     });
   }
 }
 
 /**
- * Função auxiliar para buscar resultado de um concurso sem lançar erro
- * @param {number} numeroConcurso - Número do concurso
+ * Helper to fetch draw result without throwing errors
+ * @param {number} drawNumber - Draw number
  * @returns {Promise<Object|null>}
  */
-async function buscarConcursoSemErro(numeroConcurso) {
+async function fetchDrawSilently(drawNumber) {
   try {
-    return await getResultadoPorConcurso('megasena', numeroConcurso);
+    return await getResultByDraw('megasena', drawNumber);
   } catch {
     return null;
   }
 }
 
 /**
- * Busca a Mega da Virada de um ano específico
- * A Mega da Virada é o concurso da Mega-Sena sorteado em 31 de dezembro
- * @param {number} ano - Ano para buscar a Mega da Virada
+ * Extracts date parts from DD/MM/YYYY format
+ * @param {string} dateStr - Date string in DD/MM/YYYY format
+ * @returns {Object} Object with day, month, year properties
+ */
+function parseDateParts(dateStr) {
+  const [day, month, year] = dateStr.split('/');
+  return { day, month, year: Number(year) };
+}
+
+/**
+ * Checks if a draw is from December 31st
+ * @param {Object} draw - Draw result object
+ * @param {number} targetYear - Target year to match
+ * @returns {boolean}
+ */
+function isNewYearDrawForYear(draw, targetYear) {
+  const dateParts = parseDateParts(draw.dataApuracao);
+  return dateParts.month === '12' && dateParts.day === '31' && dateParts.year === targetYear;
+}
+
+/**
+ * Searches for New Year's draw (Mega da Virada) for a specific year
+ * The Mega da Virada is always drawn on December 31st
+ * @param {number} year - Year to fetch New Year's draw for
  * @returns {Promise<Object>}
  */
-export async function getMegaDaVirada(ano) {
-  const anoNumero = Number(ano);
+export async function getNewYearDraw(year) {
+  const yearNumber = Number(year);
 
   if (
-    !ano ||
-    !Number.isInteger(anoNumero) ||
-    anoNumero < 1996 ||
-    anoNumero > new Date().getFullYear() + 1
+    !year ||
+    !Number.isInteger(yearNumber) ||
+    yearNumber < 1996 ||
+    yearNumber > new Date().getFullYear() + 1
   ) {
     throw new BadRequestError({
-      message: 'Ano inválido. Informe um ano válido a partir de 1996.',
-      type: 'loteria_error',
+      message: 'Invalid year. Please provide a valid year starting from 1996.',
+      type: 'lottery_error',
       name: 'INVALID_YEAR',
     });
   }
 
   try {
-    // A Mega da Virada é sempre sorteada em 31/12
-    // Primeiro, tentamos buscar o último resultado
-    const ultimoResultado = await getUltimoResultado('megasena');
+    // Start by fetching the last result
+    const lastResult = await getLastResult('megasena');
 
-    // Verifica se a data de apuração é 31/12 do ano informado
-    if (ultimoResultado.dataApuracao) {
-      const [dia, mes, anoApuracao] = ultimoResultado.dataApuracao.split('/');
-      if (mes === '12' && dia === '31' && Number(anoApuracao) === anoNumero) {
-        return ultimoResultado;
-      }
+    // Check if it's the New Year's draw for the target year
+    if (lastResult.dataApuracao && isNewYearDrawForYear(lastResult, yearNumber)) {
+      return lastResult;
     }
 
-    // Se não for o último, tentamos buscar concursos próximos ao final do ano
-    // Estimamos que a Mega da Virada está próxima ao último concurso do ano
-    // A Mega-Sena tem aproximadamente 2 sorteios por semana, então cerca de 104 por ano
-    // Começamos procurando a partir do último concurso e retrocedemos
-    let numeroConcurso = ultimoResultado.numero;
-    const limite = 150; // Limite de tentativas (cobre mais de 1 ano de concursos)
-    let tentativas = 0;
-
-    while (tentativas < limite && numeroConcurso > 0) {
-      // eslint-disable-next-line no-await-in-loop
-      const resultado = await buscarConcursoSemErro(numeroConcurso);
-
-      if (resultado && resultado.dataApuracao) {
-        const [dia, mes, anoApuracao] = resultado.dataApuracao.split('/');
-        const anoApuracaoNum = Number(anoApuracao);
-
-        // Se encontrou a Mega da Virada do ano buscado
-        if (mes === '12' && dia === '31' && anoApuracaoNum === anoNumero) {
-          return resultado;
-        }
-
-        // Se o ano da apuração for menor que o ano buscado, não vamos encontrar
-        if (anoApuracaoNum < anoNumero) {
-          break;
-        }
-
-        // Se já passou muito do ano buscado, pode pular mais concursos
-        if (anoApuracaoNum > anoNumero + 1) {
-          numeroConcurso -= 50; // Pula mais concursos se estiver muito à frente
-          tentativas += 10;
-        } else {
-          numeroConcurso -= 1;
-          tentativas += 1;
-        }
-      } else {
-        numeroConcurso -= 1;
-        tentativas += 1;
-      }
-    }
-
-    throw new NotFoundError({
-      message: `Mega da Virada de ${ano} não encontrada`,
-      type: 'loteria_error',
-      name: 'MEGA_DA_VIRADA_NOT_FOUND',
-    });
+    // Search backwards from the last draw
+    return await findNewYearDrawBackwards(yearNumber, lastResult.numero);
   } catch (error) {
     if (error instanceof BadRequestError || error instanceof NotFoundError) {
       throw error;
     }
 
     throw new InternalError({
-      message: `Erro ao buscar Mega da Virada: ${error.message}`,
-      type: 'loteria_error',
+      message: `Error fetching New Year's draw: ${error.message}`,
+      type: 'lottery_error',
     });
   }
+}
+
+/**
+ * Searches backwards through draws to find New Year's draw
+ * @param {number} targetYear - Target year
+ * @param {number} startDraw - Starting draw number
+ * @returns {Promise<Object>}
+ */
+async function findNewYearDrawBackwards(targetYear, startDraw) {
+  const MAX_ATTEMPTS = 150; // Covers ~1 year of draws (~2 per week)
+  let drawNumber = startDraw;
+  let attempts = 0;
+
+  while (attempts < MAX_ATTEMPTS && drawNumber > 0) {
+    // eslint-disable-next-line no-await-in-loop
+    const draw = await fetchDrawSilently(drawNumber);
+
+    if (!draw?.dataApuracao) {
+      drawNumber -= 1;
+      attempts += 1;
+      continue;
+    }
+
+    const dateParts = parseDateParts(draw.dataApuracao);
+
+    // Found New Year's draw for target year
+    if (isNewYearDrawForYear(draw, targetYear)) {
+      return draw;
+    }
+
+    // Draw year is before target, won't find it
+    if (dateParts.year < targetYear) {
+      break;
+    }
+
+    // Skip multiple draws if we're far ahead
+    if (dateParts.year > targetYear + 1) {
+      drawNumber -= 50;
+      attempts += 10;
+    } else {
+      drawNumber -= 1;
+      attempts += 1;
+    }
+  }
+
+  throw new NotFoundError({
+    message: `New Year's draw for ${targetYear} not found`,
+    type: 'lottery_error',
+    name: 'NEW_YEAR_DRAW_NOT_FOUND',
+  });
 }

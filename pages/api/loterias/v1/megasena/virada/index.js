@@ -1,25 +1,25 @@
 import app from '@/app';
 import BaseError from '@/errors/BaseError';
 import InternalError from '@/errors/InternalError';
-import { getMegaDaVirada } from '@/services/loterias';
+import { getNewYearDraw } from '@/services/loterias';
 
-async function getUltimaMegaDaVirada(request, response) {
+async function getCurrentYearNewYearDraw(request, response) {
   try {
-    // Busca a Mega da Virada do ano atual
-    const anoAtual = new Date().getFullYear();
-    const resultado = await getMegaDaVirada(anoAtual);
+    // Fetch the New Year's draw for the current year
+    const currentYear = new Date().getFullYear();
+    const result = await getNewYearDraw(currentYear);
 
-    return response.status(200).json(resultado);
+    return response.status(200).json(result);
   } catch (error) {
     if (error instanceof BaseError) {
       throw error;
     }
 
     throw new InternalError({
-      message: 'Erro ao buscar Mega da Virada.',
-      type: 'loteria_error',
+      message: "Error fetching New Year's draw.",
+      type: 'lottery_error',
     });
   }
 }
 
-export default app().get(getUltimaMegaDaVirada);
+export default app().get(getCurrentYearNewYearDraw);
