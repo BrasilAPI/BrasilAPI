@@ -101,11 +101,7 @@ export async function getResultByDraw(lottery, drawNumber) {
 
   const drawNum = Number(drawNumber);
 
-  if (
-    !drawNum ||
-    drawNum <= 0 ||
-    !Number.isInteger(drawNum)
-  ) {
+  if (!drawNum || drawNum <= 0 || !Number.isInteger(drawNum)) {
     throw new BadRequestError({
       message: 'Draw number must be a positive integer',
       type: 'lottery_error',
@@ -181,7 +177,60 @@ function parseDateParts(dateStr) {
  */
 function isNewYearDrawForYear(draw, targetYear) {
   const dateParts = parseDateParts(draw.dataApuracao);
-  return dateParts.month === '12' && dateParts.day === '31' && dateParts.year === targetYear;
+  return (
+    dateParts.month === '12' &&
+    dateParts.day === '31' &&
+    dateParts.year === targetYear
+  );
+}
+
+/**
+ * Searches backwards through draws to find New Year's draw
+ * @param {number} targetYear - Target year
+ * @param {number} startDraw - Starting draw number
+ * @returns {Promise<Object>}
+ */
+async function findNewYearDrawBackwards(targetYear, startDraw) {
+  const MAX_ATTEMPTS = 150; // Covers ~1 year of draws (~2 per week)
+  let drawNumber = startDraw;
+  let attempts = 0;
+
+  while (attempts < MAX_ATTEMPTS && drawNumber > 0) {
+    // eslint-disable-next-line no-await-in-loop
+    const draw = await fetchDrawSilently(drawNumber);
+
+    if (draw?.dataApuracao) {
+      const dateParts = parseDateParts(draw.dataApuracao);
+
+      // Found New Year's draw for target year
+      if (isNewYearDrawForYear(draw, targetYear)) {
+        return draw;
+      }
+
+      // Draw year is before target, won't find it
+      if (dateParts.year < targetYear) {
+        break;
+      }
+
+      // Skip multiple draws if we're far ahead
+      if (dateParts.year > targetYear + 1) {
+        drawNumber -= 50;
+        attempts += 10;
+      } else {
+        drawNumber -= 1;
+        attempts += 1;
+      }
+    } else {
+      drawNumber -= 1;
+      attempts += 1;
+    }
+  }
+
+  throw new NotFoundError({
+    message: `New Year's draw for ${targetYear} not found`,
+    type: 'lottery_error',
+    name: 'NEW_YEAR_DRAW_NOT_FOUND',
+  });
 }
 
 /**
@@ -211,7 +260,10 @@ export async function getNewYearDraw(year) {
     const lastResult = await getLastResult('megasena');
 
     // Check if it's the New Year's draw for the target year
-    if (lastResult.dataApuracao && isNewYearDrawForYear(lastResult, yearNumber)) {
+    if (
+      lastResult.dataApuracao &&
+      isNewYearDrawForYear(lastResult, yearNumber)
+    ) {
       return lastResult;
     }
 
@@ -227,54 +279,4 @@ export async function getNewYearDraw(year) {
       type: 'lottery_error',
     });
   }
-}
-
-/**
- * Searches backwards through draws to find New Year's draw
- * @param {number} targetYear - Target year
- * @param {number} startDraw - Starting draw number
- * @returns {Promise<Object>}
- */
-async function findNewYearDrawBackwards(targetYear, startDraw) {
-  const MAX_ATTEMPTS = 150; // Covers ~1 year of draws (~2 per week)
-  let drawNumber = startDraw;
-  let attempts = 0;
-
-  while (attempts < MAX_ATTEMPTS && drawNumber > 0) {
-    // eslint-disable-next-line no-await-in-loop
-    const draw = await fetchDrawSilently(drawNumber);
-
-    if (!draw?.dataApuracao) {
-      drawNumber -= 1;
-      attempts += 1;
-      continue;
-    }
-
-    const dateParts = parseDateParts(draw.dataApuracao);
-
-    // Found New Year's draw for target year
-    if (isNewYearDrawForYear(draw, targetYear)) {
-      return draw;
-    }
-
-    // Draw year is before target, won't find it
-    if (dateParts.year < targetYear) {
-      break;
-    }
-
-    // Skip multiple draws if we're far ahead
-    if (dateParts.year > targetYear + 1) {
-      drawNumber -= 50;
-      attempts += 10;
-    } else {
-      drawNumber -= 1;
-      attempts += 1;
-    }
-  }
-
-  throw new NotFoundError({
-    message: `New Year's draw for ${targetYear} not found`,
-    type: 'lottery_error',
-    name: 'NEW_YEAR_DRAW_NOT_FOUND',
-  });
 }
