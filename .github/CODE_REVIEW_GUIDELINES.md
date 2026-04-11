@@ -124,6 +124,8 @@ git diff main
 
 ### ✅ 5. Performance e Custos
 
+> ⚠️ O BrasilAPI é open-source e **sem financiamento**. Qualquer mudança que introduza custos de infraestrutura deve ser **rejeitada imediatamente**, independente da qualidade técnica. Não há orçamento para banco de dados, storage ou serviços pagos. Serviços que exigem chave de API ou cadastro prévio devem ser discutidos em issue antes de implementar.
+
 **Verificações Obrigatórias:**
 
 - [ ] Não há loops desnecessários ou processamento pesado
@@ -191,6 +193,9 @@ tree pages/api/[novo-endpoint]
 tree services/
 ```
 
+**Referência:**
+Consulte o [Guia de Criação de Endpoints](../docs/ENDPOINT_GUIDE.md) para os padrões esperados de handler, service, teste e documentação.
+
 **Perguntas a Fazer:**
 - Código segue os padrões existentes no projeto?
 - Há reuso de componentes e serviços?
@@ -222,7 +227,12 @@ As seguintes situações devem resultar em **rejeição imediata** do PR:
    - Processamento pesado sem justificativa
    - Dependências grandes desnecessárias
 
-6. **Código não segue padrões**
+6. **Dependência de infraestrutura paga ou privada**
+   - Banco de dados próprio (qualquer engine)
+   - Storage (S3, GCS, etc.)
+   - Qualquer serviço com custo recorrente ou que exige chave de API privada
+
+7. **Código não segue padrões**
    - ESLint falhando
    - Estrutura diferente do projeto
 
