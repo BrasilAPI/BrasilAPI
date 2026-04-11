@@ -4,7 +4,7 @@ import { describe, test, expect, beforeAll } from 'vitest';
 import { testCorsForRoute } from './helpers/cors';
 
 // Smart service availability check - skip only when DNS/network issues are detected
-let shouldSkipTests = false; // Default to skip for safety
+let shouldSkipTests = true; // Default to skip for safety
 
 beforeAll(async () => {
   try {
