@@ -277,6 +277,17 @@
                     "regiao": {
                         "type": "object",
                         "$ref": "#/components/schemas/Region"
+                    },
+                    "populacao_estimada": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true,
+                        "description": "Estimativa populacional mais recente do IBGE"
+                    },
+                    "periodo": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Ano de referência da estimativa populacional"
                     }
                 },
                 "example": {
@@ -287,7 +298,9 @@
                         "id": 3,
                         "sigla": "SE",
                         "nome": "Sudeste"
-                    }
+                    },
+                    "populacao_estimada": 45969144,
+                    "periodo": "2024"
                 }
             },
             "Region": {
