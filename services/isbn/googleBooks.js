@@ -47,44 +47,68 @@ function parsePrice(saleInfo) {
  * @returns The book details if found.
  */
 export default async function searchInGoogleBooks(isbn) {
-  const response = await axios.get(API_SEARCH_URL, {
-    params: { q: `isbn:${isbn}`, country: 'BR' },
-    headers: { Accept: 'application/json' },
-  });
+  try {
+    const response = await axios.get(API_SEARCH_URL, {
+      params: { q: `isbn:${isbn}`, country: 'BR' },
+      headers: { Accept: 'application/json' },
+      timeout: 5000,
+    });
 
-  if (!response.data.items || !response.data.items[0]) {
-    throw new NotFoundError({ message: 'ISBN não encontrado' });
+    if (!response.data.items || !response.data.items[0]) {
+      throw new NotFoundError({ message: 'ISBN não encontrado' });
+    }
+
+    const gbBook = response.data.items[0];
+
+    const { volumeInfo } = gbBook;
+
+    const coverUrl =
+      volumeInfo.imageLinks &&
+      (volumeInfo.imageLinks.extraLarge ||
+        volumeInfo.imageLinks.large ||
+        volumeInfo.imageLinks.medium ||
+        volumeInfo.imageLinks.small ||
+        volumeInfo.imageLinks.thumbnail ||
+        volumeInfo.imageLinks.smallThumbnail);
+
+    return {
+      isbn,
+      title: volumeInfo.title.trim(),
+      subtitle: null,
+      authors: volumeInfo.authors,
+      publisher: volumeInfo.publisher,
+      synopsis: volumeInfo.description,
+      dimensions: parseDimensions(volumeInfo.dimensions),
+      year:
+        volumeInfo.publishedDate &&
+        parseInt(volumeInfo.publishedDate.substring(0, 4), 10),
+      format: volumeInfo.dimensions ? 'PHYSICAL' : 'DIGITAL',
+      page_count: volumeInfo.pageCount,
+      subjects: volumeInfo.categories,
+      location: null,
+      retail_price: parsePrice(gbBook.saleInfo),
+      cover_url: coverUrl && coverUrl.replace('http://', 'https://'),
+      provider: 'google-books',
+    };
+  } catch (error) {
+    // Log the error for debugging
+    // eslint-disable-next-line no-console
+    console.error('[google-books] Error fetching ISBN:', {
+      isbn,
+      error: error.message,
+      code: error.code,
+      status: error.response?.status,
+    });
+
+    // If it's already a NotFoundError, re-throw it
+    if (error instanceof NotFoundError) {
+      throw error;
+    }
+
+    // For network errors, timeouts, DNS issues, or API errors (like 500),
+    // convert them to NotFoundError so the system can try other providers
+    throw new NotFoundError({
+      message: 'ISBN não encontrado',
+    });
   }
-
-  const gbBook = response.data.items[0];
-
-  const { volumeInfo } = gbBook;
-
-  const coverUrl =
-    volumeInfo.imageLinks.extraLarge ||
-    volumeInfo.imageLinks.large ||
-    volumeInfo.imageLinks.medium ||
-    volumeInfo.imageLinks.small ||
-    volumeInfo.imageLinks.thumbnail ||
-    volumeInfo.imageLinks.smallThumbnail;
-
-  return {
-    isbn,
-    title: volumeInfo.title.trim(),
-    subtitle: null,
-    authors: volumeInfo.authors,
-    publisher: volumeInfo.publisher,
-    synopsis: volumeInfo.description,
-    dimensions: parseDimensions(volumeInfo.dimensions),
-    year:
-      volumeInfo.publishedDate &&
-      parseInt(volumeInfo.publishedDate.substring(0, 4), 10),
-    format: volumeInfo.dimensions ? 'PHYSICAL' : 'DIGITAL',
-    page_count: volumeInfo.pageCount,
-    subjects: volumeInfo.categories,
-    location: null,
-    retail_price: parsePrice(gbBook.saleInfo),
-    cover_url: coverUrl && coverUrl.replace('http://', 'https://'),
-    provider: 'google-books',
-  };
 }
