@@ -6,8 +6,6 @@
 - **API pública em produção:** O projeto é usado por milhares de desenvolvedores e empresas. Mudanças devem ser feitas com cuidado para não quebrar integrações existentes.
 - **Comunidade:** Qualquer contribuição que agregue valor é bem-vinda, desde que siga estes princípios.
 
-Qualquer ajuda que agregue valor ao projeto, seja na edição do código-fonte ou nas documentações, e consequentemente a vida das pessoas é muito bem-vindo, por isso decidimos torna-lo opensource.
-
 ## Iniciando
 
 Certifique-se de estar na pasta raiz do projeto para executar:
