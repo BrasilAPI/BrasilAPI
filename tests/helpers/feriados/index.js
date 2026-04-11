@@ -38,27 +38,45 @@ const fixedHolidaysName = [
   'Natal',
 ];
 
+const getWeekdayName = (dateString) => {
+  const weekdays = [
+    'domingo',
+    'segunda-feira',
+    'terça-feira',
+    'quarta-feira',
+    'quinta-feira',
+    'sexta-feira',
+    'sábado',
+  ];
+  const date = new Date(dateString + 'T12:00:00');
+  return weekdays[date.getDay()];
+};
+
 const getEasterHolidays = (year, holidaysName = easterHolidaysName) =>
   [
     {
       date: carnavalDaysByYear[year],
       name: 'Carnaval',
       type: 'national',
+      weekday: getWeekdayName(carnavalDaysByYear[year]),
     },
     {
       date: pascoaDaysByYear[year],
       name: 'Páscoa',
       type: 'national',
+      weekday: getWeekdayName(pascoaDaysByYear[year]),
     },
     {
       date: goodFridayDaysByYear[year],
       name: 'Sexta-feira Santa',
       type: 'national',
+      weekday: getWeekdayName(goodFridayDaysByYear[year]),
     },
     {
       date: corpusChristiDaysByYear[year],
       name: 'Corpus Christi',
       type: 'national',
+      weekday: getWeekdayName(corpusChristiDaysByYear[year]),
     },
   ].filter(({ name }) => holidaysName.includes(name));
 
@@ -68,41 +86,49 @@ const getFixedHolidays = (year, holidaysName = fixedHolidaysName) => {
       date: `${year}-01-01`,
       name: 'Confraternização mundial',
       type: 'national',
+      weekday: getWeekdayName(`${year}-01-01`),
     },
     {
       date: `${year}-04-21`,
       name: 'Tiradentes',
       type: 'national',
+      weekday: getWeekdayName(`${year}-04-21`),
     },
     {
       date: `${year}-05-01`,
       name: 'Dia do trabalho',
       type: 'national',
+      weekday: getWeekdayName(`${year}-05-01`),
     },
     {
       date: `${year}-09-07`,
       name: 'Independência do Brasil',
       type: 'national',
+      weekday: getWeekdayName(`${year}-09-07`),
     },
     {
       date: `${year}-10-12`,
       name: 'Nossa Senhora Aparecida',
       type: 'national',
+      weekday: getWeekdayName(`${year}-10-12`),
     },
     {
       date: `${year}-11-02`,
       name: 'Finados',
       type: 'national',
+      weekday: getWeekdayName(`${year}-11-02`),
     },
     {
       date: `${year}-11-15`,
       name: 'Proclamação da República',
       type: 'national',
+      weekday: getWeekdayName(`${year}-11-15`),
     },
     {
       date: `${year}-12-25`,
       name: 'Natal',
       type: 'national',
+      weekday: getWeekdayName(`${year}-12-25`),
     },
   ];
 
@@ -111,6 +137,7 @@ const getFixedHolidays = (year, holidaysName = fixedHolidaysName) => {
       date: `${year}-11-20`,
       name: 'Dia da consciência negra',
       type: 'national',
+      weekday: getWeekdayName(`${year}-11-20`),
     });
   }
 

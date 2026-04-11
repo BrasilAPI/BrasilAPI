@@ -169,6 +169,98 @@ describe('Cambio v1 (E2E)', () => {
         });
       }
     });
+
+    test('Não deve aceitar mês 00 (zero): USD e 2023-00-01', async () => {
+      const requestUrl = `${global.SERVER_URL}/api/cambio/v1/cotacao/USD/2023-00-01`;
+
+      try {
+        await axios.get(requestUrl);
+        expect.fail('Deveria ter lançado um erro');
+      } catch (error) {
+        const { response } = error;
+
+        expect(response.status).toBe(400);
+        expect(response.data).toMatchObject({
+          message: 'Mês inválido: deve estar entre 01 e 12',
+          type: 'format_error',
+          name: 'INVALID_MONTH_VALUE',
+        });
+      }
+    });
+
+    test('Não deve aceitar mês 13 ou superior: USD e 2023-13-01', async () => {
+      const requestUrl = `${global.SERVER_URL}/api/cambio/v1/cotacao/USD/2023-13-01`;
+
+      try {
+        await axios.get(requestUrl);
+        expect.fail('Deveria ter lançado um erro');
+      } catch (error) {
+        const { response } = error;
+
+        expect(response.status).toBe(400);
+        expect(response.data).toMatchObject({
+          message: 'Mês inválido: deve estar entre 01 e 12',
+          type: 'format_error',
+          name: 'INVALID_MONTH_VALUE',
+        });
+      }
+    });
+
+    test('Não deve aceitar dia 00 (zero): USD e 2023-06-00', async () => {
+      const requestUrl = `${global.SERVER_URL}/api/cambio/v1/cotacao/USD/2023-06-00`;
+
+      try {
+        await axios.get(requestUrl);
+        expect.fail('Deveria ter lançado um erro');
+      } catch (error) {
+        const { response } = error;
+
+        expect(response.status).toBe(400);
+        expect(response.data.type).toBe('format_error');
+        expect(response.data.name).toBe('INVALID_DAY_VALUE');
+      }
+    });
+
+    test('Não deve aceitar dia superior ao máximo do mês: USD e 2023-06-31', async () => {
+      const requestUrl = `${global.SERVER_URL}/api/cambio/v1/cotacao/USD/2023-06-31`;
+
+      try {
+        await axios.get(requestUrl);
+        expect.fail('Deveria ter lançado um erro');
+      } catch (error) {
+        const { response } = error;
+
+        expect(response.status).toBe(400);
+        expect(response.data.type).toBe('format_error');
+        expect(response.data.name).toBe('INVALID_DAY_VALUE');
+      }
+    });
+
+    test('Não deve aceitar dia 30 em fevereiro: USD e 2023-02-30', async () => {
+      const requestUrl = `${global.SERVER_URL}/api/cambio/v1/cotacao/USD/2023-02-30`;
+
+      try {
+        await axios.get(requestUrl);
+        expect.fail('Deveria ter lançado um erro');
+      } catch (error) {
+        const { response } = error;
+
+        expect(response.status).toBe(400);
+        expect(response.data.type).toBe('format_error');
+        expect(response.data.name).toBe('INVALID_DAY_VALUE');
+      }
+    });
+
+    test('Deve aceitar 29 de fevereiro em ano bissexto: USD e 2024-02-29', async () => {
+      const requestUrl = `${global.SERVER_URL}/api/cambio/v1/cotacao/USD/2024-02-29`;
+
+      const response = await axios.get(requestUrl);
+      expect(response.status).toBe(200);
+      expect(response.data.moeda).toBe('USD');
+      // A data retornada pode ser diferente devido à lógica de dias úteis
+      expect(response.data.data).toBeDefined();
+      expect(Array.isArray(response.data.cotacoes)).toBe(true);
+    });
   });
   describe('GET /cambio/v1/moedas', () => {
     test('Verifica CORS', async () => {
