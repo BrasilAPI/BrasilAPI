@@ -11,7 +11,6 @@ import BadRequestError from '@/errors/BadRequestError';
 import NotFoundError from '@/errors/NotFoundError';
 import InternalError from '@/errors/InternalError';
 import BaseError from '@/errors/BaseError';
-import UnprocessableEntityError from '@/errors/UnprocessableEntityError';
 
 const ALLOWED_PROVIDERS = new Set([
   'dados-abertos-br',
@@ -32,7 +31,7 @@ const parseProviders = (providersQuery) => {
     .filter(Boolean);
 
   if (parts.length === 0) {
-    throw new UnprocessableEntityError({
+    throw new BadRequestError({
       message: 'Informe pelo menos um provider válido.',
       name: 'ProvidersInvalidException',
     });
@@ -42,9 +41,10 @@ const parseProviders = (providersQuery) => {
     ...new Set(parts.filter((p) => !ALLOWED_PROVIDERS.has(p))),
   ];
   if (unknown.length > 0) {
-    throw new UnprocessableEntityError({
+    throw new BadRequestError({
       message: 'Um ou mais providers são inválidos.',
       name: 'ProvidersInvalidException',
+      type: 'bad_request',
       errors: unknown,
     });
   }

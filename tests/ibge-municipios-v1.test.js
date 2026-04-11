@@ -83,17 +83,17 @@ describe.skip('/ibge/municipios/v1 (E2E)', () => {
     }
   });
 
-  test('Provider inválido na query: 422', async () => {
+  test('Provider inválido na query: 400', async () => {
     const requestUrl = `${global.SERVER_URL}/api/ibge/municipios/v1/RS?providers=gov,foo`;
 
     try {
       await axios.get(requestUrl);
     } catch (error) {
       const { response } = error;
-      expect(response.status).toBe(422);
+      expect(response.status).toBe(400);
       expect(response.data).toMatchObject({
         name: 'ProvidersInvalidException',
-        type: 'unprocessable_entity',
+        type: 'bad_request',
       });
       expect(response.data.errors).toEqual(['foo']);
     }

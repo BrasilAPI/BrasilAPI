@@ -158,13 +158,27 @@
                   }
                 },
                 "400": {
-                  "description": "UF ausente ou com formato inválido (deve ser exatamente duas letras A–Z)",
+                  "description": "UF ausente, com formato inválido, ou parâmetro providers com valores não suportados",
                   "content": {
                     "application/json": {
-                      "example": {
-                        "name": "UfBadRequestException",
-                        "message": "UF inválida. Informe a sigla com duas letras (A-Z).",
-                        "type": "bad_request"
+                      "examples": {
+                        "uf_invalida": {
+                          "summary": "UF com formato inválido",
+                          "value": {
+                            "name": "UfBadRequestException",
+                            "message": "UF inválida. Informe a sigla com duas letras (A-Z).",
+                            "type": "bad_request"
+                          }
+                        },
+                        "provider_invalido": {
+                          "summary": "Provider não suportado",
+                          "value": {
+                            "name": "ProvidersInvalidException",
+                            "message": "Um ou mais providers são inválidos.",
+                            "type": "bad_request",
+                            "errors": ["nome-do-provider-invalido"]
+                          }
+                        }
                       }
                     }
                   }
@@ -177,19 +191,6 @@
                         "name": "EstadoNotFoundException",
                         "message": "UF não encontrada.",
                         "type": "not_found"
-                      }
-                    }
-                  }
-                },
-                "422": {
-                  "description": "Parâmetro providers vazio ou com valores não suportados",
-                  "content": {
-                    "application/json": {
-                      "example": {
-                        "name": "ProvidersInvalidException",
-                        "message": "Um ou mais providers são inválidos.",
-                        "type": "unprocessable_entity",
-                        "errors": ["nome-do-provider-invalido"]
                       }
                     }
                   }
