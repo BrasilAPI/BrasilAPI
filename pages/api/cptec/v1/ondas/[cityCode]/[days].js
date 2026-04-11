@@ -17,6 +17,14 @@ async function getSwellPredictions(request, response) {
     });
   }
 
+  if (!Number.isInteger(Number(days))) {
+    throw new BadRequestError({
+      message: 'Quantidade de dias inválida, informe um valor inteiro',
+      type: 'request_error',
+      name: 'INVALID_NUMBER_OF_DAYS',
+    });
+  }
+
   if (days < MIN_DAYS || days > MAX_SWELL_DAYS) {
     throw new BadRequestError({
       message: 'Quantidade de dias inválida (mínimo 1 dia e máximo 6 dias)',

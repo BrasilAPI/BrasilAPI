@@ -124,5 +124,22 @@ describeIf(shouldSkipTests)('ondas prediction v1 (E2E)', () => {
         });
       }
     });
+
+    test('GET /api/cptec/v1/ondas/:cityCode/:days (Non-integer days: 1.5)', async () => {
+      const requestUrl = `${global.SERVER_URL}/api/cptec/v1/ondas/241/1.5`;
+
+      try {
+        await axios.get(requestUrl);
+      } catch (error) {
+        const { response } = error;
+
+        expect(response.status).toBe(400);
+        expect(response.data).toMatchObject({
+          message: 'Quantidade de dias inválida, informe um valor inteiro',
+          type: 'request_error',
+          name: 'INVALID_NUMBER_OF_DAYS',
+        });
+      }
+    });
   });
 });
