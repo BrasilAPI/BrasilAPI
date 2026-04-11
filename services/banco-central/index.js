@@ -7,7 +7,7 @@ const formatCsvFile = (file) => {
   file.shift();
 
   return file
-    .filter(([ispb, name, code]) => ispb && code)
+    .filter(([ispb, , code]) => ispb && code)
     .map(
       ([
         ispb, // ISPB
@@ -31,7 +31,7 @@ const formatCsvFile = (file) => {
 export const getBanksData = async () => {
   try {
     const response = await getCsvAsJson(
-      'https://www.bcb.gov.br/pom/spb/estatistica/port/ParticipantesSTRport.csv'
+      'https://www.bcb.gov.br/content/estabilidadefinanceira/str1/ParticipantesSTR.csv'
     );
     return formatCsvFile(response);
   } catch (err) {
