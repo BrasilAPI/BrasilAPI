@@ -9,17 +9,17 @@ import { MAX_SWELL_DAYS, MIN_DAYS } from '@/services/cptec/constants';
 async function getSwellPredictions(request, response) {
   const { days, cityCode } = request.query;
 
-  if (!Number.isInteger(Number(days))) {
+  if (!Number.isFinite(Number(days))) {
     throw new BadRequestError({
-      message: 'Quantidade de dias inválida, informe um valor inteiro',
+      message: 'Quantidade de dias inválida, informe um valor numérico',
       type: 'request_error',
       name: 'INVALID_NUMBER_OF_DAYS',
     });
   }
 
-  if (!Number.isFinite(Number(days))) {
+  if (!Number.isInteger(Number(days))) {
     throw new BadRequestError({
-      message: 'Quantidade de dias inválida, informe um valor numérico',
+      message: 'Quantidade de dias inválida, informe um valor inteiro',
       type: 'request_error',
       name: 'INVALID_NUMBER_OF_DAYS',
     });
