@@ -3,9 +3,13 @@ module.exports = {
     browser: true,
     es6: true,
     node: true,
-    jest: true,
   },
-  extends: ['airbnb', 'plugin:prettier/recommended'],
+  extends: [
+    'airbnb',
+    'plugin:prettier/recommended',
+    'next/core-web-vitals',
+    'plugin:@vitest/legacy-recommended',
+  ],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -24,12 +28,7 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'import/prefer-default-export': 'off',
-    'no-else-return': [
-      2,
-      {
-        allowElseIf: true,
-      },
-    ],
+    'no-else-return': 'off',
   },
   settings: {
     'import/resolver': {

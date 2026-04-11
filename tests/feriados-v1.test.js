@@ -1,13 +1,33 @@
-const axios = require('axios');
-const crypto = require('crypto');
+import axios from 'axios';
+import crypto from 'node:crypto';
+import { describe, expect, test } from 'vitest';
 
-const {
+import { testCorsForRoute } from './helpers/cors';
+import {
   getEasterHolidays,
   getFixedHolidays,
   getHolidays,
-} = require('./helpers/feriados');
+} from './helpers/feriados';
 
 describe('/feriados/v1 (E2E)', () => {
+
+  test('Sem ano: "erro"', async () => {
+    expect.assertions(2);
+    const requestUrl = `${global.SERVER_URL}/api/feriados/v1`;
+
+    try {
+      await axios.get(requestUrl);
+    } catch (error) {
+      const { response } = error;
+
+      expect(response.status).toBe(400);
+      expect(response.data).toEqual({
+        message: 'Por favor informe um ano.',
+        type: 'validation_error',
+      });
+    }
+  });
+
   test('Feriados fixos com ano válido entre 1900 e 2199', async () => {
     const year = 1900 + crypto.randomInt(2199 - 1900);
     const requestUrl = `${global.SERVER_URL}/api/feriados/v1/${year}`;
@@ -86,4 +106,32 @@ describe('/feriados/v1 (E2E)', () => {
       expect.arrayContaining(getHolidays(2019, ['Páscoa', 'Tiradentes']))
     );
   });
+
+  test('Feriado da consciência negra não deve existir em ano anterior a 2024', async () => {
+    expect.assertions(2);
+
+    const requestUrl = `${global.SERVER_URL}/api/feriados/v1/2023`;
+    const { data } = await axios.get(requestUrl);
+
+    expect(data).toHaveLength(12);
+    expect(data).toEqual(
+      expect.not.arrayContaining(
+        getHolidays(2024, ['Dia da consciência negra'])
+      )
+    );
+  });
+
+  test('Feriado da consciência negra deve existir a partir de 2024', async () => {
+    expect.assertions(2);
+
+    const requestUrl = `${global.SERVER_URL}/api/feriados/v1/2024`;
+    const { data } = await axios.get(requestUrl);
+
+    expect(data).toHaveLength(13);
+    expect(data).toEqual(
+      expect.arrayContaining(getHolidays(2024, ['Dia da consciência negra']))
+    );
+  });
 });
+
+testCorsForRoute('/api/feriados/v1/2020');

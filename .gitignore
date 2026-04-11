@@ -113,3 +113,9 @@ dist
 
 # IntelliJ IDEA
 .idea
+
+### asdf ###
+/.tool-versions
+
+# Plan directory
+Plan/

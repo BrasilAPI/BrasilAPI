@@ -3,11 +3,11 @@ import BaseError from '@/errors/BaseError';
 import InternalError from '@/errors/InternalError';
 import getHolidays from '@/services/holidays';
 
-const action = (request, response) => {
+async function getHolidaysByYear(request, response) {
   try {
     const holidays = getHolidays(request.query.ano);
 
-    response.status(200).json(holidays);
+    return response.status(200).json(holidays);
   } catch (error) {
     if (error instanceof BaseError) {
       throw error;
@@ -18,6 +18,6 @@ const action = (request, response) => {
       type: 'feriados_error',
     });
   }
-};
+}
 
-export default app().get(action);
+export default app().get(getHolidaysByYear);

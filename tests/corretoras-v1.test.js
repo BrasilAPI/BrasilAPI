@@ -1,4 +1,7 @@
-const axios = require('axios');
+import axios from 'axios';
+import { describe, expect, test } from 'vitest';
+
+import { testCorsForRoute } from './helpers/cors';
 
 const validOutputSchema = expect.objectContaining({
   bairro: expect.any(String),
@@ -24,6 +27,13 @@ const validTestTableArray = expect.arrayContaining([validOutputSchema]);
 
 describe('corretoras v1 (E2E)', () => {
   describe('GET /cvm/corretoras/v1/:cnpj', () => {
+    test('Verifica CORS', async () => {
+      const requestUrl = `${global.SERVER_URL}/api/cvm/corretoras/v1/02332886000104`;
+      const response = await axios.get(requestUrl);
+
+      expect(response.headers['access-control-allow-origin']).toBe('*');
+    });
+
     test('Utilizando um CNPJ válido: 02332886000104', async () => {
       const requestUrl = `${global.SERVER_URL}/api/cvm/corretoras/v1/02332886000104`;
       const response = await axios.get(requestUrl);
@@ -67,3 +77,6 @@ describe('corretoras v1 (E2E)', () => {
     expect(response.data).toEqual(validTestTableArray);
   });
 });
+
+testCorsForRoute('/api/cvm/corretoras/v1');
+testCorsForRoute('/api/cvm/corretoras/v1/02332886000104');

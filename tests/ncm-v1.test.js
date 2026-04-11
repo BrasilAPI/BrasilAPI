@@ -1,4 +1,7 @@
-const axios = require('axios');
+import axios from 'axios';
+import { describe, expect, test } from 'vitest';
+
+import { testCorsForRoute } from './helpers/cors';
 
 const validOutputSchema = expect.objectContaining({
   codigo: expect.any(String),
@@ -104,3 +107,6 @@ describe('ncm v1 (E2E)', () => {
     expect(Array.isArray(response.data)).toBe(true);
   });
 });
+
+testCorsForRoute('/api/ncm/v1');
+testCorsForRoute('/api/ncm/v1/33051000');

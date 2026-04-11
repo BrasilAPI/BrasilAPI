@@ -1,12 +1,12 @@
-import removeSpecialChars from '@/services/util/removeSpecialChars';
-import { getCityData } from '@/services/cptec';
-import NotFoundError from '@/errors/NotFoundError';
 import app from '@/app';
 import BaseError from '@/errors/BaseError';
-import InternalError from '@/errors/InternalError';
 import BadRequestError from '@/errors/BadRequestError';
+import InternalError from '@/errors/InternalError';
+import NotFoundError from '@/errors/NotFoundError';
+import { getCityData } from '@/services/cptec';
+import removeSpecialChars from '@/util/removeSpecialChars';
 
-const action = async (request, response) => {
+async function getCityByName(request, response) {
   try {
     const cityName = removeSpecialChars(request.query.name);
 
@@ -40,6 +40,6 @@ const action = async (request, response) => {
       name: 'CITY_INTERNAL',
     });
   }
-};
+}
 
-export default app().get(action);
+export default app().get(getCityByName);

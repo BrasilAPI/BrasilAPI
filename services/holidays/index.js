@@ -108,6 +108,14 @@ export function getNationalHolidays(year) {
     ['11-15', 'Proclamação da República'],
     ['12-25', 'Natal'],
   ];
+
+  if (year >= 2024) {
+    fixedHolidays.splice(fixedHolidays.length - 1, 0, [
+      '11-20',
+      'Dia da consciência negra',
+    ]);
+  }
+
   return fixedHolidays.map(([date, name]) => ({
     date: `${year}-${date}`,
     name,

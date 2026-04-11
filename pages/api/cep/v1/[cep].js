@@ -1,10 +1,7 @@
-import cep from 'cep-promise';
-
 import app from '@/app';
 import BadRequestError from '@/errors/BadRequestError';
 import NotFoundError from '@/errors/NotFoundError';
-
-const providers = ['correios', 'viacep', 'widenet', 'correios-alt'];
+import { fetchCep } from '@/services/cep/cep';
 
 const tempBlockedIps = [];
 
@@ -40,9 +37,7 @@ async function Cep(request, response) {
   try {
     const requestedCep = request.query.cep;
 
-    const cepResult = await cep(requestedCep, {
-      providers,
-    });
+    const cepResult = await fetchCep(requestedCep);
 
     response.status(200);
     return response.json(cepResult);
@@ -57,6 +52,10 @@ async function Cep(request, response) {
 
     if (error.type === 'service_error') {
       throw new NotFoundError(error);
+    }
+
+    if (error.type === 'bad_request') {
+      throw error;
     }
   }
 }
