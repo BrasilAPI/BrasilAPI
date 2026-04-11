@@ -372,7 +372,7 @@
             "City": {
                 "title": "Cidade CPTEC",
                 "description": "Informações de uma cidade disponível nos serviços do CPTEC",
-                "required": ["nome", "estado", "id"],
+                "required": ["nome", "estado", "id", "regiao"],
                 "type": "object",
                 "properties": {
                     "nome": {
@@ -383,6 +383,10 @@
                         "type": "string",
                         "description": "Sigla do estado (UF)"
                     },
+                    "regiao": {
+                        "type": "string",
+                        "description": "Região geográfica do estado (Norte, Nordeste, Centro-Oeste, Sudeste ou Sul)"
+                    },
                     "id": {
                         "type": "integer",
                         "description": "Código único da cidade no sistema CPTEC"
@@ -391,6 +395,7 @@
                 "example": {
                     "nome": "São Benedito",
                     "estado": "CE",
+                    "regiao": "Nordeste",
                     "id": 4750
                 }
             },

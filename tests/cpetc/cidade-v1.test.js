@@ -52,6 +52,7 @@ describeIf(shouldSkipTests)('cities v1 (E2E)', () => {
         id: 5051,
         nome: 'São Sebastião',
         estado: 'SP',
+        regiao: 'Sudeste',
       });
     });
 
@@ -65,6 +66,7 @@ describeIf(shouldSkipTests)('cities v1 (E2E)', () => {
         id: 222,
         nome: 'Belo Horizonte',
         estado: 'MG',
+        regiao: 'Sudeste',
       });
     });
 
