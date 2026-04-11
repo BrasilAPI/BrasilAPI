@@ -1,0 +1,349 @@
+{
+  "tags": [
+    {
+      "name": "TUSS",
+      "description": "Termos e códigos TUSS (Terminologia Unificada da Saúde Suplementar). Permite listagem completa e busca por nome e por código."
+    }
+  ],
+  "paths": {
+    "/tuss/v1": {
+      "get": {
+        "tags": ["TUSS"],
+        "summary": "Lista termos TUSS (Terminologia Unificada da Saúde Suplementar) com suporte a busca por nome e código",
+        "description": "Retorna a lista completa de termos TUSS. Quando parâmetros de busca são fornecidos, retorna somente os itens que correspondem ao filtro. A busca por nome é case-insensitive e acento-insensitive; a busca por código considera apenas dígitos e casa pelo início do código. Suporta paginação via parâmetros limit e offset.",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "string" },
+            "description": "Busca parcial por nome do termo TUSS (ignora acentos e caixa).",
+            "example": "Consulta"
+          },
+          {
+            "name": "tuss",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "string" },
+            "description": "Busca por código TUSS (somente dígitos), compara pelo início do código.",
+            "example": "1010"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "integer", "minimum": 1 },
+            "description": "Quantidade máxima de itens a retornar (paginação).",
+            "example": 50
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "integer", "minimum": 0 },
+            "description": "Deslocamento inicial para paginação (número de itens a pular).",
+            "example": 0
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TussResponse"
+                },
+                "example": {
+                  "total": 25731,
+                  "limit": 20,
+                  "offset": 0,
+                  "items": [
+                    {
+                      "tuss": "10101012",
+                      "name": "Consulta em consultório (no horário normal ou preestabelecido)"
+                    },
+                    { "tuss": "10101013", "name": "Consulta de retorno" }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tuss/v1/{tuss}": {
+      "get": {
+        "tags": ["TUSS"],
+        "summary": "Detalhe de um termo TUSS pelo código",
+        "parameters": [
+          {
+            "name": "tuss",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "Código TUSS (somente dígitos)",
+            "example": "10101012"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/TussTerm" },
+                "example": {
+                  "tuss": "10101012",
+                  "name": "Consulta em consultório (no horário normal ou preestabelecido)"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Código TUSS não encontrado",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorMessage" },
+                "example": {
+                  "name": "NotFoundError",
+                  "message": "Código TUSS não encontrado",
+                  "type": "TUSS_CODE_NOT_FOUND"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tuss/v1/search": {
+      "get": {
+        "tags": ["TUSS"],
+        "summary": "Busca avançada de termos TUSS",
+        "description": "Busca com campo livre `q` mais filtros opcionais `name` e `tuss`. Suporta modos de correspondência via `match=prefix|exact`, ordenação por `sort=tuss|name` e `order=asc|desc`, projeção de campos via `fields`, além de paginação `limit` e `offset`.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "string" },
+            "description": "Busca livre; tokens com dígitos aplicam-se ao código TUSS, textos ao nome.",
+            "example": "consulta 1010"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "string" },
+            "description": "Filtro por nome (acento-insensitive).",
+            "example": "Consulta"
+          },
+          {
+            "name": "tuss",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "string" },
+            "description": "Filtro por código TUSS (somente dígitos).",
+            "example": "10101012"
+          },
+          {
+            "name": "match",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "string", "enum": ["prefix", "exact"] },
+            "description": "Modo de correspondência para `q`, `name` e `tuss`.",
+            "example": "prefix"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "string", "enum": ["tuss", "name"] },
+            "description": "Campo de ordenação.",
+            "example": "tuss"
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "string", "enum": ["asc", "desc"] },
+            "description": "Direção da ordenação.",
+            "example": "asc"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "string" },
+            "description": "Projeção de campos (lista separada por vírgula).",
+            "example": "tuss,name"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "integer", "minimum": 1 },
+            "description": "Quantidade máxima de itens a retornar (paginação).",
+            "example": 50
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "integer", "minimum": 0 },
+            "description": "Deslocamento inicial para paginação.",
+            "example": 0
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/TussResponse" },
+                "example": {
+                  "total": 57,
+                  "limit": 20,
+                  "offset": 0,
+                  "items": [
+                    {
+                      "tuss": "10101012",
+                      "name": "Consulta em consultório (no horário normal ou preestabelecido)"
+                    },
+                    { "tuss": "10101013", "name": "Consulta de retorno" }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tuss/v1/autocomplete": {
+      "get": {
+        "tags": ["TUSS"],
+        "summary": "Autocomplete de termos TUSS",
+        "description": "Sugestões leves para digitação com correspondência por prefixo em `name` e `tuss`. Limite padrão 10, máximo 20.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "string" },
+            "description": "Texto livre para sugestão.",
+            "example": "consu"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "string" },
+            "description": "Prefixo do nome.",
+            "example": "Consu"
+          },
+          {
+            "name": "tuss",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "string" },
+            "description": "Prefixo do código TUSS (somente dígitos).",
+            "example": "1010"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "integer", "minimum": 1, "maximum": 20 },
+            "description": "Quantidade máxima de sugestões (padrão 10).",
+            "example": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/TussSuggestion" }
+                },
+                "example": [
+                  { "tuss": "1010", "name": "Consulta" },
+                  {
+                    "tuss": "10101012",
+                    "name": "Consulta em consultório (no horário normal ou preestabelecido)"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "TussTerm": {
+        "title": "TussTerm",
+        "required": ["tuss", "name"],
+        "type": "object",
+        "properties": {
+          "tuss": {
+            "type": "string",
+            "description": "Código TUSS do procedimento/evento."
+          },
+          "name": {
+            "type": "string",
+            "description": "Nome/descrição do procedimento/evento."
+          }
+        },
+        "example": {
+          "tuss": "10101012",
+          "name": "Consulta em consultório (no horário normal ou preestabelecido)"
+        }
+      },
+      "TussResponse": {
+        "title": "TussResponse",
+        "type": "object",
+        "required": ["total", "offset", "items"],
+        "properties": {
+          "total": {
+            "type": "integer",
+            "description": "Total de itens encontrados antes da paginação."
+          },
+          "limit": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Limite aplicado na paginação. Pode ser nulo quando não informado."
+          },
+          "offset": {
+            "type": "integer",
+            "description": "Deslocamento aplicado na paginação."
+          },
+          "items": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/TussTerm" }
+          }
+        },
+        "example": {
+          "total": 1234,
+          "limit": 50,
+          "offset": 0,
+          "items": [
+            {
+              "tuss": "10101012",
+              "name": "Consulta em consultório (no horário normal ou preestabelecido)"
+            }
+          ]
+        }
+      },
+      "TussSuggestion": {
+        "title": "TussSuggestion",
+        "type": "object",
+        "required": ["tuss", "name"],
+        "properties": {
+          "tuss": { "type": "string" },
+          "name": { "type": "string" }
+        }
+      }
+    }
+  }
+}
