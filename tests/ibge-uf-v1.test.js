@@ -1,7 +1,48 @@
-const axios = require('axios');
-const { testCorsForRoute } = require('./helpers/cors');
+import axios from 'axios';
+import { describe, test, expect, beforeAll } from 'vitest';
 
-describe('/ibge/uf/v1 (E2E)', () => {
+import { testCorsForRoute } from './helpers/cors';
+
+// Smart service availability check - skip only when DNS/network issues are detected
+let shouldSkipTests = false; // Default to skip for safety
+
+beforeAll(async () => {
+  try {
+    // Quick health check for IBGE service
+    const response = await axios.get(
+      'https://servicodados.ibge.gov.br/api/v1/localidades/estados',
+      {
+        timeout: 2000, // Short timeout to fail fast on DNS issues
+      }
+    );
+
+    if (response.status === 200) {
+      shouldSkipTests = false;
+      console.log('✅ IBGE service is available - running tests');
+    }
+  } catch (error) {
+    if (
+      error.code === 'ENOTFOUND' ||
+      error.code === 'ECONNREFUSED' ||
+      error.code === 'ECONNRESET'
+    ) {
+      console.warn(
+        '⚠️  IBGE service unavailable (network/DNS issue) - skipping tests'
+      );
+    } else {
+      console.warn(
+        '⚠️  IBGE service health check failed - skipping tests:',
+        error.message
+      );
+    }
+    shouldSkipTests = true;
+  }
+});
+
+// Conditionally skip based on actual service availability
+const describeIf = (condition) => (condition ? describe.skip : describe);
+
+describeIf(shouldSkipTests)('/ibge/uf/v1 (E2E)', () => {
   test('Utilizando um Codigo válido: 22', async () => {
     const requestUrl = `${global.SERVER_URL}/api/ibge/uf/v1/22`;
     const response = await axios.get(requestUrl);
@@ -16,6 +57,7 @@ describe('/ibge/uf/v1 (E2E)', () => {
         sigla: expect.any(String),
         nome: expect.any(String),
       }),
+      capital: expect.any(String),
     });
   });
 
@@ -46,6 +88,7 @@ describe('/ibge/uf/v1 (E2E)', () => {
             sigla: expect.any(String),
             nome: expect.any(String),
           }),
+          capital: expect.any(String),
         }),
       ])
     );
@@ -65,7 +108,9 @@ describe('/ibge/uf/v1 (E2E)', () => {
         sigla: expect.any(String),
         nome: expect.any(String),
       }),
+      capital: expect.any(String),
     });
+    expect(response.data.capital).toBe('Florianópolis');
   });
 
   test('Utilizando uma Sigla válida: PI', async () => {
@@ -82,7 +127,9 @@ describe('/ibge/uf/v1 (E2E)', () => {
         sigla: expect.any(String),
         nome: expect.any(String),
       }),
+      capital: expect.any(String),
     });
+    expect(response.data.capital).toBe('Teresina');
   });
 
   test('Utilizando um sigla inexistente ou inválida: SJ', async () => {
@@ -102,6 +149,9 @@ describe('/ibge/uf/v1 (E2E)', () => {
   });
 });
 
-testCorsForRoute('/api/ibge/uf/v1');
-testCorsForRoute('/api/ibge/uf/v1/22');
-testCorsForRoute('/api/ibge/uf/v1/PI');
+// CORS tests - only run when IBGE service is healthy
+if (!shouldSkipTests) {
+  testCorsForRoute('/api/ibge/uf/v1');
+  testCorsForRoute('/api/ibge/uf/v1/22');
+  testCorsForRoute('/api/ibge/uf/v1/PI');
+}

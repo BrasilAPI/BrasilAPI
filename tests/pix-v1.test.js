@@ -1,9 +1,15 @@
-const axios = require('axios');
-const { testCorsForRoute } = require('./helpers/cors');
+import axios from 'axios';
+import { beforeAll, describe, expect, test } from 'vitest';
 
-const requestUrl = `${global.SERVER_URL}/api/pix/v1/participants`;
+import { testCorsForRoute } from './helpers/cors';
 
 describe('api/pix/v1/participants (E2E)', () => {
+  let requestUrl = '';
+
+  beforeAll(async () => {
+    requestUrl = `${global.SERVER_URL}/api/pix/v1/participants`;
+  });
+
   test('should return full list', async () => {
     const response = await axios.get(requestUrl);
     const { data, status } = response;

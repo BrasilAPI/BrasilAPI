@@ -1,10 +1,9 @@
 import app from '@/app';
 import BadRequestError from '@/errors/BadRequestError';
-
 import { getFipePrice } from '@/services/fipe/price';
 import { listReferenceTables } from '@/services/fipe/referenceTable';
 
-async function FipePrice(request, response) {
+async function getFipePriceInfo(request, response) {
   try {
     const referenceTableCode = request.query.tabela_referencia;
     const { fipeCode } = request.query;
@@ -36,4 +35,4 @@ async function FipePrice(request, response) {
   }
 }
 
-export default app({ cache: 86400 }).get(FipePrice);
+export default app({ cache: 86400 }).get(getFipePriceInfo);

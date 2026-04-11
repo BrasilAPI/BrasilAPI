@@ -63,6 +63,9 @@ Abaixo segue uma lista de integrações com a BrasilApi fornecidas pela comunida
   * **[brazilian_banks](https://github.com/credifit-br/brazilian_banks)** criado por [@credifit-br](https://github.com/credifit-br)
   * **[br_api_dart](https://github.com/PedroHAVeloso/br_api_dart)** criado por [@pedrohaveloso](https://github.com/PedroHAVeloso)
 
+**Swift**
+  * **[BrasilAPI-Swift](https://github.com/LucasJorgeHubert/BrasilAPI-Swift.git)** criado por [@LucasJorgeHubert](https://github.com/LucasJorgeHubert)
+
 **.Net**
   * **[BrasilAPI-DotNet](https://github.com/farukaf/BrasilAPI-DotNet)** criado por [@farukaf](https://github.com/farukaf)
 
@@ -78,7 +81,7 @@ Abaixo segue uma lista de integrações com a BrasilApi fornecidas pela comunida
   * **[brasilapi-rb](https://github.com/dayvidemerson/brasilapi-rb)** Criado por [@dayvidemerson](https://github.com/dayvidemerson)
 
 **Rust**
-  * **[brasilapi-rs](https://github.com/pedrinfx/brasilapi-rs)** Criado por [@pedrinfx](https://github.com/pedrinfx)
+  * **[brasilapi-rs](https://github.com/pedrinfx/brasilapi-rs)** Criado por [@pedrinfx](https://github.com/peeeuzin)
 
 **Java**
   * **[BrasilAPI-Java](https://github.com/SavioAndres/BrasilAPI-Java)** Criado por [@SavioAndres](https://github.com/SavioAndres)
@@ -87,7 +90,7 @@ Abaixo segue uma lista de integrações com a BrasilApi fornecidas pela comunida
   * **[BrasilAPI-Delphi](https://github.com/gabrielbaltazar/brasilapi4D)** Criado por [@GabrielBaltazar](https://github.com/gabrielbaltazar)
 
 **V**
-  * **[BrasilAPI-V](https://github.com/ldedev/brasilapi-v)** Criado por [@ldedev(André)](https://github.com/ldedev)
+  * **[BrasilAPI-V](https://github.com/ldedev/brasilapi-v)** Criado por [@ldedev(André)](https://github.com/Ddiidev)
 
 
 

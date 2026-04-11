@@ -1,9 +1,15 @@
-const axios = require('axios');
-const { testCorsForRoute } = require('./helpers/cors');
+import axios from 'axios';
+import { beforeAll, describe, expect, test } from 'vitest';
 
-const requestUrl = `${global.SERVER_URL}/api/cnpj/v1`;
+import { testCorsForRoute } from './helpers/cors';
 
 describe('api/cnpj/v1 (E2E)', () => {
+  let requestUrl = '';
+
+  beforeAll(async () => {
+    requestUrl = `${global.SERVER_URL}/api/cnpj/v1`;
+  });
+
   test('Verifica CORS', async () => {
     const response = await axios.get(`${requestUrl}/19131243000197`);
 

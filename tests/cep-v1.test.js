@@ -1,5 +1,7 @@
-const axios = require('axios');
-const { testCorsForRoute } = require('./helpers/cors');
+import axios from 'axios';
+import { describe, expect, test } from 'vitest';
+
+import { testCorsForRoute } from './helpers/cors';
 
 describe('/cep/v1 (E2E)', () => {
   test('Verifica CORS', async () => {
@@ -72,6 +74,30 @@ describe('/cep/v1 (E2E)', () => {
         errors: [
           {
             message: 'CEP informado possui mais do que 8 caracteres.',
+            service: 'cep_validation',
+          },
+        ],
+      });
+    }
+  });
+
+  test('Utilizando um CEP inválido com menos de 8 caracteres: 0123', async () => {
+    expect.assertions(2);
+    const requestUrl = `${global.SERVER_URL}/api/cep/v1/0123`;
+
+    try {
+      await axios.get(requestUrl);
+    } catch (error) {
+      const { response } = error;
+
+      expect(response.status).toBe(400);
+      expect(response.data).toEqual({
+        name: 'CepPromiseError',
+        message: 'CEP deve conter exatamente 8 caracteres.',
+        type: 'validation_error',
+        errors: [
+          {
+            message: 'CEP informado possui menos do que 8 caracteres.',
             service: 'cep_validation',
           },
         ],

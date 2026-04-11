@@ -1,9 +1,15 @@
-const axios = require('axios');
-const { testCorsForRoute } = require('./helpers/cors');
+import axios from 'axios';
+import { beforeAll, describe, expect, test } from 'vitest';
 
-const requestUrl = `${global.SERVER_URL}/api/taxas/v1`;
+import { testCorsForRoute } from './helpers/cors';
 
 describe('api/taxas/v1 (E2E)', () => {
+  let requestUrl = '';
+
+  beforeAll(async () => {
+    requestUrl = `${global.SERVER_URL}/api/taxas/v1`;
+  });
+
   test('Recuperando a lista de taxas', async () => {
     const response = await axios.get(requestUrl);
     const { data, status } = response;

@@ -1,4 +1,5 @@
-const axios = require('axios');
+import axios from 'axios';
+import { describe, expect, test } from 'vitest';
 
 describe('/graphql/v1 (E2E)', () => {
   test('Utilizando um CEP válido: 05010000', async () => {

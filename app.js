@@ -23,7 +23,7 @@ const onNoMatch = (request, response) => {
   });
 };
 
-export default (options = {}) => {
+const app = (options = {}) => {
   const corsOptions = options.cors || {};
   const cacheOptions = options.cache || cacheDefaultConfiguration;
 
@@ -44,3 +44,5 @@ export default (options = {}) => {
     .use(logger)
     .use(cache(configurations.cache));
 };
+
+export default app;
