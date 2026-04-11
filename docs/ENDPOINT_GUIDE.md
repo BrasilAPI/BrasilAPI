@@ -48,11 +48,41 @@ async function getDominioById(request, response) {
 export default app().get(getDominioById);
 ```
 
+#### Exemplo com tratamento de erros de biblioteca externa
+
+```js
+import app from '@/app';
+import BaseError from '@/errors/BaseError';
+import InternalError from '@/errors/InternalError';
+import { getDominioData } from '@/services/dominio';
+
+// Quando o service usa uma biblioteca que lança erros não tipados:
+async function getDominioById(request, response) {
+  const { param } = request.query;
+
+  try {
+    const data = await getDominioData(param);
+    return response.status(200).json(data);
+  } catch (error) {
+    if (error instanceof BaseError) throw error; // já tipado, propaga
+
+    // Converte erro da biblioteca externa em erro tipado
+    throw new InternalError({
+      message: 'Erro ao consultar dados.',
+      type: 'DOMINIO_ERROR',
+    });
+  }
+}
+
+export default app().get(getDominioById);
+```
+
 **Regras do handler:**
 - Use `app()` sempre — ele já inclui cors, cache, logger, firewall e errorHandler
 - Lance erros usando as classes de `@/errors/` — o `errorHandler` formata a resposta automaticamente
-- Não use `try/catch` genérico — deixe erros inesperados propagarem para o middleware
-- Para cache customizado: `app({ cache: 86400 }).get(handler)` (segundos; padrão é 86400)
+- Não use `try/catch` genérico para silenciar erros. Use try/catch quando precisar converter erros de bibliotecas externas em erros tipados antes de relançar (ex: converter um erro da biblioteca cep-promise em `BadRequestError`). Erros inesperados devem propagar normalmente para o `errorHandler`.
+- Handlers antigos no projeto podem não seguir estes padrões (ex: retornar JSON diretamente com `response.json()` sem usar as classes de erro). Para **novos** endpoints, sempre use as classes de `@/errors/`.
+- Para cache customizado: `app({ cache: 3600 }).get(handler)` (valor em segundos). O padrão já é 86400s (24h) — só passe `cache:` quando quiser um valor diferente.
 
 ### Service — `services/{dominio}.js`
 
@@ -86,6 +116,7 @@ export async function getDominioData(param) {
 - Lance erros tipados (`NotFoundError`, `BadRequestError`, `InternalError`) — nunca objetos literais
 - Faça transformação/normalização dos dados aqui, não no handler
 - Valide o input antes de chamar a API externa
+- A validação de input pode ficar no handler ou no service — siga o padrão do domínio mais próximo ao que você está criando. Se a validação é simples e específica do HTTP (ex: verificar formato do parâmetro de URL), pode ficar no handler. Se envolve regras de negócio, coloque no service.
 
 ### Teste — `tests/{dominio}-v1.test.js`
 
@@ -143,6 +174,13 @@ describe('dominio v1 (E2E)', () => {
 - `npm test` inicia o servidor e o Vitest automaticamente (via `concurrently`)
 - Sempre cubra: CORS, sucesso (200), não encontrado (404), parâmetro inválido (400 — se aplicável)
 - Use `expect.assertions(N)` em blocos `try/catch` para garantir que o erro foi lançado
+- Antes de testar, verifique se `global.SERVER_URL` está configurado — ele é definido automaticamente em `tests/helpers/server/setup.js` e aponta para o servidor local iniciado pelo `npm test`.
+- O projeto tem um helper `testCorsForRoute` em `tests/helpers/cors.js` que faz verificações de CORS mais completas (preflight, métodos permitidos, headers). Prefira usá-lo quando disponível:
+  ```js
+  import { testCorsForRoute } from '../helpers/cors';
+  testCorsForRoute('/api/dominio/v1/param-valido');
+  ```
+- ⚠️ `npm test` executa `kill-port 3000` antes de iniciar — qualquer processo rodando na porta 3000 será encerrado automaticamente.
 
 ### Documentação OpenAPI — `pages/docs/doc/{dominio}.json`
 
@@ -159,7 +197,6 @@ describe('dominio v1 (E2E)', () => {
       "get": {
         "tags": ["DOMINIO"],
         "summary": "Descrição curta do que este endpoint retorna",
-        "description": "",
         "parameters": [
           {
             "name": "param",
@@ -230,6 +267,7 @@ describe('dominio v1 (E2E)', () => {
 - Use sempre `"$ref": "#/components/schemas/ErrorMessage"` para respostas de erro — este schema já existe globalmente
 - Adicione exemplos realistas no campo `"example"`
 - Documentação em português
+- O schema `ErrorMessage` é global — não declare-o em `components.schemas` do seu arquivo. Use apenas `$ref: "#/components/schemas/ErrorMessage"`. O schema do seu endpoint de sucesso (ex: `Dominio`) deve ser declarado localmente em `components.schemas`.
 
 ---
 
