@@ -10,6 +10,24 @@ import {
 } from './helpers/feriados';
 
 describe('/feriados/v1 (E2E)', () => {
+
+  test('Sem ano: "erro"', async () => {
+    expect.assertions(2);
+    const requestUrl = `${global.SERVER_URL}/api/feriados/v1`;
+
+    try {
+      await axios.get(requestUrl);
+    } catch (error) {
+      const { response } = error;
+
+      expect(response.status).toBe(400);
+      expect(response.data).toEqual({
+        message: 'Por favor informe um ano.',
+        type: 'validation_error',
+      });
+    }
+  });
+
   test('Feriados fixos com ano válido entre 1900 e 2199', async () => {
     const year = 1900 + crypto.randomInt(2199 - 1900);
     const requestUrl = `${global.SERVER_URL}/api/feriados/v1/${year}`;

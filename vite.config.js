@@ -1,11 +1,11 @@
 /// <reference types="vitest" />
-import path from 'path';
+import { resolve } from 'path';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, '.'),
+      '@': resolve(__dirname, './'),
     },
   },
   test: {
