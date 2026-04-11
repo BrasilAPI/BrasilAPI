@@ -1,15 +1,19 @@
 import axios from 'axios';
 import { XMLParser } from 'fast-xml-parser';
-import { CPTEC_URL } from './constants';
+import { CPTEC_URL, STATE_REGION_MAP } from './constants';
 
 const parser = new XMLParser();
 
 const formatCity = (city) => {
-  const newCity = city;
-  newCity.estado = city.uf;
-  delete newCity.uf;
+  const estado = city.uf;
+  const regiao = STATE_REGION_MAP[estado] ?? null;
+  const { uf, ...rest } = city;
 
-  return newCity;
+  return {
+    ...rest,
+    estado,
+    regiao,
+  };
 };
 
 /**
@@ -22,8 +26,9 @@ export const getAllCitiesData = async () => {
     responseEncoding: 'binary',
   });
 
-  if (parser.parse(citiesData.data).cidades.cidade) {
-    return parser.parse(citiesData.data).cidades.cidade.map(formatCity);
+  const parsed = parser.parse(citiesData.data);
+  if (parsed.cidades.cidade) {
+    return parsed.cidades.cidade.map(formatCity);
   }
   return [];
 };
@@ -39,8 +44,14 @@ export const getCityData = async (name) => {
     responseEncoding: 'binary',
   });
 
-  if (parser.parse(citiesData.data).cidades.cidade) {
-    return parser.parse(citiesData.data).cidades.cidade.map(formatCity);
+  const parsed = parser.parse(citiesData.data);
+
+  if (parsed.cidades.cidade) {
+    if (parsed.cidades.cidade instanceof Array) {
+      return parsed.cidades.cidade.map(formatCity);
+    } else if (parsed.cidades.cidade instanceof Object) {
+      return [formatCity(parsed.cidades.cidade)];
+    }
   }
   return [];
 };

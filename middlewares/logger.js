@@ -5,11 +5,18 @@ export default function logger(request, response, next) {
 
   const userAgent = request.headers['user-agent'];
 
-  console.log({
+  const { origin, referer } = request.headers;
+
+  const logMessage = JSON.stringify({
     url: request.url,
     clientIp,
     userAgent,
+    origin,
+    referer,
   });
+
+  /* eslint-disable no-console */
+  console.log(logMessage);
 
   return next();
 }

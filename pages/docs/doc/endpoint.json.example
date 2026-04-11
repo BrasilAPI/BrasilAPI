@@ -5,7 +5,7 @@
             "description": "Informações referentes a CEPs"
         }
     ],
-    
+
     "paths": {
         "/cep/v1/{cep}": {
             "get": {
@@ -47,7 +47,7 @@
                     }
                 }
             }
-        }        
+        }
     },
     "components": {
         "schemas": {

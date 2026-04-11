@@ -1,31 +1,37 @@
-import microCors from 'micro-cors';
-import cepPromise from 'cep-promise';
-
+import app from '@/app';
+import { fetchCep } from '@/services/cep/cep';
 import fetchGeocoordinateFromBrazilLocation from '../../../../lib/fetchGeocoordinateFromBrazilLocation';
-
-const providers = ['correios', 'viacep', 'widenet', 'correios-alt'];
+import fetchTimezoneNameFromBrazilLocation from '../../../../lib/fetchTimezoneNameFromBrazilLocation';
 
 const CACHE_CONTROL_HEADER_VALUE =
   'max-age=0, s-maxage=86400, stale-while-revalidate, public';
-const cors = microCors();
 
-async function getCepFromCepPromise(requestedCep) {
-  return cepPromise(requestedCep, { providers });
-}
-
-async function Cep(request, response) {
+async function getCepWithLocation(request, response) {
   const requestedCep = request.query.cep;
 
   response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
 
   try {
-    const cepFromCepPromise = await getCepFromCepPromise(requestedCep);
+    const cepFromCepPromise = await fetchCep(requestedCep);
     const location = await fetchGeocoordinateFromBrazilLocation(
       cepFromCepPromise
     );
 
+    const timezoneName = await fetchTimezoneNameFromBrazilLocation({
+      ...location,
+      ...cepFromCepPromise,
+    });
+
+    if (!cepFromCepPromise.street) {
+      cepFromCepPromise.street = null;
+    }
+
+    if (!cepFromCepPromise.neighborhood) {
+      cepFromCepPromise.neighborhood = null;
+    }
+
     response.status(200);
-    response.json({ ...cepFromCepPromise, location });
+    response.json({ ...cepFromCepPromise, timezoneName, location });
   } catch (error) {
     if (error.name === 'CepPromiseError') {
       switch (error.type) {
@@ -41,6 +47,8 @@ async function Cep(request, response) {
 
       response.json(error);
       return;
+    } else if (error.type === 'bad_request') {
+      throw error;
     }
 
     response.status(500);
@@ -48,4 +56,4 @@ async function Cep(request, response) {
   }
 }
 
-export default cors(Cep);
+export default app({ cache: 172800 }).get(getCepWithLocation);

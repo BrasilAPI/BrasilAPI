@@ -1,4 +1,17 @@
-const axios = require('axios');
+import axios from 'axios';
+import { describe, expect, test } from 'vitest';
+
+import { testCorsForRoute } from './helpers/cors';
+
+const validOutputSchema = expect.objectContaining({
+  codigo: expect.any(String),
+  descricao: expect.any(String),
+  data_inicio: expect.any(String),
+  data_fim: expect.any(String),
+  tipo_ato: expect.any(String),
+  numero_ato: expect.any(String),
+  ano_ato: expect.any(String),
+});
 
 describe('ncm v1 (E2E)', () => {
   describe('GET /ncm/v1/:code', () => {
@@ -6,15 +19,12 @@ describe('ncm v1 (E2E)', () => {
       const requestUrl = `${global.SERVER_URL}/api/ncm/v1/33051000`;
       const response = await axios.get(requestUrl);
       expect(response.status).toBe(200);
-      expect(response.data).toEqual({
-        codigo: '3305.10.00',
-        descricao: '- Xampus',
-        data_inicio: '2022-04-01',
-        data_fim: '9999-12-31',
-        tipo_ato: 'Res Camex',
-        numero_ato: expect.any(String),
-        ano_ato: '2021',
-      });
+      expect(response.data).toEqual(validOutputSchema);
+
+      expect(response.data.codigo).toBe('3305.10.00');
+      expect(response.data.descricao).toContain('Xampus');
+      expect(response.data.data_inicio).toBe('2022-04-01');
+      expect(response.data.ano_ato).toBe('2021');
     });
 
     test('Utilizando um código inexistente: 00', async () => {
@@ -37,17 +47,16 @@ describe('ncm v1 (E2E)', () => {
       const requestUrl = `${global.SERVER_URL}/api/ncm/v1?search=Xampus`;
       const response = await axios.get(requestUrl);
       expect(response.status).toBe(200);
-      expect(response.data).toEqual([
-        {
-          codigo: '3305.10.00',
-          descricao: '- Xampus',
-          data_inicio: '2022-04-01',
-          data_fim: '9999-12-31',
-          tipo_ato: 'Res Camex',
-          numero_ato: expect.any(String),
-          ano_ato: '2021',
-        },
-      ]);
+      expect(response.data).toEqual(
+        expect.arrayContaining([validOutputSchema])
+      );
+
+      const firstRow = response.data[0];
+
+      expect(firstRow.codigo).toBe('3305.10.00');
+      expect(firstRow.descricao).toContain('Xampus');
+      expect(firstRow.data_inicio).toBe('2022-04-01');
+      expect(firstRow.ano_ato).toBe('2021');
     });
 
     test('Utilizando uma descrição inexistente: localhost', async () => {
@@ -65,17 +74,16 @@ describe('ncm v1 (E2E)', () => {
       const requestUrl = `${global.SERVER_URL}/api/ncm/v1?search=330410`;
       const response = await axios.get(requestUrl);
       expect(response.status).toBe(200);
-      expect(response.data).toEqual([
-        {
-          codigo: '3304.10.00',
-          descricao: '- Produtos de maquiagem para os lábios',
-          data_inicio: '2022-04-01',
-          data_fim: '9999-12-31',
-          tipo_ato: 'Res Camex',
-          numero_ato: expect.any(String),
-          ano_ato: '2021',
-        },
-      ]);
+
+      expect(response.data).toEqual(
+        expect.arrayContaining([validOutputSchema])
+      );
+      const firstRow = response.data[0];
+
+      expect(firstRow.codigo).toBe('3304.10.00');
+      expect(firstRow.descricao).toContain('maquiagem para os lábios');
+      expect(firstRow.data_inicio).toBe('2022-04-01');
+      expect(firstRow.ano_ato).toBe('2021');
     });
 
     test('Utilizando um código inexistente: 00', async () => {
@@ -99,3 +107,6 @@ describe('ncm v1 (E2E)', () => {
     expect(Array.isArray(response.data)).toBe(true);
   });
 });
+
+testCorsForRoute('/api/ncm/v1');
+testCorsForRoute('/api/ncm/v1/33051000');

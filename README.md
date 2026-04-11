@@ -56,11 +56,15 @@ Abaixo segue uma lista de integrações com a BrasilApi fornecidas pela comunida
 
 **JS**
   * **[brasil-api-promisse](https://github.com/guhcostan/brasil-api-promisse)** criado por [@guhcostan](https://github.com/guhcostan)
+  * **[brasilapi-js](https://github.com/WillianAgostini/brasilapi-js)** criado por [@WillianAgostini](https://github.com/WillianAgostini)
 
 
 **Flutter**
   * **[brazilian_banks](https://github.com/credifit-br/brazilian_banks)** criado por [@credifit-br](https://github.com/credifit-br)
   * **[br_api_dart](https://github.com/PedroHAVeloso/br_api_dart)** criado por [@pedrohaveloso](https://github.com/PedroHAVeloso)
+
+**Swift**
+  * **[BrasilAPI-Swift](https://github.com/LucasJorgeHubert/BrasilAPI-Swift.git)** criado por [@LucasJorgeHubert](https://github.com/LucasJorgeHubert)
 
 **.Net**
   * **[BrasilAPI-DotNet](https://github.com/farukaf/BrasilAPI-DotNet)** criado por [@farukaf](https://github.com/farukaf)
@@ -71,9 +75,13 @@ Abaixo segue uma lista de integrações com a BrasilApi fornecidas pela comunida
 
 **Python**
   * **[brasilapy](https://github.com/lipe14-ops/brasilapy)** Criado por [@lipe14-ops](https://github.com/lipe14-ops)
+  * **[brasilapi-python](https://github.com/paulovitorweb/brasilapi-python)** Criado por [@paulovitorweb](https://github.com/paulovitorweb)
+
+**Ruby**
+  * **[brasilapi-rb](https://github.com/dayvidemerson/brasilapi-rb)** Criado por [@dayvidemerson](https://github.com/dayvidemerson)
 
 **Rust**
-  * **[brasilapi-rs](https://github.com/pedrinfx/brasilapi-rs)** Criado por [@pedrinfx](https://github.com/pedrinfx)
+  * **[brasilapi-rs](https://github.com/pedrinfx/brasilapi-rs)** Criado por [@pedrinfx](https://github.com/peeeuzin)
 
 **Java**
   * **[BrasilAPI-Java](https://github.com/SavioAndres/BrasilAPI-Java)** Criado por [@SavioAndres](https://github.com/SavioAndres)
@@ -82,7 +90,7 @@ Abaixo segue uma lista de integrações com a BrasilApi fornecidas pela comunida
   * **[BrasilAPI-Delphi](https://github.com/gabrielbaltazar/brasilapi4D)** Criado por [@GabrielBaltazar](https://github.com/gabrielbaltazar)
 
 **V**
-  * **[BrasilAPI-V](https://github.com/ldedev/brasilapi-v)** Criado por [@ldedev(André)](https://github.com/ldedev)
+  * **[BrasilAPI-V](https://github.com/ldedev/brasilapi-v)** Criado por [@ldedev(André)](https://github.com/Ddiidev)
 
 
 

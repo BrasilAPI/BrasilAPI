@@ -2,9 +2,10 @@ import BaseError from '@/errors/BaseError';
 import axios from 'axios';
 import { formatDate, getNow, parseToDate } from '../date';
 
-const API_URL = `https://www.bcb.gov.br/content/estabilidadefinanceira/spi/participantes-spi-`;
+const API_URL =
+  'https://www.bcb.gov.br/content/estabilidadefinanceira/spi/participantes-spi-';
 
-const buildDate = (now = getNow()) => formatDate(now, 'YYYYMMDD');
+const buildDate = (now = getNow()) => formatDate(now.toDate(), 'YYYYMMDD');
 
 const isEqual = (a, b) =>
   a.length === b.length && a.every((v, i) => v === b[i]);
@@ -35,6 +36,7 @@ export const formatCsvFile = (file) => {
 
   const expectedHeaders = [
     'participantes',
+    'cnpj',
     'nomeParticipante',
     'nomeReduzidoParticipante',
     'modalidadeParticipacaoPix',
@@ -56,11 +58,12 @@ export const formatCsvFile = (file) => {
       .map((data) => {
         return {
           ispb: data[0],
-          nome: data[1],
-          nome_reduzido: data[2],
-          modalidade_participacao: data[3],
-          tipo_participacao: data[4],
-          inicio_operacao: parseToDate(data[5]),
+          cnpj: data[1],
+          nome: data[2],
+          nome_reduzido: data[3],
+          modalidade_participacao: data[4],
+          tipo_participacao: data[5],
+          inicio_operacao: parseToDate(data[6]),
         };
       })
       .filter(Boolean);

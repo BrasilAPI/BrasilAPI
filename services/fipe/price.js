@@ -51,16 +51,13 @@ async function getModelYear({ fipeCode, referenceTable }) {
 }
 
 function resolveVehicleType(vehicleType) {
-  switch (vehicleType) {
-    case '1':
-      return 'carro';
-    case '2':
-      return 'moto';
-    case '3':
-      return 'caminhao';
-    default:
-      return '';
-  }
+  const vehicleTypeMap = {
+    1: 'carro',
+    2: 'moto',
+    3: 'caminhao',
+  };
+
+  return vehicleTypeMap[vehicleType] || '';
 }
 
 async function getPrice({ referenceTable, vehicleType, model, fipeCode }) {
