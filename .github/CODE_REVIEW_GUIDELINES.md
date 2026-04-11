@@ -194,7 +194,7 @@ tree services/
 ```
 
 **Referência:**
-Consulte o [Guia de Criação de Endpoints](../docs/ENDPOINT_GUIDE.md) para os padrões esperados de handler, service, teste e documentação.
+- [Guia de Criação de Endpoints](../docs/ENDPOINT_GUIDE.md) — padrões esperados de handler, service, teste e documentação.
 
 **Perguntas a Fazer:**
 - Código segue os padrões existentes no projeto?
@@ -224,8 +224,8 @@ As seguintes situações devem resultar em **rejeição imediata** do PR:
    - SQL injection, XSS
 
 5. **Aumento significativo de custos**
-   - Processamento pesado sem justificativa
-   - Dependências grandes desnecessárias
+   - Processamento pesado sem justificativa (loops aninhados, recursão sem limite, etc.)
+   - Dependências novas grandes ou sem justificativa clara
 
 6. **Dependência de infraestrutura paga ou privada**
    - Banco de dados próprio (qualquer engine)
