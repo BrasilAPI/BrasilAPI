@@ -40,16 +40,16 @@
                         }
                     },
                     "400": {
-                        "description": "Ano não informado.",
+                        "description": "Ano não informado na URL.",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/ErrorMessage"
                                 },
                                 "example": {
-                                    "name": "BadRequestError",
-                                    "message": "Por favor informe um ano.",
-                                    "type": "validation_error"
+                                    "name": "YEAR_REQUIRED",
+                                    "message": "Informe o ano: /api/feriados/v1/{ano}",
+                                    "type": "bad_request"
                                 }
                             }
                         }

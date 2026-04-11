@@ -11,7 +11,7 @@ import {
 
 describe('/feriados/v1 (E2E)', () => {
 
-  test('Sem ano: "erro"', async () => {
+  test('Sem ano: retorna 400', async () => {
     expect.assertions(2);
     const requestUrl = `${global.SERVER_URL}/api/feriados/v1`;
 
@@ -21,9 +21,9 @@ describe('/feriados/v1 (E2E)', () => {
       const { response } = error;
 
       expect(response.status).toBe(400);
-      expect(response.data).toEqual({
-        message: 'Por favor informe um ano.',
-        type: 'validation_error',
+      expect(response.data).toMatchObject({
+        name: 'YEAR_REQUIRED',
+        type: 'bad_request',
       });
     }
   });
