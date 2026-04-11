@@ -254,7 +254,54 @@
                 "deprecated": false
             }
         },
-        "/cptec/v1/ondas/{cityCode}": {
+        "/cptec/v1/clima/previsao/semana/{lat}/{long}": {
+            "get": {
+                "tags": ["CPTEC"],
+                "summary": "Previsão meteorológica com base na latitude e longitude",
+                "description": "Retorna a previsão meteorológica para a cidade com base na latitude e longitude informada para um período de até 7 dias.\nDevido a inconsistências encontradas nos retornos da CPTEC nossa API só consegue retornar com precisão o período máximo de 6 dias.",
+                "operationId": "upto7dayspredictionlocation(/cptec/v1/clima/previsao/semana/:lat/:long)",
+                "parameters": [
+                    {
+                        "name": "lat",
+                        "in": "path",
+                        "description": "Latitude de uma cidade",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "float",
+                            "format": "float32",
+                            "example": -21.166666                            
+                        }
+                    },
+                    {
+                        "name": "long",
+                        "in": "path",
+                        "description": "Longitude de uma cidade",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "float",
+                            "format": "float32",
+                            "example": -50.184665928                            
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json; charset=utf-8": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ClimaPrediction"
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+         "/cptec/v1/ondas/{cityCode}": {
             "get": {
                 "tags": ["CPTEC"],
                 "summary": "Previsão oceânica",
