@@ -124,6 +124,22 @@ Para triagem e revisão de PRs, consulte:
 - `.github/CODE_REVIEW_GUIDELINES.md` — critérios detalhados de revisão
 - `.github/PULL_REQUEST_TEMPLATE.md` — checklist do autor
 
+### Fluxo obrigatório para merge de PR externo
+
+**NUNCA** use `gh pr merge` diretamente. Use sempre o script:
+
+```bash
+./scripts/merge-pr.sh <pr-number>
+```
+
+O script garante, nesta ordem:
+1. Validação dos endpoints críticos em produção (`brasilapi.com.br`)
+2. Validação no preview Vercel do PR (se disponível)
+3. Agradecimento automático ao contributor
+4. Merge com squash
+
+Um hook no Claude Code intercepta chamadas diretas a `gh pr merge` como rede de segurança.
+
 ### Bloqueiam o merge (não aprovar sem correção)
 
 - Quebra de compatibilidade retroativa sem nova versão
