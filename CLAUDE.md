@@ -40,7 +40,7 @@ Para criar um novo endpoint do zero, use o [Guia de Criação de Endpoints](docs
 
 ```js
 import app from '@/app';
-import ServiceError from '@/errors/BadRequestError';
+import BadRequestError from '@/errors/BadRequestError';
 import { myServiceFunction } from '@/services/domain';
 
 async function handler(request, response) {
@@ -110,6 +110,7 @@ Se uma mudança quebra compatibilidade → criar nova versão (`v2`, `v3`).
 O projeto é open-source e sem financiamento. Isso é uma restrição arquitetural, não apenas de performance:
 - Nenhum endpoint pode depender de banco de dados próprio, storage ou serviço pago
 - Todos os dados devem vir de fontes públicas e gratuitas
+- Serviços que exigem chave de API ou cadastro prévio devem ser discutidos em issue antes de implementar
 - Dependências novas devem ser justificadas e leves
 - Cache deve ser usado quando possível (middleware `cache` já está disponível via `app()`)
 
@@ -127,11 +128,11 @@ Para triagem e revisão de PRs, consulte:
 
 - Quebra de compatibilidade retroativa sem nova versão
 - Endpoint sem documentação OpenAPI
-- Testes ausentes ou falhando (`npm test`)
+- Testes ausentes para novos endpoints ou mudanças de comportamento, ou testes falhando (`npm test`)
 - Secrets, credenciais ou tokens no código
-- Dependência de banco de dados, storage ou serviço pago
-- ESLint falhando (`npm run fix` com erros não corrigidos)
-- Commit sem seguir Conventional Commits
+- Dependência de banco de dados próprio, storage, ou serviço pago/que exige chave de API privada
+- ESLint com erros (`npm run fix` deve passar sem erros restantes)
+- Commit sem seguir Conventional Commits (`feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`)
 
 ### Sugestões (não bloqueiam, mas vale apontar)
 
