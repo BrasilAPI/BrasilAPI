@@ -157,17 +157,45 @@
                     }
                   }
                 },
-                "404": {
-                  "description": "Sigla inexistente ou inválida",
+                "400": {
+                  "description": "UF ausente ou com formato inválido (deve ser exatamente duas letras A–Z)",
                   "content": {
                     "application/json": {
                       "example": {
-                        "name": "NotFoundError",
-                        "message": "UF não encontrada",
+                        "name": "UfBadRequestException",
+                        "message": "UF inválida. Informe a sigla com duas letras (A-Z).",
+                        "type": "bad_request"
+                      }
+                    }
+                  }
+                },
+                "404": {
+                  "description": "Sigla com formato válido, mas não corresponde a um estado brasileiro",
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "name": "EstadoNotFoundException",
+                        "message": "UF não encontrada.",
                         "type": "not_found"
                       }
                     }
                   }
+                },
+                "422": {
+                  "description": "Parâmetro providers vazio ou com valores não suportados",
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "name": "ProvidersInvalidException",
+                        "message": "Um ou mais providers são inválidos.",
+                        "type": "unprocessable_entity",
+                        "errors": ["nome-do-provider-invalido"]
+                      }
+                    }
+                  }
+                },
+                "500": {
+                  "description": "Erro interno ao consultar os provedores"
                 }
               }
             }
