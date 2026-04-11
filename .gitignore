@@ -116,6 +116,3 @@ dist
 
 ### asdf ###
 /.tool-versions
-
-# Plan directory
-Plan/
