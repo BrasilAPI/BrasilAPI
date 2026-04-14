@@ -9,7 +9,7 @@ const action = async (request, response) => {
   try {
     const cnpj = request.query.cnpj.replace(/\D/gim, '');
     const fundDetails = await getFundDetails(cnpj);
-    response.status(200).json(fundDetails);
+    return response.status(200).json(fundDetails);
   } catch (err) {
     if (err instanceof BaseError) {
       throw err;
