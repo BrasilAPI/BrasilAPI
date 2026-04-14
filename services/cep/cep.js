@@ -71,6 +71,7 @@ export async function fetchCep(cep) {
   const fetchCepPromise = () =>
     cepPromise(cleanCep, {
       providers,
+      timeout: 5000,
     });
 
   return fetchOpenCep(cleanCep).catch(() =>
