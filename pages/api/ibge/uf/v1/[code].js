@@ -1,5 +1,8 @@
 import app from '@/app';
-import { getUfByCode, getUfEstimatePopulationByCode } from '@/services/ibge/gov';
+import {
+  getUfByCode,
+  getUfEstimatePopulationByCode,
+} from '@/services/ibge/gov';
 import NotFoundError from '@/errors/NotFoundError';
 
 const action = async (request, response) => {
