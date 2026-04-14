@@ -124,6 +124,13 @@ Para triagem e revisão de PRs, consulte:
 - `.github/CODE_REVIEW_GUIDELINES.md` — critérios detalhados de revisão
 - `.github/PULL_REQUEST_TEMPLATE.md` — checklist do autor
 
+### Antes de enviar reviews e comentários
+
+**SEMPRE** verificar se já existe review/comentário similar no PR antes de postar:
+- Ler todos os comentários e reviews existentes (`gh pr view <n> --comments`)
+- Não duplicar agradecimentos ao contributor
+- Não repetir feedback que já foi dado — se o ponto já foi levantado, reforçar com contexto novo ou não comentar
+
 ### Fluxo obrigatório para merge de PR externo
 
 **NUNCA** use `gh pr merge` diretamente. Use sempre o script:
