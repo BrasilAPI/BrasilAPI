@@ -8,7 +8,7 @@ import { getExchangesData } from '../../../../../services/cvm/corretoras';
 const action = async (request, response) => {
   try {
     const allExchangesData = await getExchangesData();
-    response.status(200).json(allExchangesData);
+    return response.status(200).json(allExchangesData);
   } catch (err) {
     if (err instanceof BaseError) {
       throw err;

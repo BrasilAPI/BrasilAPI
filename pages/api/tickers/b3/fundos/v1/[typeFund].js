@@ -24,8 +24,7 @@ async function action(request, response) {
 
   const tickers = await listInvestmentFundTickers({ typeFund });
 
-  response.status(200);
-  response.json(tickers);
+  return response.status(200).json(tickers);
 }
 
 export default app().get(action);
