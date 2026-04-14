@@ -323,13 +323,22 @@ Para cada PR, verifique rapidamente:
 - Teste localmente se necessário
 - Valide documentação
 
-### 3. Feedback (5-10 min)
+### 3. Verificação de Duplicidade (obrigatório)
+Antes de enviar qualquer review, comentário ou agradecimento:
+- Leia **todos** os comentários existentes no PR (incluindo reviews anteriores)
+- Verifique se o ponto que você vai levantar já não foi mencionado
+- Verifique se já existe um agradecimento ao contributor para não duplicar
+- Se o feedback já foi dado, apenas reforce com 👍 ou adicione contexto novo
+
+> **Por quê:** Comentários duplicados poluem o PR, confundem o contributor e passam uma impressão de revisão desorganizada.
+
+### 4. Feedback (5-10 min)
 - Liste problemas críticos (blocking)
 - Liste sugestões (não-blocking)
 - Destaque pontos positivos
 - Seja claro sobre o que precisa ser mudado
 
-### 4. Aprovação
+### 5. Aprovação
 - **Aprovar**: Tudo ok ou apenas sugestões menores
 - **Request Changes**: Problemas que devem ser corrigidos
 - **Comment**: Dúvidas ou discussões necessárias

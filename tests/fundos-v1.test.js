@@ -1,4 +1,5 @@
-const axios = require('axios');
+import axios from 'axios';
+import { describe, expect, test } from 'vitest';
 
 expect.extend({
   nullOrString(received) {

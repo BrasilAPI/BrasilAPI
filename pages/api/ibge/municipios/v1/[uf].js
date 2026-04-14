@@ -13,11 +13,7 @@ import InternalError from '@/errors/InternalError';
 import BaseError from '@/errors/BaseError';
 import UnprocessableEntityError from '@/errors/UnprocessableEntityError';
 
-const ALLOWED_PROVIDERS = new Set([
-  'dados-abertos-br',
-  'gov',
-  'wikipedia',
-]);
+const ALLOWED_PROVIDERS = new Set(['dados-abertos-br', 'gov', 'wikipedia']);
 
 const UF_SIGLA_PATTERN = /^[A-Za-z]{2}$/;
 
@@ -38,9 +34,7 @@ const parseProviders = (providersQuery) => {
     });
   }
 
-  const unknown = [
-    ...new Set(parts.filter((p) => !ALLOWED_PROVIDERS.has(p))),
-  ];
+  const unknown = [...new Set(parts.filter((p) => !ALLOWED_PROVIDERS.has(p)))];
   if (unknown.length > 0) {
     throw new UnprocessableEntityError({
       message: 'Um ou mais providers são inválidos.',

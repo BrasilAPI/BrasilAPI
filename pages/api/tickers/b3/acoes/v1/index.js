@@ -3,8 +3,7 @@ import { listStockTickers } from '@/services/tickers/listTickers';
 
 async function action(request, response) {
   const tickers = await listStockTickers();
-  response.status(200);
-  response.json(tickers);
+  return response.status(200).json(tickers);
 }
 
 export default app().get(action);

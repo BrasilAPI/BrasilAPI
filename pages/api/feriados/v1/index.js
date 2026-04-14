@@ -1,10 +1,10 @@
 import app from '@/app';
+import BadRequestError from '@/errors/BadRequestError';
 
-async function FeriadosIndex(request, response) {
-  response.status(400);
-  response.json({
+async function FeriadosIndex() {
+  throw new BadRequestError({
     message: 'Por favor informe um ano.',
-    type: 'validation_error'
+    type: 'validation_error',
   });
 }
 

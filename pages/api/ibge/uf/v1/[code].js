@@ -1,5 +1,8 @@
 import app from '@/app';
-import { getUfByCode, getUfEstimatePopulationByCode } from '@/services/ibge/gov';
+import {
+  getUfByCode,
+  getUfEstimatePopulationByCode,
+} from '@/services/ibge/gov';
 import NotFoundError from '@/errors/NotFoundError';
 
 const action = async (request, response) => {
@@ -10,7 +13,7 @@ const action = async (request, response) => {
     getUfEstimatePopulationByCode(code),
   ]);
 
-  const { ufData, status } = ufRes;
+  const { data: ufData, status } = ufRes;
 
   if (!ufData || (Array.isArray(ufData) && ufData.length === 0)) {
     throw new NotFoundError({ message: 'UF não encontrada.' });
