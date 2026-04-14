@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/cora/git/BrasilAPI/.claude/hooks/pre-merge-check.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

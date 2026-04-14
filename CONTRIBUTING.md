@@ -1,6 +1,10 @@
 # :link: Como contribuir
 
-Qualquer ajuda que agregue valor ao projeto, seja na edição do código-fonte ou nas documentações, e consequentemente a vida das pessoas é muito bem-vindo, por isso decidimos torna-lo opensource.
+## Princípios do projeto
+
+- **Open-source e sem financiamento:** O BrasilAPI não tem custos de infraestrutura e deve permanecer assim. Nenhum endpoint pode depender de banco de dados próprio, storage ou qualquer serviço pago. Todos os dados devem vir de fontes públicas e gratuitas.
+- **API pública em produção:** O projeto é usado por milhares de desenvolvedores e empresas. Mudanças devem ser feitas com cuidado para não quebrar integrações existentes.
+- **Comunidade:** Qualquer contribuição que agregue valor é bem-vinda, desde que siga estes princípios.
 
 ## Iniciando
 
@@ -11,6 +15,8 @@ Certifique-se de estar na pasta raiz do projeto para executar:
 ```npm run dev``` - nextjs local
 
 ```npm run fix``` - ESLint
+
+Para criar um novo endpoint do zero, siga o [Guia de Criação de Endpoints](docs/ENDPOINT_GUIDE.md).
 
 ## Mensagens de commit
 
@@ -50,6 +56,21 @@ Para mensagens de erro utilize o schema pré-existente `ErrorMessage`
              }
          }
      }
+
+## Compatibilidade de API
+
+A BrasilAPI é usada em produção por milhares de aplicações. **Nunca** faça as seguintes mudanças em endpoints existentes:
+
+- Remover ou renomear campos da resposta
+- Mudar o tipo de um campo (`string` → `number`, etc.)
+- Alterar a URL de um endpoint existente
+- Mudar códigos de status HTTP de respostas de sucesso
+
+Se sua mudança exige qualquer um desses itens → crie uma nova versão do endpoint (`/v2`, `/v3`), mantendo a versão anterior funcionando.
+
+Adicionar novos campos opcionais ou criar novos endpoints é sempre compatível e não requer nova versão.
+
+Para um guia completo com exemplos, consulte [docs/ENDPOINT_GUIDE.md](docs/ENDPOINT_GUIDE.md).
 
 ## Pull requests (PRs)
 

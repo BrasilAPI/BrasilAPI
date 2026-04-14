@@ -1,7 +1,13 @@
 /// <reference types="vitest" />
+import { resolve } from 'path';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, './'),
+    },
+  },
   test: {
     setupFiles: ['./tests/helpers/server/setup.js'],
     globals: false,
@@ -16,7 +22,6 @@ export default defineConfig({
       reportsDirectory: './reports/coverage',
       include: [
         'services/**/*.js',
-        'graphql/**/**/*.js',
         'pages/api/**/**/*.js',
       ],
       exclude: ['tests/**/**.test.js'],

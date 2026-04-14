@@ -48,24 +48,30 @@ class CepPromiseError extends Error {
 }
 
 export async function fetchCep(cep) {
+  const cleanCep = onlyDigits(cep);
+
   if (!isValidCep(cep)) {
+    const errorMessage =
+      cleanCep.length < CEP_LENGTH
+        ? `CEP informado possui menos do que ${CEP_LENGTH} caracteres.`
+        : `CEP informado possui mais do que ${CEP_LENGTH} caracteres.`;
+
     throw new CepPromiseError({
       message: `CEP deve conter exatamente ${CEP_LENGTH} caracteres.`,
       type: 'validation_error',
       errors: [
         {
-          message: `CEP informado possui mais do que ${CEP_LENGTH} caracteres.`,
+          message: errorMessage,
           service: 'cep_validation',
         },
       ],
     });
   }
 
-  const cleanCep = onlyDigits(cep);
-
   const fetchCepPromise = () =>
     cepPromise(cleanCep, {
       providers,
+      timeout: 5000,
     });
 
   return fetchOpenCep(cleanCep).catch(() =>

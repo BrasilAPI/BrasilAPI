@@ -6,12 +6,20 @@ import NotFoundError from '@/errors/NotFoundError';
 import { getSwellData } from '@/services/cptec';
 import { MAX_SWELL_DAYS, MIN_DAYS } from '@/services/cptec/constants';
 
-const action = async (request, response) => {
+async function getSwellPredictions(request, response) {
   const { days, cityCode } = request.query;
 
   if (!Number.isFinite(Number(days))) {
     throw new BadRequestError({
       message: 'Quantidade de dias inválida, informe um valor numérico',
+      type: 'request_error',
+      name: 'INVALID_NUMBER_OF_DAYS',
+    });
+  }
+
+  if (!Number.isInteger(Number(days))) {
+    throw new BadRequestError({
+      message: 'Quantidade de dias inválida, informe um valor inteiro',
       type: 'request_error',
       name: 'INVALID_NUMBER_OF_DAYS',
     });
@@ -44,8 +52,7 @@ const action = async (request, response) => {
       });
     }
 
-    response.status(200);
-    response.json(swellPredictions);
+    return response.status(200).json(swellPredictions);
   } catch (err) {
     if (err instanceof BaseError) {
       throw err;
@@ -57,6 +64,6 @@ const action = async (request, response) => {
       name: 'SWELL_PREDICTIONS_ERROR',
     });
   }
-};
+}
 
-export default app().get(action);
+export default app().get(getSwellPredictions);

@@ -3,12 +3,11 @@ import BaseError from '@/errors/BaseError';
 import InternalError from '@/errors/InternalError';
 import { getAllCitiesData } from '@/services/cptec';
 
-const action = async (request, response) => {
+async function getAllCities(request, response) {
   try {
     const allCitiesData = await getAllCitiesData();
 
-    response.status(200);
-    response.json(allCitiesData);
+    return response.status(200).json(allCitiesData);
   } catch (err) {
     if (err instanceof BaseError) {
       throw err;
@@ -20,6 +19,6 @@ const action = async (request, response) => {
       name: 'CITY_INTERNAL',
     });
   }
-};
+}
 
-export default app().get(action);
+export default app().get(getAllCities);

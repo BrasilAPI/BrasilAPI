@@ -2,7 +2,7 @@
   "tags": [
     {
       "name": "DDD",
-      "description": "Informações relacionadas a DDDs"
+      "description": "Consulta de códigos DDD (Discagem Direta à Distância) brasileiros. Permite buscar informações sobre estados e cidades associadas a cada código de área telefônica."
     }
   ],
   "paths": {
@@ -10,16 +10,19 @@
       "get": {
         "tags": ["DDD"],
         "summary": "Retorna estado e lista de cidades por DDD",
-        "description": "",
+        "description": "Consulta informações sobre um código DDD específico, retornando o estado correspondente e a lista completa de cidades que utilizam esse código de área.",
         "parameters": [
           {
             "name": "ddd",
-            "description": "DDD significa Discagem Direta à Distância. É um sistema de ligação telefônica automática entre diferentes áreas urbanas nacionais. O DDD é um código constituído por 2 dígitos que identificam as principais cidades do país e devem ser adicionados ao nº de telefone, juntamente com o código da operadora.\n",
+            "description": "DDD significa Discagem Direta à Distância. É um código constituído por 2 dígitos que identificam as principais cidades do país. Deve ser informado apenas os 2 dígitos do código de área.",
             "in": "path",
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int64"
+              "format": "int64",
+              "minimum": 10,
+              "maximum": 99,
+              "example": 11
             }
           }
         ],
@@ -34,7 +37,7 @@
               }
             }
           },
-          "400 ": {
+          "400": {
             "description": "Tamanho do DDD inválido",
             "content": {
               "application/json": {
@@ -42,7 +45,7 @@
                   "$ref": "#/components/schemas/ErrorMessage"
                 },
                 "example": {
-                  "name": "ddd_error",
+                  "name": "BadRequestError",
                   "message": "DDD deve conter apenas 2 dígitos",
                   "type": "DDD_INVALID"
                 }
@@ -57,7 +60,7 @@
                   "$ref": "#/components/schemas/ErrorMessage"
                 },
                 "example": {
-                  "name": "ddd_error",
+                  "name": "NotFoundError",
                   "message": "DDD não encontrado",
                   "type": "DDD_NOT_FOUND"
                 }
@@ -72,7 +75,7 @@
                   "$ref": "#/components/schemas/ErrorMessage"
                 },
                 "example": {
-                  "name": "ddd_error",
+                  "name": "InternalError",
                   "message": "Todos os serviços de DDD retornaram erro.",
                   "type": "service_error"
                 }
@@ -91,11 +94,15 @@
         "type": "object",
         "properties": {
           "state": {
-            "type": "string"
+            "type": "string",
+            "description": "Sigla do estado (UF) que utiliza o código DDD"
           },
           "cities": {
             "type": "array",
-            "items": "string"
+            "items": {
+              "type": "string"
+            },
+            "description": "Lista das cidades que utilizam este código DDD"
           },
           "nome": {
             "type": "string"

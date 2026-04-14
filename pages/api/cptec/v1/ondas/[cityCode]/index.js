@@ -26,8 +26,7 @@ const action = async (request, response) => {
       });
     }
 
-    response.status(200);
-    response.json(weatherPredictions);
+    return response.status(200).json(weatherPredictions);
   } catch (err) {
     if (err instanceof BaseError) {
       throw err;

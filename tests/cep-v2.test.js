@@ -22,6 +22,7 @@ describe('/cep/v2 (E2E)', () => {
       neighborhood: 'Perdizes',
       street: 'Rua Caiubi',
       service: expect.any(String),
+      timezoneName: 'America/Sao_Paulo',
       location: {
         type: 'Point',
         coordinates: {
@@ -43,6 +44,7 @@ describe('/cep/v2 (E2E)', () => {
       neighborhood: 'Perdizes',
       street: 'Rua Caiubi',
       service: 'open-cep',
+      timezoneName: 'America/Sao_Paulo',
       location: {
         type: 'Point',
         coordinates: {
@@ -95,6 +97,30 @@ describe('/cep/v2 (E2E)', () => {
     }
   });
 
+  test('Utilizando um CEP inválido com menos de 8 caracteres: 0123', async () => {
+    expect.assertions(2);
+    const requestUrl = `${global.SERVER_URL}/api/cep/v2/0123`;
+
+    try {
+      await axios.get(requestUrl);
+    } catch (error) {
+      const { response } = error;
+
+      expect(response.status).toBe(400);
+      expect(response.data).toEqual({
+        name: 'CepPromiseError',
+        message: 'CEP deve conter exatamente 8 caracteres.',
+        type: 'validation_error',
+        errors: [
+          {
+            message: 'CEP informado possui menos do que 8 caracteres.',
+            service: 'cep_validation',
+          },
+        ],
+      });
+    }
+  });
+
   test('Deve retornar as coordenadas -22.883892 e -43.3061123', async () => {
     const requestUrl = `${global.SERVER_URL}/api/cep/v2/20751120`;
     const response = await axios.get(requestUrl);
@@ -106,6 +132,7 @@ describe('/cep/v2 (E2E)', () => {
       neighborhood: 'Piedade',
       street: 'Rua Marcolino',
       service: expect.any(String),
+      timezoneName: 'America/Sao_Paulo',
       location: {
         type: 'Point',
         coordinates: {
@@ -127,6 +154,7 @@ describe('/cep/v2 (E2E)', () => {
       neighborhood: null,
       street: null,
       service: expect.any(String),
+      timezoneName: 'America/Sao_Paulo',
       location: {
         type: 'Point',
         coordinates: {

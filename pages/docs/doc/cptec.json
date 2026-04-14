@@ -2,7 +2,7 @@
     "tags": [
         {
             "name": "CPTEC",
-            "description": "Abstração e normalização de dados provenientes da CPTEC. Fonte oficial: CPTEC/INPE"
+            "description": "Dados meteorológicos e oceanográficos do Centro de Previsão de Tempo e Estudos Climáticos (CPTEC/INPE). Inclui previsões do tempo, condições atuais, informações sobre cidades e previsões oceânicas."
         }
     ],
     "paths": {
@@ -73,7 +73,8 @@
                                     "$ref": "#/components/schemas/ErrorMessage"
                                 },
                                 "example": {
-                                    "message": "Nenhuma cidade não localizada",
+                                    "name": "NotFoundError",
+                                    "message": "Nenhuma cidade localizada",
                                     "type": "NO_CITY_NOT_FOUND"
                                 }
                             }
@@ -146,8 +147,9 @@
                                     "$ref": "#/components/schemas/ErrorMessage"
                                 },
                                 "example": {
+                                    "name": "NotFoundError",
                                     "message": "Condições meteorológicas ou aeroporto não localizados",
-                                    "type": "AIRPORT_condicaoS_NOT_FOUND"
+                                    "type": "AIRPORT_CONDITIONS_NOT_FOUND"
                                 }
                             }
                         }
@@ -252,7 +254,54 @@
                 "deprecated": false
             }
         },
-        "/cptec/v1/ondas/{cityCode}": {
+        "/cptec/v1/clima/previsao/semana/{lat}/{long}": {
+            "get": {
+                "tags": ["CPTEC"],
+                "summary": "Previsão meteorológica com base na latitude e longitude",
+                "description": "Retorna a previsão meteorológica para a cidade com base na latitude e longitude informada para um período de até 7 dias.\nDevido a inconsistências encontradas nos retornos da CPTEC nossa API só consegue retornar com precisão o período máximo de 6 dias.",
+                "operationId": "upto7dayspredictionlocation(/cptec/v1/clima/previsao/semana/:lat/:long)",
+                "parameters": [
+                    {
+                        "name": "lat",
+                        "in": "path",
+                        "description": "Latitude de uma cidade",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "float",
+                            "format": "float32",
+                            "example": -21.166666                            
+                        }
+                    },
+                    {
+                        "name": "long",
+                        "in": "path",
+                        "description": "Longitude de uma cidade",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "float",
+                            "format": "float32",
+                            "example": -50.184665928                            
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json; charset=utf-8": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ClimaPrediction"
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+         "/cptec/v1/ondas/{cityCode}": {
             "get": {
                 "tags": ["CPTEC"],
                 "summary": "Previsão oceânica",
@@ -338,6 +387,7 @@
                                     "$ref": "#/components/schemas/ErrorMessage"
                                 },
                                 "example": {
+                                    "name": "BadRequestError",
                                     "message": "Quantidade de dias inválida (mínimo 1 dia e máximo 6 dias)",
                                     "type": "INVALID_NUMBER_OF_DAYS"
                                 }
@@ -352,6 +402,7 @@
                                     "$ref": "#/components/schemas/ErrorMessage"
                                 },
                                 "example": {
+                                    "name": "NotFoundError",
                                     "message": "Cidade não localizada",
                                     "type": "CITY_NOT_FOUND"
                                 }
@@ -366,23 +417,32 @@
     "components": {
         "schemas": {
             "City": {
-                "title": "City",
-                "required": ["nome", "estado", "id"],
+                "title": "Cidade CPTEC",
+                "description": "Informações de uma cidade disponível nos serviços do CPTEC",
+                "required": ["nome", "estado", "id", "regiao"],
                 "type": "object",
                 "properties": {
                     "nome": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Nome da cidade"
                     },
                     "estado": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Sigla do estado (UF)"
+                    },
+                    "regiao": {
+                        "type": "string",
+                        "description": "Região geográfica do estado (Norte, Nordeste, Centro-Oeste, Sudeste ou Sul)"
                     },
                     "id": {
-                        "type": "integer"
+                        "type": "integer",
+                        "description": "Código único da cidade no sistema CPTEC"
                     }
                 },
                 "example": {
                     "nome": "São Benedito",
                     "estado": "CE",
+                    "regiao": "Nordeste",
                     "id": 4750
                 }
             },
