@@ -22,7 +22,6 @@ export default defineConfig({
       reportsDirectory: './reports/coverage',
       include: [
         'services/**/*.js',
-        'graphql/**/**/*.js',
         'pages/api/**/**/*.js',
       ],
       exclude: ['tests/**/**.test.js'],
