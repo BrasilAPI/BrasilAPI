@@ -1,7 +1,6 @@
 import app from '@/app';
 import BadRequestError from '@/errors/BadRequestError';
 import BaseError from '@/errors/BaseError';
-import InternalError from '@/errors/InternalError';
 import NotFoundError from '@/errors/NotFoundError';
 import { getPredictionWeatherByLocation } from '@/services/cptec';
 

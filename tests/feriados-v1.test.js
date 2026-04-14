@@ -24,6 +24,7 @@ describe('/feriados/v1 (E2E)', () => {
       expect(response.data).toEqual({
         message: 'Por favor informe um ano.',
         type: 'validation_error',
+        name: 'BadRequestError',
       });
     }
   });

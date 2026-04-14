@@ -52,8 +52,7 @@ async function getSwellPredictions(request, response) {
       });
     }
 
-    response.status(200);
-    response.json(swellPredictions);
+    return response.status(200).json(swellPredictions);
   } catch (err) {
     if (err instanceof BaseError) {
       throw err;

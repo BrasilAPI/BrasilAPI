@@ -24,7 +24,7 @@ const action = async (request, response) => {
       });
     }
 
-    response.status(200).json(exchangeData);
+    return response.status(200).json(exchangeData);
   } catch (err) {
     if (err instanceof BaseError) {
       throw err;

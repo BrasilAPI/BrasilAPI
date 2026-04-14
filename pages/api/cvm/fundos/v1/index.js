@@ -9,7 +9,7 @@ const action = async (request, response) => {
   try {
     const { page, size } = request.query;
     const fundData = await getFunds(size, page);
-    response.status(200).json(fundData);
+    return response.status(200).json(fundData);
   } catch (err) {
     if (err instanceof BaseError) {
       throw err;

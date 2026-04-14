@@ -1,8 +1,7 @@
 import app from '@/app';
 
 function Status(request, response) {
-  response.status(200);
-  response.json({
+  return response.status(200).json({
     status: 'ok',
     date: new Date(),
     environment: process.env.NODE_ENV,

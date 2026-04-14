@@ -35,8 +35,7 @@ const action = async (request, response) => {
 
     const parsedData = formatCsvFile(pixParticipantsList);
 
-    response.status(200);
-    response.json(parsedData);
+    return response.status(200).json(parsedData);
   } catch (error) {
     if (error instanceof BaseError) {
       throw error;
