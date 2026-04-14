@@ -52,7 +52,7 @@ const getWeekdayName = (dateString) => {
   return weekdays[date.getDay()];
 };
 
-const getEasterHolidays = (year, holidaysName = easterHolidaysName) =>
+const getEasterHolidays = (year, holidaysName = easterHolidaysName) => {
   const carnavalDates = carnavalDaysByYear[year] || [];
   const carnavalHolidays = carnavalDates
     .map(date => ({
