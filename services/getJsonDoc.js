@@ -9,6 +9,8 @@ export function getJsonDoc() {
 
   const files = fs.readdirSync(docsDirectory);
   const tags = [];
+  let tagGroups = null;
+
   files.forEach((file) => {
     if (file.split('.').pop() === 'json') {
       const fullPath = path.join(docsDirectory, file);
@@ -22,6 +24,13 @@ export function getJsonDoc() {
         Object.values(content.tags).forEach((tag) => {
           tags.push(tag);
         });
+      }
+
+      // x-tagGroups é definido em um único arquivo (basic_info.json).
+      // Extraímos aqui para evitar que o merge de arrays do lodash cause
+      // duplicações caso outros arquivos venham a definir a propriedade.
+      if (content['x-tagGroups']) {
+        tagGroups = content['x-tagGroups'];
       }
     }
   });
@@ -38,6 +47,10 @@ export function getJsonDoc() {
 
     return a.name.localeCompare(b.name, 'pt-br');
   });
+
+  if (tagGroups) {
+    spec['x-tagGroups'] = tagGroups;
+  }
 
   return spec;
 }
