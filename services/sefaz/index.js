@@ -12,9 +12,12 @@ function parseObject(obj) {
   );
 
   const {
-    tipo_ato_ini: tipoAtoIni,
-    numero_ato_ini: numeroAtoIni,
-    ano_ato_ini: anoAtoIni,
+    tipo_ato_ini,
+    numero_ato_ini,
+    ano_ato_ini,
+    tipo_ato,
+    numero_ato,
+    ano_ato,
     data_inicio: dataInicio,
     data_fim: dataFim,
     ...rest
@@ -24,9 +27,9 @@ function parseObject(obj) {
     ...rest,
     data_inicio: formatDate(dataInicio),
     data_fim: formatDate(dataFim),
-    tipo_ato: tipoAtoIni,
-    numero_ato: numeroAtoIni,
-    ano_ato: anoAtoIni,
+    tipo_ato: tipo_ato_ini ?? tipo_ato,
+    numero_ato: numero_ato_ini ?? numero_ato,
+    ano_ato: ano_ato_ini ?? ano_ato,
   };
 
   return newObj;
