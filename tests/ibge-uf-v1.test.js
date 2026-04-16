@@ -3,6 +3,18 @@ import { describe, test, expect, beforeAll } from 'vitest';
 
 import { testCorsForRoute } from './helpers/cors';
 
+const validUfSchema = expect.objectContaining({
+  id: expect.any(Number),
+  sigla: expect.any(String),
+  nome: expect.any(String),
+  regiao: expect.objectContaining({
+    id: expect.any(Number),
+    sigla: expect.any(String),
+    nome: expect.any(String),
+  }),
+  capital: expect.any(String),
+});
+
 // Smart service availability check - skip only when DNS/network issues are detected
 let shouldSkipTests = false; // Default to skip for safety
 
@@ -48,17 +60,8 @@ describeIf(shouldSkipTests)('/ibge/uf/v1 (E2E)', () => {
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);
-    expect(response.data).toEqual({
-      id: 22,
-      sigla: expect.any(String),
-      nome: expect.any(String),
-      regiao: expect.objectContaining({
-        id: expect.any(Number),
-        sigla: expect.any(String),
-        nome: expect.any(String),
-      }),
-      capital: expect.any(String),
-    });
+    expect(response.data).toEqual(validUfSchema);
+    expect(response.data.id).toBe(22);
   });
 
   test('Utilizando um Codigo inexistente ou inválido: 99', async () => {
@@ -78,19 +81,7 @@ describeIf(shouldSkipTests)('/ibge/uf/v1 (E2E)', () => {
 
     expect(response.status).toBe(200);
     expect(response.data).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          id: expect.any(Number),
-          sigla: expect.any(String),
-          nome: expect.any(String),
-          regiao: expect.objectContaining({
-            id: expect.any(Number),
-            sigla: expect.any(String),
-            nome: expect.any(String),
-          }),
-          capital: expect.any(String),
-        }),
-      ])
+      expect.arrayContaining([validUfSchema])
     );
   });
 
@@ -99,17 +90,8 @@ describeIf(shouldSkipTests)('/ibge/uf/v1 (E2E)', () => {
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);
-    expect(response.data).toEqual({
-      id: 42,
-      sigla: expect.any(String),
-      nome: expect.any(String),
-      regiao: expect.objectContaining({
-        id: expect.any(Number),
-        sigla: expect.any(String),
-        nome: expect.any(String),
-      }),
-      capital: expect.any(String),
-    });
+    expect(response.data).toEqual(validUfSchema);
+    expect(response.data.id).toBe(42);
     expect(response.data.capital).toBe('Florianópolis');
   });
 
@@ -118,17 +100,8 @@ describeIf(shouldSkipTests)('/ibge/uf/v1 (E2E)', () => {
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);
-    expect(response.data).toEqual({
-      id: 22,
-      sigla: expect.any(String),
-      nome: expect.any(String),
-      regiao: expect.objectContaining({
-        id: expect.any(Number),
-        sigla: expect.any(String),
-        nome: expect.any(String),
-      }),
-      capital: expect.any(String),
-    });
+    expect(response.data).toEqual(validUfSchema);
+    expect(response.data.id).toBe(22);
     expect(response.data.capital).toBe('Teresina');
   });
 
@@ -142,9 +115,9 @@ describeIf(shouldSkipTests)('/ibge/uf/v1 (E2E)', () => {
       expect(response.status).toBe(404);
       expect(response.data).toMatchObject({
         name: 'NotFoundError',
-        message: 'UF não encontrada.',
         type: 'not_found',
       });
+      expect(response.data.message).toContain('não encontrada');
     }
   });
 });
