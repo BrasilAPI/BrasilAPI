@@ -44,7 +44,7 @@ export default function mapUfToUfCode(uf) {
 
     const ufCode = UF_CODE_MAPPER[uf.toUpperCase()];
     if(!ufCode){
-        throw new NotFoundError(`UF ${uf} não encontrado`);
+        throw new NotFoundError({ message: `UF ${uf} não encontrada.` });
     }
 
     return ufCode;

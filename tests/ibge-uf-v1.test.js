@@ -142,9 +142,9 @@ describeIf(shouldSkipTests)('/ibge/uf/v1 (E2E)', () => {
       expect(response.status).toBe(404);
       expect(response.data).toMatchObject({
         name: 'NotFoundError',
-        message: 'UF não encontrada.',
         type: 'not_found',
       });
+      expect(response.data.message).toContain('não encontrada');
     }
   });
 });
