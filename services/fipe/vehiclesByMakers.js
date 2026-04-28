@@ -12,7 +12,10 @@ async function listByMaker({ vehicleType, referenceTable, makerCode }) {
     parallelumListModelos(vehicleType, makerCode)
   );
 
-  return data.Modelos.map((item) => ({ modelo: item.Label }));
+  return data.Modelos.map((item) => ({
+    modelo: item.Label,
+    valor: String(item.Value),
+  }));
 }
 
 export async function listCarByMaker(makerCode, referenceTableCode) {
