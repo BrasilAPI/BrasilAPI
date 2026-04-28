@@ -3,9 +3,9 @@ import BadRequestError from '@/errors/BadRequestError';
 import InternalError from '@/errors/InternalError';
 
 import {
-  getCarYearsByModel,
-  getMotorcycleYearsByModel,
-  getTruckYearsByModel,
+  listCarYearsByModel,
+  listMotorcycleYearsByModel,
+  listTruckYearsByModel,
 } from '@/services/fipe/yearsByModel';
 import {
   listReferenceTables,
@@ -13,9 +13,9 @@ import {
 } from '@/services/fipe/referenceTable';
 
 const VEHICLE_TYPES = {
-  caminhoes: getTruckYearsByModel,
-  carros: getCarYearsByModel,
-  motos: getMotorcycleYearsByModel,
+  caminhoes: listTruckYearsByModel,
+  carros: listCarYearsByModel,
+  motos: listMotorcycleYearsByModel,
 };
 
 async function FipeYears(request, response) {
