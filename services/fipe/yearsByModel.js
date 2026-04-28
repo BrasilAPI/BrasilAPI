@@ -1,12 +1,11 @@
-import axios from 'axios';
+import { resilientPost, VEHICLE_TYPE } from './constants';
+import { getLatestReferenceTable } from './referenceTable';
 
-import { FIPE_URL, VEHICLE_TYPE } from './constants';
-
-async function listByModel({
+async function listYearsByModel({
   vehicleType,
-  referenceTable,
   makerCode,
   modelCode,
+  referenceTable,
 }) {
   const params = new URLSearchParams();
   params.append('codigoTabelaReferencia', referenceTable);
@@ -14,14 +13,9 @@ async function listByModel({
   params.append('codigoMarca', makerCode);
   params.append('codigoModelo', modelCode);
 
-  const { data } = await axios.post(
-    `${FIPE_URL}/veiculos/ConsultarAnoModelo`,
-    params,
-    {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-    }
+  const { data } = await resilientPost(
+    '/veiculos/ConsultarAnoModelo',
+    params
   );
 
   if (!Array.isArray(data)) {
@@ -30,45 +24,33 @@ async function listByModel({
 
   return data.map((item) => ({
     nome: item.Label,
-    valor: String(item.Value),
+    valor: item.Value,
   }));
 }
 
-export async function listCarYearsByModel(
+export async function listYearsByModelAndType({
+  vehicleType,
   makerCode,
   modelCode,
-  referenceTableCode
-) {
-  return listByModel({
-    vehicleType: VEHICLE_TYPE.CAR,
-    referenceTable: referenceTableCode,
+  referenceTable,
+}) {
+  const referenceTableCode =
+    referenceTable || (await getLatestReferenceTable());
+
+  return listYearsByModel({
+    vehicleType,
     makerCode,
     modelCode,
+    referenceTable: referenceTableCode,
   });
 }
 
-export async function listMotorcycleYearsByModel(
-  makerCode,
-  modelCode,
-  referenceTableCode
-) {
-  return listByModel({
-    vehicleType: VEHICLE_TYPE.MOTORCYCLE,
-    referenceTable: referenceTableCode,
-    makerCode,
-    modelCode,
-  });
-}
+// Compatibility functions for legacy positional arguments
+export const listCarYearsByModel = (makerCode, modelCode, referenceTable) =>
+  listYearsByModelAndType({ makerCode, modelCode, referenceTable, vehicleType: VEHICLE_TYPE.CAR });
 
-export async function listTruckYearsByModel(
-  makerCode,
-  modelCode,
-  referenceTableCode
-) {
-  return listByModel({
-    vehicleType: VEHICLE_TYPE.TRUCK,
-    referenceTable: referenceTableCode,
-    makerCode,
-    modelCode,
-  });
-}
+export const listMotorcycleYearsByModel = (makerCode, modelCode, referenceTable) =>
+  listYearsByModelAndType({ makerCode, modelCode, referenceTable, vehicleType: VEHICLE_TYPE.MOTORCYCLE });
+
+export const listTruckYearsByModel = (makerCode, modelCode, referenceTable) =>
+  listYearsByModelAndType({ makerCode, modelCode, referenceTable, vehicleType: VEHICLE_TYPE.TRUCK });

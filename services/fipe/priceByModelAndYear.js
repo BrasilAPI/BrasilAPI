@@ -1,47 +1,44 @@
-import axios from 'axios';
-
-import { FIPE_URL, VEHICLE_TYPE } from './constants';
+import { resilientPost, VEHICLE_TYPE } from './constants';
+import { getLatestReferenceTable } from './referenceTable';
 
 function resolveVehicleType(vehicleType) {
   const vehicleTypeMap = {
-    1: 'carro',
-    2: 'moto',
-    3: 'caminhao',
+    [VEHICLE_TYPE.CAR]: 'carro',
+    [VEHICLE_TYPE.MOTORCYCLE]: 'moto',
+    [VEHICLE_TYPE.TRUCK]: 'caminhao',
   };
 
   return vehicleTypeMap[vehicleType] || '';
 }
 
-async function getPrice({
-  referenceTable,
+export async function getPriceByModelAndYear({
   vehicleType,
   makerCode,
   modelCode,
   yearCode,
+  referenceTable,
 }) {
+  const referenceTableCode =
+    referenceTable || (await getLatestReferenceTable());
+
   const [yearModel, fuelType] = yearCode.split('-');
+
   const params = new URLSearchParams();
-  params.append('codigoTabelaReferencia', referenceTable);
+  params.append('codigoTabelaReferencia', referenceTableCode);
   params.append('codigoTipoVeiculo', vehicleType);
   params.append('codigoMarca', makerCode);
   params.append('codigoModelo', modelCode);
   params.append('anoModelo', yearModel);
   params.append('codigoTipoCombustivel', fuelType);
   params.append('tipoVeiculo', resolveVehicleType(vehicleType));
-  params.append('modeloCodigoExterno', '');
   params.append('tipoConsulta', 'tradicional');
 
-  const { data } = await axios.post(
-    `${FIPE_URL}/veiculos/ConsultarValorComTodosParametros`,
-    params,
-    {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-    }
+  const { data } = await resilientPost(
+    '/veiculos/ConsultarValorComTodosParametros',
+    params
   );
 
-  if (data.erro) {
+  if (data.erro || !data.Valor) {
     throw new Error('Parâmetros inválidos');
   }
 
@@ -59,47 +56,11 @@ async function getPrice({
   };
 }
 
-export async function getCarPriceByModelAndYear(
-  makerCode,
-  modelCode,
-  yearCode,
-  referenceTableCode
-) {
-  return getPrice({
-    vehicleType: VEHICLE_TYPE.CAR,
-    referenceTable: referenceTableCode,
-    makerCode,
-    modelCode,
-    yearCode,
-  });
-}
+export const getCarPriceByModelAndYear = (makerCode, modelCode, yearCode, referenceTable) =>
+  getPriceByModelAndYear({ makerCode, modelCode, yearCode, referenceTable, vehicleType: VEHICLE_TYPE.CAR });
 
-export async function getMotorcyclePriceByModelAndYear(
-  makerCode,
-  modelCode,
-  yearCode,
-  referenceTableCode
-) {
-  return getPrice({
-    vehicleType: VEHICLE_TYPE.MOTORCYCLE,
-    referenceTable: referenceTableCode,
-    makerCode,
-    modelCode,
-    yearCode,
-  });
-}
+export const getMotorcyclePriceByModelAndYear = (makerCode, modelCode, yearCode, referenceTable) =>
+  getPriceByModelAndYear({ makerCode, modelCode, yearCode, referenceTable, vehicleType: VEHICLE_TYPE.MOTORCYCLE });
 
-export async function getTruckPriceByModelAndYear(
-  makerCode,
-  modelCode,
-  yearCode,
-  referenceTableCode
-) {
-  return getPrice({
-    vehicleType: VEHICLE_TYPE.TRUCK,
-    referenceTable: referenceTableCode,
-    makerCode,
-    modelCode,
-    yearCode,
-  });
-}
+export const getTruckPriceByModelAndYear = (makerCode, modelCode, yearCode, referenceTable) =>
+  getPriceByModelAndYear({ makerCode, modelCode, yearCode, referenceTable, vehicleType: VEHICLE_TYPE.TRUCK });
