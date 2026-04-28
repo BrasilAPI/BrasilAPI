@@ -35,8 +35,29 @@ const validTestVehicleArray = expect.arrayContaining([
 const validTestVehiclesArray = expect.arrayContaining([
   expect.objectContaining({
     modelo: expect.any(String),
+    valor: expect.any(String),
   }),
 ]);
+
+const validTestYearsArray = expect.arrayContaining([
+  expect.objectContaining({
+    nome: expect.any(String),
+    valor: expect.any(String),
+  }),
+]);
+
+const validTestVehicleObject = expect.objectContaining({
+  valor: expect.any(String),
+  marca: expect.any(String),
+  modelo: expect.any(String),
+  anoModelo: expect.any(Number),
+  combustivel: expect.any(String),
+  codigoFipe: expect.any(String),
+  mesReferencia: expect.any(String),
+  tipoVeiculo: expect.any(Number),
+  siglaCombustivel: expect.any(String),
+  dataConsulta: expect.any(String),
+});
 
 describe('/fipe/tabelas/v1 (E2E)', () => {
   test('Listando as tabelas de referências', async () => {
@@ -102,7 +123,61 @@ describe('/fipe/veiculos/v1 (E2E)', () => {
   });
 });
 
+describe('/fipe/anos/v1 (E2E)', () => {
+  test('Listando os anos de um veiculo com tipo de veiculo, marca e modelo', async () => {
+    // 21 = Fiat, 437 = 147 C/ CL
+    const requestUrl = `${global.SERVER_URL}/api/fipe/anos/v1/carros/21/437`;
+    const response = await axios.get(requestUrl);
+    expect(response.status).toBe(200);
+    expect(response.data).toEqual(validTestYearsArray);
+  });
+
+  test('Deve retornar erro para parametros inválidos na busca de anos', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/fipe/anos/v1/carros/21/999999`;
+    let result;
+    try {
+      await axios.get(requestUrl);
+    } catch ({ response }) {
+      result = { status: response.status, data: response.data };
+    }
+    expect(result.status).toBe(400);
+    expect(result.data).toEqual({
+      name: 'BadRequestError',
+      message: 'Parâmetros inválidos',
+      type: 'bad_request',
+    });
+  });
+});
+
+describe('/fipe/detalhes/v1 (E2E)', () => {
+  test('Buscando detalhes de um veículo com tipo, marca, modelo e ano', async () => {
+    // 21 = Fiat, 437 = 147 C/ CL, 1987-1 = 1987 Gasolina
+    const requestUrl = `${global.SERVER_URL}/api/fipe/detalhes/v1/carros/21/437/1987-1`;
+    const response = await axios.get(requestUrl);
+    expect(response.status).toBe(200);
+    expect(response.data).toEqual(validTestVehicleObject);
+  });
+
+  test('Deve retornar erro para parametros inválidos na busca de detalhes', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/fipe/detalhes/v1/carros/21/437/9999-1`;
+    let result;
+    try {
+      await axios.get(requestUrl);
+    } catch ({ response }) {
+      result = { status: response.status, data: response.data };
+    }
+    expect(result.status).toBe(400);
+    expect(result.data).toEqual({
+      name: 'BadRequestError',
+      message: 'Parâmetros inválidos',
+      type: 'bad_request',
+    });
+  });
+});
+
 testCorsForRoute('/api/fipe/tabelas/v1');
 testCorsForRoute('/api/fipe/marcas/v1');
 testCorsForRoute('/api/fipe/preco/v1/015088-6');
 testCorsForRoute('/api/fipe/veiculos/v1/carros/21');
+testCorsForRoute('/api/fipe/anos/v1/carros/21/437');
+testCorsForRoute('/api/fipe/detalhes/v1/carros/21/437/1987-1');
