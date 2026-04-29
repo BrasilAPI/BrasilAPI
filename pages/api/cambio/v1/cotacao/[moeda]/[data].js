@@ -102,7 +102,7 @@ const Action = async (request, response) => {
     const cotacoes = output.values;
     date = output.date;
 
-    if (output.length === 0) {
+    if (cotacoes.length === 0) {
       throw new BadRequestError({
         message: 'Não foi possível encontrar cotação para a data informada',
         type: 'no_data_error',
