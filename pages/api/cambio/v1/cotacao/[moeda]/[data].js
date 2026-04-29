@@ -26,7 +26,7 @@ const getCurrencyExchangeByDate = async (initialDate, coin, count = 0) => {
   const values = await getCurrencyExchange(date, coin);
 
   if (values.length === 0) {
-    output = getCurrencyExchangeByDate(initialDate, count + 1);
+    output = await getCurrencyExchangeByDate(initialDate, coin, count + 1);
   } else {
     output = { values, date };
   }
