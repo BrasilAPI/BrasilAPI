@@ -26,7 +26,7 @@ const getCurrencyExchangeByDate = async (initialDate, coin, count = 0) => {
   const values = await getCurrencyExchange(date, coin);
 
   if (values.length === 0) {
-    output = getCurrencyExchangeByDate(initialDate, count + 1);
+    output = await getCurrencyExchangeByDate(initialDate, coin, count + 1);
   } else {
     output = { values, date };
   }
@@ -102,7 +102,7 @@ const Action = async (request, response) => {
     const cotacoes = output.values;
     date = output.date;
 
-    if (output.length === 0) {
+    if (cotacoes.length === 0) {
       throw new BadRequestError({
         message: 'Não foi possível encontrar cotação para a data informada',
         type: 'no_data_error',
