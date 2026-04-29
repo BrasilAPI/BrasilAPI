@@ -48,7 +48,7 @@ describeIf(shouldSkipTests)('/ibge/uf/v1 (E2E)', () => {
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);
-    expect(response.data).toEqual({
+    expect(response.data).toMatchObject({
       id: 22,
       sigla: expect.any(String),
       nome: expect.any(String),
@@ -58,6 +58,8 @@ describeIf(shouldSkipTests)('/ibge/uf/v1 (E2E)', () => {
         nome: expect.any(String),
       }),
       capital: expect.any(String),
+      populacao_estimada: expect.any(Number),
+      periodo: expect.any(String),
     });
   });
 
@@ -99,7 +101,7 @@ describeIf(shouldSkipTests)('/ibge/uf/v1 (E2E)', () => {
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);
-    expect(response.data).toEqual({
+    expect(response.data).toMatchObject({
       id: 42,
       sigla: expect.any(String),
       nome: expect.any(String),
@@ -109,6 +111,8 @@ describeIf(shouldSkipTests)('/ibge/uf/v1 (E2E)', () => {
         nome: expect.any(String),
       }),
       capital: expect.any(String),
+      populacao_estimada: expect.any(Number),
+      periodo: expect.any(String),
     });
     expect(response.data.capital).toBe('Florianópolis');
   });
@@ -118,7 +122,7 @@ describeIf(shouldSkipTests)('/ibge/uf/v1 (E2E)', () => {
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);
-    expect(response.data).toEqual({
+    expect(response.data).toMatchObject({
       id: 22,
       sigla: expect.any(String),
       nome: expect.any(String),
@@ -128,6 +132,8 @@ describeIf(shouldSkipTests)('/ibge/uf/v1 (E2E)', () => {
         nome: expect.any(String),
       }),
       capital: expect.any(String),
+      populacao_estimada: expect.any(Number),
+      periodo: expect.any(String),
     });
     expect(response.data.capital).toBe('Teresina');
   });
