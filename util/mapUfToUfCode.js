@@ -31,13 +31,19 @@ const UF_CODE_MAPPER = {
 }
 
 /**
- * Map UF (e.g. SP) to UF Code Id on IBGE API
- * @param {string} uf String UF short
+ * Map UF (e.g. SP) to UF Code Id on IBGE API.
+ * Aceita também o próprio código numérico do IBGE (e.g. 22) e o devolve inalterado.
+ * @param {string|number} uf Sigla da UF ou código numérico do IBGE
  * @returns {number} UF Code
  */
 export default function mapUfToUfCode(uf) {
-    uf = uf.toUpperCase();
-    let ufCode = UF_CODE_MAPPER[uf];
+    const input = String(uf).toUpperCase();
+
+    if (/^\d+$/.test(input) && Object.values(UF_CODE_MAPPER).includes(Number(input))) {
+        return Number(input);
+    }
+
+    const ufCode = UF_CODE_MAPPER[input];
     if(!ufCode){
         throw new NotFoundError(`UF ${uf} não encontrado`);
     }
