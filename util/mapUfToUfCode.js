@@ -1,6 +1,6 @@
 import NotFoundError from "@/errors/NotFoundError";
 
-const UF_CODE_MAPPER = {
+export const UF_CODE_MAPPER = {
   "RO": 11,
   "AC": 12,
   "AM": 13,
