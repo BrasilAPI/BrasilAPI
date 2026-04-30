@@ -229,6 +229,11 @@
                         "type": "object",
                         "$ref": "#/components/schemas/Location",
                         "description": "Coordenadas geográficas do endereço"
+                    },
+                    "ibge": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/IbgeCodes",
+                        "description": "Códigos IBGE do município e do estado (podem ser nulos quando o provider não disponibiliza)"
                     }
                 },
                 "example": {
@@ -244,6 +249,10 @@
                             "longitude": "-49.0629788",
                             "latitude": "-26.9244749"
                         }
+                    },
+                    "ibge": {
+                        "city": "4202404",
+                        "state": "42"
                     }
                 }
             },
@@ -276,6 +285,11 @@
                     },
                     "service": {
                         "type": "string"
+                    },
+                    "ibge": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/IbgeCodes",
+                        "description": "Códigos IBGE do município e do estado (podem ser nulos quando o provider não disponibiliza)"
                     }
                 },
                 "example": {
@@ -284,7 +298,32 @@
                     "city": "Blumenau",
                     "neighborhood": "Centro",
                     "street": "Rua Doutor Luiz de Freitas Melro",
-                    "service": "viacep"
+                    "service": "viacep",
+                    "ibge": {
+                        "city": "4202404",
+                        "state": "42"
+                    }
+                }
+            },
+            "IbgeCodes": {
+                "title": "IBGE Codes",
+                "description": "Códigos IBGE associados ao endereço",
+                "type": "object",
+                "properties": {
+                    "city": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Código IBGE do município (7 dígitos), pode ser nulo se o provider não disponibiliza"
+                    },
+                    "state": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Código IBGE do estado (2 dígitos), pode ser nulo se a UF não puder ser identificada"
+                    }
+                },
+                "example": {
+                    "city": "4202404",
+                    "state": "42"
                 }
             },
             "CepError": {

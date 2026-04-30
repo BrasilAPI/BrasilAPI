@@ -1,5 +1,6 @@
 import axios from 'axios';
 import cepPromise from 'cep-promise';
+import { UF_CODE_MAPPER } from '@/util/mapUfToUfCode';
 
 const providers = ['correios', 'viacep', 'widenet', 'correios-alt'];
 
@@ -28,6 +29,12 @@ function getCepValidationMessage(cep) {
   return 'CEP informado deve conter apenas números ou seguir o formato 00000-000.';
 }
 
+function getStateIbgeCode(uf) {
+  if (!uf) return null;
+  const code = UF_CODE_MAPPER[String(uf).toUpperCase()];
+  return code ? String(code) : null;
+}
+
 async function fetchOpenCep(cep) {
   const { data } = await axios.get(`https://opencep.com/v1/${cep}`, {
     timeout: DEFAULT_TIMEOUT,
@@ -40,6 +47,10 @@ async function fetchOpenCep(cep) {
     neighborhood: data.bairro,
     street: data.logradouro,
     service: 'open-cep',
+    ibge: {
+      city: data.ibge ?? null,
+      state: getStateIbgeCode(data.uf),
+    },
   };
 }
 
@@ -85,7 +96,13 @@ export async function fetchCep(cep) {
   return fetchOpenCep(cleanCep).catch(() =>
     fetchCepPromise().then(async (data) => {
       await updateOpenCep(cleanCep).catch(() => {});
-      return data;
+      return {
+        ...data,
+        ibge: {
+          city: null,
+          state: getStateIbgeCode(data.state),
+        },
+      };
     })
   );
 }
