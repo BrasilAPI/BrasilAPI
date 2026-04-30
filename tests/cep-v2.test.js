@@ -15,7 +15,7 @@ describe('/cep/v2 (E2E)', () => {
     const requestUrl = `${global.SERVER_URL}/api/cep/v2/05010000`;
     const response = await axios.get(requestUrl);
 
-    expect(response.data).toEqual({
+    expect(response.data).toMatchObject({
       cep: '05010000',
       state: 'SP',
       city: 'São Paulo',
@@ -30,14 +30,21 @@ describe('/cep/v2 (E2E)', () => {
           latitude: expect.stringMatching(/^[-+]?\d+(\.\d+)?$/),
         },
       },
+      ibge: {
+        state: '35',
+      },
     });
+    expect(
+      response.data.ibge.city === null ||
+        typeof response.data.ibge.city === 'string'
+    ).toBe(true);
   });
 
   test('Verifica fonte da informação: 05010000', async () => {
     const requestUrl = `${global.SERVER_URL}/api/cep/v2/05010000`;
     const response = await axios.get(requestUrl);
 
-    expect(response.data).toEqual({
+    expect(response.data).toMatchObject({
       cep: '05010000',
       state: 'SP',
       city: 'São Paulo',
@@ -51,6 +58,10 @@ describe('/cep/v2 (E2E)', () => {
           longitude: expect.stringMatching(/^[-+]?\d+(\.\d+)?$/),
           latitude: expect.stringMatching(/^[-+]?\d+(\.\d+)?$/),
         },
+      },
+      ibge: {
+        city: '3550308',
+        state: '35',
       },
     });
   });
@@ -125,7 +136,7 @@ describe('/cep/v2 (E2E)', () => {
     const requestUrl = `${global.SERVER_URL}/api/cep/v2/20751120`;
     const response = await axios.get(requestUrl);
 
-    expect(response.data).toEqual({
+    expect(response.data).toMatchObject({
       cep: '20751120',
       state: 'RJ',
       city: 'Rio de Janeiro',
@@ -140,6 +151,9 @@ describe('/cep/v2 (E2E)', () => {
           latitude: expect.stringMatching(/^[-+]?\d+(\.\d+)?$/),
         },
       },
+      ibge: {
+        state: '33',
+      },
     });
   });
 
@@ -147,7 +161,7 @@ describe('/cep/v2 (E2E)', () => {
     const requestUrl = `${global.SERVER_URL}/api/cep/v2/87360000`;
     const response = await axios.get(requestUrl);
 
-    expect(response.data).toEqual({
+    expect(response.data).toMatchObject({
       cep: '87360000',
       state: 'PR',
       city: 'Goioerê',
@@ -161,6 +175,9 @@ describe('/cep/v2 (E2E)', () => {
           longitude: expect.stringMatching(/^[-+]?\d+(\.\d+)?$/),
           latitude: expect.stringMatching(/^[-+]?\d+(\.\d+)?$/),
         },
+      },
+      ibge: {
+        state: '41',
       },
     });
   });

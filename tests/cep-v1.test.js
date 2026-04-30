@@ -15,27 +15,38 @@ describe('/cep/v1 (E2E)', () => {
     const requestUrl = `${global.SERVER_URL}/api/cep/v1/05010000`;
     const response = await axios.get(requestUrl);
 
-    expect(response.data).toEqual({
+    expect(response.data).toMatchObject({
       cep: '05010000',
       state: 'SP',
       city: 'São Paulo',
       neighborhood: 'Perdizes',
       street: 'Rua Caiubi',
       service: expect.any(String),
+      ibge: {
+        state: '35',
+      },
     });
+    expect(
+      response.data.ibge.city === null ||
+        typeof response.data.ibge.city === 'string'
+    ).toBe(true);
   });
 
   test('Verifica fonte da informação: 05010000', async () => {
     const requestUrl = `${global.SERVER_URL}/api/cep/v1/05010000`;
     const response = await axios.get(requestUrl);
 
-    expect(response.data).toEqual({
+    expect(response.data).toMatchObject({
       cep: '05010000',
       state: 'SP',
       city: 'São Paulo',
       neighborhood: 'Perdizes',
       street: 'Rua Caiubi',
       service: 'open-cep',
+      ibge: {
+        city: '3550308',
+        state: '35',
+      },
     });
   });
 
