@@ -1,4 +1,5 @@
-import { resilientPost, VEHICLE_TYPE } from './constants';
+import { resilientPost } from './api';
+import { VEHICLE_TYPE } from './constants';
 import { getLatestReferenceTable } from './referenceTable';
 
 async function listYearsByModel({
@@ -13,10 +14,7 @@ async function listYearsByModel({
   params.append('codigoMarca', makerCode);
   params.append('codigoModelo', modelCode);
 
-  const { data } = await resilientPost(
-    '/veiculos/ConsultarAnoModelo',
-    params
-  );
+  const { data } = await resilientPost('/veiculos/ConsultarAnoModelo', params);
 
   if (!Array.isArray(data)) {
     throw new Error('Parâmetros inválidos');
@@ -47,10 +45,29 @@ export async function listYearsByModelAndType({
 
 // Compatibility functions for legacy positional arguments
 export const listCarYearsByModel = (makerCode, modelCode, referenceTable) =>
-  listYearsByModelAndType({ makerCode, modelCode, referenceTable, vehicleType: VEHICLE_TYPE.CAR });
+  listYearsByModelAndType({
+    makerCode,
+    modelCode,
+    referenceTable,
+    vehicleType: VEHICLE_TYPE.CAR,
+  });
 
-export const listMotorcycleYearsByModel = (makerCode, modelCode, referenceTable) =>
-  listYearsByModelAndType({ makerCode, modelCode, referenceTable, vehicleType: VEHICLE_TYPE.MOTORCYCLE });
+export const listMotorcycleYearsByModel = (
+  makerCode,
+  modelCode,
+  referenceTable
+) =>
+  listYearsByModelAndType({
+    makerCode,
+    modelCode,
+    referenceTable,
+    vehicleType: VEHICLE_TYPE.MOTORCYCLE,
+  });
 
 export const listTruckYearsByModel = (makerCode, modelCode, referenceTable) =>
-  listYearsByModelAndType({ makerCode, modelCode, referenceTable, vehicleType: VEHICLE_TYPE.TRUCK });
+  listYearsByModelAndType({
+    makerCode,
+    modelCode,
+    referenceTable,
+    vehicleType: VEHICLE_TYPE.TRUCK,
+  });

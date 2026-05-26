@@ -1,6 +1,5 @@
 import app from '@/app';
 import BadRequestError from '@/errors/BadRequestError';
-import NotFoundError from '@/errors/NotFoundError';
 import { getFipePrice } from '@/services/fipe/price';
 import { listReferenceTables } from '@/services/fipe/referenceTable';
 
@@ -37,7 +36,7 @@ async function getFipePriceInfo(request, response) {
     return response.status(200).json(data);
   } catch (err) {
     if (err.message === 'Código fipe inválido') {
-      throw new NotFoundError({ message: err.message, status: 400 });
+      throw new BadRequestError({ message: err.message });
     }
 
     throw err;

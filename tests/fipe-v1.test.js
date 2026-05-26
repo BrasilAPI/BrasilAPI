@@ -82,6 +82,7 @@ try {
   }
 } catch (error) {
   shouldSkipTests = true;
+  // eslint-disable-next-line no-console
   console.warn(
     '⚠️  FIPE service unavailable or Cloudflare challenge detected - skipping tests'
   );
@@ -119,15 +120,15 @@ describe.skipIf(shouldSkipTests)('/fipe/preco/v1 (E2E)', () => {
     const fipeCode = '000000-0';
     const requestUrl = `${global.SERVER_URL}/api/fipe/preco/v1/${fipeCode}`;
 
-    try {
-      await axios.get(requestUrl);
-    } catch (error) {
-      expect(error.response.status).toBe(400);
-      expect(error.response.data).toMatchObject({
-        name: 'NotFoundError',
-        message: 'Código fipe inválido',
-      });
-    }
+    await expect(axios.get(requestUrl)).rejects.toMatchObject({
+      response: {
+        status: 400,
+        data: {
+          name: 'BadRequestError',
+          message: 'Código fipe inválido',
+        },
+      },
+    });
   });
 });
 
@@ -158,11 +159,9 @@ describe.skipIf(shouldSkipTests)('/fipe/anos/v1 (E2E)', () => {
 
   test('Deve retornar erro para parametros inválidos na busca de anos', async () => {
     const requestUrl = `${global.SERVER_URL}/api/fipe/anos/v1/carros/00/00`;
-    try {
-      await axios.get(requestUrl);
-    } catch (error) {
-      expect(error.response.status).toBe(400);
-    }
+    await expect(axios.get(requestUrl)).rejects.toMatchObject({
+      response: { status: 400 },
+    });
   });
 });
 
@@ -178,11 +177,9 @@ describe.skipIf(shouldSkipTests)('/fipe/detalhes/v1 (E2E)', () => {
 
   test('Deve retornar erro para parametros inválidos na busca de detalhes', async () => {
     const requestUrl = `${global.SERVER_URL}/api/fipe/detalhes/v1/carros/21/437/0000-0`;
-    try {
-      await axios.get(requestUrl);
-    } catch (error) {
-      expect(error.response.status).toBe(400);
-    }
+    await expect(axios.get(requestUrl)).rejects.toMatchObject({
+      response: { status: 400 },
+    });
   });
 });
 

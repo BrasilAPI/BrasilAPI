@@ -1,4 +1,5 @@
-import { resilientPost, VEHICLE_TYPE } from './constants';
+import { resilientPost } from './api';
+import { VEHICLE_TYPE } from './constants';
 import { getLatestReferenceTable } from './referenceTable';
 
 function resolveVehicleType(vehicleType) {
@@ -56,11 +57,44 @@ export async function getPriceByModelAndYear({
   };
 }
 
-export const getCarPriceByModelAndYear = (makerCode, modelCode, yearCode, referenceTable) =>
-  getPriceByModelAndYear({ makerCode, modelCode, yearCode, referenceTable, vehicleType: VEHICLE_TYPE.CAR });
+export const getCarPriceByModelAndYear = (
+  makerCode,
+  modelCode,
+  yearCode,
+  referenceTable
+) =>
+  getPriceByModelAndYear({
+    makerCode,
+    modelCode,
+    yearCode,
+    referenceTable,
+    vehicleType: VEHICLE_TYPE.CAR,
+  });
 
-export const getMotorcyclePriceByModelAndYear = (makerCode, modelCode, yearCode, referenceTable) =>
-  getPriceByModelAndYear({ makerCode, modelCode, yearCode, referenceTable, vehicleType: VEHICLE_TYPE.MOTORCYCLE });
+export const getMotorcyclePriceByModelAndYear = (
+  makerCode,
+  modelCode,
+  yearCode,
+  referenceTable
+) =>
+  getPriceByModelAndYear({
+    makerCode,
+    modelCode,
+    yearCode,
+    referenceTable,
+    vehicleType: VEHICLE_TYPE.MOTORCYCLE,
+  });
 
-export const getTruckPriceByModelAndYear = (makerCode, modelCode, yearCode, referenceTable) =>
-  getPriceByModelAndYear({ makerCode, modelCode, yearCode, referenceTable, vehicleType: VEHICLE_TYPE.TRUCK });
+export const getTruckPriceByModelAndYear = (
+  makerCode,
+  modelCode,
+  yearCode,
+  referenceTable
+) =>
+  getPriceByModelAndYear({
+    makerCode,
+    modelCode,
+    yearCode,
+    referenceTable,
+    vehicleType: VEHICLE_TYPE.TRUCK,
+  });
