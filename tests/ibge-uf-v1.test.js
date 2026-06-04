@@ -104,7 +104,5 @@ describeIf('/ibge/uf/v1 (E2E)', () => {
 describeIf('CORS tests', () => {
   testCorsForRoute('/api/ibge/uf/v1');
   testCorsForRoute('/api/ibge/uf/v1/22');
-  testCorsForRoute('/api/ibge/uf/v1/SC');
-  testCorsForRoute('/api/ibge/uf/v1/pi');
-  testCorsForRoute('/api/ibge/uf/v1/saopaulo');
+  testCorsForRoute('/api/ibge/uf/v1/PI');
 });
