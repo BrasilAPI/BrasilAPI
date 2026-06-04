@@ -36,10 +36,14 @@ const UF_CODE_MAPPER = {
  * @returns {number} UF Code
  */
 export default function mapUfToUfCode(uf) {
-    uf = uf.toUpperCase();
+    if (/^\d+$/.test(uf) && Object.values(UF_CODE_MAPPER).includes(Number(uf))) {
+        return Number(uf);
+    }
+
+    uf = String(uf).toUpperCase();
     let ufCode = UF_CODE_MAPPER[uf];
     if(!ufCode){
-        throw new NotFoundError(`UF ${uf} não encontrado`);
+        throw new NotFoundError({ message: 'UF não encontrada.' });
     }
 
     return ufCode;
