@@ -1,25 +1,17 @@
 import axios from 'axios';
-import { describe, expect, test, beforeAll } from 'vitest';
+import { test, expect } from 'vitest';
 
 import { testCorsForRoute } from './helpers/cors';
-import { checkServiceHealth } from './helpers/smartSkip';
+import { createDescribeIf } from './helpers/smartSkip';
 
-// Smart service availability check - skip only when DNS/network/server issues are detected
-let shouldSkipTests = true; // Default to skip for safety
-
-beforeAll(async () => {
-  shouldSkipTests = await checkServiceHealth(
-    'https://veiculos.fipe.org.br/api/veiculos/ConsultarTabelaDeReferencia',
-    'FIPE',
-    {
-      method: 'post',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    }
-  );
-});
-
-// Conditionally skip based on actual service availability
-const describeIf = (condition) => (condition ? describe.skip : describe);
+const describeIf = await createDescribeIf(
+  'https://veiculos.fipe.org.br/api/veiculos/ConsultarTabelaDeReferencia',
+  'FIPE',
+  {
+    method: 'post',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+  }
+);
 
 const validTestTableArray = expect.arrayContaining([
   expect.objectContaining({
@@ -56,7 +48,7 @@ const validTestVehiclesArray = expect.arrayContaining([
   }),
 ]);
 
-describeIf(shouldSkipTests)('/fipe/tabelas/v1 (E2E)', () => {
+describeIf('/fipe/tabelas/v1 (E2E)', () => {
   test('Listando as tabelas de referências', async () => {
     const requestUrl = `${global.SERVER_URL}/api/fipe/tabelas/v1`;
     const response = await axios.get(requestUrl);
@@ -65,7 +57,7 @@ describeIf(shouldSkipTests)('/fipe/tabelas/v1 (E2E)', () => {
   });
 });
 
-describeIf(shouldSkipTests)('/fipe/marcas/v1 (E2E)', () => {
+describeIf('/fipe/marcas/v1 (E2E)', () => {
   test('Listando as marcas sem tabela de referência', async () => {
     const requestUrl = `${global.SERVER_URL}/api/fipe/marcas/v1`;
     const response = await axios.get(requestUrl);
@@ -74,7 +66,7 @@ describeIf(shouldSkipTests)('/fipe/marcas/v1 (E2E)', () => {
   });
 });
 
-describeIf(shouldSkipTests)('/fipe/preco/v1 (E2E)', () => {
+describeIf('/fipe/preco/v1 (E2E)', () => {
   test('Buscando preço de veículo com código FIPE válido', async () => {
     const fipeCode = '015088-6';
     const requestUrl = `${global.SERVER_URL}/api/fipe/preco/v1/${fipeCode}`;
@@ -104,7 +96,7 @@ describeIf(shouldSkipTests)('/fipe/preco/v1 (E2E)', () => {
   });
 });
 
-describeIf(shouldSkipTests)('/fipe/veiculos/v1 (E2E)', () => {
+describeIf('/fipe/veiculos/v1 (E2E)', () => {
   test('Listando os modelos de veiculos com tipo de veiculo, marca e tabela de referência', async () => {
     const requestUrl = `${global.SERVER_URL}/api/fipe/veiculos/v1/carros/21?tabela_referencia=315`;
     const response = await axios.get(requestUrl);

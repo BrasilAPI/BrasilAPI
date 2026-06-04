@@ -1,24 +1,15 @@
 import axios from 'axios';
-import { describe, test, expect, beforeAll } from 'vitest';
+import { test, expect } from 'vitest';
 
 import { testCorsForRoute } from './helpers/cors';
-import { checkServiceHealth } from './helpers/smartSkip';
+import { createDescribeIf } from './helpers/smartSkip';
 
-// Smart service availability check - skip provider-dependent tests when all ISBN providers are unavailable
-let shouldSkipProviderTests = true; // Default to skip for safety
-
-beforeAll(async () => {
-  // Quick health check using a known ISBN
-  // If at least one provider is working, provider tests should run
-  shouldSkipProviderTests = await checkServiceHealth(
-    `${global.SERVER_URL}/api/isbn/v1/9788545702870`,
-    'ISBN',
-    { treat404AsDown: true }
-  );
-});
-
-// Conditionally skip based on actual service availability
-const describeIf = (condition) => (condition ? describe.skip : describe);
+// Smart service availability check using a known ISBN
+const describeIf = await createDescribeIf(
+  `${global.SERVER_URL}/api/isbn/v1/9788545702870`,
+  'ISBN',
+  { treat404AsDown: true }
+);
 
 describe('api/isbn/v1 (E2E)', () => {
   let requestUrl = '';
@@ -63,7 +54,7 @@ describe('api/isbn/v1 (E2E)', () => {
   });
 
   // Tests that depend on external providers (conditionally skip when providers unavailable)
-  describeIf(shouldSkipProviderTests)('Provider-dependent tests', () => {
+  describeIf('Provider-dependent tests', () => {
     test('Utilizando um ISBN válido existente: 9788545702870', async () => {
       const response = await axios.get(`${requestUrl}/9788545702870`);
       const { data, status } = response;

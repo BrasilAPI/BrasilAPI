@@ -1,21 +1,13 @@
 import axios from 'axios';
-import { describe, expect, test, beforeAll } from 'vitest';
-import { checkServiceHealth } from '../helpers/smartSkip';
+import { describe, expect, test } from 'vitest';
+import { createDescribeIf } from '../helpers/smartSkip';
 
-// Smart service availability check - skip only when DNS/network issues are detected
-let shouldSkipTests = true; // Default to skip for safety
+const describeIf = await createDescribeIf(
+  'https://www.cptec.inpe.br/',
+  'CPTEC'
+);
 
-beforeAll(async () => {
-  shouldSkipTests = await checkServiceHealth(
-    'http://servicos.cptec.inpe.br/XML/listaCidades?city=brasilia',
-    'CPTEC'
-  );
-});
-
-// Conditionally skip based on actual service availability
-const describeIf = (condition) => (condition ? describe.skip : describe);
-
-describeIf(shouldSkipTests)('ondas prediction v1 (E2E)', () => {
+describeIf('ondas prediction v1 (E2E)', () => {
   describe('Route WITHOUT number of days for ondas', () => {
     test('GET /api/cptec/v1/ondas/:cityCode (Invalid City Code)', async () => {
       const requestUrl = `${global.SERVER_URL}/api/cptec/v1/ondas/9999`;

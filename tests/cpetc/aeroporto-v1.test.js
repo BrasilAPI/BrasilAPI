@@ -1,21 +1,14 @@
 import axios from 'axios';
-import { describe, expect, test, beforeAll } from 'vitest';
-import { checkServiceHealth } from '../helpers/smartSkip';
+import { test, expect, describe } from 'vitest';
 
-// Smart service availability check - skip only when DNS/network issues are detected
-let shouldSkipTests = true; // Default to skip for safety
+import { createDescribeIf } from '../helpers/smartSkip';
 
-beforeAll(async () => {
-  shouldSkipTests = await checkServiceHealth(
-    'http://servicos.cptec.inpe.br/XML/listaCidades?city=brasilia',
-    'CPTEC'
-  );
-});
+const describeIf = await createDescribeIf(
+  'https://www.cptec.inpe.br/',
+  'CPTEC'
+);
 
-// Conditionally skip based on actual service availability
-const describeIf = (condition) => (condition ? describe.skip : describe);
-
-describeIf(shouldSkipTests)('weather airport v1 (E2E)', () => {
+describeIf('weather airport v1 (E2E)', () => {
   test('GET /api/cptec/v1/clima/aeroporto/:icaoCode (Código inexistente)', async () => {
     const requestUrl = `${global.SERVER_URL}/api/cptec/v1/clima/aeroporto/AAAA`;
 

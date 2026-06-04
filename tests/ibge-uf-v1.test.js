@@ -1,23 +1,15 @@
 import axios from 'axios';
-import { describe, test, expect, beforeAll } from 'vitest';
+import { test, expect } from 'vitest';
 
 import { testCorsForRoute } from './helpers/cors';
-import { checkServiceHealth } from './helpers/smartSkip';
+import { createDescribeIf } from './helpers/smartSkip';
 
-// Smart service availability check - skip only when DNS/network issues are detected
-let shouldSkipTests = false; // Default to skip for safety
+const describeIf = await createDescribeIf(
+  'https://servicodados.ibge.gov.br/api/v1/localidades/estados',
+  'IBGE'
+);
 
-beforeAll(async () => {
-  shouldSkipTests = await checkServiceHealth(
-    'https://servicodados.ibge.gov.br/api/v1/localidades/estados',
-    'IBGE'
-  );
-});
-
-// Conditionally skip based on actual service availability
-const describeIf = (condition) => (condition ? describe.skip : describe);
-
-describeIf(shouldSkipTests)('/ibge/uf/v1 (E2E)', () => {
+describeIf('/ibge/uf/v1 (E2E)', () => {
   test('Utilizando um Codigo válido: 22', async () => {
     const requestUrl = `${global.SERVER_URL}/api/ibge/uf/v1/22`;
     const response = await axios.get(requestUrl);

@@ -1,21 +1,13 @@
 import axios from 'axios';
-import { describe, expect, test, beforeAll } from 'vitest';
-import { checkServiceHealth } from '../helpers/smartSkip';
+import { describe, expect, test } from 'vitest';
+import { createDescribeIf } from '../helpers/smartSkip';
 
-// Smart service availability check - skip only when DNS/network issues are detected
-let shouldSkipTests = true; // Default to skip for safety
+const describeIf = await createDescribeIf(
+  'http://servicos.cptec.inpe.br/XML/listaCidades?city=brasilia',
+  'CPTEC'
+);
 
-beforeAll(async () => {
-  shouldSkipTests = await checkServiceHealth(
-    'http://servicos.cptec.inpe.br/XML/listaCidades?city=brasilia',
-    'CPTEC'
-  );
-});
-
-// Conditionally skip based on actual service availability
-const describeIf = (condition) => (condition ? describe.skip : describe);
-
-describeIf(shouldSkipTests)('cities v1 (E2E)', () => {
+describeIf('cities v1 (E2E)', () => {
   describe('GET /cptec/v1/cidade/:name', () => {
     test('Utilizando um nome de cidade existente: São Sebastião', async () => {
       const requestUrl = `${global.SERVER_URL}/api/cptec/v1/cidade/São Sebastião`;
