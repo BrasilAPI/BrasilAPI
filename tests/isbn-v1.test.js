@@ -2,47 +2,19 @@ import axios from 'axios';
 import { describe, test, expect, beforeAll } from 'vitest';
 
 import { testCorsForRoute } from './helpers/cors';
+import { checkServiceHealth } from './helpers/smartSkip';
 
 // Smart service availability check - skip provider-dependent tests when all ISBN providers are unavailable
 let shouldSkipProviderTests = true; // Default to skip for safety
 
 beforeAll(async () => {
-  try {
-    // Quick health check using a known ISBN
-    // If at least one provider is working, provider tests should run
-    const response = await axios.get(
-      `${global.SERVER_URL}/api/isbn/v1/9788545702870`,
-      {
-        timeout: 5000,
-      }
-    );
-
-    if (response.status === 200) {
-      shouldSkipProviderTests = false;
-      console.log(
-        '✅ At least one ISBN provider is available - running provider tests'
-      );
-    }
-  } catch (error) {
-    // Check if it's a 404 (all providers unavailable) or network issue
-    if (
-      error.response?.status === 404 ||
-      error.code === 'ENOTFOUND' ||
-      error.code === 'ECONNREFUSED' ||
-      error.code === 'ECONNRESET' ||
-      error.code === 'ETIMEDOUT'
-    ) {
-      console.warn(
-        '⚠️  All ISBN providers unavailable (network/DNS issue) - skipping provider-dependent tests'
-      );
-    } else {
-      console.warn(
-        '⚠️  ISBN service health check failed - skipping provider-dependent tests:',
-        error.message
-      );
-    }
-    shouldSkipProviderTests = true;
-  }
+  // Quick health check using a known ISBN
+  // If at least one provider is working, provider tests should run
+  shouldSkipProviderTests = await checkServiceHealth(
+    `${global.SERVER_URL}/api/isbn/v1/9788545702870`,
+    'ISBN',
+    { treat404AsDown: true }
+  );
 });
 
 // Conditionally skip based on actual service availability

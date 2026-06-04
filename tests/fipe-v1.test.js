@@ -2,34 +2,20 @@ import axios from 'axios';
 import { describe, expect, test, beforeAll } from 'vitest';
 
 import { testCorsForRoute } from './helpers/cors';
+import { checkServiceHealth } from './helpers/smartSkip';
 
 // Smart service availability check - skip only when DNS/network/server issues are detected
 let shouldSkipTests = true; // Default to skip for safety
 
 beforeAll(async () => {
-  try {
-    // Quick health check for FIPE service
-    const response = await axios.post(
-      'https://veiculos.fipe.org.br/api/veiculos/ConsultarTabelaDeReferencia',
-      {},
-      {
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        timeout: 5000, // Short timeout to fail fast on DNS issues
-      }
-    );
-    
-    if (response.status === 200) {
-      shouldSkipTests = false;
-      console.log('✅ FIPE service is available - running tests');
+  shouldSkipTests = await checkServiceHealth(
+    'https://veiculos.fipe.org.br/api/veiculos/ConsultarTabelaDeReferencia',
+    'FIPE',
+    {
+      method: 'post',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     }
-  } catch (error) {
-    if (error.code === 'ENOTFOUND' || error.code === 'ECONNREFUSED' || error.code === 'ECONNRESET' || error.response?.status >= 500) {
-      console.warn('⚠️  FIPE service unavailable (network/DNS/server issue) - skipping tests');
-    } else {
-      console.warn('⚠️  FIPE service health check failed - skipping tests:', error.message);
-    }
-    shouldSkipTests = true;
-  }
+  );
 });
 
 // Conditionally skip based on actual service availability
