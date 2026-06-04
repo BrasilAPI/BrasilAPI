@@ -49,14 +49,14 @@ export async function checkServiceHealth(url, serviceName, options = {}) {
   return true;
 }
 
+import { describe } from 'vitest';
+
 /**
  * Convenience method that automatically performs the health check
  * and returns the appropriate describe function (describe or describe.skip)
  * utilizing Vitest top-level await capabilities.
  */
 export async function createDescribeIf(url, serviceName, options = {}) {
-  // We need to import describe here or pass it, but better yet, we can import it directly from vitest
-  const { describe } from 'vitest';
   const shouldSkip = await checkServiceHealth(url, serviceName, options);
   return shouldSkip ? describe.skip : describe;
 }
