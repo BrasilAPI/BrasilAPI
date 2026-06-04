@@ -6,6 +6,7 @@ jobs:
   e2e-tests:
     name: Rodar testes E2E
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
       - name: Puxar o código do commit
@@ -30,13 +31,7 @@ jobs:
         run: npm ci
 
       - name: Rodar testes
-        uses: nick-fields/retry@v2
-        with:
-          timeout_minutes: 10
-          retry_wait_seconds: 120
-          max_attempts: 3
-          retry_on: error
-          command: npm test
+        run: npm test
 
       - name: Archive code coverage results
         uses: actions/upload-artifact@v4
