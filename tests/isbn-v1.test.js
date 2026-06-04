@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { test, expect } from 'vitest';
+import { describe, test, expect } from 'vitest';
 
 import { testCorsForRoute } from './helpers/cors';
 import { createDescribeIf } from './helpers/smartSkip';
@@ -11,7 +11,7 @@ const describeIf = await createDescribeIf(
   { treat404AsDown: true }
 );
 
-describe('api/isbn/v1 (E2E)', () => {
+describeIf('api/isbn/v1 (E2E)', () => {
   let requestUrl = '';
 
   beforeAll(async () => {
@@ -257,6 +257,6 @@ describe('api/isbn/v1 (E2E)', () => {
 
 // CORS test also depends on providers being available
 // Only test CORS when providers are available, otherwise the GET request will 404
-if (!shouldSkipProviderTests) {
+describeIf('CORS tests', () => {
   testCorsForRoute('/api/isbn/v1/9788545702870');
-}
+});
