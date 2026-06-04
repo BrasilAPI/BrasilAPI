@@ -4,36 +4,36 @@ import { test, expect, beforeAll } from 'vitest';
 import { testCorsForRoute } from './helpers/cors';
 import { createDescribeIf } from './helpers/smartSkip';
 
-const BASE_ISBN_URL = () => `${global.SERVER_URL}/api/isbn/v1`;
+const BASE_ISBN_URL = () => `${globalThis.SERVER_URL}/api/isbn/v1`;
 
 // Each provider gets its own health check — a broken provider skips only its own tests
 const describeIfCbl = await createDescribeIf(
-  `${global.SERVER_URL}/api/isbn/v1/9788545702870?providers=cbl`,
+  `${globalThis.SERVER_URL}/api/isbn/v1/9788545702870?providers=cbl`,
   'ISBN/cbl',
   { treat404AsDown: true }
 );
 
 const describeIfMercadoEditorial = await createDescribeIf(
-  `${global.SERVER_URL}/api/isbn/v1/9786555140576?providers=mercado-editorial`,
+  `${globalThis.SERVER_URL}/api/isbn/v1/9786555140576?providers=mercado-editorial`,
   'ISBN/mercado-editorial',
   { treat404AsDown: true }
 );
 
 const describeIfOpenLibrary = await createDescribeIf(
-  `${global.SERVER_URL}/api/isbn/v1/9788545702870?providers=open-library`,
+  `${globalThis.SERVER_URL}/api/isbn/v1/9788545702870?providers=open-library`,
   'ISBN/open-library',
   { treat404AsDown: true }
 );
 
 const describeIfGoogleBooks = await createDescribeIf(
-  `${global.SERVER_URL}/api/isbn/v1/9788545712466?providers=google-books`,
+  `${globalThis.SERVER_URL}/api/isbn/v1/9788545712466?providers=google-books`,
   'ISBN/google-books',
   { treat404AsDown: true }
 );
 
 // Shared health check (any provider available) — used for the generic test + CORS
 const describeIf = await createDescribeIf(
-  `${global.SERVER_URL}/api/isbn/v1/9788545702870`,
+  `${globalThis.SERVER_URL}/api/isbn/v1/9788545702870`,
   'ISBN',
   { treat404AsDown: true }
 );
