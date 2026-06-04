@@ -7,7 +7,7 @@ describe('api/registrobr/v1 (E2E)', () => {
   let URL = '';
 
   beforeAll(async () => {
-    URL = `${global.SERVER_URL}/api/registrobr/v1`;
+    URL = `${globalThis.SERVER_URL}/api/registrobr/v1`;
   });
 
   test('Pesquisando um dominio registrado', async () => {

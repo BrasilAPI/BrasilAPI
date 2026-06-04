@@ -8,7 +8,7 @@ describe('api/ddd/v1 (E2E)', () => {
   let requestUrl = '';
 
   beforeAll(async () => {
-    requestUrl = `${global.SERVER_URL}/api/ddd/v1`;
+    requestUrl = `${globalThis.SERVER_URL}/api/ddd/v1`;
   });
 
   test('Utilizando um DDD válido: 11', async () => {

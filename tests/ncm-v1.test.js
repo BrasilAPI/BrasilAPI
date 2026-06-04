@@ -13,7 +13,7 @@ const validOutputSchema = expect.objectContaining({
 describe('ncm v1 (E2E)', () => {
   describe('GET /ncm/v1/:code', () => {
     test('Utilizando um ncm code válido: 33051000', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/ncm/v1/33051000`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/ncm/v1/33051000`;
       const response = await axios.get(requestUrl);
       expect(response.status).toBe(200);
       expect(response.data).toEqual(validOutputSchema);
@@ -24,7 +24,7 @@ describe('ncm v1 (E2E)', () => {
     });
 
     test('Utilizando um código inexistente: 00', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/ncm/v1/00`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/ncm/v1/00`;
       try {
         await axios.get(requestUrl);
       } catch (error) {
@@ -40,7 +40,7 @@ describe('ncm v1 (E2E)', () => {
 
   describe('GET /ncm/v1?search=:description', () => {
     test('Utilizando uma descrição válida: Xampus', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/ncm/v1?search=Xampus`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/ncm/v1?search=Xampus`;
       const response = await axios.get(requestUrl);
       expect(response.status).toBe(200);
       expect(response.data).toEqual(
@@ -55,7 +55,7 @@ describe('ncm v1 (E2E)', () => {
     });
 
     test('Utilizando uma descrição inexistente: localhost', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/ncm/v1?search=localhost`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/ncm/v1?search=localhost`;
       try {
         await axios.get(requestUrl);
       } catch (error) {
@@ -66,7 +66,7 @@ describe('ncm v1 (E2E)', () => {
       }
     });
     test('Utilizando um código válido: 330410', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/ncm/v1?search=330410`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/ncm/v1?search=330410`;
       const response = await axios.get(requestUrl);
       expect(response.status).toBe(200);
 
@@ -81,7 +81,7 @@ describe('ncm v1 (E2E)', () => {
     });
 
     test('Utilizando um código inexistente: 00', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/ncm/v1?search=00`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/ncm/v1?search=00`;
 
       try {
         await axios.get(requestUrl);
@@ -95,7 +95,7 @@ describe('ncm v1 (E2E)', () => {
   });
 
   test('GET /ncm/v1', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/ncm/v1`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/ncm/v1`;
     const response = await axios.get(requestUrl);
     expect(response.status).toBe(200);
     expect(Array.isArray(response.data)).toBe(true);

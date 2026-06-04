@@ -11,14 +11,14 @@ const validOutputSchema = expect.objectContaining({
 describe('banks v1 (E2E)', () => {
   describe('GET /banks/v1/:code', () => {
     test('Verifica CORS', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/banks/v1/260`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/banks/v1/260`;
       const response = await axios.get(requestUrl);
 
       expect(response.headers['access-control-allow-origin']).toBe('*');
     });
 
     test('Utilizando um bank code válido: 260', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/banks/v1/260`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/banks/v1/260`;
       const response = await axios.get(requestUrl);
 
       expect(response.status).toBe(200);
@@ -31,7 +31,7 @@ describe('banks v1 (E2E)', () => {
     });
 
     test('Utilizando um bank code válido (com vírgula no nome): 402', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/banks/v1/402`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/banks/v1/402`;
       const response = await axios.get(requestUrl);
 
       expect(response.status).toBe(200);
@@ -45,7 +45,7 @@ describe('banks v1 (E2E)', () => {
 
     test('Utilizando um código inexistente: 1111111', async () => {
       expect.assertions(2);
-      const requestUrl = `${global.SERVER_URL}/api/banks/v1/1111111`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/banks/v1/1111111`;
 
       try {
         await axios.get(requestUrl);
@@ -62,7 +62,7 @@ describe('banks v1 (E2E)', () => {
   });
 
   test('GET /banks/v1', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/banks/v1`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/banks/v1`;
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);

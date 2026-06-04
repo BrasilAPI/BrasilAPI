@@ -25,7 +25,7 @@ const getExpectedUfShape = (id) => ({
 
 describeIf('/ibge/uf/v1 (E2E)', () => {
   test('Utilizando um Codigo válido: 22', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/ibge/uf/v1/22`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/ibge/uf/v1/22`;
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);
@@ -33,7 +33,7 @@ describeIf('/ibge/uf/v1 (E2E)', () => {
   });
 
   test('Utilizando um Codigo inexistente ou inválido: 99', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/ibge/uf/v1/99`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/ibge/uf/v1/99`;
 
     try {
       await axios.get(requestUrl);
@@ -44,7 +44,7 @@ describeIf('/ibge/uf/v1 (E2E)', () => {
   });
 
   test('Buscando todas as ufs', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/ibge/uf/v1`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/ibge/uf/v1`;
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);
@@ -66,7 +66,7 @@ describeIf('/ibge/uf/v1 (E2E)', () => {
   });
 
   test('Utilizando uma Sigla válida: sc', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/ibge/uf/v1/sc`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/ibge/uf/v1/sc`;
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);
@@ -75,7 +75,7 @@ describeIf('/ibge/uf/v1 (E2E)', () => {
   });
 
   test('Utilizando uma Sigla válida: PI', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/ibge/uf/v1/PI`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/ibge/uf/v1/PI`;
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);
@@ -84,7 +84,7 @@ describeIf('/ibge/uf/v1 (E2E)', () => {
   });
 
   test('Utilizando um sigla inexistente ou inválida: SJ', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/ibge/uf/v1/SJ`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/ibge/uf/v1/SJ`;
 
     try {
       await axios.get(requestUrl);

@@ -28,14 +28,14 @@ const validTestTableArray = expect.arrayContaining([validOutputSchema]);
 describe('corretoras v1 (E2E)', () => {
   describe('GET /cvm/corretoras/v1/:cnpj', () => {
     test('Verifica CORS', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cvm/corretoras/v1/02332886000104`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cvm/corretoras/v1/02332886000104`;
       const response = await axios.get(requestUrl);
 
       expect(response.headers['access-control-allow-origin']).toBe('*');
     });
 
     test('Utilizando um CNPJ válido: 02332886000104', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cvm/corretoras/v1/02332886000104`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cvm/corretoras/v1/02332886000104`;
       const response = await axios.get(requestUrl);
 
       expect(response.status).toBe(200);
@@ -51,7 +51,7 @@ describe('corretoras v1 (E2E)', () => {
     });
 
     test('Utilizando um CNPJ inexistente: 1111111', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cvm/corretoras/v1/1111111`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cvm/corretoras/v1/1111111`;
 
       try {
         await axios.get(requestUrl);
@@ -69,7 +69,7 @@ describe('corretoras v1 (E2E)', () => {
   });
 
   test('GET /cvm/corretoras/v1', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/cvm/corretoras/v1`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/cvm/corretoras/v1`;
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);

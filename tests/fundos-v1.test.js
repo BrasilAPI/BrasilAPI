@@ -76,7 +76,7 @@ const validFunds = expect.objectContaining({
 describe('funds v1 (E2E)', () => {
   describe('GET /cvm/fundos/v1/:cnpj', () => {
     test('Utilizando um CNPJ válido: 00000684000121', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cvm/fundos/v1/00000684000121`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cvm/fundos/v1/00000684000121`;
       const response = await axios.get(requestUrl);
 
       expect(response.status).toBe(200);
@@ -84,7 +84,7 @@ describe('funds v1 (E2E)', () => {
     });
 
     test('Utilizando um CNPJ inexistente: 1111111', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cvm/fundos/v1/1111111`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cvm/fundos/v1/1111111`;
 
       try {
         await axios.get(requestUrl);
@@ -102,7 +102,7 @@ describe('funds v1 (E2E)', () => {
   });
 
   test('GET /cvm/fundos/v1', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/cvm/fundos/v1`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/cvm/fundos/v1`;
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);

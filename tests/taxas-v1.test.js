@@ -7,7 +7,7 @@ describe('api/taxas/v1 (E2E)', () => {
   let requestUrl = '';
 
   beforeAll(async () => {
-    requestUrl = `${global.SERVER_URL}/api/taxas/v1`;
+    requestUrl = `${globalThis.SERVER_URL}/api/taxas/v1`;
   });
 
   test('Recuperando a lista de taxas', async () => {

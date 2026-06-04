@@ -6,7 +6,7 @@ export const testCorsForRoute = (route) => {
     let url = '';
 
     beforeEach(() => {
-      url = `${global.SERVER_URL}${route}`;
+      url = `${globalThis.SERVER_URL}${route}`;
     });
 
     it('deve permitir solicitações da origem permitida', async () => {

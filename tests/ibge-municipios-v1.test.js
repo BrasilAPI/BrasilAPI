@@ -13,7 +13,7 @@ const validTestArray = expect.arrayContaining([
 // TODO: This test is intermitent at Github Actions provider
 describe.skip('/ibge/municipios/v1 (E2E)', () => {
   test('Utilizando uma sigla válida: SC', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/ibge/municipios/v1/SC`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/ibge/municipios/v1/SC`;
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);
@@ -21,7 +21,7 @@ describe.skip('/ibge/municipios/v1 (E2E)', () => {
   });
 
   test('Utilizando uma sigla válida: RS', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/ibge/municipios/v1/RS`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/ibge/municipios/v1/RS`;
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);
@@ -29,7 +29,7 @@ describe.skip('/ibge/municipios/v1 (E2E)', () => {
   });
 
   test('Utilizando provider gov:', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/ibge/municipios/v1/RS?providers=gov`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/ibge/municipios/v1/RS?providers=gov`;
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);
@@ -37,7 +37,7 @@ describe.skip('/ibge/municipios/v1 (E2E)', () => {
   });
 
   test('Utilizando provider dados-abertos-br:', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/ibge/municipios/v1/RS?providers=dados-abertos-br`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/ibge/municipios/v1/RS?providers=dados-abertos-br`;
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);
@@ -45,7 +45,7 @@ describe.skip('/ibge/municipios/v1 (E2E)', () => {
   });
 
   test('Utilizando provider wikipedia:', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/ibge/municipios/v1/RS?providers=wikipedia`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/ibge/municipios/v1/RS?providers=wikipedia`;
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);
@@ -53,7 +53,7 @@ describe.skip('/ibge/municipios/v1 (E2E)', () => {
   });
 
   test('Utilizando uma sigla inexistente (formato válido): AA', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/ibge/municipios/v1/AA`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/ibge/municipios/v1/AA`;
 
     try {
       await axios.get(requestUrl);
@@ -69,7 +69,7 @@ describe.skip('/ibge/municipios/v1 (E2E)', () => {
   });
 
   test('Sigla mal formatada: 400', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/ibge/municipios/v1/SP1`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/ibge/municipios/v1/SP1`;
 
     try {
       await axios.get(requestUrl);
@@ -84,7 +84,7 @@ describe.skip('/ibge/municipios/v1 (E2E)', () => {
   });
 
   test('Provider inválido na query: 422', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/ibge/municipios/v1/RS?providers=gov,foo`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/ibge/municipios/v1/RS?providers=gov,foo`;
 
     try {
       await axios.get(requestUrl);

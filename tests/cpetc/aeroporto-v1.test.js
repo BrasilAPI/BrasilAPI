@@ -10,7 +10,7 @@ const describeIf = await createDescribeIf(
 
 describeIf('weather airport v1 (E2E)', () => {
   test('GET /api/cptec/v1/clima/aeroporto/:icaoCode (Código inexistente)', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/cptec/v1/clima/aeroporto/AAAA`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/cptec/v1/clima/aeroporto/AAAA`;
 
     try {
       await axios.get(requestUrl);
@@ -27,7 +27,7 @@ describeIf('weather airport v1 (E2E)', () => {
   });
 
   test('GET /api/cptec/v1/clima/aeroporto/:icaoCode', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/cptec/v1/clima/aeroporto/SBSP`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/cptec/v1/clima/aeroporto/SBSP`;
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);

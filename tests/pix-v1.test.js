@@ -7,7 +7,7 @@ describe('api/pix/v1/participants (E2E)', () => {
   let requestUrl = '';
 
   beforeAll(async () => {
-    requestUrl = `${global.SERVER_URL}/api/pix/v1/participants`;
+    requestUrl = `${globalThis.SERVER_URL}/api/pix/v1/participants`;
   });
 
   test('should return full list', async () => {

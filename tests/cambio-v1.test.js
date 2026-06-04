@@ -12,13 +12,13 @@ const formatDate = (date, format = 'DD/MM/YYYY') => dayjs(date).format(format);
 describe('Cambio v1 (E2E)', () => {
   describe('GET /cambio/v1/cotacao/:moeda/:data', () => {
     test('Verifica CORS', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cambio/v1/cotacao/USD/2023-06-27`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cambio/v1/cotacao/USD/2023-06-27`;
       const response = await axios.get(requestUrl);
 
       expect(response.headers['access-control-allow-origin']).toBe('*');
     });
     test('Utilizando moeda e data válida: USD e 2023-06-27', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cambio/v1/cotacao/USD/2023-06-27`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cambio/v1/cotacao/USD/2023-06-27`;
       const response = await axios.get(requestUrl);
 
       expect(response.status).toBe(200);
@@ -71,7 +71,7 @@ describe('Cambio v1 (E2E)', () => {
     });
 
     test('Utilizando moeda inexistente e data válida: ZZZ e 2023-06-27', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cambio/v1/cotacao/ZZZ/2023-06-27`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cambio/v1/cotacao/ZZZ/2023-06-27`;
 
       try {
         await axios.get(requestUrl);
@@ -89,7 +89,7 @@ describe('Cambio v1 (E2E)', () => {
     });
 
     test('Utilizando moeda válida e data com formato inapropriado: USD e 27-06-2023', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cambio/v1/cotacao/USD/27-06-2023`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cambio/v1/cotacao/USD/27-06-2023`;
 
       try {
         await axios.get(requestUrl);
@@ -106,7 +106,7 @@ describe('Cambio v1 (E2E)', () => {
     });
 
     test('Utilizando moeda válida e utilizando um dia não útil (fim de semana): USD e 2025-02-16', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cambio/v1/cotacao/USD/2025-02-16`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cambio/v1/cotacao/USD/2025-02-16`;
 
       const response = await axios.get(requestUrl);
       expect(response.status).toBe(200);
@@ -118,7 +118,7 @@ describe('Cambio v1 (E2E)', () => {
     test('Tentando utilizar uma data futura ao dia da consulta: USD', async () => {
       const today = new Date();
       const fiveYearsLater = dayjs(today).add(5, 'year').format('YYYY-MM-DD');
-      const requestUrl = `${global.SERVER_URL}/api/cambio/v1/cotacao/USD/${fiveYearsLater}`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cambio/v1/cotacao/USD/${fiveYearsLater}`;
 
       try {
         await axios.get(requestUrl);
@@ -135,7 +135,7 @@ describe('Cambio v1 (E2E)', () => {
     });
 
     test('Datas anteriores ao início da base de dados (1984-11-28): USD e 1984-05-28', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cambio/v1/cotacao/USD/1984-05-28`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cambio/v1/cotacao/USD/1984-05-28`;
 
       try {
         await axios.get(requestUrl);
@@ -153,7 +153,7 @@ describe('Cambio v1 (E2E)', () => {
 
     test('Não deve permitir acesso a cotação de hoje', async () => {
       const today = formatDate(new Date(), 'YYYY-MM-DD');
-      const requestUrl = `${global.SERVER_URL}/api/cambio/v1/cotacao/USD/${today}`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cambio/v1/cotacao/USD/${today}`;
 
       try {
         await axios.get(requestUrl);
@@ -171,7 +171,7 @@ describe('Cambio v1 (E2E)', () => {
     });
 
     test('Não deve aceitar mês 00 (zero): USD e 2023-00-01', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cambio/v1/cotacao/USD/2023-00-01`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cambio/v1/cotacao/USD/2023-00-01`;
 
       try {
         await axios.get(requestUrl);
@@ -189,7 +189,7 @@ describe('Cambio v1 (E2E)', () => {
     });
 
     test('Não deve aceitar mês 13 ou superior: USD e 2023-13-01', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cambio/v1/cotacao/USD/2023-13-01`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cambio/v1/cotacao/USD/2023-13-01`;
 
       try {
         await axios.get(requestUrl);
@@ -207,7 +207,7 @@ describe('Cambio v1 (E2E)', () => {
     });
 
     test('Não deve aceitar dia 00 (zero): USD e 2023-06-00', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cambio/v1/cotacao/USD/2023-06-00`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cambio/v1/cotacao/USD/2023-06-00`;
 
       try {
         await axios.get(requestUrl);
@@ -222,7 +222,7 @@ describe('Cambio v1 (E2E)', () => {
     });
 
     test('Não deve aceitar dia superior ao máximo do mês: USD e 2023-06-31', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cambio/v1/cotacao/USD/2023-06-31`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cambio/v1/cotacao/USD/2023-06-31`;
 
       try {
         await axios.get(requestUrl);
@@ -237,7 +237,7 @@ describe('Cambio v1 (E2E)', () => {
     });
 
     test('Não deve aceitar dia 30 em fevereiro: USD e 2023-02-30', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cambio/v1/cotacao/USD/2023-02-30`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cambio/v1/cotacao/USD/2023-02-30`;
 
       try {
         await axios.get(requestUrl);
@@ -252,7 +252,7 @@ describe('Cambio v1 (E2E)', () => {
     });
 
     test('Deve aceitar 29 de fevereiro em ano bissexto: USD e 2024-02-29', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cambio/v1/cotacao/USD/2024-02-29`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cambio/v1/cotacao/USD/2024-02-29`;
 
       const response = await axios.get(requestUrl);
       expect(response.status).toBe(200);
@@ -264,13 +264,13 @@ describe('Cambio v1 (E2E)', () => {
   });
   describe('GET /cambio/v1/moedas', () => {
     test('Verifica CORS', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cambio/v1/moedas`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cambio/v1/moedas`;
       const response = await axios.get(requestUrl);
 
       expect(response.headers['access-control-allow-origin']).toBe('*');
     });
     test('Lista moedas', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cambio/v1/moedas`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cambio/v1/moedas`;
       const response = await axios.get(requestUrl);
 
       expect(response.status).toBe(200);

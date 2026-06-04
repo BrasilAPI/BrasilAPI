@@ -13,7 +13,7 @@ describe('/feriados/v1 (E2E)', () => {
 
   test('Sem ano: "erro"', async () => {
     expect.assertions(2);
-    const requestUrl = `${global.SERVER_URL}/api/feriados/v1`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/feriados/v1`;
 
     try {
       await axios.get(requestUrl);
@@ -31,7 +31,7 @@ describe('/feriados/v1 (E2E)', () => {
 
   test('Feriados fixos com ano válido entre 1900 e 2199', async () => {
     const year = 1900 + crypto.randomInt(2199 - 1900);
-    const requestUrl = `${global.SERVER_URL}/api/feriados/v1/${year}`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/feriados/v1/${year}`;
     const { data } = await axios.get(requestUrl);
 
     expect.assertions(1);
@@ -45,7 +45,7 @@ describe('/feriados/v1 (E2E)', () => {
 
     await Promise.all(
       years.map(async (year) => {
-        const requestUrl = `${global.SERVER_URL}/api/feriados/v1/${year}`;
+        const requestUrl = `${globalThis.SERVER_URL}/api/feriados/v1/${year}`;
         const { data } = await axios.get(requestUrl);
 
         expect(data).toEqual(expect.arrayContaining(getEasterHolidays(year)));
@@ -54,7 +54,7 @@ describe('/feriados/v1 (E2E)', () => {
   });
 
   test('Feriados em ordem', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/feriados/v1/2020`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/feriados/v1/2020`;
     const { data } = await axios.get(requestUrl);
     expect.assertions(1);
     expect(data).toEqual(getHolidays(2020));
@@ -62,7 +62,7 @@ describe('/feriados/v1 (E2E)', () => {
 
   test('Utilizando um ano fora do intervalo suportado: 3000', async () => {
     expect.assertions(2);
-    const requestUrl = `${global.SERVER_URL}/api/feriados/v1/3000`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/feriados/v1/3000`;
 
     try {
       await axios.get(requestUrl);
@@ -79,7 +79,7 @@ describe('/feriados/v1 (E2E)', () => {
 
   test('Utilizando um ano inválido: "erro"', async () => {
     expect.assertions(2);
-    const requestUrl = `${global.SERVER_URL}/api/feriados/v1/erro`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/feriados/v1/erro`;
 
     try {
       await axios.get(requestUrl);
@@ -97,7 +97,7 @@ describe('/feriados/v1 (E2E)', () => {
 
   test('Tiradentes e Páscoa no mesmo dia (2019)', async () => {
     expect.assertions(2);
-    const requestUrl = `${global.SERVER_URL}/api/feriados/v1/2019`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/feriados/v1/2019`;
     const { data } = await axios.get(requestUrl);
 
     expect.assertions(2);
@@ -111,7 +111,7 @@ describe('/feriados/v1 (E2E)', () => {
   test('Feriado da consciência negra não deve existir em ano anterior a 2024', async () => {
     expect.assertions(2);
 
-    const requestUrl = `${global.SERVER_URL}/api/feriados/v1/2023`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/feriados/v1/2023`;
     const { data } = await axios.get(requestUrl);
 
     expect(data).toHaveLength(12);
@@ -125,7 +125,7 @@ describe('/feriados/v1 (E2E)', () => {
   test('Feriado da consciência negra deve existir a partir de 2024', async () => {
     expect.assertions(2);
 
-    const requestUrl = `${global.SERVER_URL}/api/feriados/v1/2024`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/feriados/v1/2024`;
     const { data } = await axios.get(requestUrl);
 
     expect(data).toHaveLength(13);
@@ -137,7 +137,7 @@ describe('/feriados/v1 (E2E)', () => {
   test('[CICLO 1] Ano Novo (01-01-2025) deve ter o campo weekday com valor "quarta-feira"', async () => {
     expect.assertions(2);
 
-    const requestUrl = `${global.SERVER_URL}/api/feriados/v1/2025`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/feriados/v1/2025`;
     const { data } = await axios.get(requestUrl);
 
     const newYear = data.find((h) => h.date === '2025-01-01');
@@ -148,7 +148,7 @@ describe('/feriados/v1 (E2E)', () => {
   test('[CICLO 2] Páscoa (20-04-2025) deve ter o campo weekday com valor "domingo"', async () => {
     expect.assertions(2);
 
-    const requestUrl = `${global.SERVER_URL}/api/feriados/v1/2025`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/feriados/v1/2025`;
     const { data } = await axios.get(requestUrl);
 
     const easter = data.find((h) => h.date === '2025-04-20');
@@ -159,7 +159,7 @@ describe('/feriados/v1 (E2E)', () => {
   test('[CICLO 3] Todos os feriados devem ter o campo weekday com valor válido', async () => {
     expect.assertions(2);
 
-    const requestUrl = `${global.SERVER_URL}/api/feriados/v1/2025`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/feriados/v1/2025`;
     const { data } = await axios.get(requestUrl);
 
     const validWeekdays = [

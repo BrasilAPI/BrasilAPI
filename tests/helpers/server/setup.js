@@ -19,7 +19,7 @@ beforeAll(async () => {
 
   const host = 'http://localhost:3000';
 
-  global.SERVER_URL = host;
+  globalThis.SERVER_URL = host;
 
   async function waitForAllServices() {
     async function waitForWebServer() {

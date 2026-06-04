@@ -10,7 +10,7 @@ const describeIf = await createDescribeIf(
 describeIf('cities v1 (E2E)', () => {
   describe('GET /cptec/v1/cidade/:name', () => {
     test('Utilizando um nome de cidade existente: São Sebastião', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cptec/v1/cidade/São Sebastião`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cptec/v1/cidade/São Sebastião`;
       const response = await axios.get(requestUrl);
 
       expect(response.status).toBe(200);
@@ -24,7 +24,7 @@ describeIf('cities v1 (E2E)', () => {
     });
 
     test('Utilizando um nome de cidade com retorno único: Belo Horizonte', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cptec/v1/cidade/Belo Horizonte`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cptec/v1/cidade/Belo Horizonte`;
       const response = await axios.get(requestUrl);
 
       expect(response.status).toBe(200);
@@ -38,7 +38,7 @@ describeIf('cities v1 (E2E)', () => {
     });
 
     test('Utilizando um nome de cidade inexistente: chiforímpola', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cptec/v1/cidade/chiforímpola`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cptec/v1/cidade/chiforímpola`;
 
       try {
         await axios.get(requestUrl);
@@ -56,7 +56,7 @@ describeIf('cities v1 (E2E)', () => {
   });
 
   test('GET /cptec/v1/cidade', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/cptec/v1/cidade`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/cptec/v1/cidade`;
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);

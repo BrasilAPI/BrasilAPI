@@ -7,7 +7,7 @@ describe('api/cnpj/v1 (E2E)', () => {
   let requestUrl = '';
 
   beforeAll(async () => {
-    requestUrl = `${global.SERVER_URL}/api/cnpj/v1`;
+    requestUrl = `${globalThis.SERVER_URL}/api/cnpj/v1`;
   });
 
   test('Verifica CORS', async () => {

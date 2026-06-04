@@ -10,7 +10,7 @@ const describeIf = await createDescribeIf(
 describeIf('ondas prediction v1 (E2E)', () => {
   describe('Route WITHOUT number of days for ondas', () => {
     test('GET /api/cptec/v1/ondas/:cityCode (Invalid City Code)', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cptec/v1/ondas/9999`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cptec/v1/ondas/9999`;
 
       try {
         await axios.get(requestUrl);
@@ -27,7 +27,7 @@ describeIf('ondas prediction v1 (E2E)', () => {
     });
 
     test('GET /api/cptec/v1/ondas/:cityCode', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cptec/v1/ondas/241`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cptec/v1/ondas/241`;
       const response = await axios.get(requestUrl);
 
       expect(response.status).toBe(200);
@@ -45,7 +45,7 @@ describeIf('ondas prediction v1 (E2E)', () => {
 
   describe('Route WITH number of days for query', () => {
     test('GET /api/cptec/v1/ondas/:cityCode/:days', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cptec/v1/ondas/241/2`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cptec/v1/ondas/241/2`;
       const response = await axios.get(requestUrl);
 
       expect(response.status).toBe(200);
@@ -60,8 +60,8 @@ describeIf('ondas prediction v1 (E2E)', () => {
     });
 
     test('GET /api/cptec/v1/ondas/:cityCode/days (Invalid number of days)', async () => {
-      const requestUrl1 = `${global.SERVER_URL}/api/cptec/v1/ondas/241/7`;
-      const requestUrl2 = `${global.SERVER_URL}/api/cptec/v1/ondas/241/0`;
+      const requestUrl1 = `${globalThis.SERVER_URL}/api/cptec/v1/ondas/241/7`;
+      const requestUrl2 = `${globalThis.SERVER_URL}/api/cptec/v1/ondas/241/0`;
 
       // More than 6 days
       try {
@@ -93,7 +93,7 @@ describeIf('ondas prediction v1 (E2E)', () => {
     });
 
     test('GET /api/cptec/v1/ondas/:cityCode/:days (Non-integer days: 1.5)', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cptec/v1/ondas/241/1.5`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cptec/v1/ondas/241/1.5`;
 
       try {
         await axios.get(requestUrl);

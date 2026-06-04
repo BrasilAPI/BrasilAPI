@@ -50,7 +50,7 @@ const validTestVehiclesArray = expect.arrayContaining([
 
 describeIf('/fipe/tabelas/v1 (E2E)', () => {
   test('Listando as tabelas de referências', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/fipe/tabelas/v1`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/fipe/tabelas/v1`;
     const response = await axios.get(requestUrl);
     expect(response.status).toBe(200);
     expect(response.data).toEqual(validTestTableArray);
@@ -59,7 +59,7 @@ describeIf('/fipe/tabelas/v1 (E2E)', () => {
 
 describeIf('/fipe/marcas/v1 (E2E)', () => {
   test('Listando as marcas sem tabela de referência', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/fipe/marcas/v1`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/fipe/marcas/v1`;
     const response = await axios.get(requestUrl);
     expect(response.status).toBe(200);
     expect(response.data).toEqual(validTestAutomakersArray);
@@ -69,7 +69,7 @@ describeIf('/fipe/marcas/v1 (E2E)', () => {
 describeIf('/fipe/preco/v1 (E2E)', () => {
   test('Buscando preço de veículo com código FIPE válido', async () => {
     const fipeCode = '015088-6';
-    const requestUrl = `${global.SERVER_URL}/api/fipe/preco/v1/${fipeCode}`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/fipe/preco/v1/${fipeCode}`;
     const response = await axios.get(requestUrl);
     expect(response.status).toBe(200);
     expect(response.data).toEqual(validTestVehicleArray);
@@ -77,7 +77,7 @@ describeIf('/fipe/preco/v1 (E2E)', () => {
 
   test('Buscando preço com código FIPE inválido', async () => {
     const fipeCode = 'AAAAAA-6';
-    const requestUrl = `${global.SERVER_URL}/api/fipe/preco/v1/${fipeCode}`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/fipe/preco/v1/${fipeCode}`;
     let result;
     try {
       await axios.get(requestUrl);
@@ -98,14 +98,14 @@ describeIf('/fipe/preco/v1 (E2E)', () => {
 
 describeIf('/fipe/veiculos/v1 (E2E)', () => {
   test('Listando os modelos de veiculos com tipo de veiculo, marca e tabela de referência', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/fipe/veiculos/v1/carros/21?tabela_referencia=315`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/fipe/veiculos/v1/carros/21?tabela_referencia=315`;
     const response = await axios.get(requestUrl);
     expect(response.status).toBe(200);
     expect(response.data).toEqual(validTestVehiclesArray);
   });
 
   test('Listando os modelos de veiculos com tipo de veiculo e marca, sem tabela de referência', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/fipe/veiculos/v1/carros/21`;
+    const requestUrl = `${globalThis.SERVER_URL}/api/fipe/veiculos/v1/carros/21`;
     const response = await axios.get(requestUrl);
     expect(response.status).toBe(200);
     expect(response.data).toEqual(validTestVehiclesArray);

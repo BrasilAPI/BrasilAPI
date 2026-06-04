@@ -10,7 +10,7 @@ const describeIf = await createDescribeIf(
 describeIf('weather prediction v1 (E2E)', () => {
   describe('Route WITHOUT number of days for prediction', () => {
     test('GET /api/cptec/v1/clima/previsao/:cityCode (Invalid City Code)', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cptec/v1/clima/previsao/9999`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cptec/v1/clima/previsao/9999`;
 
       try {
         await axios.get(requestUrl);
@@ -27,7 +27,7 @@ describeIf('weather prediction v1 (E2E)', () => {
     });
 
     test('GET /api/cptec/v1/clima/previsao/:cityCode', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cptec/v1/clima/previsao/999`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cptec/v1/clima/previsao/999`;
       const response = await axios.get(requestUrl);
 
       expect(response.status).toBe(200);
@@ -44,7 +44,7 @@ describeIf('weather prediction v1 (E2E)', () => {
 
   describe('Route WITH number of days for query', () => {
     test('GET /api/cptec/v1/clima/previsao/:cityCode/:days', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cptec/v1/clima/previsao/999/2`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cptec/v1/clima/previsao/999/2`;
       const response = await axios.get(requestUrl);
 
       expect(response.status).toBe(200);
@@ -60,8 +60,8 @@ describeIf('weather prediction v1 (E2E)', () => {
     });
 
     test('GET /api/cptec/v1/clima/previsao/:cityCode/:days (Invalid number of days)', async () => {
-      const requestUrl1 = `${global.SERVER_URL}/api/cptec/v1/clima/previsao/999/15`;
-      const requestUrl2 = `${global.SERVER_URL}/api/cptec/v1/clima/previsao/999/0`;
+      const requestUrl1 = `${globalThis.SERVER_URL}/api/cptec/v1/clima/previsao/999/15`;
+      const requestUrl2 = `${globalThis.SERVER_URL}/api/cptec/v1/clima/previsao/999/0`;
 
       // More than 14 days
       try {
@@ -96,7 +96,7 @@ describeIf('weather prediction v1 (E2E)', () => {
   });
   describe('Route WITH lat long', () => {
     test('GET prevision of campina - sp', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cptec/v1/clima/previsao/semana/-22.90/-47.06`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cptec/v1/clima/previsao/semana/-22.90/-47.06`;
       const response = await axios.get(requestUrl);
 
       expect(response.status).toBe(200);
@@ -113,7 +113,7 @@ describeIf('weather prediction v1 (E2E)', () => {
     });
     // TODO: verify response to positive lat/long
     /*test('GET prevision of campina - sp with positive lat/long', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cptec/v1/clima/previsao/semana/22.90/47.06`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cptec/v1/clima/previsao/semana/22.90/47.06`;
       const response = await axios.get(requestUrl);
 
       expect(response.status).toBe(200);
@@ -129,7 +129,7 @@ describeIf('weather prediction v1 (E2E)', () => {
       });
     });*/
     test('GET prevision of location not in Brazil', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cptec/v1/clima/previsao/semana/1/1`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cptec/v1/clima/previsao/semana/1/1`;
       try {
         await axios.get(requestUrl);
       } catch (error) {
@@ -146,7 +146,7 @@ describeIf('weather prediction v1 (E2E)', () => {
     });
 
     test('GET with invalid long', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cptec/v1/clima/previsao/semana/-22.90/abc`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cptec/v1/clima/previsao/semana/-22.90/abc`;
       try {
         await axios.get(requestUrl);
       } catch (error) {
@@ -160,7 +160,7 @@ describeIf('weather prediction v1 (E2E)', () => {
       }
     });
     test('GET with invalid lat', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/cptec/v1/clima/previsao/semana/abc/-47.06`;
+      const requestUrl = `${globalThis.SERVER_URL}/api/cptec/v1/clima/previsao/semana/abc/-47.06`;
       try {
         await axios.get(requestUrl);
       } catch (error) {
