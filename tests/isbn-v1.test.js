@@ -60,6 +60,7 @@ describe('api/isbn/v1 (E2E)', () => {
     try {
       await axios.get(`${requestUrl}/9788549173447`);
     } catch (error) {
+      if (!error.response) throw error;
       const { response } = error;
       const { data, status } = response;
 
@@ -76,6 +77,7 @@ describe('api/isbn/v1 (E2E)', () => {
     try {
       await axios.get(`${requestUrl}/9788491734444`);
     } catch (error) {
+      if (!error.response) throw error;
       const { response } = error;
       const { data, status } = response;
 
