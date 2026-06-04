@@ -112,9 +112,9 @@ describeIf('/fipe/veiculos/v1 (E2E)', () => {
   });
 });
 
-if (!shouldSkipTests) {
+describeIf('CORS tests', () => {
   testCorsForRoute('/api/fipe/tabelas/v1');
   testCorsForRoute('/api/fipe/marcas/v1');
   testCorsForRoute('/api/fipe/preco/v1/015088-6');
   testCorsForRoute('/api/fipe/veiculos/v1/carros/21');
-}
+});
