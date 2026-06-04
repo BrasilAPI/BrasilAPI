@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { describe, test, expect } from 'vitest';
+import { describe, test, expect, beforeAll } from 'vitest';
 
 import { testCorsForRoute } from './helpers/cors';
 import { createDescribeIf } from './helpers/smartSkip';
