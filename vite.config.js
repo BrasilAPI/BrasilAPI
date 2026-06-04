@@ -9,6 +9,7 @@ export default defineConfig({
     },
   },
   test: {
+    retry: 2,
     setupFiles: ['./tests/helpers/server/setup.js'],
     globals: false,
     fileParallelism: false,

@@ -1,5 +1,14 @@
-import { beforeAll } from 'vitest';
+import { beforeAll, afterEach } from 'vitest';
 import retry from 'async-retry';
+
+// Hook global para adicionar um pequeno delay (backoff) antes de retentar um teste que falhou
+// Isso evita bombardear serviços do governo (IBGE, etc) em sequência causando mais timeouts
+afterEach(async (context) => {
+  if (context.task.result?.state === 'fail') {
+    // Aguarda 3 segundos se o teste falhou, antes do Vitest tentar novamente
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+  }
+});
 
 beforeAll(async () => {
   if (process.env.NODE_ENV !== 'test') {
