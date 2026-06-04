@@ -41,19 +41,19 @@ const addCapital = (uf) => ({
 });
 
 export const getUfs = () =>
-  axios.get(URL_UF).then((response) => {
+  axios.get(URL_UF, { timeout: 10000 }).then((response) => {
     response.data = response.data.map(addCapital);
     return response;
   });
 
 export const getUfByCode = (code) =>
-  axios.get(`${URL_UF}/${code}`).then((response) => {
+  axios.get(`${URL_UF}/${code}`, { timeout: 10000 }).then((response) => {
     response.data = addCapital(response.data);
     return response;
   });
 
 export const getContiesByUf = async (uf) => {
-  const { data } = await axios.get(`${URL_UF}/${uf}/municipios`);
+  const { data } = await axios.get(`${URL_UF}/${uf}/municipios`, { timeout: 10000 });
 
   return data.map((item) => ({
     nome: item.nome,
@@ -69,7 +69,7 @@ export const getUfEstimatePopulationByCode = async (uf) => {
   const LATEST_PERIOD = -1;
 
   let { data } = await axios
-    .get(`${URL_AGGREGATES}/${ESTIMATED_POPULATION_AGGREGATE_ID}/periodos/${LATEST_PERIOD}/variaveis?localidades=N3[${ufCode}]`);
+    .get(`${URL_AGGREGATES}/${ESTIMATED_POPULATION_AGGREGATE_ID}/periodos/${LATEST_PERIOD}/variaveis?localidades=N3[${ufCode}]`, { timeout: 10000 });
   
   data = data.find((item) => item.id == ESTIMATED_POPULATION_VARIABLE_ID);
 
