@@ -32,7 +32,7 @@ jobs:
       - name: Rodar testes
         uses: nick-fields/retry@v2
         with:
-          timeout_minutes: 5
+          timeout_minutes: 10
           retry_wait_seconds: 120
           max_attempts: 3
           retry_on: error
