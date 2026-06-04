@@ -9,25 +9,27 @@ const describeIf = await createDescribeIf(
   'IBGE'
 );
 
+const getExpectedUfShape = (id) => ({
+  id,
+  sigla: expect.any(String),
+  nome: expect.any(String),
+  regiao: expect.objectContaining({
+    id: expect.any(Number),
+    sigla: expect.any(String),
+    nome: expect.any(String),
+  }),
+  capital: expect.any(String),
+  periodo: expect.any(String),
+  populacao_estimada: expect.any(Number),
+});
+
 describeIf('/ibge/uf/v1 (E2E)', () => {
   test('Utilizando um Codigo válido: 22', async () => {
     const requestUrl = `${global.SERVER_URL}/api/ibge/uf/v1/22`;
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);
-    expect(response.data).toEqual({
-      id: 22,
-      sigla: expect.any(String),
-      nome: expect.any(String),
-      regiao: expect.objectContaining({
-        id: expect.any(Number),
-        sigla: expect.any(String),
-        nome: expect.any(String),
-      }),
-      capital: expect.any(String),
-      periodo: expect.any(String),
-      populacao_estimada: expect.any(Number),
-    });
+    expect(response.data).toEqual(getExpectedUfShape(22));
   });
 
   test('Utilizando um Codigo inexistente ou inválido: 99', async () => {
@@ -68,19 +70,7 @@ describeIf('/ibge/uf/v1 (E2E)', () => {
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);
-    expect(response.data).toEqual({
-      id: 42,
-      sigla: expect.any(String),
-      nome: expect.any(String),
-      regiao: expect.objectContaining({
-        id: expect.any(Number),
-        sigla: expect.any(String),
-        nome: expect.any(String),
-      }),
-      capital: expect.any(String),
-      periodo: expect.any(String),
-      populacao_estimada: expect.any(Number),
-    });
+    expect(response.data).toEqual(getExpectedUfShape(42));
     expect(response.data.capital).toBe('Florianópolis');
   });
 
@@ -89,19 +79,7 @@ describeIf('/ibge/uf/v1 (E2E)', () => {
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);
-    expect(response.data).toEqual({
-      id: 22,
-      sigla: expect.any(String),
-      nome: expect.any(String),
-      regiao: expect.objectContaining({
-        id: expect.any(Number),
-        sigla: expect.any(String),
-        nome: expect.any(String),
-      }),
-      capital: expect.any(String),
-      periodo: expect.any(String),
-      populacao_estimada: expect.any(Number),
-    });
+    expect(response.data).toEqual(getExpectedUfShape(22));
     expect(response.data.capital).toBe('Teresina');
   });
 
@@ -123,8 +101,10 @@ describeIf('/ibge/uf/v1 (E2E)', () => {
 });
 
 // CORS tests - only run when IBGE service is healthy
-if (!shouldSkipTests) {
+describeIf('CORS tests', () => {
   testCorsForRoute('/api/ibge/uf/v1');
   testCorsForRoute('/api/ibge/uf/v1/22');
-  testCorsForRoute('/api/ibge/uf/v1/PI');
-}
+  testCorsForRoute('/api/ibge/uf/v1/SC');
+  testCorsForRoute('/api/ibge/uf/v1/pi');
+  testCorsForRoute('/api/ibge/uf/v1/saopaulo');
+});

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { test, expect, describe } from 'vitest';
+import { test, expect } from 'vitest';
 
 import { createDescribeIf } from '../helpers/smartSkip';
 
