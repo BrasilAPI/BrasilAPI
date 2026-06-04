@@ -10,7 +10,7 @@ beforeAll(async () => {
     const response = await axios.get(
       'http://servicos.cptec.inpe.br/XML/listaCidades?city=brasilia',
       {
-        timeout: 2000, // Short timeout to fail fast on DNS issues
+        timeout: 5000, // Short timeout to fail fast on DNS issues
       }
     );
 

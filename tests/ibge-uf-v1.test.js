@@ -12,7 +12,7 @@ beforeAll(async () => {
     const response = await axios.get(
       'https://servicodados.ibge.gov.br/api/v1/localidades/estados',
       {
-        timeout: 2000, // Short timeout to fail fast on DNS issues
+        timeout: 5000, // Short timeout to fail fast on DNS issues
       }
     );
 
