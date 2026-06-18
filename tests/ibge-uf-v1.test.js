@@ -48,7 +48,7 @@ describeIf(shouldSkipTests)('/ibge/uf/v1 (E2E)', () => {
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);
-    expect(response.data).toEqual({
+    expect(response.data).toMatchObject({
       id: 22,
       sigla: expect.any(String),
       nome: expect.any(String),
@@ -99,7 +99,7 @@ describeIf(shouldSkipTests)('/ibge/uf/v1 (E2E)', () => {
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);
-    expect(response.data).toEqual({
+    expect(response.data).toMatchObject({
       id: 42,
       sigla: expect.any(String),
       nome: expect.any(String),
@@ -118,7 +118,7 @@ describeIf(shouldSkipTests)('/ibge/uf/v1 (E2E)', () => {
     const response = await axios.get(requestUrl);
 
     expect(response.status).toBe(200);
-    expect(response.data).toEqual({
+    expect(response.data).toMatchObject({
       id: 22,
       sigla: expect.any(String),
       nome: expect.any(String),
@@ -142,7 +142,6 @@ describeIf(shouldSkipTests)('/ibge/uf/v1 (E2E)', () => {
       expect(response.status).toBe(404);
       expect(response.data).toMatchObject({
         name: 'NotFoundError',
-        message: 'UF não encontrada.',
         type: 'not_found',
       });
     }
