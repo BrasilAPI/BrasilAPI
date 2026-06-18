@@ -1,4 +1,4 @@
-# Arquivos de Instruções e Automação
+# Erquivos de Instruções e Automação
 
 Este diretório contém arquivos de configuração e instruções para auxiliar no desenvolvimento e revisão de código do BrasilAPI.
 
