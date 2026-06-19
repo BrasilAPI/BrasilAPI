@@ -11,8 +11,21 @@ function onlyDigits(cep) {
 }
 
 function isValidCep(cep) {
+  return /^\d{8}$/.test(cep) || /^\d{5}-\d{3}$/.test(cep);
+}
+
+function getCepValidationMessage(cep) {
   const cleanCep = onlyDigits(cep);
-  return cleanCep.length === CEP_LENGTH;
+
+  if (cleanCep.length < CEP_LENGTH) {
+    return `CEP informado possui menos do que ${CEP_LENGTH} caracteres.`;
+  }
+
+  if (cleanCep.length > CEP_LENGTH) {
+    return `CEP informado possui mais do que ${CEP_LENGTH} caracteres.`;
+  }
+
+  return 'CEP informado deve conter apenas números ou seguir o formato 00000-000.';
 }
 
 async function fetchOpenCep(cep) {
@@ -51,17 +64,12 @@ export async function fetchCep(cep) {
   const cleanCep = onlyDigits(cep);
 
   if (!isValidCep(cep)) {
-    const errorMessage =
-      cleanCep.length < CEP_LENGTH
-        ? `CEP informado possui menos do que ${CEP_LENGTH} caracteres.`
-        : `CEP informado possui mais do que ${CEP_LENGTH} caracteres.`;
-
     throw new CepPromiseError({
       message: `CEP deve conter exatamente ${CEP_LENGTH} caracteres.`,
       type: 'validation_error',
       errors: [
         {
-          message: errorMessage,
+          message: getCepValidationMessage(cep),
           service: 'cep_validation',
         },
       ],

@@ -164,6 +164,30 @@ describe('/cep/v2 (E2E)', () => {
       },
     });
   });
+  test('Utilizando um CEP com separador em posicao invalida: 002123-25', async () => {
+    expect.assertions(2);
+    const requestUrl = `${global.SERVER_URL}/api/cep/v2/002123-25`;
+
+    try {
+      await axios.get(requestUrl);
+    } catch (error) {
+      const { response } = error;
+
+      expect(response.status).toBe(400);
+      expect(response.data).toEqual({
+        name: 'CepPromiseError',
+        message: 'CEP deve conter exatamente 8 caracteres.',
+        type: 'validation_error',
+        errors: [
+          {
+            message:
+              'CEP informado deve conter apenas números ou seguir o formato 00000-000.',
+            service: 'cep_validation',
+          },
+        ],
+      });
+    }
+  });
 });
 
 testCorsForRoute('/api/cep/v2/14096180');
