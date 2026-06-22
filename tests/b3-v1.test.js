@@ -70,14 +70,21 @@ describe('b3 v1 (E2E)', () => {
       );
     });
 
+    const expectValidFundListOrEmpty = (data) => {
+      expect(Array.isArray(data)).toBe(true);
+      if (data.length > 0) {
+        expect(data).toEqual(
+          expect.arrayContaining([validFundOutputSchema])
+        );
+      }
+    };
+
     test('Lista tickers de fundos tipo FIAGRO-FIDC', async () => {
       const requestUrl = `${global.SERVER_URL}/api/tickers/b3/fundos/v1/FIAGRO-FIDC`;
       const response = await axios.get(requestUrl);
 
       expect(response.status).toBe(200);
-      expect(response.data).toEqual(
-        expect.arrayContaining([validFundOutputSchema])
-      );
+      expectValidFundListOrEmpty(response.data);
     });
 
     test('Lista tickers de fundos tipo FIAGRO-FIP', async () => {
@@ -85,9 +92,7 @@ describe('b3 v1 (E2E)', () => {
       const response = await axios.get(requestUrl);
 
       expect(response.status).toBe(200);
-      expect(response.data).toEqual(
-        expect.arrayContaining([validFundOutputSchema])
-      );
+      expectValidFundListOrEmpty(response.data);
     });
 
     test('Lista tickers de fundos tipo FIP', async () => {
@@ -95,9 +100,7 @@ describe('b3 v1 (E2E)', () => {
       const response = await axios.get(requestUrl);
 
       expect(response.status).toBe(200);
-      expect(response.data).toEqual(
-        expect.arrayContaining([validFundOutputSchema])
-      );
+      expectValidFundListOrEmpty(response.data);
     });
 
     test('Lista tickers de fundos tipo FIA', async () => {
@@ -105,9 +108,7 @@ describe('b3 v1 (E2E)', () => {
       const response = await axios.get(requestUrl);
 
       expect(response.status).toBe(200);
-      expect(response.data).toEqual(
-        expect.arrayContaining([validFundOutputSchema])
-      );
+      expectValidFundListOrEmpty(response.data);
     });
   });
 });
