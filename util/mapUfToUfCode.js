@@ -30,6 +30,10 @@ const UF_CODE_MAPPER = {
   "DF": 53,
 }
 
+const CODE_TO_UF = Object.fromEntries(
+  Object.entries(UF_CODE_MAPPER).map(([uf, code]) => [code, uf])
+)
+
 /**
  * Map UF (e.g. SP) to UF Code Id on IBGE API
  * @param {string} uf String UF short
@@ -38,7 +42,16 @@ const UF_CODE_MAPPER = {
 export default function mapUfToUfCode(uf) {
     uf = uf.toUpperCase();
     let ufCode = UF_CODE_MAPPER[uf];
-    if(!ufCode){
+
+    if (!ufCode && /^\d+$/.test(uf)) {
+        const code = parseInt(uf, 10);
+        const ufFromCode = CODE_TO_UF[code];
+        if (ufFromCode) {
+            ufCode = code;
+        }
+    }
+
+    if (!ufCode) {
         throw new NotFoundError(`UF ${uf} não encontrado`);
     }
 
