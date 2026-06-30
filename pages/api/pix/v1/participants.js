@@ -5,7 +5,14 @@ import { getPixParticipants, formatCsvFile } from '@/services/pix/participants';
 
 const obtainPixParticipantList = async (actual = true) => {
   try {
-    const response = await getPixParticipants();
+    const today = new Date();
+    // Handle weekend cases, as BCB does not update data on Saturdays and Sundays
+    let response;
+    if (today.getDay() === 0 || today.getDay() === 6) {
+      response = await getPixParticipants(false, today.getDay() === 0 ? 2 : 1);
+    } else {
+      response = await getPixParticipants();
+    }
 
     return response;
   } catch (error) {
@@ -28,8 +35,7 @@ const action = async (request, response) => {
 
     const parsedData = formatCsvFile(pixParticipantsList);
 
-    response.status(200);
-    response.json(parsedData);
+    return response.status(200).json(parsedData);
   } catch (error) {
     if (error instanceof BaseError) {
       throw error;

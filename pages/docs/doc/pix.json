@@ -8,9 +8,11 @@
   "paths": {
     "/pix/v1/participants": {
       "get": {
-        "tags": ["PIX"],
-        "summary": "Retorna informações de todos os participantes do PIX no dia atual ou anterior",
-        "description": "",
+        "tags": [
+          "PIX"
+        ],
+        "summary": "Retorna informações de todos os participantes do PIX no dia atual ou último dia útil.",
+        "description": "Os dados são obtidos diretamente do Banco Central do Brasil.<br> Em novembro de 2025 o banco central deixou de fornecer a data de início de operação dos participantes, por isso este campo pode estar vazio para alguns participantes.",
         "responses": {
           "200": {
             "description": "Success",

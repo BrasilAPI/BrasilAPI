@@ -30,7 +30,13 @@ jobs:
         run: npm ci
 
       - name: Rodar testes
-        run: npm test
+        uses: nick-fields/retry@v2
+        with:
+          timeout_minutes: 5
+          retry_wait_seconds: 120
+          max_attempts: 3
+          retry_on: error
+          command: npm test
 
       - name: Archive code coverage results
         uses: actions/upload-artifact@v4

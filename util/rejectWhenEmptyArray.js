@@ -9,7 +9,10 @@ import InternalError from '@/errors/InternalError';
 export async function rejectWhenEmptyArray(promise) {
   const data = await promise;
   if (!data || data.length === 0) {
-    throw new InternalError('Empty data');
+    throw new InternalError({
+      message: 'Dados vazios retornados pelo provedor.',
+      name: 'EmptyProviderDataException',
+    });
   }
   return data;
 }

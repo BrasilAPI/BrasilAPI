@@ -193,6 +193,7 @@
                     "city",
                     "neighborhood",
                     "street",
+                    "timezoneName",
                     "location"
                 ],
                 "type": "object",
@@ -219,6 +220,11 @@
                         "nullable": true,
                         "description": "Nome da rua/logradouro (pode ser nulo)"
                     },
+                    "timezoneName": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Nome da timezone do local (pode ser nulo)"
+                    },
                     "location": {
                         "type": "object",
                         "$ref": "#/components/schemas/Location",
@@ -231,6 +237,7 @@
                     "city": "Blumenau",
                     "neighborhood": "Centro",
                     "street": "Rua Doutor Luiz de Freitas Melro",
+                    "timezoneName": "America/Sao_Paulo",
                     "location": {
                         "type": "Point",
                         "coordinates": {

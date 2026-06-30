@@ -52,51 +52,77 @@ function parseYear(publishDate) {
  * @returns The book details if found.
  */
 export default async function searchInOpenLibrary(isbn) {
-  const bibKey = `ISBN:${isbn}`;
+  try {
+    const bibKey = `ISBN:${isbn}`;
 
-  const response = await axios.get(API_SEARCH_URL, {
-    params: {
-      bibkeys: bibKey,
-      jscmd: 'data',
-      format: 'json',
-    },
-    headers: { Accept: 'application/json' },
-  });
-
-  if (Object.keys(response.data).length === 0 || !response.data[bibKey]) {
-    throw new NotFoundError({ message: 'ISBN não encontrado' });
-  }
-
-  const olBook = response.data[bibKey];
-
-  const { data: details } = await axios.get(
-    `${API_BASE_URL}/isbn/${isbn}.json`,
-    {
-      headers: {
-        Accept: 'application/json',
+    const response = await axios.get(API_SEARCH_URL, {
+      params: {
+        bibkeys: bibKey,
+        jscmd: 'data',
+        format: 'json',
       },
-    }
-  );
+      headers: { Accept: 'application/json' },
+      timeout: 5000,
+    });
 
-  return {
-    isbn,
-    title: olBook.title,
-    subtitle: olBook.subtitle,
-    authors: olBook.authors.map((contributor) => contributor.name),
-    publisher: olBook.publishers.map((publisher) => publisher.name).join(' & '),
-    synopsis: details.description && details.description.value,
-    dimensions: parseDimensions(details.physical_dimensions),
-    year: parseYear(olBook.publish_date),
-    format: 'PHYSICAL',
-    page_count: olBook.number_of_pages,
-    subjects: (olBook.subjects || []).map((subject) => subject.name),
-    location:
-      olBook.publish_places &&
-      olBook.publish_places[0] &&
-      olBook.publish_places[0].name &&
-      olBook.publish_places[0].name.replace('Brazil', 'Brasil'),
-    retail_price: null,
-    cover_url: olBook.cover && olBook.cover.large,
-    provider: 'open-library',
-  };
+    if (Object.keys(response.data).length === 0 || !response.data[bibKey]) {
+      throw new NotFoundError({ message: 'ISBN não encontrado' });
+    }
+
+    const olBook = response.data[bibKey];
+
+    const { data: details } = await axios.get(
+      `${API_BASE_URL}/isbn/${isbn}.json`,
+      {
+        headers: {
+          Accept: 'application/json',
+        },
+        timeout: 5000,
+      }
+    );
+
+    return {
+      isbn,
+      title: olBook.title,
+      subtitle: olBook.subtitle,
+      authors: olBook.authors.map((contributor) => contributor.name),
+      publisher: olBook.publishers
+        .map((publisher) => publisher.name)
+        .join(' & '),
+      synopsis: details.description && details.description.value,
+      dimensions: parseDimensions(details.physical_dimensions),
+      year: parseYear(olBook.publish_date),
+      format: 'PHYSICAL',
+      page_count: olBook.number_of_pages,
+      subjects: (olBook.subjects || []).map((subject) => subject.name),
+      location:
+        olBook.publish_places &&
+        olBook.publish_places[0] &&
+        olBook.publish_places[0].name &&
+        olBook.publish_places[0].name.replace('Brazil', 'Brasil'),
+      retail_price: null,
+      cover_url: olBook.cover && olBook.cover.large,
+      provider: 'open-library',
+    };
+  } catch (error) {
+    // Log the error for debugging
+    // eslint-disable-next-line no-console
+    console.error('[open-library] Error fetching ISBN:', {
+      isbn,
+      error: error.message,
+      code: error.code,
+      status: error.response?.status,
+    });
+
+    // If it's already a NotFoundError, re-throw it
+    if (error instanceof NotFoundError) {
+      throw error;
+    }
+
+    // For network errors, timeouts, DNS issues, or API errors (like 500),
+    // convert them to NotFoundError so the system can try other providers
+    throw new NotFoundError({
+      message: 'ISBN não encontrado',
+    });
+  }
 }

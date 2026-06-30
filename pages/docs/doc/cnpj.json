@@ -387,7 +387,7 @@
             "format": "date",
             "description": "Data da situação cadastral"
           },
-          "nome_cidade_exterior": {
+          "nome_cidade_no_exterior": {
             "type": "string",
             "nullable": true,
             "description": "Nome da cidade no exterior"
@@ -445,7 +445,7 @@
             "type": "string",
             "description": "Descrição do motivo da situação cadastral"
           },
-          "descricao_matriz_filial": {
+          "descricao_identificador_matriz_filial": {
             "type": "string",
             "description": "Descrição textual do identificador de matriz ou filial. Valores possíveis: 'MATRIZ' ou 'FILIAL'.",
             "enum": [

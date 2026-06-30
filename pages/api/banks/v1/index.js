@@ -4,8 +4,7 @@ import { getBanksData } from '@/services/banco-central';
 const action = async (request, response) => {
   const allBanksData = await getBanksData();
 
-  response.status(200);
-  response.json(allBanksData);
+  return response.status(200).json(allBanksData);
 };
 
 export default app().get(action);

@@ -52,7 +52,7 @@ describe.skip('/ibge/municipios/v1 (E2E)', () => {
     expect(response.data).toEqual(validTestArray);
   });
 
-  test('Utilizando uma sigla inexistente ou inválida: AA', async () => {
+  test('Utilizando uma sigla inexistente (formato válido): AA', async () => {
     const requestUrl = `${global.SERVER_URL}/api/ibge/municipios/v1/AA`;
 
     try {
@@ -61,10 +61,41 @@ describe.skip('/ibge/municipios/v1 (E2E)', () => {
       const { response } = error;
       expect(response.status).toBe(404);
       expect(response.data).toMatchObject({
-        name: 'NotFoundError',
-        message: 'UF não encontrada',
+        name: 'EstadoNotFoundException',
+        message: 'UF não encontrada.',
         type: 'not_found',
       });
+    }
+  });
+
+  test('Sigla mal formatada: 400', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/ibge/municipios/v1/SP1`;
+
+    try {
+      await axios.get(requestUrl);
+    } catch (error) {
+      const { response } = error;
+      expect(response.status).toBe(400);
+      expect(response.data).toMatchObject({
+        name: 'UfBadRequestException',
+        type: 'bad_request',
+      });
+    }
+  });
+
+  test('Provider inválido na query: 422', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/ibge/municipios/v1/RS?providers=gov,foo`;
+
+    try {
+      await axios.get(requestUrl);
+    } catch (error) {
+      const { response } = error;
+      expect(response.status).toBe(422);
+      expect(response.data).toMatchObject({
+        name: 'ProvidersInvalidException',
+        type: 'unprocessable_entity',
+      });
+      expect(response.data.errors).toEqual(['foo']);
     }
   });
 });

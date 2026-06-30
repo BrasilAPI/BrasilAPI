@@ -7,8 +7,7 @@ async function getAllCities(request, response) {
   try {
     const allCitiesData = await getAllCitiesData();
 
-    response.status(200);
-    response.json(allCitiesData);
+    return response.status(200).json(allCitiesData);
   } catch (err) {
     if (err instanceof BaseError) {
       throw err;

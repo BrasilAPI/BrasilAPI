@@ -1,5 +1,5 @@
-const AdmZip = require('adm-zip');
-const axios = require('axios');
+import AdmZip from 'adm-zip';
+import axios from 'axios';
 
 const LINE_BREAK = '\r\n';
 

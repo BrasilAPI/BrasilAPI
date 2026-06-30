@@ -18,15 +18,11 @@ const formatCsvFile = (file) => {
         fullName, // Nome_Extenso // Início_da_Operação
         ,
       ]) => {
-        // Busca o banco no banksList para obter a localização da sede
-        const bankData = banksList.find((bank) => bank.ispb === ispb);
-
         return {
           ispb,
           name: name && name.trim(),
           code: Number(code),
           fullName: fullName && fullName.trim().replace(/\\"|"/g, ''), // Remove aspas
-          localizacao_sede: bankData?.localizacao_sede || '', // Endereço da sede do banco
         };
       }
     );
@@ -35,7 +31,7 @@ const formatCsvFile = (file) => {
 export const getBanksData = async () => {
   try {
     const response = await getCsvAsJson(
-      'https://www.bcb.gov.br/pom/spb/estatistica/port/ParticipantesSTRport.csv'
+      'https://www.bcb.gov.br/content/estabilidadefinanceira/str1/ParticipantesSTR.csv'
     );
     return formatCsvFile(response);
   } catch (err) {

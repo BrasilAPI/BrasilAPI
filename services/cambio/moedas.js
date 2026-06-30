@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios';
 
 export const getCurrency = async () => {
   const resp = await axios.get(

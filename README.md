@@ -81,7 +81,7 @@ Abaixo segue uma lista de integrações com a BrasilApi fornecidas pela comunida
   * **[brasilapi-rb](https://github.com/dayvidemerson/brasilapi-rb)** Criado por [@dayvidemerson](https://github.com/dayvidemerson)
 
 **Rust**
-  * **[brasilapi-rs](https://github.com/pedrinfx/brasilapi-rs)** Criado por [@pedrinfx](https://github.com/pedrinfx)
+  * **[brasilapi-rs](https://github.com/pedrinfx/brasilapi-rs)** Criado por [@pedrinfx](https://github.com/peeeuzin)
 
 **Java**
   * **[BrasilAPI-Java](https://github.com/SavioAndres/BrasilAPI-Java)** Criado por [@SavioAndres](https://github.com/SavioAndres)
@@ -90,7 +90,7 @@ Abaixo segue uma lista de integrações com a BrasilApi fornecidas pela comunida
   * **[BrasilAPI-Delphi](https://github.com/gabrielbaltazar/brasilapi4D)** Criado por [@GabrielBaltazar](https://github.com/gabrielbaltazar)
 
 **V**
-  * **[BrasilAPI-V](https://github.com/ldedev/brasilapi-v)** Criado por [@ldedev(André)](https://github.com/ldedev)
+  * **[BrasilAPI-V](https://github.com/ldedev/brasilapi-v)** Criado por [@ldedev(André)](https://github.com/Ddiidev)
 
 
 

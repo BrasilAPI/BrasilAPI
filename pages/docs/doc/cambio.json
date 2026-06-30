@@ -55,7 +55,7 @@
         "parameters": [
           {
             "name": "moeda",
-            "description": "A moeda alvo desejada (AUD, CAD, CHF, DKK, EUR, GBP, JPY, SEK, USD). Para maiores informações, consulte: /cambio/v1/moedas",
+            "description": "A moeda alvo desejada (AUD, CAD, CHF, DKK, EUR, GBP, JPY, SEK, USD). Para maiores informações, consulte: <a href=\"#tag/CAMBIO/paths/~1cambio~1v1~1moedas/get\">/cambio/v1/moedas</a>",
             "in": "path",
             "required": true,
             "schema": {

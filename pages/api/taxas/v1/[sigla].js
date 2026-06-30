@@ -15,8 +15,7 @@ const action = async (request, response) => {
 
   const valor = taxas[sigla];
 
-  response.status(200);
-  response.json({ nome: sigla.toUpperCase(), valor });
+  return response.status(200).json({ nome: sigla.toUpperCase(), valor });
 };
 
 export default app().get(action);

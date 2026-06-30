@@ -7,6 +7,36 @@ export const MIN_DAYS = 1;
 export const MAX_SWELL_DAYS = 6;
 export const MAX_WEATHER_DAYS = 6;
 
+export const STATE_REGION_MAP = {
+  AC: 'Norte',
+  AL: 'Nordeste',
+  AM: 'Norte',
+  AP: 'Norte',
+  BA: 'Nordeste',
+  CE: 'Nordeste',
+  DF: 'Centro-Oeste',
+  ES: 'Sudeste',
+  GO: 'Centro-Oeste',
+  MA: 'Nordeste',
+  MT: 'Centro-Oeste',
+  MS: 'Centro-Oeste',
+  MG: 'Sudeste',
+  PA: 'Norte',
+  PB: 'Nordeste',
+  PR: 'Sul',
+  PE: 'Nordeste',
+  PI: 'Nordeste',
+  RJ: 'Sudeste',
+  RN: 'Nordeste',
+  RS: 'Sul',
+  RO: 'Norte',
+  RR: 'Norte',
+  SC: 'Sul',
+  SP: 'Sudeste',
+  SE: 'Nordeste',
+  TO: 'Norte',
+};
+
 /**
  * Descriptions extracted from CPTEC docs:
  * http://servicos.cptec.inpe.br/XML/#condicoes-tempo
