@@ -1,0 +1,64 @@
+name: Snapshot Enderecos Bancos
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  banks-headquarters-snapshot:
+    name: Gerar snapshot semanal de enderecos
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Puxar o codigo do commit
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+
+      - name: Cacheando dependencias
+        id: cache_dependencies
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-dependencies-${{ hashFiles('./package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Instalar dependencias do npm
+        if: steps.cache_dependencies.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Gerar snapshot de bancos
+        run: npm run snapshot:banks
+
+      - name: Publicar artefatos de snapshot e metricas
+        uses: actions/upload-artifact@v4
+        with:
+          name: banks-headquarters-snapshots
+          path: |
+            services/banco-central/snapshots/*.json
+          if-no-files-found: error
+
+      - name: Commitar snapshot versionado e latest
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add services/banco-central/snapshots/*.json
+
+          if git diff --staged --quiet; then
+            echo "Sem alteracoes de snapshot para commit"
+            exit 0
+          fi
+
+          git commit -m "chore(banks): atualiza snapshot semanal de enderecos"
+          git push

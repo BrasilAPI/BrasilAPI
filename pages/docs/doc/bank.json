@@ -94,7 +94,7 @@
         "schemas": {
             "Bank": {
                 "title": "Bank",
-                "required": ["ispb", "name", "code", "fullName", "localizacao_sede"],
+                "required": ["ispb", "name", "code", "fullName"],
                 "type": "object",
                 "properties": {
                     "ispb": {
@@ -110,8 +110,62 @@
                     "fullName": {
                         "type": "string"
                     },
-                    "localizacao_sede": {
-                        "type": "string"
+                    "cnpj": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "CNPJ associado a instituicao para enriquecimento de endereco"
+                    },
+                    "headquarters_address": {
+                        "type": "object",
+                        "nullable": true,
+                        "properties": {
+                            "street": {
+                                "type": "string",
+                                "nullable": true
+                            },
+                            "number": {
+                                "type": "string",
+                                "nullable": true
+                            },
+                            "complement": {
+                                "type": "string",
+                                "nullable": true
+                            },
+                            "district": {
+                                "type": "string",
+                                "nullable": true
+                            },
+                            "city": {
+                                "type": "string",
+                                "nullable": true
+                            },
+                            "state": {
+                                "type": "string",
+                                "nullable": true
+                            },
+                            "zipCode": {
+                                "type": "string",
+                                "nullable": true
+                            }
+                        }
+                    },
+                    "address_source": {
+                        "type": "string",
+                        "nullable": true,
+                        "enum": [
+                            "bcb_sedes_exact_match",
+                            "cnpj_exact_match",
+                            "name_based_match"
+                        ]
+                    },
+                    "address_last_sync": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "address_confidence": {
+                        "type": "string",
+                        "enum": ["high", "medium", "low", "none"]
                     }
                 },
                 "example": {
@@ -119,7 +173,19 @@
                     "name": "BCO DO BRASIL S.A.",
                     "code": 1,
                     "fullName": "Banco do Brasil S.A.",
-                    "localizacao_sede": "SBS Quadra 1, Bloco A, Edifício Sede I, Asa Sul, Brasília-DF"
+                    "cnpj": "00000000000191",
+                    "headquarters_address": {
+                        "street": "SBS QUADRA 1 BLOCO A",
+                        "number": null,
+                        "complement": "EDIFICIO SEDE I",
+                        "district": "ASA SUL",
+                        "city": "BRASILIA",
+                        "state": "DF",
+                        "zipCode": "70073-900"
+                    },
+                    "address_source": "bcb_sedes_exact_match",
+                    "address_last_sync": "2026-06-30T00:00:00.000Z",
+                    "address_confidence": "high"
                 }
             }
         }
