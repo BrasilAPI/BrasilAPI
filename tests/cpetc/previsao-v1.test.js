@@ -145,7 +145,7 @@ describeIf(shouldSkipTests)('weather prediction v1 (E2E)', () => {
       });
     });
     // TODO: verify response to positive lat/long
-    /*test('GET prevision of campina - sp with positive lat/long', async () => {
+    test('GET prevision of campina - sp with positive lat/long', async () => {
       const requestUrl = `${global.SERVER_URL}/api/cptec/v1/clima/previsao/semana/22.90/47.06`;
       const response = await axios.get(requestUrl);
 
@@ -160,7 +160,7 @@ describeIf(shouldSkipTests)('weather prediction v1 (E2E)', () => {
         cidade: 'Campinas',
         estado: 'SP',
       });
-    });*/
+    });
     test('GET prevision of location not in Brazil', async () => {
       const requestUrl = `${global.SERVER_URL}/api/cptec/v1/clima/previsao/semana/1/1`;
       try {
@@ -175,7 +175,7 @@ describeIf(shouldSkipTests)('weather prediction v1 (E2E)', () => {
           type: 'city_error',
           name: 'CITY_NOT_FOUND',
         });
-       }
+      }
     });
 
     test('GET with invalid long', async () => {

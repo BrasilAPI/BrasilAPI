@@ -118,7 +118,7 @@ export const getPredictionWeatherByLocation = async (lat, long) => {
   if (!parsed.cidade) {
     return null;
   }
-  
+
   const jsonData = formatPrediction(parsed);
   if (jsonData.cidade === 'null') {
     return null;

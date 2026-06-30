@@ -9,12 +9,12 @@ describe('isValidIsbn()', () => {
   });
 
   it('CT2 — Tamanho válido (ISBN-10) e dentro do padrão → true', () => {
-    const isbn = '8535902775'
+    const isbn = '8535902775';
     expect(isValidIsbn(isbn)).toBe(true);
   });
 
   it('CT3 — Tamanho válido (ISBN-13) e dentro do padrão → true', () => {
-    const isbn = '9788571537415'; 
+    const isbn = '9788571537415';
     expect(isValidIsbn(isbn)).toBe(true);
   });
 

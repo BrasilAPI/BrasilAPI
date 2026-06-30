@@ -20,10 +20,7 @@ export default defineConfig({
       provider: 'istanbul',
       reporter: ['text', 'lcov', 'html'],
       reportsDirectory: './reports/coverage',
-      include: [
-        'services/**/*.js',
-        'pages/api/**/**/*.js',
-      ],
+      include: ['services/**/*.js', 'pages/api/**/**/*.js'],
       exclude: ['tests/**/**.test.js'],
     },
   },

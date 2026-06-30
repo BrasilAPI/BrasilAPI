@@ -10,7 +10,6 @@ import {
 } from './helpers/feriados';
 
 describe('/feriados/v1 (E2E)', () => {
-
   test('Sem ano: "erro"', async () => {
     expect.assertions(2);
     const requestUrl = `${global.SERVER_URL}/api/feriados/v1`;
