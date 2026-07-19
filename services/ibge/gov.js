@@ -1,9 +1,9 @@
 import axios from 'axios';
-import mapUfToUfCode from '@/util/mapUfToUfCode.js'
+import mapUfToUfCode from '@/util/mapUfToUfCode';
 import InternalError from '@/errors/InternalError';
 
 const URL_UF = 'https://servicodados.ibge.gov.br/api/v1/localidades/estados';
-const URL_AGGREGATES = 'https://servicodados.ibge.gov.br/api/v3/agregados'
+const URL_AGGREGATES = 'https://servicodados.ibge.gov.br/api/v3/agregados';
 
 const UF_CAPITAIS = {
   AC: 'Rio Branco',
@@ -48,7 +48,9 @@ export const getUfs = () =>
 
 export const getUfByCode = (code) =>
   axios.get(`${URL_UF}/${code}`).then((response) => {
-    response.data = addCapital(response.data);
+    if (!Array.isArray(response.data)) {
+      response.data = addCapital(response.data);
+    }
     return response;
   });
 
@@ -68,20 +70,48 @@ export const getUfEstimatePopulationByCode = async (uf) => {
   const ESTIMATED_POPULATION_VARIABLE_ID = 9324;
   const LATEST_PERIOD = -1;
 
-  let { data } = await axios
-    .get(`${URL_AGGREGATES}/${ESTIMATED_POPULATION_AGGREGATE_ID}/periodos/${LATEST_PERIOD}/variaveis?localidades=N3[${ufCode}]`);
-  
-  data = data.find((item) => item.id == ESTIMATED_POPULATION_VARIABLE_ID);
+  let { data } = await axios.get(
+    `${URL_AGGREGATES}/${ESTIMATED_POPULATION_AGGREGATE_ID}/periodos/${LATEST_PERIOD}/variaveis?localidades=N3[${ufCode}]`
+  );
 
-  if(!data){
+  data = data.find(
+    (item) => Number(item.id) === ESTIMATED_POPULATION_VARIABLE_ID
+  );
+
+  if (!data) {
     throw new InternalError('Empty data');
   }
 
   const result = data.resultados[0].series[0].serie;
-  const key = Object.keys(result)[0]
+  const key = Object.keys(result)[0];
 
   return {
-    "populacao_estimada": parseInt(result[key]),
-    "periodo": key
+    populacao_estimada: parseInt(result[key], 10),
+    periodo: key,
+  };
+};
+
+// reference: https://servicodados.ibge.gov.br/api/docs/agregados?versao=3#api-Variaveis-agregadosAgregadoPeriodosPeriodosVariaveisVariavelGet
+export const getUfTerritorialAreaByCode = async (uf) => {
+  const ufCode = mapUfToUfCode(uf);
+  const TERRITORIAL_AREA_AGGREGATE_ID = 1301;
+  const TERRITORIAL_AREA_VARIABLE_ID = 615;
+  const LATEST_PERIOD = -1;
+
+  const { data } = await axios.get(
+    `${URL_AGGREGATES}/${TERRITORIAL_AREA_AGGREGATE_ID}/periodos/${LATEST_PERIOD}/variaveis/${TERRITORIAL_AREA_VARIABLE_ID}?localidades=N3[${ufCode}]`
+  );
+
+  const [result] = data;
+
+  if (!result) {
+    throw new InternalError('Empty data');
   }
-}
+
+  const { serie } = result.resultados[0].series[0];
+  const key = Object.keys(serie)[0];
+
+  return {
+    area_territorial: parseFloat(serie[key]),
+  };
+};

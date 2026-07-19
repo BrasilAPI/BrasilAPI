@@ -58,6 +58,9 @@ describeIf(shouldSkipTests)('/ibge/uf/v1 (E2E)', () => {
         nome: expect.any(String),
       }),
       capital: expect.any(String),
+      populacao_estimada: expect.any(Number),
+      periodo: expect.any(String),
+      area_territorial: expect.any(Number),
     });
   });
 
@@ -109,6 +112,9 @@ describeIf(shouldSkipTests)('/ibge/uf/v1 (E2E)', () => {
         nome: expect.any(String),
       }),
       capital: expect.any(String),
+      populacao_estimada: expect.any(Number),
+      periodo: expect.any(String),
+      area_territorial: expect.any(Number),
     });
     expect(response.data.capital).toBe('Florianópolis');
   });
@@ -128,6 +134,9 @@ describeIf(shouldSkipTests)('/ibge/uf/v1 (E2E)', () => {
         nome: expect.any(String),
       }),
       capital: expect.any(String),
+      populacao_estimada: expect.any(Number),
+      periodo: expect.any(String),
+      area_territorial: expect.any(Number),
     });
     expect(response.data.capital).toBe('Teresina');
   });

@@ -279,6 +279,11 @@
                         "type": "object",
                         "$ref": "#/components/schemas/Region"
                     },
+                    "capital": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Cidade capital do estado"
+                    },
                     "populacao_estimada": {
                         "type": "integer",
                         "format": "int32",
@@ -289,6 +294,12 @@
                         "type": "string",
                         "nullable": true,
                         "description": "Ano de referência da estimativa populacional"
+                    },
+                    "area_territorial": {
+                        "type": "number",
+                        "format": "float",
+                        "nullable": true,
+                        "description": "Área territorial do estado em quilômetros quadrados (IBGE)"
                     }
                 },
                 "example": {
@@ -300,8 +311,10 @@
                         "sigla": "SE",
                         "nome": "Sudeste"
                     },
+                    "capital": "São Paulo",
                     "populacao_estimada": 45969144,
-                    "periodo": "2024"
+                    "periodo": "2024",
+                    "area_territorial": 248219.485
                 }
             },
             "Region": {
