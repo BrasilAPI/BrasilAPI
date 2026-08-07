@@ -1,4 +1,4 @@
-FROM node:14.15-alpine AS base
+FROM node:24-alpine AS base
 
 WORKDIR /base
 COPY package*.json ./
@@ -15,7 +15,7 @@ RUN npm run build
 
 
 # -----------------
-FROM node:14.15-alpine AS production
+FROM node:24-alpine AS production
 
 ## Variables
 # User and ID
