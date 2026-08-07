@@ -1,0 +1,254 @@
+{
+  "tags": [
+    {
+      "name": "INDICES",
+      "description": "Informações referentes aos indices financeiros brasileiros \nIGP-M"
+    }
+  ],
+  "paths": {
+    "/indices/igpm/v1": {
+      "get": {
+        "tags": ["INDICES"],
+        "summary": "IGPM - Lista de indices",
+        "description": "Retorna todos os valores de IGP-M desde sua criação",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IGPM_LISTA"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/IGPM_INTERNAL_ERROR"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/indices/igpm/v1/ultimos": {
+      "get": {
+        "tags": ["INDICES"],
+        "summary": "IGPM - Últimos indices",
+        "description": "Retorna todos os ultimos valores do IGP-M de acordo com a quantidade de meses informada",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Quantidade de meses a serem obtidos dados",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "example": 12
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IGPM_LISTA"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/IGPM_INTERNAL_ERROR"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "IGPM - Limit Bad Request Error",
+                  "required": ["message", "type", "name"],
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Mensagem do erro"
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "Tipo do erro"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Nome do erro"
+                    }
+                  },
+                  "example": {
+                    "message": "Limite inválido, informe um número maior ou igual a 1",
+                    "type": "bad_request",
+                    "name": "IGPM_LIST_ERROR"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/indices/igpm/v1/intervalo": {
+      "get": {
+        "tags": ["INDICES"],
+        "summary": "IGPM - Lista de indices por Intervalo",
+        "description": "Retorna todos os valores de IGP-M de acordo com o intervalo de datas informado",
+        "parameters": [
+          {
+            "name": "initial_date",
+            "in": "query",
+            "description": "Data inicial do intervalo",
+            "required": true,
+            "schema": {
+              "type": "date"
+            },
+            "example": "2005-02-10"
+          },
+          {
+            "name": "final_date",
+            "in": "query",
+            "description": "Data final do intervalo",
+            "required": true,
+            "schema": {
+              "type": "date"
+            },
+            "example": "2005-03-10"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IGPM_LISTA"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/IGPM_INTERNAL_ERROR"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "IGPM Range Error",
+                  "required": ["message", "type", "name"],
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Mensagem do erro"
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "Tipo do erro"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Nome do erro"
+                    }
+                  },
+                  "example": {
+                    "message": "Intervalo de datas inválido, informe um intervalo correto",
+                    "type": "range_error",
+                    "name": "IGPM_LIST_ERROR"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "IGPM_LISTA": {
+        "title": "IGPM_LISTA",
+        "required": ["date", "value"],
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "Data/Hora de criação indice"
+          },
+          "value": {
+            "type": "number",
+            "multipleOf": "0.01",
+            "description": "Valor do indice"
+          }
+        },
+        "example": {
+          "value": 39.92,
+          "date": "1989-09-01T03:00:00.000Z"
+        }
+      },
+      "IGPM_INTERNAL_ERROR": {
+        "title": "IGPM Error",
+        "required": ["message", "type", "name"],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Mensagem do erro"
+          },
+          "type": {
+            "type": "string",
+            "description": "Tipo do erro"
+          },
+          "name": {
+            "type": "string",
+            "description": "Nome do erro"
+          }
+        },
+        "example": {
+          "message": "Erro ao obter as informações do BCB - SGS",
+          "type": "INTERNAL",
+          "name": "IGPM_LIST_ERROR"
+        }
+      }
+    }
+  }
+}

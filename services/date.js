@@ -120,3 +120,13 @@ export const validateDateComponents = (dateString) => {
 
   return { isValid: true };
 };
+
+export const toISOString = (date, fromFormat = '') => {
+  return dayjs(date, fromFormat).toISOString();
+};
+
+export const isAfter = (date, compareDate) =>
+  dayjs(date).isAfter(dayjs(compareDate));
+
+export const isBefore = (date, compareDate) =>
+  dayjs(date).isBefore(dayjs(compareDate));
