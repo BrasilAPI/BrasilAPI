@@ -46,14 +46,13 @@ export const getPixParticipants = async (fromToday = true, daysBefore = 1) => {
  */
 
 export const formatCsvFile = (file) => {
-  const LINE_BREAK = '\n';
-  const lines = file.split(LINE_BREAK);
+  const lines = file.split(/\r?\n/);
 
   lines.shift(); // Remove a primeira linha que é o cabeçalho (Lista de participantes ativos do Pix)
   const headers = lines
     .shift()
     .split(';')
-    .map((header) => header.toLowerCase().replace(/ /g, ''));
+    .map((header) => header.trim().toLowerCase().replace(/\s/g, ''));
 
   const expectedHeaders = [
     'nomereduzido',
@@ -71,7 +70,7 @@ export const formatCsvFile = (file) => {
 
   try {
     return lines
-      .map((line) => line.split(';'))
+      .map((line) => line.split(';').map((field) => field.trim()))
       .filter(([ispb]) => ispb)
       .map((data) => {
         return {
