@@ -1,17 +1,7 @@
-import axios from 'axios';
-
-import { FIPE_URL } from './constants';
+import { fipePost } from './http';
 
 export async function listReferenceTables() {
-  const { data } = await axios.post(
-    `${FIPE_URL}/veiculos/ConsultarTabelaDeReferencia`,
-    {},
-    {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-    }
-  );
+  const { data } = await fipePost('/veiculos/ConsultarTabelaDeReferencia', {});
 
   return data
     .map((item) => ({ codigo: item.Codigo, mes: item.Mes }))
