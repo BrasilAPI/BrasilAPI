@@ -32,9 +32,9 @@ jobs:
       - name: Rodar testes
         uses: nick-fields/retry@v2
         with:
-          timeout_minutes: 5
-          retry_wait_seconds: 120
-          max_attempts: 3
+          timeout_minutes: 15
+          retry_wait_seconds: 60
+          max_attempts: 1
           retry_on: error
           command: npm test
 
