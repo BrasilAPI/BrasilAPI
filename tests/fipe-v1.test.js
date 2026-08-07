@@ -183,9 +183,11 @@ describe.skipIf(shouldSkipTests)('/fipe/detalhes/v1 (E2E)', () => {
   });
 });
 
-testCorsForRoute('/api/fipe/tabelas/v1');
-testCorsForRoute('/api/fipe/marcas/v1');
-testCorsForRoute('/api/fipe/preco/v1/015088-6');
-testCorsForRoute('/api/fipe/veiculos/v1/carros/21');
-testCorsForRoute('/api/fipe/anos/v1/carros/21/437');
-testCorsForRoute('/api/fipe/detalhes/v1/carros/21/437/1987-1');
+if (!shouldSkipTests) {
+  testCorsForRoute('/api/fipe/tabelas/v1');
+  testCorsForRoute('/api/fipe/marcas/v1');
+  testCorsForRoute('/api/fipe/preco/v1/015088-6');
+  testCorsForRoute('/api/fipe/veiculos/v1/carros/21');
+  testCorsForRoute('/api/fipe/anos/v1/carros/21/437');
+  testCorsForRoute('/api/fipe/detalhes/v1/carros/21/437/1987-1');
+}
