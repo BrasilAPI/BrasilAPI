@@ -164,7 +164,7 @@
             "get": {
                 "tags": ["FIPE"],
                 "summary": "Lista os veículos de acordo com a marca e o tipo de veículo",
-                "description": "",
+                "description": "Retorna todos os modelos de veículos disponíveis para uma determinada marca. Utilizado como o segundo passo no fluxo de consultas aninhadas (Marca -> Modelo -> Ano -> Detalhes). O campo `valor` retornado pode ser utilizado para consultas de anos.",
                 "parameters": [
                     {
                         "name": "tipoVeiculo",
@@ -223,6 +223,122 @@
                                     "type": "bad_request",
                                     "name": "BadRequestError"
                                 }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/fipe/anos/v1/{tipoVeiculo}/{codigoMarca}/{codigoModelo}": {
+            "get": {
+                "tags": ["FIPE"],
+                "summary": "Lista os anos e combustíveis disponíveis para um modelo de veículo específico",
+                "description": "Retorna a lista de anos de fabricação e os respectivos tipos de combustível para um modelo. Utilizado como o terceiro passo do fluxo de consultas (Marca -> Modelo -> Ano -> Detalhes) para identificar exatamente qual versão do veículo se deseja obter o preço.",
+                "parameters": [
+                    {
+                        "name": "tipoVeiculo",
+                        "in": "path",
+                        "required": true,
+                        "schema": { "type": "string" },
+                        "description": "Os tipos suportados são `caminhoes`, `carros` e `motos`."
+                    },
+                    {
+                        "name": "codigoMarca",
+                        "in": "path",
+                        "required": true,
+                        "schema": { "type": "integer" },
+                        "description": "Código da marca."
+                    },
+                    {
+                        "name": "codigoModelo",
+                        "in": "path",
+                        "required": true,
+                        "schema": { "type": "integer" },
+                        "description": "Código do modelo."
+                    },
+                    {
+                        "name": "tabela_referencia",
+                        "in": "query",
+                        "required": false,
+                        "schema": { "type": "integer" },
+                        "description": "Código da tabela FIPE de referência."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": { "$ref": "#/components/schemas/AnoFIPE" }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requisição inválida",
+                        "content": {
+                            "application/json": {
+                                "schema": { "$ref": "#/components/schemas/ErrorMessage" }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/fipe/detalhes/v1/{tipoVeiculo}/{codigoMarca}/{codigoModelo}/{anoModelo}": {
+            "get": {
+                "tags": ["FIPE"],
+                "summary": "Consulta os dados completos de um veículo (preço e código FIPE) usando a hierarquia de navegação",
+                "description": "Retorna o preço final, código FIPE e demais detalhes do veículo. É o último passo do fluxo de consultas (Marca -> Modelo -> Ano -> Detalhes) para obter o valor na tabela FIPE quando você ainda não possui o código FIPE em mãos.",
+                "parameters": [
+                    {
+                        "name": "tipoVeiculo",
+                        "in": "path",
+                        "required": true,
+                        "schema": { "type": "string" }
+                    },
+                    {
+                        "name": "codigoMarca",
+                        "in": "path",
+                        "required": true,
+                        "schema": { "type": "integer" }
+                    },
+                    {
+                        "name": "codigoModelo",
+                        "in": "path",
+                        "required": true,
+                        "schema": { "type": "integer" }
+                    },
+                    {
+                        "name": "anoModelo",
+                        "in": "path",
+                        "required": true,
+                        "schema": { "type": "string" },
+                        "description": "Código do ano. Exemplo: `1998-1`"
+                    },
+                    {
+                        "name": "tabela_referencia",
+                        "in": "query",
+                        "required": false,
+                        "schema": { "type": "integer" }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": { "$ref": "#/components/schemas/VeiculoFIPE" }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requisição inválida",
+                        "content": {
+                            "application/json": {
+                                "schema": { "$ref": "#/components/schemas/ErrorMessage" }
                             }
                         }
                     }
@@ -339,15 +455,36 @@
             },
             "VeiculoMarcaFIPE": {
                 "title": "Veiculos FIPE",
-                "required": ["modelo"],
+                "required": ["modelo", "valor"],
                 "type": "object",
                 "properties": {
                     "modelo": {
                         "type": "string"
+                    },
+                    "valor": {
+                        "type": "string"
                     }
                 },
                 "example": {
-                    "modelo": "Palio EX 1.0 mpi 2p"
+                    "modelo": "Palio EX 1.0 mpi 2p",
+                    "valor": "123"
+                }
+            },
+            "AnoFIPE": {
+                "title": "Anos FIPE",
+                "required": ["nome", "valor"],
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string"
+                    },
+                    "valor": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "nome": "1998 Gasolina",
+                    "valor": "1998-1"
                 }
             }
         }

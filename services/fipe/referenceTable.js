@@ -7,6 +7,10 @@ export async function listReferenceTables() {
       {}
     );
 
+    if (!Array.isArray(data)) {
+      throw new Error('Retorno da FIPE inválido');
+    }
+
     return data
       .map((item) => ({ codigo: item.Codigo, mes: item.Mes }))
       .sort((a, b) => b.codigo - a.codigo);

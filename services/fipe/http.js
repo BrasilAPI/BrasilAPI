@@ -21,6 +21,13 @@ export async function fipePost(path, body, fallback) {
       headers: FIPE_HEADERS,
     });
 
+    // O upstream às vezes responde 200 com HTML de desafio do Cloudflare.
+    if (typeof data === 'string' && data.includes('cf-chl-opt')) {
+      const cfError = new Error('Cloudflare challenge detected');
+      cfError.response = { status: 403, data };
+      throw cfError;
+    }
+
     return { data };
   } catch (error) {
     const status = error?.response?.status;
