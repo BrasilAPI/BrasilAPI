@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios';
 
 describe('/indices/igpm/v1 (E2E)', () => {
   const API_URL = `${global.SERVER_URL}/api/indices/igpm/v1`;
