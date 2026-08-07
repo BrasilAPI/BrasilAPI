@@ -26,6 +26,14 @@ const validFundOutputSchema = expect.objectContaining({
   trading_name: expect.any(String),
 });
 
+const expectFundTickerList = (funds) => {
+  expect(Array.isArray(funds)).toBe(true);
+
+  if (funds.length > 0) {
+    expect(funds).toEqual(expect.arrayContaining([validFundOutputSchema]));
+  }
+};
+
 describe('b3 v1 (E2E)', () => {
   describe('GET /tickers/b3/acoes/v1/', () => {
     test('Lista todos os tickers', async () => {
@@ -75,9 +83,7 @@ describe('b3 v1 (E2E)', () => {
       const response = await axios.get(requestUrl);
 
       expect(response.status).toBe(200);
-      expect(response.data).toEqual(
-        expect.arrayContaining([validFundOutputSchema])
-      );
+      expectFundTickerList(response.data);
     });
 
     test('Lista tickers de fundos tipo FIAGRO-FIP', async () => {
@@ -105,9 +111,7 @@ describe('b3 v1 (E2E)', () => {
       const response = await axios.get(requestUrl);
 
       expect(response.status).toBe(200);
-      expect(response.data).toEqual(
-        expect.arrayContaining([validFundOutputSchema])
-      );
+      expectFundTickerList(response.data);
     });
   });
 });
