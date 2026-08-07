@@ -27,18 +27,24 @@ async function FipeVehicles(request, response) {
     ? parseInt(referenceTableCode, 10)
     : undefined;
 
+  // Validação best-effort: se a lista de tabelas estiver indisponível
+  // (upstream bloqueado), segue para o fallback sem validar.
   if (referenceTableCode) {
-    const referenceTables = await listReferenceTables();
+    try {
+      const referenceTables = await listReferenceTables();
 
-    const hasReferenceTable = !!referenceTables.find(
-      (table) => table.codigo === referenceTable
-    );
+      const hasReferenceTable = !!referenceTables.find(
+        (table) => table.codigo === referenceTable
+      );
 
-    if (!hasReferenceTable) {
-      throw new BadRequestError({ message: 'Tabela de referência inválida' });
+      if (!hasReferenceTable) {
+        throw new BadRequestError({ message: 'Tabela de referência inválida' });
+      }
+    } catch (error) {
+      if (error instanceof BadRequestError) {
+        throw error;
+      }
     }
-  } else {
-    throw new BadRequestError({ message: 'Tabela de referência inválida' });
   }
 
   if (!Object.keys(VEHICLE_TYPES).includes(vehicleType))

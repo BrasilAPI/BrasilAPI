@@ -13,6 +13,27 @@ export const FIPE_HEADERS = {
   'Content-Type': 'application/x-www-form-urlencoded',
 };
 
-export function fipePost(path, body) {
-  return axios.post(`${FIPE_URL}${path}`, body, { headers: FIPE_HEADERS });
+// Tenta o upstream oficial; em falha de bloqueio (403/429), erro de
+// servidor (5xx) ou falha de rede, delega para o fallback parallelum.
+export async function fipePost(path, body, fallback) {
+  try {
+    const { data } = await axios.post(`${FIPE_URL}${path}`, body, {
+      headers: FIPE_HEADERS,
+    });
+
+    return { data };
+  } catch (error) {
+    const status = error?.response?.status;
+
+    if (
+      fallback &&
+      (status === 403 || status === 429 || !status || status >= 500)
+    ) {
+      const data = await fallback();
+
+      return { data };
+    }
+
+    throw error;
+  }
 }

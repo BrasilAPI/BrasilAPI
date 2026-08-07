@@ -1,13 +1,16 @@
 import { VEHICLE_TYPE } from './constants';
 import { getLatestReferenceTable } from './referenceTable';
 import { fipePost } from './http';
+import { parallelumListMarcas } from './parallelum';
 
 async function listAutomakers({ vehicleType, referenceTable }) {
   const params = new URLSearchParams();
   params.append('codigoTabelaReferencia', referenceTable);
   params.append('codigoTipoVeiculo', vehicleType);
 
-  const { data } = await fipePost('/veiculos/ConsultarMarcas', params);
+  const { data } = await fipePost('/veiculos/ConsultarMarcas', params, () =>
+    parallelumListMarcas(vehicleType)
+  );
 
   return data
     .map((item) => ({ nome: item.Label, valor: item.Value }))
