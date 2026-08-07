@@ -1,0 +1,44 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program",
+            "program": "${workspaceFolder}/index.js",
+            "env": {
+                "NODE_PATH": ".",
+                "NODE_ENV": "LOCAL",
+                "NODE_INSTANCE": ""
+            },
+            "outputCapture": "std"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "NPM run test",
+            "runtimeExecutable": "npm",
+            "console": "integratedTerminal",
+            "runtimeArgs": [
+                "run-script",
+                "test",
+                "--"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "NPM run dev",
+            "runtimeExecutable": "npm",
+            "console": "integratedTerminal",
+            "runtimeArgs": [
+                "run-script",
+                "dev",
+                "--"
+            ]
+        }
+    ]
+}
