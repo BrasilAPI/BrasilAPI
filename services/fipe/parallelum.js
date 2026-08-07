@@ -31,3 +31,24 @@ export async function parallelumListModelos(vehicleType, makerCode) {
     })),
   };
 }
+
+export async function parallelumListAnos(vehicleType, makerCode, modelCode) {
+  const { data } = await axios.get(
+    `${PARALLELUM_URL}/${TYPE_MAP[vehicleType]}/marcas/${makerCode}/modelos/${modelCode}/anos`
+  );
+
+  return data.map((item) => ({ Label: item.nome, Value: item.codigo }));
+}
+
+export async function parallelumPreco(
+  vehicleType,
+  makerCode,
+  modelCode,
+  yearCode
+) {
+  const { data } = await axios.get(
+    `${PARALLELUM_URL}/${TYPE_MAP[vehicleType]}/marcas/${makerCode}/modelos/${modelCode}/anos/${yearCode}`
+  );
+
+  return data;
+}

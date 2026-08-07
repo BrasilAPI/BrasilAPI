@@ -1,4 +1,5 @@
-import { resilientPost } from './api';
+import { fipePost } from './http';
+import { parallelumListAnos } from './parallelum';
 import { VEHICLE_TYPE } from './constants';
 import { getLatestReferenceTable } from './referenceTable';
 
@@ -14,7 +15,9 @@ async function listYearsByModel({
   params.append('codigoMarca', makerCode);
   params.append('codigoModelo', modelCode);
 
-  const { data } = await resilientPost('/veiculos/ConsultarAnoModelo', params);
+  const { data } = await fipePost('/veiculos/ConsultarAnoModelo', params, () =>
+    parallelumListAnos(vehicleType, makerCode, modelCode)
+  );
 
   if (!Array.isArray(data)) {
     throw new Error('Parâmetros inválidos');

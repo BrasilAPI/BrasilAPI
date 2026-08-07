@@ -1,4 +1,5 @@
-import { resilientPost } from './api';
+import { fipePost } from './http';
+import { parallelumPreco } from './parallelum';
 import { VEHICLE_TYPE } from './constants';
 import { getLatestReferenceTable } from './referenceTable';
 
@@ -34,9 +35,10 @@ export async function getPriceByModelAndYear({
   params.append('tipoVeiculo', resolveVehicleType(vehicleType));
   params.append('tipoConsulta', 'tradicional');
 
-  const { data } = await resilientPost(
+  const { data } = await fipePost(
     '/veiculos/ConsultarValorComTodosParametros',
-    params
+    params,
+    () => parallelumPreco(vehicleType, makerCode, modelCode, yearCode)
   );
 
   if (data.erro || !data.Valor) {
