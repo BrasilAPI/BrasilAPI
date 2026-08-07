@@ -10,7 +10,7 @@
             "get": {
                 "tags": ["BANKS"],
                 "summary": "Retorna informações de todos os bancos do Brasil",
-                "description": "",
+                "description": "Retorna uma lista com os dados de todos os bancos. Exemplo de uso: `GET https://brasilapi.com.br/api/banks/v1`.",
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -21,7 +21,15 @@
                                     "items": {
                                         "$ref": "#/components/schemas/Bank"
                                     }
-                                }
+                                },
+                                "example": [
+                                    {
+                                        "ispb": "00000000",
+                                        "name": "BCO DO BRASIL S.A.",
+                                        "code": 1,
+                                        "fullName": "Banco do Brasil S.A."
+                                    }
+                                ]
                             }
                         }
                     }
@@ -34,7 +42,7 @@
                     "BANKS"
                 ],
                 "summary": "Busca as informações de um banco a partir de um código",
-                "description": "",
+                "description": "Retorna os dados de um banco a partir do código informado. Exemplo de uso: `GET https://brasilapi.com.br/api/banks/v1/1`.",
                 "parameters": [
                     {
                         "name": "code",
@@ -42,7 +50,8 @@
                         "description": "O código do banco<br />**Pode ser obtido <a href=\"#tag/BANKS/paths/~1banks~1v1/get\">nesse</a> endpoint**",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "integer",
+                            "example": 1
                         }
                     }
                 ],
@@ -53,6 +62,12 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Bank"
+                                },
+                                "example": {
+                                    "ispb": "00000000",
+                                    "name": "BCO DO BRASIL S.A.",
+                                    "code": 1,
+                                    "fullName": "Banco do Brasil S.A."
                                 }
                             }
                         }
