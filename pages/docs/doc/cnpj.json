@@ -82,8 +82,7 @@
             "description": "Sigla da unidade da federação em que se encontra o estabelecimento. Quando o estabelecimento estiver localizado no exterior, o campo será preenchido com 'EX'."
           },
           "cep": {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
             "description": "Código de endereçamento postal referente ao logradouro no qual o estabelecimento esta localizado"
           },
           "qsa": {
