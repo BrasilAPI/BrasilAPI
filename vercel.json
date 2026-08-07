@@ -1,5 +1,4 @@
 {
-  "public": true,
 	"functions": {
 		"pages/api/**": {
 			"memory": 256,
