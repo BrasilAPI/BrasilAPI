@@ -1,7 +1,6 @@
-import axios from 'axios';
-
-import { FIPE_URL, VEHICLE_TYPE } from './constants';
+import { VEHICLE_TYPE } from './constants';
 import { getLatestReferenceTable } from './referenceTable';
+import { fipePost } from './http';
 
 async function getModelYear({ fipeCode, referenceTable }) {
   const vehicleTypes = [
@@ -18,14 +17,9 @@ async function getModelYear({ fipeCode, referenceTable }) {
         params.append('codigoTipoVeiculo', vehicleType);
         params.append('modeloCodigoExterno', fipeCode);
 
-        const { data } = await axios.post(
-          `${FIPE_URL}/veiculos/ConsultarAnoModeloPeloCodigoFipe`,
-          params,
-          {
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
-            },
-          }
+        const { data } = await fipePost(
+          '/veiculos/ConsultarAnoModeloPeloCodigoFipe',
+          params
         );
 
         if (!Array.isArray(data)) {
@@ -71,14 +65,9 @@ async function getPrice({ referenceTable, vehicleType, model, fipeCode }) {
   params.append('modeloCodigoExterno', fipeCode);
   params.append('tipoConsulta', 'codigo');
 
-  const { data } = await axios.post(
-    `${FIPE_URL}/veiculos/ConsultarValorComTodosParametros`,
-    params,
-    {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-    }
+  const { data } = await fipePost(
+    '/veiculos/ConsultarValorComTodosParametros',
+    params
   );
 
   return {

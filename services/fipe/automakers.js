@@ -1,21 +1,15 @@
-import axios from 'axios';
-
-import { FIPE_URL, VEHICLE_TYPE } from './constants';
+import { VEHICLE_TYPE } from './constants';
 import { getLatestReferenceTable } from './referenceTable';
+import { fipePost } from './http';
+import { parallelumListMarcas } from './parallelum';
 
 async function listAutomakers({ vehicleType, referenceTable }) {
   const params = new URLSearchParams();
   params.append('codigoTabelaReferencia', referenceTable);
   params.append('codigoTipoVeiculo', vehicleType);
 
-  const { data } = await axios.post(
-    `${FIPE_URL}/veiculos/ConsultarMarcas`,
-    params,
-    {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-    }
+  const { data } = await fipePost('/veiculos/ConsultarMarcas', params, () =>
+    parallelumListMarcas(vehicleType)
   );
 
   return data

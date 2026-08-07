@@ -13,14 +13,22 @@ async function getFipePriceInfo(request, response) {
       : undefined;
 
     if (referenceTableCode) {
-      const referenceTables = await listReferenceTables();
+      try {
+        const referenceTables = await listReferenceTables();
 
-      const hasReferenceTable = !!referenceTables.find(
-        (table) => table.codigo === referenceTable
-      );
+        const hasReferenceTable = !!referenceTables.find(
+          (table) => table.codigo === referenceTable
+        );
 
-      if (!hasReferenceTable) {
-        throw new BadRequestError({ message: 'Tabela de referência inválida' });
+        if (!hasReferenceTable) {
+          throw new BadRequestError({
+            message: 'Tabela de referência inválida',
+          });
+        }
+      } catch (err) {
+        if (err instanceof BadRequestError) {
+          throw err;
+        }
       }
     }
 

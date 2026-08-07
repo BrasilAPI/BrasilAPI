@@ -21,5 +21,11 @@ export default function errorHandler(error, request, response) {
     return response.status(error.status).json(errorResponse);
   }
 
-  return response.status(500).json(error);
+  // Nunca serializar o erro cru (pode vazar stack trace, configuração de
+  // requisição e detalhes internos em respostas públicas).
+  return response.status(500).json({
+    message: error.message || 'Erro interno do servidor',
+    type: 'internal_error',
+    name: error.name || 'InternalServerError',
+  });
 }

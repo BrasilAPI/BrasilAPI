@@ -1,24 +1,30 @@
-import axios from 'axios';
-
-import { FIPE_URL } from './constants';
+import { fipePost } from './http';
 
 export async function listReferenceTables() {
-  const { data } = await axios.post(
-    `${FIPE_URL}/veiculos/ConsultarTabelaDeReferencia`,
-    {},
-    {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-    }
-  );
+  try {
+    const { data } = await fipePost(
+      '/veiculos/ConsultarTabelaDeReferencia',
+      {}
+    );
 
-  return data
-    .map((item) => ({ codigo: item.Codigo, mes: item.Mes }))
-    .sort((a, b) => b.codigo - a.codigo);
+    return data
+      .map((item) => ({ codigo: item.Codigo, mes: item.Mes }))
+      .sort((a, b) => b.codigo - a.codigo);
+  } catch {
+    throw new Error(
+      'Fonte de dados FIPE temporariamente indisponível. Tente novamente mais tarde.'
+    );
+  }
 }
 
 export async function getLatestReferenceTable() {
-  const tables = await listReferenceTables();
-  return tables[0].codigo;
+  try {
+    const tables = await listReferenceTables();
+
+    return tables[0]?.codigo;
+  } catch {
+    // Fonte oficial indisponível: o fallback parallelum não depende da
+    // tabela de referência, então seguimos sem ela.
+    return undefined;
+  }
 }
