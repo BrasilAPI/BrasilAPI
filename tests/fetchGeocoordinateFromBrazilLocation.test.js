@@ -27,7 +27,8 @@ describe('fetchGeocoordinateFromBrazilLocation', () => {
         createFetchResponse({
           features: [photonFeature('05010-000', [-46.633308, -23.55052])],
         })
-      );
+      )
+      .mockResolvedValueOnce(createFetchResponse({ results: [] }));
 
     const location = await fetchGeocoordinateFromBrazilLocation({
       state: 'SP',
@@ -36,12 +37,13 @@ describe('fetchGeocoordinateFromBrazilLocation', () => {
       cep: '05010-000',
     });
 
-    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(fetchMock).toHaveBeenCalledTimes(3);
     expect(fetchMock.mock.calls[0][0]).toContain('q=');
     expect(fetchMock.mock.calls[0][0]).toContain('Rua+Caiubi');
     expect(fetchMock.mock.calls[0][0]).toContain('05010000');
     expect(fetchMock.mock.calls[1][0]).not.toContain('Rua+Caiubi');
     expect(fetchMock.mock.calls[1][0]).toContain('05010000');
+    expect(fetchMock.mock.calls[2][0]).toContain('name=');
     expect(location).toEqual({
       type: 'Point',
       coordinates: {
