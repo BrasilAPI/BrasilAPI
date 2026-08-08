@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-// O nominatim exige um User-Agent identificável (bloqueia requests sem UA)
-const NOMINATIM_HEADERS = {
-  'User-Agent': 'brasilapi.com.br (contato@brasilapi.com.br)',
-};
+// Geocoding via Open-Meteo (gratuito, sem key, sem rate-limit agressivo).
+// O Nominatim do OpenStreetMap rate-limita IPs compartilhados (429) —
+// os IPs da Vercel estouravam o limite de 1 req/s.
+const GEOCODE_URL = 'https://geocoding-api.open-meteo.com/v1/search';
 
 export class LocationNotFoundError extends Error {
   constructor(message) {
@@ -14,26 +14,30 @@ export class LocationNotFoundError extends Error {
 
 // Função para converter localização em coordenadas
 const getCoordinates = async (location) => {
-  const response = await axios.get(
-    `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
-      location
-    )}`,
-    { headers: NOMINATIM_HEADERS }
-  );
+  const response = await axios.get(GEOCODE_URL, {
+    params: {
+      name: location,
+      count: 1,
+      language: 'pt',
+      format: 'json',
+    },
+    timeout: 10000,
+  });
 
-  if (!response.data || response.data.length === 0) {
+  const result = response.data?.results?.[0];
+
+  if (!result) {
     throw new LocationNotFoundError('Localização não encontrada');
   }
 
-  const { lat, lon } = response.data[0];
-
-  return { lat, lon };
+  return { lat: result.latitude, lon: result.longitude };
 };
 
 export const getSolarIncidence = async (location) => {
   const { lat, lon } = await getCoordinates(location);
   const response = await axios.get(
-    `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lon}&formatted=0`
+    `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lon}&formatted=0`,
+    { timeout: 10000 }
   );
 
   return response.data.results;
