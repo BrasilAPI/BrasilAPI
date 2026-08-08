@@ -71,14 +71,14 @@ export const formatCsvFile = (file) => {
   try {
     return lines
       .map((line) => line.split(';').map((field) => field.trim()))
-      .filter(([ispb]) => ispb)
+      .filter((data) => data[2])
       .map((data) => {
         return {
           ispb: data[2],
           nome: data[1],
           nome_reduzido: data[1],
-          modalidade_participacao: data[8],
-          tipo_participacao: data[6],
+          modalidade_participacao: data[8] || null,
+          tipo_participacao: data[6] || null,
           inicio_operacao: null,
         };
       })
