@@ -1,5 +1,6 @@
 import app from '@/app';
 import BadRequestError from '@/errors/BadRequestError';
+import InternalError from '@/errors/InternalError';
 import { getFipePrice } from '@/services/fipe/price';
 import { listReferenceTables } from '@/services/fipe/referenceTable';
 
@@ -39,7 +40,10 @@ async function getFipePriceInfo(request, response) {
       throw new BadRequestError({ message: err.message });
     }
 
-    throw err;
+    throw new InternalError({
+      message:
+        'Fonte de dados FIPE temporariamente indisponível. Tente novamente mais tarde.',
+    });
   }
 }
 
