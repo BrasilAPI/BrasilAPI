@@ -66,8 +66,8 @@ describe('fetchGeocoordinateFromBrazilLocation', () => {
     expect(location).toEqual({
       type: 'Point',
       coordinates: {
-        longitude: undefined,
-        latitude: undefined,
+        longitude: null,
+        latitude: null,
       },
     });
   });
@@ -87,8 +87,8 @@ describe('fetchGeocoordinateFromBrazilLocation', () => {
     expect(location).toEqual({
       type: 'Point',
       coordinates: {
-        longitude: undefined,
-        latitude: undefined,
+        longitude: null,
+        latitude: null,
       },
     });
   });
