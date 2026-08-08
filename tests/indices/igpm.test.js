@@ -1,6 +1,23 @@
 import axios from 'axios';
+import { describe, expect, test } from 'vitest';
 
-describe('/indices/igpm/v1 (E2E)', () => {
+// Smart service availability check using top-level await
+let shouldSkipTests = false;
+
+try {
+  const response = await axios.get(
+    'https://api.bcb.gov.br/dados/serie/bcdata.sgs.189/dados/ultimos/1?formato=json',
+    { timeout: 5000 }
+  );
+
+  if (response.status !== 200) {
+    shouldSkipTests = true;
+  }
+} catch (error) {
+  shouldSkipTests = true;
+}
+
+describe.skipIf(shouldSkipTests)('/indices/igpm/v1 (E2E)', () => {
   const API_URL = `${global.SERVER_URL}/api/indices/igpm/v1`;
 
   const dates = {
