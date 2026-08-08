@@ -1,4 +1,5 @@
-const axios = require('axios');
+import axios from 'axios';
+import { describe, expect, test } from 'vitest';
 
 describe('/geolocation/v1 (E2E)', () => {
   test('it should be return the city and country if the coordinates exists', async () => {
