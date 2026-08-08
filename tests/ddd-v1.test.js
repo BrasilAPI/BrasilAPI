@@ -1,14 +1,20 @@
+import { beforeAll, describe, expect, test } from 'vitest';
+
 import axios from 'axios';
 
 import {
   validResponseV1,
   validResponseAllDDDV1,
-  invalidResponse,
+  invalidResponseInvalid,
 } from './helpers/ddd';
 
-const requestUrl = `${global.SERVER_URL}/api/ddd/v1`;
+let requestUrl = '';
 
 describe('api/ddd/v1 (E2E)', () => {
+  beforeAll(async () => {
+    requestUrl = `${global.SERVER_URL}/api/ddd/v1`;
+  });
+
   test('Obtendo todos os DDD válidos', async () => {
     const response = await axios.get(`${requestUrl}`);
     const { data, status } = response;
@@ -33,8 +39,8 @@ describe('api/ddd/v1 (E2E)', () => {
       const { response } = error;
       const { data, status } = response;
 
-      expect(status).toEqual(404);
-      expect(data).toEqual(invalidResponse);
+      expect(status).toEqual(400);
+      expect(data).toEqual(invalidResponseInvalid);
     }
   });
 });
