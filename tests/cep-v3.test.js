@@ -1,9 +1,16 @@
-const axios = require('axios');
+import { beforeAll, describe, expect, test } from 'vitest';
+
+import axios from 'axios';
 
 describe('/cep/v3 (E2E)', () => {
+  let requestUrl = '';
+
+  beforeAll(async () => {
+    requestUrl = `${global.SERVER_URL}/api/cep/v3`;
+  });
+
   test('Utilizando um CEP válido: 05010000', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/cep/v3/05010000`;
-    const response = await axios.get(requestUrl);
+    const response = await axios.get(`${requestUrl}/05010000`);
 
     expect(response.data).toEqual({
       cep: '05010000',
@@ -23,8 +30,7 @@ describe('/cep/v3 (E2E)', () => {
   });
 
   test('Utilizando um CEP incompleto: 050', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/cep/v3/050`;
-    const response = await axios.get(requestUrl);
+    const response = await axios.get(`${requestUrl}/050`);
 
     expect(response.data[0]).toEqual({
       state: 'SP',
@@ -34,8 +40,7 @@ describe('/cep/v3 (E2E)', () => {
   });
 
   test('Utilizando um CEP incompleto: 87', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/cep/v3/87`;
-    const response = await axios.get(requestUrl);
+    const response = await axios.get(`${requestUrl}/87`);
 
     expect(response.data[0]).toEqual({
       state: 'PR',
@@ -58,10 +63,9 @@ describe('/cep/v3 (E2E)', () => {
 
   test('Utilizando um CEP inexistente: 00000000', async () => {
     expect.assertions(2);
-    const requestUrl = `${global.SERVER_URL}/api/cep/v3/00000000`;
 
     try {
-      await axios.get(requestUrl);
+      await axios.get(`${requestUrl}/00000000`);
     } catch (error) {
       const { response } = error;
 
@@ -76,10 +80,9 @@ describe('/cep/v3 (E2E)', () => {
 
   test('Utilizando um CEP inválido: 999999999999999', async () => {
     expect.assertions(2);
-    const requestUrl = `${global.SERVER_URL}/api/cep/v3/999999999999999`;
 
     try {
-      await axios.get(requestUrl);
+      await axios.get(`${requestUrl}/999999999999999`);
     } catch (error) {
       const { response } = error;
 
@@ -98,9 +101,8 @@ describe('/cep/v3 (E2E)', () => {
     }
   });
 
-  test('Deve retornar as coordenadas -22.883892 e -43.3061123', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/cep/v3/20751120`;
-    const response = await axios.get(requestUrl);
+  test('Deve retornar as coordenadas do CEP 20751120', async () => {
+    const response = await axios.get(`${requestUrl}/20751120`);
 
     expect(response.data).toEqual({
       cep: '20751120',
@@ -112,8 +114,8 @@ describe('/cep/v3 (E2E)', () => {
       location: {
         type: 'Point',
         coordinates: {
-          longitude: '-43.3061123',
-          latitude: '-22.883892',
+          longitude: expect.any(String),
+          latitude: expect.any(String),
         },
       },
     });

@@ -1,8 +1,8 @@
 import cep from 'cep-promise';
-import csvToJson from 'csvtojson';
 import microCors from 'micro-cors';
 
 import fetchGeocoordinateFromBrazilLocation from '../../../../lib/fetchGeocoordinateFromBrazilLocation';
+import cepRanges from '../../../../public/range.json';
 
 const providers = ['correios', 'viacep', 'widenet', 'correios-alt'];
 
@@ -55,11 +55,8 @@ async function Cep(request, response) {
   try {
     const requestedCep = request.query.cep;
 
-    // ler o .csv dos ranges das cidades
-    const csvFilePath = `${process.cwd()}/public/range.csv`;
-    const json = await csvToJson().fromFile(csvFilePath);
-    const ranges = JSON.stringify(json, null, 2);
-    const rangesList = JSON.parse(ranges);
+    // faixas de CEP dos municípios (dataset embutido no bundle — funciona no serverless)
+    const rangesList = cepRanges;
 
     // comparar o requestCep
     const resultado = [];

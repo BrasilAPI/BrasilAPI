@@ -1,444 +1,444 @@
 {
-  "tags": [
-    {
-      "name": "CEP",
-      "description": "Informações referentes a CEPs"
-    },
-    {
-      "name": "CEP V2",
-      "description": "A geolocalização dos CEPs estão <b>suscetíveis a erros</b>, pois as coordenadas são provindas do OpenStreetMap. Quando disponível, o CEP também é utilizado para refinar a busca e reduzir ambiguidades. Caso encontre algum erro você poderá corrigir no próprio OpenStreetMap que será refletido no CEP V2."
-    }
-  ],
-  "paths": {
-    "/cep/v1/{cep}": {
-      "get": {
-        "tags": [
-          "CEP"
-        ],
-        "summary": "Busca por CEP com múltiplos providers de fallback.",
-        "description": "A busca utiliza como fonte principal o OpenCep, caso não encontre o CEP é buscado em diversos outros providers de CEP.",
-        "parameters": [
-          {
-            "name": "cep",
-            "description": "O CEP (Código de Endereçamento Postal) é um sistema de códigos que visa racionalizar o processo de encaminhamento e entrega de correspondências através da divisão do país em regiões postais. ... Atualmente, o CEP é composto por oito dígitos, cinco de um lado e três de outro. Cada algarismo do CEP possui um significado.\n",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Address"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Todos os serviços de CEP retornaram erro.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CepError"
-                }
-              }
-            }
-          }
+    "tags": [
+        {
+            "name": "CEP",
+            "description": "Informações referentes a CEPs"
+        },
+        {
+            "name": "CEP V2",
+            "description": "A geolocalização dos CEPs estão <b>suscetíveis a erros</b>, pois as coordenadas são provindas do OpenStreetMap. Quando disponível, o CEP também é utilizado para refinar a busca e reduzir ambiguidades. Caso encontre algum erro você poderá corrigir no próprio OpenStreetMap que será refletido no CEP V2."
         }
-      }
-    },
-    "/cep/v2/{cep}": {
-      "get": {
-        "tags": [
-          "CEP V2"
-        ],
-        "summary": "Busca por CEP com múltiplos providers e geolocalização.",
-        "description": "Versão 2 do serviço de busca por CEP que inclui informações de geolocalização (latitude e longitude) além dos dados básicos de endereço. Utiliza múltiplos provedores com sistema de fallback para garantir maior disponibilidade.",
-        "parameters": [
-          {
-            "name": "cep",
-            "description": "CEP a ser consultado. Deve conter exatamente 8 dígitos, com ou sem formatação (hífen). Exemplo: 01310-930 ou 01310930.",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "pattern": "^[0-9]{8}$|^[0-9]{5}-[0-9]{3}$",
-              "example": "01310930"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AddressV2"
+    ],
+    "paths": {
+        "/cep/v1/{cep}": {
+            "get": {
+                "tags": [
+                    "CEP"
+                ],
+                "summary": "Busca por CEP com múltiplos providers de fallback.",
+                "description": "A busca utiliza como fonte principal o OpenCep, caso não encontre o CEP é buscado em diversos outros providers de CEP.",
+                "parameters": [
+                    {
+                        "name": "cep",
+                        "description": "O CEP (Código de Endereçamento Postal) é um sistema de códigos que visa racionalizar o processo de encaminhamento e entrega de correspondências através da divisão do país em regiões postais. ... Atualmente, o CEP é composto por oito dígitos, cinco de um lado e três de outro. Cada algarismo do CEP possui um significado.\n",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Address"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Todos os serviços de CEP retornaram erro.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CepError"
+                                }
+                            }
+                        }
+                    }
                 }
-              }
             }
-          },
-          "400": {
-            "description": "CEP inválido ou mal formatado.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorMessage"
+        },
+        "/cep/v2/{cep}": {
+            "get": {
+                "tags": [
+                    "CEP V2"
+                ],
+                "summary": "Busca por CEP com múltiplos providers e geolocalização.",
+                "description": "Versão 2 do serviço de busca por CEP que inclui informações de geolocalização (latitude e longitude) além dos dados básicos de endereço. Utiliza múltiplos provedores com sistema de fallback para garantir maior disponibilidade.",
+                "parameters": [
+                    {
+                        "name": "cep",
+                        "description": "CEP a ser consultado. Deve conter exatamente 8 dígitos, com ou sem formatação (hífen). Exemplo: 01310-930 ou 01310930.",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "pattern": "^[0-9]{8}$|^[0-9]{5}-[0-9]{3}$",
+                            "example": "01310930"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AddressV2"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "CEP inválido ou mal formatado.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "name": "BadRequestError",
+                                    "message": "CEP deve conter exatamente 8 dígitos",
+                                    "type": "validation_error"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "CEP não encontrado em nenhum provedor.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "name": "NotFoundError",
+                                    "message": "CEP NAO ENCONTRADO",
+                                    "type": "service_error"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro interno no serviço de CEP.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "name": "InternalError",
+                                    "message": "Erro interno no serviço de CEP",
+                                    "type": "internal_error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/cep/v3/{cep}": {
+            "get": {
+                "tags": [
+                    "CEP V3"
+                ],
+                "summary": "Versão 3 do serviço de busca por CEP com múltiplos providers de fallback, com autocomplete de faixas de CEP.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "cep",
+                        "description": "O CEP (Código de Endereçamento Postal) é um sistema de códigos que visa racionalizar o processo de encaminhamento e entrega de correspondências através da divisão do país em regiões postais. ... Atualmente, o CEP é composto por oito dígitos, cinco de um lado e três de outro. Cada algarismo do CEP possui um significado.\n",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AddressV3"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Todos os serviços de CEP retornaram erro.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CepError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Coordinates": {
+                "title": "Coordinates",
+                "required": [
+                    "longitude",
+                    "latitude"
+                ],
+                "type": "object",
+                "properties": {
+                    "longitude": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "latitude": {
+                        "type": "string",
+                        "nullable": true
+                    }
                 },
                 "example": {
-                  "name": "BadRequestError",
-                  "message": "CEP deve conter exatamente 8 dígitos",
-                  "type": "validation_error"
+                    "longitude": "-49.0629788",
+                    "latitude": "-26.9244749"
                 }
-              }
-            }
-          },
-          "404": {
-            "description": "CEP não encontrado em nenhum provedor.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorMessage"
-                },
-                "example": {
-                  "name": "NotFoundError",
-                  "message": "CEP NAO ENCONTRADO",
-                  "type": "service_error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Erro interno no serviço de CEP.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorMessage"
-                },
-                "example": {
-                  "name": "InternalError",
-                  "message": "Erro interno no serviço de CEP",
-                  "type": "internal_error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/cep/v3/{cep}": {
-      "get": {
-        "tags": [
-          "CEP V3"
-        ],
-        "summary": "Versão 3 do serviço de busca por CEP com múltiplos providers de fallback, com autocomplete de faixas de CEP.",
-        "description": "",
-        "parameters": [
-          {
-            "name": "cep",
-            "description": "O CEP (Código de Endereçamento Postal) é um sistema de códigos que visa racionalizar o processo de encaminhamento e entrega de correspondências através da divisão do país em regiões postais. ... Atualmente, o CEP é composto por oito dígitos, cinco de um lado e três de outro. Cada algarismo do CEP possui um significado.\n",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AddressV3"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Todos os serviços de CEP retornaram erro.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CepError"
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "components": {
-    "schemas": {
-      "Coordinates": {
-        "title": "Coordinates",
-        "required": [
-          "longitude",
-          "latitude"
-        ],
-        "type": "object",
-        "properties": {
-          "longitude": {
-            "type": "string",
-            "nullable": true
-          },
-          "latitude": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "example": {
-          "longitude": "-49.0629788",
-          "latitude": "-26.9244749"
-        }
-      },
-      "Location": {
-        "title": "Location",
-        "required": [
-          "type",
-          "coordinates"
-        ],
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "enum": [
-              "Point"
-            ]
-          },
-          "coordinates": {
-            "type": "object",
-            "$ref": "#/components/schemas/Coordinates"
-          }
-        },
-        "example": {
-          "type": "Point",
-          "coordinates": {
-            "longitude": "-49.0629788",
-            "latitude": "-26.9244749"
-          }
-        }
-      },
-      "AddressV2": {
-        "title": "Address V2 with Geolocation",
-        "description": "Endereço completo com informações de geolocalização incluídas",
-        "required": [
-          "cep",
-          "state",
-          "city",
-          "neighborhood",
-          "street",
-          "timezoneName",
-          "location"
-        ],
-        "type": "object",
-        "properties": {
-          "cep": {
-            "type": "string",
-            "description": "Código de Endereçamento Postal"
-          },
-          "state": {
-            "type": "string",
-            "description": "Sigla do estado (UF)"
-          },
-          "city": {
-            "type": "string",
-            "description": "Nome da cidade"
-          },
-          "neighborhood": {
-            "type": "string",
-            "nullable": true,
-            "description": "Nome do bairro (pode ser nulo)"
-          },
-          "street": {
-            "type": "string",
-            "nullable": true,
-            "description": "Nome da rua/logradouro (pode ser nulo)"
-          },
-          "timezoneName": {
-            "type": "string",
-            "nullable": true,
-            "description": "Nome da timezone do local (pode ser nulo)"
-          },
-          "location": {
-            "type": "object",
-            "$ref": "#/components/schemas/Location",
-            "description": "Coordenadas geográficas do endereço"
-          },
-          "ibge": {
-            "type": "object",
-            "$ref": "#/components/schemas/IbgeCodes",
-            "description": "Códigos IBGE do município e do estado (podem ser nulos quando o provider não disponibiliza)"
-          }
-        },
-        "example": {
-          "cep": "89010025",
-          "state": "SC",
-          "city": "Blumenau",
-          "neighborhood": "Centro",
-          "street": "Rua Doutor Luiz de Freitas Melro",
-          "timezoneName": "America/Sao_Paulo",
-          "location": {
-            "type": "Point",
-            "coordinates": {
-              "longitude": "-49.0629788",
-              "latitude": "-26.9244749"
-            }
-          },
-          "ibge": {
-            "city": "4202404",
-            "state": "42"
-          }
-        }
-      },
-      "Address": {
-        "title": "Address",
-        "required": [
-          "cep",
-          "state",
-          "city",
-          "neighborhood",
-          "street",
-          "service"
-        ],
-        "type": "object",
-        "properties": {
-          "cep": {
-            "type": "string"
-          },
-          "state": {
-            "type": "string"
-          },
-          "city": {
-            "type": "string"
-          },
-          "neighborhood": {
-            "type": "string"
-          },
-          "street": {
-            "type": "string"
-          },
-          "service": {
-            "type": "string"
-          },
-          "ibge": {
-            "type": "object",
-            "$ref": "#/components/schemas/IbgeCodes",
-            "description": "Códigos IBGE do município e do estado (podem ser nulos quando o provider não disponibiliza)"
-          }
-        },
-        "example": {
-          "cep": "89010025",
-          "state": "SC",
-          "city": "Blumenau",
-          "neighborhood": "Centro",
-          "street": "Rua Doutor Luiz de Freitas Melro",
-          "service": "viacep",
-          "ibge": {
-            "city": "4202404",
-            "state": "42"
-          }
-        }
-      },
-      "IbgeCodes": {
-        "title": "IBGE Codes",
-        "description": "Códigos IBGE associados ao endereço",
-        "type": "object",
-        "properties": {
-          "city": {
-            "type": "string",
-            "nullable": true,
-            "description": "Código IBGE do município (7 dígitos), pode ser nulo se o provider não disponibiliza"
-          },
-          "state": {
-            "type": "string",
-            "nullable": true,
-            "description": "Código IBGE do estado (2 dígitos), pode ser nulo se a UF não puder ser identificada"
-          }
-        },
-        "example": {
-          "city": "4202404",
-          "state": "42"
-        }
-      },
-      "CepError": {
-        "title": "CepError.",
-        "required": [
-          "name",
-          "message",
-          "type",
-          "errors"
-        ],
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "type": {
-            "type": "string"
-          },
-          "errors": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Error"
             },
-            "description": ""
-          }
-        },
-        "example": {
-          "name": "CepPromiseError",
-          "message": "Todos os serviços de CEP retornaram erro.",
-          "type": "service_error",
-          "errors": [
-            {
-              "name": "ServiceError",
-              "message": "CEP INVÁLIDO",
-              "service": "correios"
+            "Location": {
+                "title": "Location",
+                "required": [
+                    "type",
+                    "coordinates"
+                ],
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "Point"
+                        ]
+                    },
+                    "coordinates": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/Coordinates"
+                    }
+                },
+                "example": {
+                    "type": "Point",
+                    "coordinates": {
+                        "longitude": "-49.0629788",
+                        "latitude": "-26.9244749"
+                    }
+                }
             },
-            {
-              "name": "ServiceError",
-              "message": "CEP não encontrado na base do ViaCEP.",
-              "service": "viacep"
+            "AddressV2": {
+                "title": "Address V2 with Geolocation",
+                "description": "Endereço completo com informações de geolocalização incluídas",
+                "required": [
+                    "cep",
+                    "state",
+                    "city",
+                    "neighborhood",
+                    "street",
+                    "timezoneName",
+                    "location"
+                ],
+                "type": "object",
+                "properties": {
+                    "cep": {
+                        "type": "string",
+                        "description": "Código de Endereçamento Postal"
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "Sigla do estado (UF)"
+                    },
+                    "city": {
+                        "type": "string",
+                        "description": "Nome da cidade"
+                    },
+                    "neighborhood": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Nome do bairro (pode ser nulo)"
+                    },
+                    "street": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Nome da rua/logradouro (pode ser nulo)"
+                    },
+                    "timezoneName": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Nome da timezone do local (pode ser nulo)"
+                    },
+                    "location": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/Location",
+                        "description": "Coordenadas geográficas do endereço"
+                    },
+                    "ibge": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/IbgeCodes",
+                        "description": "Códigos IBGE do município e do estado (podem ser nulos quando o provider não disponibiliza)"
+                    }
+                },
+                "example": {
+                    "cep": "89010025",
+                    "state": "SC",
+                    "city": "Blumenau",
+                    "neighborhood": "Centro",
+                    "street": "Rua Doutor Luiz de Freitas Melro",
+                    "timezoneName": "America/Sao_Paulo",
+                    "location": {
+                        "type": "Point",
+                        "coordinates": {
+                            "longitude": "-49.0629788",
+                            "latitude": "-26.9244749"
+                        }
+                    },
+                    "ibge": {
+                        "city": "4202404",
+                        "state": "42"
+                    }
+                }
+            },
+            "Address": {
+                "title": "Address",
+                "required": [
+                    "cep",
+                    "state",
+                    "city",
+                    "neighborhood",
+                    "street",
+                    "service"
+                ],
+                "type": "object",
+                "properties": {
+                    "cep": {
+                        "type": "string"
+                    },
+                    "state": {
+                        "type": "string"
+                    },
+                    "city": {
+                        "type": "string"
+                    },
+                    "neighborhood": {
+                        "type": "string"
+                    },
+                    "street": {
+                        "type": "string"
+                    },
+                    "service": {
+                        "type": "string"
+                    },
+                    "ibge": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/IbgeCodes",
+                        "description": "Códigos IBGE do município e do estado (podem ser nulos quando o provider não disponibiliza)"
+                    }
+                },
+                "example": {
+                    "cep": "89010025",
+                    "state": "SC",
+                    "city": "Blumenau",
+                    "neighborhood": "Centro",
+                    "street": "Rua Doutor Luiz de Freitas Melro",
+                    "service": "viacep",
+                    "ibge": {
+                        "city": "4202404",
+                        "state": "42"
+                    }
+                }
+            },
+            "IbgeCodes": {
+                "title": "IBGE Codes",
+                "description": "Códigos IBGE associados ao endereço",
+                "type": "object",
+                "properties": {
+                    "city": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Código IBGE do município (7 dígitos), pode ser nulo se o provider não disponibiliza"
+                    },
+                    "state": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Código IBGE do estado (2 dígitos), pode ser nulo se a UF não puder ser identificada"
+                    }
+                },
+                "example": {
+                    "city": "4202404",
+                    "state": "42"
+                }
+            },
+            "CepError": {
+                "title": "CepError.",
+                "required": [
+                    "name",
+                    "message",
+                    "type",
+                    "errors"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "errors": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Error"
+                        },
+                        "description": ""
+                    }
+                },
+                "example": {
+                    "name": "CepPromiseError",
+                    "message": "Todos os serviços de CEP retornaram erro.",
+                    "type": "service_error",
+                    "errors": [
+                        {
+                            "name": "ServiceError",
+                            "message": "CEP INVÁLIDO",
+                            "service": "correios"
+                        },
+                        {
+                            "name": "ServiceError",
+                            "message": "CEP não encontrado na base do ViaCEP.",
+                            "service": "viacep"
+                        }
+                    ]
+                }
+            },
+            "Error": {
+                "title": "Error",
+                "required": [
+                    "name",
+                    "message",
+                    "service"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "service": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "name": "ServiceError",
+                    "message": "CEP INVÁLIDO",
+                    "service": "correios"
+                }
             }
-          ]
         }
-      },
-      "Error": {
-        "title": "Error",
-        "required": [
-          "name",
-          "message",
-          "service"
-        ],
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "service": {
-            "type": "string"
-          }
-        },
-        "example": {
-          "name": "ServiceError",
-          "message": "CEP INVÁLIDO",
-          "service": "correios"
-        }
-      }
     }
-  }
 }
