@@ -6,7 +6,9 @@ vi.mock('axios');
 
 describe('solarIncidenceService', () => {
   test('should fetch solar incidence data', async () => {
-    const mockCoordinates = { lat: '-23.5505', lon: '-46.6333' }; // São Paulo
+    const mockGeocode = {
+      results: [{ latitude: -23.5475, longitude: -46.6361 }], // São Paulo
+    };
     const mockSolarData = {
       results: {
         sunrise: '2023-07-13T09:21:00+00:00',
@@ -17,7 +19,7 @@ describe('solarIncidenceService', () => {
     };
 
     axios.get
-      .mockResolvedValueOnce({ data: [mockCoordinates] })
+      .mockResolvedValueOnce({ data: mockGeocode })
       .mockResolvedValueOnce({ data: mockSolarData });
 
     const data = await getSolarIncidence('sao_paulo');
@@ -29,7 +31,7 @@ describe('solarIncidenceService', () => {
   });
 
   test('should throw when location is not found', async () => {
-    axios.get.mockResolvedValueOnce({ data: [] });
+    axios.get.mockResolvedValueOnce({ data: { results: [] } });
 
     await expect(getSolarIncidence('local_inexistente')).rejects.toThrow(
       'Localização não encontrada'
