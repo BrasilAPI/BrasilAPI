@@ -51,6 +51,27 @@ describe('fetchGeocoordinateFromBrazilLocation', () => {
     });
   });
 
+  test('retorna coordenada indisponivel quando o provider responde sem features', async () => {
+    vi.spyOn(global, 'fetch').mockResolvedValue(
+      createFetchResponse({ message: 'rate limit' })
+    );
+
+    const location = await fetchGeocoordinateFromBrazilLocation({
+      state: 'SP',
+      city: 'Sao Paulo',
+      street: 'Rua Caiubi',
+      cep: '05010-000',
+    });
+
+    expect(location).toEqual({
+      type: 'Point',
+      coordinates: {
+        longitude: undefined,
+        latitude: undefined,
+      },
+    });
+  });
+
   test('retorna coordenada indisponivel quando nenhuma tentativa encontra resultado', async () => {
     vi.spyOn(global, 'fetch').mockResolvedValue(
       createFetchResponse({ features: [] })
