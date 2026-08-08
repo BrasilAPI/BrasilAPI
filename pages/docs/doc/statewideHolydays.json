@@ -1,0 +1,110 @@
+{
+    "tags": [
+        {
+            "name": "Feriados Estaduais",
+            "description": "Informações sobre feriados estaduais"
+        }        
+    ],
+    "paths": {
+        "/feriados/v1/{ano}/{uf}": {
+            "get": {
+                "tags": ["Feriados Estaduais"],
+                "summary": "Lista os feriados estaduais de determinado ano e estado.",
+                "description": "Calcula os feriados móveis com base no próprio e adiciona os feriados fixos",
+                "parameters": [
+                    {
+                        "name": "ano",
+                        "description": "Ano para calcular os feriados.\n",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "uf",
+                        "description": "uf para filtrar os feriados do estado.\n",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/statewideHolidays"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Ano fora do intervalo suportado.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "type": "feriados_range_error",
+                                    "message": "Ano fora do intervalo suportado entre 1900 e 2199."
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Uf inexistente.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                },
+                                "example": {
+                                    "type": "state_does_not_exist_error",
+                                    "message": "Uf inexistente."
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "statewideHolidays": {
+                "title": "statewideHolidays",
+                "type": "object",
+                "required": ["date", "type", "name"],
+                "properties": {
+                    "date": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string",
+                        "format": "int32"
+                    },
+                    "fullName": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "date": "2023-11-20",
+                    "name": "Dia da consciência Negra",
+                    "type": "state"
+                }
+            }
+        }
+    }
+}
