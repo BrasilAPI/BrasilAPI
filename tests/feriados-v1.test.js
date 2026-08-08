@@ -102,7 +102,7 @@ describe('/feriados/v1 (E2E)', () => {
 
     expect.assertions(2);
 
-    expect(data).toHaveLength(12);
+    expect(data).toHaveLength(13);
     expect(data).toEqual(
       expect.arrayContaining(getHolidays(2019, ['Páscoa', 'Tiradentes']))
     );
@@ -114,7 +114,7 @@ describe('/feriados/v1 (E2E)', () => {
     const requestUrl = `${global.SERVER_URL}/api/feriados/v1/2023`;
     const { data } = await axios.get(requestUrl);
 
-    expect(data).toHaveLength(12);
+    expect(data).toHaveLength(13);
     expect(data).toEqual(
       expect.not.arrayContaining(
         getHolidays(2024, ['Dia da consciência negra'])
@@ -128,7 +128,7 @@ describe('/feriados/v1 (E2E)', () => {
     const requestUrl = `${global.SERVER_URL}/api/feriados/v1/2024`;
     const { data } = await axios.get(requestUrl);
 
-    expect(data).toHaveLength(13);
+    expect(data).toHaveLength(14);
     expect(data).toEqual(
       expect.arrayContaining(getHolidays(2024, ['Dia da consciência negra']))
     );

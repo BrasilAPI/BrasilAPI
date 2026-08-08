@@ -90,13 +90,21 @@ export function getEasterHolidays(year) {
     type: 'national',
     weekday: getWeekdayName(goodFridayDate),
   });
-  movingDate.setDate(movingDate.getDate() - 45);
-  const carnavalDate = formatDate(movingDate);
+  movingDate.setDate(movingDate.getDate() - 46);
+  const carnavalMondayDate = formatDate(movingDate);
   holidays.push({
-    date: carnavalDate,
+    date: carnavalMondayDate,
     name: 'Carnaval',
     type: 'national',
-    weekday: getWeekdayName(carnavalDate),
+    weekday: getWeekdayName(carnavalMondayDate),
+  });
+  movingDate.setDate(movingDate.getDate() + 1);
+  const carnavalTuesdayDate = formatDate(movingDate);
+  holidays.push({
+    date: carnavalTuesdayDate,
+    name: 'Carnaval',
+    type: 'national',
+    weekday: getWeekdayName(carnavalTuesdayDate),
   });
   movingDate.setDate(movingDate.getDate() + 107);
   const corpusChristiDate = formatDate(movingDate);
