@@ -9,6 +9,11 @@ function createFetchResponse(data, ok = true) {
   };
 }
 
+const photonFeature = (postcode, coords) => ({
+  geometry: { coordinates: coords },
+  properties: { postcode },
+});
+
 describe('fetchGeocoordinateFromBrazilLocation', () => {
   afterEach(() => {
     vi.restoreAllMocks();
@@ -17,15 +22,11 @@ describe('fetchGeocoordinateFromBrazilLocation', () => {
   test('faz fallback sem logradouro quando a busca inicial nao encontra resultado', async () => {
     const fetchMock = vi
       .spyOn(global, 'fetch')
-      .mockResolvedValueOnce(createFetchResponse([]))
+      .mockResolvedValueOnce(createFetchResponse({ features: [] }))
       .mockResolvedValueOnce(
-        createFetchResponse([
-          {
-            lat: '-23.55052',
-            lon: '-46.633308',
-            address: { postcode: '05010-000' },
-          },
-        ])
+        createFetchResponse({
+          features: [photonFeature('05010-000', [-46.633308, -23.55052])],
+        })
       );
 
     const location = await fetchGeocoordinateFromBrazilLocation({
@@ -36,10 +37,11 @@ describe('fetchGeocoordinateFromBrazilLocation', () => {
     });
 
     expect(fetchMock).toHaveBeenCalledTimes(2);
-    expect(fetchMock.mock.calls[0][0]).toContain('street=Rua+Caiubi');
-    expect(fetchMock.mock.calls[0][0]).toContain('postalcode=05010000');
-    expect(fetchMock.mock.calls[1][0]).not.toContain('street=');
-    expect(fetchMock.mock.calls[1][0]).toContain('postalcode=05010000');
+    expect(fetchMock.mock.calls[0][0]).toContain('q=');
+    expect(fetchMock.mock.calls[0][0]).toContain('Rua+Caiubi');
+    expect(fetchMock.mock.calls[0][0]).toContain('05010000');
+    expect(fetchMock.mock.calls[1][0]).not.toContain('Rua+Caiubi');
+    expect(fetchMock.mock.calls[1][0]).toContain('05010000');
     expect(location).toEqual({
       type: 'Point',
       coordinates: {
@@ -50,7 +52,9 @@ describe('fetchGeocoordinateFromBrazilLocation', () => {
   });
 
   test('retorna coordenada indisponivel quando nenhuma tentativa encontra resultado', async () => {
-    vi.spyOn(global, 'fetch').mockResolvedValue(createFetchResponse([]));
+    vi.spyOn(global, 'fetch').mockResolvedValue(
+      createFetchResponse({ features: [] })
+    );
 
     const location = await fetchGeocoordinateFromBrazilLocation({
       state: 'SP',
