@@ -1,4 +1,6 @@
-const axios = require('axios');
+import { describe, expect, test } from 'vitest';
+
+import axios from 'axios';
 
 const validTestArray = expect.arrayContaining([
   expect.objectContaining({
