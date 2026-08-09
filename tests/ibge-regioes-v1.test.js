@@ -1,6 +1,23 @@
-const axios = require('axios');
+import { describe, expect, test } from 'vitest';
 
-describe('/ibge/regioes/v1 (E2E)', () => {
+import axios from 'axios';
+
+// Smart service availability check (IBGE bloqueia os runners do GH Actions)
+let shouldSkipTests = false;
+
+try {
+  const response = await axios.get(
+    'https://servicodados.ibge.gov.br/api/v1/localidades/estados',
+    { timeout: 5000 }
+  );
+  if (response.status !== 200) {
+    shouldSkipTests = true;
+  }
+} catch (error) {
+  shouldSkipTests = true;
+}
+
+describe.skipIf(shouldSkipTests)('/ibge/regioes/v1 (E2E)', () => {
   test('Utilizando um Codigo válido: 1', async () => {
     const requestUrl = `${global.SERVER_URL}/api/ibge/regioes/v1/1`;
     const response = await axios.get(requestUrl);
