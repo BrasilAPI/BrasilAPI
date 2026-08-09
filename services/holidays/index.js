@@ -145,7 +145,14 @@ export function getEasterHolidays(year) {
     type: 'national',
     weekday: getWeekdayName(goodFridayDate),
   });
-  movingDate.setDate(movingDate.getDate() - 45);
+  movingDate.setDate(movingDate.getDate() - 46);
+  holidays.push({
+    date: formatDate(movingDate),
+    name: 'Carnaval',
+    type: 'national',
+    weekday: getWeekdayName(formatDate(movingDate)),
+  });
+  movingDate.setDate(movingDate.getDate() + 1);
   const carnavalDate = formatDate(movingDate);
   holidays.push({
     date: carnavalDate,

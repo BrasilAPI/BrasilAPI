@@ -1,6 +1,6 @@
 const carnavalDaysByYear = {
-  2020: '2020-02-25',
-  2010: '2010-02-16',
+  2020: ['2020-02-24', '2020-02-25'],
+  2010: ['2010-02-15', '2010-02-16'],
 };
 
 const pascoaDaysByYear = {
@@ -54,12 +54,12 @@ const getWeekdayName = (dateString) => {
 
 const getEasterHolidays = (year, holidaysName = easterHolidaysName) =>
   [
-    {
-      date: carnavalDaysByYear[year],
+    ...(carnavalDaysByYear[year] || []).map((date) => ({
+      date,
       name: 'Carnaval',
       type: 'national',
-      weekday: getWeekdayName(carnavalDaysByYear[year]),
-    },
+      weekday: getWeekdayName(date),
+    })),
     {
       date: pascoaDaysByYear[year],
       name: 'Páscoa',
