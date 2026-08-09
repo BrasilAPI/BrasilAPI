@@ -26,6 +26,7 @@ const getDocs = () => {
     'PIX',
     'CAMBIO',
     'TICKERS',
+    'CPF',
   ];
 };
 
