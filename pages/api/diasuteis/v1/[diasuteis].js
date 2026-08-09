@@ -43,8 +43,8 @@ const diasUteisHandler = (request, response) => {
       const dataString = data.toISOString().split('T')[0];
       const isFeriado = feriados.some((feriado) => feriado.date === dataString);
 
-      // segunda-feira é index 0
-      const isDiaUtil = dia !== 5 && dia !== 6;
+      // getDay(): 0 = domingo, 6 = sábado
+      const isDiaUtil = dia !== 0 && dia !== 6;
 
       if (isDiaUtil && !isFeriado) diasUteis.push(dataString);
     }
