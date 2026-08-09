@@ -7,11 +7,11 @@ import {
   invalidResponseByState,
 } from './helpers/ddd';
 
-const requestUrl = `${global.SERVER_URL}/api/ddd/uf/v1`;
+const requestUrl = (path = "") => `${global.SERVER_URL}/api/ddd/uf/v1${path}`;
 
 describe('api/ddd/uf/v1 (E2E)', () => {
   test('Utilizando um estado válido: MT', async () => {
-    const response = await axios.get(`${requestUrl}/MT`);
+    const response = await axios.get(`${requestUrl('/MT')}`);
     const { data, status } = response;
 
     expect(status).toEqual(200);
@@ -20,7 +20,7 @@ describe('api/ddd/uf/v1 (E2E)', () => {
 
   test('Utilizando um estado inexistente: MTT', async () => {
     try {
-      await axios.get(`${requestUrl}/MTT`);
+      await axios.get(`${requestUrl('/MTT')}`);
     } catch (error) {
       const { response } = error;
       const { data, status } = response;
