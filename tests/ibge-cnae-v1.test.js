@@ -7,7 +7,7 @@ let shouldSkipTests = false;
 
 try {
   const response = await axios.get(
-    'https://servicodados.ibge.gov.br/api/v1/localidades/estados',
+    'https://servicodados.ibge.gov.br/api/v2/cnae/classes/95118',
     { timeout: 5000 }
   );
   if (response.status !== 200) {

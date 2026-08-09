@@ -8,7 +8,7 @@ let shouldSkipTests = false;
 
 try {
   const response = await axios.get(
-    'https://servicodados.ibge.gov.br/api/v1/localidades/estados',
+    'https://servicodados.ibge.gov.br/api/v1/localidades/estados/SC/municipios',
     { timeout: 5000 }
   );
   if (response.status !== 200) {
