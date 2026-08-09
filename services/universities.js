@@ -4,6 +4,36 @@ const axiosInstance = axios.create({
   baseURL: 'https://api.universities.com.br'
 });
 
+const filterUniversitiesResponse = university => {
+  const {
+    id,
+    full_name: fullName,
+    name,
+    ibge,
+    city,
+    uf,
+    zipcode,
+    street,
+    number,
+    neighborhood,
+    phone
+  } = university
+
+  return {
+    id,
+    full_name: fullName,
+    name,
+    ibge,
+    city,
+    uf,
+    zipcode,
+    street,
+    number,
+    neighborhood,
+    phone
+  }
+}
+
 export const getUniversities = async () => {
   const endpoint = '/universities';
 
@@ -24,34 +54,4 @@ export const getUniversitiesById = async id => {
   }
 
   return data;
-}
-
-const filterUniversitiesResponse = university => {
-  const {
-    id,
-    full_name,
-    name,
-    ibge,
-    city,
-    uf,
-    zipcode,
-    street,
-    number,
-    neighborhood,
-    phone
-  } = university
-
-  return {
-    id,
-    full_name,
-    name,
-    ibge,
-    city,
-    uf,
-    zipcode,
-    street,
-    number,
-    neighborhood,
-    phone
-  }
 }

@@ -71,7 +71,7 @@ export function getWeekdayName(dateString) {
     'sábado',
   ];
 
-  const date = new Date(dateString + 'T12:00:00');
+  const date = new Date(`${dateString}T12:00:00`);
   return weekdays[date.getDay()];
 }
 

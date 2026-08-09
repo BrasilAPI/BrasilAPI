@@ -76,5 +76,6 @@ export const searchCandidate = async (
       notFoundError.name = 'CandidateNotFoundError';
       throw notFoundError;
     }
+    throw error;
   }
 };
