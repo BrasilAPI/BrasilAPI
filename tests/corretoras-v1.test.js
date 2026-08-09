@@ -1,6 +1,20 @@
 import axios from 'axios';
 import { describe, expect, test } from 'vitest';
 
+// Smart service availability check (CVM bloqueia os runners do GH Actions)
+let shouldSkipTests = false;
+
+try {
+  const response = await axios.get('https://dados.cvm.gov.br/', {
+    timeout: 5000,
+  });
+  if (response.status !== 200) {
+    shouldSkipTests = true;
+  }
+} catch (error) {
+  shouldSkipTests = true;
+}
+
 import { testCorsForRoute } from './helpers/cors';
 
 const validOutputSchema = expect.objectContaining({
@@ -25,7 +39,7 @@ const validOutputSchema = expect.objectContaining({
 
 const validTestTableArray = expect.arrayContaining([validOutputSchema]);
 
-describe('corretoras v1 (E2E)', () => {
+describe.skipIf(shouldSkipTests)('corretoras v1 (E2E)', () => {
   describe('GET /cvm/corretoras/v1/:cnpj', () => {
     test('Verifica CORS', async () => {
       const requestUrl = `${global.SERVER_URL}/api/cvm/corretoras/v1/02332886000104`;
