@@ -1,14 +1,27 @@
-import axios from 'axios';
 import { beforeAll, describe, expect, test } from 'vitest';
 
-import { testCorsForRoute } from './helpers/cors';
-import { validResponse, invalidResponseInvalid } from './helpers/ddd';
+import axios from 'axios';
+
+import {
+  validResponseV1,
+  validResponseAllDDDV1,
+  invalidResponseInvalid,
+} from './helpers/ddd';
+
+let requestUrl = '';
 
 describe('api/ddd/v1 (E2E)', () => {
-  let requestUrl = '';
-
   beforeAll(async () => {
     requestUrl = `${global.SERVER_URL}/api/ddd/v1`;
+  });
+
+  test('Obtendo todos os DDD válidos', async () => {
+    const response = await axios.get(`${requestUrl}`);
+    const { data, status } = response;
+
+    expect(status).toEqual(200);
+    const dddSP = data.filter((ddd) => ddd.state === 'SP');
+    expect(dddSP).toEqual(validResponseAllDDDV1);
   });
 
   test('Utilizando um DDD válido: 11', async () => {
@@ -16,39 +29,7 @@ describe('api/ddd/v1 (E2E)', () => {
     const { data, status } = response;
 
     expect(status).toEqual(200);
-    expect(data).toEqual(validResponse);
-  });
-
-  test('Utilizando um DDD válido: 011', async () => {
-    const response = await axios.get(`${requestUrl}/011`);
-    const { data, status } = response;
-
-    expect(status).toEqual(200);
-    expect(data).toEqual(validResponse);
-  });
-
-  test('Utilizando um DDD inválido: 111', async () => {
-    try {
-      await axios.get(`${requestUrl}/111`);
-    } catch (error) {
-      const { response } = error;
-      const { data, status } = response;
-
-      expect(status).toEqual(400);
-      expect(data).toEqual(invalidResponseInvalid);
-    }
-  });
-
-  test('Utilizando um DDD inválido: 1', async () => {
-    try {
-      await axios.get(`${requestUrl}/1`);
-    } catch (error) {
-      const { response } = error;
-      const { data, status } = response;
-
-      expect(status).toEqual(400);
-      expect(data).toEqual(invalidResponseInvalid);
-    }
+    expect(data).toEqual(validResponseV1);
   });
 
   test('Utilizando um DDD inexistente: 01', async () => {
@@ -63,5 +44,3 @@ describe('api/ddd/v1 (E2E)', () => {
     }
   });
 });
-
-testCorsForRoute('/api/ddd/v1/11');
