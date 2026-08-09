@@ -92,5 +92,8 @@ describe.skipIf(shouldSkipTests)('corretoras v1 (E2E)', () => {
   });
 });
 
-testCorsForRoute('/api/cvm/corretoras/v1');
-testCorsForRoute('/api/cvm/corretoras/v1/02332886000104');
+// CORS tests - only run when the service is healthy
+if (!shouldSkipTests) {
+  testCorsForRoute('/api/cvm/corretoras/v1');
+  testCorsForRoute('/api/cvm/corretoras/v1/02332886000104');
+}

@@ -122,5 +122,8 @@ describe.skipIf(shouldSkipTests)('ncm v1 (E2E)', () => {
   });
 });
 
-testCorsForRoute('/api/ncm/v1');
-testCorsForRoute('/api/ncm/v1/33051000');
+// CORS tests - only run when the service is healthy
+if (!shouldSkipTests) {
+  testCorsForRoute('/api/ncm/v1');
+  testCorsForRoute('/api/ncm/v1/33051000');
+}
