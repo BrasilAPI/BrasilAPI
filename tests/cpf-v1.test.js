@@ -1,6 +1,12 @@
-const axios = require('axios');
+import { beforeAll, describe, expect, test } from 'vitest';
 
-const requestUrl = `${global.SERVER_URL}/api/cpf/v1`;
+import axios from 'axios';
+
+let requestUrl = '';
+
+beforeAll(async () => {
+  requestUrl = `${global.SERVER_URL}/api/cpf/v1`;
+});
 
 describe('api/cpf/v1 (E2E)', () => {
   test('Utilizando um CPF válido: 54083180013', async () => {
