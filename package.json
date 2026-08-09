@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@djpfs/react-vlibras": "2.0.2",
-    "adm-zip": "0.5.10",
+    "adm-zip": "^0.6.0",
     "axios": "1.8.3",
     "bluebird": "3.7.2",
     "cep-promise": "4.4.1",
