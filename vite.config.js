@@ -1,7 +1,6 @@
 /// <reference types="vitest" />
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
-import path from 'path';
 
 export default defineConfig({
   resolve: {
@@ -13,7 +12,7 @@ export default defineConfig({
     setupFiles: ['./tests/helpers/server/setup.js'],
     globals: false,
     fileParallelism: false,
-    isolate: true,
+    isolate: false,
     testTimeout: 60_000,
     hookTimeout: 30_000,
     coverage: {
@@ -26,12 +25,6 @@ export default defineConfig({
         'pages/api/**/**/*.js',
       ],
       exclude: ['tests/**/**.test.js'],
-    },
-  },
-
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './'),
     },
   },
 });
