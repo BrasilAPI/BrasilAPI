@@ -4,8 +4,18 @@ const ERROR_PATTERNS = {
     standardMessage: 'CEP não encontrado na base do ViaCEP.',
   },
   correios: {
-    patterns: ['autenticacao', 'null falhou', 'falhou', 'Authentication'],
+    patterns: [
+      'autenticacao',
+      'null falhou',
+      'falhou',
+      'Authentication',
+      'interpretar o xml',
+    ],
     standardMessage: 'CEP INVÁLIDO',
+  },
+  'correios-alt': {
+    patterns: ['conectar com o serviço', 'erro ao se conectar', 'connection'],
+    standardMessage: 'CEP não encontrado na base dos Correios.',
   },
   widenet: {
     patterns: ['Erro ao se conectar', 'conectar com o serviço', 'connection'],
