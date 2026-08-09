@@ -27,7 +27,7 @@ const action = async (request, response) => {
 
   if (days < MIN_DAYS || days > MAX_WEATHER_DAYS) {
     throw new BadRequestError({
-      message: 'Quantidade de dias inválida (mínimo 1 dia e máximo 14 dias)',
+      message: `Quantidade de dias inválida (mínimo ${MIN_DAYS} dia e máximo ${MAX_WEATHER_DAYS} dias)`,
       type: 'request_error',
       name: 'INVALID_NUMBER_OF_DAYS',
     });
