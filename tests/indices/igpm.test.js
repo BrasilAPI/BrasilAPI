@@ -27,7 +27,7 @@ describe.skipIf(shouldSkipTests)('/indices/igpm/v1 (E2E)', () => {
 
   describe('/ - Simples', () => {
     test('should return a list of records', async () => {
-      const response = await axios.get(API_URL);
+      const response = await axios.get(API_URL());
 
       expect(response.status).toEqual(200);
       expect(response.data).toEqual(
