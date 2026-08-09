@@ -1,9 +1,12 @@
 import axios from 'axios';
-import mapUfToUfCode from '@/util/mapUfToUfCode.js'
+import mapUfToUfCode from '@/util/mapUfToUfCode.js';
 import InternalError from '@/errors/InternalError';
 
 const URL_UF = 'https://servicodados.ibge.gov.br/api/v1/localidades/estados';
-const URL_AGGREGATES = 'https://servicodados.ibge.gov.br/api/v3/agregados'
+
+const URL_REGION =
+  'https://servicodados.ibge.gov.br/api/v1/localidades/regioes';
+const URL_AGGREGATES = 'https://servicodados.ibge.gov.br/api/v3/agregados';
 
 const UF_CAPITAIS = {
   AC: 'Rio Branco',
@@ -68,20 +71,29 @@ export const getUfEstimatePopulationByCode = async (uf) => {
   const ESTIMATED_POPULATION_VARIABLE_ID = 9324;
   const LATEST_PERIOD = -1;
 
-  let { data } = await axios
-    .get(`${URL_AGGREGATES}/${ESTIMATED_POPULATION_AGGREGATE_ID}/periodos/${LATEST_PERIOD}/variaveis?localidades=N3[${ufCode}]`);
-  
+  let { data } = await axios.get(
+    `${URL_AGGREGATES}/${ESTIMATED_POPULATION_AGGREGATE_ID}/periodos/${LATEST_PERIOD}/variaveis?localidades=N3[${ufCode}]`
+  );
+
   data = data.find((item) => item.id == ESTIMATED_POPULATION_VARIABLE_ID);
 
-  if(!data){
+  if (!data) {
     throw new InternalError('Empty data');
   }
 
   const result = data.resultados[0].series[0].serie;
-  const key = Object.keys(result)[0]
+  const key = Object.keys(result)[0];
 
   return {
-    "populacao_estimada": parseInt(result[key]),
-    "periodo": key
-  }
-}
+    populacao_estimada: parseInt(result[key]),
+    periodo: key,
+  };
+};
+
+export const getRegions = () => axios.get(URL_REGION);
+
+export const getUfsByRegion = (regionCode) =>
+  axios.get(`${URL_REGION}/${regionCode}/estados`);
+
+export const getRegionByCode = (regionCode) =>
+  axios.get(`${URL_REGION}/${regionCode}`);
