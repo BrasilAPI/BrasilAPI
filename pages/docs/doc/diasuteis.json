@@ -1,0 +1,104 @@
+{
+  "tags": [
+    {
+      "name": "Dias Úteis",
+      "description": "Busca de dias úteis com base em um intervalo de datas."
+    }
+  ],
+  "paths": {
+    "/diasuteis/v1/{diasuteis}": {
+      "get": {
+        "tags": ["Dias Úteis"],
+        "summary": "Busca todos os dias úteis entre duas datas",
+        "description": "Retorna todos os dias úteis entre `dataInicial` e `dataFinal`, considerando ou não os feriados nacionais.",
+        "parameters": [
+          {
+            "name": "dataInicial",
+            "description": "Data inicial no formato YYYY-MM-DD",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "dataFinal",
+            "description": "Data final no formato YYYY-MM-DD",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "incluirFeriadosNacionais",
+            "description": "Define se os feriados nacionais devem ser considerados. Aceita 'true' ou 'false'.",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dias úteis retornados com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiasUteisResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Parâmetro(s) ausente(s) ou inválido(s)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DiasUteisResponse": {
+        "type": "object",
+        "properties": {
+          "diasUteis": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        },
+        "example": {
+          "diasUteis": ["2025-01-02", "2025-01-03", "2025-01-06"]
+        }
+      },
+      "ErrorMessage": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "message": "Parâmetros dataInicial e dataFinal são obrigatórios",
+          "type": "DATE_PARAM_MISSING"
+        }
+      }
+    }
+  }
+}
