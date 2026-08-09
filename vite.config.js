@@ -12,7 +12,7 @@ export default defineConfig({
     setupFiles: ['./tests/helpers/server/setup.js'],
     globals: false,
     fileParallelism: false,
-    isolate: false,
+    isolate: true,
     testTimeout: 60_000,
     hookTimeout: 30_000,
     coverage: {
