@@ -2,6 +2,21 @@ import { describe, expect, test } from 'vitest';
 
 import axios from 'axios';
 
+// Smart service availability check (IBGE bloqueia os runners do GH Actions)
+let shouldSkipTests = false;
+
+try {
+  const response = await axios.get(
+    'https://servicodados.ibge.gov.br/api/v1/localidades/estados',
+    { timeout: 5000 }
+  );
+  if (response.status !== 200) {
+    shouldSkipTests = true;
+  }
+} catch (error) {
+  shouldSkipTests = true;
+}
+
 const validClassesTestObject = expect.objectContaining({
   id: expect.any(String),
   descricao: expect.any(String),
@@ -11,7 +26,7 @@ const validClassesTestObject = expect.objectContaining({
 
 const validClassesTestArray = expect.arrayContaining([validClassesTestObject]);
 
-describe('/ibge/cnae/v1/classes (E2E)', () => {
+describe.skipIf(shouldSkipTests)('/ibge/cnae/v1/classes (E2E)', () => {
   test('Obtendo todas as classes CNAE', async () => {
     const requestUrl = `${global.SERVER_URL}/api/ibge/cnae/v1/classes`;
     const response = await axios.get(requestUrl);
@@ -53,7 +68,7 @@ describe('/ibge/cnae/v1/classes (E2E)', () => {
   });
 });
 
-describe('/ibge/cnae/v1/divisoes (E2E)', () => {
+describe.skipIf(shouldSkipTests)('/ibge/cnae/v1/divisoes (E2E)', () => {
   test('Utilizando uma divisão válida: 85', async () => {
     const requestUrl = `${global.SERVER_URL}/api/ibge/cnae/v1/divisoes/1`;
     const response = await axios.get(requestUrl);
@@ -80,7 +95,7 @@ describe('/ibge/cnae/v1/divisoes (E2E)', () => {
   });
 });
 
-describe('/ibge/cnae/v1/grupos (E2E)', () => {
+describe.skipIf(shouldSkipTests)('/ibge/cnae/v1/grupos (E2E)', () => {
   test('Utilizando um grupo CNAE válido: 951', async () => {
     const requestUrl = `${global.SERVER_URL}/api/ibge/cnae/v1/grupos/951`;
     const response = await axios.get(requestUrl);
