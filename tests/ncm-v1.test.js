@@ -3,6 +3,20 @@ import { describe, expect, test } from 'vitest';
 
 import { testCorsForRoute } from './helpers/cors';
 
+// Smart service availability check (Siscomex bloqueia os runners do GH Actions)
+let shouldSkipTests = false;
+
+try {
+  const response = await axios.get('https://portalunico.siscomex.gov.br/', {
+    timeout: 5000,
+  });
+  if (response.status !== 200) {
+    shouldSkipTests = true;
+  }
+} catch (error) {
+  shouldSkipTests = true;
+}
+
 const validOutputSchema = expect.objectContaining({
   codigo: expect.any(String),
   descricao: expect.any(String),
@@ -13,7 +27,7 @@ const validOutputSchema = expect.objectContaining({
   ano_ato: expect.any(String),
 });
 
-describe('ncm v1 (E2E)', () => {
+describe.skipIf(shouldSkipTests)('ncm v1 (E2E)', () => {
   describe('GET /ncm/v1/:code', () => {
     test('Utilizando um ncm code válido: 33051000', async () => {
       const requestUrl = `${global.SERVER_URL}/api/ncm/v1/33051000`;
