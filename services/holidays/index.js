@@ -150,6 +150,7 @@ export function getEasterHolidays(year) {
     date: formatDate(movingDate),
     name: 'Carnaval',
     type: 'national',
+    weekday: getWeekdayName(formatDate(movingDate)),
   });
   movingDate.setDate(movingDate.getDate() + 1);
   const carnavalDate = formatDate(movingDate);
