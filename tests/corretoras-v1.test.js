@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { describe, expect, test } from 'vitest';
 
+import { testCorsForRoute } from './helpers/cors';
+
 // Smart service availability check (CVM bloqueia os runners do GH Actions)
 let shouldSkipTests = false;
 
@@ -14,8 +16,6 @@ try {
 } catch (error) {
   shouldSkipTests = true;
 }
-
-import { testCorsForRoute } from './helpers/cors';
 
 const validOutputSchema = expect.objectContaining({
   bairro: expect.any(String),
