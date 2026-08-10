@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://api.universities.com.br'
+  baseURL: 'https://api.universities.com.br',
 });
 
-const filterUniversitiesResponse = university => {
+const filterUniversitiesResponse = (university) => {
   const {
     id,
     full_name: fullName,
@@ -16,8 +16,8 @@ const filterUniversitiesResponse = university => {
     street,
     number,
     neighborhood,
-    phone
-  } = university
+    phone,
+  } = university;
 
   return {
     id,
@@ -30,9 +30,9 @@ const filterUniversitiesResponse = university => {
     street,
     number,
     neighborhood,
-    phone
-  }
-}
+    phone,
+  };
+};
 
 export const getUniversities = async () => {
   const endpoint = '/universities';
@@ -40,18 +40,18 @@ export const getUniversities = async () => {
   const { data: body } = await axiosInstance.get(endpoint);
 
   return body.map(filterUniversitiesResponse);
-}
+};
 
-export const getUniversitiesById = async id => {
+export const getUniversitiesById = async (id) => {
   const endpoint = `/universities/${id}`;
 
   const { data: body } = await axiosInstance.get(endpoint);
 
   const data = filterUniversitiesResponse(body);
 
-  if (JSON.stringify(data) === "{}" || !data) {
+  if (JSON.stringify(data) === '{}' || !data) {
     return null;
   }
 
   return data;
-}
+};

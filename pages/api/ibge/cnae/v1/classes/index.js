@@ -1,4 +1,4 @@
-import app from "@/app";
+import app from '@/app';
 import { getCNAEClasses } from '@/services/ibge/cnae';
 
 const action = async (_, response) => {
