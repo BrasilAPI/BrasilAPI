@@ -1,4 +1,5 @@
 import axios from 'axios';
+import BadRequestError from '@/errors/BadRequestError';
 import {
   ELECTIONS_API_URL,
   ERRORMESSAGES,
@@ -8,13 +9,22 @@ import {
 
 export const listPositionsByMunicipality = async (election, municipality) => {
   if (!election || !municipality)
-    throw new Error(ERRORMESSAGES.INVALID_PARAMETERS);
+    throw new BadRequestError({
+      message: ERRORMESSAGES.INVALID_PARAMETERS,
+      type: 'invalid_parameters',
+    });
 
   if (typeof municipality !== 'string' && verifyIsNotNumber(municipality))
-    throw new Error(ERRORMESSAGES.INVALID_MUNICIPALITY);
+    throw new BadRequestError({
+      message: ERRORMESSAGES.INVALID_MUNICIPALITY,
+      type: 'invalid_municipality',
+    });
 
   if (typeof election !== 'string' && verifyIsNotNumber(election))
-    throw new Error(ERRORMESSAGES.INVALID_ELECTION);
+    throw new BadRequestError({
+      message: ERRORMESSAGES.INVALID_ELECTION,
+      type: 'invalid_election',
+    });
 
   const requestUrl = `${ELECTIONS_API_URL}${POSITION_LIST_URL}/${election}/${municipality}/cargos`;
 
