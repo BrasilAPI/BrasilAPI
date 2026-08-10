@@ -50,4 +50,4 @@ describe('/diasuteis/v1 (E2E)', () => {
   });
 });
 
-testCorsForRoute('/api/diasuteis/v1');
+testCorsForRoute('/api/diasuteis/v1?dataInicial=2026-08-03&dataFinal=2026-08-07');
