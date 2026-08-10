@@ -2,6 +2,23 @@ import axios from 'axios';
 import { describe, expect, test } from 'vitest';
 import { testCorsForRoute } from './helpers/cors';
 
+// Smart service availability check (B3 bloqueia os runners do GH Actions)
+let shouldSkipTests = false;
+
+try {
+  const response = await axios.get(
+    'https://sistemaswebb3-listados.b3.com.br/',
+    {
+      timeout: 5000,
+    }
+  );
+  if (response.status !== 200) {
+    shouldSkipTests = true;
+  }
+} catch (error) {
+  shouldSkipTests = true;
+}
+
 const validStockOutputSchema = expect.objectContaining({
   code_CVM: expect.any(String),
   issuing_company: expect.any(String),
@@ -34,7 +51,8 @@ const expectFundTickerList = (funds) => {
   }
 };
 
-describe('b3 v1 (E2E)', () => {
+// E2E tests - skipped when the service is unhealthy
+describe.skipIf(shouldSkipTests)('b3 v1 (E2E)', () => {
   describe('GET /tickers/b3/acoes/v1/', () => {
     test('Lista todos os tickers', async () => {
       const requestUrl = `${global.SERVER_URL}/api/tickers/b3/acoes/v1`;
@@ -116,11 +134,14 @@ describe('b3 v1 (E2E)', () => {
   });
 });
 
-testCorsForRoute('/api/tickers/b3/acoes/v1');
-testCorsForRoute('/api/tickers/b3/fundos/v1/FII');
-testCorsForRoute('/api/tickers/b3/fundos/v1/SETORIAL');
-testCorsForRoute('/api/tickers/b3/fundos/v1/FIAGRO-FII');
-testCorsForRoute('/api/tickers/b3/fundos/v1/FIAGRO-FIDC');
-testCorsForRoute('/api/tickers/b3/fundos/v1/FIAGRO-FIP');
-testCorsForRoute('/api/tickers/b3/fundos/v1/FIP');
-testCorsForRoute('/api/tickers/b3/fundos/v1/FIA');
+// CORS tests - skipped when the service is unhealthy
+describe.skipIf(shouldSkipTests)('CORS Middleware B3', () => {
+  testCorsForRoute('/api/tickers/b3/acoes/v1');
+  testCorsForRoute('/api/tickers/b3/fundos/v1/FII');
+  testCorsForRoute('/api/tickers/b3/fundos/v1/SETORIAL');
+  testCorsForRoute('/api/tickers/b3/fundos/v1/FIAGRO-FII');
+  testCorsForRoute('/api/tickers/b3/fundos/v1/FIAGRO-FIDC');
+  testCorsForRoute('/api/tickers/b3/fundos/v1/FIAGRO-FIP');
+  testCorsForRoute('/api/tickers/b3/fundos/v1/FIP');
+  testCorsForRoute('/api/tickers/b3/fundos/v1/FIA');
+});
