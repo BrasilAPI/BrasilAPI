@@ -5,6 +5,7 @@ import fs from 'fs';
 import path from 'path';
 
 import banksList from './banksList.json';
+import logoUrls from './logo-urls.json';
 
 const BCB_SEDES_URLS = [
   'https://olinda.bcb.gov.br/olinda/servico/Instituicoes_em_funcionamento/versao/v1/odata/SedesBancoComMultCE?$format=json',
@@ -407,6 +408,14 @@ const getAddressCoverage = (banksData = []) => {
   return withAddressCount / banksData.length;
 };
 
+// Adiciona logo_url (CDN logos-bancos-br) quando o ISPB tem logo mapeado;
+// caso contrário, o campo fica null (campo novo, compatível retroativo)
+const enrichBanksWithLogoUrl = (banksData) =>
+  banksData.map((bank) => ({
+    ...bank,
+    logo_url: logoUrls[bank.ispb] || null,
+  }));
+
 export const getBanksData = async () => {
   if (banksDataCache.data && banksDataCache.expiresAt > Date.now()) {
     return banksDataCache.data;
@@ -425,12 +434,13 @@ export const getBanksData = async () => {
   }
 
   if (banksData === latestSnapshot) {
+    const enrichedSnapshot = enrichBanksWithLogoUrl(latestSnapshot);
     banksDataCache = {
-      data: latestSnapshot,
+      data: enrichedSnapshot,
       expiresAt: Date.now() + BANKS_DATA_CACHE_TTL_IN_MS,
     };
 
-    return latestSnapshot;
+    return enrichedSnapshot;
   }
 
   const enrichedBanksData = await enrichBanksWithHeadquartersAddress(banksData);
@@ -444,10 +454,12 @@ export const getBanksData = async () => {
     ? latestSnapshot
     : enrichedBanksData;
 
+  const finalBanksData = enrichBanksWithLogoUrl(stableBanksData);
+
   banksDataCache = {
-    data: stableBanksData,
+    data: finalBanksData,
     expiresAt: Date.now() + BANKS_DATA_CACHE_TTL_IN_MS,
   };
 
-  return stableBanksData;
+  return finalBanksData;
 };
