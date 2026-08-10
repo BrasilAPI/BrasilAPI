@@ -182,6 +182,40 @@ describe('/feriados/v1 (E2E)', () => {
     );
     expect(allWeekdaysValid).toBe(true);
   });
+
+  test('Com uf válida (SP): retorna feriados estaduais', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/feriados/v1/2026?uf=SP`;
+    const { data } = await axios.get(requestUrl);
+
+    const stateHolidays = data.filter((holiday) => holiday.type === 'state');
+
+    expect(stateHolidays.length).toBeGreaterThan(0);
+    expect(stateHolidays.every((h) => h.state === 'SP')).toBe(true);
+    expect(stateHolidays[0]).toMatchObject({
+      date: '2026-01-25',
+      name: 'Aniversário da Cidade de São Paulo',
+      type: 'state',
+      state: 'SP',
+    });
+  });
+
+  test('Com uf inválida (XX): erro 400', async () => {
+    expect.assertions(2);
+    const requestUrl = `${global.SERVER_URL}/api/feriados/v1/2026?uf=XX`;
+
+    try {
+      await axios.get(requestUrl);
+    } catch (error) {
+      const { response } = error;
+
+      expect(response.status).toBe(400);
+      expect(response.data).toEqual({
+        message: 'UF inválida. Informe uma sigla válida (ex: SP, RJ, MG).',
+        type: 'invalid_uf',
+        name: 'BadRequestError',
+      });
+    }
+  });
 });
 
 testCorsForRoute('/api/feriados/v1/2020');
