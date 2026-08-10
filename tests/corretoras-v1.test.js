@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { describe, expect, test } from 'vitest';
 
+import { testCorsForRoute } from './helpers/cors';
+
 // Smart service availability check (CVM bloqueia os runners do GH Actions)
 let shouldSkipTests = false;
 
@@ -14,8 +16,6 @@ try {
 } catch (error) {
   shouldSkipTests = true;
 }
-
-import { testCorsForRoute } from './helpers/cors';
 
 const validOutputSchema = expect.objectContaining({
   bairro: expect.any(String),
@@ -89,6 +89,38 @@ describe.skipIf(shouldSkipTests)('corretoras v1 (E2E)', () => {
     expect(response.status).toBe(200);
     expect(Array.isArray(response.data)).toBe(true);
     expect(response.data).toEqual(validTestTableArray);
+  });
+
+  test('GET /cvm/corretoras/v1?uf=SP: filtra por estado (issue #736)', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/cvm/corretoras/v1?uf=SP`;
+    const response = await axios.get(requestUrl);
+
+    expect(response.status).toBe(200);
+    expect(Array.isArray(response.data)).toBe(true);
+    expect(response.data.length).toBeGreaterThan(0);
+    const allSp = response.data.every(
+      (corretora) => String(corretora.uf).toUpperCase() === 'SP'
+    );
+    expect(allSp).toBe(true);
+  });
+
+  test('GET /cvm/corretoras/v1?uf=XX: UF sem corretoras → 200 []', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/cvm/corretoras/v1?uf=XX`;
+    const response = await axios.get(requestUrl);
+
+    expect(response.status).toBe(200);
+    expect(response.data).toEqual([]);
+  });
+
+  test('GET /cvm/corretoras/v1?uf=invalida: UF inválida → 400', async () => {
+    expect.assertions(2);
+    try {
+      await axios.get(`${global.SERVER_URL}/api/cvm/corretoras/v1?uf=invalida`);
+    } catch (error) {
+      const { response } = error;
+      expect(response.status).toBe(400);
+      expect(response.data.type).toBe('validation_error');
+    }
   });
 });
 
