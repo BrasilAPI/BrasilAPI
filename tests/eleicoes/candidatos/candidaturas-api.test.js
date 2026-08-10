@@ -71,9 +71,14 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
       send: vi.fn().mockReturnThis(),
     };
 
-    await expect(Candidature(req, res)).rejects.toThrow(
-      ERRORMESSAGES.INVALID_PARAMETERS
-    );
+    await Candidature(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({
+      message: ERRORMESSAGES.INVALID_PARAMETERS,
+      type: 'invalid_parameters',
+      name: 'BadRequestError',
+    });
   });
 
   it('deve lançar erro quando ano está ausente em Candidaturas', async () => {
@@ -94,9 +99,14 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
       send: vi.fn().mockReturnThis(),
     };
 
-    await expect(Candidature(req, res)).rejects.toThrow(
-      ERRORMESSAGES.INVALID_PARAMETERS
-    );
+    await Candidature(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({
+      message: ERRORMESSAGES.INVALID_PARAMETERS,
+      type: 'invalid_parameters',
+      name: 'BadRequestError',
+    });
   });
 
   it('deve lançar erro quando município está ausente em Candidaturas', async () => {
@@ -117,9 +127,14 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
       send: vi.fn().mockReturnThis(),
     };
 
-    await expect(Candidature(req, res)).rejects.toThrow(
-      ERRORMESSAGES.INVALID_PARAMETERS
-    );
+    await Candidature(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({
+      message: ERRORMESSAGES.INVALID_PARAMETERS,
+      type: 'invalid_parameters',
+      name: 'BadRequestError',
+    });
   });
 
   it('deve lançar erro quando posição está ausente em Candidaturas', async () => {
@@ -139,9 +154,14 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
       send: vi.fn().mockReturnThis(),
     };
 
-    await expect(Candidature(req, res)).rejects.toThrow(
-      ERRORMESSAGES.INVALID_PARAMETERS
-    );
+    await Candidature(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({
+      message: ERRORMESSAGES.INVALID_PARAMETERS,
+      type: 'invalid_parameters',
+      name: 'BadRequestError',
+    });
   });
 
   it('deve lançar erro quando ano tem formato inválido em Candidaturas', async () => {
@@ -162,9 +182,14 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
       send: vi.fn().mockReturnThis(),
     };
 
-    await expect(Candidature(req, res)).rejects.toThrow(
-      ERRORMESSAGES.INVALID_YEAR
-    );
+    await Candidature(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({
+      message: ERRORMESSAGES.INVALID_YEAR,
+      type: 'invalid_year',
+      name: 'BadRequestError',
+    });
   });
 
   it('deve lançar erro quando município tem tipo inválido em Candidaturas', async () => {
@@ -184,9 +209,14 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
       send: vi.fn().mockReturnThis(),
     };
 
-    await expect(Candidature(req, res)).rejects.toThrow(
-      ERRORMESSAGES.INVALID_MUNICIPALITY
-    );
+    await Candidature(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({
+      message: ERRORMESSAGES.INVALID_MUNICIPALITY,
+      type: 'invalid_municipality',
+      name: 'BadRequestError',
+    });
   });
 
   it('deve lançar erro quando posição tem tipo inválido em Candidaturas', async () => {
@@ -206,9 +236,14 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
       send: vi.fn().mockReturnThis(),
     };
 
-    await expect(Candidature(req, res)).rejects.toThrow(
-      ERRORMESSAGES.INVALID_POSITION
-    );
+    await Candidature(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({
+      message: ERRORMESSAGES.INVALID_POSITION,
+      type: 'invalid_position',
+      name: 'BadRequestError',
+    });
   });
 
   it('deve responder 200 com os dados do candidato buscado (invocação in-process)', async () => {
@@ -299,9 +334,14 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
       send: vi.fn().mockReturnThis(),
     };
 
-    await expect(SearchCandidate(req, res)).rejects.toThrow(
-      ERRORMESSAGES.INVALID_PARAMETERS
-    );
+    await SearchCandidate(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({
+      message: ERRORMESSAGES.INVALID_PARAMETERS,
+      type: 'invalid_parameters',
+      name: 'BadRequestError',
+    });
   });
 
   it('deve lançar erro quando ano está ausente em BuscarCandidato', async () => {
@@ -322,9 +362,14 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
       send: vi.fn().mockReturnThis(),
     };
 
-    await expect(SearchCandidate(req, res)).rejects.toThrow(
-      ERRORMESSAGES.INVALID_PARAMETERS
-    );
+    await SearchCandidate(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({
+      message: ERRORMESSAGES.INVALID_PARAMETERS,
+      type: 'invalid_parameters',
+      name: 'BadRequestError',
+    });
   });
 
   it('deve lançar erro quando município está ausente em BuscarCandidato', async () => {
@@ -345,9 +390,14 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
       send: vi.fn().mockReturnThis(),
     };
 
-    await expect(SearchCandidate(req, res)).rejects.toThrow(
-      ERRORMESSAGES.INVALID_PARAMETERS
-    );
+    await SearchCandidate(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({
+      message: ERRORMESSAGES.INVALID_PARAMETERS,
+      type: 'invalid_parameters',
+      name: 'BadRequestError',
+    });
   });
 
   it('deve lançar erro quando candidato está ausente em BuscarCandidato', async () => {
@@ -368,9 +418,14 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
       send: vi.fn().mockReturnThis(),
     };
 
-    await expect(SearchCandidate(req, res)).rejects.toThrow(
-      ERRORMESSAGES.INVALID_PARAMETERS
-    );
+    await SearchCandidate(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({
+      message: ERRORMESSAGES.INVALID_PARAMETERS,
+      type: 'invalid_parameters',
+      name: 'BadRequestError',
+    });
   });
 
   it('deve lançar erro quando ano tem formato inválido em BuscarCandidato', async () => {
@@ -391,9 +446,14 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
       send: vi.fn().mockReturnThis(),
     };
 
-    await expect(SearchCandidate(req, res)).rejects.toThrow(
-      ERRORMESSAGES.INVALID_YEAR
-    );
+    await SearchCandidate(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({
+      message: ERRORMESSAGES.INVALID_YEAR,
+      type: 'invalid_year',
+      name: 'BadRequestError',
+    });
   });
 
   it('deve lançar erro quando ano tem menos de 4 dígitos em BuscarCandidato', async () => {
@@ -414,8 +474,13 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
       send: vi.fn().mockReturnThis(),
     };
 
-    await expect(SearchCandidate(req, res)).rejects.toThrow(
-      ERRORMESSAGES.INVALID_YEAR
-    );
+    await SearchCandidate(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({
+      message: ERRORMESSAGES.INVALID_YEAR,
+      type: 'invalid_year',
+      name: 'BadRequestError',
+    });
   });
 });

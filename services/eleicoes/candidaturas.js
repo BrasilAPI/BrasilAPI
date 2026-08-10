@@ -1,4 +1,5 @@
 import axios from 'axios';
+import BadRequestError from '@/errors/BadRequestError';
 import {
   ELECTIONS_API_URL,
   CANDIDATE_LIST_URL,
@@ -14,24 +15,39 @@ export const listCandidatureByMunicipality = async (
   position
 ) => {
   if (!election || !year || !municipality || !position) {
-    throw new Error(ERRORMESSAGES.INVALID_PARAMETERS);
+    throw new BadRequestError({
+      message: ERRORMESSAGES.INVALID_PARAMETERS,
+      type: 'invalid_parameters',
+    });
   }
 
   const yearStr = String(year);
   if (yearStr.length !== 4) {
-    throw new Error(ERRORMESSAGES.INVALID_YEAR);
+    throw new BadRequestError({
+      message: ERRORMESSAGES.INVALID_YEAR,
+      type: 'invalid_year',
+    });
   }
 
   if (typeof municipality !== 'string' && verifyIsNotNumber(municipality)) {
-    throw new Error(ERRORMESSAGES.INVALID_MUNICIPALITY);
+    throw new BadRequestError({
+      message: ERRORMESSAGES.INVALID_MUNICIPALITY,
+      type: 'invalid_municipality',
+    });
   }
 
   if (typeof position !== 'string' && verifyIsNotNumber(position)) {
-    throw new Error(ERRORMESSAGES.INVALID_POSITION);
+    throw new BadRequestError({
+      message: ERRORMESSAGES.INVALID_POSITION,
+      type: 'invalid_position',
+    });
   }
 
   if (typeof election !== 'string' && verifyIsNotNumber(election)) {
-    throw new Error(ERRORMESSAGES.INVALID_ELECTION);
+    throw new BadRequestError({
+      message: ERRORMESSAGES.INVALID_ELECTION,
+      type: 'invalid_election',
+    });
   }
 
   try {
@@ -54,16 +70,29 @@ export const searchCandidate = async (
   candidate
 ) => {
   if (!election || !year || !municipality || !candidate)
-    throw new Error(ERRORMESSAGES.INVALID_PARAMETERS);
+    throw new BadRequestError({
+      message: ERRORMESSAGES.INVALID_PARAMETERS,
+      type: 'invalid_parameters',
+    });
 
   const yearStr = String(year);
-  if (yearStr.length !== 4) throw new Error(ERRORMESSAGES.INVALID_YEAR);
+  if (yearStr.length !== 4)
+    throw new BadRequestError({
+      message: ERRORMESSAGES.INVALID_YEAR,
+      type: 'invalid_year',
+    });
 
   if (typeof municipality !== 'string' && verifyIsNotNumber(municipality))
-    throw new Error(ERRORMESSAGES.INVALID_MUNICIPALITY);
+    throw new BadRequestError({
+      message: ERRORMESSAGES.INVALID_MUNICIPALITY,
+      type: 'invalid_municipality',
+    });
 
   if (typeof candidate !== 'string' && verifyIsNotNumber(candidate))
-    throw new Error(ERRORMESSAGES.INVALID_CANDIDATE);
+    throw new BadRequestError({
+      message: ERRORMESSAGES.INVALID_CANDIDATE,
+      type: 'invalid_candidate',
+    });
 
   try {
     const requestUrl = `${ELECTIONS_API_URL}${CANDIDATE_SEARCH_URL}/${yearStr}/${municipality}/${election}/candidato/${candidate}`;
