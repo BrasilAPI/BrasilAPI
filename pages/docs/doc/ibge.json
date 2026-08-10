@@ -6,7 +6,7 @@
     }
   ],
   "paths": {
-    "/ibge/municipios/v1/{siglaUF}": {
+    "/ibge/municipios/v1/{uf}": {
       "get": {
         "tags": ["IBGE"],
         "summary": "Retorna os municípios da unidade federativa",
@@ -14,7 +14,7 @@
         "example": "[...]/ibge/municipios/v1/rj?providers=wikipedia",
         "parameters": [
           {
-            "name": "siglaUF",
+            "name": "uf",
             "description": "Sigla da unidade federativa, por exemplo SP, RJ, SC, etc.\n",
             "in": "path",
             "required": true,
@@ -342,14 +342,14 @@
         }
       }
     },
-    "/ibge/cnae/v1/classes/{codigoClasse}": {
+    "/ibge/cnae/v1/classes/{classe}": {
       "get": {
         "tags": ["IBGE"],
         "summary": "Busca as classes CNAE a partir do código da classe",
         "description": "",
         "parameters": [
           {
-            "name": "codigoClasse",
+            "name": "classe",
             "description": "Código da Classe CNAE como 01113",
             "in": "path",
             "required": true,
@@ -391,14 +391,14 @@
         }
       }
     },
-    "/ibge/cnae/v1/divisoes/{codigoDivisao}": {
+    "/ibge/cnae/v1/divisoes/{divisao}": {
       "get": {
         "tags": ["IBGE"],
         "summary": "Busca as classes CNAE a partir do código da divisão",
         "description": "",
         "parameters": [
           {
-            "name": "codigoDivisao",
+            "name": "divisao",
             "description": "Código da divisão CNAE como 99, 01, 05...",
             "in": "path",
             "required": true,
@@ -440,7 +440,7 @@
         }
       }
     },
-    "/ibge/cnae/v1/grupos/{codigoGrupos}": {
+    "/ibge/cnae/v1/grupos/{grupo}": {
       "get": {
         "tags": ["IBGE"],
         "summary": "Busca as classes CNAE a partir do código do grupo",
@@ -489,7 +489,7 @@
         }
       }
     },
-    "/ibge/regioes/v1/{region}": {
+    "/ibge/regioes/v1/{regionCode}": {
       "get": {
         "tags": ["IBGE"],
         "summary": "Busca as informações de uma região à partir da sigla ou código",
@@ -541,6 +541,49 @@
                   "items": {
                     "$ref": "#/components/schemas/Region"
                   }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ibge/uf/v1/regiao/{regionCode}": {
+      "get": {
+        "tags": ["IBGE"],
+        "summary": "Lista as UFs de uma região do Brasil",
+        "description": "Retorna todas as Unidades Federativas (estados) pertencentes a uma região, identificada pelo código numérico (1=Norte, 2=Nordeste, 3=Sudeste, 4=Sul, 5=Centro-Oeste).",
+        "parameters": [
+          {
+            "name": "regionCode",
+            "description": "Código numérico da região (1 a 5).",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de UFs da região",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/State"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Região não encontrada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
                 }
               }
             }

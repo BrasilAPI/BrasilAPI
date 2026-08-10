@@ -1,0 +1,54 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/status/v1": {
+      "get": {
+        "tags": ["Status"],
+        "summary": "Status da API",
+        "description": "Retorna o status de saúde da API, incluindo ambiente e região de execução.",
+        "responses": {
+          "200": {
+            "description": "Status da API",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "ok"
+                    },
+                    "date": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "environment": {
+                      "type": "string",
+                      "example": "production"
+                    },
+                    "aws": {
+                      "type": "object",
+                      "properties": {
+                        "region": {
+                          "type": "string",
+                          "example": "us-east-1"
+                        },
+                        "function_version": {
+                          "type": "string",
+                          "example": "$LATEST"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}
