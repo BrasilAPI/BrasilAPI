@@ -1,0 +1,90 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/oms/cid10/v1": {
+      "get": {
+        "tags": ["OMS"],
+        "summary": "Lista todos os códigos CID-10",
+        "description": "Retorna a lista completa de códigos da Classificação Internacional de Doenças (CID-10) com seus nomes.",
+        "responses": {
+          "200": {
+            "description": "Lista de códigos CID-10",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "codigo": {
+                        "type": "string",
+                        "example": "A00"
+                      },
+                      "nome": {
+                        "type": "string",
+                        "example": "Cólera"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/oms/cid10/v1/{code}": {
+      "get": {
+        "tags": ["OMS"],
+        "summary": "Busca um código CID-10",
+        "description": "Retorna a doença correspondente ao código CID-10 informado.",
+        "parameters": [
+          {
+            "name": "code",
+            "description": "Código CID-10 (ex: A00, B34.2).",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dados do código CID-10",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "codigo": {
+                      "type": "string",
+                      "example": "A00"
+                    },
+                    "nome": {
+                      "type": "string",
+                      "example": "Cólera"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "CID-10 não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

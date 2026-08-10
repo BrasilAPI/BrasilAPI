@@ -29,6 +29,9 @@ jobs:
         if: steps.cache_dependencies.outputs.cache-hit != 'true'
         run: npm ci
 
+      - name: Rodar ESLint
+        run: npx eslint pages/ services/ lib/ util/ middlewares/ errors/ --ext .js
+
       - name: Rodar testes
         uses: nick-fields/retry@v2
         with:

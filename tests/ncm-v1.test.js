@@ -74,12 +74,16 @@ describe.skipIf(shouldSkipTests)('ncm v1 (E2E)', () => {
     });
 
     test('Utilizando uma descrição inexistente: localhost', async () => {
+      expect.assertions(3);
       const requestUrl = `${global.SERVER_URL}/api/ncm/v1?search=localhost`;
       try {
-        await axios.get(requestUrl);
+        const response = await axios.get(requestUrl);
+        // comportamento atual (pós-984c956): busca sem resultado → 200 []
+        expect(response.status).toBe(200);
+        expect(response.data).toMatchObject([]);
+        expect(response.data).toHaveLength(0);
       } catch (error) {
         const { response } = error;
-
         expect(response.status).toBe(404);
         expect(response.data).toMatchObject([]);
       }

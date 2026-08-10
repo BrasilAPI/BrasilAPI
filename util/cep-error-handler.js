@@ -38,6 +38,7 @@ export function normalizeServiceError(error) {
   if (serviceConfig) {
     if (containsTechnicalError(errorMessage, serviceConfig.patterns)) {
       if (process.env.NODE_ENV === 'development') {
+        /* eslint-disable-next-line no-console */
         console.warn(`[CEP Error Handler] Erro técnico normalizado:`, {
           service,
           originalMessage: errorMessage,

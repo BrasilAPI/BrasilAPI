@@ -2,7 +2,7 @@ import app from '@/app';
 import BaseError from '@/errors/BaseError';
 import InternalError from '@/errors/InternalError';
 import { getIgpm } from '@/services/indices/igpm';
-import { bcbSgsCodes } from '../../codes';
+import { bcbSgsCodes } from '@/services/indices/codes';
 
 const action = async (request, response) => {
   try {
