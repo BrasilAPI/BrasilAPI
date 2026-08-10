@@ -6,7 +6,7 @@
     }
   ],
   "paths": {
-    "/diasuteis/v1/{diasuteis}": {
+    "/diasuteis/v1": {
       "get": {
         "tags": ["Dias Úteis"],
         "summary": "Busca todos os dias úteis entre duas datas",
