@@ -6,11 +6,10 @@ const CACHE_CONTROL_HEADER_VALUE =
 const cors = microCors();
 
 async function Universities(request, response) {
-  response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
-
   try {
     const universities = await getUniversities();
 
+    response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
     response.status(200);
 
     response.json(universities);
