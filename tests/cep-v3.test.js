@@ -2,7 +2,21 @@ import { beforeAll, describe, expect, test } from 'vitest';
 
 import axios from 'axios';
 
-describe('/cep/v3 (E2E)', () => {
+// Smart service availability check (OpenCEP pode falhar nos runners)
+let shouldSkipTests = false;
+
+try {
+  const response = await axios.get('https://opencep.com/v1/01310100', {
+    timeout: 5000,
+  });
+  if (response.status !== 200) {
+    shouldSkipTests = true;
+  }
+} catch (error) {
+  shouldSkipTests = true;
+}
+
+describe.skipIf(shouldSkipTests)('/cep/v3 (E2E)', () => {
   let requestUrl = '';
 
   beforeAll(async () => {
