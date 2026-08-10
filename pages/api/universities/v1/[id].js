@@ -8,8 +8,6 @@ const cors = microCors();
 async function UniversityById(request, response) {
   const { id } = request.query;
 
-  response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
-
   try {
     const university = await getUniversitiesById(id);
 
@@ -20,6 +18,7 @@ async function UniversityById(request, response) {
       });
     }
 
+    response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
     return response.status(200).json(university);
   } catch (error) {
     response.status(500);
