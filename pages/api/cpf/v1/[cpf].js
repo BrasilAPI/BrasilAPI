@@ -45,11 +45,9 @@ async function regionOfCpf(request, response, next) {
     });
   } catch (error) {
     if (error instanceof BaseError) {
-      console.log(error);
       return next(error);
     }
 
-    console.log(error);
     throw new InternalError({
       message: 'Todos os serviços de CPF retornaram erro.',
       type: 'service_error',
