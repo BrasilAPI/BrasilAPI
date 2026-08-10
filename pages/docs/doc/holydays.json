@@ -1,124 +1,135 @@
 {
-    "tags": [
-        {
-            "name": "Feriados Nacionais",
-            "description": "Consulta de feriados nacionais brasileiros. Calcula automaticamente feriados móveis (como Páscoa, Carnaval) e inclui todos os feriados fixos estabelecidos pela legislação federal."
-        }        
-    ],
-    "paths": {
-        "/feriados/v1/{ano}": {
-            "get": {
-                "tags": ["Feriados Nacionais"],
-                "summary": "Lista os feriados nacionais de determinado ano.",
-                "description": "Retorna a lista completa de feriados nacionais para o ano especificado. Calcula automaticamente os feriados móveis baseados na data da Páscoa e inclui todos os feriados fixos estabelecidos pela legislação brasileira.",
-                "parameters": [
-                    {
-                        "name": "ano",
-                        "description": "Ano para calcular os feriados. Deve ser um número inteiro entre 1900 e 2199.",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64",
-                            "minimum": 1900,
-                            "maximum": 2199
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/Holiday"
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Ano não informado.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorMessage"
-                                },
-                                "example": {
-                                    "name": "BadRequestError",
-                                    "message": "Por favor informe um ano.",
-                                    "type": "validation_error"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Ano fora do intervalo suportado.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorMessage"
-                                },
-                                "example": {
-                                    "name": "BadRequestError",
-                                    "message": "Ano fora do intervalo suportado entre 1900 e 2199.",
-                                    "type": "feriados_range_error"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Erro interno no serviço de feriados.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorMessage"
-                                },
-                                "example": {
-                                    "name": "InternalError",
-                                    "message": "Erro ao calcular feriados.",
-                                    "type": "feriados_error"
-                                }
-                            }
-                        }
-                    }
-                }
+  "tags": [
+    {
+      "name": "Feriados Nacionais",
+      "description": "Consulta de feriados nacionais brasileiros. Calcula automaticamente feriados móveis (como Páscoa, Carnaval) e inclui todos os feriados fixos estabelecidos pela legislação federal."
+    }
+  ],
+  "paths": {
+    "/feriados/v1/{ano}": {
+      "get": {
+        "tags": ["Feriados Nacionais"],
+        "summary": "Lista os feriados nacionais de determinado ano.",
+        "description": "Retorna a lista completa de feriados nacionais para o ano especificado. Calcula automaticamente os feriados móveis baseados na data da Páscoa e inclui todos os feriados fixos estabelecidos pela legislação brasileira.",
+        "parameters": [
+          {
+            "name": "ano",
+            "description": "Ano para calcular os feriados. Deve ser um número inteiro entre 1900 e 2199.",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 1900,
+              "maximum": 2199
             }
-        }
-    },
-    "components": {
-        "schemas": {
-            "Holiday": {
-                "title": "Holiday",
-                "type": "object",
-                "required": ["date", "type", "name"],
-                "properties": {
-                    "date": {
-                        "type": "string",
-                        "format": "date",
-                        "description": "Data do feriado no formato ISO 8601 (YYYY-MM-DD)"
-                    },
-                    "type": {
-                        "type": "string",
-                        "description": "Tipo do feriado (national, regional, etc.)"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "Nome resumido do feriado"
-                    },
-                    "fullName": {
-                        "type": "string",
-                        "description": "Nome completo do feriado (opcional)"
-                    }
+          },
+          {
+            "name": "uf",
+            "description": "Sigla da UF (opcional) para incluir os feriados estaduais. Ex: SP, RJ, MG.",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 2
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Holiday"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Ano não informado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
                 },
                 "example": {
-                    "date": "2021-01-01",
-                    "name": "Confraternização mundial",
-                    "type": "national"
+                  "name": "BadRequestError",
+                  "message": "Por favor informe um ano.",
+                  "type": "validation_error"
                 }
+              }
             }
+          },
+          "404": {
+            "description": "Ano fora do intervalo suportado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "name": "BadRequestError",
+                  "message": "Ano fora do intervalo suportado entre 1900 e 2199.",
+                  "type": "feriados_range_error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno no serviço de feriados.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "name": "InternalError",
+                  "message": "Erro ao calcular feriados.",
+                  "type": "feriados_error"
+                }
+              }
+            }
+          }
         }
+      }
     }
+  },
+  "components": {
+    "schemas": {
+      "Holiday": {
+        "title": "Holiday",
+        "type": "object",
+        "required": ["date", "type", "name"],
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "description": "Data do feriado no formato ISO 8601 (YYYY-MM-DD)"
+          },
+          "type": {
+            "type": "string",
+            "description": "Tipo do feriado (national, regional, etc.)"
+          },
+          "name": {
+            "type": "string",
+            "description": "Nome resumido do feriado"
+          },
+          "fullName": {
+            "type": "string",
+            "description": "Nome completo do feriado (opcional)"
+          }
+        },
+        "example": {
+          "date": "2021-01-01",
+          "name": "Confraternização mundial",
+          "type": "national"
+        }
+      }
+    }
+  }
 }
