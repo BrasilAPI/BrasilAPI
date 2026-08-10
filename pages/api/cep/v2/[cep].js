@@ -45,14 +45,23 @@ async function getCepWithLocation(request, response) {
           break;
       }
 
-      response.json(error);
+      response.json({
+        name: error.name,
+        message: error.message,
+        type: error.type,
+        errors: error.errors || [],
+      });
       return;
     } else if (error.type === 'bad_request') {
       throw error;
     }
 
     response.status(500);
-    response.json(error);
+    response.json({
+      message: error.message || 'Erro interno do servidor',
+      type: 'internal_error',
+      name: error.name || 'InternalServerError',
+    });
   }
 }
 
