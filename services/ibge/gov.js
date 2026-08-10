@@ -75,10 +75,12 @@ export const getUfEstimatePopulationByCode = async (uf) => {
     `${URL_AGGREGATES}/${ESTIMATED_POPULATION_AGGREGATE_ID}/periodos/${LATEST_PERIOD}/variaveis?localidades=N3[${ufCode}]`
   );
 
-  data = data.find((item) => item.id === ESTIMATED_POPULATION_VARIABLE_ID);
+  data = data.find(
+    (item) => Number(item.id) === ESTIMATED_POPULATION_VARIABLE_ID
+  );
 
   if (!data) {
-    throw new InternalError('Empty data');
+    throw new InternalError({ message: 'Empty data' });
   }
 
   const result = data.resultados[0].series[0].serie;
