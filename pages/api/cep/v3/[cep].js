@@ -112,11 +112,20 @@ async function Cep(request, response) {
           break;
       }
 
-      return response.json(error);
+      return response.json({
+        name: error.name,
+        message: error.message,
+        type: error.type,
+        errors: error.errors || [],
+      });
     }
 
     response.status(500);
-    return response.json(error);
+    return response.json({
+      message: error.message || 'Erro interno do servidor',
+      type: 'internal_error',
+      name: error.name || 'InternalServerError',
+    });
   }
 }
 

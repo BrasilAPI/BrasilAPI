@@ -24,7 +24,11 @@ async function UniversityById(request, response) {
   } catch (error) {
     response.status(500);
 
-    response.json(error);
+    response.json({
+      message: error.message || 'Erro interno do servidor',
+      type: 'internal_error',
+      name: error.name || 'InternalServerError',
+    });
   }
 }
 
