@@ -2,7 +2,7 @@
   "tags": [
     {
       "name": "HOSPITAIS",
-      "description": "Hospitais de referência do SUS para acidentes com animais peçonhentos, oncologia e doenças raras, e os centros CIATOX de assistência toxicológica. <b>Em emergência ligue 192 (SAMU)</b>; em acidente com peçonhento, ligue ao CIATOX antes de se deslocar. Extraído de documentos do Ministério da Saúde pelo projeto MapaSUS — <b>não é um serviço oficial do órgão</b>."
+      "description": "Estabelecimentos que o Ministério da Saúde <b>habilitou por portaria</b> para um atendimento específico: manter soro antiveneno, ou ser referência em oncologia ou em doenças raras. Inclui os centros CIATOX. <b>Em emergência ligue 192 (SAMU)</b>; em acidente com peçonhento, ligue ao CIATOX antes de se deslocar. Extraído de documentos do Ministério da Saúde pelo MapaSUS — <b>não é serviço oficial do órgão</b>."
     }
   ],
   "paths": {
@@ -12,7 +12,7 @@
           "HOSPITAIS"
         ],
         "summary": "Pesquisa hospitais de referência do SUS",
-        "description": "Todos os filtros são opcionais e se combinam com E lógico; sem nenhum, devolve o conjunto completo paginado. O filtro principal é <code>atendimento</code>, que sozinho descobre em qual das três verticais procurar — na maioria dos casos a busca precisa de um único parâmetro. Município e busca livre ignoram acento e caixa.",
+        "description": "Devolve nome, endereço, telefone, código CNES, coordenadas e a lista de atendimentos habilitados de cada estabelecimento. Todos os filtros são opcionais e se combinam com E lógico; sem nenhum, devolve o conjunto completo paginado. O filtro principal é <code>atendimento</code>, que sozinho descobre em qual das três verticais procurar. Município e busca livre ignoram acento e caixa.",
         "parameters": [
           {
             "name": "vertical",
@@ -506,29 +506,35 @@
         "properties": {
           "id": {
             "type": "integer",
-            "example": 806
+            "example": 806,
+            "description": "Identificador do estabelecimento, estável entre coletas."
           },
           "state_code": {
             "type": "string",
-            "example": "AC"
+            "example": "AC",
+            "description": "Sigla da unidade federativa."
           },
           "city": {
             "type": "string",
-            "example": "Acrelândia"
+            "example": "Acrelândia",
+            "description": "Município do estabelecimento."
           },
           "name": {
             "type": "string",
-            "example": "Unidade Mista de Saúde de Acrelândia"
+            "example": "Unidade Mista de Saúde de Acrelândia",
+            "description": "Nome como consta no documento oficial do Ministério da Saúde."
           },
           "address": {
             "type": "string",
             "nullable": true,
-            "example": "Avenida Paraná, 346 – Centro"
+            "example": "Avenida Paraná, 346 – Centro",
+            "description": "Endereço como consta no documento oficial. Pode vir incompleto ou sem número."
           },
           "phones": {
             "type": "string",
             "nullable": true,
-            "example": "(68) 3235-1188"
+            "example": "(68) 3235-1188",
+            "description": "Telefones publicados, em texto livre. Pode conter mais de um número."
           },
           "cnes": {
             "type": "string",
@@ -541,7 +547,7 @@
             "items": {
               "type": "string"
             },
-            "description": "Soros antiveneno disponíveis. Preenchido na vertical `peconhentos`.",
+            "description": "Soros antiveneno que o estabelecimento mantém, em nomenclatura canônica. Preenchido na vertical de peçonhentos.",
             "example": [
               "Bothropic",
               "Scorpionic",
@@ -554,7 +560,7 @@
             "items": {
               "$ref": "#/components/schemas/HospitalHabilitacao"
             },
-            "description": "Habilitações oficiais. Preenchido nas verticais `oncologia` e `raras`."
+            "description": "Habilitações oficiais com os códigos da portaria que as concede. Preenchido nas verticais de oncologia e doenças raras."
           },
           "verticals": {
             "type": "array",
@@ -563,17 +569,20 @@
             },
             "example": [
               "venomous_animals"
-            ]
+            ],
+            "description": "Em quais verticais o estabelecimento é habilitado: <code>venomous_animals</code>, <code>oncology</code> e/ou <code>rare_diseases</code>. Um mesmo hospital pode estar em mais de uma."
           },
           "lat": {
             "type": "number",
             "nullable": true,
-            "example": -10.0783325
+            "example": -10.0783325,
+            "description": "Latitude geocodificada a partir do endereço — <b>não vem da fonte oficial</b> e está sujeita a erro. Nulo quando não foi possível resolver."
           },
           "lng": {
             "type": "number",
             "nullable": true,
-            "example": -67.0558239
+            "example": -67.0558239,
+            "description": "Longitude geocodificada. Mesmas ressalvas de <code>lat</code>."
           },
           "extraction_source": {
             "type": "string",
@@ -598,11 +607,13 @@
             "properties": {
               "distancia_metros": {
                 "type": "integer",
-                "example": 18432
+                "example": 18432,
+                "description": "Distância em linha reta entre a origem informada e o estabelecimento."
               },
               "distancia_km": {
                 "type": "number",
-                "example": 18.4
+                "example": 18.4,
+                "description": "A mesma distância em quilômetros, arredondada em uma casa."
               }
             }
           }
@@ -614,20 +625,24 @@
         "properties": {
           "id": {
             "type": "integer",
-            "example": 1
+            "example": 1,
+            "description": "Identificador do centro, estável entre coletas."
           },
           "state_code": {
             "type": "string",
-            "example": "AM"
+            "example": "AM",
+            "description": "Sigla da unidade federativa."
           },
           "name": {
             "type": "string",
-            "example": "Centro de Informações Toxicológicas do Amazonas – CIT/AM"
+            "example": "Centro de Informações Toxicológicas do Amazonas – CIT/AM",
+            "description": "Nome do centro como consta na publicação do Ministério da Saúde."
           },
           "emergency_phone": {
             "type": "string",
             "nullable": true,
-            "example": "(92) 3305-4702"
+            "example": "(92) 3305-4702",
+            "description": "Telefone de plantão para emergência toxicológica."
           },
           "phones": {
             "type": "array",
@@ -637,11 +652,13 @@
             "example": [
               "0800-722-6001",
               "(92) 3305-4732"
-            ]
+            ],
+            "description": "Demais telefones do centro."
           },
           "source_url": {
             "type": "string",
-            "example": "https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/a/animais-peconhentos/ciatox"
+            "example": "https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/a/animais-peconhentos/ciatox",
+            "description": "Página do Ministério da Saúde de onde o registro foi extraído."
           }
         }
       },
