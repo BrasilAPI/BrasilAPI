@@ -332,6 +332,16 @@ describe('/hospitais/v1/proximos (E2E)', () => {
     ).rejects.toMatchObject(BAD_REQUEST);
   });
 
+  test('CEP malformado retorna 400 e CEP inexistente retorna 404', async () => {
+    await expect(axios.get(`${BASE()}/proximos?cep=abc`)).rejects.toMatchObject(
+      BAD_REQUEST
+    );
+
+    await expect(
+      axios.get(`${BASE()}/proximos?cep=00000000`)
+    ).rejects.toMatchObject({ response: { status: 404 } });
+  });
+
   test('Coordenada inválida retorna 400', async () => {
     await expect(
       axios.get(`${BASE()}/proximos?latitude=91&longitude=-46.63`)

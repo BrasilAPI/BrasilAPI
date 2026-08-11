@@ -2,7 +2,7 @@
   "tags": [
     {
       "name": "HOSPITAIS",
-      "description": "Hospitais de referência habilitados pelo SUS, por vertical de atendimento: animais peçonhentos (soros antiveneno), oncologia (habilitações CGCAN) e doenças raras (habilitações SRDR/SAE). Inclui também os centros CIATOX de informação e assistência toxicológica.\n\n> ⚠️ **Em emergência, ligue 192 (SAMU).** Esta API não substitui atendimento médico. Em caso de acidente com animal peçonhento ou intoxicação, ligue para o CIATOX da sua região **antes de se deslocar** — a unidade listada pode não ter o soro disponível no momento. Consulte `/hospitais/v1/ciatox`.\n\n**Procedência:** os dados são extraídos automaticamente de documentos públicos publicados pelo Ministério da Saúde em gov.br/saude (PDFs estaduais e planilhas de habilitação), pelo projeto [MapaSUS](https://mapasus.com.br).\n\n**Este não é um serviço oficial do Ministério da Saúde.** Nem o MapaSUS nem a BrasilAPI possuem vínculo com o órgão. Os dados podem conter erros de extração ou estar desatualizados em relação à fonte oficial — cada resposta traz `fonte.oficial: false` e a data da última coleta em `atualizado_em`.\n\n**Qualidade dos dados:** parte dos registros é extraída de PDFs por OCR. O campo `requires_verification` indica quando a extração teve confiança baixa e o registro merece verificação manual antes de uso crítico."
+      "description": "Hospitais de referência habilitados pelo SUS e centros de assistência toxicológica.\n\n> ⚠️ **Em emergência, ligue 192 (SAMU).** Esta API não substitui atendimento médico. Em caso de acidente com animal peçonhento ou intoxicação, ligue para o CIATOX da sua região **antes de se deslocar** — a unidade listada pode não ter o soro no momento.\n\n## O que dá para pesquisar\n\n| Pergunta | Requisição |\n|---|---|\n| Que hospital em Itatiba atende picada de escorpião? | `/hospitais/v1?atendimento=escorpiao&municipio=Itatiba` |\n| Qual o mais próximo daqui com soro pra cascavel? | `/hospitais/v1/proximos?cep=13280000&atendimento=cascavel` |\n| Onde fazer radioterapia em Pernambuco? | `/hospitais/v1?atendimento=radioterapia&uf=PE` |\n| Quem faz terapia gênica no país? | `/hospitais/v1?atendimento=terapia-genica` |\n| Quais são os CACON de São Paulo? | `/hospitais/v1?atendimento=cacon&uf=SP` |\n| Quem atende doenças raras na Bahia? | `/hospitais/v1?vertical=raras&uf=BA` |\n| Para quem ligo numa intoxicação em SP? | `/hospitais/v1/ciatox?uf=SP` |\n| **O que exatamente posso pesquisar?** | **`/hospitais/v1/opcoes`** |\n\n## As quatro rotas\n\n| Rota | Para quê |\n|---|---|\n| `/hospitais/v1` | Pesquisa geral: por atendimento, UF, município ou nome |\n| `/hospitais/v1/proximos` | *\"Qual o mais perto de mim?\"* — ordena por distância a partir de um CEP, coordenada ou município |\n| `/hospitais/v1/opcoes` | Descobre todos os termos aceitos, com contagem. **Comece por aqui** |\n| `/hospitais/v1/ciatox` | Centros de toxicologia — para ligar antes de se deslocar |\n\n## As três verticais\n\n| `vertical` | O que é | Como o estabelecimento é identificado |\n|---|---|---|\n| `peconhentos` | Hospitais de referência com soro antiveneno | Campo `treatments`, com os soros disponíveis |\n| `oncologia` | Habilitações CGCAN — CACON, UNACON, radioterapia, cirurgia oncológica | Códigos de portaria 17.XX em `specialties` |\n| `raras` | Habilitações SRDR/SAE para doenças raras | Códigos de portaria 35.XX em `specialties` |\n\nVocê **não precisa** informar a vertical: `?atendimento=` sozinho já sabe em qual procurar. Use `vertical=` só para listar tudo de uma categoria.\n\n## Procedência\n\nOs dados são extraídos automaticamente de documentos públicos publicados pelo Ministério da Saúde em gov.br/saude — PDFs estaduais e planilhas de habilitação — pelo projeto [MapaSUS](https://mapasus.com.br).\n\n**Este não é um serviço oficial do Ministério da Saúde.** Nem o MapaSUS nem a BrasilAPI possuem vínculo com o órgão. Toda resposta traz `fonte.oficial: false` e a data da última coleta em `atualizado_em`.\n\nParte dos registros é extraída de PDFs por OCR. O campo `requires_verification` marca as extrações de baixa confiança — exiba esse sinal em qualquer uso crítico.\n\nOs dados de peçonhentos estão congelados desde julho de 2026, quando o Ministério despublicou as páginas estaduais. Oncologia e doenças raras seguem sendo atualizadas diariamente."
     }
   ],
   "paths": {
@@ -11,8 +11,8 @@
         "tags": [
           "HOSPITAIS"
         ],
-        "summary": "Lista hospitais de referência do SUS com filtros por vertical, UF, município e habilitação",
-        "description": "Retorna os hospitais de referência habilitados pelo SUS. Sem filtros, devolve o conjunto completo paginado. As buscas por município e texto livre são case-insensitive e acento-insensitive.",
+        "summary": "Pesquisa hospitais por atendimento, localidade ou nome",
+        "description": "Rota de pesquisa geral. Todos os filtros são opcionais e se combinam com E lógico — sem nenhum, devolve o conjunto completo paginado.\n\nO filtro que você mais vai usar é `atendimento`: ele atravessa as três verticais sozinho, então na maioria dos casos uma requisição precisa de **um só parâmetro**.\n\n```\n/hospitais/v1?atendimento=cascavel               1.093 hospitais com soro crotálico\n/hospitais/v1?atendimento=cascavel&uf=SP         171 deles em São Paulo\n/hospitais/v1?atendimento=cacon&uf=SP            14 CACON paulistas\n/hospitais/v1?q=santa casa&uf=MG                 31 Santas Casas mineiras\n```\n\nBuscas por município e por texto livre ignoram acento e caixa.",
         "parameters": [
           {
             "name": "vertical",
@@ -26,7 +26,7 @@
                 "raras"
               ]
             },
-            "description": "Vertical de atendimento. `peconhentos` são os hospitais com soro antiveneno; `oncologia` são as habilitações CGCAN (CACON, UNACON, radioterapia); `raras` são as habilitações SRDR/SAE.",
+            "description": "Restringe a uma categoria inteira. **Opcional e raramente necessário** — `atendimento` já sabe em qual vertical procurar. Use quando quiser listar tudo de uma categoria, como todos os hospitais de oncologia de um estado.",
             "example": "peconhentos"
           },
           {
@@ -57,8 +57,8 @@
             "schema": {
               "type": "string"
             },
-            "description": "Busca única que atravessa as três verticais. Aceita nome popular do animal (`cascavel`, `jararaca`, `armadeira`, `lagarta`), nome do soro em português ou inglês (`crotalico`, `Crotalic`), habilitação de oncologia (`radioterapia`, `cacon`, `unacon`), área de doenças raras (`terapia-genica`, `doencas-autoimunes`) ou código de portaria (`17.07`, `35.16`).\n\nAcento, caixa, hífen, underscore e espaço são equivalentes. Um termo fora do vocabulário retorna 400 em vez de lista vazia — consulte `/hospitais/v1/opcoes` para os valores aceitos.",
-            "example": "cascavel"
+            "description": "O filtro central da API. Um só termo, e ele descobre sozinho em qual vertical procurar.\n\nAceita quatro famílias de valor:\n\n| Família | Exemplos |\n|---|---|\n| Nome popular do animal | `cascavel`, `jararaca`, `escorpiao`, `armadeira`, `coral`, `lagarta`, `surucucu` |\n| Nome do soro, PT ou EN | `crotalico`, `Crotalic`, `botropico`, `Bothropic` |\n| Habilitação | `radioterapia`, `cacon`, `unacon`, `hematologia`, `terapia-genica`, `doencas-autoimunes` |\n| Código de portaria | `17.07` (oncologia), `35.16` (doenças raras) |\n\nAcento, caixa, hífen, underscore e espaço são equivalentes: `terapia-genica`, `terapia_genica`, `Terapia Gênica` e `gene-therapy` devolvem o mesmo resultado.\n\nUma habilitação pode cobrir vários códigos — `radioterapia` casa com 17.04, 17.07, 17.12, 17.13 e 17.15, e por isso devolve mais que qualquer código isolado.\n\nTermo fora do vocabulário retorna **400** com a lista de valores aceitos, em vez de uma lista vazia que esconderia o erro de digitação. `/hospitais/v1/opcoes` traz o vocabulário completo.",
+            "example": "escorpiao"
           },
           {
             "name": "q",
@@ -125,8 +125,8 @@
         "tags": [
           "HOSPITAIS"
         ],
-        "summary": "Busca hospitais de referência por proximidade geográfica",
-        "description": "Retorna os hospitais dentro de um raio a partir de uma origem, ordenados pela distância crescente. A origem pode ser informada de três formas: por `cep`, por `latitude` e `longitude`, ou por `municipio` e `uf`. Somente hospitais com coordenadas conhecidas entram no resultado.",
+        "summary": "Encontra o hospital mais próximo que oferece um atendimento",
+        "description": "Responde *\"qual a unidade mais perto de mim que tem o que eu preciso?\"*. Devolve os hospitais dentro de um raio, **ordenados da menor para a maior distância**, cada um com `distancia_km`.\n\nA origem pode vir de três formas — informe **uma** delas:\n\n| Forma | Exemplo | Observação |\n|---|---|---|\n| `cep` | `?cep=13280000` | Mais preciso. Depende dos provedores de CEP |\n| `latitude` + `longitude` | `?latitude=-23.03&longitude=-46.98` | Não depende de serviço externo |\n| `municipio` + `uf` | `?municipio=Itatiba&uf=SP` | Resolve para o centro do município |\n\n```\n/hospitais/v1/proximos?municipio=Itatiba&uf=SP&atendimento=escorpiao&raio_km=30\n```\n\nRaio padrão de 50 km, máximo de 200. Só entram hospitais com coordenada conhecida — hoje 99,7% do total.\n\nCEP malformado retorna 400; CEP inexistente, 404. Se a origem não puder ser geocodificada, envie `latitude` e `longitude` diretamente.",
         "parameters": [
           {
             "name": "cep",
@@ -208,7 +208,7 @@
                 "raras"
               ]
             },
-            "description": "Restringe a busca a uma vertical de atendimento.",
+            "description": "Restringe a uma categoria inteira. **Opcional e raramente necessário** — `atendimento` já sabe em qual vertical procurar. Use quando quiser listar tudo de uma categoria, como todos os hospitais de oncologia de um estado.",
             "example": "peconhentos"
           },
           {
@@ -218,8 +218,8 @@
             "schema": {
               "type": "string"
             },
-            "description": "Restringe a busca a um atendimento específico, atravessando as três verticais. Mesmos valores e aliases de `/hospitais/v1`.",
-            "example": "cascavel"
+            "description": "Restringe a busca a um atendimento. Mesmos valores e aliases de `/hospitais/v1` — veja lá a lista de famílias aceitas, ou consulte `/hospitais/v1/opcoes`.",
+            "example": "escorpiao"
           },
           {
             "name": "limit",
@@ -276,8 +276,8 @@
         "tags": [
           "HOSPITAIS"
         ],
-        "summary": "Lista os valores aceitos pelos filtros de busca, com contagem",
-        "description": "Descreve o vocabulário da API: as verticais disponíveis e todos os atendimentos aceitos em `?atendimento=`, cada um com rótulo em português, grafias alternativas, códigos de portaria cobertos e a quantidade de estabelecimentos que o oferecem.\n\nUse este endpoint para montar seletores sem depender da documentação — todo valor listado em `atendimentos[].valor` é aceito pela busca.",
+        "summary": "Descobre tudo que pode ser pesquisado — comece por aqui",
+        "description": "Lista **todos** os valores que `?atendimento=` aceita, cada um com rótulo em português, grafias alternativas, códigos de portaria cobertos e quantos estabelecimentos o oferecem.\n\nServe para montar um seletor ou entender o vocabulário sem depender desta documentação — todo valor em `atendimentos[].valor` é aceito pela busca, e o `total` anunciado é exatamente o que a busca devolve.\n\n```json\n{\n  \"vertical\": \"peconhentos\",\n  \"valor\": \"Crotalic\",\n  \"rotulo\": \"Crotálico (cascavel)\",\n  \"aliases\": [\"crotalico\", \"crotalus\", \"cascavel\"],\n  \"total\": 1093\n}\n```\n\nSão 27 atendimentos: 9 soros antiveneno, 9 habilitações de oncologia e 9 áreas de doenças raras.",
         "responses": {
           "200": {
             "description": "Success",
@@ -298,8 +298,8 @@
         "tags": [
           "HOSPITAIS"
         ],
-        "summary": "Lista os centros CIATOX de informação e assistência toxicológica",
-        "description": "Retorna os Centros de Informação e Assistência Toxicológica (CIATOX). Em caso de acidente com animal peçonhento, a orientação oficial é ligar primeiro para o CIATOX da região antes de se deslocar.",
+        "summary": "Centros de toxicologia — ligue antes de se deslocar",
+        "description": "Centros de Informação e Assistência Toxicológica (CIATOX), com telefone de emergência.\n\nEm acidente com animal peçonhento ou intoxicação, **a orientação oficial é ligar para o CIATOX antes de ir ao hospital**: eles confirmam qual unidade tem o soro disponível naquele momento e orientam os primeiros cuidados. O hospital mais próximo nem sempre é o certo.\n\nO Disque-Intoxicação nacional é **0800 722 6001**.",
         "parameters": [
           {
             "name": "uf",

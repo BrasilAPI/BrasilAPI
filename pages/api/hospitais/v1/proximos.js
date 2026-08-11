@@ -1,5 +1,6 @@
 import app from '@/app';
 import BadRequestError from '@/errors/BadRequestError';
+import NotFoundError from '@/errors/NotFoundError';
 import { fetchCep } from '@/services/cep/cep';
 import {
   getHospitaisProximos,
@@ -35,6 +36,31 @@ function parseRaioEmMetros(raioKm) {
   return numero * 1000;
 }
 
+// O cep-promise sinaliza CEP malformado e CEP não encontrado com o mesmo
+// CepPromiseError, distinguindo pelo `type`. Sem esta tradução ambos vazariam
+// como 500 — a mesma conversão que pages/api/cep/v2/[cep].js faz.
+async function buscarCep(cep) {
+  try {
+    return await fetchCep(cep);
+  } catch (error) {
+    if (error.name !== 'CepPromiseError') {
+      throw error;
+    }
+
+    if (error.type === 'validation_error') {
+      throw new BadRequestError({
+        message: error.message,
+        type: 'validation_error',
+      });
+    }
+
+    throw new NotFoundError({
+      message: `CEP ${cep} não encontrado. Informe latitude e longitude, ou municipio e uf.`,
+      type: 'not_found',
+    });
+  }
+}
+
 // O geocoding só acontece para a origem informada pelo cliente. As coordenadas
 // dos hospitais já vêm resolvidas no snapshot.
 async function resolverOrigem({ cep, latitude, longitude, municipio, uf }) {
@@ -46,7 +72,7 @@ async function resolverOrigem({ cep, latitude, longitude, municipio, uf }) {
   }
 
   const localizacao = cep
-    ? await fetchGeocoordinateFromBrazilLocation(await fetchCep(cep))
+    ? await fetchGeocoordinateFromBrazilLocation(await buscarCep(cep))
     : await fetchGeocoordinateFromBrazilLocation({
         city: municipio,
         state: uf,
