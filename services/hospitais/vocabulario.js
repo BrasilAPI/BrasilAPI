@@ -4,7 +4,14 @@
 // crotálico. Espelha lib/services/search-normalizer.ts e lib/services/disease-areas.ts
 // do MapaSUS; mantenha os dois em sincronia.
 
-export const normalizarChave = (valor) =>
+// Slug em português usado na URL -> chave da vertical no dataset.
+export const VERTICAIS = {
+  peconhentos: 'venomous_animals',
+  oncologia: 'oncology',
+  raras: 'rare_diseases',
+};
+
+const normalizarChave = (valor) =>
   String(valor)
     .normalize('NFD')
     .replace(/[̀-ͯ]/g, '')
@@ -13,7 +20,7 @@ export const normalizarChave = (valor) =>
     .trim();
 
 // Soros antiveneno da vertical de peçonhentos.
-export const SOROS = {
+const SOROS = {
   Bothropic: {
     rotulo: 'Botrópico (jararaca)',
     aliases: ['botropico', 'bothrops', 'jararaca', 'cobra'],
@@ -56,7 +63,7 @@ export const SOROS = {
 // vários códigos de portaria — 17.13 é CACON, radioterapia e oncologia
 // pediátrica ao mesmo tempo. O casamento é sempre pelo código numérico, nunca
 // pelo texto, que vem cheio de ruído de OCR.
-export const HABILITACOES = {
+const HABILITACOES = {
   oncologia: {
     prefixo: '17',
     itens: {
@@ -178,42 +185,75 @@ const indexar = () => {
 
 const { soros: INDICE_SOROS, habilitacoes: INDICE_HABILITACOES } = indexar();
 
-export const normalizarSoro = (valor) =>
+const normalizarSoro = (valor) =>
   INDICE_SOROS.get(normalizarChave(valor)) || null;
 
-export const resolverHabilitacao = (valor) =>
+const resolverHabilitacao = (valor) =>
   INDICE_HABILITACOES.get(normalizarChave(valor)) || null;
 
 // Um código de portaria informado direto, como "17.07" ou "35.16".
-export const parsearCodigoDePortaria = (valor) => {
+const parsearCodigoDePortaria = (valor) => {
   const match = /^(17|35)\.?\s?(\d{2})$/.exec(String(valor).trim());
 
   return match ? { prefixo: match[1], codigos: [match[2]] } : null;
 };
+
+// Compiladas uma vez: extrairCodigos roda para cada hospital em cada busca por
+// habilitação.
+const REGEX_POR_PREFIXO = Object.fromEntries(
+  Object.values(HABILITACOES).map(({ prefixo }) => [
+    prefixo,
+    new RegExp(`${prefixo}\\.?\\s?(\\d{2})`, 'g'),
+  ])
+);
 
 // O texto de qualification_codes vem sujo — vários códigos concatenados por
 // quebra de linha, espaçamento irregular de OCR, e o ponto às vezes ausente.
 // Extrair por regex é o único jeito estável de saber quais códigos um
 // estabelecimento tem.
 export const extrairCodigos = (specialties, prefixo) => {
+  const regex = REGEX_POR_PREFIXO[prefixo];
   const encontrados = new Set();
-  const regex = new RegExp(`${prefixo}\\.?\\s?(\\d{2})`, 'g');
+
+  if (!regex) {
+    return encontrados;
+  }
 
   (specialties || []).forEach((specialty) => {
     (specialty.qualification_codes || []).forEach((texto) => {
-      const alvo = String(texto);
-      let match = regex.exec(alvo);
-
-      while (match !== null) {
-        encontrados.add(match[1]);
-        match = regex.exec(alvo);
-      }
-
-      regex.lastIndex = 0;
+      // matchAll não depende de lastIndex, que precisaria ser zerado à mão
+      // entre chamadas numa regex global compartilhada.
+      [...String(texto).matchAll(regex)].forEach(([, codigo]) =>
+        encontrados.add(codigo)
+      );
     });
   });
 
   return encontrados;
+};
+
+// Resolve o termo do usuário contra os três vocabulários, em ordem: soros
+// antiveneno, habilitações e, por fim, código de portaria cru. Devolve null
+// quando não existe em nenhum, para o chamador responder 400 em vez de uma
+// lista vazia silenciosa. É lógica puramente de vocabulário — não toca o
+// dataset.
+export const resolverAtendimento = (valor) => {
+  const soro = normalizarSoro(valor);
+  if (soro) {
+    return { tipo: 'soro', soro };
+  }
+
+  const habilitacao = resolverHabilitacao(valor);
+  if (habilitacao) {
+    return { tipo: 'habilitacao', ...habilitacao };
+  }
+
+  const codigo = parsearCodigoDePortaria(valor);
+  if (codigo) {
+    return { tipo: 'habilitacao', ...codigo };
+  }
+
+  return null;
 };
 
 export const opcoesDeAtendimento = () => [

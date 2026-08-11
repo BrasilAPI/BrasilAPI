@@ -8,33 +8,17 @@ import {
 } from '@/services/hospitais';
 import {
   parseAtendimento,
-  parseCoordenada,
+  parseLatitude,
+  parseLongitude,
   parsePaginacao,
+  parseRaioEmMetros,
   parseUf,
   parseVertical,
 } from '@/services/hospitais/query';
 import fetchGeocoordinateFromBrazilLocation from '@/lib/fetchGeocoordinateFromBrazilLocation';
 
-const RAIO_KM_PADRAO = 50;
-const RAIO_KM_MAXIMO = 200;
 const LIMIT_PADRAO_PROXIMOS = 50;
-
-function parseRaioEmMetros(raioKm) {
-  if (raioKm === undefined) {
-    return RAIO_KM_PADRAO * 1000;
-  }
-
-  const numero = Number(raioKm);
-
-  if (!Number.isFinite(numero) || numero <= 0 || numero > RAIO_KM_MAXIMO) {
-    throw new BadRequestError({
-      message: `O parâmetro raio_km deve ser um número entre 0 e ${RAIO_KM_MAXIMO}.`,
-      type: 'validation_error',
-    });
-  }
-
-  return numero * 1000;
-}
+const METROS_POR_KM = 1000;
 
 // O cep-promise sinaliza CEP malformado e CEP não encontrado com o mesmo
 // CepPromiseError, distinguindo pelo `type`. Sem esta tradução ambos vazariam
@@ -66,8 +50,8 @@ async function buscarCep(cep) {
 async function resolverOrigem({ cep, latitude, longitude, municipio, uf }) {
   if (latitude !== undefined || longitude !== undefined) {
     return {
-      latitude: parseCoordenada(latitude, 'latitude', 90),
-      longitude: parseCoordenada(longitude, 'longitude', 180),
+      latitude: parseLatitude(latitude),
+      longitude: parseLongitude(longitude),
     };
   }
 
@@ -137,7 +121,7 @@ async function listarHospitaisProximos(request, response) {
     limit,
     offset,
     origem,
-    raio_km: raioEmMetros / 1000,
+    raio_km: raioEmMetros / METROS_POR_KM,
     ...getSnapshotMetadata(),
     items: encontrados.slice(offset, offset + limit),
   });

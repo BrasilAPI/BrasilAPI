@@ -3,10 +3,9 @@ import haversine from '@/util/haversine';
 import snapshot from './snapshots/latest.json';
 import {
   extrairCodigos,
-  normalizarSoro,
   opcoesDeAtendimento,
-  parsearCodigoDePortaria,
-  resolverHabilitacao,
+  resolverAtendimento,
+  VERTICAIS,
 } from './vocabulario';
 
 // O dataset vem de um snapshot commitado, gerado diariamente por
@@ -15,18 +14,12 @@ import {
 // pico, cada cold start de lambda viraria uma rajada de requests no serviço.
 // Ver docs/HOSPITAIS_MAPASUS.md.
 
-export const VERTICAIS = {
-  peconhentos: 'venomous_animals',
-  oncologia: 'oncology',
-  raras: 'rare_diseases',
-};
-
 const hospitais = Array.isArray(snapshot.hospitais) ? snapshot.hospitais : [];
 const ciatox = Array.isArray(snapshot.ciatox) ? snapshot.ciatox : [];
 
 // Procedência e aviso vivem aqui, não no snapshot: é texto editorial que
 // precisa passar por review, não dado gerado por script.
-export const FONTE = {
+const FONTE = {
   nome: 'MapaSUS',
   url: 'https://mapasus.com.br',
   oficial: false,
@@ -38,7 +31,7 @@ export const FONTE = {
 // Alguém pode consultar esta API no meio de um acidente. A orientação oficial
 // para animais peçonhentos é ligar antes de se deslocar — a unidade mais
 // próxima pode não ter o soro em estoque no momento.
-export const EMERGENCIA = {
+const EMERGENCIA = {
   aviso:
     'Esta API não substitui atendimento médico. Em emergência, ligue 192 (SAMU). Em caso de acidente com animal peçonhento ou intoxicação, ligue para o CIATOX da sua região antes de se deslocar — a unidade listada pode não ter o soro disponível no momento.',
   samu: '192',
@@ -62,30 +55,6 @@ const temHabilitacao = (hospital, { prefixo, codigos }) => {
 
   return codigos.some((codigo) => doHospital.has(codigo));
 };
-
-// `atendimento` é o parâmetro único que atravessa as três verticais: resolve
-// primeiro contra os soros antiveneno, depois contra as habilitações de
-// oncologia e doenças raras, e por fim aceita um código de portaria cru.
-// Retorna null quando o termo não existe em nenhum vocabulário, para o handler
-// devolver 400 em vez de uma lista vazia silenciosa.
-export function resolverAtendimento(valor) {
-  const soro = normalizarSoro(valor);
-  if (soro) {
-    return { tipo: 'soro', soro };
-  }
-
-  const habilitacao = resolverHabilitacao(valor);
-  if (habilitacao) {
-    return { tipo: 'habilitacao', ...habilitacao };
-  }
-
-  const codigo = parsearCodigoDePortaria(valor);
-  if (codigo) {
-    return { tipo: 'habilitacao', ...codigo };
-  }
-
-  return null;
-}
 
 const atendeA = (hospital, atendimento) =>
   atendimento.tipo === 'soro'
