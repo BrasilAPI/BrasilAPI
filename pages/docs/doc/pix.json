@@ -12,7 +12,7 @@
           "PIX"
         ],
         "summary": "Retorna informações de todos os participantes do PIX no dia atual ou último dia útil.",
-        "description": "Os dados são obtidos diretamente do Banco Central do Brasil.<br> Em novembro de 2025 o banco central deixou de fornecer a data de início de operação dos participantes, por isso este campo pode estar vazio para alguns participantes.",
+        "description": "Os dados são extraídos da lista oficial de participantes publicada pelo Banco Central do Brasil, atualizada neste projeto em dias úteis.<br> Em novembro de 2025 o Banco Central deixou de fornecer a data de início de operação dos participantes, por isso o campo <code>inicio_operacao</code> é retornado como nulo.",
         "responses": {
           "200": {
             "description": "Success",
@@ -100,12 +100,12 @@
           }
         },
         "example": {
-          "ispb": "360305",
+          "ispb": "00360305",
           "nome": "CAIXA ECONOMICA FEDERAL",
           "nome_reduzido": "CAIXA ECONOMICA FEDERAL",
-          "modalidade_participacao": "PDCT",
-          "tipo_participacao": "DRCT",
-          "inicio_operacao": "2020-11-03T09:30:00.000Z"
+          "modalidade_participacao": "Provedor de Conta Transacional",
+          "tipo_participacao": "Direta",
+          "inicio_operacao": null
         }
       }
     }

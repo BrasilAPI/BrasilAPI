@@ -1,0 +1,58 @@
+name: Snapshot Participantes Pix
+
+on:
+  schedule:
+    # Dias úteis às 13h UTC (10h de Brasília): o BCB publica o PDF apenas em
+    # dias úteis e mantém disponíveis somente os ~2 dias mais recentes.
+    - cron: '0 13 * * 1-5'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  pix-participants-snapshot:
+    name: Gerar snapshot de participantes do Pix
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Puxar o codigo do commit
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+
+      - name: Cacheando dependencias
+        id: cache_dependencies
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-dependencies-${{ hashFiles('./package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Instalar dependencias do npm
+        if: steps.cache_dependencies.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Gerar snapshot de participantes do Pix
+        run: npm run snapshot:pix:participants
+
+      - name: Commitar snapshot atualizado
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add services/pix/snapshots/
+
+          if git diff --staged --quiet -- services/pix/snapshots/latest.json; then
+            echo "Lista de participantes sem alteracoes, nada para commitar"
+            exit 0
+          fi
+
+          git commit -m "chore(pix): atualiza snapshot de participantes do Pix"
+          git push
