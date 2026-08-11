@@ -1,20 +1,20 @@
 import app from '@/app';
 import { getHospitais, getSnapshotMetadata } from '@/services/hospitais';
 import {
-  parseAtendimentos,
+  parseAtendimento,
   parsePaginacao,
   parseUf,
   parseVertical,
 } from '@/services/hospitais/query';
 
 async function listarHospitais(request, response) {
-  const { vertical, uf, municipio, q } = request.query;
+  const { vertical, uf, municipio, atendimento, q } = request.query;
 
   const encontrados = getHospitais({
     vertical: parseVertical(vertical),
     uf: parseUf(uf),
     municipio,
-    atendimentos: parseAtendimentos(request.query),
+    atendimento: parseAtendimento(atendimento),
     q,
   });
 

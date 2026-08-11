@@ -6,7 +6,7 @@ import {
   getSnapshotMetadata,
 } from '@/services/hospitais';
 import {
-  parseAtendimentos,
+  parseAtendimento,
   parseCoordenada,
   parsePaginacao,
   parseUf,
@@ -66,7 +66,8 @@ async function resolverOrigem({ cep, latitude, longitude, municipio, uf }) {
 }
 
 async function listarHospitaisProximos(request, response) {
-  const { cep, latitude, longitude, municipio, uf, vertical } = request.query;
+  const { cep, latitude, longitude, municipio, uf, vertical, atendimento } =
+    request.query;
 
   const ufValidada = parseUf(uf);
 
@@ -97,7 +98,7 @@ async function listarHospitaisProximos(request, response) {
     ...origem,
     raioEmMetros,
     vertical: parseVertical(vertical),
-    atendimentos: parseAtendimentos(request.query),
+    atendimento: parseAtendimento(atendimento),
   });
 
   const { limit, offset } = parsePaginacao(

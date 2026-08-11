@@ -70,6 +70,25 @@ Um sync quebrado no MapaSUS não pode zerar o dataset que o BrasilAPI serve. O `
 
 O workflow commita apenas `latest.json` e `metrics-latest.json` — não versiona arquivos datados por execução.
 
+## Busca
+
+Um único parâmetro, `atendimento`, atravessa as três verticais:
+
+```
+/api/hospitais/v1?atendimento=cascavel          → soro crotálico
+/api/hospitais/v1?atendimento=radioterapia      → habilitação de oncologia
+/api/hospitais/v1?atendimento=terapia-genica    → área de doenças raras
+/api/hospitais/v1?atendimento=17.07             → código de portaria
+```
+
+O vocabulário vive em `services/hospitais/vocabulario.js` e espelha `lib/services/search-normalizer.ts` e `lib/services/disease-areas.ts` do MapaSUS — mantenha os dois em sincronia. Acento, caixa, hífen, underscore e espaço são equivalentes.
+
+Uma versão anterior tinha também `tratamento` e `habilitacao`. Foram removidos: resolviam contra o mesmo vocabulário e devolviam resultados idênticos ao de `atendimento`, só triplicando o que o usuário precisa decidir antes da primeira chamada. Para restringir a uma vertical, use `vertical=`.
+
+Termo fora do vocabulário devolve **400** com a lista de valores aceitos. Devolver lista vazia esconderia um erro de digitação atrás de "nenhum hospital encontrado" — num endpoint de saúde isso é pior que um erro explícito.
+
+`GET /api/hospitais/v1/opcoes` lista todos os valores aceitos com rótulo em português, grafias alternativas e contagem, para montar seletores sem depender da documentação.
+
 ## Limitações conhecidas
 
 - **Peçonhentos está congelado.** O Ministério da Saúde despublicou as 27 páginas estaduais em julho de 2026; elas redirecionam para um login wall que responde `200`. O MapaSUS detecta isso, classifica como `source_unpublished` e continua servindo o último snapshot válido. Os dados seguem corretos, mas não recebem atualização da fonte.

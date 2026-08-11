@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-11T05:14:12.630Z",
-  "run_id": "2026-08-11T05-06-24-008Z",
+  "generated_at": "2026-08-11T14:19:18.087Z",
+  "run_id": "2026-08-11T14-11-27-618Z",
   "totals": {
     "hospitais": 2342,
     "ciatox": 32,
@@ -12,16 +12,12 @@
     }
   },
   "deltas": {
-    "previous_hospitais": 0,
-    "previous_ciatox": 0,
-    "hospitais_delta": 2342,
-    "ciatox_delta": 32
+    "previous_hospitais": 2342,
+    "previous_ciatox": 32,
+    "hospitais_delta": 0,
+    "ciatox_delta": 0
   },
-  "source": {
-    "name": "MapaSUS",
-    "url": "https://api.mapasus.com.br",
-    "upstream": "Ministério da Saúde - gov.br/saude"
-  },
+  "coletado_de": "https://api.mapasus.com.br",
   "fallback": {
     "used_previous_snapshot": false,
     "reason": null

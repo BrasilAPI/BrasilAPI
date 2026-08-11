@@ -1,71 +1,30 @@
 import BadRequestError from '@/errors/BadRequestError';
 import { resolverAtendimento, VERTICAIS } from './index';
-import {
-  HABILITACOES,
-  normalizarSoro,
-  resolverHabilitacao,
-  SOROS,
-} from './vocabulario';
 
 export const LIMIT_MAXIMO = 500;
 export const LIMIT_PADRAO = 100;
 
-const listar = (objeto) => Object.keys(objeto).join(', ');
+// Um só parâmetro de busca por atendimento. Ter também `tratamento` e
+// `habilitacao` era redundante: os três resolviam contra o mesmo vocabulário e
+// devolviam resultados idênticos, só triplicando o que o usuário precisa
+// decidir antes de fazer a primeira chamada.
+export function parseAtendimento(valor) {
+  if (valor === undefined) {
+    return undefined;
+  }
 
-// Cada um dos três parâmetros de busca resolve contra o vocabulário e falha
-// alto quando o termo é desconhecido — devolver lista vazia esconderia um erro
-// de digitação atrás de "nenhum hospital encontrado".
-function resolverOuFalhar(valor, resolver, mensagemDeAjuda) {
-  const resolvido = resolver(valor);
+  const resolvido = resolverAtendimento(valor);
 
+  // Devolver lista vazia esconderia um erro de digitação atrás de "nenhum
+  // hospital encontrado" — num endpoint de saúde isso é pior que um 400.
   if (!resolvido) {
     throw new BadRequestError({
-      message: `Valor não reconhecido: '${valor}'. ${mensagemDeAjuda} Consulte /api/hospitais/v1/opcoes para a lista completa.`,
+      message: `Atendimento não reconhecido: '${valor}'. Aceita soros antiveneno (ex: cascavel), habilitações de oncologia e doenças raras (ex: radioterapia) ou um código de portaria (ex: 17.07). Consulte /api/hospitais/v1/opcoes para a lista completa.`,
       type: 'validation_error',
     });
   }
 
   return resolvido;
-}
-
-export function parseAtendimentos({ atendimento, tratamento, habilitacao }) {
-  const resolvidos = [];
-
-  if (atendimento !== undefined) {
-    resolvidos.push(
-      resolverOuFalhar(
-        atendimento,
-        resolverAtendimento,
-        'Aceita soros antiveneno, habilitações de oncologia e doenças raras, ou um código de portaria (ex: 17.07).'
-      )
-    );
-  }
-
-  if (tratamento !== undefined) {
-    resolvidos.push({
-      tipo: 'soro',
-      soro: resolverOuFalhar(
-        tratamento,
-        normalizarSoro,
-        `Soros aceitos: ${listar(SOROS)}.`
-      ),
-    });
-  }
-
-  if (habilitacao !== undefined) {
-    resolvidos.push({
-      tipo: 'habilitacao',
-      ...resolverOuFalhar(
-        habilitacao,
-        resolverHabilitacao,
-        `Habilitações aceitas: ${listar(
-          HABILITACOES.oncologia.itens
-        )}, ${listar(HABILITACOES.raras.itens)}.`
-      ),
-    });
-  }
-
-  return resolvidos;
 }
 
 export function parseVertical(vertical) {

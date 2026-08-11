@@ -146,9 +146,22 @@ const fetchVertical = async ({ slug, mapasus }, ufs) => {
   return hospitals;
 };
 
-// Um mesmo hospital pode estar habilitado em mais de uma vertical. O MapaSUS
-// já deduplica por CNES e devolve o mesmo id em cada vertical, então a união
-// por id preserva o array `verticals` sem duplicar o estabelecimento.
+const unir = (a = [], b = []) => [...new Set([...a, ...b])];
+
+const unirEspecialidades = (a = [], b = []) => {
+  const porChave = new Map();
+
+  [...a, ...b].forEach((especialidade) => {
+    porChave.set(JSON.stringify(especialidade), especialidade);
+  });
+
+  return [...porChave.values()];
+};
+
+// Um mesmo hospital pode estar habilitado em mais de uma vertical, e aparece
+// então na coleta de cada uma. Os campos de lista precisam ser unidos, não
+// sobrescritos: um espalhamento simples faria a última coleta apagar as
+// verticais e os soros trazidos pelas anteriores.
 const mergeHospitals = (pages) => {
   const byId = new Map();
 
@@ -164,10 +177,12 @@ const mergeHospitals = (pages) => {
       byId.set(hospital.id, {
         ...existing,
         ...hospital,
-        specialties: [
-          ...(existing.specialties || []),
-          ...(hospital.specialties || []),
-        ],
+        verticals: unir(existing.verticals, hospital.verticals),
+        treatments: unir(existing.treatments, hospital.treatments),
+        specialties: unirEspecialidades(
+          existing.specialties,
+          hospital.specialties
+        ),
       });
     });
   });

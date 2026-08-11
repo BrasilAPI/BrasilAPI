@@ -172,26 +172,16 @@ describe('/hospitais/v1 busca por atendimento (E2E)', () => {
     expect(capacidade.data.total).toBeGreaterThan(umCodigo.data.total);
   });
 
-  test('tratamento e habilitacao seguem funcionando com aliases', async () => {
-    const tratamento = await axios.get(`${BASE()}?tratamento=jararaca`);
-    const habilitacao = await axios.get(`${BASE()}?habilitacao=cacon`);
-
-    expect(tratamento.data.total).toBeGreaterThan(0);
-    expect(habilitacao.data.total).toBeGreaterThan(0);
-  });
-
-  test('Filtros combinados aplicam AND', async () => {
+  test('Combina com os demais filtros aplicando AND', async () => {
     const so = await axios.get(`${BASE()}?atendimento=cascavel&limit=500`);
-    const combinado = await axios.get(
-      `${BASE()}?atendimento=cascavel&tratamento=jararaca&limit=500`
+    const comUf = await axios.get(
+      `${BASE()}?atendimento=cascavel&uf=SP&limit=500`
     );
 
-    expect(combinado.data.total).toBeLessThanOrEqual(so.data.total);
+    expect(comUf.data.total).toBeLessThan(so.data.total);
     expect(
-      combinado.data.items.every(
-        (h) =>
-          h.treatments.includes('Crotalic') &&
-          h.treatments.includes('Bothropic')
+      comUf.data.items.every(
+        (h) => h.state_code === 'SP' && h.treatments.includes('Crotalic')
       )
     ).toBe(true);
   });
@@ -199,12 +189,6 @@ describe('/hospitais/v1 busca por atendimento (E2E)', () => {
   test('Termo desconhecido retorna 400, não lista vazia', async () => {
     await expect(
       axios.get(`${BASE()}?atendimento=cascavell`)
-    ).rejects.toMatchObject(BAD_REQUEST);
-    await expect(
-      axios.get(`${BASE()}?tratamento=inexistente`)
-    ).rejects.toMatchObject(BAD_REQUEST);
-    await expect(
-      axios.get(`${BASE()}?habilitacao=inexistente`)
     ).rejects.toMatchObject(BAD_REQUEST);
   });
 });

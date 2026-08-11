@@ -92,16 +92,9 @@ const atendeA = (hospital, atendimento) =>
     ? temSoro(hospital, atendimento.soro)
     : temHabilitacao(hospital, atendimento);
 
-// `atendimentos` já chega resolvido pelo handler (ver services/hospitais/query.js),
-// que devolve 400 para termos fora do vocabulário. Todos os informados precisam
-// casar.
-export function getHospitais({
-  vertical,
-  uf,
-  municipio,
-  atendimentos = [],
-  q,
-} = {}) {
+// `atendimento` já chega resolvido pelo handler (ver services/hospitais/query.js),
+// que devolve 400 para termos fora do vocabulário.
+export function getHospitais({ vertical, uf, municipio, atendimento, q } = {}) {
   const verticalKey = vertical ? VERTICAIS[vertical] : null;
   const ufKey = uf ? String(uf).toUpperCase() : null;
   const municipioKey = municipio ? removeSpecialChars(municipio) : null;
@@ -120,7 +113,7 @@ export function getHospitais({
       return false;
     }
 
-    if (!atendimentos.every((a) => atendeA(hospital, a))) {
+    if (atendimento && !atendeA(hospital, atendimento)) {
       return false;
     }
 
