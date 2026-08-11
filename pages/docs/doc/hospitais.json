@@ -11,8 +11,8 @@
         "tags": [
           "HOSPITAIS"
         ],
-        "summary": "Pesquisa hospitais de referência do SUS",
-        "description": "Devolve nome, endereço, telefone, código CNES, coordenadas e a lista de atendimentos habilitados de cada estabelecimento. Todos os filtros são opcionais e se combinam com E lógico; sem nenhum, devolve o conjunto completo paginado. O filtro principal é <code>atendimento</code>, que sozinho descobre em qual das três verticais procurar. Município e busca livre ignoram acento e caixa.",
+        "summary": "Pesquisa hospitais habilitados para animais peçonhentos, oncologia ou doenças raras",
+        "description": "A base cobre <b>apenas</b> essas três habilitações — não é um cadastro geral de hospitais. Devolve nome, endereço, telefone, código CNES, coordenadas e a lista de atendimentos habilitados de cada estabelecimento. Todos os filtros são opcionais e se combinam com E lógico; sem nenhum, devolve o conjunto completo paginado. O filtro principal é <code>atendimento</code>, que sozinho descobre em qual das três procurar.",
         "parameters": [
           {
             "name": "vertical",
@@ -125,8 +125,8 @@
         "tags": [
           "HOSPITAIS"
         ],
-        "summary": "Encontra o hospital mais próximo que oferece um atendimento",
-        "description": "Devolve os hospitais dentro de um raio, ordenados da menor para a maior distância, cada um com <code>distancia_km</code>. Informe a origem de uma das três formas: <code>cep</code>, <code>latitude</code> com <code>longitude</code>, ou <code>municipio</code> com <code>uf</code>. Só entram hospitais com coordenada conhecida, hoje 99,7% do total. CEP malformado retorna 400 e CEP inexistente retorna 404.",
+        "summary": "Encontra o hospital habilitado mais próximo para peçonhentos, oncologia ou doenças raras",
+        "description": "Considera <b>apenas</b> os hospitais habilitados nas três verticais, não a rede de saúde inteira. Devolve os que estão dentro de um raio, ordenados da menor para a maior distância, cada um com <code>distancia_km</code>. Informe a origem por <code>cep</code>, por <code>latitude</code> e <code>longitude</code>, ou por <code>municipio</code> e <code>uf</code>. Só entram estabelecimentos com coordenada conhecida, hoje 99,7% do total.",
         "parameters": [
           {
             "name": "cep",
@@ -276,7 +276,7 @@
         "tags": [
           "HOSPITAIS"
         ],
-        "summary": "Lista todos os atendimentos que podem ser pesquisados",
+        "summary": "Lista os soros antiveneno e as habilitações de oncologia e doenças raras pesquisáveis",
         "description": "Ponto de partida da API. Lista os 27 atendimentos aceitos em <code>atendimento</code> — nove soros antiveneno, nove habilitações de oncologia e nove áreas de doenças raras — cada um com rótulo em português, grafias alternativas, códigos de portaria cobertos e quantos estabelecimentos o oferecem. Serve para montar seletores sem depender desta documentação.",
         "responses": {
           "200": {
@@ -298,7 +298,7 @@
         "tags": [
           "HOSPITAIS"
         ],
-        "summary": "Lista os centros CIATOX de assistência toxicológica",
+        "summary": "Lista os centros CIATOX de informação e assistência toxicológica",
         "description": "Em acidente com animal peçonhento ou intoxicação, a orientação oficial é ligar ao CIATOX antes de ir ao hospital: eles confirmam qual unidade tem o soro no momento e orientam os primeiros cuidados. O Disque-Intoxicação nacional é 0800 722 6001.",
         "parameters": [
           {
