@@ -9,11 +9,15 @@ const LATEST_PATH = path.join(SNAPSHOT_DIR, 'latest.json');
 const METADATA_PATH = path.join(SNAPSHOT_DIR, 'metadata-latest.json');
 
 /**
- * O BCB descontinuou o CSV público de participantes do Pix (retorna 401) e a
- * lista oficial passou a ser publicada apenas em PDF, disponível somente para
- * os ~2 dias mais recentes. Este script baixa o PDF, extrai a tabela e grava
- * um snapshot JSON já no formato de resposta da rota /api/pix/v1/participants.
+ * Em 2026 o BCB bloqueou o CSV público de participantes do Pix (retorna 401
+ * até para navegador) e a lista oficial passou a ser publicada apenas em PDF,
+ * disponível somente para os ~2 dias mais recentes. Este script tenta primeiro
+ * o CSV (caso o BCB o reative, é a fonte melhor) e cai para o PDF, extrai a
+ * tabela e grava um snapshot JSON já no formato de resposta da rota
+ * /api/pix/v1/participants.
  */
+const CSV_URL_PREFIX =
+  'https://www.bcb.gov.br/content/estabilidadefinanceira/participantes_pix/lista-participantes-instituicoes-em-adesao-pix-';
 const PDF_URL_PREFIX =
   'https://www.bcb.gov.br/content/estabilidadefinanceira/participantes_pix_pdf/lista-participantes-instituicoes-em-adesao-pix-';
 
@@ -45,28 +49,67 @@ const formatDateForUrl = (daysBack) => {
   return brasiliaDate.replace(/-/g, '');
 };
 
-const downloadPdf = async () => {
-  const attempts = [];
+const decodeCsvBuffer = (response) => {
+  const contentType = response.headers['content-type'] || '';
+  const charsetMatch = contentType.match(/charset=([^;]+)/i);
+  const charset = (charsetMatch && charsetMatch[1].toLowerCase()) || 'latin1';
 
-  for (let daysBack = 0; daysBack <= MAX_DAYS_BACK; daysBack += 1) {
-    const date = formatDateForUrl(daysBack);
-    const url = `${PDF_URL_PREFIX}${date}.pdf`;
+  const decoder = new TextDecoder(charset === 'utf-8' ? 'utf-8' : 'latin1');
+  return decoder.decode(response.data);
+};
 
-    try {
-      // eslint-disable-next-line no-await-in-loop
-      const response = await axios.get(url, {
-        timeout: 30000,
-        responseType: 'arraybuffer',
-        headers: { Accept: 'application/pdf' },
-      });
+/**
+ * Parser do CSV original do BCB (mesma lógica que a rota usava em
+ * request-time, com as colunas resolvidas pelo cabeçalho em vez de posições
+ * fixas). Se o cabeçalho não for o esperado, lança erro e o download cai
+ * para o PDF.
+ */
+const CSV_EXPECTED_HEADERS = {
+  nome: 'nomereduzido',
+  ispb: 'ispb',
+  modalidade: 'modalidadedeparticipaçãonopix',
+  tipo: 'tipodeparticipaçãonospi',
+};
 
-      return { buffer: response.data, url, date };
-    } catch (error) {
-      attempts.push(`${date}: ${error.response?.status || error.message}`);
-    }
+const parseCsv = (content) => {
+  const lines = content.split(/\r?\n/);
+
+  lines.shift(); // primeira linha é o título (Lista de participantes ativos do Pix)
+  const headers = (lines.shift() || '')
+    .split(';')
+    .map((header) => header.trim().toLowerCase().replace(/\s/g, ''));
+
+  const columnIndexes = Object.fromEntries(
+    Object.entries(CSV_EXPECTED_HEADERS).map(([field, header]) => [
+      field,
+      headers.indexOf(header),
+    ])
+  );
+
+  const missingHeaders = Object.values(columnIndexes).some(
+    (index) => index === -1
+  );
+
+  if (missingHeaders) {
+    throw new Error('cabeçalho do CSV diferente do esperado');
   }
 
-  throw new Error(`Nenhum PDF disponível. Tentativas: ${attempts.join(', ')}`);
+  return (
+    lines
+      .map((line) => line.split(';').map((field) => field.trim()))
+      // Além de descartar participantes sem ISPB (comportamento que a rota
+      // sempre teve), o regex elimina linhas de cabeçalho repetidas no meio do
+      // arquivo — o CSV do BCB já veio com uma dessas.
+      .filter((fields) => /^\d{8}$/.test(fields[columnIndexes.ispb] || ''))
+      .map((fields) => ({
+        ispb: fields[columnIndexes.ispb],
+        nome: fields[columnIndexes.nome],
+        nome_reduzido: fields[columnIndexes.nome],
+        modalidade_participacao: fields[columnIndexes.modalidade] || null,
+        tipo_participacao: fields[columnIndexes.tipo] || null,
+        inicio_operacao: null,
+      }))
+  );
 };
 
 const extractTextItems = async (buffer) => {
@@ -336,6 +379,62 @@ const parsePdf = async (buffer) => {
   return participants;
 };
 
+/**
+ * Para cada data (hoje e até 7 dias para trás), tenta o CSV e depois o PDF:
+ * um PDF de hoje é preferível a um CSV de ontem. Cada fonte só é usada se
+ * baixar E parsear com sucesso.
+ */
+const downloadParticipants = async () => {
+  const attempts = [];
+
+  for (let daysBack = 0; daysBack <= MAX_DAYS_BACK; daysBack += 1) {
+    const date = formatDateForUrl(daysBack);
+
+    const csvUrl = `${CSV_URL_PREFIX}${date}.csv`;
+    try {
+      // eslint-disable-next-line no-await-in-loop
+      const response = await axios.get(csvUrl, {
+        timeout: 30000,
+        responseType: 'arraybuffer',
+        headers: { Accept: 'text/csv' },
+      });
+
+      return {
+        participants: parseCsv(decodeCsvBuffer(response)),
+        url: csvUrl,
+        date,
+        sourceFormat: 'csv',
+      };
+    } catch (error) {
+      attempts.push(`csv ${date}: ${error.response?.status || error.message}`);
+    }
+
+    const pdfUrl = `${PDF_URL_PREFIX}${date}.pdf`;
+    try {
+      // eslint-disable-next-line no-await-in-loop
+      const response = await axios.get(pdfUrl, {
+        timeout: 30000,
+        responseType: 'arraybuffer',
+        headers: { Accept: 'application/pdf' },
+      });
+
+      return {
+        // eslint-disable-next-line no-await-in-loop
+        participants: await parsePdf(response.data),
+        url: pdfUrl,
+        date,
+        sourceFormat: 'pdf',
+      };
+    } catch (error) {
+      attempts.push(`pdf ${date}: ${error.response?.status || error.message}`);
+    }
+  }
+
+  throw new Error(
+    `Nenhuma fonte disponível. Tentativas: ${attempts.join(', ')}`
+  );
+};
+
 const validateParticipants = (participants) => {
   const problems = [];
 
@@ -421,10 +520,10 @@ const countBy = (participants, field) =>
 const main = async () => {
   fs.mkdirSync(SNAPSHOT_DIR, { recursive: true });
 
-  const { buffer, url, date } = await downloadPdf();
-  console.log(`PDF baixado: ${url} (${buffer.length} bytes)`);
+  const { participants, url, date, sourceFormat } =
+    await downloadParticipants();
+  console.log(`Fonte utilizada: ${sourceFormat} — ${url}`);
 
-  const participants = await parsePdf(buffer);
   participants.sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'));
 
   const problems = validateParticipants(participants);
@@ -439,6 +538,7 @@ const main = async () => {
   writeJsonFile(LATEST_PATH, participants);
   writeJsonFile(METADATA_PATH, {
     generated_at: new Date().toISOString(),
+    source_format: sourceFormat,
     source_url: url,
     source_published_date: `${date.slice(0, 4)}-${date.slice(
       4,
@@ -456,6 +556,7 @@ const main = async () => {
     JSON.stringify(
       {
         status: 'ok',
+        source_format: sourceFormat,
         total_participants: participants.length,
         source_published_date: date,
       },
@@ -465,7 +566,11 @@ const main = async () => {
   );
 };
 
-main().catch((error) => {
-  console.error('Falha ao gerar snapshot de participantes do Pix:', error);
-  process.exitCode = 1;
-});
+if (require.main === module) {
+  main().catch((error) => {
+    console.error('Falha ao gerar snapshot de participantes do Pix:', error);
+    process.exitCode = 1;
+  });
+}
+
+module.exports = { parseCsv, parsePdf };
