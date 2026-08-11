@@ -78,7 +78,8 @@
     "commit": "cz",
     "precommit": "lint-staged",
     "gen:contributors": "githubcontrib --owner BrasilAPI --repo BrasilAPI --sortBy contributions --sortOrder desc --filter filipedeschamps,lucianopf,dependabot[bot] --layoutStrategy $INIT_CWD/.github/contributors-list/layout-strategy-custom.js",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "snapshot:hospitais": "node scripts/generate-hospitais-snapshot.js"
   },
   "husky": {
     "hooks": {

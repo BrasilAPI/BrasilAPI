@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-08-11T05:14:12.630Z",
+  "run_id": "2026-08-11T05-06-24-008Z",
+  "totals": {
+    "hospitais": 2342,
+    "ciatox": 32,
+    "geocoded": 2336,
+    "by_vertical": {
+      "venomous_animals": 2018,
+      "oncology": 384,
+      "rare_diseases": 52
+    }
+  },
+  "deltas": {
+    "previous_hospitais": 0,
+    "previous_ciatox": 0,
+    "hospitais_delta": 2342,
+    "ciatox_delta": 32
+  },
+  "source": {
+    "name": "MapaSUS",
+    "url": "https://api.mapasus.com.br",
+    "upstream": "Ministério da Saúde - gov.br/saude"
+  },
+  "fallback": {
+    "used_previous_snapshot": false,
+    "reason": null
+  }
+}
