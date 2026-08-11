@@ -5,7 +5,8 @@ const LIMIT_MAXIMO = 500;
 const LIMIT_PADRAO = 100;
 const RAIO_KM_PADRAO = 50;
 const RAIO_KM_MAXIMO = 200;
-const METROS_POR_KM = 1000;
+
+export const METROS_POR_KM = 1000;
 
 const invalido = (message) =>
   new BadRequestError({ message, type: 'validation_error' });
@@ -72,13 +73,27 @@ function parseInteiro(valor, nome, minimo) {
   return numero;
 }
 
-export function parsePaginacao({ limit, offset }, limitPadrao = LIMIT_PADRAO) {
+function parsePaginacao({ limit, offset }, limitPadrao) {
   const limitInformado =
     limit === undefined ? limitPadrao : parseInteiro(limit, 'limit', 1);
 
   return {
     limit: Math.min(limitInformado, LIMIT_MAXIMO),
     offset: offset === undefined ? 0 : parseInteiro(offset, 'offset', 0),
+  };
+}
+
+// Valida a paginação da query e fatia a lista, devolvendo o envelope que as
+// rotas de busca compartilham. Manter o fatiamento num só lugar impede que as
+// rotas divirjam no contrato de paginação.
+export function paginar(lista, query, limitPadrao = LIMIT_PADRAO) {
+  const { limit, offset } = parsePaginacao(query, limitPadrao);
+
+  return {
+    total: lista.length,
+    limit,
+    offset,
+    items: lista.slice(offset, offset + limit),
   };
 }
 

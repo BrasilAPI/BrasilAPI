@@ -1,8 +1,8 @@
 import app from '@/app';
 import { getHospitais, getSnapshotMetadata } from '@/services/hospitais';
 import {
+  paginar,
   parseAtendimento,
-  parsePaginacao,
   parseUf,
   parseVertical,
 } from '@/services/hospitais/query';
@@ -18,14 +18,12 @@ async function listarHospitais(request, response) {
     q,
   });
 
-  const { limit, offset } = parsePaginacao(request.query);
+  const { items, ...paginacao } = paginar(encontrados, request.query);
 
   return response.status(200).json({
-    total: encontrados.length,
-    limit,
-    offset,
+    ...paginacao,
     ...getSnapshotMetadata(),
-    items: encontrados.slice(offset, offset + limit),
+    items,
   });
 }
 

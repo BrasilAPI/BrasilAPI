@@ -97,13 +97,17 @@ Termo fora do vocabulário devolve **400** com a lista de valores aceitos. Devol
 
 ## Estrutura
 
+As camadas dependem numa direção só: `vocabulario.js` não importa nada, `query.js` importa só o vocabulário, e `index.js` é o único módulo que conhece o snapshot.
+
 | Arquivo | Papel |
 |---|---|
-| `pages/api/hospitais/v1/index.js` | Listagem com filtros e paginação |
-| `pages/api/hospitais/v1/proximos.js` | Busca por proximidade |
-| `pages/api/hospitais/v1/ciatox.js` | Centros CIATOX |
+| `pages/api/hospitais/v1/*.js` | Handlers finos: roteamento e resposta |
+| `services/hospitais/vocabulario.js` | Termos aceitos e seus aliases — puro, sem dependências |
+| `services/hospitais/query.js` | Validação dos parâmetros de query e paginação |
+| `services/hospitais/origem.js` | Resolve a origem de `/proximos` (CEP, coordenadas ou município) |
 | `services/hospitais/index.js` | Carrega o snapshot e filtra em memória |
-| `services/hospitais/query.js` | Validação dos parâmetros de query |
 | `util/haversine.js` | Distância de grande círculo, em metros |
 | `scripts/generate-hospitais-snapshot.js` | Geração do snapshot |
 | `pages/docs/doc/hospitais.json` | OpenAPI |
+| `tests/hospitais-v1.test.js` | E2E das quatro rotas |
+| `tests/services/hospitais/vocabulario.test.js` | Unidade: aliases e extração de códigos de OCR |

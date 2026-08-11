@@ -118,11 +118,12 @@ export function getHospitaisProximos({
   latitude,
   longitude,
   raioEmMetros,
-  ...filtros
+  vertical,
+  atendimento,
 }) {
   const origem = { latitude, longitude };
 
-  return getHospitais(filtros)
+  return getHospitais({ vertical, atendimento })
     .filter(
       (hospital) =>
         typeof hospital.lat === 'number' && typeof hospital.lng === 'number'

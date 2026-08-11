@@ -83,24 +83,19 @@ const writeJsonFile = (filePath, value) => {
 };
 
 const get = async (endpoint) => {
-  try {
-    const { data } = await axios.get(`${MAPASUS_BASE_URL}${endpoint}`, {
+  const request = () =>
+    axios.get(`${MAPASUS_BASE_URL}${endpoint}`, {
       timeout: REQUEST_TIMEOUT_IN_MS,
       headers: { 'User-Agent': USER_AGENT },
     });
 
-    return data;
+  try {
+    return (await request()).data;
   } catch (error) {
     if (error.response && error.response.status === 429) {
       console.log('  429 recebido, aguardando a janela de rate limit...');
       await sleep(RATE_LIMIT_BACKOFF_IN_MS);
-
-      const { data } = await axios.get(`${MAPASUS_BASE_URL}${endpoint}`, {
-        timeout: REQUEST_TIMEOUT_IN_MS,
-        headers: { 'User-Agent': USER_AGENT },
-      });
-
-      return data;
+      return (await request()).data;
     }
 
     throw error;
