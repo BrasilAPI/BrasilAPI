@@ -200,20 +200,37 @@ const countGeocoded = (hospitals) =>
       typeof hospital.lat === 'number' && typeof hospital.lng === 'number'
   ).length;
 
-const fetchUfs = async () => {
+// Além das siglas, guarda o frescor por UF que o MapaSUS reporta: synced_at é
+// a última checagem da fonte, updated_at é a data publicada pelo próprio
+// gov.br (null enquanto a fonte estiver despublicada). Vai para o
+// metrics-latest.json — permite auditar de quando são os dados de cada UF sem
+// tocar o contrato da API.
+const fetchStates = async () => {
   try {
     const data = await get('/v1/states');
-    const ufs = (data.states || []).map((state) => state.state_code);
+    const states = (data.states || []).filter((state) => state.state_code);
 
-    return ufs.length ? ufs : UF_FALLBACK;
+    if (!states.length) {
+      return { ufs: UF_FALLBACK, estados: null };
+    }
+
+    return {
+      ufs: states.map((state) => state.state_code),
+      estados: states.map((state) => ({
+        state_code: state.state_code,
+        status: state.status,
+        synced_at: state.synced_at,
+        updated_at: state.updated_at,
+      })),
+    };
   } catch (error) {
     console.log('  /v1/states indisponível, usando a lista fixa de UFs');
-    return UF_FALLBACK;
+    return { ufs: UF_FALLBACK, estados: null };
   }
 };
 
 const collect = async () => {
-  const ufs = await fetchUfs();
+  const { ufs, estados } = await fetchStates();
   console.log(`Coletando ${ufs.length} UFs por vertical...`);
   await sleep(DELAY_BETWEEN_REQUESTS_IN_MS);
 
@@ -232,7 +249,7 @@ const collect = async () => {
     : [];
   console.log(`  ciatox: ${ciatox.length} registros`);
 
-  return { hospitais: mergeHospitals(pages), ciatox };
+  return { hospitais: mergeHospitals(pages), ciatox, estados };
 };
 
 const buildMetrics = ({ current, previous, runId }) => ({
@@ -254,6 +271,9 @@ const buildMetrics = ({ current, previous, runId }) => ({
   // emergência que a API devolve vivem em services/hospitais/index.js — é
   // conteúdo editorial, não dado gerado.
   coletado_de: MAPASUS_BASE_URL,
+  // Frescor por UF reportado pelo MapaSUS no momento da coleta (null quando
+  // /v1/states não respondeu e a lista fixa de UFs foi usada).
+  sincronia_da_fonte: current.estados || null,
 });
 
 // Um sync quebrado no MapaSUS não pode zerar o dataset que o BrasilAPI serve.

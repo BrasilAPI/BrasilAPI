@@ -62,7 +62,9 @@ A API do MapaSUS exige ao menos um filtro por chamada — é uma proteção anti
 Saída em `services/hospitais/snapshots/`:
 
 - `latest.json` — o dataset servido pela API
-- `metrics-latest.json` — contagens por vertical, cobertura de geocoding e deltas em relação à execução anterior
+- `metrics-latest.json` — contagens por vertical, cobertura de geocoding, deltas em relação à execução anterior e `sincronia_da_fonte`: o frescor por UF que o MapaSUS reportou no momento da coleta (`synced_at` = última checagem da fonte; `updated_at` = data publicada pelo gov.br, null enquanto a fonte estiver despublicada)
+
+A coleta é sempre **completa, não incremental**: qualquer mudança de conteúdo na fonte — um telefone corrigido, um nome ajustado — entra no snapshot seguinte, mesmo que o número de registros não mude. O guardrail abaixo não compara conteúdo; só bloqueia encolhimento abrupto.
 
 ### Guardrail de promoção
 
