@@ -2152,17 +2152,17 @@
     "inicio_operacao": null
   },
   {
-    "ispb": "71419600",
-    "nome": "CCLA DA REGIÃO DE FRUTAL",
-    "nome_reduzido": "CCLA DA REGIÃO DE FRUTAL",
+    "ispb": "25387713",
+    "nome": "CCLA DA REGIÃO DE  PARÁ DE MINAS",
+    "nome_reduzido": "CCLA DA REGIÃO DE  PARÁ DE MINAS",
     "modalidade_participacao": "Provedor de Conta Transacional",
     "tipo_participacao": "Indireta",
     "inicio_operacao": null
   },
   {
-    "ispb": "25387713",
-    "nome": "CCLA DA REGIÃO DE PARÁ DE MINAS",
-    "nome_reduzido": "CCLA DA REGIÃO DE PARÁ DE MINAS",
+    "ispb": "71419600",
+    "nome": "CCLA DA REGIÃO DE FRUTAL",
+    "nome_reduzido": "CCLA DA REGIÃO DE FRUTAL",
     "modalidade_participacao": "Provedor de Conta Transacional",
     "tipo_participacao": "Indireta",
     "inicio_operacao": null
@@ -2401,8 +2401,8 @@
   },
   {
     "ispb": "71297899",
-    "nome": "CCLA OESTE MINEIRO LTDA- SICOOB",
-    "nome_reduzido": "CCLA OESTE MINEIRO LTDA- SICOOB",
+    "nome": "CCLA OESTE MINEIRO LTDA-SICOOB",
+    "nome_reduzido": "CCLA OESTE MINEIRO LTDA-SICOOB",
     "modalidade_participacao": "Provedor de Conta Transacional",
     "tipo_participacao": "Indireta",
     "inicio_operacao": null
@@ -2673,8 +2673,8 @@
   },
   {
     "ispb": "08742188",
-    "nome": "CCLA UNIÃO E NEGÓCIOS - SICOOB INTEGRAÇÃO",
-    "nome_reduzido": "CCLA UNIÃO E NEGÓCIOS - SICOOB INTEGRAÇÃO",
+    "nome": "CCLA UNIÃO E NEGÓCIOS  - SICOOB INTEGRAÇÃO",
+    "nome_reduzido": "CCLA UNIÃO E NEGÓCIOS  - SICOOB INTEGRAÇÃO",
     "modalidade_participacao": "Provedor de Conta Transacional",
     "tipo_participacao": "Indireta",
     "inicio_operacao": null
@@ -3323,6 +3323,14 @@
     "ispb": "47381104",
     "nome": "CONTAAZUL IP LTDA.",
     "nome_reduzido": "CONTAAZUL IP LTDA.",
+    "modalidade_participacao": "Provedor de Conta Transacional",
+    "tipo_participacao": "Indireta",
+    "inicio_operacao": null
+  },
+  {
+    "ispb": "07318874",
+    "nome": "COOP  SICOOB MÉDIO OESTE",
+    "nome_reduzido": "COOP  SICOOB MÉDIO OESTE",
     "modalidade_participacao": "Provedor de Conta Transacional",
     "tipo_participacao": "Indireta",
     "inicio_operacao": null
@@ -4083,14 +4091,6 @@
     "ispb": "71698674",
     "nome": "COOP SICOOB MANTIQUEIRA",
     "nome_reduzido": "COOP SICOOB MANTIQUEIRA",
-    "modalidade_participacao": "Provedor de Conta Transacional",
-    "tipo_participacao": "Indireta",
-    "inicio_operacao": null
-  },
-  {
-    "ispb": "07318874",
-    "nome": "COOP SICOOB MÉDIO OESTE",
-    "nome_reduzido": "COOP SICOOB MÉDIO OESTE",
     "modalidade_participacao": "Provedor de Conta Transacional",
     "tipo_participacao": "Indireta",
     "inicio_operacao": null
@@ -5825,8 +5825,8 @@
   },
   {
     "ispb": "57030391",
-    "nome": "NDD IP LTDA.",
-    "nome_reduzido": "NDD IP LTDA.",
+    "nome": "NDD PAY",
+    "nome_reduzido": "NDD PAY",
     "modalidade_participacao": "Provedor de Conta Transacional",
     "tipo_participacao": "Indireta",
     "inicio_operacao": null

@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const path = require('node:path');
 const axios = require('axios');
 
 const ROOT = path.resolve(__dirname, '..');
@@ -25,14 +25,14 @@ const MAX_DAYS_BACK = 7;
 const MINIMUM_EXPECTED_PARTICIPANTS = 700;
 const MAXIMUM_UNKNOWN_MODALIDADE_RATIO = 0.05;
 
-const KNOWN_MODALIDADES = [
+const KNOWN_MODALIDADES = new Set([
   'Provedor de Conta Transacional',
   'Iniciador',
   'Liquidante Especial',
   'Ente Governamental',
-];
+]);
 
-const KNOWN_TIPOS = ['Direta', 'Indireta'];
+const KNOWN_TIPOS = new Set(['Direta', 'Indireta']);
 
 const formatDateForUrl = (daysBack) => {
   const now = new Date();
@@ -46,13 +46,13 @@ const formatDateForUrl = (daysBack) => {
     day: '2-digit',
   }).format(now);
 
-  return brasiliaDate.replace(/-/g, '');
+  return brasiliaDate.replaceAll('-', '');
 };
 
 const decodeCsvBuffer = (response) => {
   const contentType = response.headers['content-type'] || '';
   const charsetMatch = contentType.match(/charset=([^;]+)/i);
-  const charset = (charsetMatch && charsetMatch[1].toLowerCase()) || 'latin1';
+  const charset = charsetMatch?.[1].toLowerCase() || 'latin1';
 
   const decoder = new TextDecoder(charset === 'utf-8' ? 'utf-8' : 'latin1');
   return decoder.decode(response.data);
@@ -86,16 +86,24 @@ const parseCsv = (content) => {
     ])
   );
 
-  const missingHeaders = Object.values(columnIndexes).some(
-    (index) => index === -1
-  );
+  const missingHeaders = Object.values(columnIndexes).includes(-1);
 
   if (missingHeaders) {
     throw new Error('cabeçalho do CSV diferente do esperado');
   }
 
+  // Assim como o PDF, o CSV traz uma segunda tabela ao final ("Lista de
+  // instituições em processo de adesão ao Pix", com outra grade de colunas
+  // e instituições que ainda não operam — inclusive repetindo quem já está
+  // na lista de ativos). Só a tabela de ativos é usada.
+  const adhesionTableStart = lines.findIndex((line) =>
+    /em processo de adesão/i.test(line)
+  );
+  const activeLines =
+    adhesionTableStart === -1 ? lines : lines.slice(0, adhesionTableStart);
+
   return (
-    lines
+    activeLines
       .map((line) => line.split(';').map((field) => field.trim()))
       // Além de descartar participantes sem ISPB (comportamento que a rota
       // sempre teve), o regex elimina linhas de cabeçalho repetidas no meio do
@@ -184,7 +192,7 @@ const groupItemsIntoRows = (items, yTolerance = 2) => {
   const rows = [];
 
   sorted.forEach((item) => {
-    const currentRow = rows[rows.length - 1];
+    const currentRow = rows.at(-1);
 
     if (currentRow && Math.abs(currentRow.y - item.y) <= yTolerance) {
       currentRow.items.push(item);
@@ -223,7 +231,7 @@ const deriveColumnRanges = (pages) => {
     )
   );
 
-  const tipoItems = allItems.filter((item) => KNOWN_TIPOS.includes(item.text));
+  const tipoItems = allItems.filter((item) => KNOWN_TIPOS.has(item.text));
 
   if (!ispbXs.length || !modalidadeItems.length || !tipoItems.length) {
     throw new Error(
@@ -468,7 +476,7 @@ const validateParticipants = (participants) => {
   const unknownModalidades = participants.filter(
     (participant) =>
       participant.modalidade_participacao !== null &&
-      !KNOWN_MODALIDADES.includes(participant.modalidade_participacao)
+      !KNOWN_MODALIDADES.has(participant.modalidade_participacao)
   );
 
   if (
@@ -488,7 +496,7 @@ const validateParticipants = (participants) => {
   const unknownTipos = participants.filter(
     (participant) =>
       participant.tipo_participacao !== null &&
-      !KNOWN_TIPOS.includes(participant.tipo_participacao)
+      !KNOWN_TIPOS.has(participant.tipo_participacao)
   );
 
   if (unknownTipos.length) {
