@@ -37,7 +37,7 @@ jobs:
 
       - name: Instalar dependencias do npm
         if: steps.cache_dependencies.outputs.cache-hit != 'true'
-        run: npm ci
+        run: npm ci --ignore-scripts
 
       - name: Gerar snapshot de hospitais
         run: npm run snapshot:hospitais

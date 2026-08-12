@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const path = require('node:path');
 const axios = require('axios');
 
 const ROOT = path.resolve(__dirname, '..');
@@ -8,8 +8,29 @@ const SNAPSHOT_DIR = path.join(ROOT, 'services', 'hospitais', 'snapshots');
 const LATEST_PATH = path.join(SNAPSHOT_DIR, 'latest.json');
 const METRICS_PATH = path.join(SNAPSHOT_DIR, 'metrics-latest.json');
 
-const MAPASUS_BASE_URL =
-  process.env.MAPASUS_BASE_URL || 'https://api.mapasus.com.br';
+const DEFAULT_MAPASUS_BASE_URL = 'https://api.mapasus.com.br';
+
+// O override de ambiente existe para apontar para uma instância própria do
+// MapaSUS (o projeto é open source). A string crua do ambiente nunca entra
+// nas URLs das requisições: precisa parsear como http(s) — new URL lança em
+// valor malformado — e só a origem normalizada é usada.
+const resolveMapasusBaseUrl = () => {
+  const override = process.env.MAPASUS_BASE_URL;
+
+  if (!override) {
+    return DEFAULT_MAPASUS_BASE_URL;
+  }
+
+  const url = new URL(override);
+
+  if (url.protocol !== 'https:' && url.protocol !== 'http:') {
+    throw new Error(`MAPASUS_BASE_URL deve ser http(s): ${url.protocol}`);
+  }
+
+  return url.origin;
+};
+
+const MAPASUS_BASE_URL = resolveMapasusBaseUrl();
 
 // O MapaSUS roda inteiramente em free tier e limita a 15 req/min por IP.
 // Este script é o único ponto do BrasilAPI que toca aquele serviço, então
@@ -65,6 +86,11 @@ const sleep = (ms) =>
     setTimeout(resolve, ms);
   });
 
+// Tudo que chega da resposta HTTP do MapaSUS é dado externo: contagens que
+// vão para logs e métricas passam por aqui para garantir que só números
+// validados sejam gravados/impressos.
+const contagemSegura = (value) => Number.parseInt(value, 10) || 0;
+
 const readJsonFile = (filePath, fallbackValue) => {
   try {
     if (!fs.existsSync(filePath)) {
@@ -74,6 +100,9 @@ const readJsonFile = (filePath, fallbackValue) => {
     const content = fs.readFileSync(filePath, 'utf8');
     return JSON.parse(content);
   } catch (error) {
+    console.warn(
+      `Ignorando ${filePath} ilegível (${error.message}); usando fallback`
+    );
     return fallbackValue;
   }
 };
@@ -84,7 +113,7 @@ const writeJsonFile = (filePath, value) => {
 
 const get = async (endpoint) => {
   const request = () =>
-    axios.get(`${MAPASUS_BASE_URL}${endpoint}`, {
+    axios.get(new URL(endpoint, MAPASUS_BASE_URL).toString(), {
       timeout: REQUEST_TIMEOUT_IN_MS,
       headers: { 'User-Agent': USER_AGENT },
     });
@@ -92,7 +121,7 @@ const get = async (endpoint) => {
   try {
     return (await request()).data;
   } catch (error) {
-    if (error.response && error.response.status === 429) {
+    if (error.response?.status === 429) {
       console.log('  429 recebido, aguardando a janela de rate limit...');
       await sleep(RATE_LIMIT_BACKOFF_IN_MS);
       return (await request()).data;
@@ -130,14 +159,16 @@ const fetchStateHospitals = async (mapasus, uf) => {
 const fetchVertical = async ({ slug, mapasus }, ufs) => {
   const hospitals = [];
 
-  for (let index = 0; index < ufs.length; index += 1) {
+  // Sequencial de propósito (rate limit do MapaSUS) — por isso o await no loop.
+  // eslint-disable-next-line no-restricted-syntax
+  for (const uf of ufs) {
     // eslint-disable-next-line no-await-in-loop
-    hospitals.push(...(await fetchStateHospitals(mapasus, ufs[index])));
+    hospitals.push(...(await fetchStateHospitals(mapasus, uf)));
     // eslint-disable-next-line no-await-in-loop
     await sleep(DELAY_BETWEEN_REQUESTS_IN_MS);
   }
 
-  console.log(`  ${slug}: ${hospitals.length} registros`);
+  console.log(`  ${slug}: ${contagemSegura(hospitals.length)} registros`);
   return hospitals;
 };
 
@@ -185,11 +216,17 @@ const mergeHospitals = (pages) => {
   return [...byId.values()].sort((a, b) => a.id - b.id);
 };
 
+const KNOWN_VERTICAL_SLUGS = new Set(VERTICALS.map(({ slug }) => slug));
+
+// As chaves vêm da resposta do MapaSUS; só os slugs conhecidos entram no
+// objeto de métricas (que é logado e gravado em arquivo).
 const countByVertical = (hospitals) =>
   hospitals.reduce((acc, hospital) => {
-    (hospital.verticals || []).forEach((vertical) => {
-      acc[vertical] = (acc[vertical] || 0) + 1;
-    });
+    (hospital.verticals || [])
+      .filter((vertical) => KNOWN_VERTICAL_SLUGS.has(vertical))
+      .forEach((vertical) => {
+        acc[vertical] = (acc[vertical] || 0) + 1;
+      });
 
     return acc;
   }, {});
@@ -224,7 +261,9 @@ const fetchStates = async () => {
       })),
     };
   } catch (error) {
-    console.log('  /v1/states indisponível, usando a lista fixa de UFs');
+    console.log(
+      `  /v1/states indisponível (${error.message}), usando a lista fixa de UFs`
+    );
     return { ufs: UF_FALLBACK, estados: null };
   }
 };
@@ -236,10 +275,12 @@ const collect = async () => {
 
   const pages = [];
 
-  for (let index = 0; index < VERTICALS.length; index += 1) {
-    console.log(`Coletando ${VERTICALS[index].slug}...`);
+  // Sequencial de propósito (rate limit do MapaSUS) — por isso o await no loop.
+  // eslint-disable-next-line no-restricted-syntax
+  for (const vertical of VERTICALS) {
+    console.log(`Coletando ${vertical.slug}...`);
     // eslint-disable-next-line no-await-in-loop
-    pages.push(await fetchVertical(VERTICALS[index], ufs));
+    pages.push(await fetchVertical(vertical, ufs));
   }
 
   console.log('Coletando ciatox...');
@@ -247,7 +288,7 @@ const collect = async () => {
   const ciatox = Array.isArray(ciatoxResponse.centers)
     ? ciatoxResponse.centers
     : [];
-  console.log(`  ciatox: ${ciatox.length} registros`);
+  console.log(`  ciatox: ${contagemSegura(ciatox.length)} registros`);
 
   return { hospitais: mergeHospitals(pages), ciatox, estados };
 };
@@ -256,16 +297,20 @@ const buildMetrics = ({ current, previous, runId }) => ({
   generated_at: new Date().toISOString(),
   run_id: runId,
   totals: {
-    hospitais: current.hospitais.length,
-    ciatox: current.ciatox.length,
-    geocoded: countGeocoded(current.hospitais),
+    hospitais: contagemSegura(current.hospitais.length),
+    ciatox: contagemSegura(current.ciatox.length),
+    geocoded: contagemSegura(countGeocoded(current.hospitais)),
     by_vertical: countByVertical(current.hospitais),
   },
   deltas: {
-    previous_hospitais: previous.hospitais.length,
-    previous_ciatox: previous.ciatox.length,
-    hospitais_delta: current.hospitais.length - previous.hospitais.length,
-    ciatox_delta: current.ciatox.length - previous.ciatox.length,
+    previous_hospitais: contagemSegura(previous.hospitais.length),
+    previous_ciatox: contagemSegura(previous.ciatox.length),
+    hospitais_delta:
+      contagemSegura(current.hospitais.length) -
+      contagemSegura(previous.hospitais.length),
+    ciatox_delta:
+      contagemSegura(current.ciatox.length) -
+      contagemSegura(previous.ciatox.length),
   },
   // Só a proveniência técnica da coleta. O texto de procedência e o aviso de
   // emergência que a API devolve vivem em services/hospitais/index.js — é

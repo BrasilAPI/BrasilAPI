@@ -203,7 +203,7 @@ const parsearCodigoDePortaria = (valor) => {
 const REGEX_POR_PREFIXO = Object.fromEntries(
   Object.values(HABILITACOES).map(({ prefixo }) => [
     prefixo,
-    new RegExp(`${prefixo}\\.?\\s?(\\d{2})`, 'g'),
+    new RegExp(String.raw`${prefixo}\.?\s?(\d{2})`, 'g'),
   ])
 );
 
@@ -213,11 +213,12 @@ const REGEX_POR_PREFIXO = Object.fromEntries(
 // estabelecimento tem.
 export const extrairCodigos = (specialties, prefixo) => {
   const regex = REGEX_POR_PREFIXO[prefixo];
-  const encontrados = new Set();
 
   if (!regex) {
-    return encontrados;
+    return new Set();
   }
+
+  const encontrados = new Set();
 
   (specialties || []).forEach((specialty) => {
     (specialty.qualification_codes || []).forEach((texto) => {
