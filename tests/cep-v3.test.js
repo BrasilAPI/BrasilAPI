@@ -2,14 +2,20 @@ import { beforeAll, describe, expect, test } from 'vitest';
 
 import axios from 'axios';
 
-// Smart service availability check (OpenCEP pode falhar nos runners)
+// Smart service availability check. OpenCEP pode falhar nos runners, e as
+// coordenadas vêm do Photon (lib/fetchGeocoordinateFromBrazilLocation) — que
+// devolve latitude/longitude null quando o geocoder bloqueia o runner,
+// quebrando os expects estritos de coordenadas.
 let shouldSkipTests = false;
 
 try {
-  const response = await axios.get('https://opencep.com/v1/01310100', {
-    timeout: 5000,
-  });
-  if (response.status !== 200) {
+  const [openCep, photon] = await Promise.all([
+    axios.get('https://opencep.com/v1/01310100', { timeout: 5000 }),
+    axios.get('https://photon.komoot.io/api/?q=paulista&limit=1', {
+      timeout: 5000,
+    }),
+  ]);
+  if (openCep.status !== 200 || photon.status !== 200) {
     shouldSkipTests = true;
   }
 } catch (error) {
