@@ -216,14 +216,18 @@ const mergeHospitals = (pages) => {
   return [...byId.values()].sort((a, b) => a.id - b.id);
 };
 
-const KNOWN_VERTICAL_SLUGS = new Set(VERTICALS.map(({ slug }) => slug));
+// Em hospital.verticals o MapaSUS usa as chaves de banco (venomous_animals,
+// oncology, rare_diseases) — o slug da API com hífen trocado por underscore.
+const KNOWN_VERTICAL_KEYS = new Set(
+  VERTICALS.map(({ mapasus }) => mapasus.replaceAll('-', '_'))
+);
 
-// As chaves vêm da resposta do MapaSUS; só os slugs conhecidos entram no
+// As chaves vêm da resposta do MapaSUS; só as verticais conhecidas entram no
 // objeto de métricas (que é logado e gravado em arquivo).
 const countByVertical = (hospitals) =>
   hospitals.reduce((acc, hospital) => {
     (hospital.verticals || [])
-      .filter((vertical) => KNOWN_VERTICAL_SLUGS.has(vertical))
+      .filter((vertical) => KNOWN_VERTICAL_KEYS.has(vertical))
       .forEach((vertical) => {
         acc[vertical] = (acc[vertical] || 0) + 1;
       });
