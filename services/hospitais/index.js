@@ -1,6 +1,7 @@
 import removeSpecialChars from '@/util/removeSpecialChars';
 import haversine from '@/util/haversine';
 import snapshot from './snapshots/latest.json';
+import metrics from './snapshots/metrics-latest.json';
 import {
   extrairCodigos,
   opcoesDeAtendimento,
@@ -151,4 +152,67 @@ export function getCiatox({ uf } = {}) {
 
   const ufKey = String(uf).toUpperCase();
   return ciatox.filter((centro) => centro.state_code === ufKey);
+}
+
+// O CNES oficial tem 7 dígitos, mas a extração dos PDFs do Ministério perde
+// zeros à esquerda (e ocasionalmente deixa separadores) em parte dos
+// registros — a comparação normaliza os dois lados.
+const normalizarCnes = (valor) =>
+  String(valor || '')
+    .replace(/\D/g, '')
+    .replace(/^0+/, '');
+
+// Devolve lista, não objeto único: o mesmo CNES pode aparecer em mais de um
+// registro (estabelecimento habilitado em verticais diferentes que a fonte
+// não consolidou).
+export function getHospitaisPorCnes(cnes) {
+  const chave = normalizarCnes(cnes);
+
+  if (!chave) {
+    return [];
+  }
+
+  return hospitais.filter(
+    (hospital) => normalizarCnes(hospital.cnes) === chave
+  );
+}
+
+// Frescor por UF reportado pelo MapaSUS no momento da coleta do snapshot
+// (vazio em snapshots gerados antes dessa coleta existir).
+const SINCRONIA_POR_UF = new Map(
+  (metrics.sincronia_da_fonte || []).map((estado) => [
+    estado.state_code,
+    estado,
+  ])
+);
+
+export function getEstados() {
+  const totaisPorUf = new Map();
+
+  const somar = (uf, campo) => {
+    const atual = totaisPorUf.get(uf) || { hospitais: 0, ciatox: 0 };
+    atual[campo] += 1;
+    totaisPorUf.set(uf, atual);
+  };
+
+  hospitais.forEach((hospital) => somar(hospital.state_code, 'hospitais'));
+  ciatox.forEach((centro) => somar(centro.state_code, 'ciatox'));
+
+  return [...totaisPorUf.entries()]
+    .sort(([ufA], [ufB]) => ufA.localeCompare(ufB))
+    .map(([uf, totais]) => {
+      const sincronia = SINCRONIA_POR_UF.get(uf) || {};
+
+      return {
+        uf,
+        total_hospitais: totais.hospitais,
+        total_ciatox: totais.ciatox,
+        // synced_at é a última checagem da fonte pelo MapaSUS; updated_at é a
+        // data de publicação informada pelo gov.br (null quando a fonte está
+        // despublicada ou o snapshot é anterior a essa coleta).
+        status: sincronia.status ?? null,
+        synced_at: sincronia.synced_at ?? null,
+        updated_at: sincronia.updated_at ?? null,
+      };
+    });
 }

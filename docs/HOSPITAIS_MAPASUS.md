@@ -91,6 +91,12 @@ Termo fora do vocabulário devolve **400** com a lista de valores aceitos. Devol
 
 `GET /api/hospitais/v1/opcoes` lista todos os valores aceitos com rótulo em português, grafias alternativas e contagem, para montar seletores sem depender da documentação.
 
+## Consulta por CNES e frescor por UF
+
+`GET /api/hospitais/v1/cnes/{cnes}` localiza um estabelecimento pelo identificador oficial nacional (CNES). A comparação normaliza zeros à esquerda e separadores — a extração dos PDFs os perde em parte dos registros — e a resposta é uma **lista**: o mesmo CNES pode aparecer em mais de um registro quando a fonte não consolidou as verticais. O 404 avisa que a cobertura é parcial: o estabelecimento pode existir no CNES sem estar nos programas cobertos.
+
+`GET /api/hospitais/v1/estados` devolve, por UF, os totais do dataset e o frescor reportado pelo MapaSUS na coleta (`status`, `synced_at`, `updated_at` — vindos do `sincronia_da_fonte` do `metrics-latest.json`; nulos em snapshots anteriores a essa coleta).
+
 ## Limitações conhecidas
 
 - **Peçonhentos está congelado.** O Ministério da Saúde despublicou as 27 páginas estaduais em julho de 2026; elas redirecionam para um login wall que responde `200`. O MapaSUS detecta isso, classifica como `source_unpublished` e continua servindo o último snapshot válido. Os dados seguem corretos, mas não recebem atualização da fonte.
@@ -111,5 +117,5 @@ As camadas dependem numa direção só: `vocabulario.js` não importa nada, `que
 | `util/haversine.js` | Distância de grande círculo, em metros |
 | `scripts/generate-hospitais-snapshot.js` | Geração do snapshot |
 | `pages/docs/doc/hospitais.json` | OpenAPI |
-| `tests/hospitais-v1.test.js` | E2E das quatro rotas |
+| `tests/hospitais-v1.test.js` | E2E das seis rotas |
 | `tests/services/hospitais/vocabulario.test.js` | Unidade: aliases e extração de códigos de OCR |

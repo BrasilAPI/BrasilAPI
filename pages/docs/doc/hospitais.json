@@ -336,6 +336,82 @@
           }
         }
       }
+    },
+    "/hospitais/v1/cnes/{cnes}": {
+      "get": {
+        "tags": [
+          "HOSPITAIS"
+        ],
+        "summary": "Busca hospitais pelo código CNES do estabelecimento",
+        "description": "Localiza os registros de um estabelecimento pelo CNES (Cadastro Nacional de Estabelecimentos de Saúde), o identificador oficial nacional. A comparação ignora zeros à esquerda, pois parte dos documentos de origem os omite. A resposta é uma lista: o mesmo CNES pode aparecer em mais de um registro quando o estabelecimento é habilitado em programas diferentes. Um 404 significa apenas que o estabelecimento não está nos programas cobertos por esta API — ele pode existir no CNES.",
+        "parameters": [
+          {
+            "name": "cnes",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d{1,11}$"
+            },
+            "description": "Código CNES do estabelecimento (apenas dígitos).",
+            "example": "2077485"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HospitalCnesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "CNES inválido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Nenhum hospital com esse CNES nos programas cobertos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hospitais/v1/estados": {
+      "get": {
+        "tags": [
+          "HOSPITAIS"
+        ],
+        "summary": "Totais e frescor dos dados por unidade federativa",
+        "description": "Para cada UF, o total de hospitais e centros CIATOX no dataset e o frescor reportado pela fonte no momento da coleta do snapshot: `synced_at` é a última checagem dos documentos do Ministério da Saúde, `updated_at` é a data de publicação informada pelo gov.br e `status` indica o resultado da extração. Os campos de frescor podem ser nulos em snapshots antigos ou quando a fonte está despublicada.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EstadosResponse"
+                }
+              }
+            }
+          }
+        },
+        "parameters": []
+      }
     }
   },
   "components": {
@@ -774,6 +850,100 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CiatoxCentro"
+            }
+          }
+        }
+      },
+      "HospitalCnesResponse": {
+        "title": "HospitalCnesResponse",
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "integer",
+            "description": "Quantidade de registros com o CNES informado (pode ser maior que 1 quando o estabelecimento aparece em mais de um programa).",
+            "example": 1
+          },
+          "atualizado_em": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2026-08-11T05:00:00.000Z"
+          },
+          "fonte": {
+            "$ref": "#/components/schemas/HospitalFonte"
+          },
+          "emergencia": {
+            "$ref": "#/components/schemas/Emergencia"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Hospital"
+            }
+          }
+        }
+      },
+      "EstadoResumo": {
+        "title": "EstadoResumo",
+        "type": "object",
+        "properties": {
+          "uf": {
+            "type": "string",
+            "example": "SP"
+          },
+          "total_hospitais": {
+            "type": "integer",
+            "example": 242
+          },
+          "total_ciatox": {
+            "type": "integer",
+            "example": 9
+          },
+          "status": {
+            "type": "string",
+            "nullable": true,
+            "description": "Resultado da extração da fonte para a UF (ex: ok, ok_ocr, error). Nulo quando o snapshot é anterior a essa coleta.",
+            "example": "ok"
+          },
+          "synced_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "description": "Última checagem dos documentos do Ministério da Saúde pela fonte.",
+            "example": "2026-08-11T03:00:00Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "description": "Data de publicação do documento informada pelo gov.br. Nulo quando a fonte está despublicada.",
+            "example": "2026-02-14T18:04:00Z"
+          }
+        }
+      },
+      "EstadosResponse": {
+        "title": "EstadosResponse",
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "integer",
+            "description": "Quantidade de UFs presentes no dataset.",
+            "example": 27
+          },
+          "atualizado_em": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2026-08-11T05:00:00.000Z"
+          },
+          "fonte": {
+            "$ref": "#/components/schemas/HospitalFonte"
+          },
+          "emergencia": {
+            "$ref": "#/components/schemas/Emergencia"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EstadoResumo"
             }
           }
         }

@@ -379,7 +379,85 @@ describe('/hospitais/v1/ciatox (E2E)', () => {
   });
 });
 
+describe('/hospitais/v1/cnes/{cnes} (E2E)', () => {
+  test('Encontra os registros de um estabelecimento pelo CNES', async () => {
+    const { data: lista } = await axios.get(`${BASE()}?limit=50`);
+    const referencia = lista.items.find((h) => h.cnes);
+
+    const { status, data } = await axios.get(
+      `${BASE()}/cnes/${referencia.cnes}`
+    );
+
+    expect(status).toBe(200);
+    expect(data.total).toBeGreaterThanOrEqual(1);
+    expect(data.total).toBe(data.items.length);
+    expect(data.items.some((h) => h.id === referencia.id)).toBe(true);
+    expect(data.fonte).toMatchObject({ nome: 'MapaSUS', oficial: false });
+  });
+
+  test('Zeros à esquerda não mudam o resultado', async () => {
+    const { data: lista } = await axios.get(`${BASE()}?limit=50`);
+    const referencia = lista.items.find((h) => h.cnes);
+
+    const { data } = await axios.get(`${BASE()}/cnes/00${referencia.cnes}`);
+
+    expect(data.items.some((h) => h.id === referencia.id)).toBe(true);
+  });
+
+  test('CNES desconhecido retorna 404, com aviso de cobertura parcial', async () => {
+    // Só zeros normaliza para vazio — nunca corresponde a um registro.
+    await expect(axios.get(`${BASE()}/cnes/00000000000`)).rejects.toMatchObject(
+      {
+        response: {
+          status: 404,
+          data: expect.objectContaining({ type: 'not_found' }),
+        },
+      }
+    );
+  });
+
+  test('CNES não numérico retorna 400', async () => {
+    await expect(axios.get(`${BASE()}/cnes/abc1234`)).rejects.toMatchObject(
+      BAD_REQUEST
+    );
+  });
+});
+
+describe('/hospitais/v1/estados (E2E)', () => {
+  test('Totais por UF cobrem todo o dataset, em ordem alfabética', async () => {
+    const { status, data } = await axios.get(`${BASE()}/estados`);
+
+    expect(status).toBe(200);
+    expect(data.total).toBe(data.items.length);
+    expect(data.items.length).toBeGreaterThan(0);
+
+    const ufs = data.items.map((estado) => estado.uf);
+    expect(ufs).toEqual([...ufs].sort());
+    ufs.forEach((uf) => expect(uf).toMatch(/^[A-Z]{2}$/));
+
+    const somaHospitais = data.items.reduce(
+      (soma, estado) => soma + estado.total_hospitais,
+      0
+    );
+    const { data: lista } = await axios.get(`${BASE()}?limit=1`);
+    expect(somaHospitais).toBe(lista.total);
+  });
+
+  test('Cada UF expõe os campos de frescor da fonte', async () => {
+    const { data } = await axios.get(`${BASE()}/estados`);
+
+    data.items.forEach((estado) => {
+      expect(estado).toHaveProperty('status');
+      expect(estado).toHaveProperty('synced_at');
+      expect(estado).toHaveProperty('updated_at');
+      expect(estado.total_hospitais).toBeGreaterThanOrEqual(0);
+      expect(estado.total_ciatox).toBeGreaterThanOrEqual(0);
+    });
+  });
+});
+
 testCorsForRoute('/api/hospitais/v1?limit=1');
 testCorsForRoute('/api/hospitais/v1/opcoes');
 testCorsForRoute('/api/hospitais/v1/ciatox');
 testCorsForRoute('/api/hospitais/v1/proximos?latitude=-23.55&longitude=-46.63');
+testCorsForRoute('/api/hospitais/v1/estados');
