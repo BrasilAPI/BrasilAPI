@@ -1,4 +1,4 @@
-# :link: Como contribuir
+# :link: Como contribuir neste projeto
 
 ## Princípios do projeto
 
