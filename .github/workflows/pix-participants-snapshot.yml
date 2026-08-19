@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   pix-participants-snapshot:
@@ -42,7 +43,11 @@ jobs:
       - name: Gerar snapshot de participantes do Pix
         run: npm run snapshot:pix:participants
 
-      - name: Commitar snapshot atualizado
+      # git add + guard ANTES da action: se nada mudou, exit 0 silencioso.
+      # A action só abre PR quando há diff staged (dados realmente mudaram).
+      # A branch main tem proteção (GH006: Protected branch update failed),
+      # então o push direto falha — abrimos um PR com o snapshot atualizado.
+      - name: Preparar mudancas do snapshot
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -54,5 +59,18 @@ jobs:
             exit 0
           fi
 
-          git commit -m "chore(pix): atualiza snapshot de participantes do Pix"
-          git push
+      - name: Abrir PR com snapshot atualizado
+        id: cpr
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore(pix): atualiza snapshot de participantes do Pix'
+          branch: chore/pix-snapshot-update
+          delete-branch: true
+          title: 'chore(pix): atualiza snapshot de participantes do Pix'
+          body: |
+            Atualização automática do snapshot de participantes do Pix
+            (workflow `Snapshot Participantes Pix`).
+
+            Quando não há mudança de dados, nenhum PR é aberto.
+          labels: automated
