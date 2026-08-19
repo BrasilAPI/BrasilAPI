@@ -1,0 +1,66 @@
+name: Snapshot Hospitais de Referencia
+
+# O MapaSUS roda inteiramente em free tier. Este workflow e o unico consumidor
+# automatizado dele no BrasilAPI: as chamadas sao serializadas com pausa de 5s
+# e partem de um unico runner, o que mantem a carga previsivel e desprezivel.
+on:
+  schedule:
+    - cron: '0 7 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  hospitais-snapshot:
+    name: Gerar snapshot diario de hospitais
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Puxar o codigo do commit
+        uses: actions/checkout@v4
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+
+      - name: Cacheando dependencias
+        id: cache_dependencies
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-dependencies-${{ hashFiles('./package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Instalar dependencias do npm
+        if: steps.cache_dependencies.outputs.cache-hit != 'true'
+        run: npm ci --ignore-scripts
+
+      - name: Gerar snapshot de hospitais
+        run: npm run snapshot:hospitais
+
+      - name: Publicar metricas do snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: hospitais-snapshot-metrics
+          path: services/hospitais/snapshots/metrics-latest.json
+          if-no-files-found: error
+
+      - name: Commitar snapshot atualizado
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add services/hospitais/snapshots/latest.json
+          git add services/hospitais/snapshots/metrics-latest.json
+
+          if git diff --staged --quiet; then
+            echo "Sem alteracoes de snapshot para commit"
+            exit 0
+          fi
+
+          git commit -m "chore(hospitais): atualiza snapshot diario do MapaSUS"
+          git push

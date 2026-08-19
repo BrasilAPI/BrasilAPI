@@ -1,0 +1,953 @@
+{
+  "tags": [
+    {
+      "name": "HOSPITAIS",
+      "description": "Estabelecimentos que o Ministério da Saúde <b>habilitou por portaria</b> para um atendimento específico: manter soro antiveneno, ou ser referência em oncologia ou em doenças raras. Inclui os centros CIATOX. <b>Em emergência ligue 192 (SAMU)</b>; em acidente com peçonhento, ligue ao CIATOX antes de se deslocar. Extraído de documentos do Ministério da Saúde pelo MapaSUS — <b>não é serviço oficial do órgão</b>."
+    }
+  ],
+  "paths": {
+    "/hospitais/v1": {
+      "get": {
+        "tags": [
+          "HOSPITAIS"
+        ],
+        "summary": "Pesquisa hospitais habilitados para animais peçonhentos, oncologia ou doenças raras",
+        "description": "A base cobre <b>apenas</b> essas três habilitações — não é um cadastro geral de hospitais. Devolve nome, endereço, telefone, código CNES, coordenadas e a lista de atendimentos habilitados de cada estabelecimento. Todos os filtros são opcionais e se combinam com E lógico; sem nenhum, devolve o conjunto completo paginado. O filtro principal é <code>atendimento</code>, que sozinho descobre em qual das três procurar.",
+        "parameters": [
+          {
+            "name": "vertical",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "peconhentos",
+                "oncologia",
+                "raras"
+              ]
+            },
+            "description": "Restringe a uma categoria inteira. Opcional e raramente necessário, já que <code>atendimento</code> identifica a vertical sozinho. Use para listar tudo de uma categoria, como todos os hospitais de oncologia de um estado.",
+            "example": "peconhentos"
+          },
+          {
+            "name": "uf",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z]{2}$"
+            },
+            "description": "Sigla da unidade federativa.",
+            "example": "SP"
+          },
+          {
+            "name": "municipio",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Busca parcial pelo nome do município (ignora acentos e caixa).",
+            "example": "campinas"
+          },
+          {
+            "name": "atendimento",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filtro principal: um só termo e ele descobre a vertical. Aceita nome popular do animal (<code>escorpiao</code>, <code>cascavel</code>, <code>jararaca</code>), nome do soro (<code>crotalico</code>, <code>Crotalic</code>), habilitação (<code>radioterapia</code>, <code>cacon</code>, <code>terapia-genica</code>) ou código de portaria (<code>17.07</code>, <code>35.16</code>). Acento, caixa e hífen são indiferentes. Lista completa em <code>/hospitais/v1/opcoes</code>.",
+            "example": "escorpiao"
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Busca livre por nome ou endereço do estabelecimento.",
+            "example": "santa casa"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 500,
+              "default": 100
+            },
+            "description": "Quantidade máxima de itens a retornar. Valores acima de 500 são limitados a 500.",
+            "example": 50
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0
+            },
+            "description": "Deslocamento inicial para paginação.",
+            "example": 0
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HospitaisResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Parâmetro inválido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hospitais/v1/proximos": {
+      "get": {
+        "tags": [
+          "HOSPITAIS"
+        ],
+        "summary": "Encontra o hospital habilitado mais próximo para peçonhentos, oncologia ou doenças raras",
+        "description": "Considera <b>apenas</b> os hospitais habilitados nas três verticais, não a rede de saúde inteira. Devolve os que estão dentro de um raio, ordenados da menor para a maior distância, cada um com <code>distancia_km</code>. Informe a origem por <code>cep</code>, por <code>latitude</code> e <code>longitude</code>, ou por <code>municipio</code> e <code>uf</code>. Só entram estabelecimentos com coordenada conhecida, hoje 99,7% do total.",
+        "parameters": [
+          {
+            "name": "cep",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "CEP de origem. Alternativo a `latitude`/`longitude` e a `municipio`/`uf`.",
+            "example": "13280000"
+          },
+          {
+            "name": "latitude",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "minimum": -90,
+              "maximum": 90
+            },
+            "description": "Latitude de origem. Deve ser usada junto de `longitude`.",
+            "example": -22.9
+          },
+          {
+            "name": "longitude",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "minimum": -180,
+              "maximum": 180
+            },
+            "description": "Longitude de origem. Deve ser usada junto de `latitude`.",
+            "example": -47.05
+          },
+          {
+            "name": "municipio",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Município de origem. Deve ser usado junto de `uf`.",
+            "example": "Campinas"
+          },
+          {
+            "name": "uf",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z]{2}$"
+            },
+            "description": "UF de origem. Deve ser usada junto de `municipio`.",
+            "example": "SP"
+          },
+          {
+            "name": "raio_km",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200,
+              "default": 50
+            },
+            "description": "Raio da busca em quilômetros.",
+            "example": 50
+          },
+          {
+            "name": "vertical",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "peconhentos",
+                "oncologia",
+                "raras"
+              ]
+            },
+            "description": "Restringe a uma categoria inteira. Opcional e raramente necessário, já que <code>atendimento</code> identifica a vertical sozinho. Use para listar tudo de uma categoria, como todos os hospitais de oncologia de um estado.",
+            "example": "peconhentos"
+          },
+          {
+            "name": "atendimento",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Restringe a busca a um atendimento. Mesmos valores aceitos em <code>/hospitais/v1</code>; a lista completa está em <code>/hospitais/v1/opcoes</code>.",
+            "example": "escorpiao"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 500,
+              "default": 50
+            },
+            "description": "Quantidade máxima de itens a retornar.",
+            "example": 20
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0
+            },
+            "description": "Deslocamento inicial para paginação.",
+            "example": 0
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HospitaisProximosResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Origem não informada ou parâmetro inválido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hospitais/v1/opcoes": {
+      "get": {
+        "tags": [
+          "HOSPITAIS"
+        ],
+        "summary": "Lista os soros antiveneno e as habilitações de oncologia e doenças raras pesquisáveis",
+        "description": "Ponto de partida da API. Lista os 27 atendimentos aceitos em <code>atendimento</code> — nove soros antiveneno, nove habilitações de oncologia e nove áreas de doenças raras — cada um com rótulo em português, grafias alternativas, códigos de portaria cobertos e quantos estabelecimentos o oferecem. Serve para montar seletores sem depender desta documentação.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OpcoesResponse"
+                }
+              }
+            }
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/hospitais/v1/ciatox": {
+      "get": {
+        "tags": [
+          "HOSPITAIS"
+        ],
+        "summary": "Lista os centros CIATOX de informação e assistência toxicológica",
+        "description": "Em acidente com animal peçonhento ou intoxicação, a orientação oficial é ligar ao CIATOX antes de ir ao hospital: eles confirmam qual unidade tem o soro no momento e orientam os primeiros cuidados. O Disque-Intoxicação nacional é 0800 722 6001.",
+        "parameters": [
+          {
+            "name": "uf",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z]{2}$"
+            },
+            "description": "Sigla da unidade federativa.",
+            "example": "SP"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CiatoxResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "UF inválida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hospitais/v1/cnes/{cnes}": {
+      "get": {
+        "tags": [
+          "HOSPITAIS"
+        ],
+        "summary": "Busca hospitais pelo código CNES do estabelecimento",
+        "description": "Localiza os registros de um estabelecimento pelo CNES (Cadastro Nacional de Estabelecimentos de Saúde), o identificador oficial nacional. A comparação ignora zeros à esquerda, pois parte dos documentos de origem os omite. A resposta é uma lista: o mesmo CNES pode aparecer em mais de um registro quando o estabelecimento é habilitado em programas diferentes. Um 404 significa apenas que o estabelecimento não está nos programas cobertos por esta API — ele pode existir no CNES.",
+        "parameters": [
+          {
+            "name": "cnes",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\\d{1,11}$"
+            },
+            "description": "Código CNES do estabelecimento (apenas dígitos).",
+            "example": "2077485"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HospitalCnesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "CNES inválido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Nenhum hospital com esse CNES nos programas cobertos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hospitais/v1/estados": {
+      "get": {
+        "tags": [
+          "HOSPITAIS"
+        ],
+        "summary": "Totais e frescor dos dados por unidade federativa",
+        "description": "Para cada UF, o total de hospitais e centros CIATOX no dataset e o frescor reportado pela fonte no momento da coleta do snapshot: `synced_at` é a última checagem dos documentos do Ministério da Saúde, `updated_at` é a data de publicação informada pelo gov.br e `status` indica o resultado da extração. Os campos de frescor podem ser nulos em snapshots antigos ou quando a fonte está despublicada.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EstadosResponse"
+                }
+              }
+            }
+          }
+        },
+        "parameters": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HospitalFonte": {
+        "title": "HospitalFonte",
+        "description": "Procedência dos dados. `oficial` é sempre `false`: os dados vêm de documentos públicos do Ministério da Saúde, mas nem o MapaSUS nem a BrasilAPI são serviços oficiais do órgão.",
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string",
+            "example": "MapaSUS"
+          },
+          "url": {
+            "type": "string",
+            "example": "https://mapasus.com.br"
+          },
+          "oficial": {
+            "type": "boolean",
+            "example": false
+          },
+          "documentos_de_origem": {
+            "type": "string",
+            "example": "Ministério da Saúde — gov.br/saude"
+          },
+          "aviso": {
+            "type": "string",
+            "example": "O MapaSUS e a BrasilAPI não são serviços oficiais do Ministério da Saúde e não possuem vínculo com o órgão. Os dados são extraídos automaticamente de documentos públicos publicados pelo Ministério da Saúde e podem conter erros de extração ou estar desatualizados em relação à fonte oficial."
+          }
+        }
+      },
+      "Emergencia": {
+        "title": "Emergencia",
+        "description": "Orientação de segurança devolvida em toda resposta. Exiba para o usuário final em qualquer interface construída sobre estes dados.",
+        "type": "object",
+        "properties": {
+          "aviso": {
+            "type": "string",
+            "example": "Esta API não substitui atendimento médico. Em emergência, ligue 192 (SAMU). Em caso de acidente com animal peçonhento ou intoxicação, ligue para o CIATOX da sua região antes de se deslocar — a unidade listada pode não ter o soro disponível no momento."
+          },
+          "samu": {
+            "type": "string",
+            "example": "192"
+          },
+          "disque_intoxicacao": {
+            "type": "string",
+            "example": "0800 722 6001"
+          },
+          "ciatox": {
+            "type": "string",
+            "example": "/api/hospitais/v1/ciatox"
+          }
+        }
+      },
+      "Atendimento": {
+        "title": "Atendimento",
+        "type": "object",
+        "properties": {
+          "vertical": {
+            "type": "string",
+            "example": "peconhentos"
+          },
+          "valor": {
+            "type": "string",
+            "description": "Valor a passar em `?atendimento=`.",
+            "example": "Crotalic"
+          },
+          "rotulo": {
+            "type": "string",
+            "example": "Crotálico (cascavel)"
+          },
+          "aliases": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Outras grafias aceitas para o mesmo atendimento.",
+            "example": [
+              "crotalico",
+              "crotalus",
+              "cascavel"
+            ]
+          },
+          "codigos": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Códigos de portaria cobertos. Presente apenas nas habilitações de oncologia e doenças raras.",
+            "example": [
+              "12",
+              "13"
+            ]
+          },
+          "total": {
+            "type": "integer",
+            "description": "Quantidade de estabelecimentos que oferecem este atendimento.",
+            "example": 1093
+          }
+        }
+      },
+      "OpcoesResponse": {
+        "title": "OpcoesResponse",
+        "type": "object",
+        "properties": {
+          "atualizado_em": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2026-08-11T05:14:12.630Z"
+          },
+          "fonte": {
+            "$ref": "#/components/schemas/HospitalFonte"
+          },
+          "emergencia": {
+            "$ref": "#/components/schemas/Emergencia"
+          },
+          "verticais": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "valor": {
+                  "type": "string",
+                  "example": "peconhentos"
+                },
+                "total": {
+                  "type": "integer",
+                  "example": 2018
+                }
+              }
+            }
+          },
+          "atendimentos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Atendimento"
+            }
+          }
+        }
+      },
+      "HospitalHabilitacao": {
+        "title": "HospitalHabilitacao",
+        "type": "object",
+        "properties": {
+          "specialty": {
+            "type": "string",
+            "example": "unacon"
+          },
+          "habilitado_em": {
+            "type": "string",
+            "nullable": true,
+            "example": null
+          },
+          "qualification_codes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "17.07"
+            ]
+          }
+        }
+      },
+      "Hospital": {
+        "title": "Hospital",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 806,
+            "description": "Identificador do estabelecimento, estável entre coletas."
+          },
+          "state_code": {
+            "type": "string",
+            "example": "AC",
+            "description": "Sigla da unidade federativa."
+          },
+          "city": {
+            "type": "string",
+            "example": "Acrelândia",
+            "description": "Município do estabelecimento."
+          },
+          "name": {
+            "type": "string",
+            "example": "Unidade Mista de Saúde de Acrelândia",
+            "description": "Nome como consta no documento oficial do Ministério da Saúde."
+          },
+          "address": {
+            "type": "string",
+            "nullable": true,
+            "example": "Avenida Paraná, 346 – Centro",
+            "description": "Endereço como consta no documento oficial. Pode vir incompleto ou sem número."
+          },
+          "phones": {
+            "type": "string",
+            "nullable": true,
+            "example": "(68) 3235-1188",
+            "description": "Telefones publicados, em texto livre. Pode conter mais de um número."
+          },
+          "cnes": {
+            "type": "string",
+            "nullable": true,
+            "description": "Código do estabelecimento no Cadastro Nacional de Estabelecimentos de Saúde.",
+            "example": "5701929"
+          },
+          "treatments": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Soros antiveneno que o estabelecimento mantém, em nomenclatura canônica. Preenchido na vertical de peçonhentos.",
+            "example": [
+              "Bothropic",
+              "Scorpionic",
+              "Loxoscelic",
+              "Phoneutric"
+            ]
+          },
+          "specialties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HospitalHabilitacao"
+            },
+            "description": "Habilitações oficiais com os códigos da portaria que as concede. Preenchido nas verticais de oncologia e doenças raras."
+          },
+          "verticals": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "venomous_animals"
+            ],
+            "description": "Em quais verticais o estabelecimento é habilitado: <code>venomous_animals</code>, <code>oncology</code> e/ou <code>rare_diseases</code>. Um mesmo hospital pode estar em mais de uma."
+          },
+          "lat": {
+            "type": "number",
+            "nullable": true,
+            "example": -10.0783325,
+            "description": "Latitude geocodificada a partir do endereço — <b>não vem da fonte oficial</b> e está sujeita a erro. Nulo quando não foi possível resolver."
+          },
+          "lng": {
+            "type": "number",
+            "nullable": true,
+            "example": -67.0558239,
+            "description": "Longitude geocodificada. Mesmas ressalvas de <code>lat</code>."
+          },
+          "extraction_source": {
+            "type": "string",
+            "description": "Como o registro foi extraído da fonte oficial: `pdf_text`, `pdf_ocr` ou `xlsx`.",
+            "example": "pdf_text"
+          },
+          "requires_verification": {
+            "type": "boolean",
+            "description": "Indica extração de baixa confiança — o registro merece verificação manual antes de uso crítico.",
+            "example": false
+          }
+        }
+      },
+      "HospitalProximo": {
+        "title": "HospitalProximo",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Hospital"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "distancia_metros": {
+                "type": "integer",
+                "example": 18432,
+                "description": "Distância em linha reta entre a origem informada e o estabelecimento."
+              },
+              "distancia_km": {
+                "type": "number",
+                "example": 18.4,
+                "description": "A mesma distância em quilômetros, arredondada em uma casa."
+              }
+            }
+          }
+        ]
+      },
+      "CiatoxCentro": {
+        "title": "CiatoxCentro",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1,
+            "description": "Identificador do centro, estável entre coletas."
+          },
+          "state_code": {
+            "type": "string",
+            "example": "AM",
+            "description": "Sigla da unidade federativa."
+          },
+          "name": {
+            "type": "string",
+            "example": "Centro de Informações Toxicológicas do Amazonas – CIT/AM",
+            "description": "Nome do centro como consta na publicação do Ministério da Saúde."
+          },
+          "emergency_phone": {
+            "type": "string",
+            "nullable": true,
+            "example": "(92) 3305-4702",
+            "description": "Telefone de plantão para emergência toxicológica."
+          },
+          "phones": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "0800-722-6001",
+              "(92) 3305-4732"
+            ],
+            "description": "Demais telefones do centro."
+          },
+          "source_url": {
+            "type": "string",
+            "example": "https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/a/animais-peconhentos/ciatox",
+            "description": "Página do Ministério da Saúde de onde o registro foi extraído."
+          }
+        }
+      },
+      "HospitaisResponse": {
+        "title": "HospitaisResponse",
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "integer",
+            "description": "Total de registros que atendem ao filtro, antes da paginação.",
+            "example": 245
+          },
+          "limit": {
+            "type": "integer",
+            "example": 100
+          },
+          "offset": {
+            "type": "integer",
+            "example": 0
+          },
+          "atualizado_em": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Data da última coleta do snapshot.",
+            "example": "2026-08-11T05:00:00.000Z"
+          },
+          "fonte": {
+            "$ref": "#/components/schemas/HospitalFonte"
+          },
+          "emergencia": {
+            "$ref": "#/components/schemas/Emergencia"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Hospital"
+            }
+          }
+        }
+      },
+      "HospitaisProximosResponse": {
+        "title": "HospitaisProximosResponse",
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "integer",
+            "example": 12
+          },
+          "limit": {
+            "type": "integer",
+            "example": 50
+          },
+          "offset": {
+            "type": "integer",
+            "example": 0
+          },
+          "origem": {
+            "type": "object",
+            "properties": {
+              "latitude": {
+                "type": "number",
+                "example": -23.0299
+              },
+              "longitude": {
+                "type": "number",
+                "example": -46.9756
+              }
+            }
+          },
+          "raio_km": {
+            "type": "number",
+            "example": 50
+          },
+          "atualizado_em": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2026-08-11T05:00:00.000Z"
+          },
+          "fonte": {
+            "$ref": "#/components/schemas/HospitalFonte"
+          },
+          "emergencia": {
+            "$ref": "#/components/schemas/Emergencia"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HospitalProximo"
+            }
+          }
+        }
+      },
+      "CiatoxResponse": {
+        "title": "CiatoxResponse",
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "integer",
+            "example": 32
+          },
+          "atualizado_em": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2026-08-11T05:00:00.000Z"
+          },
+          "fonte": {
+            "$ref": "#/components/schemas/HospitalFonte"
+          },
+          "emergencia": {
+            "$ref": "#/components/schemas/Emergencia"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CiatoxCentro"
+            }
+          }
+        }
+      },
+      "HospitalCnesResponse": {
+        "title": "HospitalCnesResponse",
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "integer",
+            "description": "Quantidade de registros com o CNES informado (pode ser maior que 1 quando o estabelecimento aparece em mais de um programa).",
+            "example": 1
+          },
+          "atualizado_em": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2026-08-11T05:00:00.000Z"
+          },
+          "fonte": {
+            "$ref": "#/components/schemas/HospitalFonte"
+          },
+          "emergencia": {
+            "$ref": "#/components/schemas/Emergencia"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Hospital"
+            }
+          }
+        }
+      },
+      "EstadoResumo": {
+        "title": "EstadoResumo",
+        "type": "object",
+        "properties": {
+          "uf": {
+            "type": "string",
+            "example": "SP"
+          },
+          "total_hospitais": {
+            "type": "integer",
+            "example": 242
+          },
+          "total_ciatox": {
+            "type": "integer",
+            "example": 9
+          },
+          "status": {
+            "type": "string",
+            "nullable": true,
+            "description": "Resultado da extração da fonte para a UF (ex: ok, ok_ocr, error). Nulo quando o snapshot é anterior a essa coleta.",
+            "example": "ok"
+          },
+          "synced_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "description": "Última checagem dos documentos do Ministério da Saúde pela fonte.",
+            "example": "2026-08-11T03:00:00Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "description": "Data de publicação do documento informada pelo gov.br. Nulo quando a fonte está despublicada.",
+            "example": "2026-02-14T18:04:00Z"
+          }
+        }
+      },
+      "EstadosResponse": {
+        "title": "EstadosResponse",
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "integer",
+            "description": "Quantidade de UFs presentes no dataset.",
+            "example": 27
+          },
+          "atualizado_em": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2026-08-11T05:00:00.000Z"
+          },
+          "fonte": {
+            "$ref": "#/components/schemas/HospitalFonte"
+          },
+          "emergencia": {
+            "$ref": "#/components/schemas/Emergencia"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EstadoResumo"
+            }
+          }
+        }
+      }
+    }
+  }
+}
