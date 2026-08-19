@@ -1,65 +1,37 @@
 import { describe, expect, test } from 'vitest';
 
-import { formatCsvFile } from '@/services/pix/participants';
+import { getPixParticipants } from '@/services/pix/participants';
 
-describe('formatCsvFile', () => {
-  test('normalizes CRLF and surrounding whitespace', () => {
-    const csv = [
-      'Lista de participantes ativos do Pix',
-      'CNPJ ; Nome Reduzido ; ISPB ; Nome Extenso ; Inicio ; Fim ; Tipo de Participação no SPI ; Status ; Modalidade de Participação no Pix',
-      ' 00000000000191 ; Banco Teste ; 12345678 ; Banco Teste S.A. ; 2020-01-01 ; ; Direta ; Ativo ; Participante ',
-      '   ',
-    ].join('\r\n');
+describe('getPixParticipants', () => {
+  test('retorna a lista do snapshot com o contrato da rota', () => {
+    const participants = getPixParticipants();
 
-    expect(formatCsvFile(csv)).toEqual([
-      {
-        ispb: '12345678',
-        nome: 'Banco Teste',
-        nome_reduzido: 'Banco Teste',
-        modalidade_participacao: 'Participante',
-        tipo_participacao: 'Direta',
-        inicio_operacao: null,
-      },
-    ]);
+    expect(Array.isArray(participants)).toBe(true);
+    expect(participants.length).toBeGreaterThan(700);
   });
 
-  test('mantem participantes com CNPJ vazio (filtra pelo ISPB, nao pela coluna 0)', () => {
-    const csv = [
-      'Lista de participantes ativos do Pix',
-      'CNPJ ; Nome Reduzido ; ISPB ; Nome Extenso ; Inicio ; Fim ; Tipo de Participação no SPI ; Status ; Modalidade de Participação no Pix',
-      ' ; Banco Sem Cnpj ; 99999999 ; Banco Sem Cnpj S.A. ; 2020-01-01 ; ; Direta ; Ativo ; Participante ',
-      '',
-    ].join('\r\n');
+  test('todos os participantes seguem o formato de resposta', () => {
+    const participants = getPixParticipants();
 
-    expect(formatCsvFile(csv)).toEqual([
-      {
-        ispb: '99999999',
-        nome: 'Banco Sem Cnpj',
-        nome_reduzido: 'Banco Sem Cnpj',
-        modalidade_participacao: 'Participante',
-        tipo_participacao: 'Direta',
-        inicio_operacao: null,
-      },
-    ]);
+    participants.forEach((participant) => {
+      expect(participant.ispb).toMatch(/^\d{8}$/);
+      expect(participant.nome).toEqual(expect.any(String));
+      expect(participant.nome.length).toBeGreaterThan(0);
+      expect(participant.nome_reduzido).toEqual(expect.any(String));
+      expect([expect.any(String), null]).toContainEqual(
+        participant.modalidade_participacao
+      );
+      expect([expect.any(String), null]).toContainEqual(
+        participant.tipo_participacao
+      );
+      expect(participant.inicio_operacao).toBeNull();
+    });
   });
 
-  test('linhas com menos colunas viram null (nao undefined) nos campos opcionais', () => {
-    const csv = [
-      'Lista de participantes ativos do Pix',
-      'CNPJ ; Nome Reduzido ; ISPB ; Nome Extenso ; Inicio ; Fim ; Tipo de Participação no SPI ; Status ; Modalidade de Participação no Pix',
-      '00000000000191 ; Banco Curto ; 12345678',
-      '',
-    ].join('\r\n');
+  test('não possui ISPBs duplicados', () => {
+    const participants = getPixParticipants();
+    const uniqueIspbs = new Set(participants.map((p) => p.ispb));
 
-    expect(formatCsvFile(csv)).toEqual([
-      {
-        ispb: '12345678',
-        nome: 'Banco Curto',
-        nome_reduzido: 'Banco Curto',
-        modalidade_participacao: null,
-        tipo_participacao: null,
-        inicio_operacao: null,
-      },
-    ]);
+    expect(uniqueIspbs.size).toBe(participants.length);
   });
 });
