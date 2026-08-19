@@ -55,9 +55,20 @@ async function fetchOpenCep(cep) {
 }
 
 async function updateOpenCep(cep) {
-  await axios.get(`https://update.opencep.com/${cep}`, {
-    timeout: DEFAULT_TIMEOUT,
-  });
+  try {
+    await axios.get(`https://update.opencep.com/${cep}`, {
+      timeout: DEFAULT_TIMEOUT,
+    });
+  } catch (error) {
+    // Log the error for debugging
+    // eslint-disable-next-line no-console
+    console.error('[open-cep] Failed to update cache for CEP:', {
+      cep,
+      error: error.message,
+      code: error.code,
+      status: error.response?.status,
+    });
+  }
 }
 
 class CepPromiseError extends Error {
@@ -94,8 +105,8 @@ export async function fetchCep(cep) {
     });
 
   return fetchOpenCep(cleanCep).catch(() =>
-    fetchCepPromise().then(async (data) => {
-      await updateOpenCep(cleanCep).catch(() => {});
+    fetchCepPromise().then((data) => {
+      updateOpenCep(cleanCep);
       return {
         ...data,
         ibge: {
