@@ -1,0 +1,17 @@
+{
+  "generated_at": "2026-08-12T14:10:49.609Z",
+  "source_format": "csv",
+  "source_url": "https://www.bcb.gov.br/content/estabilidadefinanceira/participantes_pix/lista-participantes-instituicoes-em-adesao-pix-20260812.csv",
+  "source_published_date": "2026-08-12",
+  "total_participants": 880,
+  "by_modalidade_participacao": {
+    "Provedor de Conta Transacional": 876,
+    "Liquidante Especial": 2,
+    "Iniciador": 1,
+    "Ente Governamental": 1
+  },
+  "by_tipo_participacao": {
+    "Direta": 216,
+    "Indireta": 664
+  }
+}
