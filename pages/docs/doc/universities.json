@@ -23,13 +23,13 @@
                   "full_name": "UNIVERSIDADE FEDERAL DE MATO GROSSO",
                   "name": "UFMT",
                   "ibge": "5103403",
-                  "city": "CUIABA",
+                  "city": "CUIABÁ",
                   "uf": "MT",
                   "zipcode": "78060900",
                   "street": "AVENIDA FERNANDO CORREA DA COSTA",
                   "number": "2367",
                   "neighborhood": "BOA ESPERANÇA",
-                  "phone": "(65) 3615 8302"
+                  "phone": null
                 }
               }
             }
@@ -54,13 +54,13 @@
                   "full_name": "UNIVERSIDADE FEDERAL DE MATO GROSSO",
                   "name": "UFMT",
                   "ibge": "5103403",
-                  "city": "CUIABA",
+                  "city": "CUIABÁ",
                   "uf": "MT",
                   "zipcode": "78060900",
                   "street": "AVENIDA FERNANDO CORREA DA COSTA",
                   "number": "2367",
                   "neighborhood": "BOA ESPERANÇA",
-                  "phone": "(65) 3615 8302"
+                  "phone": null
                 }
               }
             }
