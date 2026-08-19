@@ -140,7 +140,12 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "Tipo do feriado (national, regional, etc.)"
+                        "enum": [
+                            "national",
+                            "state",
+                            "facultative"
+                        ],
+                        "description": "Tipo do feriado (national, state, facultative)"
                     },
                     "name": {
                         "type": "string",

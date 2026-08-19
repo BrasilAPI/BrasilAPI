@@ -63,4 +63,32 @@ describe('getHolidays - feriados estaduais', () => {
 
     expect(chamarFuncao).toThrowError('Estado inválido');
   });
+
+  test('Carnaval e Corpus Christi são pontos facultativos; Páscoa e Sexta-feira Santa seguem nacionais (Lei 9.093/1995)', () => {
+    const year = 2024;
+
+    const result = getHolidays(year);
+
+    const carnaval = result.filter((holiday) => holiday.name === 'Carnaval');
+    const corpusChristi = result.find(
+      (holiday) => holiday.name === 'Corpus Christi'
+    );
+    const pascoa = result.find((holiday) => holiday.name === 'Páscoa');
+    const sextaSanta = result.find(
+      (holiday) => holiday.name === 'Sexta-feira Santa'
+    );
+
+    // Carnaval são dois dias (segunda e terça) e ambos são facultativos
+    expect(carnaval).toHaveLength(2);
+    expect(carnaval.every((holiday) => holiday.type === 'facultative')).toBe(
+      true
+    );
+
+    expect(corpusChristi).toBeDefined();
+    expect(corpusChristi.type).toBe('facultative');
+
+    // Páscoa e Sexta-feira Santa permanecem nacionais
+    expect(pascoa.type).toBe('national');
+    expect(sextaSanta.type).toBe('national');
+  });
 });
