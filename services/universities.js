@@ -1,57 +1,37 @@
-import axios from 'axios';
+import InternalError from '@/errors/InternalError';
+import universities from './universities/snapshots/latest.json';
 
-const axiosInstance = axios.create({
-  baseURL: 'https://api.universities.com.br',
+/**
+ * O provider original `api.universities.com.br` (que servia o shape com
+ * endereço, IBGE e telefone) saiu do ar de forma permanente — o domínio
+ * não resolve mais (NXDOMAIN), sem snapshot em arquivo web.
+ *
+ * A fonte passou a ser o **Censo da Educação Superior (INEP/MEC)**,
+ * pública e gratuita, versionada em `services/universities/snapshots/latest.json`
+ * já no formato de resposta da rota.
+ *
+ * O telefone não consta no cadastro do INEP → `phone: null` (campo
+ * compatível retroativo, opcional na doc).
+ */
+const EMPTY_LIST_ERROR = new InternalError({
+  status: 500,
+  message: 'Erro ao obter as informações das universidades',
+  name: 'UNIVERSITIES_LIST_ERROR',
+  type: 'UNIVERSITIES_LIST_ERROR',
 });
 
-const filterUniversitiesResponse = (university) => {
-  const {
-    id,
-    full_name: fullName,
-    name,
-    ibge,
-    city,
-    uf,
-    zipcode,
-    street,
-    number,
-    neighborhood,
-    phone,
-  } = university;
-
-  return {
-    id,
-    full_name: fullName,
-    name,
-    ibge,
-    city,
-    uf,
-    zipcode,
-    street,
-    number,
-    neighborhood,
-    phone,
-  };
-};
-
-export const getUniversities = async () => {
-  const endpoint = '/universities';
-
-  const { data: body } = await axiosInstance.get(endpoint);
-
-  return body.map(filterUniversitiesResponse);
-};
-
-export const getUniversitiesById = async (id) => {
-  const endpoint = `/universities/${id}`;
-
-  const { data: body } = await axiosInstance.get(endpoint);
-
-  const data = filterUniversitiesResponse(body);
-
-  if (JSON.stringify(data) === '{}' || !data) {
-    return null;
+export const getUniversities = () => {
+  if (!Array.isArray(universities) || universities.length === 0) {
+    throw EMPTY_LIST_ERROR;
   }
 
-  return data;
+  return universities;
+};
+
+export const getUniversitiesById = (id) => {
+  const list = getUniversities();
+
+  const university = list.find((item) => Number(item.id) === Number(id));
+
+  return university || null;
 };
