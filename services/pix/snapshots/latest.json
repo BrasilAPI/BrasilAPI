@@ -1232,14 +1232,6 @@
     "inicio_operacao": null
   },
   {
-    "ispb": "66788142",
-    "nome": "CC CREDIMOTA",
-    "nome_reduzido": "CC CREDIMOTA",
-    "modalidade_participacao": "Provedor de Conta Transacional",
-    "tipo_participacao": "Indireta",
-    "inicio_operacao": null
-  },
-  {
     "ispb": "25420696",
     "nome": "CC CREDINACIONAL LTDA - SICOOB CREDINACIONAL",
     "nome_reduzido": "CC CREDINACIONAL LTDA - SICOOB CREDINACIONAL",
@@ -2051,14 +2043,6 @@
     "ispb": "02173447",
     "nome": "CCLA CENTRO NORDESTE MINEIRO",
     "nome_reduzido": "CCLA CENTRO NORDESTE MINEIRO",
-    "modalidade_participacao": "Provedor de Conta Transacional",
-    "tipo_participacao": "Indireta",
-    "inicio_operacao": null
-  },
-  {
-    "ispb": "03326437",
-    "nome": "CCLA CENTRO NORTE MT/MS",
-    "nome_reduzido": "CCLA CENTRO NORTE MT/MS",
     "modalidade_participacao": "Provedor de Conta Transacional",
     "tipo_participacao": "Indireta",
     "inicio_operacao": null
@@ -2948,7 +2932,7 @@
     "nome": "CCR DO AGRESTE ALAGOANO",
     "nome_reduzido": "CCR DO AGRESTE ALAGOANO",
     "modalidade_participacao": "Provedor de Conta Transacional",
-    "tipo_participacao": "Indireta",
+    "tipo_participacao": "Direta",
     "inicio_operacao": null
   },
   {
@@ -2979,14 +2963,6 @@
     "ispb": "16564240",
     "nome": "CECM APOS PENS E IDOSOS - SICOOB COOPERNAPI",
     "nome_reduzido": "CECM APOS PENS E IDOSOS - SICOOB COOPERNAPI",
-    "modalidade_participacao": "Provedor de Conta Transacional",
-    "tipo_participacao": "Indireta",
-    "inicio_operacao": null
-  },
-  {
-    "ispb": "20062766",
-    "nome": "CECM COL GRUPO EMPR A COSTA",
-    "nome_reduzido": "CECM COL GRUPO EMPR A COSTA",
     "modalidade_participacao": "Provedor de Conta Transacional",
     "tipo_participacao": "Indireta",
     "inicio_operacao": null
@@ -3024,14 +3000,6 @@
     "inicio_operacao": null
   },
   {
-    "ispb": "09579249",
-    "nome": "CECM EMP AMERICANA, LIMEIRA E",
-    "nome_reduzido": "CECM EMP AMERICANA, LIMEIRA E",
-    "modalidade_participacao": "Provedor de Conta Transacional",
-    "tipo_participacao": "Indireta",
-    "inicio_operacao": null
-  },
-  {
     "ispb": "03674133",
     "nome": "CECM EMP INST SF SÃO PAULO CAM",
     "nome_reduzido": "CECM EMP INST SF SÃO PAULO CAM",
@@ -3059,14 +3027,6 @@
     "ispb": "08850613",
     "nome": "CECM EMPR CENT ELÉTRICAS/SC",
     "nome_reduzido": "CECM EMPR CENT ELÉTRICAS/SC",
-    "modalidade_participacao": "Provedor de Conta Transacional",
-    "tipo_participacao": "Indireta",
-    "inicio_operacao": null
-  },
-  {
-    "ispb": "58022195",
-    "nome": "CECM EMPR EMP ZILLO LORENZETTI",
-    "nome_reduzido": "CECM EMPR EMP ZILLO LORENZETTI",
     "modalidade_participacao": "Provedor de Conta Transacional",
     "tipo_participacao": "Indireta",
     "inicio_operacao": null
@@ -3184,14 +3144,6 @@
     "inicio_operacao": null
   },
   {
-    "ispb": "02072790",
-    "nome": "CECM SICOOB CREDSAÚDE",
-    "nome_reduzido": "CECM SICOOB CREDSAÚDE",
-    "modalidade_participacao": "Provedor de Conta Transacional",
-    "tipo_participacao": "Indireta",
-    "inicio_operacao": null
-  },
-  {
     "ispb": "04833655",
     "nome": "CECM SICOOB METALCRED",
     "nome_reduzido": "CECM SICOOB METALCRED",
@@ -3219,14 +3171,6 @@
     "ispb": "30949267",
     "nome": "CECME CHOCOLATES GAROTO LTDA",
     "nome_reduzido": "CECME CHOCOLATES GAROTO LTDA",
-    "modalidade_participacao": "Provedor de Conta Transacional",
-    "tipo_participacao": "Indireta",
-    "inicio_operacao": null
-  },
-  {
-    "ispb": "57563728",
-    "nome": "CECME EMPR EMP GR ECON RHODIA",
-    "nome_reduzido": "CECME EMPR EMP GR ECON RHODIA",
     "modalidade_participacao": "Provedor de Conta Transacional",
     "tipo_participacao": "Indireta",
     "inicio_operacao": null
@@ -3360,6 +3304,14 @@
     "inicio_operacao": null
   },
   {
+    "ispb": "60849822",
+    "nome": "COOP CREDI COOPERALFA",
+    "nome_reduzido": "COOP CREDI COOPERALFA",
+    "modalidade_participacao": "Provedor de Conta Transacional",
+    "tipo_participacao": "Indireta",
+    "inicio_operacao": null
+  },
+  {
     "ispb": "82096447",
     "nome": "COOP CREDI&GENTE",
     "nome_reduzido": "COOP CREDI&GENTE",
@@ -3416,14 +3368,6 @@
     "inicio_operacao": null
   },
   {
-    "ispb": "07215632",
-    "nome": "COOP CRESOL ALTERNATIVA",
-    "nome_reduzido": "COOP CRESOL ALTERNATIVA",
-    "modalidade_participacao": "Provedor de Conta Transacional",
-    "tipo_participacao": "Indireta",
-    "inicio_operacao": null
-  },
-  {
     "ispb": "07465539",
     "nome": "COOP CRESOL ALTO VALE",
     "nome_reduzido": "COOP CRESOL ALTO VALE",
@@ -3451,14 +3395,6 @@
     "ispb": "07946451",
     "nome": "COOP CRESOL ATIVA",
     "nome_reduzido": "COOP CRESOL ATIVA",
-    "modalidade_participacao": "Provedor de Conta Transacional",
-    "tipo_participacao": "Indireta",
-    "inicio_operacao": null
-  },
-  {
-    "ispb": "02904138",
-    "nome": "COOP CRESOL ÁUREA",
-    "nome_reduzido": "COOP CRESOL ÁUREA",
     "modalidade_participacao": "Provedor de Conta Transacional",
     "tipo_participacao": "Indireta",
     "inicio_operacao": null
@@ -3851,14 +3787,6 @@
     "ispb": "03965737",
     "nome": "COOP CRESOL VANGUARDA",
     "nome_reduzido": "COOP CRESOL VANGUARDA",
-    "modalidade_participacao": "Provedor de Conta Transacional",
-    "tipo_participacao": "Indireta",
-    "inicio_operacao": null
-  },
-  {
-    "ispb": "07509426",
-    "nome": "COOP CRESOL XANXERE",
-    "nome_reduzido": "COOP CRESOL XANXERE",
     "modalidade_participacao": "Provedor de Conta Transacional",
     "tipo_participacao": "Indireta",
     "inicio_operacao": null
@@ -4928,6 +4856,14 @@
     "inicio_operacao": null
   },
   {
+    "ispb": "20062766",
+    "nome": "COOP UNIPRIME PIF PAF",
+    "nome_reduzido": "COOP UNIPRIME PIF PAF",
+    "modalidade_participacao": "Provedor de Conta Transacional",
+    "tipo_participacao": "Indireta",
+    "inicio_operacao": null
+  },
+  {
     "ispb": "01572667",
     "nome": "COOP UNIPRIME SUL",
     "nome_reduzido": "COOP UNIPRIME SUL",
@@ -5760,6 +5696,14 @@
     "inicio_operacao": null
   },
   {
+    "ispb": "03311443",
+    "nome": "MEUTUDO SCFI",
+    "nome_reduzido": "MEUTUDO SCFI",
+    "modalidade_participacao": "Provedor de Conta Transacional",
+    "tipo_participacao": "Direta",
+    "inicio_operacao": null
+  },
+  {
     "ispb": "09464032",
     "nome": "MIDWAY S.A. - SCFI",
     "nome_reduzido": "MIDWAY S.A. - SCFI",
@@ -6040,14 +5984,6 @@
     "inicio_operacao": null
   },
   {
-    "ispb": "03311443",
-    "nome": "PARATI - CFI S.A.",
-    "nome_reduzido": "PARATI - CFI S.A.",
-    "modalidade_participacao": "Provedor de Conta Transacional",
-    "tipo_participacao": "Direta",
-    "inicio_operacao": null
-  },
-  {
     "ispb": "40820176",
     "nome": "PAY BROKERS IP",
     "nome_reduzido": "PAY BROKERS IP",
@@ -6307,14 +6243,6 @@
     "ispb": "31804966",
     "nome": "SICOOB COOPERMAIS",
     "nome_reduzido": "SICOOB COOPERMAIS",
-    "modalidade_participacao": "Provedor de Conta Transacional",
-    "tipo_participacao": "Indireta",
-    "inicio_operacao": null
-  },
-  {
-    "ispb": "33924028",
-    "nome": "SICOOB COOPVALE",
-    "nome_reduzido": "SICOOB COOPVALE",
     "modalidade_participacao": "Provedor de Conta Transacional",
     "tipo_participacao": "Indireta",
     "inicio_operacao": null
