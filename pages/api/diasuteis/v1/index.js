@@ -25,7 +25,11 @@ const diasUteisHandler = (request, response) => {
 
     // para caso tenha mais de um ano entre as datas
     const anos = [];
-    for (let ano = inicio.getFullYear(); ano <= fim.getFullYear(); ano += 1) {
+    for (
+      let ano = inicio.getUTCFullYear();
+      ano <= fim.getUTCFullYear();
+      ano += 1
+    ) {
       anos.push(ano);
     }
 
@@ -37,13 +41,13 @@ const diasUteisHandler = (request, response) => {
     for (
       let data = new Date(inicio);
       data <= fim;
-      data.setDate(data.getDate() + 1)
+      data.setUTCDate(data.getUTCDate() + 1)
     ) {
-      const dia = data.getDay();
+      const dia = data.getUTCDay();
       const dataString = data.toISOString().split('T')[0];
       const isFeriado = feriados.some((feriado) => feriado.date === dataString);
 
-      // getDay(): 0 = domingo, 6 = sábado
+      // getUTCDay(): 0 = domingo, 6 = sábado
       const isDiaUtil = dia !== 0 && dia !== 6;
 
       if (isDiaUtil && !isFeriado) diasUteis.push(dataString);
