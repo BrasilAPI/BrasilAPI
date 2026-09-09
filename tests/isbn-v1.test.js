@@ -58,6 +58,7 @@ describe('api/isbn/v1 (E2E)', () => {
   // Tests that don't depend on external providers (always run)
   test('Utilizando um ISBN válido não existente: 9788549173447', async () => {
     const { data, status } = await axios.get(`${requestUrl}/9788549173447`, {
+      timeout: 15000,
       validateStatus: () => true,
     });
 
