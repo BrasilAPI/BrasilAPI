@@ -87,7 +87,9 @@ jobs:
       - name: Abrir PR com snapshot atualizado
         if: steps.preparar.outputs.houve_mudanca == 'true'
         id: cpr
-        uses: peter-evans/create-pull-request@v6
+        # Preso ao SHA completo (v6.1.0) em vez da tag: uma tag e mutavel e pode
+        # ser reapontada para outro commit, o SHA nao.
+        uses: peter-evans/create-pull-request@c5a7806660adbe173f04e3e038b0ccdcd758773c # v6.1.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: 'chore(hospitais): atualiza snapshot diario do MapaSUS'
