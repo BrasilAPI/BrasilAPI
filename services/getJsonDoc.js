@@ -4,6 +4,15 @@ import path from 'path';
 
 const docsDirectory = path.join(process.cwd(), 'pages/docs/doc');
 
+// Arquivo dono da identidade global da spec (openapi, info, servers).
+const BASE_FILE = 'basic_info.json';
+
+// Chaves globais que só podem vir do BASE_FILE. Um arquivo de endpoint que as
+// declare sobrescreve a spec inteira no merge do lodash — foi assim que o
+// `servers` perdeu o prefixo /api e todas as rotas da documentação passaram a
+// exibir URLs que retornam 404.
+const GLOBAL_KEYS = ['openapi', 'info', 'servers'];
+
 export function getJsonDoc() {
   let spec = {};
 
@@ -16,6 +25,11 @@ export function getJsonDoc() {
       const fullPath = path.join(docsDirectory, file);
 
       const content = JSON.parse(fs.readFileSync(fullPath, 'utf-8'));
+
+      if (file !== BASE_FILE) {
+        GLOBAL_KEYS.forEach((key) => delete content[key]);
+      }
+
       spec = merge(spec, content);
 
       // Seção de tags sendo tratada dentro de um foreach pois o merge dos

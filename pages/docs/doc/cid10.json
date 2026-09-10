@@ -1,5 +1,4 @@
 {
-  "openapi": "3.0.0",
   "paths": {
     "/oms/cid10/v1": {
       "get": {

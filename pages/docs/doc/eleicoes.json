@@ -1,15 +1,4 @@
 {
-    "openapi": "3.0.0",
-    "info": {
-        "title": "API de Eleições - BrasilAPI",
-        "version": "1.0.0",
-        "description": "Documentação dos endpoints de eleições integrados à API DivulgaCandContas do TSE."
-    },
-    "servers": [
-        {
-            "url": "https://brasilapi.com.br"
-        }
-    ],
     "tags": [
         {
             "name": "Candidaturas"
