@@ -78,6 +78,21 @@
                 }
               }
             }
+          },
+          "503": {
+            "description": "Serviço do CPTEC temporariamente indisponível",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "name": "CPTEC_SERVICE_UNAVAILABLE",
+                  "message": "Serviço CPTEC temporariamente indisponível",
+                  "type": "city_error"
+                }
+              }
+            }
           }
         },
         "deprecated": false
