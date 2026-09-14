@@ -40,6 +40,7 @@ describe('getCityData', () => {
       name: 'CPTEC_SERVICE_UNAVAILABLE',
     });
     await expect(request).rejects.toBeInstanceOf(ServiceUnavailableError);
+    expect(axios.get).toHaveBeenCalledTimes(1);
   });
 
   test('preserva erros que não foram gerados pelo cliente HTTP', async () => {
