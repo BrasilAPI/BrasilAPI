@@ -104,6 +104,14 @@ describe.skipIf(shouldSkipTests)('ncm v1 (E2E)', () => {
       expect(firstRow.ano_ato).toBe('2021');
     });
 
+    test('Utilizando um código formatado: 3304.10.00', async () => {
+      const requestUrl = `${global.SERVER_URL}/api/ncm/v1?search=3304.10.00`;
+      const response = await axios.get(requestUrl);
+      expect(response.status).toBe(200);
+      expect(response.data).toHaveLength(1);
+      expect(response.data[0].codigo).toBe('3304.10.00');
+    });
+
     test('Utilizando um código inexistente: 00', async () => {
       const requestUrl = `${global.SERVER_URL}/api/ncm/v1?search=00`;
 
