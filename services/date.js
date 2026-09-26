@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
 
 const SUNDAY = 0;
 const SATURDAY = 6;
@@ -8,6 +9,7 @@ const WEEKEND = [SUNDAY, SATURDAY];
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
+dayjs.extend(customParseFormat);
 
 dayjs.tz.setDefault('America/Sao_Paulo');
 
@@ -16,8 +18,8 @@ export const getNow = () => dayjs();
 export const formatDate = (date, format = 'DD/MM/YYYY') =>
   dayjs(date).format(format);
 
-export const parseToDate = (value, format = '') => {
-  return dayjs(value, format).toDate();
+export const parseToDate = (value, format = '', strict = false) => {
+  return dayjs(value, format, strict).toDate();
 };
 
 export const isValidDate = (date) => dayjs(date).isValid();
