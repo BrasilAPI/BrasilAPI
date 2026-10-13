@@ -66,6 +66,10 @@ const parseCvmData = (data, opts = {}) => {
   const parsedData = Papa.parse(data, {
     header: true,
     skipEmptyLines: true,
+    // O CSV da CVM não usa aspas como delimitador de campo, mas alguns textos
+    // começam com aspas (ex.: `"1" é ...`). Sem isso o parser trata o resto do
+    // arquivo como um único campo e descarta todas as linhas seguintes.
+    quoteChar: '\0',
     transformHeader: (header) => changeHeader(header),
     transform: (value) => value || null,
   });
