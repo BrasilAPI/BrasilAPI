@@ -43,16 +43,15 @@ describe.skipIf(shouldSkipTests)('ncm v1 (E2E)', () => {
 
     test('Utilizando um código inexistente: 00', async () => {
       const requestUrl = `${global.SERVER_URL}/api/ncm/v1/00`;
-      try {
-        await axios.get(requestUrl);
-      } catch (error) {
-        const { response } = error;
-        expect(response.status).toBe(404);
-        expect(response.data).toMatchObject({
-          message: 'Código NCM não encontrado',
-          type: 'NCM_CODE_NOT_FOUND',
-        });
-      }
+      await expect(axios.get(requestUrl)).rejects.toMatchObject({
+        response: {
+          status: 404,
+          data: {
+            message: 'Código NCM não encontrado',
+            type: 'NCM_CODE_NOT_FOUND',
+          },
+        },
+      });
     });
   });
 
@@ -74,19 +73,11 @@ describe.skipIf(shouldSkipTests)('ncm v1 (E2E)', () => {
     });
 
     test('Utilizando uma descrição inexistente: localhost', async () => {
-      expect.assertions(3);
       const requestUrl = `${global.SERVER_URL}/api/ncm/v1?search=localhost`;
-      try {
-        const response = await axios.get(requestUrl);
-        // comportamento atual (pós-984c956): busca sem resultado → 200 []
-        expect(response.status).toBe(200);
-        expect(response.data).toMatchObject([]);
-        expect(response.data).toHaveLength(0);
-      } catch (error) {
-        const { response } = error;
-        expect(response.status).toBe(404);
-        expect(response.data).toMatchObject([]);
-      }
+      const response = await axios.get(requestUrl);
+
+      expect(response.status).toBe(200);
+      expect(response.data).toEqual([]);
     });
     test('Utilizando um código válido: 330410', async () => {
       const requestUrl = `${global.SERVER_URL}/api/ncm/v1?search=330410`;
@@ -104,17 +95,21 @@ describe.skipIf(shouldSkipTests)('ncm v1 (E2E)', () => {
       expect(firstRow.ano_ato).toBe('2021');
     });
 
-    test('Utilizando um código inexistente: 00', async () => {
+    test('Busca numérica também encontra correspondências na descrição: 00', async () => {
       const requestUrl = `${global.SERVER_URL}/api/ncm/v1?search=00`;
+      const response = await axios.get(requestUrl);
 
-      try {
-        await axios.get(requestUrl);
-      } catch (error) {
-        const { response } = error;
-
-        expect(response.status).toBe(404);
-        expect(response.data).toMatchObject([]);
-      }
+      expect(response.status).toBe(200);
+      expect(response.data).toEqual(
+        expect.arrayContaining([validOutputSchema])
+      );
+      expect(
+        response.data.every(
+          ({ codigo, descricao }) =>
+            codigo.replace(/\D/g, '').startsWith('00') ||
+            descricao.includes('00')
+        )
+      ).toBe(true);
     });
   });
 
