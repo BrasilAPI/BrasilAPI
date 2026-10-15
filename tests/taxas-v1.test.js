@@ -3,22 +3,16 @@ import { beforeAll, describe, expect, test } from 'vitest';
 
 import { testCorsForRoute } from './helpers/cors';
 
-// Smart service availability check (BCB bloqueia os runners do GH Actions)
-let shouldSkipTests = false;
-
-try {
-  const response = await axios.get(
-    'https://api.bcb.gov.br/dados/serie/bcdata.sgs.189/dados/ultimos/1?formato=json',
-    { timeout: 5000 }
-  );
-  if (response.status !== 200) {
-    shouldSkipTests = true;
-  }
-} catch (error) {
-  shouldSkipTests = true;
+async function getRates(url) {
+  const response = await axios.get(url, { validateStatus: () => true });
+  expect(response.status, `${url} returned HTTP ${response.status}`).toBe(200);
+  return response;
 }
 
-describe.skipIf(shouldSkipTests)('api/taxas/v1 (E2E)', () => {
+// Keep these live checks visible: an SGS probe cannot establish the health of
+// the BCB website and B3 sources used by selic. Provider failures must fail E2E,
+// while taxas-contract.test.js covers the routes without external requests.
+describe('api/taxas/v1 (E2E)', () => {
   let requestUrl = '';
 
   beforeAll(async () => {
@@ -26,7 +20,7 @@ describe.skipIf(shouldSkipTests)('api/taxas/v1 (E2E)', () => {
   });
 
   test('Recuperando a lista de taxas', async () => {
-    const response = await axios.get(requestUrl);
+    const response = await getRates(requestUrl);
     const { data, status } = response;
 
     expect(status).toEqual(200);
@@ -38,7 +32,7 @@ describe.skipIf(shouldSkipTests)('api/taxas/v1 (E2E)', () => {
   });
 
   test('Buscando uma taxa válida: cdi', async () => {
-    const response = await axios.get(`${requestUrl}/cdi`);
+    const response = await getRates(`${requestUrl}/cdi`);
     const { data, status } = response;
     expect(status).toEqual(200);
     expect(data).toHaveProperty('nome', 'CDI');
@@ -46,7 +40,7 @@ describe.skipIf(shouldSkipTests)('api/taxas/v1 (E2E)', () => {
   });
 
   test('Buscando uma taxa válida: selic', async () => {
-    const response = await axios.get(`${requestUrl}/selic`);
+    const response = await getRates(`${requestUrl}/selic`);
     const { data, status } = response;
     expect(status).toEqual(200);
     expect(data).toHaveProperty('nome', 'SELIC');
@@ -54,7 +48,7 @@ describe.skipIf(shouldSkipTests)('api/taxas/v1 (E2E)', () => {
   });
 
   test('Buscando uma taxa válida: ipca', async () => {
-    const response = await axios.get(`${requestUrl}/ipca`);
+    const response = await getRates(`${requestUrl}/ipca`);
     const { data, status } = response;
     expect(status).toEqual(200);
     expect(data).toHaveProperty('nome', 'IPCA');
@@ -62,6 +56,7 @@ describe.skipIf(shouldSkipTests)('api/taxas/v1 (E2E)', () => {
   });
 
   test('Buscando uma taxa inválida: xpto', async () => {
+    expect.assertions(2);
     try {
       await axios.get(`${requestUrl}/xpto`);
     } catch (error) {
@@ -78,8 +73,6 @@ describe.skipIf(shouldSkipTests)('api/taxas/v1 (E2E)', () => {
   });
 });
 
-// CORS tests - only run when the service is healthy
-if (!shouldSkipTests) {
-  testCorsForRoute('/api/taxas/v1');
-  testCorsForRoute('/api/taxas/v1/cdi');
-}
+// Preflight requests do not fetch provider data and must always run.
+testCorsForRoute('/api/taxas/v1');
+testCorsForRoute('/api/taxas/v1/cdi');
