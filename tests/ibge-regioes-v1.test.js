@@ -1,12 +1,13 @@
 import { describe, expect, test } from 'vitest';
 
 import axios from 'axios';
+import ibgeHttpClient from '@/services/ibge/httpClient';
 
 // Smart service availability check (IBGE bloqueia os runners do GH Actions)
 let shouldSkipTests = false;
 
 try {
-  const response = await axios.get(
+  const response = await ibgeHttpClient.get(
     'https://servicodados.ibge.gov.br/api/v1/localidades/regioes',
     { timeout: 5000 }
   );

@@ -1,13 +1,14 @@
-import axios from 'axios';
+import ibgeHttpClient from '@/services/ibge/httpClient';
 
 const CNAE_URL = 'https://servicodados.ibge.gov.br/api/v2/cnae';
 
-export const getCNAEClasses = () => axios.get(`${CNAE_URL}/classes`);
+export const getCNAEClasses = () => ibgeHttpClient.get(`${CNAE_URL}/classes`);
 
-export const getCNAEClassById = (id) => axios.get(`${CNAE_URL}/classes/${id}`);
+export const getCNAEClassById = (id) =>
+  ibgeHttpClient.get(`${CNAE_URL}/classes/${id}`);
 
 export const getCNAEClassesByDivision = (division) =>
-  axios.get(`${CNAE_URL}/divisoes/${division}/classes`);
+  ibgeHttpClient.get(`${CNAE_URL}/divisoes/${division}/classes`);
 
 export const getCNAEClassesByGroup = (group) =>
-  axios.get(`${CNAE_URL}/grupos/${group}/classes`);
+  ibgeHttpClient.get(`${CNAE_URL}/grupos/${group}/classes`);
