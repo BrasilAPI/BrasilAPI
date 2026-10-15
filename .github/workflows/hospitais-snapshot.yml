@@ -10,6 +10,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   hospitais-snapshot:
@@ -20,6 +21,8 @@ jobs:
     steps:
       - name: Puxar o codigo do commit
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Instalar Node.js
         uses: actions/setup-node@v4
@@ -49,18 +52,53 @@ jobs:
           path: services/hospitais/snapshots/metrics-latest.json
           if-no-files-found: error
 
-      - name: Commitar snapshot atualizado
+      # A branch main tem protecao (GH006: Protected branch update failed),
+      # entao o push direto falha — abrimos um PR com o snapshot atualizado.
+      #
+      # O latest.json carrega generated_at, que muda a cada execucao. Comparar
+      # o arquivo inteiro abriria um PR diario mesmo sem mudanca de dados, entao
+      # o guard olha so o payload (hospitais + ciatox).
+      #
+      # O sort_by(.id) canonicaliza a ordem: hospitais ja sai ordenado do script,
+      # mas ciatox vem na ordem que o MapaSUS devolver.
+      - name: Preparar mudancas do snapshot
+        id: preparar
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add services/hospitais/snapshots/latest.json
-          git add services/hospitais/snapshots/metrics-latest.json
+          canonico='{hospitais: (.hospitais | sort_by(.id)), ciatox: (.ciatox | sort_by(.id))}'
 
-          if git diff --staged --quiet; then
-            echo "Sem alteracoes de snapshot para commit"
+          anterior=$(git show HEAD:services/hospitais/snapshots/latest.json \
+            | jq -S "$canonico")
+          atual=$(jq -S "$canonico" services/hospitais/snapshots/latest.json)
+
+          if [ "$anterior" = "$atual" ]; then
+            echo "Dados de hospitais sem alteracoes, nada para commitar"
+            echo "houve_mudanca=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
-          git commit -m "chore(hospitais): atualiza snapshot diario do MapaSUS"
-          git push
+          echo "houve_mudanca=true" >> "$GITHUB_OUTPUT"
+
+          git add services/hospitais/snapshots/latest.json
+          git add services/hospitais/snapshots/metrics-latest.json
+
+      - name: Abrir PR com snapshot atualizado
+        if: steps.preparar.outputs.houve_mudanca == 'true'
+        id: cpr
+        # Preso ao SHA completo (v6.1.0) em vez da tag: uma tag e mutavel e pode
+        # ser reapontada para outro commit, o SHA nao.
+        uses: peter-evans/create-pull-request@c5a7806660adbe173f04e3e038b0ccdcd758773c # v6.1.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore(hospitais): atualiza snapshot diario do MapaSUS'
+          branch: chore/hospitais-snapshot-update
+          delete-branch: true
+          title: 'chore(hospitais): atualiza snapshot diario do MapaSUS'
+          body: |
+            Atualização automática do snapshot diário de hospitais de referência
+            (workflow `Snapshot Hospitais de Referencia`, fonte MapaSUS).
+
+            Quando os dados não mudam, nenhum PR é aberto.
+          labels: automated
