@@ -1,13 +1,15 @@
 import axios from 'axios';
 import { describe, test, expect } from 'vitest';
 
+import ibgeHttpClient from '@/services/ibge/httpClient';
+
 import { testCorsForRoute } from './helpers/cors';
 
 // Smart service availability check (IBGE bloqueia os runners do GH Actions)
 let shouldSkipTests = true;
 
 try {
-  const response = await axios.get(
+  const response = await ibgeHttpClient.get(
     'https://servicodados.ibge.gov.br/api/v1/localidades/estados',
     { timeout: 5000 }
   );

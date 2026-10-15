@@ -1,12 +1,12 @@
-import axios from 'axios';
 import { describe, expect, it } from 'vitest';
+import ibgeHttpClient from '@/services/ibge/httpClient';
 import { getUfEstimatePopulationByCode } from '@/services/ibge/gov';
 
 // Smart service availability check (IBGE bloqueia os runners do GH Actions)
 let shouldSkipTests = false;
 
 try {
-  const response = await axios.get(
+  const response = await ibgeHttpClient.get(
     'https://servicodados.ibge.gov.br/api/v3/agregados/6579/periodos/-1/variaveis?localidades=N3%5B35%5D',
     { timeout: 5000 }
   );
