@@ -97,6 +97,14 @@ describe.skipIf(shouldSkipTests)('funds v1 (E2E)', () => {
       expect(response.data).toEqual(validOutputSchema);
     });
 
+    test('Utilizando um CNPJ depois da linha com aspas: 00822055000187', async () => {
+      const requestUrl = `${global.SERVER_URL}/api/cvm/fundos/v1/00822055000187`;
+      const response = await axios.get(requestUrl);
+
+      expect(response.status).toBe(200);
+      expect(response.data).toEqual(validOutputSchema);
+    });
+
     test('Utilizando um CNPJ inexistente: 1111111', async () => {
       const requestUrl = `${global.SERVER_URL}/api/cvm/fundos/v1/1111111`;
 
