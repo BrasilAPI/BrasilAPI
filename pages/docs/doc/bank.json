@@ -11,6 +11,33 @@
         "tags": ["BANKS"],
         "summary": "Retorna informações de todos os bancos do Brasil",
         "description": "Retorna uma lista com os dados de todos os bancos. Use o parâmetro opcional `search` para filtrar por trecho do nome (sem diferenciar maiúsculas e acentos), código bancário ou ISPB. Exemplos de uso: `GET https://brasilapi.com.br/api/banks/v1` e `GET https://brasilapi.com.br/api/banks/v1?search=inter`.",
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Termo de busca (1 a 100 caracteres). Textos são comparados com `name` e `fullName` ignorando maiúsculas e acentos; termos numéricos são comparados com `code` (igualdade) e `ispb` (trecho). Sem resultados, retorna lista vazia.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "examples": {
+              "nome": {
+                "summary": "Trecho do nome",
+                "value": "pagamentos"
+              },
+              "codigo": {
+                "summary": "Código bancário",
+                "value": "260"
+              },
+              "ispb": {
+                "summary": "ISPB",
+                "value": "18236120"
+              }
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Success",
@@ -47,20 +74,7 @@
               }
             }
           }
-        },
-        "parameters": [
-          {
-            "name": "search",
-            "in": "query",
-            "description": "Termo de busca (1 a 100 caracteres). Textos são comparados com `name` e `fullName` ignorando maiúsculas e acentos; termos numéricos são comparados com `code` (igualdade) e `ispb` (trecho). Sem resultados, retorna lista vazia.",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "maxLength": 100,
-              "example": "inter"
-            }
-          }
-        ]
+        }
       }
     },
     "/banks/v1/{code}": {
