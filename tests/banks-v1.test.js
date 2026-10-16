@@ -117,4 +117,91 @@ describe('banks v1 (E2E)', () => {
     expect(firstBank).toEqual(validOutputSchema);
     validateOptionalAddressFields(firstBank);
   });
+
+  describe('GET /banks/v1?search=', () => {
+    const search = (term) =>
+      axios.get(`${global.SERVER_URL}/api/banks/v1`, {
+        params: { search: term },
+      });
+
+    const normalize = (text) =>
+      String(text ?? '')
+        .normalize('NFD')
+        .replace(/[̀-ͯ]/g, '')
+        .toLowerCase();
+
+    test('Busca por trecho do nome sem diferenciar maiúsculas e acentos', async () => {
+      const [{ data: allBanks }, response] = await Promise.all([
+        axios.get(`${global.SERVER_URL}/api/banks/v1`),
+        search('Pagamentos'),
+      ]);
+
+      expect(response.status).toBe(200);
+      expect(Array.isArray(response.data)).toBe(true);
+      expect(response.data.length).toBeGreaterThan(0);
+      expect(response.data.length).toBeLessThan(allBanks.length);
+      expect(response.data.map(({ code }) => code)).toContain(260);
+
+      response.data.forEach((bank) => {
+        expect(bank).toEqual(validOutputSchema);
+        const matches =
+          normalize(bank.name).includes('pagamentos') ||
+          normalize(bank.fullName).includes('pagamentos');
+        expect(matches).toBe(true);
+      });
+
+      const { data: accented } = await search('PAGAMÉNTOS');
+      expect(accented).toEqual(response.data);
+    });
+
+    test('Busca por código bancário', async () => {
+      const response = await search('260');
+
+      expect(response.status).toBe(200);
+      expect(response.data.length).toBeGreaterThan(0);
+      expect(response.data.map(({ ispb }) => ispb)).toContain('18236120');
+      response.data.forEach((bank) => {
+        expect(bank.code === 260 || bank.ispb.includes('260')).toBe(true);
+      });
+    });
+
+    test('Busca por ISPB', async () => {
+      const response = await search('18236120');
+
+      expect(response.status).toBe(200);
+      expect(response.data.map(({ code }) => code)).toContain(260);
+    });
+
+    test('Busca sem resultados retorna lista vazia', async () => {
+      const response = await search('banco-que-nao-existe-xyz');
+
+      expect(response.status).toBe(200);
+      expect(response.data).toEqual([]);
+    });
+
+    test.each([
+      ['vazio', ''],
+      ['só espaços', '   '],
+      ['longo demais', 'a'.repeat(101)],
+    ])('Parâmetro search %s retorna 400', async (_, term) => {
+      await expect(search(term)).rejects.toMatchObject({
+        response: {
+          status: 400,
+          data: { type: 'BANK_SEARCH_INVALID' },
+        },
+      });
+    });
+
+    test('Parâmetro search repetido retorna 400', async () => {
+      await expect(
+        axios.get(`${global.SERVER_URL}/api/banks/v1?search=a&search=b`)
+      ).rejects.toMatchObject({ response: { status: 400 } });
+    });
+
+    test('Verifica CORS', async () => {
+      const response = await search('inter');
+
+      expect(response.headers['access-control-allow-origin']).toBe('*');
+    });
+  });
 });
