@@ -1,4 +1,4 @@
-import axios from 'axios';
+import httpClient from '@/lib/http/client';
 
 // Geocoding via Open-Meteo (gratuito, sem key, sem rate-limit agressivo).
 // O Nominatim do OpenStreetMap rate-limita IPs compartilhados (429) —
@@ -14,7 +14,7 @@ export class LocationNotFoundError extends Error {
 
 // Função para converter localização em coordenadas
 const getCoordinates = async (location) => {
-  const response = await axios.get(GEOCODE_URL, {
+  const response = await httpClient.get(GEOCODE_URL, {
     params: {
       name: location,
       count: 1,
@@ -35,7 +35,7 @@ const getCoordinates = async (location) => {
 
 export const getSolarIncidence = async (location) => {
   const { lat, lon } = await getCoordinates(location);
-  const response = await axios.get(
+  const response = await httpClient.get(
     `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lon}&formatted=0`,
     { timeout: 10000 }
   );

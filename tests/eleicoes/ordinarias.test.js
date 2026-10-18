@@ -1,10 +1,11 @@
 import { describe, expect, it, vi } from 'vitest';
 import { listOrdinaryElections } from '@/services/eleicoes';
-import axios from 'axios';
+import httpClient from '@/lib/http/client';
 
-vi.mock('axios', () => ({
+vi.mock('@/lib/http/client', () => ({
   default: {
     get: vi.fn(),
+    post: vi.fn(),
   },
 }));
 
@@ -193,11 +194,11 @@ describe('Listagem de eleições ordinarias', () => {
       },
     ];
 
-    vi.mocked(axios.get).mockResolvedValueOnce({ data: mockResponse });
+    vi.mocked(httpClient.get).mockResolvedValueOnce({ data: mockResponse });
 
     const result = await listOrdinaryElections();
 
     expect(result).toEqual(mockResponse);
-    expect(axios.get).toHaveBeenCalled();
+    expect(httpClient.get).toHaveBeenCalled();
   });
 });

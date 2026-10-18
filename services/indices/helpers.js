@@ -1,4 +1,5 @@
-import axios from 'axios';
+import httpClient from '@/lib/http/client';
+import { isHttpClientError } from '@/lib/http/errors';
 import Joi from 'joi';
 import InternalError from '@/errors/InternalError';
 
@@ -15,7 +16,7 @@ const defaultParams = {
 
 export const fetchData = async (url, schema, params = {}) => {
   try {
-    const response = await axios.get(url, {
+    const response = await httpClient.get(url, {
       params: {
         ...defaultParams,
         ...params,
@@ -24,7 +25,7 @@ export const fetchData = async (url, schema, params = {}) => {
 
     return schema.validateAsync(response.data, { abortEarly: true });
   } catch (error) {
-    if (axios.isAxiosError(error)) {
+    if (isHttpClientError(error)) {
       throw new InternalError({
         message: 'Erro ao obter as informações do BCB - SGS',
         type: 'INTERNAL',

@@ -1,6 +1,6 @@
 import BadRequestError from '@/errors/BadRequestError';
 import NotFoundError from '@/errors/NotFoundError';
-import axios from 'axios';
+import httpClient from '@/lib/http/client';
 import { isNaN } from 'lodash';
 import Papa from 'papaparse';
 
@@ -52,9 +52,9 @@ const changeHeader = (header) => {
 };
 
 const fetchCvmData = async () => {
-  const response = await axios.get(
+  const response = await httpClient.get(
     'https://dados.cvm.gov.br/dados/FI/CAD/DADOS/cad_fi.csv',
-    { timeout: 3000, responseType: 'arraybuffer' }
+    { timeout: 3000, responseType: 'buffer' }
   );
 
   const string = response.data.toString('latin1');

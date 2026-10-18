@@ -1,4 +1,4 @@
-import axios from 'axios';
+import httpClient from '@/lib/http/client';
 import cepPromise from 'cep-promise';
 import { UF_CODE_MAPPER } from '@/util/mapUfToUfCode';
 
@@ -36,7 +36,7 @@ function getStateIbgeCode(uf) {
 }
 
 async function fetchOpenCep(cep) {
-  const { data } = await axios.get(`https://opencep.com/v1/${cep}`, {
+  const { data } = await httpClient.get(`https://opencep.com/v1/${cep}`, {
     timeout: DEFAULT_TIMEOUT,
   });
 
@@ -56,7 +56,7 @@ async function fetchOpenCep(cep) {
 
 async function updateOpenCep(cep) {
   try {
-    await axios.get(`https://update.opencep.com/${cep}`, {
+    await httpClient.get(`https://update.opencep.com/${cep}`, {
       timeout: DEFAULT_TIMEOUT,
     });
   } catch (error) {

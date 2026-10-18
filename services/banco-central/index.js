@@ -1,5 +1,5 @@
 import getCsvAsJson from '@/util/getCsvAsJson';
-import axios from 'axios';
+import httpClient from '@/lib/http/client';
 import { getCnpjData } from '@/services/cnpj';
 import fs from 'fs';
 import path from 'path';
@@ -112,7 +112,7 @@ const parseAddress = ({
 
 const fetchSedesData = async () => {
   const requests = BCB_SEDES_URLS.map((url) =>
-    axios.get(url, {
+    httpClient.get(url, {
       timeout: 15000,
     })
   );

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import httpClient from '@/lib/http/client';
 import mapUfToUfCode from '@/util/mapUfToUfCode';
 import InternalError from '@/errors/InternalError';
 
@@ -44,19 +44,19 @@ const addCapital = (uf) => ({
 });
 
 export const getUfs = () =>
-  axios.get(URL_UF).then((response) => {
+  httpClient.get(URL_UF).then((response) => {
     response.data = response.data.map(addCapital);
     return response;
   });
 
 export const getUfByCode = (code) =>
-  axios.get(`${URL_UF}/${code}`).then((response) => {
+  httpClient.get(`${URL_UF}/${code}`).then((response) => {
     response.data = addCapital(response.data);
     return response;
   });
 
 export const getContiesByUf = async (uf) => {
-  const { data } = await axios.get(`${URL_UF}/${uf}/municipios`);
+  const { data } = await httpClient.get(`${URL_UF}/${uf}/municipios`);
 
   return data.map((item) => ({
     nome: item.nome,
@@ -71,7 +71,7 @@ export const getUfEstimatePopulationByCode = async (uf) => {
   const ESTIMATED_POPULATION_VARIABLE_ID = 9324;
   const LATEST_PERIOD = -1;
 
-  let { data } = await axios.get(
+  let { data } = await httpClient.get(
     `${URL_AGGREGATES}/${ESTIMATED_POPULATION_AGGREGATE_ID}/periodos/${LATEST_PERIOD}/variaveis?localidades=N3[${ufCode}]`
   );
 
@@ -92,10 +92,10 @@ export const getUfEstimatePopulationByCode = async (uf) => {
   };
 };
 
-export const getRegions = () => axios.get(URL_REGION);
+export const getRegions = () => httpClient.get(URL_REGION);
 
 export const getUfsByRegion = (regionCode) =>
-  axios.get(`${URL_REGION}/${regionCode}/estados`);
+  httpClient.get(`${URL_REGION}/${regionCode}/estados`);
 
 export const getRegionByCode = (regionCode) =>
-  axios.get(`${URL_REGION}/${regionCode}`);
+  httpClient.get(`${URL_REGION}/${regionCode}`);
