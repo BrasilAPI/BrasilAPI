@@ -1,4 +1,4 @@
-import axios from 'axios';
+import httpClient from '@/lib/http/client';
 
 import NotFoundError from '@/errors/NotFoundError';
 
@@ -54,7 +54,7 @@ function parsePrice(currency, price) {
  */
 export default async function searchInMercadoEditorial(isbn) {
   try {
-    const response = await axios.get(API_SEARCH_URL, {
+    const response = await httpClient.get(API_SEARCH_URL, {
       params: { isbn },
       headers: { Accept: 'application/json' },
       timeout: 5000,

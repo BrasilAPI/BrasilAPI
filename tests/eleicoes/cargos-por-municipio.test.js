@@ -1,11 +1,12 @@
 import { describe, expect, it, vi } from 'vitest';
-import axios from 'axios';
+import httpClient from '@/lib/http/client';
 import { listPositionsByMunicipality } from '@/services/eleicoes';
 import { ERRORMESSAGES } from '@/services/eleicoes/constants';
 
-vi.mock('axios', () => ({
+vi.mock('@/lib/http/client', () => ({
   default: {
     get: vi.fn(),
+    post: vi.fn(),
   },
 }));
 
@@ -51,12 +52,12 @@ describe('Listagem de Cargos por Município', () => {
       ],
     };
 
-    axios.get.mockResolvedValueOnce({ data: mockResponse });
+    httpClient.get.mockResolvedValueOnce({ data: mockResponse });
 
     const resultado = await listPositionsByMunicipality('2030402020', '35157');
 
     expect(resultado).toEqual(mockResponse);
-    expect(axios.get).toHaveBeenCalled();
+    expect(httpClient.get).toHaveBeenCalled();
   });
 
   it('deve lançar erro quando eleição está ausente', async () => {

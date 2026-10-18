@@ -1,8 +1,8 @@
 import { describe, expect, test, vi } from 'vitest';
-import axios from 'axios';
+import httpClient from '@/lib/http/client';
 import { getSolarIncidence } from '@/services/solarIncidenceService';
 
-vi.mock('axios');
+vi.mock('@/lib/http/client', () => ({ default: { get: vi.fn(), post: vi.fn() } }));
 
 describe('solarIncidenceService', () => {
   test('should fetch solar incidence data', async () => {
@@ -18,7 +18,7 @@ describe('solarIncidenceService', () => {
       },
     };
 
-    axios.get
+    httpClient.get
       .mockResolvedValueOnce({ data: mockGeocode })
       .mockResolvedValueOnce({ data: mockSolarData });
 
@@ -31,7 +31,7 @@ describe('solarIncidenceService', () => {
   });
 
   test('should throw when location is not found', async () => {
-    axios.get.mockResolvedValueOnce({ data: { results: [] } });
+    httpClient.get.mockResolvedValueOnce({ data: { results: [] } });
 
     await expect(getSolarIncidence('local_inexistente')).rejects.toThrow(
       'Localização não encontrada'

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import httpClient from '@/lib/http/client';
 import { XMLParser } from 'fast-xml-parser';
 import normalizeBrazilianDate from '@/util/normalizeBrazilianDate';
 import { CONDITION_DESCRIPTIONS, CPTEC_URL } from './constants';
@@ -62,11 +62,10 @@ function formatPrediction(unformattedData) {
  * @returns {Array}
  */
 export const getCurrentCapitalWeatherData = async () => {
-  const currentData = await axios.get(
+  const currentData = await httpClient.get(
     `${CPTEC_URL}/capitais/condicoesAtuais.xml`,
     {
-      responseType: 'application/xml',
-      responseEncoding: 'utf-8',
+      responseType: 'text',
     }
   );
 
@@ -84,11 +83,10 @@ export const getCurrentCapitalWeatherData = async () => {
  * @returns {object}
  */
 export const getCurrentAirportWeather = async (icaoCode) => {
-  const airportWeather = await axios.get(
+  const airportWeather = await httpClient.get(
     `${CPTEC_URL}/estacao/${icaoCode}/condicoesAtuais.xml`,
     {
-      responseType: 'application/xml',
-      responseEncoding: 'utf-8',
+      responseType: 'text',
     }
   );
   const parsed = parser.parse(airportWeather.data);
@@ -108,9 +106,9 @@ export const getCurrentAirportWeather = async (icaoCode) => {
 export const getPredictionWeatherByLocation = async (lat, long) => {
   const url = `${CPTEC_URL}/cidade/7dias/${lat}/${long}/previsaoLatLon.xml`;
 
-  const weatherPredictions = await axios.get(url, {
-    responseType: 'application/xml',
-    responseEncoding: 'binary',
+  const weatherPredictions = await httpClient.get(url, {
+    responseType: 'text',
+    encoding: 'binary',
   });
 
   const parsed = parser.parse(weatherPredictions.data);
@@ -141,9 +139,9 @@ export const getPredictionWeather = async (cityCode, days) => {
     url += `7dias/${cityCode}/previsao.xml`;
   }
 
-  const weatherPredictions = await axios.get(url, {
-    responseType: 'application/xml',
-    responseEncoding: 'binary',
+  const weatherPredictions = await httpClient.get(url, {
+    responseType: 'text',
+    encoding: 'binary',
   });
 
   const parsed = parser.parse(weatherPredictions.data);
@@ -153,26 +151,6 @@ export const getPredictionWeather = async (cityCode, days) => {
     if (jsonData.cidade === 'null') {
       return null;
     }
-
-    // If number of days requested was greater than 7, load extended data from service
-    // Disabled by inconsistences on CPTEC endpoints
-    /* if (days > 7) {
-      const extendedPredictions = await axios.get(
-        `${baseUrl + cityCode}/estendida.xml`,
-        {
-          responseType: 'application/xml',
-          responseEncoding: 'binary',
-        }
-      );
-
-      const extendedJsonData = parser.parse(extendedPredictions.data);
-      if (extendedJsonData.cidade) {
-        jsonData.clima = [
-          ...jsonData.clima,
-          ...formatPrediction(extendedJsonData).clima,
-        ];
-      }
-    } */
 
     // IF total data greater than requested number of days, slice array into correct size
     if (jsonData.clima.length > days) {

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import httpClient from '@/lib/http/client';
 
 import NotFoundError from '@/errors/NotFoundError';
 import { convertIsbn10ToIsbn13, convertIsbn13ToIsbn10 } from './tools';
@@ -87,7 +87,7 @@ export default async function searchInCbl(isbn) {
       top: 12,
     };
 
-    const response = await axios.post(API_SEARCH_URL, searchPayload, {
+    const response = await httpClient.post(API_SEARCH_URL, searchPayload, {
       headers: {
         Accept: 'application/json',
         'Api-Key': API_KEY,

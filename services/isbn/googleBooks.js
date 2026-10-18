@@ -1,4 +1,4 @@
-import axios from 'axios';
+import httpClient from '@/lib/http/client';
 
 import NotFoundError from '@/errors/NotFoundError';
 
@@ -48,7 +48,7 @@ function parsePrice(saleInfo) {
  */
 export default async function searchInGoogleBooks(isbn) {
   try {
-    const response = await axios.get(API_SEARCH_URL, {
+    const response = await httpClient.get(API_SEARCH_URL, {
       params: { q: `isbn:${isbn}`, country: 'BR' },
       headers: { Accept: 'application/json' },
       timeout: 5000,

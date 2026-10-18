@@ -1,5 +1,4 @@
 import { createServer } from 'http';
-import axios from 'axios';
 import {
   afterAll,
   afterEach,
@@ -13,6 +12,8 @@ import {
 
 import handler from '@/pages/api/cnpj/v1/[cnpj]';
 import { getCnpjData } from '@/services/cnpj';
+import httpClient from '@/lib/http/client';
+import { HttpClientError } from '@/lib/http/errors';
 
 const unavailable = {
   message: 'Serviço de consulta de CNPJ temporariamente indisponível.',
@@ -21,12 +22,15 @@ const unavailable = {
 };
 
 function providerError(status, code) {
-  return new axios.AxiosError(
+  return new HttpClientError(
     'Private provider error',
-    code,
-    { url: 'https://minhareceita.org/private' },
-    {},
-    status ? { status, data: { message: 'Mensagem do provedor.' } } : undefined
+    {
+      code,
+      request: { method: 'GET', url: 'https://minhareceita.org/private' },
+      response: status
+        ? { status, data: { message: 'Mensagem do provedor.' } }
+        : undefined,
+    }
   );
 }
 
@@ -63,7 +67,7 @@ afterAll(async () => {
 });
 
 beforeEach(() => {
-  vi.spyOn(axios, 'get');
+  vi.spyOn(httpClient, 'get');
   vi.spyOn(console, 'log').mockImplementation(() => {});
 });
 
@@ -81,7 +85,7 @@ describe('CNPJ provider failure contract', () => {
       qsa: [],
       porte: null,
     };
-    axios.get.mockResolvedValue({ status: 200, data });
+    httpClient.get.mockResolvedValue({ status: 200, data });
 
     const response = await fetch(url);
 
@@ -89,7 +93,7 @@ describe('CNPJ provider failure contract', () => {
     expect(await response.json()).toEqual(data);
     expect(response.headers.get('access-control-allow-origin')).toBe('*');
     expect(response.headers.get('cache-control')).toContain('s-maxage=86400');
-    expect(axios.get).toHaveBeenCalledExactlyOnceWith(
+    expect(httpClient.get).toHaveBeenCalledExactlyOnceWith(
       'https://minhareceita.org/00000000000000',
       { timeout: 5000, signal: expect.any(AbortSignal) }
     );
@@ -106,11 +110,11 @@ describe('CNPJ provider failure contract', () => {
 
     expect(response.status).toBe(204);
     expect(response.headers.get('access-control-allow-origin')).toBe('*');
-    expect(axios.get).not.toHaveBeenCalled();
+    expect(httpClient.get).not.toHaveBeenCalled();
   });
 
   test('keeps unexpected errors as 500 through the error middleware', async () => {
-    axios.get.mockRejectedValue(new TypeError('Unexpected error'));
+    httpClient.get.mockRejectedValue(new TypeError('Unexpected error'));
 
     const response = await fetch(url);
 
@@ -126,7 +130,7 @@ describe('CNPJ provider failure contract', () => {
     [400, 'BadRequestError', 'bad_request'],
     [404, 'NotFoundError', 'not_found'],
   ])('preserves provider %s responses', async (status, name, type) => {
-    axios.get.mockRejectedValue(providerError(status));
+    httpClient.get.mockRejectedValue(providerError(status));
 
     const response = await fetch(url);
 
@@ -141,7 +145,7 @@ describe('CNPJ provider failure contract', () => {
   test.each([500, 502, 503, 504, 599])(
     'maps provider %s to a non-cacheable, sanitized 503',
     async (status) => {
-      axios.get.mockRejectedValue(providerError(status));
+      httpClient.get.mockRejectedValue(providerError(status));
 
       const response = await fetch(url);
 
@@ -149,14 +153,14 @@ describe('CNPJ provider failure contract', () => {
       expect(await response.json()).toEqual(unavailable);
       expect(response.headers.get('cache-control')).toBe('no-store');
       expect(response.headers.get('access-control-allow-origin')).toBe('*');
-      expect(axios.get).toHaveBeenCalledTimes(1);
+      expect(httpClient.get).toHaveBeenCalledTimes(1);
     }
   );
 
   test.each(['ECONNABORTED', 'ETIMEDOUT', 'ECONNRESET', 'ENOTFOUND'])(
     'maps transport failure %s to 503',
     async (code) => {
-      axios.get.mockRejectedValue(providerError(undefined, code));
+      httpClient.get.mockRejectedValue(providerError(undefined, code));
 
       const response = await fetch(url);
 
@@ -170,34 +174,34 @@ describe('CNPJ provider failure contract', () => {
     'does not reclassify other provider status %s as unavailable',
     async (status) => {
       const error = providerError(status);
-      axios.get.mockRejectedValue(error);
+      httpClient.get.mockRejectedValue(error);
       await expect(getCnpjData('00000000000000')).rejects.toBe(error);
     }
   );
 
   test.each([
     new TypeError('Unexpected error'),
-    new axios.AxiosError('Invalid configuration', 'ERR_BAD_OPTION'),
+    new HttpClientError('Invalid configuration', { code: 'ERR_BAD_OPTION' }),
   ])(
     'does not disguise programming/configuration errors: %s',
     async (error) => {
-      axios.get.mockRejectedValue(error);
+      httpClient.get.mockRejectedValue(error);
       await expect(getCnpjData('00000000000000')).rejects.toBe(error);
     }
   );
 
   test('aborts a stalled connection after 5 seconds and clears the deadline', async () => {
     vi.useFakeTimers();
-    axios.get.mockImplementation(
+    httpClient.get.mockImplementation(
       (providerUrl, { signal }) =>
         new Promise((resolve, reject) => {
           signal.addEventListener('abort', () => {
-            reject(new axios.CanceledError('canceled'));
+            reject(new HttpClientError('canceled', { code: 'ERR_CANCELED', name: 'CanceledError' }));
           });
         })
     );
     const request = getCnpjData('00000000000000').catch((error) => error);
-    const { signal } = axios.get.mock.calls[0][1];
+    const { signal } = httpClient.get.mock.calls[0][1];
 
     await vi.advanceTimersByTimeAsync(4999);
     expect(signal.aborted).toBe(false);
@@ -214,13 +218,13 @@ describe('CNPJ provider failure contract', () => {
     'clears the deadline on settled requests: %s',
     async (success) => {
       vi.useFakeTimers();
-      if (success) axios.get.mockResolvedValue({ status: 200, data: {} });
-      else axios.get.mockRejectedValue(providerError(404));
+      if (success) httpClient.get.mockResolvedValue({ status: 200, data: {} });
+      else httpClient.get.mockRejectedValue(providerError(404));
 
       await getCnpjData('00000000000000').catch(() => {});
 
       expect(vi.getTimerCount()).toBe(0);
-      expect(axios.get.mock.calls[0][1].signal.aborted).toBe(false);
+      expect(httpClient.get.mock.calls[0][1].signal.aborted).toBe(false);
     }
   );
 });

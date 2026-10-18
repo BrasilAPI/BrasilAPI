@@ -1,4 +1,5 @@
-import axios from 'axios';
+import httpClient from '@/lib/http/client';
+import { isHttpClientError } from '@/lib/http/errors';
 import ServiceUnavailableError from '@/errors/ServiceUnavailableError';
 
 const PROVIDER_TIMEOUT_MS = 5000;
@@ -9,14 +10,14 @@ export const getCnpjData = async (cnpj) => {
   const deadline = setTimeout(() => controller.abort(), PROVIDER_TIMEOUT_MS);
 
   try {
-    return await axios.get(`https://minhareceita.org/${cnpj}`, {
+    return await httpClient.get(`https://minhareceita.org/${cnpj}`, {
       timeout: PROVIDER_TIMEOUT_MS,
       signal: controller.signal,
     });
   } catch (error) {
     const status = error.response?.status;
     if (
-      axios.isAxiosError(error) &&
+      isHttpClientError(error) &&
       ((status >= 500 && status <= 599) ||
         (!error.response && (error.request || controller.signal.aborted)))
     ) {
