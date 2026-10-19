@@ -15,7 +15,7 @@
       "zipCode": "70040-912"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -34,7 +34,7 @@
       "zipCode": "70040-250"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -45,7 +45,7 @@
     "cnpj": null,
     "headquarters_address": null,
     "address_source": null,
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "none"
   },
   {
@@ -56,7 +56,7 @@
     "cnpj": null,
     "headquarters_address": null,
     "address_source": null,
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "none"
   },
   {
@@ -75,7 +75,7 @@
       "zipCode": "88010-120"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -94,7 +94,7 @@
       "zipCode": "89770-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -113,7 +113,7 @@
       "zipCode": "04003-041"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -132,7 +132,7 @@
       "zipCode": "01310-300"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -141,18 +141,10 @@
     "code": 407,
     "fullName": "SEFER INVESTIMENTOS DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA - EM LIQUIDAÇÃO EXTRAJUDICIAL",
     "cnpj": null,
-    "headquarters_address": {
-      "street": "AVENIDA BRIGADEIRO FARIA LIMA  3900",
-      "number": null,
-      "complement": "CONJ 601",
-      "district": "ITAIM BIBI",
-      "city": "SÃO PAULO",
-      "state": "SP",
-      "zipCode": "04538-132"
-    },
-    "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
-    "address_confidence": "high"
+    "headquarters_address": null,
+    "address_source": null,
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
+    "address_confidence": "none"
   },
   {
     "ispb": "00360305",
@@ -170,7 +162,7 @@
       "zipCode": "70092-900"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -181,7 +173,7 @@
     "cnpj": null,
     "headquarters_address": null,
     "address_source": null,
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "none"
   },
   {
@@ -200,7 +192,7 @@
       "zipCode": "13201-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -219,7 +211,7 @@
       "zipCode": "30190-131"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -238,7 +230,7 @@
       "zipCode": "20040-040"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -257,7 +249,7 @@
       "zipCode": "14020-260"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -276,7 +268,7 @@
       "zipCode": "80250-205"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -295,7 +287,7 @@
       "zipCode": "01302-001"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -314,7 +306,7 @@
       "zipCode": "30130-917"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -333,7 +325,7 @@
       "zipCode": "04538-132"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -344,7 +336,7 @@
     "cnpj": null,
     "headquarters_address": null,
     "address_source": null,
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "none"
   },
   {
@@ -363,7 +355,7 @@
       "zipCode": "01014-010"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -382,7 +374,7 @@
       "zipCode": "04711-130"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -401,7 +393,7 @@
       "zipCode": "06455-030"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -420,12 +412,12 @@
       "zipCode": "89830-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
     "ispb": "01181521",
-    "name": "BCO COOPERATIVO SICREDI S.A.",
+    "name": "BANCO COOPERATIVO SICREDI",
     "code": 748,
     "fullName": "BANCO COOPERATIVO SICREDI S.A.",
     "cnpj": null,
@@ -439,7 +431,7 @@
       "zipCode": "91060-900"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -458,7 +450,7 @@
       "zipCode": "85301-220"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -477,7 +469,7 @@
       "zipCode": "04543-011"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -496,7 +488,7 @@
       "zipCode": "70308-200"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -515,7 +507,7 @@
       "zipCode": "06029-900"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -534,7 +526,7 @@
       "zipCode": "04530-001"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -553,7 +545,7 @@
       "zipCode": "04794-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -572,7 +564,7 @@
       "zipCode": "70610-460"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -591,7 +583,7 @@
       "zipCode": "74805-480"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -610,7 +602,7 @@
       "zipCode": "04583-110"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -629,7 +621,7 @@
       "zipCode": "22250-911"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -648,27 +640,19 @@
       "zipCode": "86010-150"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
     "ispb": "02671743",
-    "name": "BANVOX DTVM",
+    "name": "BANVOX DTVM - EM LIQUIDAÇÃO EXTRAJUDICIAL",
     "code": 591,
-    "fullName": "BANVOX DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA",
+    "fullName": "BANVOX DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA - EM LIQUIDAÇÃO EXTRAJUDICIAL",
     "cnpj": null,
-    "headquarters_address": {
-      "street": "AVENIDA BRIGADEIRO FARIA LIMA, N- 3.732",
-      "number": null,
-      "complement": "14- ANDAR/PARTE A",
-      "district": "ITAIM BIBI",
-      "city": "SÃO PAULO",
-      "state": "SP",
-      "zipCode": "04538-132"
-    },
-    "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
-    "address_confidence": "high"
+    "headquarters_address": null,
+    "address_source": null,
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
+    "address_confidence": "none"
   },
   {
     "ispb": "02682287",
@@ -686,7 +670,7 @@
       "zipCode": "01310-100"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -705,7 +689,7 @@
       "zipCode": "04547-004"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -724,7 +708,7 @@
       "zipCode": "04538-132"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -743,7 +727,7 @@
       "zipCode": "04538-132"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -762,7 +746,7 @@
       "zipCode": "01310-936"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -773,7 +757,7 @@
     "cnpj": null,
     "headquarters_address": null,
     "address_source": null,
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "none"
   },
   {
@@ -792,7 +776,7 @@
       "zipCode": "01310-300"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -811,7 +795,7 @@
       "zipCode": "86020-080"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -830,26 +814,26 @@
       "zipCode": "04576-010"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
     "ispb": "03311443",
-    "name": "PARATI - CFI S.A.",
+    "name": "MEUTUDO SCFI",
     "code": 326,
-    "fullName": "PARATI - CREDITO, FINANCIAMENTO E INVESTIMENTO S.A.",
+    "fullName": "MEUTUDO S.A - SOCIEDADE DE CRÉDITO, FINANCIAMENTO E INVESTIMENTO",
     "cnpj": null,
     "headquarters_address": {
-      "street": "AVENIDA NOSSA SENHORA DA PENHA, 2796",
+      "street": "AVENIDA CHEDID JAFET",
       "number": null,
-      "complement": "SALA 804",
-      "district": "SANTA LUZIA",
-      "city": "VITÓRIA",
-      "state": "ES",
-      "zipCode": "29045-402"
+      "complement": "BLOCO B, 1- PAVIMENTO, CONJUNTO 12B, SALA 2",
+      "district": "VILA OLIMPIA",
+      "city": "SÃO PAULO",
+      "state": "SP",
+      "zipCode": "4551065"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -868,7 +852,7 @@
       "zipCode": "01310-300"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -887,7 +871,7 @@
       "zipCode": "04551-010"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -906,7 +890,7 @@
       "zipCode": "04711-130"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -925,7 +909,7 @@
       "zipCode": "04534-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -944,7 +928,7 @@
       "zipCode": "89035-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -963,7 +947,7 @@
       "zipCode": "29010-240"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -982,7 +966,7 @@
       "zipCode": "28970-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -992,16 +976,16 @@
     "fullName": "SERVICOOP - COOPERATIVA DE CRÉDITO DOS SERVIDORES PÚBLICOS ESTADUAIS E MUNICIPAIS DO RIO GRANDE DO SUL",
     "cnpj": null,
     "headquarters_address": {
-      "street": "RUA JERÔNIMO COELHO, 212",
+      "street": "RUA SANTANA, N- 281",
       "number": null,
-      "complement": "SALA 501",
+      "complement": null,
       "district": "CENTRO",
       "city": "PORTO ALEGRE",
       "state": "RS",
-      "zipCode": "90010-240"
+      "zipCode": "90040-143"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1020,7 +1004,7 @@
       "zipCode": "01418-002"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1039,7 +1023,7 @@
       "zipCode": "06029-900"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1058,7 +1042,7 @@
       "zipCode": "01418-002"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1077,7 +1061,7 @@
       "zipCode": "02011-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1096,7 +1080,7 @@
       "zipCode": "18047-400"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1115,7 +1099,7 @@
       "zipCode": "04542-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1126,7 +1110,7 @@
     "cnpj": null,
     "headquarters_address": null,
     "address_source": null,
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "none"
   },
   {
@@ -1145,7 +1129,7 @@
       "zipCode": "76900-121"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1164,7 +1148,7 @@
       "zipCode": "88070-100"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1183,7 +1167,7 @@
       "zipCode": "18010-080"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1202,7 +1186,7 @@
       "zipCode": "36700-080"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1221,7 +1205,7 @@
       "zipCode": "01216-012"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1240,7 +1224,7 @@
       "zipCode": "04709-110"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1259,7 +1243,7 @@
       "zipCode": "66017-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1278,7 +1262,7 @@
       "zipCode": "04571-010"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1297,7 +1281,7 @@
       "zipCode": "66010-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1316,7 +1300,7 @@
       "zipCode": "98960-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1335,7 +1319,7 @@
       "zipCode": "38184-200"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1354,7 +1338,7 @@
       "zipCode": "05302-001"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1373,7 +1357,7 @@
       "zipCode": "89041-002"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1384,7 +1368,7 @@
     "cnpj": null,
     "headquarters_address": null,
     "address_source": null,
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "none"
   },
   {
@@ -1403,26 +1387,7 @@
       "zipCode": "04538-132"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
-    "address_confidence": "high"
-  },
-  {
-    "ispb": "05841967",
-    "name": "CECM FABRIC CALÇADOS SAPIRANGA",
-    "code": 328,
-    "fullName": "COOPERATIVA DE ECONOMIA E CRÉDITO MÚTUO DOS FABRICANTES DE CALÇADOS DE SAPIRANGA LTDA.",
-    "cnpj": null,
-    "headquarters_address": {
-      "street": "AVENIDA 20 DE SETEMBRO  3825",
-      "number": null,
-      "complement": "LOJA 01",
-      "district": "CENTRO",
-      "city": "SAPIRANGA",
-      "state": "RS",
-      "zipCode": "93800-000"
-    },
-    "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1441,7 +1406,7 @@
       "zipCode": "01419-001"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1460,7 +1425,7 @@
       "zipCode": "06029-900"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1479,7 +1444,7 @@
       "zipCode": "04568-020"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1498,7 +1463,7 @@
       "zipCode": "06029-900"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1517,7 +1482,7 @@
       "zipCode": "60743-902"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1536,7 +1501,7 @@
       "zipCode": "04538-906"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1555,7 +1520,7 @@
       "zipCode": "01418-002"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1574,7 +1539,7 @@
       "zipCode": "93950-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1593,7 +1558,7 @@
       "zipCode": "22410-003"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1612,7 +1577,7 @@
       "zipCode": "04538-132"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1631,7 +1596,7 @@
       "zipCode": "90240-040"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1650,7 +1615,7 @@
       "zipCode": "38950-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1669,7 +1634,7 @@
       "zipCode": "01305-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1688,7 +1653,7 @@
       "zipCode": "88015-100"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1707,7 +1672,7 @@
       "zipCode": "89652-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1726,7 +1691,7 @@
       "zipCode": "89900-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1745,7 +1710,7 @@
       "zipCode": "05477-903"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1764,7 +1729,7 @@
       "zipCode": "57620-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1783,7 +1748,7 @@
       "zipCode": "01451-001"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1802,7 +1767,7 @@
       "zipCode": "04534-004"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1821,7 +1786,7 @@
       "zipCode": "01311-200"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1840,7 +1805,7 @@
       "zipCode": "35402-179"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1859,7 +1824,7 @@
       "zipCode": "22640-102"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1878,7 +1843,7 @@
       "zipCode": "66040-033"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1897,7 +1862,7 @@
       "zipCode": "01311-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1916,7 +1881,7 @@
       "zipCode": "04311-900"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1935,7 +1900,7 @@
       "zipCode": "05501-050"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1954,7 +1919,7 @@
       "zipCode": "0006454010"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1973,7 +1938,7 @@
       "zipCode": "05317-020"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -1984,7 +1949,7 @@
     "cnpj": null,
     "headquarters_address": null,
     "address_source": null,
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "none"
   },
   {
@@ -2003,7 +1968,7 @@
       "zipCode": "01451-001"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2022,7 +1987,7 @@
       "zipCode": "05676-120"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2041,7 +2006,7 @@
       "zipCode": "85601-659"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2060,7 +2025,7 @@
       "zipCode": "04543-011"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2079,7 +2044,7 @@
       "zipCode": "06233-903"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2098,7 +2063,7 @@
       "zipCode": "01301-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2117,7 +2082,7 @@
       "zipCode": "13054-709"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2136,7 +2101,7 @@
       "zipCode": "01311-100"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2155,7 +2120,7 @@
       "zipCode": "34006-050"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2174,7 +2139,7 @@
       "zipCode": "04029-902"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2193,7 +2158,7 @@
       "zipCode": "04543-011"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2212,7 +2177,7 @@
       "zipCode": "13465-019"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2231,7 +2196,7 @@
       "zipCode": "05001-100"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2250,26 +2215,7 @@
       "zipCode": "01452-001"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
-    "address_confidence": "high"
-  },
-  {
-    "ispb": "11414839",
-    "name": "EAGLE IP LTDA.",
-    "code": 664,
-    "fullName": "EAGLE INSTITUICAO DE PAGAMENTO LTDA.",
-    "cnpj": null,
-    "headquarters_address": {
-      "street": "RUA FURRIEL LUIZ ANTÔNIO DE VARGAS, 250",
-      "number": null,
-      "complement": "SALA 1403",
-      "district": "BELA VISTA",
-      "city": "PORTO ALEGRE",
-      "state": "RS",
-      "zipCode": "90470-130"
-    },
-    "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2288,7 +2234,7 @@
       "zipCode": "95052-105"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2307,7 +2253,7 @@
       "zipCode": "07020-081"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2326,7 +2272,7 @@
       "zipCode": "01454-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2345,7 +2291,7 @@
       "zipCode": "01310-100"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2364,7 +2310,7 @@
       "zipCode": "04571-010"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2383,7 +2329,7 @@
       "zipCode": "80250-104"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2402,7 +2348,7 @@
       "zipCode": "87485-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2421,7 +2367,7 @@
       "zipCode": "80050-152"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2440,7 +2386,7 @@
       "zipCode": "06473-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2459,7 +2405,7 @@
       "zipCode": "04538-132"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2478,7 +2424,7 @@
       "zipCode": "06454-050"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2497,7 +2443,7 @@
       "zipCode": "04507-120"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2516,7 +2462,7 @@
       "zipCode": "49040-840"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2535,7 +2481,7 @@
       "zipCode": "05425-020"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2554,7 +2500,7 @@
       "zipCode": "04705-010"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2573,7 +2519,7 @@
       "zipCode": "01454-901"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2592,7 +2538,7 @@
       "zipCode": "04538-132"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2611,26 +2557,26 @@
       "zipCode": "06460-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
     "ispb": "13486793",
-    "name": "BRL TRUST DTVM SA",
+    "name": "APEX GROUP DTVM",
     "code": 173,
-    "fullName": "BRL Trust Distribuidora de Títulos e Valores Mobiliários S.A.",
+    "fullName": "APEX GROUP DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS S.A.",
     "cnpj": null,
     "headquarters_address": {
-      "street": "RUA ALVES GUIMARÃES, 1212",
+      "street": "AVENIDA DRA. RUTH CARDOSO, N- 8501, PAVIMENTO 1",
       "number": null,
-      "complement": null,
+      "complement": "CONJUNTO 1",
       "district": "PINHEIROS",
       "city": "SÃO PAULO",
       "state": "SP",
-      "zipCode": "05410-002"
+      "zipCode": "05425-070"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2649,7 +2595,7 @@
       "zipCode": "04543-120"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2668,7 +2614,7 @@
       "zipCode": "01455-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2687,7 +2633,7 @@
       "zipCode": "02047-901"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2706,7 +2652,7 @@
       "zipCode": "06455-030"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2725,7 +2671,7 @@
       "zipCode": "80420-063"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2744,7 +2690,7 @@
       "zipCode": "80250-205"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2763,7 +2709,7 @@
       "zipCode": "04571-936"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2782,7 +2728,7 @@
       "zipCode": "41820-022"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2801,7 +2747,7 @@
       "zipCode": "04543-900"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2820,7 +2766,7 @@
       "zipCode": "41820-021"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2839,7 +2785,7 @@
       "zipCode": "04794-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2858,7 +2804,7 @@
       "zipCode": "90020-022"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2877,7 +2823,7 @@
       "zipCode": "05402-500"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2896,7 +2842,7 @@
       "zipCode": "04543-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2915,7 +2861,7 @@
       "zipCode": "06460-040"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2934,7 +2880,7 @@
       "zipCode": "04029-100"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2953,7 +2899,7 @@
       "zipCode": "01311-200"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2972,7 +2918,7 @@
       "zipCode": "20040-004"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -2991,7 +2937,7 @@
       "zipCode": "30110-042"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3010,26 +2956,7 @@
       "zipCode": "38400-696"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
-    "address_confidence": "high"
-  },
-  {
-    "ispb": "17352220",
-    "name": "SENSO CCVM S.A.",
-    "code": 545,
-    "fullName": "SENSO CORRETORA DE CAMBIO E VALORES MOBILIARIOS S.A",
-    "cnpj": null,
-    "headquarters_address": {
-      "street": "AVENIDA ATAULFO DE PAIVA, 135 - SALA 810",
-      "number": null,
-      "complement": null,
-      "district": "LEBLON",
-      "city": "RIO DE JANEIRO",
-      "state": "RJ",
-      "zipCode": "22440-032"
-    },
-    "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3048,7 +2975,7 @@
       "zipCode": "04538-133"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3067,7 +2994,7 @@
       "zipCode": "01418-002"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3086,7 +3013,7 @@
       "zipCode": "60150-162"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3105,7 +3032,7 @@
       "zipCode": "87020-025"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3124,7 +3051,7 @@
       "zipCode": "05425-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3143,7 +3070,7 @@
       "zipCode": "05409-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3162,7 +3089,7 @@
       "zipCode": "90520-002"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3181,7 +3108,7 @@
       "zipCode": "30494-310"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3200,7 +3127,7 @@
       "zipCode": "04538-132"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3219,7 +3146,7 @@
       "zipCode": "04542-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3238,7 +3165,7 @@
       "zipCode": "80035-010"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3257,7 +3184,7 @@
       "zipCode": "60060-090"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3273,10 +3200,10 @@
       "district": "VILA YARA",
       "city": "OSASCO",
       "state": "SP",
-      "zipCode": "6020902"
+      "zipCode": "06020-902"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3295,7 +3222,7 @@
       "zipCode": "89223-005"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3314,7 +3241,7 @@
       "zipCode": "01405-900"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3324,16 +3251,16 @@
     "fullName": "UNIDA DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA.",
     "cnpj": null,
     "headquarters_address": {
-      "street": "ALAMEDA RIO NEGRO, 500",
+      "street": "ALAMEDA TOCANTINS N 125",
       "number": null,
-      "complement": "PAVIMENTO 17, TORRE 2, SALAS 1703,1704,1706 E 1708",
+      "complement": "S. 2301 COND. WEST SIDE ALPHAVILLE CENT. IND. EMP.",
       "district": "ALPHAVILLE CENTRO",
       "city": "BARUERI",
       "state": "SP",
-      "zipCode": "06454-000"
+      "zipCode": "06455-020"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3352,7 +3279,7 @@
       "zipCode": "80510-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3371,7 +3298,7 @@
       "zipCode": "69010-080"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3390,7 +3317,7 @@
       "zipCode": "97900-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3409,7 +3336,7 @@
       "zipCode": "04707-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3419,16 +3346,16 @@
     "fullName": "COOPERATIVA DE CRÉDITO MÚTUO DOS EMPREGADOS DO CENTRO UNIVERSITÁRIO NEWTON PAIVA LTDA. - CREDIPAIVA",
     "cnpj": null,
     "headquarters_address": {
-      "street": "RUA CATUMBI N. 166",
+      "street": "RUA PARAIBA 476",
       "number": null,
-      "complement": null,
-      "district": "CAIÇARA",
+      "complement": "SALA 402 4 ANDAR",
+      "district": "SANTA EFIGENIA",
       "city": "BELO HORIZONTE",
       "state": "MG",
-      "zipCode": "31230-070"
+      "zipCode": "30130-140"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3447,7 +3374,7 @@
       "zipCode": "05001-100"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3466,7 +3393,7 @@
       "zipCode": "80010-010"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3476,16 +3403,16 @@
     "fullName": "CARTOS SOCIEDADE DE CRÉDITO DIRETO S.A.",
     "cnpj": null,
     "headquarters_address": {
-      "street": "AVENIDA BRIGADEIRO FARIA LIMA, 1355",
+      "street": "ALAMEDA SANTOS, 1787",
       "number": null,
-      "complement": "12- ANDAR ESCRITÓRIO 1202",
-      "district": "JARDIM PAULISTANO",
+      "complement": "5° ANDAR - CONJUNTO 51 E 52",
+      "district": "CERQUEIRA CÉSAR",
       "city": "SÃO PAULO",
       "state": "SP",
-      "zipCode": "01452-919"
+      "zipCode": "01419-906"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3504,7 +3431,7 @@
       "zipCode": "20606-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3523,7 +3450,7 @@
       "zipCode": "01218-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3542,7 +3469,7 @@
       "zipCode": "05425-020"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3561,7 +3488,7 @@
       "zipCode": "05317-020"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3580,7 +3507,7 @@
       "zipCode": "05402-500"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3591,7 +3518,7 @@
     "cnpj": null,
     "headquarters_address": null,
     "address_source": null,
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "none"
   },
   {
@@ -3602,7 +3529,7 @@
     "cnpj": null,
     "headquarters_address": null,
     "address_source": null,
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "none"
   },
   {
@@ -3621,7 +3548,7 @@
       "zipCode": "01009-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3640,7 +3567,7 @@
       "zipCode": "01310-924"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3659,7 +3586,7 @@
       "zipCode": "01311-200"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3678,7 +3605,7 @@
       "zipCode": "50030-260"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3697,7 +3624,7 @@
       "zipCode": "80410-180"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3707,16 +3634,16 @@
     "fullName": "TRANSFEERA INSTITUIÇÃO DE PAGAMENTO S.A",
     "cnpj": null,
     "headquarters_address": {
-      "street": "AV ANITA GARIBALDI 850",
+      "street": "RUA ARIZONA, 491",
       "number": null,
-      "complement": "CONJ 209 ANDAR 2 TORRE B",
-      "district": "CABRAL",
-      "city": "CURITIBA",
-      "state": "PR",
-      "zipCode": "80540-400"
+      "complement": "CONJUNTO 121",
+      "district": "CIDADE MONÇÕES",
+      "city": "SÃO PAULO",
+      "state": "SP",
+      "zipCode": "4567001"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3726,16 +3653,16 @@
     "fullName": "Banco Digio S.A.",
     "cnpj": null,
     "headquarters_address": {
-      "street": "ALAMEDA XINGU, 512",
+      "street": "AVENIDA ALPHAVILLE, 779, 9- E 10- ANDARES",
       "number": null,
-      "complement": "7 E 10 AND, PARTE, EDIF COND EVOLUTION CORPORATE",
+      "complement": "LADOS A E B, SALAS  901 - 902 E 1001 - 1002",
       "district": "ALPHAVILLE",
       "city": "BARUERI",
       "state": "SP",
-      "zipCode": "06455-030"
+      "zipCode": "06472-020"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3754,7 +3681,7 @@
       "zipCode": "78049-080"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3773,7 +3700,7 @@
       "zipCode": "29043-260"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3792,7 +3719,7 @@
       "zipCode": "91410-400"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3811,7 +3738,7 @@
       "zipCode": "22250-040"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3830,7 +3757,7 @@
       "zipCode": "05319-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3849,7 +3776,7 @@
       "zipCode": "31330-520"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3868,7 +3795,7 @@
       "zipCode": "29010-930"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3878,16 +3805,16 @@
     "fullName": "Banco ABC Brasil S.A.",
     "cnpj": null,
     "headquarters_address": {
-      "street": "AVENIDA CIDADE JARDIM, 803",
+      "street": "RUA TENENTE NEGRÃO, 100",
       "number": null,
-      "complement": "2- ANDAR",
+      "complement": "20 ANDAR",
       "district": "ITAIM BIBI",
       "city": "SÃO PAULO",
       "state": "SP",
-      "zipCode": "01453-000"
+      "zipCode": "04530-911"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3906,7 +3833,7 @@
       "zipCode": "05401-400"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3917,7 +3844,7 @@
     "cnpj": null,
     "headquarters_address": null,
     "address_source": null,
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "none"
   },
   {
@@ -3936,7 +3863,7 @@
       "zipCode": "04534-011"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3947,7 +3874,7 @@
     "cnpj": null,
     "headquarters_address": null,
     "address_source": null,
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "none"
   },
   {
@@ -3966,7 +3893,7 @@
       "zipCode": "01452-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -3976,16 +3903,16 @@
     "fullName": "SANTANDER CORRETORA DE TÍTULOS E VALORES MOBILIÁRIOS S.A.",
     "cnpj": null,
     "headquarters_address": {
-      "street": "RUA BERNARDO GUIMARAES  166",
+      "street": "RUA BOA VISTA",
       "number": null,
-      "complement": "7  8 E 9 ANDARES",
-      "district": "FUNCIONARIOS",
-      "city": "BELO HORIZONTE",
-      "state": "MG",
-      "zipCode": "30140-080"
+      "complement": "2 - ANDAR",
+      "district": "CENTRO",
+      "city": "SÃO PAULO",
+      "state": "SP",
+      "zipCode": "1014001"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4004,7 +3931,7 @@
       "zipCode": "22250-040"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4015,7 +3942,7 @@
     "cnpj": null,
     "headquarters_address": null,
     "address_source": null,
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "none"
   },
   {
@@ -4034,7 +3961,7 @@
       "zipCode": "06454-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4053,7 +3980,7 @@
       "zipCode": "05409-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4072,7 +3999,7 @@
       "zipCode": "04578-911"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4091,7 +4018,7 @@
       "zipCode": "74810-100"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4107,10 +4034,10 @@
       "district": "CIDADE MONÇÕES",
       "city": "SÃO PAULO",
       "state": "SP",
-      "zipCode": "4575020"
+      "zipCode": "04575-020"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4129,7 +4056,7 @@
       "zipCode": "22411-010"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4148,7 +4075,7 @@
       "zipCode": "01419-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4167,7 +4094,7 @@
       "zipCode": "04538-133"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4186,7 +4113,7 @@
       "zipCode": "01406-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4205,7 +4132,7 @@
       "zipCode": "22640-102"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4215,16 +4142,16 @@
     "fullName": "Banco Industrial do Brasil S.A.",
     "cnpj": null,
     "headquarters_address": {
-      "street": "AV  PRES  JUSCELINO KUBITSCHEK  1703",
+      "street": "AV. BRIGADEIRO FARIA LIMA, N- 3.555",
       "number": null,
-      "complement": null,
-      "district": "VILA NOVA CONCEICAO",
+      "complement": "14-, 15-, 16- E 17- ANDARES",
+      "district": "ITAIM BIBI",
       "city": "SÃO PAULO",
       "state": "SP",
-      "zipCode": "04543-901"
+      "zipCode": "04538-133"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4243,7 +4170,7 @@
       "zipCode": "04542-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4262,7 +4189,7 @@
       "zipCode": "79010-780"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4281,7 +4208,26 @@
       "zipCode": "76803-705"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
+    "address_confidence": "high"
+  },
+  {
+    "ispb": "32343119",
+    "name": "MÊNTORE IP S.A.",
+    "code": 804,
+    "fullName": "MÊNTORE INSTITUIÇÃO DE PAGAMENTO S.A.",
+    "cnpj": null,
+    "headquarters_address": {
+      "street": "AVENIDA SANTOS DUMONT",
+      "number": null,
+      "complement": "NÚMERO 6355",
+      "district": "COCÓ",
+      "city": "FORTALEZA",
+      "state": "CE",
+      "zipCode": "60175-053"
+    },
+    "address_source": "bcb_sedes_exact_match",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4300,7 +4246,7 @@
       "zipCode": "05425-020"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4319,7 +4265,7 @@
       "zipCode": "04101-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4338,7 +4284,7 @@
       "zipCode": "80215-182"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4350,14 +4296,14 @@
     "headquarters_address": {
       "street": "RUA CLAUDIO SOARES, 72",
       "number": null,
-      "complement": "CONJUNTO 505",
+      "complement": "CONJUNTO 808/809",
       "district": "PINHEIROS",
       "city": "SÃO PAULO",
       "state": "SP",
       "zipCode": "05422-030"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4376,7 +4322,7 @@
       "zipCode": "04794-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4386,16 +4332,16 @@
     "fullName": "MERCANTIL FINANCEIRA S.A. - SOCIEDADE DE CRÉDITO, FINANCIAMENTO E INVESTIMENTO.",
     "cnpj": null,
     "headquarters_address": {
-      "street": "RUA MINISTRO OROZIMBO NONATO",
+      "street": "AVENIDA DO CONTORNO, N- 5.800",
       "number": null,
-      "complement": "15 ANDAR",
-      "district": "VILA DA SERRA",
+      "complement": "EDIFÍCIO STATEMENT, 14- ANDAR",
+      "district": "SAVASSI",
       "city": "NOVA LIMA",
       "state": "MG",
-      "zipCode": "34006-053"
+      "zipCode": "30110-042"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4414,7 +4360,7 @@
       "zipCode": "01311-300"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4433,7 +4379,7 @@
       "zipCode": "01311-920"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4452,7 +4398,7 @@
       "zipCode": "20050-030"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4471,7 +4417,7 @@
       "zipCode": "06029-900"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4490,7 +4436,7 @@
       "zipCode": "04538-905"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4502,14 +4448,14 @@
     "headquarters_address": {
       "street": "PRAIA DE BOTAFOGO, 501",
       "number": null,
-      "complement": "BLOCO I SALÃO 501",
+      "complement": "BLOCO I SALÃO 601",
       "district": "BOTAFOGO",
       "city": "RIO DE JANEIRO",
       "state": "RJ",
       "zipCode": "22250-040"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4528,7 +4474,7 @@
       "zipCode": "04543-900"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4547,7 +4493,7 @@
       "zipCode": "01311-920"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4566,7 +4512,7 @@
       "zipCode": "01419-908"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4585,7 +4531,26 @@
       "zipCode": "04543-900"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
+    "address_confidence": "high"
+  },
+  {
+    "ispb": "33630661",
+    "name": "GOWD IP LTDA.",
+    "code": 677,
+    "fullName": "GOWD INSTITUIÇÃO DE PAGAMENTO LTDA.",
+    "cnpj": null,
+    "headquarters_address": {
+      "street": "AV. MARINGÁ, N- 892",
+      "number": null,
+      "complement": "SALA 04",
+      "district": "CENTRO",
+      "city": "MARINGÁ",
+      "state": "PR",
+      "zipCode": "87111-000"
+    },
+    "address_source": "bcb_sedes_exact_match",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4604,7 +4569,7 @@
       "zipCode": "04530-001"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4623,45 +4588,7 @@
       "zipCode": "20031-917"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
-    "address_confidence": "high"
-  },
-  {
-    "ispb": "33667205",
-    "name": "CCC POUP INV DO CENTRO NORTE DO BRASIL",
-    "code": 583,
-    "fullName": "COOPERATIVA CENTRAL DE CRÉDITO, POUPANÇA E INVESTIMENTO DO CENTRO NORTE DO BRASIL - CENTRAL SICREDI CENTRO NORTE",
-    "cnpj": null,
-    "headquarters_address": {
-      "street": "AVENIDA A, 789",
-      "number": null,
-      "complement": null,
-      "district": "TERRA NOVA",
-      "city": "CUIABÁ",
-      "state": "MT",
-      "zipCode": "78050-392"
-    },
-    "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
-    "address_confidence": "high"
-  },
-  {
-    "ispb": "33737818",
-    "name": "CCC POUP INV DE MS, GO, DF E TO",
-    "code": 582,
-    "fullName": "COOPERATIVA CENTRAL DE CRÉDITO, POUPANÇA E INVESTIMENTO DE MATO GROSSO DO SUL, GOIÁS, DISTRITO FEDERAL E TOCANTINS - CENTRAL SICREDI BRASIL CENTRAL",
-    "cnpj": null,
-    "headquarters_address": {
-      "street": "AV  T 12  S N",
-      "number": null,
-      "complement": "QD 123 LT 17 18 SALA 2801 ED CONNECT PARK BUSINESS",
-      "district": "BUENO",
-      "city": "GOIÂNIA",
-      "state": "GO",
-      "zipCode": "74223-080"
-    },
-    "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4680,7 +4607,7 @@
       "zipCode": "22640-102"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4699,7 +4626,7 @@
       "zipCode": "20031-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4710,7 +4637,7 @@
     "cnpj": null,
     "headquarters_address": null,
     "address_source": null,
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "none"
   },
   {
@@ -4721,7 +4648,7 @@
     "cnpj": null,
     "headquarters_address": null,
     "address_source": null,
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "none"
   },
   {
@@ -4732,7 +4659,7 @@
     "cnpj": null,
     "headquarters_address": null,
     "address_source": null,
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "none"
   },
   {
@@ -4751,7 +4678,7 @@
       "zipCode": "04794-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4770,7 +4697,7 @@
       "zipCode": "01452-001"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4789,7 +4716,7 @@
       "zipCode": "04542-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4808,26 +4735,7 @@
       "zipCode": "30160-911"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
-    "address_confidence": "high"
-  },
-  {
-    "ispb": "34265629",
-    "name": "INTERCAM CC LTDA",
-    "code": 525,
-    "fullName": "INTERCAM CORRETORA DE CÂMBIO LTDA.",
-    "cnpj": null,
-    "headquarters_address": {
-      "street": "AVENIDA PRESIDENTE JUSCELINO KUBITSCHEK,1327",
-      "number": null,
-      "complement": "9O. ANDAR",
-      "district": "VILA NOVA CONCEIÇÃO",
-      "city": "SÃO PAULO",
-      "state": "SP",
-      "zipCode": "04543-011"
-    },
-    "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4846,7 +4754,7 @@
       "zipCode": "06454-010"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4865,7 +4773,7 @@
       "zipCode": "01311-200"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4884,7 +4792,7 @@
       "zipCode": "88301-100"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4903,7 +4811,7 @@
       "zipCode": "90110-230"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4914,7 +4822,7 @@
     "cnpj": null,
     "headquarters_address": null,
     "address_source": null,
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "none"
   },
   {
@@ -4933,7 +4841,7 @@
       "zipCode": "06454-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4952,7 +4860,7 @@
       "zipCode": "30140-128"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4971,7 +4879,7 @@
       "zipCode": "90230-011"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -4990,7 +4898,7 @@
       "zipCode": "04543-906"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5009,7 +4917,7 @@
       "zipCode": "19010-080"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5028,7 +4936,7 @@
       "zipCode": "05465-070"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5047,7 +4955,7 @@
       "zipCode": "01443-010"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5066,7 +4974,7 @@
       "zipCode": "04794-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5085,7 +4993,7 @@
       "zipCode": "22640-102"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5104,7 +5012,7 @@
       "zipCode": "04576-060"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5123,14 +5031,14 @@
       "zipCode": "29056-210"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
     "ispb": "36583700",
-    "name": "QISTA S.A. CFI",
+    "name": "PLACARPAY S.A - SCFI",
     "code": 516,
-    "fullName": "QISTA S.A. - CRÉDITO, FINANCIAMENTO E INVESTIMENTO",
+    "fullName": "PLACARPAY S.A. - SOCIEDADE DE CRÉDITO, FINANCIAMENTO E INVESTIMENTO",
     "cnpj": null,
     "headquarters_address": {
       "street": "AVENIDA MAGALHÃES DE CASTRO, N- 4.800",
@@ -5142,7 +5050,7 @@
       "zipCode": "05676-120"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5161,7 +5069,7 @@
       "zipCode": "85812-002"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5171,35 +5079,35 @@
     "fullName": "PAY INSTITUICAO DE PAGAMENTO S.A.",
     "cnpj": null,
     "headquarters_address": {
-      "street": "AVENIDA AUGUSTO MEYER, N. 40",
+      "street": "AVENIDA PADRE CACIQUE, N- 2893",
       "number": null,
-      "complement": "SALA 504",
-      "district": "AUXILIADORA",
+      "complement": "SALAS 1206,1207,1208 E 1209",
+      "district": "CRISTAL",
       "city": "PORTO ALEGRE",
       "state": "RS",
-      "zipCode": "90550-110"
+      "zipCode": "90810-240"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
     "ispb": "36864992",
-    "name": "MAF DTVM SA",
+    "name": "APEX DTVM",
     "code": 484,
-    "fullName": "MAF DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS S.A.",
+    "fullName": "APEX DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS S.A.",
     "cnpj": null,
     "headquarters_address": {
-      "street": "RUA ALVES GUIMARÃES",
+      "street": "AVENIDA DRA. RUTH CARDOSO, N- 8501, PAVIMENTO 1",
       "number": null,
-      "complement": null,
+      "complement": "CONJUNTO 1",
       "district": "PINHEIROS",
       "city": "SÃO PAULO",
       "state": "SP",
-      "zipCode": "05410-002"
+      "zipCode": "05425-070"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5218,7 +5126,7 @@
       "zipCode": "37115-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5237,14 +5145,14 @@
       "zipCode": "35402-179"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
     "ispb": "37241230",
-    "name": "SUMUP SCD S.A.",
+    "name": "SUMUP SCFI S.A",
     "code": 404,
-    "fullName": "SUMUP SOCIEDADE DE CRÉDITO DIRETO S.A.",
+    "fullName": "SUMUP SOCIEDADE DE CRÉDITO, FINANCIAMENTO E INVESTIMENTO S.A.",
     "cnpj": null,
     "headquarters_address": {
       "street": "RUA GILBERTO SABINO 215",
@@ -5256,7 +5164,7 @@
       "zipCode": "05425-020"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5275,7 +5183,7 @@
       "zipCode": "04532-001"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5294,7 +5202,7 @@
       "zipCode": "22631-003"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5313,7 +5221,7 @@
       "zipCode": "05418-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5332,7 +5240,7 @@
       "zipCode": "12246-870"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5351,7 +5259,7 @@
       "zipCode": "05408-003"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5370,7 +5278,7 @@
       "zipCode": "06233-903"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5389,7 +5297,7 @@
       "zipCode": "01014-911"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5408,7 +5316,7 @@
       "zipCode": "01419-100"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5427,7 +5335,7 @@
       "zipCode": "01307-002"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5446,7 +5354,7 @@
       "zipCode": "05004-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5465,26 +5373,26 @@
       "zipCode": "49035-100"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
-    "ispb": "38429045",
-    "name": "VIS DTVM LTDA",
-    "code": 455,
-    "fullName": "VIS DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA",
+    "ispb": "38320462",
+    "name": "V3 IP S.A.",
+    "code": 770,
+    "fullName": "V3 INSTITUICAO DE PAGAMENTO S.A.",
     "cnpj": null,
     "headquarters_address": {
-      "street": "AVENIDA SENADOR FILINTO  MULLER, N- 1.181",
+      "street": "AV. EUSEBIO DE QUEIROZ",
       "number": null,
-      "complement": "LOTE REMANESCENTE",
-      "district": "QUILOMBO",
-      "city": "CUIABÁ",
-      "state": "MT",
-      "zipCode": "78043-409"
+      "complement": "1171 / SALA 17",
+      "district": "CENTRO",
+      "city": "FORTALEZA",
+      "state": "CE",
+      "zipCode": "61760-046"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5503,7 +5411,7 @@
       "zipCode": "41820-770"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5522,7 +5430,7 @@
       "zipCode": "85720-025"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5533,7 +5441,7 @@
     "cnpj": null,
     "headquarters_address": null,
     "address_source": null,
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "none"
   },
   {
@@ -5552,7 +5460,7 @@
       "zipCode": "05433-001"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5571,7 +5479,7 @@
       "zipCode": "91330-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5590,7 +5498,7 @@
       "zipCode": "06454-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5609,7 +5517,7 @@
       "zipCode": "80620-200"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5628,7 +5536,7 @@
       "zipCode": "41820-790"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5647,7 +5555,7 @@
       "zipCode": "04004-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5666,7 +5574,7 @@
       "zipCode": "99700-084"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5685,7 +5593,7 @@
       "zipCode": "01405-900"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5704,7 +5612,7 @@
       "zipCode": "03410-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5723,7 +5631,7 @@
       "zipCode": "80420-908"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5742,14 +5650,14 @@
       "zipCode": "01303-060"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
     "ispb": "40333582",
-    "name": "SAYGO CÂMBIO",
+    "name": "SAYGO CC S.A.",
     "code": 556,
-    "fullName": "SAYGO CORRETORA DE CÂMBIO S.A.",
+    "fullName": "SAYGO SOCIEDADE CORRETORA DE CÂMBIO S.A.",
     "cnpj": null,
     "headquarters_address": {
       "street": "AVENIDA NOVE DE JULHO, N. 3575",
@@ -5761,7 +5669,7 @@
       "zipCode": "13208-056"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5780,7 +5688,7 @@
       "zipCode": "20091-020"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5799,7 +5707,7 @@
       "zipCode": "04794-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5809,16 +5717,16 @@
     "fullName": "REPASSES FINANCEIROS E SOLUCOES TECNOLOGICAS INSTITUICAO DE PAGAMENTO S.A.",
     "cnpj": null,
     "headquarters_address": {
-      "street": "AV PAULISTA, 688",
+      "street": "AVENIDA PAULISTA, 2300",
       "number": null,
-      "complement": "ANDAR 12, SALA 02",
-      "district": "BELA VISTA",
+      "complement": "1 ANDAR",
+      "district": "CONSOLAÇÃO",
       "city": "SÃO PAULO",
       "state": "SP",
-      "zipCode": "01310-909"
+      "zipCode": "01310-300"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5837,7 +5745,7 @@
       "zipCode": "86050-460"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5856,7 +5764,7 @@
       "zipCode": "74805-480"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5875,7 +5783,7 @@
       "zipCode": "01451-919"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5887,14 +5795,14 @@
     "headquarters_address": {
       "street": "RUA FUNCHAL  418",
       "number": null,
-      "complement": "21  ANDAR",
+      "complement": "32  ANDAR",
       "district": "VILA OLIMPIA",
       "city": "SÃO PAULO",
       "state": "SP",
       "zipCode": "04551-060"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5913,7 +5821,7 @@
       "zipCode": "87013-933"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5932,7 +5840,7 @@
       "zipCode": "20040-909"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5942,16 +5850,16 @@
     "fullName": "ARTTA SOCIEDADE DE CRÉDITO DIRETO S.A",
     "cnpj": null,
     "headquarters_address": {
-      "street": "RUA MARECHAL DEODORO, N- 630",
+      "street": "RUA MARECHAL DEODORO, N. 630",
       "number": null,
-      "complement": "21- ANDAR - CONJUNTO 2102/2104 -",
+      "complement": "8 ANDAR - CONJUNTO 804",
       "district": "CENTRO",
       "city": "CURITIBA",
       "state": "PR",
-      "zipCode": "80035-010"
+      "zipCode": "80010-010"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5970,7 +5878,7 @@
       "zipCode": "20031-170"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -5989,7 +5897,7 @@
       "zipCode": "31710-400"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6008,7 +5916,7 @@
       "zipCode": "05001-903"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6020,14 +5928,14 @@
     "headquarters_address": {
       "street": "ALAMEDA RIO NEGRO, N- 585",
       "number": null,
-      "complement": "BLOCO B - 3- ANDAR, CJ. 31, SALA 301",
+      "complement": "EDIFICIO JACARI - 6- ANDAR, CJ. 67, SALA 301",
       "district": "ALPHAVILLE INDUSTRIA",
       "city": "BARUERI",
       "state": "SP",
       "zipCode": "06454-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6046,7 +5954,7 @@
       "zipCode": "06454-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6065,7 +5973,7 @@
       "zipCode": "04013-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6084,7 +5992,7 @@
       "zipCode": "04571-050"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6103,7 +6011,7 @@
       "zipCode": "01009-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6122,7 +6030,7 @@
       "zipCode": "70760-536"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6141,7 +6049,7 @@
       "zipCode": "12246-870"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6160,7 +6068,7 @@
       "zipCode": "14800-360"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6179,7 +6087,7 @@
       "zipCode": "04547-006"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6198,7 +6106,7 @@
       "zipCode": "01418-102"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6217,7 +6125,7 @@
       "zipCode": "60833-005"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6236,7 +6144,7 @@
       "zipCode": "90430-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6255,7 +6163,7 @@
       "zipCode": "30190-094"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6274,7 +6182,7 @@
       "zipCode": "88015-190"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6293,7 +6201,7 @@
       "zipCode": "01311-915"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6312,7 +6220,7 @@
       "zipCode": "22250-906"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6331,7 +6239,7 @@
       "zipCode": "04538-133"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6350,7 +6258,7 @@
       "zipCode": "15090-080"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6362,14 +6270,14 @@
     "headquarters_address": {
       "street": "RUA AFONSO CELSO 552",
       "number": null,
-      "complement": "CONJUNTO 63",
+      "complement": "CJ. 63",
       "district": "VILA MARIANA",
       "city": "SÃO PAULO",
       "state": "SP",
       "zipCode": "04119-002"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6388,7 +6296,7 @@
       "zipCode": "97060-002"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6407,26 +6315,26 @@
       "zipCode": "90470-130"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
     "ispb": "45756448",
-    "name": "MICROCASH SCMEPP LTDA.",
+    "name": "SELECT CREDIT SCMEPP LTDA.",
     "code": 537,
-    "fullName": "MICROCASH SOCIEDADE DE CRÉDITO AO MICROEMPREENDEDOR E À EMPRESA DE PEQUENO PORTE LTDA.",
+    "fullName": "SELECT CREDIT SOCIEDADE DE CRÉDITO AO MICROEMPREENDEDOR E À EMPRESA DE PEQUENO PORTE LTDA.",
     "cnpj": null,
     "headquarters_address": {
-      "street": "ALAMEDA JOAQUIM EUGÊNIO DE LIMA, 680",
+      "street": "ALAMEDA SANTOS, 1940",
       "number": null,
-      "complement": "15 ANDAR",
-      "district": "JARDIM PAULISTA",
+      "complement": "CONJ. 141 - 14- ANDAR",
+      "district": "CERQUEIRA CESAR",
       "city": "SÃO PAULO",
       "state": "SP",
-      "zipCode": "01403-000"
+      "zipCode": "01418-102"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6445,7 +6353,7 @@
       "zipCode": "04542-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6464,7 +6372,7 @@
       "zipCode": "01310-200"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6483,7 +6391,7 @@
       "zipCode": "90480-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6502,7 +6410,7 @@
       "zipCode": "06454-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6521,7 +6429,7 @@
       "zipCode": "04538-905"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6540,7 +6448,7 @@
       "zipCode": "22410-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6559,7 +6467,7 @@
       "zipCode": "89219-600"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6578,7 +6486,7 @@
       "zipCode": "01454-901"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6597,26 +6505,7 @@
       "zipCode": "52010-170"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
-    "address_confidence": "high"
-  },
-  {
-    "ispb": "48552108",
-    "name": "LIQUIDO IP LTDA",
-    "code": 667,
-    "fullName": "LIQUIDO INSTITUICAO DE PAGAMENTO LTDA",
-    "cnpj": null,
-    "headquarters_address": {
-      "street": "AVENIDA DAS NAÇÕES UNIDAS, 14.401",
-      "number": null,
-      "complement": "TORRE A2 - JEQUITIBÁ - CONJUNTO 181, 18 ANDAR",
-      "district": "VILA GERTRUDES",
-      "city": "SÃO PAULO",
-      "state": "SP",
-      "zipCode": "04794-000"
-    },
-    "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6635,7 +6524,7 @@
       "zipCode": "41500-300"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6654,7 +6543,7 @@
       "zipCode": "06455-030"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6673,7 +6562,7 @@
       "zipCode": "01419-100"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6692,7 +6581,7 @@
       "zipCode": "79004-680"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6711,7 +6600,7 @@
       "zipCode": "01302-001"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6730,7 +6619,7 @@
       "zipCode": "01452-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6749,7 +6638,7 @@
       "zipCode": "05407-003"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6759,16 +6648,16 @@
     "fullName": "KANASTRA FINANCEIRA S.A, CREDITO, FINANCIAMENTO E INVESTIMENTO",
     "cnpj": null,
     "headquarters_address": {
-      "street": "AVENIDA DOS VINHEDOS, N- 71",
+      "street": "AVENIDA DOS VINHEDOS, N- 70",
       "number": null,
-      "complement": "SALA 803 - B",
-      "district": "JARDIM SUL",
+      "complement": "SALA 303",
+      "district": "JARDIM KARAIBA",
       "city": "UBERLÂNDIA",
       "state": "MG",
-      "zipCode": "38411-848"
+      "zipCode": "38411-217"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6787,7 +6676,7 @@
       "zipCode": "04534-004"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6806,7 +6695,7 @@
       "zipCode": "88331-030"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6825,26 +6714,7 @@
       "zipCode": "80410-201"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
-    "address_confidence": "high"
-  },
-  {
-    "ispb": "49933388",
-    "name": "BRCONDOS SCD S.A.",
-    "code": 568,
-    "fullName": "BRCONDOS SOCIEDADE DE CRÉDITO DIRETO S.A.",
-    "cnpj": null,
-    "headquarters_address": {
-      "street": "RUA MAX COLIN, 1003",
-      "number": null,
-      "complement": "SALA 8",
-      "district": "AMERICA",
-      "city": "JOINVILLE",
-      "state": "SC",
-      "zipCode": "89204-041"
-    },
-    "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6863,7 +6733,26 @@
       "zipCode": "69010-080"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
+    "address_confidence": "high"
+  },
+  {
+    "ispb": "50489148",
+    "name": "MONTE BRAVO CTVM S.A.",
+    "code": 571,
+    "fullName": "MONTE BRAVO CORRETORA DE TÍTULOS E VALORES MOBILIÁRIOS S.A.",
+    "cnpj": null,
+    "headquarters_address": {
+      "street": "RUA MINISTRO JESUÍNO CARDOSO 454",
+      "number": null,
+      "complement": "9- ANDAR, SALA 91",
+      "district": "VILA NOVA CONCEIÇÃO",
+      "city": "SÃO PAULO",
+      "state": "SP",
+      "zipCode": "04544-051"
+    },
+    "address_source": "bcb_sedes_exact_match",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6876,13 +6765,13 @@
       "street": "AV ANGELICA 2503",
       "number": null,
       "complement": "10  ANDAR UNIDADE 105 A 108",
-      "district": "CENTRO",
+      "district": "CONSOLAÇÃO",
       "city": "SÃO PAULO",
       "state": "SP",
       "zipCode": "01227-200"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6901,7 +6790,7 @@
       "zipCode": "04543-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6911,16 +6800,16 @@
     "fullName": "KONECT SOCIEDADE DE CRÉDITO DIRETO S/A",
     "cnpj": null,
     "headquarters_address": {
-      "street": "AVENIDA BRIGADEIRO FARIA LIMA, 3015",
+      "street": "RUA DO ROCIO, 291",
       "number": null,
-      "complement": "CONJUNTO 22",
-      "district": "JARDIM PAULISTANO",
+      "complement": "6- ANDAR",
+      "district": "VILA OLIMPIA",
       "city": "SÃO PAULO",
       "state": "SP",
-      "zipCode": "01452-000"
+      "zipCode": "04552-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6939,7 +6828,7 @@
       "zipCode": "06455-020"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6958,7 +6847,7 @@
       "zipCode": "88085-110"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -6977,26 +6866,7 @@
       "zipCode": "04001-906"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
-    "address_confidence": "high"
-  },
-  {
-    "ispb": "51118718",
-    "name": "NVIO BRASIL SCD S.A.",
-    "code": 689,
-    "fullName": "NVIO BRASIL SOCIEDADE DE CRÉDITO DIRETO S.A.",
-    "cnpj": null,
-    "headquarters_address": {
-      "street": "RUA POTIGUAR MEDEIROS, S/N",
-      "number": null,
-      "complement": "2- ANDAR, SALA N- 211",
-      "district": "PINHEIROS",
-      "city": "SÃO PAULO",
-      "state": "SP",
-      "zipCode": "5422100"
-    },
-    "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7006,16 +6876,16 @@
     "fullName": "G5 SOCIEDADE DE CRÉDITO DIRETO S.A.",
     "cnpj": null,
     "headquarters_address": {
-      "street": "RUA HILARIO VIEIRA 9",
+      "street": "RUA GETÚLIO VARGAS, 2729",
       "number": null,
-      "complement": null,
+      "complement": "SALA 8",
       "district": "CENTRO",
       "city": "SÃO JOSÉ",
       "state": "SC",
-      "zipCode": "88103-235"
+      "zipCode": "88103-400"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7034,7 +6904,7 @@
       "zipCode": "04538-133"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7053,7 +6923,7 @@
       "zipCode": "01423-001"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7072,7 +6942,7 @@
       "zipCode": "04311-900"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7091,7 +6961,7 @@
       "zipCode": "01318-903"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7110,7 +6980,7 @@
       "zipCode": "12246-870"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7129,7 +6999,7 @@
       "zipCode": "81150-050"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7148,7 +7018,7 @@
       "zipCode": "4547004"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7167,7 +7037,7 @@
       "zipCode": "04550-004"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7186,7 +7056,7 @@
       "zipCode": "05402-500"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7205,7 +7075,7 @@
       "zipCode": "04551-060"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7224,7 +7094,7 @@
       "zipCode": "04583-110"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7243,7 +7113,7 @@
       "zipCode": "89204-070"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7262,7 +7132,7 @@
       "zipCode": "06455-030"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7281,7 +7151,7 @@
       "zipCode": "88330-659"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7300,7 +7170,7 @@
       "zipCode": "90240-200"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7310,7 +7180,7 @@
     "fullName": "Banco Arbi S.A.",
     "cnpj": null,
     "headquarters_address": {
-      "street": "AVENIDA NIEMEYER Nº 02",
+      "street": "AVENIDA NIEMEYER N- 02",
       "number": null,
       "complement": "TERREO, PARTE",
       "district": "LEBLON",
@@ -7319,7 +7189,7 @@
       "zipCode": "22450-220"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7330,7 +7200,7 @@
     "cnpj": null,
     "headquarters_address": null,
     "address_source": null,
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "none"
   },
   {
@@ -7349,7 +7219,7 @@
       "zipCode": "90480-002"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7368,7 +7238,7 @@
       "zipCode": "04556-300"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7387,7 +7257,7 @@
       "zipCode": "04543-011"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7406,7 +7276,7 @@
       "zipCode": "01418-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7425,7 +7295,7 @@
       "zipCode": "04845-903"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7444,14 +7314,14 @@
       "zipCode": "30494-270"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
     "ispb": "56198117",
-    "name": "SQUID SCD S.A.",
+    "name": "ZYDI",
     "code": 692,
-    "fullName": "SQUID SOCIEDADE DE CRÉDITO DIRETO S.A.",
+    "fullName": "ZYDI SOCIEDADE DE CRÉDITO DIRETO S.A.",
     "cnpj": null,
     "headquarters_address": {
       "street": "RUA CONSELHEIRO DANTAS, N. 2133",
@@ -7463,7 +7333,7 @@
       "zipCode": "95054-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7482,7 +7352,7 @@
       "zipCode": "04534-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7501,7 +7371,7 @@
       "zipCode": "01452-919"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7520,7 +7390,7 @@
       "zipCode": "09750-730"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7539,14 +7409,14 @@
       "zipCode": "01311-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
     "ispb": "58006471",
-    "name": "BARU DTVM LTDA.",
+    "name": "BASE DTVM",
     "code": 781,
-    "fullName": "BARU DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA.",
+    "fullName": "BASE DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA.",
     "cnpj": null,
     "headquarters_address": {
       "street": "AVENIDA CARLOS GOMES 258",
@@ -7558,7 +7428,7 @@
       "zipCode": "90480-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7577,7 +7447,7 @@
       "zipCode": "01310-930"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7596,7 +7466,7 @@
       "zipCode": "13091-611"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7607,7 +7477,7 @@
     "cnpj": null,
     "headquarters_address": null,
     "address_source": null,
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "none"
   },
   {
@@ -7626,7 +7496,26 @@
       "zipCode": "05425-070"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
+    "address_confidence": "high"
+  },
+  {
+    "ispb": "58674454",
+    "name": "PB SCD",
+    "code": 778,
+    "fullName": "PB SOCIEDADE DE CREDITO DIRETO S.A.",
+    "cnpj": null,
+    "headquarters_address": {
+      "street": "RUA JOSE VERSOLATO 111",
+      "number": null,
+      "complement": "BLOCO B SALA 1814",
+      "district": "CENTRO",
+      "city": "SÃO BERNARDO DO CAMPO",
+      "state": "SP",
+      "zipCode": "09750-730"
+    },
+    "address_source": "bcb_sedes_exact_match",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7645,7 +7534,7 @@
       "zipCode": "04344-020"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7664,7 +7553,7 @@
       "zipCode": "04581-060"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7683,7 +7572,7 @@
       "zipCode": "04578-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7702,7 +7591,7 @@
       "zipCode": "01310-916"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7721,7 +7610,7 @@
       "zipCode": "51020-030"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7740,7 +7629,7 @@
       "zipCode": "04794-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7759,7 +7648,7 @@
       "zipCode": "04344-902"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7778,7 +7667,7 @@
       "zipCode": "01310-925"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7797,7 +7686,7 @@
       "zipCode": "01311-902"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7816,7 +7705,7 @@
       "zipCode": "04344-902"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7835,7 +7724,7 @@
       "zipCode": "06029-900"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7854,7 +7743,7 @@
       "zipCode": "09680-900"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7873,7 +7762,7 @@
       "zipCode": "04507-120"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7892,7 +7781,7 @@
       "zipCode": "01418-100"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7903,7 +7792,7 @@
     "cnpj": null,
     "headquarters_address": null,
     "address_source": null,
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "none"
   },
   {
@@ -7922,7 +7811,7 @@
       "zipCode": "02047-901"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7933,7 +7822,7 @@
     "cnpj": null,
     "headquarters_address": null,
     "address_source": null,
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "none"
   },
   {
@@ -7952,7 +7841,7 @@
       "zipCode": "01436-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7971,7 +7860,7 @@
       "zipCode": "04543-011"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -7990,7 +7879,7 @@
       "zipCode": "04310-030"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8009,7 +7898,7 @@
       "zipCode": "04543-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8028,7 +7917,7 @@
       "zipCode": "01406-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8047,7 +7936,7 @@
       "zipCode": "01445-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8066,7 +7955,7 @@
       "zipCode": "01310-300"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8085,7 +7974,7 @@
       "zipCode": "05001-100"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8104,7 +7993,7 @@
       "zipCode": "04551-080"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8123,7 +8012,7 @@
       "zipCode": "04542-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8142,7 +8031,7 @@
       "zipCode": "01452-919"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8161,7 +8050,7 @@
       "zipCode": "04538-132"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8180,7 +8069,7 @@
       "zipCode": "13870-005"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8199,7 +8088,7 @@
       "zipCode": "04543-900"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8218,7 +8107,7 @@
       "zipCode": "05409-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8237,7 +8126,7 @@
       "zipCode": "01311-200"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8256,7 +8145,7 @@
       "zipCode": "03319-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8266,16 +8155,16 @@
     "fullName": "QORE DISTRIBUIDORA DE TITULOS E VALORES MOBILIÁRIOS LTDA",
     "cnpj": null,
     "headquarters_address": {
-      "street": "RUA FIDÊNCIO RAMOS, 302",
+      "street": "RUA GOMES DE CARVALHO, 1510",
       "number": null,
-      "complement": "10- ANDAR - CONJUNTO 101",
+      "complement": "09 - ANDAR - CONJUNTO 92",
       "district": "VILA OLIMPIA",
       "city": "SÃO PAULO",
       "state": "SP",
-      "zipCode": "04551-010"
+      "zipCode": "04547-005"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8294,7 +8183,7 @@
       "zipCode": "01452-002"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8313,7 +8202,7 @@
       "zipCode": "05426-100"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8332,7 +8221,7 @@
       "zipCode": "04538-132"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8351,7 +8240,7 @@
       "zipCode": "04543-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8370,14 +8259,14 @@
       "zipCode": "89220-100"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
     "ispb": "63019146",
-    "name": "J17 CFI S.A.",
+    "name": "ANKOR CFI S.A.",
     "code": 564,
-    "fullName": "J17 - SOCIEDADE DE CRÉDITO, FINANCIAMENTO E INVESTIMENTO S/A",
+    "fullName": "ANKOR CAPITAL - SOCIEDADE DE CRÉDITO, FINANCIAMENTO E INVESTIMENTO S/A",
     "cnpj": null,
     "headquarters_address": {
       "street": "AVENIDA AYRTON SENNA DA SILVA, 575",
@@ -8389,45 +8278,37 @@
       "zipCode": "86050-460"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
     "ispb": "67030395",
-    "name": "TRUSTEE DTVM LTDA.",
+    "name": "TRUSTEE DTVM LTDA. - EM LIQUIDAÇÃO EXTRAJUDICIAL",
     "code": 438,
-    "fullName": "TRUSTEE DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA.",
+    "fullName": "TRUSTEE DISTRIBUIDORA DE TÍTULOS E VALORES MOBILIÁRIOS LTDA. - EM LIQUIDAÇÃO EXTRAJUDICIAL",
     "cnpj": null,
-    "headquarters_address": {
-      "street": "AVENIDA BRIGADEIRO FARIA LIMA, 3.732",
-      "number": null,
-      "complement": "14 ANDAR/PARTE A",
-      "district": "ITAIM BIBI",
-      "city": "SÃO PAULO",
-      "state": "SP",
-      "zipCode": "04538-132"
-    },
-    "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
-    "address_confidence": "high"
+    "headquarters_address": null,
+    "address_source": null,
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
+    "address_confidence": "none"
   },
   {
     "ispb": "68757681",
-    "name": "SIMPAUL",
+    "name": "BINANCE BRASIL",
     "code": 365,
-    "fullName": "SIMPAUL CORRETORA DE CAMBIO E VALORES MOBILIARIOS  S.A.",
+    "fullName": "BINANCE BRASIL CORRETORA DE CÂMBIO E VALORES MOBILIÁRIOS S.A.",
     "cnpj": null,
     "headquarters_address": {
-      "street": "AV. CARLOS GOMES, 300",
+      "street": "RUA DOUTOR RENATO PAES DE BARROS, 33",
       "number": null,
-      "complement": "ANDAR 7, SALA 8",
-      "district": "BOA VISTA",
-      "city": "PORTO ALEGRE",
-      "state": "RS",
-      "zipCode": "90480-000"
+      "complement": "9O ANDAR, SALA 02",
+      "district": "ITAIM BIBI",
+      "city": "SÃO PAULO",
+      "state": "SP",
+      "zipCode": "04530-904"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8446,26 +8327,7 @@
       "zipCode": "05402-920"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
-    "address_confidence": "high"
-  },
-  {
-    "ispb": "70119680",
-    "name": "CENTRAL NORDESTE",
-    "code": 581,
-    "fullName": "COOPERATIVA CENTRAL DE CRÉDITO, POUPANÇA E INVESTIMENTO DO NORDESTE - CENTRAL SICREDI NORDESTE",
-    "cnpj": null,
-    "headquarters_address": {
-      "street": "AV. PRESIDENTE EPITÁCIO PESSOA",
-      "number": null,
-      "complement": "19- ANDAR - EDIFÍCIO ATLANTIS OFFICES DESIGN",
-      "district": "TAMBAUZINHO",
-      "city": "JOÃO PESSOA",
-      "state": "PB",
-      "zipCode": "58042-006"
-    },
-    "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8484,7 +8346,7 @@
       "zipCode": "30380-403"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8503,14 +8365,14 @@
       "zipCode": "13600-061"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
     "ispb": "73302408",
-    "name": "EXIM CC LTDA.",
+    "name": "EXIM SCC",
     "code": 514,
-    "fullName": "EXIM CORRETORA DE CAMBIO LTDA",
+    "fullName": "EXIM SOCIEDADE CORRETORA DE CÂMBIO LTDA",
     "cnpj": null,
     "headquarters_address": {
       "street": "RUA SIQUEIRA CAMPOS 1184, CONJ. 301",
@@ -8522,7 +8384,7 @@
       "zipCode": "90010-001"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8541,7 +8403,7 @@
       "zipCode": "01310-904"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8560,7 +8422,7 @@
       "zipCode": "04543-011"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8579,7 +8441,7 @@
       "zipCode": "90010-140"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8598,7 +8460,7 @@
       "zipCode": "04538-132"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8617,7 +8479,7 @@
       "zipCode": "85803-490"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8636,7 +8498,7 @@
       "zipCode": "80010-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8655,7 +8517,7 @@
       "zipCode": "04553-900"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8674,45 +8536,7 @@
       "zipCode": "01310-919"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
-    "address_confidence": "high"
-  },
-  {
-    "ispb": "80230774",
-    "name": "CCC POUP E INV DOS ESTADOS DO PR, SP E RJ",
-    "code": 584,
-    "fullName": "COOPERATIVA CENTRAL DE CRÉDITO, POUPANÇA E INVESTIMENTO DOS ESTADOS DO PARANÁ, SÃO PAULO E RIO DE JANEIRO - CENTRAL SICREDI PR/SP/RJ",
-    "cnpj": null,
-    "headquarters_address": {
-      "street": "R ALCIDES MUNHOZ  165",
-      "number": null,
-      "complement": "1  ANDAR",
-      "district": "MERCES",
-      "city": "CURITIBA",
-      "state": "PR",
-      "zipCode": "80810-040"
-    },
-    "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
-    "address_confidence": "high"
-  },
-  {
-    "ispb": "80271455",
-    "name": "BCO RNX S.A.",
-    "code": 720,
-    "fullName": "BANCO RNX S.A.",
-    "cnpj": null,
-    "headquarters_address": {
-      "street": "RUA HEITOR STOCKLER DE FRANÇA, 396",
-      "number": null,
-      "complement": "SALA 303",
-      "district": "CENTRO CIVICO",
-      "city": "CURITIBA",
-      "state": "PR",
-      "zipCode": "80030-030"
-    },
-    "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8731,7 +8555,7 @@
       "zipCode": "87308-445"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8750,26 +8574,7 @@
       "zipCode": "80730-001"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
-    "address_confidence": "high"
-  },
-  {
-    "ispb": "87437687",
-    "name": "CCCPOUPINV SUL E SUDESTE - CENTRAL SUL/SUDESTE",
-    "code": 580,
-    "fullName": "COOPERATIVA CENTRAL DE CRÉDITO, POUPANÇA E INVESTIMENTO DO SUL E SUDESTE - CENTRAL SICREDI SUL/SUDESTE",
-    "cnpj": null,
-    "headquarters_address": {
-      "street": "R. MANOELITO DE ORNELLAS, 55",
-      "number": null,
-      "complement": "18- E 19- ANDAR",
-      "district": "PRAIA DE BELAS",
-      "city": "PORTO ALEGRE",
-      "state": "RS",
-      "zipCode": "90110-230"
-    },
-    "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8788,7 +8593,7 @@
       "zipCode": "04552-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8807,7 +8612,7 @@
       "zipCode": "04543-011"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8826,7 +8631,7 @@
       "zipCode": "12246-870"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8845,7 +8650,7 @@
       "zipCode": "13337-300"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8864,7 +8669,7 @@
       "zipCode": "90018-900"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8883,7 +8688,7 @@
       "zipCode": "90620-000"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8902,7 +8707,7 @@
       "zipCode": "04567-003"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8921,7 +8726,7 @@
       "zipCode": "04568-020"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   },
   {
@@ -8940,7 +8745,7 @@
       "zipCode": "01046-913"
     },
     "address_source": "bcb_sedes_exact_match",
-    "address_last_sync": "2026-06-30T15:42:45.313Z",
+    "address_last_sync": "2026-10-19T06:06:26.611Z",
     "address_confidence": "high"
   }
 ]
