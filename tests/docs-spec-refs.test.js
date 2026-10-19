@@ -20,4 +20,12 @@ describe('spec OpenAPI completa (docs)', () => {
     walk(spec);
     expect(broken).toEqual([]);
   });
+
+  it('servers da spec preserva o prefixo /api mesmo com docs que declaram servers', () => {
+    const spec = getJsonDoc();
+
+    expect(spec.servers).toBeDefined();
+    expect(spec.servers.length).toBeGreaterThan(0);
+    expect(spec.servers[0].url).toBe('https://brasilapi.com.br/api');
+  });
 });
