@@ -2,7 +2,7 @@ import app from '@/app';
 import BadRequestError from '@/errors/BadRequestError';
 import InternalError from '@/errors/InternalError';
 
-import httpClient from '@/lib/http/client';
+import axios from 'axios';
 
 function validateGeolocation(latitude = '', longitude = '') {
   const latitudeRegex = /^(-?[1-8]?\d(?:\.\d{1,18})?|90(?:\.0{1,18})?)$/;
@@ -29,7 +29,7 @@ async function geolocation(request, response) {
   }
 
   try {
-    const result = await httpClient.get(
+    const result = await axios.get(
       `
       https://api.bigdatacloud.net/data/reverse-geocode-client
     `,

@@ -1,27 +1,39 @@
 // tests/cep-timeout.test.js
 // Testa que updateOpenCep NÃO bloqueia a resposta quando OpenCEP falha.
-// Mocka o httpClient para simular OpenCEP fora do ar e mede a latência real do fetchCep.
+// Mocka o axios para simular OpenCEP fora do ar e mede a latência real do fetchCep.
 
-import httpClient from '@/lib/http/client';
+import axios from 'axios';
 import { describe, expect, it, vi } from 'vitest';
 import { fetchCep } from '../services/cep/cep';
 
-vi.mock('@/lib/http/client', () => ({ default: { get: vi.fn(), post: vi.fn() } }));
+vi.mock('axios');
 
 describe('fetchCep — updateOpenCep não deve bloquear a resposta', () => {
   it('responde em menos de 4s mesmo com OpenCEP + update indisponíveis', async () => {
     // Simula: opencep.com/v1 NÃO responde (timeout de 3s)
     //         update.opencep.com NÃO responde (timeout de 3s)
     //         viacep (fallback) responde normalmente
-    httpClient.get.mockImplementation((url) => {
+    axios.get.mockImplementation((url) => {
       if (url.includes('opencep.com')) {
-        // OpenCEP fora do ar — nunca resolve (timeout = 3s)
+        // OpenCEP fora do ar — nunca resolve (timeout do axios = 3s)
         return new Promise((_, reject) => {
           setTimeout(() => {
             reject(
               Object.assign(new Error('timeout'), { code: 'ECONNABORTED' })
             );
           }, 3000);
+        });
+      }
+      if (url.includes('viacep.com.br')) {
+        // ViaCEP (fallback) — responde rápido
+        return Promise.resolve({
+          data: {
+            cep: '05010000',
+            uf: 'SP',
+            localidade: 'São Paulo',
+            bairro: 'Perdizes',
+            logradouro: 'Rua Caiubi',
+          },
         });
       }
       if (url.includes('update.opencep.com')) {

@@ -1,11 +1,10 @@
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import PositionsByMunicipality from '@/pages/api/eleicoes/cargos-por-municipio';
-import httpClient from '@/lib/http/client';
+import axios from 'axios';
 
-vi.mock('@/lib/http/client', () => ({
+vi.mock('axios', () => ({
   default: {
     get: vi.fn(),
-    post: vi.fn(),
   },
 }));
 
@@ -55,7 +54,7 @@ describe('API handler /api/eleicoes/cargos-por-municipio', () => {
       ],
     };
 
-    vi.mocked(httpClient.get).mockResolvedValueOnce({ data: mockResponse });
+    vi.mocked(axios.get).mockResolvedValueOnce({ data: mockResponse });
 
     const req = {
       query: {
@@ -76,6 +75,6 @@ describe('API handler /api/eleicoes/cargos-por-municipio', () => {
 
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith(mockResponse);
-    expect(httpClient.get).toHaveBeenCalled();
+    expect(axios.get).toHaveBeenCalled();
   });
 });

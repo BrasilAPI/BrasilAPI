@@ -1,4 +1,4 @@
-import httpClient from '@/lib/http/client';
+import axios from 'axios';
 import { XMLParser } from 'fast-xml-parser';
 import { CPTEC_URL, STATE_REGION_MAP } from './constants';
 
@@ -21,9 +21,9 @@ const formatCity = (city) => {
  * @returns {Array}
  */
 export const getAllCitiesData = async () => {
-  const citiesData = await httpClient.get(`${CPTEC_URL}/listaCidades`, {
-    responseType: 'text',
-    encoding: 'binary',
+  const citiesData = await axios.get(`${CPTEC_URL}/listaCidades`, {
+    responseType: 'application/xml',
+    responseEncoding: 'binary',
   });
 
   const parsed = parser.parse(citiesData.data);
@@ -39,9 +39,9 @@ export const getAllCitiesData = async () => {
  * @returns {Array}
  */
 export const getCityData = async (name) => {
-  const citiesData = await httpClient.get(`${CPTEC_URL}/listaCidades?city=${name}`, {
-    responseType: 'text',
-    encoding: 'binary',
+  const citiesData = await axios.get(`${CPTEC_URL}/listaCidades?city=${name}`, {
+    responseType: 'application/xml',
+    responseEncoding: 'binary',
   });
 
   const parsed = parser.parse(citiesData.data);

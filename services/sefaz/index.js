@@ -1,4 +1,4 @@
-import httpClient from '@/lib/http/client';
+import axios from 'axios';
 import ncmList from './ncmList.json';
 
 function parseObject(obj) {
@@ -39,7 +39,7 @@ const fetchNcmListFromSefaz = async () => {
   const url =
     'https://portalunico.siscomex.gov.br/classif/api/publico/nomenclatura/download/json';
 
-  const { data: body } = await httpClient.get(url);
+  const { data: body } = await axios.get(url);
 
   return body;
 };

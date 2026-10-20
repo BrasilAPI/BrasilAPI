@@ -1,4 +1,4 @@
-import httpClient from '@/lib/http/client';
+import axios from 'axios';
 import BadRequestError from '@/errors/BadRequestError';
 import {
   ELECTIONS_API_URL,
@@ -53,7 +53,7 @@ export const listCandidatureByMunicipality = async (
   try {
     const requestUrl = `${ELECTIONS_API_URL}${CANDIDATE_LIST_URL}/${year}/${municipality}/${election}/${position}/candidatos`;
 
-    const response = await httpClient.get(requestUrl);
+    const response = await axios.get(requestUrl);
     return response.data;
   } catch (error) {
     const err = new Error('Erro ao buscar candidaturas.');
@@ -97,7 +97,7 @@ export const searchCandidate = async (
   try {
     const requestUrl = `${ELECTIONS_API_URL}${CANDIDATE_SEARCH_URL}/${yearStr}/${municipality}/${election}/candidato/${candidate}`;
 
-    const response = await httpClient.get(requestUrl);
+    const response = await axios.get(requestUrl);
     return response.data;
   } catch (error) {
     if (error.response && error.response.status === 404) {

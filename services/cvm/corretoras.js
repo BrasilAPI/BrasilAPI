@@ -1,13 +1,13 @@
 import AdmZip from 'adm-zip';
-import httpClient from '@/lib/http/client';
+import axios from 'axios';
 
 const LINE_BREAK = '\r\n';
 
 async function requestCvmFile() {
   const fileUrl =
     'https://dados.cvm.gov.br/dados/INTERMED/CAD/DADOS/cad_intermed.zip';
-  return httpClient.get(fileUrl, {
-    responseType: 'buffer',
+  return axios.get(fileUrl, {
+    responseType: 'arraybuffer',
   });
 }
 

@@ -1,4 +1,4 @@
-import httpClient from '@/lib/http/client';
+import axios from 'axios';
 import { z } from 'zod';
 
 const URL = 'https://sistemaswebb3-listados.b3.com.br';
@@ -77,7 +77,7 @@ async function fetchStockTickers({ pageNumber, pageSize, language = 'pt-br' }) {
     JSON.stringify({ language, pageNumber, pageSize })
   ).toString('base64');
 
-  const { data } = await httpClient.get(
+  const { data } = await axios.get(
     `${URL}/listedCompaniesProxy/CompanyCall/GetInitialCompanies/${paramsB64}`
   );
 
@@ -115,7 +115,7 @@ async function fetchInvestmentFundTickers({
     JSON.stringify({ language, pageNumber, pageSize, typeFund })
   ).toString('base64');
 
-  const { data } = await httpClient.get(
+  const { data } = await axios.get(
     `${URL}/fundsListedProxy/Search/GetListFunds/${paramsB64}`
   );
 

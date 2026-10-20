@@ -1,14 +1,13 @@
-import httpClient from '@/lib/http/client';
+import axios from 'axios';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 
 import Candidature from '@/pages/api/eleicoes/candidaturas/index';
 import SearchCandidate from '@/pages/api/eleicoes/candidaturas/[candidato]';
 import { ERRORMESSAGES } from '@/services/eleicoes/constants';
 
-vi.mock('@/lib/http/client', () => ({
+vi.mock('axios', () => ({
   default: {
     get: vi.fn(),
-    post: vi.fn(),
   },
 }));
 
@@ -28,7 +27,7 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
       service: 'mock-service',
     };
 
-    vi.mocked(httpClient.get).mockResolvedValueOnce({ data: mockResponse });
+    vi.mocked(axios.get).mockResolvedValueOnce({ data: mockResponse });
 
     const req = {
       query: {
@@ -51,7 +50,7 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
 
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith(mockResponse);
-    expect(httpClient.get).toHaveBeenCalled();
+    expect(axios.get).toHaveBeenCalled();
   });
 
   it('deve lançar erro quando eleição está ausente em Candidaturas', async () => {
@@ -291,7 +290,7 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
       candidatoApto: false,
     };
 
-    vi.mocked(httpClient.get).mockResolvedValueOnce({ data: mockResponse });
+    vi.mocked(axios.get).mockResolvedValueOnce({ data: mockResponse });
 
     const req = {
       query: {
@@ -314,7 +313,7 @@ describe('API handler /api/eleicoes/candidaturas/v1 - in-process', () => {
 
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith(mockResponse);
-    expect(httpClient.get).toHaveBeenCalled();
+    expect(axios.get).toHaveBeenCalled();
   });
 
   it('deve lançar erro quando eleição está ausente em BuscarCandidato', async () => {

@@ -116,9 +116,3 @@ dist
 
 # Plan directory
 Plan/docs/superpowers/
-
-# local portable Node 20 toolchain
-.tools/
-
-# HTTP cache layer
-/.cache/http-cache.sqlite*

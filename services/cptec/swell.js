@@ -1,4 +1,4 @@
-import httpClient from '@/lib/http/client';
+import axios from 'axios';
 import { XMLParser } from 'fast-xml-parser';
 
 import normalizeBrazilianDate from '@/util/normalizeBrazilianDate';
@@ -10,9 +10,9 @@ export const getSwellData = async (cityCode, days) => {
   const url = `${CPTEC_URL}/cidade/${cityCode}/todos/tempos/ondas.xml`;
 
   try {
-    const swellData = await httpClient.get(url, {
-      responseType: 'text',
-      encoding: 'binary',
+    const swellData = await axios.get(url, {
+      responseType: 'application/xml',
+      responseEncoding: 'binary',
     });
 
     const jsonData = parser.parse(swellData.data);

@@ -1,4 +1,4 @@
-import httpClient from '@/lib/http/client';
+import axios from 'axios';
 import BadRequestError from '@/errors/BadRequestError';
 import {
   ELECTIONS_API_URL,
@@ -29,7 +29,7 @@ export const listPositionsByMunicipality = async (election, municipality) => {
   const requestUrl = `${ELECTIONS_API_URL}${POSITION_LIST_URL}/${election}/${municipality}/cargos`;
 
   try {
-    const response = await httpClient.get(requestUrl);
+    const response = await axios.get(requestUrl);
     return response.data;
   } catch (error) {
     const err = new Error('Falha ao buscar cargos por município.');

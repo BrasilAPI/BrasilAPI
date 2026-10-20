@@ -1,4 +1,4 @@
-import httpClient from '@/lib/http/client';
+import axios from 'axios';
 
 import NotFoundError from '@/errors/NotFoundError';
 
@@ -55,7 +55,7 @@ export default async function searchInOpenLibrary(isbn) {
   try {
     const bibKey = `ISBN:${isbn}`;
 
-    const response = await httpClient.get(API_SEARCH_URL, {
+    const response = await axios.get(API_SEARCH_URL, {
       params: {
         bibkeys: bibKey,
         jscmd: 'data',
@@ -71,7 +71,7 @@ export default async function searchInOpenLibrary(isbn) {
 
     const olBook = response.data[bibKey];
 
-    const { data: details } = await httpClient.get(
+    const { data: details } = await axios.get(
       `${API_BASE_URL}/isbn/${isbn}.json`,
       {
         headers: {

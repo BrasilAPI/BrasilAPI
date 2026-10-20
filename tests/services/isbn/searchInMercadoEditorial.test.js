@@ -1,8 +1,8 @@
 import { describe, test, expect, vi, beforeEach } from 'vitest';
-import httpClient from '@/lib/http/client';
+import axios from 'axios';
 import searchInMercadoEditorial from '@/services/isbn/mercadoEditorial';
 
-vi.mock('@/lib/http/client', () => ({ default: { get: vi.fn(), post: vi.fn() } }));
+vi.mock('axios');
 
 describe('searchInMercadoEditorial - MC/DC Coverage', () => {
   beforeEach(() => {
@@ -10,7 +10,7 @@ describe('searchInMercadoEditorial - MC/DC Coverage', () => {
   });
 
   test('CT1: D1 - books é null', async () => {
-    httpClient.get.mockResolvedValue({
+    axios.get.mockResolvedValue({
       data: { books: null },
     });
 
@@ -20,7 +20,7 @@ describe('searchInMercadoEditorial - MC/DC Coverage', () => {
   });
 
   test('CT2: D1 - books é undefined', async () => {
-    httpClient.get.mockResolvedValue({
+    axios.get.mockResolvedValue({
       data: {},
     });
 
@@ -30,7 +30,7 @@ describe('searchInMercadoEditorial - MC/DC Coverage', () => {
   });
 
   test('CT3: D1 - books vazio', async () => {
-    httpClient.get.mockResolvedValue({
+    axios.get.mockResolvedValue({
       data: { books: [] },
     });
 
@@ -60,7 +60,7 @@ describe('searchInMercadoEditorial - MC/DC Coverage', () => {
       },
     };
 
-    httpClient.get.mockResolvedValue({
+    axios.get.mockResolvedValue({
       data: { books: [mockBook] },
     });
 
@@ -109,7 +109,7 @@ describe('searchInMercadoEditorial - MC/DC Coverage', () => {
       imagens: null,
     };
 
-    httpClient.get.mockResolvedValue({
+    axios.get.mockResolvedValue({
       data: { books: [mockBook] },
     });
 
@@ -134,7 +134,7 @@ describe('searchInMercadoEditorial - MC/DC Coverage', () => {
       imagens: null,
     };
 
-    httpClient.get.mockResolvedValue({
+    axios.get.mockResolvedValue({
       data: { books: [mockBook] },
     });
 
@@ -159,7 +159,7 @@ describe('searchInMercadoEditorial - MC/DC Coverage', () => {
       imagens: null,
     };
 
-    httpClient.get.mockResolvedValue({
+    axios.get.mockResolvedValue({
       data: { books: [mockBook] },
     });
 
@@ -184,7 +184,7 @@ describe('searchInMercadoEditorial - MC/DC Coverage', () => {
       imagens: null,
     };
 
-    httpClient.get.mockResolvedValue({
+    axios.get.mockResolvedValue({
       data: { books: [mockBook] },
     });
 
@@ -209,7 +209,7 @@ describe('searchInMercadoEditorial - MC/DC Coverage', () => {
       imagens: null,
     };
 
-    httpClient.get.mockResolvedValue({
+    axios.get.mockResolvedValue({
       data: { books: [mockBook] },
     });
 
@@ -234,7 +234,7 @@ describe('searchInMercadoEditorial - MC/DC Coverage', () => {
       imagens: null,
     };
 
-    httpClient.get.mockResolvedValue({
+    axios.get.mockResolvedValue({
       data: { books: [mockBook] },
     });
 
@@ -259,7 +259,7 @@ describe('searchInMercadoEditorial - MC/DC Coverage', () => {
       imagens: null,
     };
 
-    httpClient.get.mockResolvedValue({
+    axios.get.mockResolvedValue({
       data: { books: [mockBook] },
     });
 
@@ -284,7 +284,7 @@ describe('searchInMercadoEditorial - MC/DC Coverage', () => {
       imagens: {},
     };
 
-    httpClient.get.mockResolvedValue({
+    axios.get.mockResolvedValue({
       data: { books: [mockBook] },
     });
 
@@ -311,7 +311,7 @@ describe('searchInMercadoEditorial - MC/DC Coverage', () => {
       },
     };
 
-    httpClient.get.mockResolvedValue({
+    axios.get.mockResolvedValue({
       data: { books: [mockBook] },
     });
 
@@ -340,7 +340,7 @@ describe('searchInMercadoEditorial - MC/DC Coverage', () => {
       },
     };
 
-    httpClient.get.mockResolvedValue({
+    axios.get.mockResolvedValue({
       data: { books: [mockBook] },
     });
 
@@ -365,7 +365,7 @@ describe('searchInMercadoEditorial - MC/DC Coverage', () => {
       imagens: null,
     };
 
-    httpClient.get.mockResolvedValue({
+    axios.get.mockResolvedValue({
       data: { books: [mockBook] },
     });
 
@@ -394,7 +394,7 @@ describe('searchInMercadoEditorial - MC/DC Coverage', () => {
       imagens: null,
     };
 
-    httpClient.get.mockResolvedValue({
+    axios.get.mockResolvedValue({
       data: { books: [mockBook] },
     });
 

@@ -1,10 +1,10 @@
-import httpClient from '@/lib/http/client';
+import axios from 'axios';
 import { formatDate } from '@/services/date';
 
 export const getCurrencyExchange = async (date, currency) => {
   const data = formatDate(date, 'MM-DD-YYYY');
 
-  const resp = await httpClient.get(
+  const resp = await axios.get(
     `https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoMoedaDia(moeda=@moeda,dataCotacao=@dataCotacao)?@moeda='${currency}'&@dataCotacao='${data}'&$top=100&$format=json`
   );
 

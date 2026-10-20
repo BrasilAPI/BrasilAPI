@@ -1,6 +1,8 @@
-import httpClient from '@/lib/http/client';
+import axios from 'axios';
 
-const BASE_URL = 'https://api.universities.com.br';
+const axiosInstance = axios.create({
+  baseURL: 'https://api.universities.com.br',
+});
 
 const filterUniversitiesResponse = (university) => {
   const {
@@ -35,7 +37,7 @@ const filterUniversitiesResponse = (university) => {
 export const getUniversities = async () => {
   const endpoint = '/universities';
 
-  const { data: body } = await httpClient.get(BASE_URL + endpoint);
+  const { data: body } = await axiosInstance.get(endpoint);
 
   return body.map(filterUniversitiesResponse);
 };
@@ -43,7 +45,7 @@ export const getUniversities = async () => {
 export const getUniversitiesById = async (id) => {
   const endpoint = `/universities/${id}`;
 
-  const { data: body } = await httpClient.get(BASE_URL + endpoint);
+  const { data: body } = await axiosInstance.get(endpoint);
 
   const data = filterUniversitiesResponse(body);
 

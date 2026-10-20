@@ -1,4 +1,4 @@
-import httpClient from '@/lib/http/client';
+import axios from 'axios';
 
 import { FIPE_URL } from './constants';
 
@@ -17,7 +17,7 @@ export const FIPE_HEADERS = {
 // servidor (5xx) ou falha de rede, delega para o fallback parallelum.
 export async function fipePost(path, body, fallback) {
   try {
-    const { data } = await httpClient.post(`${FIPE_URL}${path}`, body, {
+    const { data } = await axios.post(`${FIPE_URL}${path}`, body, {
       headers: FIPE_HEADERS,
     });
 

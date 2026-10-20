@@ -1,7 +1,7 @@
-import httpClient from '@/lib/http/client';
+import axios from 'axios';
 
 export const getCurrency = async () => {
-  const resp = await httpClient.get(
+  const resp = await axios.get(
     'https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/Moedas?$top=100&$format=json'
   );
 
