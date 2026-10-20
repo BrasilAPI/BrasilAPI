@@ -43,12 +43,9 @@ describeIf(shouldSkipTests)('/ibge/uf/v1 (E2E)', () => {
   test('Utilizando um Codigo inexistente ou inválido: 99', async () => {
     const requestUrl = `${global.SERVER_URL}/api/ibge/uf/v1/99`;
 
-    try {
-      await axios.get(requestUrl);
-    } catch (error) {
-      const { response } = error;
-      expect(response.status).toBe(404);
-    }
+    await expect(axios.get(requestUrl)).rejects.toMatchObject({
+      response: { status: 404 },
+    });
   });
 
   test('Buscando todas as ufs', async () => {
@@ -114,16 +111,15 @@ describeIf(shouldSkipTests)('/ibge/uf/v1 (E2E)', () => {
   test('Utilizando um sigla inexistente ou inválida: SJ', async () => {
     const requestUrl = `${global.SERVER_URL}/api/ibge/uf/v1/SJ`;
 
-    try {
-      await axios.get(requestUrl);
-    } catch (error) {
-      const { response } = error;
-      expect(response.status).toBe(404);
-      expect(response.data).toMatchObject({
-        name: 'NotFoundError',
-        type: 'not_found',
-      });
-    }
+    await expect(axios.get(requestUrl)).rejects.toMatchObject({
+      response: {
+        status: 404,
+        data: {
+          name: 'NotFoundError',
+          type: 'not_found',
+        },
+      },
+    });
   });
 
   test('Buscando estados por uma região válida: S', async () => {
@@ -150,17 +146,16 @@ describeIf(shouldSkipTests)('/ibge/uf/v1 (E2E)', () => {
   test('Buscando estados por uma região inválida: 99', async () => {
     const requestUrl = `${global.SERVER_URL}/api/ibge/uf/v1/regiao/99`;
 
-    try {
-      await axios.get(requestUrl);
-    } catch (error) {
-      const { response } = error;
-      expect(response.status).toBe(404);
-      expect(response.data).toMatchObject({
-        name: 'NotFoundError',
-        message: 'Região não encontrada.',
-        type: 'not_found',
-      });
-    }
+    await expect(axios.get(requestUrl)).rejects.toMatchObject({
+      response: {
+        status: 404,
+        data: {
+          name: 'NotFoundError',
+          message: 'Região não encontrada.',
+          type: 'not_found',
+        },
+      },
+    });
   });
 });
 
