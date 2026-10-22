@@ -1,12 +1,19 @@
 import BaseError from './BaseError';
 
 export default class ServiceUnavailableError extends BaseError {
-  constructor({ message }) {
+  constructor({
+    status = 503,
+    name = 'ServiceUnavailableError',
+    message,
+    type = 'service_unavailable',
+    errors = [],
+  }) {
     super({
-      status: 503,
-      name: 'ServiceUnavailableError',
+      status,
+      name,
       message,
-      type: 'service_unavailable',
+      type,
+      errors,
     });
   }
 }

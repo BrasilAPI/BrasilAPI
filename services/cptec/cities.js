@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { XMLParser } from 'fast-xml-parser';
+import ServiceUnavailableError from '@/errors/ServiceUnavailableError';
 import { CPTEC_URL, STATE_REGION_MAP } from './constants';
 
 const parser = new XMLParser();
@@ -39,10 +40,24 @@ export const getAllCitiesData = async () => {
  * @returns {Array}
  */
 export const getCityData = async (name) => {
-  const citiesData = await axios.get(`${CPTEC_URL}/listaCidades?city=${name}`, {
-    responseType: 'application/xml',
-    responseEncoding: 'binary',
-  });
+  let citiesData;
+
+  try {
+    citiesData = await axios.get(`${CPTEC_URL}/listaCidades?city=${name}`, {
+      responseType: 'application/xml',
+      responseEncoding: 'binary',
+    });
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new ServiceUnavailableError({
+        message: 'Serviço CPTEC temporariamente indisponível',
+        type: 'city_error',
+        name: 'CPTEC_SERVICE_UNAVAILABLE',
+      });
+    }
+
+    throw error;
+  }
 
   const parsed = parser.parse(citiesData.data);
 
