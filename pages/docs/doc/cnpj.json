@@ -52,6 +52,21 @@
               }
             }
           },
+          "503": {
+            "description": "Serviço de consulta temporariamente indisponível: falha ou tempo limite de 5 segundos na API Minha Receita. A resposta não deve ser armazenada em cache.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "name": "ServiceUnavailableError",
+                  "message": "Serviço de consulta de CNPJ temporariamente indisponível.",
+                  "type": "service_unavailable"
+                }
+              }
+            }
+          },
           "404": {
             "description": "CNPJ não encontrado na API Minha Receita.",
             "content": {

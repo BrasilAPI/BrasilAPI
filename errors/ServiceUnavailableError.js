@@ -8,11 +8,12 @@ export default class ServiceUnavailableError extends BaseError {
     type = 'service_unavailable',
     errors = [],
   }) {
-    super({ message });
-
-    this.name = name;
-    this.status = status;
-    this.type = type;
-    this.errors = errors;
+    super({
+      status,
+      name,
+      message,
+      type,
+      errors,
+    });
   }
 }
