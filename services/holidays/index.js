@@ -149,7 +149,7 @@ export function getEasterHolidays(year) {
   holidays.push({
     date: formatDate(movingDate),
     name: 'Carnaval',
-    type: 'national',
+    type: 'facultative',
     weekday: getWeekdayName(formatDate(movingDate)),
   });
   movingDate.setDate(movingDate.getDate() + 1);
@@ -157,7 +157,7 @@ export function getEasterHolidays(year) {
   holidays.push({
     date: carnavalDate,
     name: 'Carnaval',
-    type: 'national',
+    type: 'facultative',
     weekday: getWeekdayName(carnavalDate),
   });
   movingDate.setDate(movingDate.getDate() + 107);
@@ -165,7 +165,7 @@ export function getEasterHolidays(year) {
   holidays.push({
     date: corpusChristiDate,
     name: 'Corpus Christi',
-    type: 'national',
+    type: 'facultative',
     weekday: getWeekdayName(corpusChristiDate),
   });
   return holidays;

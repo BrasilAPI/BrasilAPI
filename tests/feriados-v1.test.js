@@ -199,6 +199,28 @@ describe('/feriados/v1 (E2E)', () => {
     });
   });
 
+  test('Carnaval e Corpus Christi retornam type "facultative"; Páscoa e Sexta-feira Santa "national"', async () => {
+    expect.assertions(4);
+    const requestUrl = `${global.SERVER_URL}/api/feriados/v1/2020`;
+    const { data } = await axios.get(requestUrl);
+
+    const carnaval = data.filter((holiday) => holiday.name === 'Carnaval');
+    const corpusChristi = data.find(
+      (holiday) => holiday.name === 'Corpus Christi'
+    );
+    const pascoa = data.find((holiday) => holiday.name === 'Páscoa');
+    const sextaSanta = data.find(
+      (holiday) => holiday.name === 'Sexta-feira Santa'
+    );
+
+    expect(carnaval.every((holiday) => holiday.type === 'facultative')).toBe(
+      true
+    );
+    expect(corpusChristi.type).toBe('facultative');
+    expect(pascoa.type).toBe('national');
+    expect(sextaSanta.type).toBe('national');
+  });
+
   test('Com uf inválida (XX): erro 400', async () => {
     expect.assertions(2);
     const requestUrl = `${global.SERVER_URL}/api/feriados/v1/2026?uf=XX`;

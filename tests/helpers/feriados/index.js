@@ -57,7 +57,7 @@ const getEasterHolidays = (year, holidaysName = easterHolidaysName) =>
     ...(carnavalDaysByYear[year] || []).map((date) => ({
       date,
       name: 'Carnaval',
-      type: 'national',
+      type: 'facultative',
       weekday: getWeekdayName(date),
     })),
     {
@@ -75,7 +75,7 @@ const getEasterHolidays = (year, holidaysName = easterHolidaysName) =>
     {
       date: corpusChristiDaysByYear[year],
       name: 'Corpus Christi',
-      type: 'national',
+      type: 'facultative',
       weekday: getWeekdayName(corpusChristiDaysByYear[year]),
     },
   ].filter(({ name }) => holidaysName.includes(name));
