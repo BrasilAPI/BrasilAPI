@@ -2,25 +2,20 @@ import { describe, expect, test } from 'vitest';
 
 import axios from 'axios';
 
-// Smart service availability check (api.universities.com.br pode bloquear os runners)
-let shouldSkipTests = false;
+import universities from '../services/universities/snapshots/latest.json';
 
-try {
-  const response = await axios.get('https://api.universities.com.br/', {
-    timeout: 5000,
-  });
-  if (response.status !== 200) {
-    shouldSkipTests = true;
-  }
-} catch (error) {
-  shouldSkipTests = true;
-}
+const requestUrl = (path = '') =>
+  `${global.SERVER_URL}/api/universities/v1${path}`;
+
+// A fonte é o snapshot versionado do Censo INEP (services/universities/snapshots/latest.json) —
+// o provider antigo (api.universities.com.br) saiu do ar permanentemente.
+const shouldSkipTests =
+  !Array.isArray(universities) || universities.length === 0;
 
 describe.skipIf(shouldSkipTests)('universities v1 (E2E)', () => {
   describe('GET /universities/v1/:id', () => {
-    test('Utilizando um id válido: 1', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/universities/v1/1`;
-      const response = await axios.get(requestUrl);
+    test('Utilizando um id válido: 1 (UFMT)', async () => {
+      const response = await axios.get(requestUrl('/1'));
 
       expect(response.status).toBe(200);
       expect(response.data).toEqual({
@@ -28,21 +23,19 @@ describe.skipIf(shouldSkipTests)('universities v1 (E2E)', () => {
         full_name: 'UNIVERSIDADE FEDERAL DE MATO GROSSO',
         name: 'UFMT',
         ibge: '5103403',
-        city: 'CUIABA',
+        city: 'CUIABÁ',
         uf: 'MT',
         zipcode: '78060900',
         street: 'AVENIDA FERNANDO CORREA DA COSTA',
         number: '2367',
         neighborhood: 'BOA ESPERANÇA',
-        phone: '(65) 3615 8302',
+        phone: null,
       });
     });
 
-    test('Utilizando um id inválido: 199920', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/universities/v1/199920`;
-
+    test('Utilizando um id inválido existente fora do censo: 99999999', async () => {
       try {
-        await axios.get(requestUrl);
+        await axios.get(requestUrl('/99999999'));
       } catch (error) {
         const { response } = error;
 
@@ -53,13 +46,36 @@ describe.skipIf(shouldSkipTests)('universities v1 (E2E)', () => {
         });
       }
     });
+  });
 
-    test('GET /universities/v1', async () => {
-      const requestUrl = `${global.SERVER_URL}/api/universities/v1`;
-      const response = await axios.get(requestUrl);
+  describe('GET /universities/v1', () => {
+    test('Retorna a lista completa de universidades', async () => {
+      const response = await axios.get(requestUrl());
 
       expect(response.status).toBe(200);
       expect(Array.isArray(response.data)).toBe(true);
+      expect(response.data.length).toBeGreaterThan(2400);
+    });
+
+    test('Cada registro segue o contrato', async () => {
+      const response = await axios.get(requestUrl());
+      const [first] = response.data;
+
+      expect(Object.keys(first).sort()).toEqual(
+        [
+          'city',
+          'full_name',
+          'ibge',
+          'id',
+          'name',
+          'neighborhood',
+          'number',
+          'phone',
+          'street',
+          'uf',
+          'zipcode',
+        ].sort()
+      );
     });
   });
 });
