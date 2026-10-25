@@ -57,19 +57,17 @@ describe('api/isbn/v1 (E2E)', () => {
 
   // Tests that don't depend on external providers (always run)
   test('Utilizando um ISBN válido não existente: 9788549173447', async () => {
-    try {
-      await axios.get(`${requestUrl}/9788549173447`);
-    } catch (error) {
-      const { response } = error;
-      const { data, status } = response;
+    const { data, status } = await axios.get(`${requestUrl}/9788549173447`, {
+      timeout: 15000,
+      validateStatus: () => true,
+    });
 
-      expect(status).toEqual(404);
-      expect(data).toEqual({
-        message: 'ISBN não encontrado',
-        name: 'NotFoundError',
-        type: 'not_found',
-      });
-    }
+    expect(status).toEqual(404);
+    expect(data).toEqual({
+      message: 'ISBN não encontrado',
+      name: 'NotFoundError',
+      type: 'not_found',
+    });
   });
 
   test('Utilizando um ISBN inválido: 9788491734444', async () => {
