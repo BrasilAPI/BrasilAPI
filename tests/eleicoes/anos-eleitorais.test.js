@@ -1,10 +1,11 @@
 import { describe, expect, it, vi } from 'vitest';
-import axios from 'axios';
+import httpClient from '@/lib/http/client';
 import { listElectionYears } from '@/services/eleicoes';
 
-vi.mock('axios', () => ({
+vi.mock('@/lib/http/client', () => ({
   default: {
     get: vi.fn(),
+    post: vi.fn(),
   },
 }));
 
@@ -14,7 +15,7 @@ describe('Anos Eleitorais Válidos', () => {
       2024, 2022, 2020, 2018, 2016, 2014, 2012, 2010, 2008, 2006, 2004,
     ];
 
-    vi.mocked(axios.get).mockResolvedValueOnce({ data: mockResponse });
+    vi.mocked(httpClient.get).mockResolvedValueOnce({ data: mockResponse });
 
     const response = await listElectionYears();
 

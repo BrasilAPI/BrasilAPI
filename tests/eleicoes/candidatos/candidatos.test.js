@@ -1,4 +1,4 @@
-import axios from 'axios';
+import httpClient from '@/lib/http/client';
 import {
   listCandidatureByMunicipality,
   searchCandidate,
@@ -6,9 +6,10 @@ import {
 import { describe, expect, it, vi } from 'vitest';
 import { ERRORMESSAGES } from '@/services/eleicoes/constants';
 
-vi.mock('axios', () => ({
+vi.mock('@/lib/http/client', () => ({
   default: {
     get: vi.fn(),
+    post: vi.fn(),
   },
 }));
 
@@ -25,7 +26,7 @@ describe('Listagem de Candidaturas', () => {
       service: 'mock-service',
     };
 
-    axios.get.mockResolvedValueOnce({ data: mockResponse });
+    httpClient.get.mockResolvedValueOnce({ data: mockResponse });
 
     const resultado = await listCandidatureByMunicipality(
       '2030402020',
@@ -35,7 +36,7 @@ describe('Listagem de Candidaturas', () => {
     );
 
     expect(resultado).toEqual(mockResponse);
-    expect(axios.get).toHaveBeenCalled();
+    expect(httpClient.get).toHaveBeenCalled();
   });
 
   it('deve lançar erro quando eleição está ausente em listarCandidaturasMunicipio', async () => {
@@ -158,7 +159,7 @@ describe('Listagem de Candidaturas', () => {
       candidatoApto: false,
     };
 
-    vi.mocked(axios.get).mockResolvedValueOnce({
+    vi.mocked(httpClient.get).mockResolvedValueOnce({
       data: mockResponse,
     });
 

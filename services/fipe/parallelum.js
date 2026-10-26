@@ -1,4 +1,4 @@
-import axios from 'axios';
+import httpClient from '@/lib/http/client';
 
 const PARALLELUM_URL = 'https://parallelum.com.br/fipe/api/v1';
 
@@ -12,7 +12,7 @@ const TYPE_MAP = {
 // O parallelum espelha a mesma base de dados (dados abertos FIPE) e não
 // tem WAF anti-datacenter. Retorna no mesmo formato do upstream oficial.
 export async function parallelumListMarcas(vehicleType) {
-  const { data } = await axios.get(
+  const { data } = await httpClient.get(
     `${PARALLELUM_URL}/${TYPE_MAP[vehicleType]}/marcas`
   );
 
@@ -20,7 +20,7 @@ export async function parallelumListMarcas(vehicleType) {
 }
 
 export async function parallelumListModelos(vehicleType, makerCode) {
-  const { data } = await axios.get(
+  const { data } = await httpClient.get(
     `${PARALLELUM_URL}/${TYPE_MAP[vehicleType]}/marcas/${makerCode}/modelos`
   );
 
@@ -33,7 +33,7 @@ export async function parallelumListModelos(vehicleType, makerCode) {
 }
 
 export async function parallelumListAnos(vehicleType, makerCode, modelCode) {
-  const { data } = await axios.get(
+  const { data } = await httpClient.get(
     `${PARALLELUM_URL}/${TYPE_MAP[vehicleType]}/marcas/${makerCode}/modelos/${modelCode}/anos`
   );
 
@@ -46,7 +46,7 @@ export async function parallelumPreco(
   modelCode,
   yearCode
 ) {
-  const { data } = await axios.get(
+  const { data } = await httpClient.get(
     `${PARALLELUM_URL}/${TYPE_MAP[vehicleType]}/marcas/${makerCode}/modelos/${modelCode}/anos/${yearCode}`
   );
 

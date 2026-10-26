@@ -1,9 +1,9 @@
-import axios from 'axios';
+import httpClient from '@/lib/http/client';
 import { ELECTIONS_API_URL, ORDINARY_ELECTIONS_URL } from './constants';
 
 export const listOrdinaryElections = async () => {
   try {
-    const response = await axios.get(
+    const response = await httpClient.get(
       `${ELECTIONS_API_URL}${ORDINARY_ELECTIONS_URL}`
     );
 

@@ -1,9 +1,9 @@
-import axios from 'axios';
+import httpClient from '@/lib/http/client';
 
 const URL_UF = 'http://educacao.dadosabertosbr.com/api/cidades';
 
 export const getCities = async (uf) => {
-  const { data } = await axios.get(`${URL_UF}/${uf}`);
+  const { data } = await httpClient.get(`${URL_UF}/${uf}`);
 
   return data.map((item) => {
     const [ibgeCode, name] = item.split(':');

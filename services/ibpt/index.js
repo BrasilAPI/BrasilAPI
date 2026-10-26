@@ -1,4 +1,4 @@
-import axios from 'axios';
+import httpClient from '@/lib/http/client';
 
 const baseURL =
   'https://raw.githubusercontent.com/lucashpmelo/TabelaIBPTax/main';
@@ -8,7 +8,7 @@ const baseURLNbs = `${baseURL}/NBS`;
 const baseURLLc116 = `${baseURL}/LC116`;
 
 const fetchListFromRepositorie = async (url) => {
-  const { data } = await axios.get(url);
+  const { data } = await httpClient.get(url);
 
   return data;
 };
