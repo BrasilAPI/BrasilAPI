@@ -6,7 +6,7 @@ const searchByDescription = (input, search) => {
 };
 
 const searchByCode = (input, search) => {
-  return input.replace(/\D/g, '').startsWith(search.replace(/[,.]/, ''));
+  return input.replace(/\D/g, '').startsWith(search.replace(/[,.]/g, ''));
 };
 
 async function getAllNcmData(request, response) {
