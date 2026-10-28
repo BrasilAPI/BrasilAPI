@@ -1,7 +1,11 @@
 import axios from 'axios';
 import { XMLParser } from 'fast-xml-parser';
 import normalizeBrazilianDate from '@/util/normalizeBrazilianDate';
-import { CONDITION_DESCRIPTIONS, CPTEC_URL } from './constants';
+import {
+  CONDITION_DESCRIPTIONS,
+  CPTEC_URL,
+  CPTEC_HTTPS_URL,
+} from './constants';
 
 const parser = new XMLParser();
 
@@ -97,6 +101,70 @@ export const getCurrentAirportWeather = async (icaoCode) => {
     return formatMetar(parsed.metar);
   }
   return [];
+};
+
+function hasValidObservationDate(value) {
+  if (typeof value !== 'string') return false;
+
+  const parts = /^(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2}):(\d{2})$/.exec(
+    value
+  );
+  if (!parts) return false;
+
+  const [day, month, year, hour, minute, second] = parts.slice(1).map(Number);
+  const date = new Date(0);
+  date.setUTCFullYear(year, month - 1, day);
+  date.setUTCHours(hour, minute, second, 0);
+
+  return (
+    year > 0 &&
+    date.getUTCFullYear() === year &&
+    date.getUTCMonth() === month - 1 &&
+    date.getUTCDate() === day &&
+    date.getUTCHours() === hour &&
+    date.getUTCMinutes() === minute &&
+    date.getUTCSeconds() === second
+  );
+}
+
+/**
+ * Get matching airport weather data without changing the v1 contract
+ * @param {string} icaoCode
+ * @returns {object|null}
+ */
+export const getCurrentAirportWeatherV2 = async (icaoCode) => {
+  const airportWeather = await axios.get(
+    `${CPTEC_HTTPS_URL}/estacao/${icaoCode}/condicoesAtuais.xml`,
+    {
+      responseType: 'application/xml',
+      responseEncoding: 'utf-8',
+      timeout: 10000,
+    }
+  );
+  const { metar } = parser.parse(airportWeather.data);
+
+  if (
+    !metar ||
+    metar.codigo !== icaoCode ||
+    !hasValidObservationDate(metar.atualizacao)
+  ) {
+    return null;
+  }
+
+  const measurements = [
+    metar.pressao,
+    metar.temperatura,
+    metar.umidade,
+    metar.vento_int,
+    metar.vento_dir,
+    metar.visibilidade,
+  ];
+
+  if (!measurements.some(Number.isFinite)) {
+    return null;
+  }
+
+  return formatMetar(metar);
 };
 
 /**
