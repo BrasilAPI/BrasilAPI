@@ -157,6 +157,99 @@
         "deprecated": false
       }
     },
+    "/cptec/v2/clima/aeroporto/{airport}": {
+      "get": {
+        "tags": ["CPTEC"],
+        "summary": "Condições atuais no aeroporto com validação do código ICAO",
+        "description": "Retorna as condições meteorológicas do aeroporto solicitado. Aceita quatro letras e normaliza o código ICAO para maiúsculas. Exige um registro METAR correspondente, uma data de observação válida e ao menos uma medição numérica. Respostas sem observações, incluindo a data 00/00/0000 00:00:00 e medições undefined retornadas pelo CPTEC, resultam em HTTP 404. Falhas de comunicação ou processamento retornam HTTP 500; a consulta HTTPS ao provedor tem timeout de 10 segundos. A v1 permanece disponível com seu comportamento original; migre para esta versão para distinguir ausência de dados de uma resposta válida.",
+        "operationId": "airportCurrentConditionsV2",
+        "parameters": [
+          {
+            "name": "airport",
+            "in": "path",
+            "description": "Código ICAO do aeroporto desejado, por exemplo SBGR",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[a-zA-Z]{4}$",
+              "minLength": 4,
+              "maxLength": 4,
+              "example": "SBGR"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Condições meteorológicas do aeroporto solicitado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AirportWeatherV2"
+                },
+                "example": {
+                  "codigo_icao": "SBGR",
+                  "atualizado_em": "2026-10-15T15:00:00.000Z",
+                  "pressao_atmosferica": 1013,
+                  "visibilidade": 10000,
+                  "vento": 0,
+                  "direcao_vento": 0,
+                  "umidade": 80,
+                  "condicao": "ps",
+                  "condicao_desc": "Predomínio de Sol",
+                  "temp": 0
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Código ICAO inválido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "name": "INVALID_ICAO_CODE",
+                  "message": "Código ICAO inválido, informe 4 letras",
+                  "type": "request_error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Nenhuma observação meteorológica válida para o aeroporto solicitado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "name": "AIRPORT_CONDITIONS_NOT_FOUND",
+                  "message": "Condições meteorológicas ou aeroporto não localizados",
+                  "type": "weather_error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Falha ao consultar ou processar os dados do CPTEC",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                },
+                "example": {
+                  "name": "AIRPORT_WEATHER_PREDICTIONS_INTERNAL",
+                  "message": "Erro ao buscar informações meteorológicas para o aeroporto informado",
+                  "type": "weather_error"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
     "/cptec/v1/clima/previsao/{cityCode}": {
       "get": {
         "tags": ["CPTEC"],
@@ -513,6 +606,109 @@
           "condicao": "ps",
           "condicao_Desc": "Predomínio de Sol",
           "temp": 28
+        }
+      },
+      "AirportWeatherV2": {
+        "type": "object",
+        "description": "Condições meteorológicas de um aeroporto. Mantém os nomes dos campos da v1; a disponibilidade das medições depende do CPTEC.",
+        "required": ["codigo_icao", "atualizado_em"],
+        "properties": {
+          "codigo_icao": {
+            "type": "string",
+            "description": "Código ICAO do aeroporto correspondente à consulta",
+            "example": "SBGR"
+          },
+          "atualizado_em": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Data e hora de atualização informadas pelo provedor"
+          },
+          "pressao_atmosferica": {
+            "description": "Pressão atmosférica em hPa. Valores textuais do provedor são preservados quando a medição não é numérica.",
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "visibilidade": {
+            "description": "Visibilidade em metros. Valores textuais do provedor são preservados quando a medição não é numérica.",
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "vento": {
+            "description": "Intensidade do vento. Valores textuais do provedor são preservados quando a medição não é numérica.",
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "direcao_vento": {
+            "description": "Direção do vento em graus. Valores textuais do provedor são preservados quando a medição não é numérica.",
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "umidade": {
+            "description": "Umidade relativa do ar em porcentagem. Valores textuais do provedor são preservados quando a medição não é numérica.",
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "temp": {
+            "description": "Temperatura em graus Celsius. Valores textuais do provedor são preservados quando a medição não é numérica.",
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "condicao": {
+            "type": "string",
+            "description": "Código da condição meteorológica"
+          },
+          "condicao_desc": {
+            "type": "string",
+            "description": "Descrição da condição meteorológica"
+          }
+        },
+        "example": {
+          "codigo_icao": "SBGR",
+          "atualizado_em": "2026-10-15T15:00:00.000Z",
+          "pressao_atmosferica": 1013,
+          "visibilidade": 10000,
+          "vento": 0,
+          "direcao_vento": 0,
+          "umidade": 80,
+          "condicao": "ps",
+          "condicao_desc": "Predomínio de Sol",
+          "temp": 0
         }
       },
       "ClimaPrediction": {

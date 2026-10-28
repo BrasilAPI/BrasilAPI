@@ -1,5 +1,6 @@
 // Calling http because limitations on tls of webservice
 export const CPTEC_URL = 'http://servicos.cptec.inpe.br/XML';
+export const CPTEC_HTTPS_URL = 'https://servicos.cptec.inpe.br/XML';
 
 export const MIN_DAYS = 1;
 
