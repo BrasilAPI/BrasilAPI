@@ -1,62 +1,43 @@
 import axios from 'axios';
-import { describe, expect, test, beforeAll } from 'vitest';
+import { describe, expect, test } from 'vitest';
 
 // Smart service availability check - skip only when DNS/network issues are detected
-let shouldSkipTests = true; // Default to skip for safety
+let shouldSkipTests = false;
 
-beforeAll(async () => {
-  try {
-    // Quick health check for CPTEC service
-    const response = await axios.get(
-      'http://servicos.cptec.inpe.br/XML/listaCidades?city=brasilia',
-      {
-        timeout: 2000, // Short timeout to fail fast on DNS issues
-      }
-    );
+try {
+  const response = await axios.get(
+    'https://servicos.cptec.inpe.br/XML/listaCidades?city=brasilia',
+    {
+      timeout: 5000,
+    }
+  );
 
-    if (response.status === 200) {
-      shouldSkipTests = false;
-      console.log('✅ CPTEC service is available - running tests');
-    }
-  } catch (error) {
-    if (
-      error.code === 'ENOTFOUND' ||
-      error.code === 'ECONNREFUSED' ||
-      error.code === 'ECONNRESET'
-    ) {
-      console.warn(
-        '⚠️  CPTEC service unavailable (network/DNS issue) - skipping tests'
-      );
-    } else {
-      console.warn(
-        '⚠️  CPTEC service health check failed - skipping tests:',
-        error.message
-      );
-    }
+  if (response.status !== 200) {
     shouldSkipTests = true;
   }
-});
+} catch (error) {
+  shouldSkipTests = true;
+  // eslint-disable-next-line no-console
+  console.warn(
+    '⚠️  CPTEC service unavailable (network/DNS issue) - skipping tests'
+  );
+}
 
-// Conditionally skip based on actual service availability
-const describeIf = (condition) => (condition ? describe.skip : describe);
-
-describeIf(shouldSkipTests)('weather prediction v1 (E2E)', () => {
+describe.skipIf(shouldSkipTests)('weather prediction v1 (E2E)', () => {
   describe('Route WITHOUT number of days for prediction', () => {
     test('GET /api/cptec/v1/clima/previsao/:cityCode (Invalid City Code)', async () => {
       const requestUrl = `${global.SERVER_URL}/api/cptec/v1/clima/previsao/9999`;
 
-      try {
-        await axios.get(requestUrl);
-      } catch (error) {
-        const { response } = error;
-
-        expect(response.status).toBe(404);
-        expect(response.data).toMatchObject({
-          message: 'Cidade não localizada',
-          type: 'city_error',
-          name: 'CITY_NOT_FOUND',
-        });
-      }
+      await expect(axios.get(requestUrl)).rejects.toMatchObject({
+        response: {
+          status: 404,
+          data: {
+            message: 'Cidade não localizada',
+            type: 'city_error',
+            name: 'CITY_NOT_FOUND',
+          },
+        },
+      });
     });
 
     test('GET /api/cptec/v1/clima/previsao/:cityCode', async () => {
@@ -97,53 +78,48 @@ describeIf(shouldSkipTests)('weather prediction v1 (E2E)', () => {
       const requestUrl2 = `${global.SERVER_URL}/api/cptec/v1/clima/previsao/999/0`;
 
       // More than 14 days
-      try {
-        await axios.get(requestUrl1);
-      } catch (error) {
-        const { response } = error;
-
-        expect(response.status).toBe(400);
-        expect(response.data).toMatchObject({
-          message:
-            'Quantidade de dias inválida (mínimo 1 dia e máximo 14 dias)',
-          type: 'request_error',
-          name: 'INVALID_NUMBER_OF_DAYS',
-        });
-      }
+      await expect(axios.get(requestUrl1)).rejects.toMatchObject({
+        response: {
+          status: 400,
+          data: {
+            message:
+              'Quantidade de dias inválida (mínimo 1 dia e máximo 14 dias)',
+            type: 'request_error',
+            name: 'INVALID_NUMBER_OF_DAYS',
+          },
+        },
+      });
 
       // Less than 1 day
-      try {
-        await axios.get(requestUrl2);
-      } catch (error) {
-        const { response } = error;
-
-        expect(response.status).toBe(400);
-        expect(response.data).toMatchObject({
-          message:
-            'Quantidade de dias inválida (mínimo 1 dia e máximo 14 dias)',
-          type: 'request_error',
-          name: 'INVALID_NUMBER_OF_DAYS',
-        });
-      }
+      await expect(axios.get(requestUrl2)).rejects.toMatchObject({
+        response: {
+          status: 400,
+          data: {
+            message:
+              'Quantidade de dias inválida (mínimo 1 dia e máximo 14 dias)',
+            type: 'request_error',
+            name: 'INVALID_NUMBER_OF_DAYS',
+          },
+        },
+      });
     });
 
     test('GET /api/cptec/v1/clima/previsao/:cityCode/:days (Non-integer days: 2.5)', async () => {
       const requestUrl = `${global.SERVER_URL}/api/cptec/v1/clima/previsao/999/2.5`;
 
-      try {
-        await axios.get(requestUrl);
-      } catch (error) {
-        const { response } = error;
-
-        expect(response.status).toBe(400);
-        expect(response.data).toMatchObject({
-          message: 'Quantidade de dias inválida, informe um valor inteiro',
-          type: 'request_error',
-          name: 'INVALID_NUMBER_OF_DAYS',
-        });
-      }
+      await expect(axios.get(requestUrl)).rejects.toMatchObject({
+        response: {
+          status: 400,
+          data: {
+            message: 'Quantidade de dias inválida, informe um valor inteiro',
+            type: 'request_error',
+            name: 'INVALID_NUMBER_OF_DAYS',
+          },
+        },
+      });
     });
   });
+
   describe('Route WITH lat long', () => {
     test('GET prevision of campina - sp', async () => {
       const requestUrl = `${global.SERVER_URL}/api/cptec/v1/clima/previsao/semana/-22.90/-47.06`;
@@ -161,8 +137,8 @@ describeIf(shouldSkipTests)('weather prediction v1 (E2E)', () => {
         estado: 'SP',
       });
     });
-    // TODO: verify response to positive lat/long
-    /*test('GET prevision of campina - sp with positive lat/long', async () => {
+
+    test.skip('GET prevision of campina - sp with positive lat/long', async () => {
       const requestUrl = `${global.SERVER_URL}/api/cptec/v1/clima/previsao/semana/22.90/47.06`;
       const response = await axios.get(requestUrl);
 
@@ -177,51 +153,49 @@ describeIf(shouldSkipTests)('weather prediction v1 (E2E)', () => {
         cidade: 'Campinas',
         estado: 'SP',
       });
-    });*/
+    });
+
     test('GET prevision of location not in Brazil', async () => {
       const requestUrl = `${global.SERVER_URL}/api/cptec/v1/clima/previsao/semana/1/1`;
-      try {
-        await axios.get(requestUrl);
-      } catch (error) {
-        const { response } = error;
 
-        expect(response.status).toBe(404);
-
-        expect(response.data).toMatchObject({
-          message: 'Cidade não localizada',
-          type: 'city_error',
-          name: 'CITY_NOT_FOUND',
-        });
-       }
+      await expect(axios.get(requestUrl)).rejects.toMatchObject({
+        response: {
+          status: 404,
+          data: {
+            message: 'Cidade não localizada',
+            type: 'city_error',
+            name: 'CITY_NOT_FOUND',
+          },
+        },
+      });
     });
 
     test('GET with invalid long', async () => {
       const requestUrl = `${global.SERVER_URL}/api/cptec/v1/clima/previsao/semana/-22.90/abc`;
-      try {
-        await axios.get(requestUrl);
-      } catch (error) {
-        const { response } = error;
 
-        expect(response.status).toBe(400);
-        expect(response.data).toMatchObject({
-          name: 'INVALID_POSITION_LONG',
-          type: 'request_error',
-        });
-      }
+      await expect(axios.get(requestUrl)).rejects.toMatchObject({
+        response: {
+          status: 400,
+          data: {
+            name: 'INVALID_POSITION_LONG',
+            type: 'request_error',
+          },
+        },
+      });
     });
+
     test('GET with invalid lat', async () => {
       const requestUrl = `${global.SERVER_URL}/api/cptec/v1/clima/previsao/semana/abc/-47.06`;
-      try {
-        await axios.get(requestUrl);
-      } catch (error) {
-        const { response } = error;
 
-        expect(response.status).toBe(400);
-        expect(response.data).toMatchObject({
-          name: 'INVALID_POSITION_LAT',
-          type: 'request_error',
-        });
-      }
+      await expect(axios.get(requestUrl)).rejects.toMatchObject({
+        response: {
+          status: 400,
+          data: {
+            name: 'INVALID_POSITION_LAT',
+            type: 'request_error',
+          },
+        },
+      });
     });
   });
 });

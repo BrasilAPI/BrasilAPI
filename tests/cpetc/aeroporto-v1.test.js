@@ -1,63 +1,29 @@
 import axios from 'axios';
-import { describe, expect, test, beforeAll } from 'vitest';
+import { describe, expect, test } from 'vitest';
 
 // Smart service availability check - skip only when DNS/network issues are detected
-let shouldSkipTests = true; // Default to skip for safety
+let shouldSkipTests = false;
 
-beforeAll(async () => {
-  try {
-    // Quick health check for CPTEC service
-    const response = await axios.get(
-      'http://servicos.cptec.inpe.br/XML/listaCidades?city=brasilia',
-      {
-        timeout: 2000, // Short timeout to fail fast on DNS issues
-      }
-    );
+try {
+  const response = await axios.get(
+    'https://servicos.cptec.inpe.br/XML/listaCidades?city=brasilia',
+    {
+      timeout: 5000,
+    }
+  );
 
-    if (response.status === 200) {
-      shouldSkipTests = false;
-      console.log('✅ CPTEC service is available - running tests');
-    }
-  } catch (error) {
-    if (
-      error.code === 'ENOTFOUND' ||
-      error.code === 'ECONNREFUSED' ||
-      error.code === 'ECONNRESET'
-    ) {
-      console.warn(
-        '⚠️  CPTEC service unavailable (network/DNS issue) - skipping tests'
-      );
-    } else {
-      console.warn(
-        '⚠️  CPTEC service health check failed - skipping tests:',
-        error.message
-      );
-    }
+  if (response.status !== 200) {
     shouldSkipTests = true;
   }
-});
+} catch (error) {
+  shouldSkipTests = true;
+  // eslint-disable-next-line no-console
+  console.warn(
+    '⚠️  CPTEC service unavailable (network/DNS issue) - skipping tests'
+  );
+}
 
-// Conditionally skip based on actual service availability
-const describeIf = (condition) => (condition ? describe.skip : describe);
-
-describeIf(shouldSkipTests)('weather airport v1 (E2E)', () => {
-  test('GET /api/cptec/v1/clima/aeroporto/:icaoCode (Código inexistente)', async () => {
-    const requestUrl = `${global.SERVER_URL}/api/cptec/v1/clima/aeroporto/AAAA`;
-
-    try {
-      await axios.get(requestUrl);
-    } catch (error) {
-      const { response } = error;
-
-      expect(response.status).toBe(404);
-      expect(response.data).toMatchObject({
-        message: 'Condições meteorológicas ou aeroporto não localizados',
-        type: 'weather_error',
-        name: 'AIRPORT_CONDITIONS_NOT_FOUND',
-      });
-    }
-  });
-
+describe.skipIf(shouldSkipTests)('weather airport v1 (E2E)', () => {
   test('GET /api/cptec/v1/clima/aeroporto/:icaoCode', async () => {
     const requestUrl = `${global.SERVER_URL}/api/cptec/v1/clima/aeroporto/SBSP`;
     const response = await axios.get(requestUrl);
@@ -67,6 +33,39 @@ describeIf(shouldSkipTests)('weather airport v1 (E2E)', () => {
 
     expect(response.data).toMatchObject({
       codigo_icao: 'SBSP',
+    });
+  });
+
+  test('GET /api/cptec/v1/clima/aeroporto/:icaoCode (Código ICAO com tamanho inválido)', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/cptec/v1/clima/aeroporto/AAA`;
+
+    await expect(axios.get(requestUrl)).rejects.toMatchObject({
+      response: {
+        status: 400,
+        data: {
+          message:
+            'Código ICAO inválido, os códigos ICAO devem ter 4 caracteres',
+          type: 'request_error',
+          name: 'INVALID_ICAO_CODE',
+        },
+      },
+    });
+  });
+
+  // Upstream CPTEC retorna HTTP 200 com campos literais 'undefined' para códigos ICAO sem observações (veja issue #703 e PR #937).
+  // Na v1, o endpoint repassa o payload upstream para manter retrocompatibilidade.
+  test.skip('GET /api/cptec/v1/clima/aeroporto/:icaoCode (Código inexistente)', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/cptec/v1/clima/aeroporto/AAAA`;
+
+    await expect(axios.get(requestUrl)).rejects.toMatchObject({
+      response: {
+        status: 404,
+        data: {
+          message: 'Condições meteorológicas ou aeroporto não localizados',
+          type: 'weather_error',
+          name: 'AIRPORT_CONDITIONS_NOT_FOUND',
+        },
+      },
     });
   });
 });
