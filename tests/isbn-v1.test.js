@@ -1,52 +1,70 @@
 import axios from 'axios';
-import { describe, test, expect, beforeAll } from 'vitest';
+import { beforeAll, describe, expect, test } from 'vitest';
 
 import { testCorsForRoute } from './helpers/cors';
 
 // Smart service availability check - skip provider-dependent tests when all ISBN providers are unavailable
-let shouldSkipProviderTests = true; // Default to skip for safety
-
-beforeAll(async () => {
-  try {
-    // Quick health check using a known ISBN
-    // If at least one provider is working, provider tests should run
-    const response = await axios.get(
-      `${global.SERVER_URL}/api/isbn/v1/9788545702870`,
+const [cblCheck, openLibraryCheck, googleBooksCheck, mercadoEditorialCheck] =
+  await Promise.allSettled([
+    axios.post(
+      'https://isbn-search-br.search.windows.net/indexes/isbn-index/docs/search?api-version=2016-09-01',
       {
+        search: '9788545702870',
+        searchFields: 'FormattedKey,RowKey',
+        searchMode: 'any',
+        top: 1,
+      },
+      {
+        headers: {
+          Accept: 'application/json',
+          'Api-Key': Buffer.from(
+            'MTAwMjE2QTIzQzVBRUUzOTAzMzhCQkQxOUVBODZEMjk=',
+            'base64'
+          ).toString('utf-8'),
+        },
         timeout: 5000,
       }
-    );
+    ),
+    axios.get(
+      'https://openlibrary.org/api/books?bibkeys=ISBN:9788545702870&format=json&jscmd=data',
+      { timeout: 5000 }
+    ),
+    axios.get(
+      'https://www.googleapis.com/books/v1/volumes?q=isbn:9788545712466',
+      { timeout: 5000 }
+    ),
+    axios.get(
+      'https://api.mercadoeditorial.org/api/v1.2/book?isbn=9786555140576',
+      { timeout: 5000 }
+    ),
+  ]);
 
-    if (response.status === 200) {
-      shouldSkipProviderTests = false;
-      console.log(
-        '✅ At least one ISBN provider is available - running provider tests'
-      );
-    }
-  } catch (error) {
-    // Check if it's a 404 (all providers unavailable) or network issue
-    if (
-      error.response?.status === 404 ||
-      error.code === 'ENOTFOUND' ||
-      error.code === 'ECONNREFUSED' ||
-      error.code === 'ECONNRESET' ||
-      error.code === 'ETIMEDOUT'
-    ) {
-      console.warn(
-        '⚠️  All ISBN providers unavailable (network/DNS issue) - skipping provider-dependent tests'
-      );
-    } else {
-      console.warn(
-        '⚠️  ISBN service health check failed - skipping provider-dependent tests:',
-        error.message
-      );
-    }
-    shouldSkipProviderTests = true;
-  }
-});
+const isCblAvailable =
+  cblCheck.status === 'fulfilled' && cblCheck.value.status === 200;
+const isOpenLibraryAvailable =
+  openLibraryCheck.status === 'fulfilled' &&
+  openLibraryCheck.value.status === 200;
+const isGoogleBooksAvailable =
+  googleBooksCheck.status === 'fulfilled' &&
+  googleBooksCheck.value.status === 200;
+const isMercadoEditorialAvailable =
+  mercadoEditorialCheck.status === 'fulfilled' &&
+  mercadoEditorialCheck.value.status === 200;
 
-// Conditionally skip based on actual service availability
-const describeIf = (condition) => (condition ? describe.skip : describe);
+const isAnyProviderAvailable =
+  isCblAvailable ||
+  isOpenLibraryAvailable ||
+  isGoogleBooksAvailable ||
+  isMercadoEditorialAvailable;
+
+const shouldSkipProviderTests = !isAnyProviderAvailable;
+
+if (shouldSkipProviderTests) {
+  // eslint-disable-next-line no-console
+  console.warn(
+    '⚠️  All ISBN providers unavailable (network/DNS issue) - skipping provider-dependent tests'
+  );
+}
 
 describe('api/isbn/v1 (E2E)', () => {
   let requestUrl = '';
@@ -56,40 +74,38 @@ describe('api/isbn/v1 (E2E)', () => {
   });
 
   // Tests that don't depend on external providers (always run)
-  test('Utilizando um ISBN válido não existente: 9788549173447', async () => {
-    try {
-      await axios.get(`${requestUrl}/9788549173447`);
-    } catch (error) {
-      const { response } = error;
-      const { data, status } = response;
-
-      expect(status).toEqual(404);
-      expect(data).toEqual({
-        message: 'ISBN não encontrado',
-        name: 'NotFoundError',
-        type: 'not_found',
-      });
-    }
-  });
-
   test('Utilizando um ISBN inválido: 9788491734444', async () => {
-    try {
-      await axios.get(`${requestUrl}/9788491734444`);
-    } catch (error) {
-      const { response } = error;
-      const { data, status } = response;
-
-      expect(status).toEqual(400);
-      expect(data).toEqual({
-        message: 'ISBN inválido',
-        name: 'BadRequestError',
-        type: 'bad_request',
-      });
-    }
+    await expect(
+      axios.get(`${requestUrl}/9788491734444`)
+    ).rejects.toMatchObject({
+      response: {
+        status: 400,
+        data: {
+          message: 'ISBN inválido',
+          name: 'BadRequestError',
+          type: 'bad_request',
+        },
+      },
+    });
   });
 
   // Tests that depend on external providers (conditionally skip when providers unavailable)
-  describeIf(shouldSkipProviderTests)('Provider-dependent tests', () => {
+  describe.skipIf(shouldSkipProviderTests)('Provider-dependent tests', () => {
+    test('Utilizando um ISBN válido não existente: 9788549173447', async () => {
+      await expect(
+        axios.get(`${requestUrl}/9788549173447`)
+      ).rejects.toMatchObject({
+        response: {
+          status: 404,
+          data: {
+            message: 'ISBN não encontrado',
+            name: 'NotFoundError',
+            type: 'not_found',
+          },
+        },
+      });
+    });
+
     test('Utilizando um ISBN válido existente: 9788545702870', async () => {
       const response = await axios.get(`${requestUrl}/9788545702870`);
       const { data, status } = response;
@@ -129,7 +145,7 @@ describe('api/isbn/v1 (E2E)', () => {
       );
     });
 
-    test('Utilizando provider cbl', async () => {
+    test.skipIf(!isCblAvailable)('Utilizando provider cbl', async () => {
       const response = await axios.get(
         `${requestUrl}/9788545702870?providers=cbl`
       );
@@ -175,118 +191,127 @@ describe('api/isbn/v1 (E2E)', () => {
       );
     });
 
-    test('Utilizando provider mercado-editorial', async () => {
-      const response = await axios.get(
-        `${requestUrl}/9786555140576?providers=mercado-editorial`
-      );
-      const { data, status } = response;
+    test.skipIf(!isMercadoEditorialAvailable)(
+      'Utilizando provider mercado-editorial',
+      async () => {
+        const response = await axios.get(
+          `${requestUrl}/9786555140576?providers=mercado-editorial`
+        );
+        const { data, status } = response;
 
-      expect(status).toEqual(200);
-      expect(data).toEqual(
-        expect.objectContaining({
-          isbn: '9786555140576',
-          title: expect.stringContaining('Uzumaki'),
-          subtitle: null,
-          authors: expect.arrayContaining(['Junji Ito']),
-          publisher: expect.stringContaining('Devir'),
-          synopsis: expect.stringContaining(
-            'Acontecimentos grotescos começam a surgir em Kurôzu'
-          ),
-          dimensions: expect.objectContaining({
-            width: expect.any(Number),
-            height: expect.any(Number),
-            unit: 'CENTIMETER',
-          }),
-          year: 2021,
-          format: 'PHYSICAL',
-          page_count: expect.any(Number),
-          subjects: expect.arrayContaining(['mangá', 'terror', 'horror']),
-          location: null,
-          retail_price: expect.objectContaining({
-            currency: 'BRL',
-            amount: expect.any(Number),
-          }),
-          cover_url:
-            'https://fl-storage.bookinfometadados.com.br/uploads/book/first_cover/9786555140576.jpg',
-          provider: 'mercado-editorial',
-        })
-      );
-    });
+        expect(status).toEqual(200);
+        expect(data).toEqual(
+          expect.objectContaining({
+            isbn: '9786555140576',
+            title: expect.stringContaining('Uzumaki'),
+            subtitle: null,
+            authors: expect.arrayContaining(['Junji Ito']),
+            publisher: expect.stringContaining('Devir'),
+            synopsis: expect.stringContaining(
+              'Acontecimentos grotescos começam a surgir em Kurôzu'
+            ),
+            dimensions: expect.objectContaining({
+              width: expect.any(Number),
+              height: expect.any(Number),
+              unit: 'CENTIMETER',
+            }),
+            year: 2021,
+            format: 'PHYSICAL',
+            page_count: expect.any(Number),
+            subjects: expect.arrayContaining(['mangá', 'terror', 'horror']),
+            location: null,
+            retail_price: expect.objectContaining({
+              currency: 'BRL',
+              amount: expect.any(Number),
+            }),
+            cover_url:
+              'https://fl-storage.bookinfometadados.com.br/uploads/book/first_cover/9786555140576.jpg',
+            provider: 'mercado-editorial',
+          })
+        );
+      }
+    );
 
-    test('Utilizando provider open-library', async () => {
-      const response = await axios.get(
-        `${requestUrl}/9788545702870?providers=open-library`
-      );
-      const { data, status } = response;
+    test.skipIf(!isOpenLibraryAvailable)(
+      'Utilizando provider open-library',
+      async () => {
+        const response = await axios.get(
+          `${requestUrl}/9788545702870?providers=open-library`
+        );
+        const { data, status } = response;
 
-      expect(status).toEqual(200);
+        expect(status).toEqual(200);
 
-      // Tests here are done most with containing since OpenLibrary is open
-      // to public edition like Wikipedia, so it may change over time.
-      expect(data).toEqual(
-        expect.objectContaining({
-          isbn: '9788545702870',
-          title: expect.stringContaining('Akira'),
-          subtitle: expect.stringContaining('Part 1'),
-          authors: expect.arrayContaining(['Katsuhiro Ōtomo']),
-          publisher: expect.stringContaining('JBC'),
-          synopsis: expect.stringContaining(
-            'Um dos marcos da ficção científica'
-          ),
-          dimensions: expect.objectContaining({
-            width: 17.8,
-            height: 25.6,
-            unit: 'CENTIMETER',
-          }),
-          year: 2017,
-          format: 'PHYSICAL',
-          page_count: 362,
-          subjects: expect.arrayContaining([
-            'Comic books, strips',
-            'Graphic novels',
-          ]),
-          location: expect.stringContaining('São Paulo'),
-          retail_price: null,
-          cover_url: 'https://covers.openlibrary.org/b/id/11890190-L.jpg',
-          provider: 'open-library',
-        })
-      );
-    });
+        // Tests here are done most with containing since OpenLibrary is open
+        // to public edition like Wikipedia, so it may change over time.
+        expect(data).toEqual(
+          expect.objectContaining({
+            isbn: '9788545702870',
+            title: expect.stringContaining('Akira'),
+            subtitle: expect.stringContaining('Part 1'),
+            authors: expect.arrayContaining(['Katsuhiro Ōtomo']),
+            publisher: expect.stringContaining('JBC'),
+            synopsis: expect.stringContaining(
+              'Um dos marcos da ficção científica'
+            ),
+            dimensions: expect.objectContaining({
+              width: 17.8,
+              height: 25.6,
+              unit: 'CENTIMETER',
+            }),
+            year: 2017,
+            format: 'PHYSICAL',
+            page_count: 362,
+            subjects: expect.arrayContaining([
+              'Comic books, strips',
+              'Graphic novels',
+            ]),
+            location: expect.stringContaining('São Paulo'),
+            retail_price: null,
+            cover_url: 'https://covers.openlibrary.org/b/id/11890190-L.jpg',
+            provider: 'open-library',
+          })
+        );
+      }
+    );
 
-    test('Utilizando provider google-books', async () => {
-      const response = await axios.get(
-        `${requestUrl}/9788545712466?providers=google-books`
-      );
-      const { data, status } = response;
+    test.skipIf(!isGoogleBooksAvailable)(
+      'Utilizando provider google-books',
+      async () => {
+        const response = await axios.get(
+          `${requestUrl}/9788545712466?providers=google-books`
+        );
+        const { data, status } = response;
 
-      expect(status).toEqual(200);
-      expect(data).toEqual(
-        expect.objectContaining({
-          isbn: '9788545712466',
-          title: 'Boa Noite Punpun vol. 01',
-          subtitle: null,
-          authors: expect.arrayContaining(['Inio Asano']),
-          publisher: 'Editora JBC',
-          synopsis: expect.stringContaining(
-            'Punpun Onodera é um garoto normal'
-          ),
-          dimensions: null,
-          year: 2019,
-          format: 'DIGITAL',
-          page_count: 432,
-          subjects: expect.arrayContaining(['Comics & Graphic Novels']),
-          location: null,
-          retail_price: expect.objectContaining({
-            currency: 'BRL',
-            amount: 32.9,
-          }),
-          cover_url: expect.stringContaining(
-            'https://books.google.com/books/content?id=hU2jDwAAQBAJ'
-          ),
-          provider: 'google-books',
-        })
-      );
-    });
+        expect(status).toEqual(200);
+        expect(data).toEqual(
+          expect.objectContaining({
+            isbn: '9788545712466',
+            title: 'Boa Noite Punpun vol. 01',
+            subtitle: null,
+            authors: expect.arrayContaining(['Inio Asano']),
+            publisher: 'Editora JBC',
+            synopsis: expect.stringContaining(
+              'Punpun Onodera é um garoto normal'
+            ),
+            dimensions: null,
+            year: 2019,
+            format: 'DIGITAL',
+            page_count: 432,
+            subjects: expect.arrayContaining(['Comics & Graphic Novels']),
+            location: null,
+            retail_price: expect.objectContaining({
+              currency: 'BRL',
+              amount: 32.9,
+            }),
+            cover_url: expect.stringContaining(
+              'https://books.google.com/books/content?id=hU2jDwAAQBAJ'
+            ),
+            provider: 'google-books',
+          })
+        );
+      }
+    );
   });
 });
 
