@@ -1,46 +1,29 @@
 import axios from 'axios';
-import { describe, test, expect, beforeAll } from 'vitest';
+import { describe, expect, test } from 'vitest';
 
 // Smart service availability check - skip only when DNS/network issues are detected
-let shouldSkipTests = true; // Default to skip for safety
+let shouldSkipTests = false;
 
-beforeAll(async () => {
-  try {
-    // Quick health check for CPTEC service
-    const response = await axios.get(
-      'http://servicos.cptec.inpe.br/XML/listaCidades?city=brasilia',
-      {
-        timeout: 2000, // Short timeout to fail fast on DNS issues
-      }
-    );
+try {
+  const response = await axios.get(
+    'https://servicos.cptec.inpe.br/XML/listaCidades?city=brasilia',
+    {
+      timeout: 5000,
+    }
+  );
 
-    if (response.status === 200) {
-      shouldSkipTests = false;
-      console.log('✅ CPTEC service is available - running tests');
-    }
-  } catch (error) {
-    if (
-      error.code === 'ENOTFOUND' ||
-      error.code === 'ECONNREFUSED' ||
-      error.code === 'ECONNRESET'
-    ) {
-      console.warn(
-        '⚠️  CPTEC service unavailable (network/DNS issue) - skipping tests'
-      );
-    } else {
-      console.warn(
-        '⚠️  CPTEC service health check failed - skipping tests:',
-        error.message
-      );
-    }
+  if (response.status !== 200) {
     shouldSkipTests = true;
   }
-});
+} catch (error) {
+  shouldSkipTests = true;
+  // eslint-disable-next-line no-console
+  console.warn(
+    '⚠️  CPTEC service unavailable (network/DNS issue) - skipping tests'
+  );
+}
 
-// Conditionally skip based on actual service availability
-const describeIf = (condition) => (condition ? describe.skip : describe);
-
-describeIf(shouldSkipTests)('cities v1 (E2E)', () => {
+describe.skipIf(shouldSkipTests)('cities v1 (E2E)', () => {
   describe('GET /cptec/v1/cidade/:name', () => {
     test('Utilizando um nome de cidade existente: São Sebastião', async () => {
       const requestUrl = `${global.SERVER_URL}/api/cptec/v1/cidade/São Sebastião`;
@@ -73,18 +56,16 @@ describeIf(shouldSkipTests)('cities v1 (E2E)', () => {
     test('Utilizando um nome de cidade inexistente: chiforímpola', async () => {
       const requestUrl = `${global.SERVER_URL}/api/cptec/v1/cidade/chiforímpola`;
 
-      try {
-        await axios.get(requestUrl);
-      } catch (error) {
-        const { response } = error;
-
-        expect(response.status).toBe(404);
-        expect(response.data).toMatchObject({
-          message: 'Nenhuma cidade localizada',
-          type: 'city_error',
-          name: 'NO_CITY_NOT_FOUND',
-        });
-      }
+      await expect(axios.get(requestUrl)).rejects.toMatchObject({
+        response: {
+          status: 404,
+          data: {
+            message: 'Nenhuma cidade localizada',
+            type: 'city_error',
+            name: 'NO_CITY_NOT_FOUND',
+          },
+        },
+      });
     });
   });
 
