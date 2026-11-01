@@ -74,6 +74,16 @@ describe('/ibge/municipios/v1 quando os providers padrão falham', () => {
     ).rejects.toMatchObject({ status: 500, name: 'EstadoInternalException' });
   });
 
+  test('responde 500 em JSON quando o fallback não responde a tempo', async () => {
+    getStateCities.mockReturnValue(new Promise(() => {}));
+    const start = Date.now();
+
+    await expect(
+      getMunicipios({ query: { uf: 'PE' } }, createResponse())
+    ).rejects.toMatchObject({ status: 500, name: 'EstadoInternalException' });
+    expect(Date.now() - start).toBeLessThan(5000);
+  });
+
   test('não usa fallback quando o cliente escolhe os providers', async () => {
     await expect(
       getMunicipios({ query: { uf: 'PE', providers: 'gov' } }, createResponse())

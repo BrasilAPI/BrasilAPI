@@ -15,6 +15,8 @@ import UnprocessableEntityError from '@/errors/UnprocessableEntityError';
 
 const ALLOWED_PROVIDERS = new Set(['dados-abertos-br', 'gov', 'wikipedia']);
 
+const WIKIPEDIA_FALLBACK_TIMEOUT_MS = 4000;
+
 const UF_SIGLA_PATTERN = /^[A-Za-z]{2}$/;
 
 const parseProviders = (providersQuery) => {
@@ -70,7 +72,9 @@ const getData = async (uf, argsProviders = null) => {
     if (!useDefaultProviders) {
       throw err;
     }
-    data = await getStateCities(uf).then(rejectWhenEmptyArray);
+    data = await Promise.resolve(getStateCities(uf))
+      .timeout(WIKIPEDIA_FALLBACK_TIMEOUT_MS)
+      .then(rejectWhenEmptyArray);
   }
 
   return data
