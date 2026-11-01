@@ -15,6 +15,8 @@ import UnprocessableEntityError from '@/errors/UnprocessableEntityError';
 
 const ALLOWED_PROVIDERS = new Set(['dados-abertos-br', 'gov', 'wikipedia']);
 
+const WIKIPEDIA_FALLBACK_TIMEOUT_MS = 4000;
+
 const UF_SIGLA_PATTERN = /^[A-Za-z]{2}$/;
 
 const parseProviders = (providersQuery) => {
@@ -47,10 +49,10 @@ const parseProviders = (providersQuery) => {
 };
 
 const getData = async (uf, argsProviders = null) => {
-  const providers =
-    !argsProviders || argsProviders.length === 0
-      ? ['dados-abertos-br', 'gov']
-      : argsProviders;
+  const useDefaultProviders = !argsProviders || argsProviders.length === 0;
+  const providers = useDefaultProviders
+    ? ['dados-abertos-br', 'gov']
+    : argsProviders;
   const promises = [];
 
   if (providers.includes('wikipedia')) {
@@ -63,7 +65,17 @@ const getData = async (uf, argsProviders = null) => {
     promises.push(getContiesByUf(uf).then(rejectWhenEmptyArray));
   }
 
-  const data = await Promise.any(promises);
+  let data;
+  try {
+    data = await Promise.any(promises);
+  } catch (err) {
+    if (!useDefaultProviders) {
+      throw err;
+    }
+    data = await Promise.resolve(getStateCities(uf))
+      .timeout(WIKIPEDIA_FALLBACK_TIMEOUT_MS)
+      .then(rejectWhenEmptyArray);
+  }
 
   return data
     .map((item) => ({ ...item, nome: item.nome.toUpperCase() }))
