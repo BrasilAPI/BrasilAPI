@@ -8,6 +8,9 @@ const URL_REGION =
   'https://servicodados.ibge.gov.br/api/v1/localidades/regioes';
 const URL_AGGREGATES = 'https://servicodados.ibge.gov.br/api/v3/agregados';
 
+export const IBGE_TIMEOUT_MS = 4000;
+const requestConfig = { timeout: IBGE_TIMEOUT_MS };
+
 const UF_CAPITAIS = {
   AC: 'Rio Branco',
   AL: 'Maceió',
@@ -44,19 +47,19 @@ const addCapital = (uf) => ({
 });
 
 export const getUfs = () =>
-  axios.get(URL_UF).then((response) => {
+  axios.get(URL_UF, requestConfig).then((response) => {
     response.data = response.data.map(addCapital);
     return response;
   });
 
 export const getUfByCode = (code) =>
-  axios.get(`${URL_UF}/${code}`).then((response) => {
+  axios.get(`${URL_UF}/${code}`, requestConfig).then((response) => {
     response.data = addCapital(response.data);
     return response;
   });
 
 export const getContiesByUf = async (uf) => {
-  const { data } = await axios.get(`${URL_UF}/${uf}/municipios`);
+  const { data } = await axios.get(`${URL_UF}/${uf}/municipios`, requestConfig);
 
   return data.map((item) => ({
     nome: item.nome,
@@ -72,7 +75,8 @@ export const getUfEstimatePopulationByCode = async (uf) => {
   const LATEST_PERIOD = -1;
 
   let { data } = await axios.get(
-    `${URL_AGGREGATES}/${ESTIMATED_POPULATION_AGGREGATE_ID}/periodos/${LATEST_PERIOD}/variaveis?localidades=N3[${ufCode}]`
+    `${URL_AGGREGATES}/${ESTIMATED_POPULATION_AGGREGATE_ID}/periodos/${LATEST_PERIOD}/variaveis?localidades=N3[${ufCode}]`,
+    requestConfig
   );
 
   data = data.find(
@@ -92,10 +96,10 @@ export const getUfEstimatePopulationByCode = async (uf) => {
   };
 };
 
-export const getRegions = () => axios.get(URL_REGION);
+export const getRegions = () => axios.get(URL_REGION, requestConfig);
 
 export const getUfsByRegion = (regionCode) =>
-  axios.get(`${URL_REGION}/${regionCode}/estados`);
+  axios.get(`${URL_REGION}/${regionCode}/estados`, requestConfig);
 
 export const getRegionByCode = (regionCode) =>
-  axios.get(`${URL_REGION}/${regionCode}`);
+  axios.get(`${URL_REGION}/${regionCode}`, requestConfig);
