@@ -127,9 +127,9 @@ export function getEasterHolidays(year) {
 
   const pascalFullMoonMonthDay = getPascalFullMoonDates();
   const [refMonth, refDay] = pascalFullMoonMonthDay[year % 19];
-  const movingDate = new Date(year, refMonth, refDay);
+  const movingDate = new Date(Date.UTC(year, refMonth, refDay));
   const holidays = [];
-  movingDate.setDate(movingDate.getDate() + 7 - movingDate.getDay());
+  movingDate.setUTCDate(movingDate.getUTCDate() + 7 - movingDate.getUTCDay());
   const easterDate = formatDate(movingDate);
   holidays.push({
     date: easterDate,
@@ -137,7 +137,7 @@ export function getEasterHolidays(year) {
     type: 'national',
     weekday: getWeekdayName(easterDate),
   });
-  movingDate.setDate(movingDate.getDate() - 2);
+  movingDate.setUTCDate(movingDate.getUTCDate() - 2);
   const goodFridayDate = formatDate(movingDate);
   holidays.push({
     date: goodFridayDate,
@@ -145,14 +145,14 @@ export function getEasterHolidays(year) {
     type: 'national',
     weekday: getWeekdayName(goodFridayDate),
   });
-  movingDate.setDate(movingDate.getDate() - 46);
+  movingDate.setUTCDate(movingDate.getUTCDate() - 46);
   holidays.push({
     date: formatDate(movingDate),
     name: 'Carnaval',
     type: 'national',
     weekday: getWeekdayName(formatDate(movingDate)),
   });
-  movingDate.setDate(movingDate.getDate() + 1);
+  movingDate.setUTCDate(movingDate.getUTCDate() + 1);
   const carnavalDate = formatDate(movingDate);
   holidays.push({
     date: carnavalDate,
@@ -160,7 +160,7 @@ export function getEasterHolidays(year) {
     type: 'national',
     weekday: getWeekdayName(carnavalDate),
   });
-  movingDate.setDate(movingDate.getDate() + 107);
+  movingDate.setUTCDate(movingDate.getUTCDate() + 107);
   const corpusChristiDate = formatDate(movingDate);
   holidays.push({
     date: corpusChristiDate,
