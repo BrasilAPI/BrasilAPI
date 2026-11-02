@@ -4,8 +4,8 @@ Projeto open-source de API pública para dados brasileiros. Usado por milhares d
 
 ## Stack
 
-- **Framework:** Next.js 12, API routes em `pages/api/`
-- **Testes:** Vitest 3 (E2E, faz chamadas HTTP reais ao servidor local)
+- **Framework:** Next.js 15 (pages router), API routes em `pages/api/`
+- **Testes:** Vitest 4 (E2E, faz chamadas HTTP reais ao servidor local)
 - **Lint:** ESLint (Airbnb) + Prettier
 - **Commits:** Conventional Commits via `npm run commit`
 - **Node:** >=20 <22 | **npm:** >=10
