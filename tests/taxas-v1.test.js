@@ -1,22 +1,35 @@
 import axios from 'axios';
 import { beforeAll, describe, expect, test } from 'vitest';
 
+import * as selic from 'selic';
+
 import { testCorsForRoute } from './helpers/cors';
 
-// Smart service availability check (BCB bloqueia os runners do GH Actions)
-let shouldSkipTests = false;
+// Smart service availability check: probes the same upstream providers the
+// endpoints depend on (BCB for SELIC/IPCA and B3 for CDI), which are known to
+// block or throttle GitHub Actions runners.
+const HEALTH_CHECK_TIMEOUT_MS = 5000;
 
-try {
-  const response = await axios.get(
-    'https://api.bcb.gov.br/dados/serie/bcdata.sgs.189/dados/ultimos/1?formato=json',
-    { timeout: 5000 }
-  );
-  if (response.status !== 200) {
-    shouldSkipTests = true;
-  }
-} catch (error) {
-  shouldSkipTests = true;
-}
+const withTimeout = (promise) =>
+  Promise.race([
+    promise,
+    new Promise((_resolve, reject) => {
+      setTimeout(
+        () => reject(new Error('Health check timeout')),
+        HEALTH_CHECK_TIMEOUT_MS
+      );
+    }),
+  ]);
+
+const healthChecks = await Promise.allSettled(
+  [selic.getSelicRate, selic.getCdiRate, selic.getIpcaRate].map((fetchRate) =>
+    withTimeout(fetchRate())
+  )
+);
+
+const shouldSkipTests = healthChecks.some(
+  ({ status }) => status === 'rejected'
+);
 
 describe.skipIf(shouldSkipTests)('api/taxas/v1 (E2E)', () => {
   let requestUrl = '';
@@ -62,19 +75,16 @@ describe.skipIf(shouldSkipTests)('api/taxas/v1 (E2E)', () => {
   });
 
   test('Buscando uma taxa inválida: xpto', async () => {
-    try {
-      await axios.get(`${requestUrl}/xpto`);
-    } catch (error) {
-      const { response } = error;
-      const { data, status } = response;
-
-      expect(status).toEqual(404);
-      expect(data).toEqual({
-        message: 'Taxa ou Índice não encontrada.',
-        name: 'NotFoundError',
-        type: 'not_found',
-      });
-    }
+    await expect(axios.get(`${requestUrl}/xpto`)).rejects.toMatchObject({
+      response: {
+        status: 404,
+        data: {
+          message: 'Taxa ou Índice não encontrada.',
+          name: 'NotFoundError',
+          type: 'not_found',
+        },
+      },
+    });
   });
 });
 
