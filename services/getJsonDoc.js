@@ -10,6 +10,7 @@ export function getJsonDoc() {
   const files = fs.readdirSync(docsDirectory);
   const tags = [];
   let tagGroups = null;
+  let servers = null;
 
   files.forEach((file) => {
     if (file.split('.').pop() === 'json') {
@@ -32,6 +33,14 @@ export function getJsonDoc() {
       if (content['x-tagGroups']) {
         tagGroups = content['x-tagGroups'];
       }
+
+      // servers também é definido em um único arquivo (basic_info.json).
+      // O merge de arrays do lodash acontece por índice, então um arquivo que
+      // declarasse o próprio servers sobrescreveria a URL base da spec inteira
+      // (ex.: perder o prefixo /api e documentar URLs que retornam 404).
+      if (content.servers) {
+        servers = content.servers;
+      }
     }
   });
 
@@ -50,6 +59,10 @@ export function getJsonDoc() {
 
   if (tagGroups) {
     spec['x-tagGroups'] = tagGroups;
+  }
+
+  if (servers) {
+    spec.servers = servers;
   }
 
   return spec;
