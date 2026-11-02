@@ -40,6 +40,33 @@ describe('/diasuteis/v1 (E2E)', () => {
     expect(data.diasUteis).toEqual(['2026-09-08']);
   });
 
+  test('Intervalo entre anos exclui feriados nacionais de ambos os anos', async () => {
+    const requestUrl =
+      `${global.SERVER_URL}/api/diasuteis/v1` +
+      '?dataInicial=2026-12-24&dataFinal=2027-01-04';
+    const { status, data } = await axios.get(requestUrl);
+
+    expect(status).toBe(200);
+    expect(data.diasUteis).toEqual([
+      '2026-12-24',
+      '2026-12-28',
+      '2026-12-29',
+      '2026-12-30',
+      '2026-12-31',
+      '2027-01-04',
+    ]);
+  });
+
+  test('Intervalo entre anos permite desativar feriados nacionais', async () => {
+    const requestUrl =
+      `${global.SERVER_URL}/api/diasuteis/v1` +
+      '?dataInicial=2026-12-31&dataFinal=2027-01-04&incluirFeriadosNacionais=false';
+    const { status, data } = await axios.get(requestUrl);
+
+    expect(status).toBe(200);
+    expect(data.diasUteis).toEqual(['2026-12-31', '2027-01-01', '2027-01-04']);
+  });
+
   test('incluirFeriadosNacionais=false: inclui feriado', async () => {
     const requestUrl =
       `${global.SERVER_URL}/api/diasuteis/v1` +
@@ -50,4 +77,6 @@ describe('/diasuteis/v1 (E2E)', () => {
   });
 });
 
-testCorsForRoute('/api/diasuteis/v1?dataInicial=2026-08-03&dataFinal=2026-08-07');
+testCorsForRoute(
+  '/api/diasuteis/v1?dataInicial=2026-08-03&dataFinal=2026-08-07'
+);

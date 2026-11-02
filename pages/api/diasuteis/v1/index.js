@@ -30,7 +30,9 @@ const diasUteisHandler = (request, response) => {
     }
 
     const feriados =
-      incluirFeriadosNacionais === 'true' ? anos.flatMap(getHolidays) : [];
+      incluirFeriadosNacionais === 'true'
+        ? anos.flatMap((ano) => getHolidays(ano))
+        : [];
 
     const diasUteis = [];
 
