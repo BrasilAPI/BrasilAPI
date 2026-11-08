@@ -14,12 +14,22 @@ const normalizeIgpmValue = (value) => {
 };
 
 /**
+ * Data anterior ao início da série (01/06/1989). A API do BCB responde
+ * 304 (Not Modified) quando a série é pedida sem intervalo de datas, e o
+ * axios trata 304 como erro. Enviar um dataInicial explícito devolve todos
+ * os registros com 200.
+ */
+const FULL_SERIES_START = '01/01/1900';
+
+/**
  * Busca todos os indices desde o inicio da disponibilização
  * @param {Number} code Código BCB https://www3.bcb.gov.br/sgspub/localizarseries/localizarSeries.do?method=prepararTelaLocalizarSeries
  * @returns
  */
 export const getIgpm = async (code) => {
-  const data = await fetchData(buildUrl.simple(code), igpmSchema);
+  const data = await fetchData(buildUrl.simple(code), igpmSchema, {
+    dataInicial: FULL_SERIES_START,
+  });
 
   return data.map((igpmIndex) => ({
     value: normalizeIgpmValue(igpmIndex.valor),
