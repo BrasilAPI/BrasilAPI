@@ -10,6 +10,7 @@ export function getJsonDoc() {
   const files = fs.readdirSync(docsDirectory);
   const tags = [];
   let tagGroups = null;
+  let servers = null;
 
   files.forEach((file) => {
     if (file.split('.').pop() === 'json') {
@@ -32,6 +33,15 @@ export function getJsonDoc() {
       if (content['x-tagGroups']) {
         tagGroups = content['x-tagGroups'];
       }
+
+      // A URL base da API vale para a spec inteira e é definida em
+      // basic_info.json. Como o merge de arrays do lodash sobrescreve o
+      // "servers" de um arquivo pelo do próximo (issue #903), mantemos apenas
+      // a definição de basic_info.json para que nenhum outro arquivo consiga
+      // trocar a URL base e quebrar os links exibidos no Redoc.
+      if (content.servers && file === 'basic_info.json') {
+        servers = content.servers;
+      }
     }
   });
 
@@ -50,6 +60,10 @@ export function getJsonDoc() {
 
   if (tagGroups) {
     spec['x-tagGroups'] = tagGroups;
+  }
+
+  if (servers) {
+    spec.servers = servers;
   }
 
   return spec;

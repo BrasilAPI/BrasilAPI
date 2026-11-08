@@ -7,7 +7,7 @@
     },
     "servers": [
         {
-            "url": "https://brasilapi.com.br"
+            "url": "https://brasilapi.com.br/api"
         }
     ],
     "tags": [
