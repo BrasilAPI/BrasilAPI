@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 
@@ -8,6 +9,10 @@ const WEEKEND = [SUNDAY, SATURDAY];
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
+// Sem o customParseFormat o segundo argumento de dayjs() é ignorado e a string
+// é lida no formato nativo do Date (mês/dia), trocando dia e mês em datas
+// como "01/06/1989".
+dayjs.extend(customParseFormat);
 
 dayjs.tz.setDefault('America/Sao_Paulo');
 
