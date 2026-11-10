@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const PARALLELUM_URL = 'https://parallelum.com.br/fipe/api/v1';
+const PARALLELUM_V2_URL = 'https://parallelum.com.br/fipe/api/v2';
 
 const TYPE_MAP = {
   1: 'carros',
@@ -11,6 +12,25 @@ const TYPE_MAP = {
 // Fallback para quando o veiculos.fipe.org.br bloqueia os IPs da Vercel.
 // O parallelum espelha a mesma base de dados (dados abertos FIPE) e não
 // tem WAF anti-datacenter. Retorna no mesmo formato do upstream oficial.
+export async function parallelumListTabelas() {
+  const { data } = await axios.get(`${PARALLELUM_V2_URL}/references`, {
+    timeout: 10000,
+  });
+
+  if (!Array.isArray(data) || data.length === 0) {
+    throw new Error('Retorno da FIPE inválido');
+  }
+
+  return data
+    .map((item) => ({
+      Codigo: Number(item.code),
+      Mes: item.month,
+    }))
+    .filter(
+      (item) => Number.isInteger(item.Codigo) && typeof item.Mes === 'string'
+    );
+}
+
 export async function parallelumListMarcas(vehicleType) {
   const { data } = await axios.get(
     `${PARALLELUM_URL}/${TYPE_MAP[vehicleType]}/marcas`
