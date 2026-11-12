@@ -198,7 +198,7 @@ Triggers:
 Fluxo:
 
 1. checkout do repositorio
-2. setup Node 20
+2. setup Node 24
 3. cache/install de dependencias
 4. execucao de `npm run snapshot:banks`
 5. upload de artefatos JSON
