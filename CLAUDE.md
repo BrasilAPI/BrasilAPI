@@ -8,7 +8,7 @@ Projeto open-source de API pública para dados brasileiros. Usado por milhares d
 - **Testes:** Vitest 3 (E2E, faz chamadas HTTP reais ao servidor local)
 - **Lint:** ESLint (Airbnb) + Prettier
 - **Commits:** Conventional Commits via `npm run commit`
-- **Node:** >=20 <22 | **npm:** >=10
+- **Node:** 24.x | **npm:** >=10
 
 ## Comandos
 
