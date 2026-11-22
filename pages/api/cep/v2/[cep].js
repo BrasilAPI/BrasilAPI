@@ -1,18 +1,41 @@
 import app from '@/app';
 import { fetchCep } from '@/services/cep/cep';
+import { getDddsData, findDddByCity } from '@/services/ddd';
 import fetchGeocoordinateFromBrazilLocation from '../../../../lib/fetchGeocoordinateFromBrazilLocation';
 import fetchTimezoneNameFromBrazilLocation from '../../../../lib/fetchTimezoneNameFromBrazilLocation';
 
 const CACHE_CONTROL_HEADER_VALUE =
   'max-age=0, s-maxage=86400, stale-while-revalidate, public';
 
+function isDddRequested(dddQuery) {
+  return typeof dddQuery === 'string' && dddQuery.toLowerCase() === 'true';
+}
+
+function fetchDddsDataSafely() {
+  return getDddsData().catch((error) => {
+    // eslint-disable-next-line no-console
+    console.error('[cep-v2] Failed to fetch DDD data from Anatel:', {
+      error: error.message,
+      code: error.code,
+      status: error.response?.status,
+    });
+    return null;
+  });
+}
+
 async function getCepWithLocation(request, response) {
   const requestedCep = request.query.cep;
+  const shouldIncludeDdd = isDddRequested(request.query.ddd);
 
   response.setHeader('Cache-Control', CACHE_CONTROL_HEADER_VALUE);
 
   try {
     const cepFromCepPromise = await fetchCep(requestedCep);
+
+    // Só consulta a Anatel após o CEP ser encontrado, em paralelo com a
+    // geolocalização e o fuso; nunca rejeita.
+    const dddsDataPromise = shouldIncludeDdd ? fetchDddsDataSafely() : null;
+
     const location = await fetchGeocoordinateFromBrazilLocation(
       cepFromCepPromise
     );
@@ -30,8 +53,19 @@ async function getCepWithLocation(request, response) {
       cepFromCepPromise.neighborhood = null;
     }
 
+    const responseBody = { ...cepFromCepPromise, timezoneName, location };
+
+    if (shouldIncludeDdd) {
+      const dddsData = await dddsDataPromise;
+      responseBody.ddd = findDddByCity(dddsData, {
+        ibgeCode: cepFromCepPromise.ibge?.city,
+        state: cepFromCepPromise.state,
+        city: cepFromCepPromise.city,
+      });
+    }
+
     response.status(200);
-    response.json({ ...cepFromCepPromise, timezoneName, location });
+    response.json(responseBody);
   } catch (error) {
     if (error.name === 'CepPromiseError') {
       switch (error.type) {
