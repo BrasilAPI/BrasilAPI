@@ -67,6 +67,17 @@
               "pattern": "^[0-9]{8}$|^[0-9]{5}-[0-9]{3}$",
               "example": "01310930"
             }
+          },
+          {
+            "name": "ddd",
+            "description": "Opcional. Quando `true` (sem diferenciar maiúsculas de minúsculas), inclui na resposta o campo `ddd` com o DDD do município, obtido dos dados abertos da Anatel. Quando ausente, `false` ou qualquer outro valor, a resposta é exatamente a padrão, sem o campo `ddd`. Respostas de erro não são afetadas.",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            },
+            "example": true
           }
         ],
         "responses": {
@@ -76,6 +87,79 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/AddressV2"
+                },
+                "examples": {
+                  "padrao": {
+                    "summary": "Sem o parâmetro ddd (resposta padrão, sem o campo ddd)",
+                    "value": {
+                      "cep": "05010000",
+                      "state": "SP",
+                      "city": "São Paulo",
+                      "neighborhood": "Perdizes",
+                      "street": "Rua Caiubi",
+                      "service": "open-cep",
+                      "timezoneName": "America/Sao_Paulo",
+                      "location": {
+                        "type": "Point",
+                        "coordinates": {
+                          "longitude": "-46.6765829",
+                          "latitude": "-23.5345364"
+                        }
+                      },
+                      "ibge": {
+                        "city": "3550308",
+                        "state": "35"
+                      }
+                    }
+                  },
+                  "comDdd": {
+                    "summary": "Com ddd=true (inclui o campo ddd)",
+                    "value": {
+                      "cep": "05010000",
+                      "state": "SP",
+                      "city": "São Paulo",
+                      "neighborhood": "Perdizes",
+                      "street": "Rua Caiubi",
+                      "service": "open-cep",
+                      "timezoneName": "America/Sao_Paulo",
+                      "location": {
+                        "type": "Point",
+                        "coordinates": {
+                          "longitude": "-46.6765829",
+                          "latitude": "-23.5345364"
+                        }
+                      },
+                      "ibge": {
+                        "city": "3550308",
+                        "state": "35"
+                      },
+                      "ddd": "11"
+                    }
+                  },
+                  "dddIndisponivel": {
+                    "summary": "Com ddd=true, sem associação de DDD ou fonte da Anatel indisponível",
+                    "value": {
+                      "cep": "05010000",
+                      "state": "SP",
+                      "city": "São Paulo",
+                      "neighborhood": "Perdizes",
+                      "street": "Rua Caiubi",
+                      "service": "open-cep",
+                      "timezoneName": "America/Sao_Paulo",
+                      "location": {
+                        "type": "Point",
+                        "coordinates": {
+                          "longitude": "-46.6765829",
+                          "latitude": "-23.5345364"
+                        }
+                      },
+                      "ibge": {
+                        "city": "3550308",
+                        "state": "35"
+                      },
+                      "ddd": null
+                    }
+                  }
                 }
               }
             }
@@ -263,6 +347,13 @@
             "type": "object",
             "$ref": "#/components/schemas/IbgeCodes",
             "description": "Códigos IBGE do município e do estado (podem ser nulos quando o provider não disponibiliza)"
+          },
+          "ddd": {
+            "type": "string",
+            "nullable": true,
+            "pattern": "^[0-9]{2}$",
+            "description": "DDD (código de área telefônico) do município, com dois dígitos. Presente <b>somente</b> quando a requisição usa o query parameter `ddd=true`; caso contrário a propriedade não é incluída na resposta. Obtido a partir dos dados abertos da Anatel; é `null` quando o município não possui associação de DDD ou quando a fonte da Anatel está indisponível (a consulta do CEP nunca falha por causa do DDD).",
+            "example": "47"
           }
         },
         "example": {

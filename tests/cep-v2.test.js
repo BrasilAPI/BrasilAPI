@@ -207,4 +207,101 @@ describe('/cep/v2 (E2E)', () => {
   });
 });
 
+describe('/cep/v2 com query parameter ddd (E2E)', () => {
+  test('Sem o parâmetro ddd não inclui a propriedade ddd: 05010000', async () => {
+    const requestUrl = `${global.SERVER_URL}/api/cep/v2/05010000`;
+    const { status, data } = await axios.get(requestUrl);
+
+    expect(status).toBe(200);
+    expect(data).not.toHaveProperty('ddd');
+  });
+
+  test.each(['false', 'foo'])(
+    'Com ddd=%s não inclui a propriedade ddd: 05010000',
+    async (value) => {
+      const requestUrl = `${global.SERVER_URL}/api/cep/v2/05010000?ddd=${value}`;
+      const { status, data } = await axios.get(requestUrl);
+
+      expect(status).toBe(200);
+      expect(data).toMatchObject({
+        cep: '05010000',
+        state: 'SP',
+        city: 'São Paulo',
+      });
+      expect(data).not.toHaveProperty('ddd');
+    }
+  );
+
+  test.each(['true', 'TRUE'])(
+    'Com ddd=%s inclui a propriedade ddd e mantém os demais campos: 05010000',
+    async (value) => {
+      const requestUrl = `${global.SERVER_URL}/api/cep/v2/05010000?ddd=${value}`;
+      const { status, data } = await axios.get(requestUrl);
+
+      expect(status).toBe(200);
+      expect(data).toMatchObject({
+        cep: '05010000',
+        state: 'SP',
+        city: 'São Paulo',
+        timezoneName: 'America/Sao_Paulo',
+        location: {
+          type: 'Point',
+          coordinates: {
+            longitude: expect.stringMatching(/^[-+]?\d+(\.\d+)?$/),
+            latitude: expect.stringMatching(/^[-+]?\d+(\.\d+)?$/),
+          },
+        },
+      });
+      expect(data).toHaveProperty('ddd');
+      // A fonte de DDD (Anatel) pode estar indisponível no CI: nesse caso o
+      // contrato é retornar ddd: null sem falhar a consulta do CEP.
+      expect(['11', null]).toContain(data.ddd);
+    }
+  );
+
+  test('Com ddd=true e CEP inválido mantém o erro 400: 0123', async () => {
+    expect.assertions(2);
+    const requestUrl = `${global.SERVER_URL}/api/cep/v2/0123?ddd=true`;
+
+    try {
+      await axios.get(requestUrl);
+    } catch (error) {
+      const { response } = error;
+
+      expect(response.status).toBe(400);
+      expect(response.data).toEqual({
+        name: 'CepPromiseError',
+        message: 'CEP deve conter exatamente 8 caracteres.',
+        type: 'validation_error',
+        errors: [
+          {
+            message: 'CEP informado possui menos do que 8 caracteres.',
+            service: 'cep_validation',
+          },
+        ],
+      });
+    }
+  });
+
+  test('Com ddd=true e CEP inexistente mantém o erro 404: 00000000', async () => {
+    expect.assertions(3);
+    const requestUrl = `${global.SERVER_URL}/api/cep/v2/00000000?ddd=true`;
+
+    try {
+      await axios.get(requestUrl);
+    } catch (error) {
+      const { response } = error;
+
+      expect(response.status).toBe(404);
+      expect(response.data).toMatchObject({
+        name: 'CepPromiseError',
+        message: 'Todos os serviços de CEP retornaram erro.',
+        type: 'service_error',
+      });
+      expect(response.data).not.toHaveProperty('ddd');
+    }
+  });
+});
+
 testCorsForRoute('/api/cep/v2/14096180');
+testCorsForRoute('/api/cep/v2/05010000?ddd=true');
